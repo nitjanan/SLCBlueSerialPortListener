@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="carTeamDataSet" targetNamespace="http://tempuri.org/carTeamDataSet.xsd" xmlns:mstns="http://tempuri.org/carTeamDataSet.xsd" xmlns="http://tempuri.org/carTeamDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="truckConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="truckConnectionString (Settings)" PropertyReference="ApplicationSettings.SerialPortListener.Properties.Settings.GlobalReference.Default.truckConnectionString" Provider="Devart.Data.PostgreSql" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="carTeamDataTableTableAdapter" GeneratorDataComponentClassName="carTeamDataTableTableAdapter" Name="carTeamDataTable" UserDataComponentName="carTeamDataTableTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="truckConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        base_car.รหัสรถร่วม, base_car.ชื่อรถร่วม, base_car.รหัสทีม, base_car_team.ชื่อทีม
+FROM            base_car INNER JOIN
+                         base_car_team ON base_car.รหัสทีม = base_car_team.รหัสทีม</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="รหัสรถร่วม" DataSetColumn="รหัสรถร่วม" />
+              <Mapping SourceColumn="ชื่อรถร่วม" DataSetColumn="ชื่อรถร่วม" />
+              <Mapping SourceColumn="รหัสทีม" DataSetColumn="รหัสทีม" />
+              <Mapping SourceColumn="ชื่อทีม" DataSetColumn="ชื่อทีม" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="carTeamDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="carTeamDataSet" msprop:Generator_UserDSName="carTeamDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="carTeamDataTable" msprop:Generator_TableClassName="carTeamDataTableDataTable" msprop:Generator_TableVarName="tablecarTeamDataTable" msprop:Generator_TablePropName="carTeamDataTable" msprop:Generator_RowDeletingName="carTeamDataTableRowDeleting" msprop:Generator_RowChangingName="carTeamDataTableRowChanging" msprop:Generator_RowEvHandlerName="carTeamDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="carTeamDataTableRowDeleted" msprop:Generator_UserTableName="carTeamDataTable" msprop:Generator_RowChangedName="carTeamDataTableRowChanged" msprop:Generator_RowEvArgName="carTeamDataTableRowChangeEvent" msprop:Generator_RowClassName="carTeamDataTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="รหัสรถร่วม" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnรหัสรถร่วม" msprop:Generator_ColumnPropNameInRow="รหัสรถร่วม" msprop:Generator_ColumnPropNameInTable="รหัสรถร่วมColumn" msprop:Generator_UserColumnName="รหัสรถร่วม" type="xs:string" minOccurs="0" />
+              <xs:element name="ชื่อรถร่วม" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnชื่อรถร่วม" msprop:Generator_ColumnPropNameInRow="ชื่อรถร่วม" msprop:Generator_ColumnPropNameInTable="ชื่อรถร่วมColumn" msprop:Generator_UserColumnName="ชื่อรถร่วม" type="xs:string" minOccurs="0" />
+              <xs:element name="รหัสทีม" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnรหัสทีม" msprop:Generator_ColumnPropNameInRow="รหัสทีม" msprop:Generator_ColumnPropNameInTable="รหัสทีมColumn" msprop:Generator_UserColumnName="รหัสทีม" type="xs:string" minOccurs="0" />
+              <xs:element name="ชื่อทีม" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnชื่อทีม" msprop:Generator_ColumnPropNameInRow="ชื่อทีม" msprop:Generator_ColumnPropNameInTable="ชื่อทีมColumn" msprop:Generator_UserColumnName="ชื่อทีม" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

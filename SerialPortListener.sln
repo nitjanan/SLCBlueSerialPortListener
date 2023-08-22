@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialPortListener", "SerialPortListener\SerialPortListener.csproj", "{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{DB3DB26B-EF3C-45D7-8220-BA4F4D3D9E64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Debug|x86.ActiveCfg = Debug|x86
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Debug|x86.Build.0 = Debug|x86
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|x86.ActiveCfg = Release|x86
+		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|x86.Build.0 = Release|x86
+		{DB3DB26B-EF3C-45D7-8220-BA4F4D3D9E64}.Debug|Any CPU.ActiveCfg = Debug
+		{DB3DB26B-EF3C-45D7-8220-BA4F4D3D9E64}.Debug|x86.ActiveCfg = Debug
+		{DB3DB26B-EF3C-45D7-8220-BA4F4D3D9E64}.Release|Any CPU.ActiveCfg = Release
+		{DB3DB26B-EF3C-45D7-8220-BA4F4D3D9E64}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F0F97CD-697E-4E8E-AEFF-32517782EE3C}
+	EndGlobalSection
+EndGlobal

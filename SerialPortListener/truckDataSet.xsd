@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="truckDataSet" targetNamespace="http://tempuri.org/truckDataSet.xsd" xmlns:mstns="http://tempuri.org/truckDataSet.xsd" xmlns="http://tempuri.org/truckDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="truckConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="truckConnectionString (Settings)" PropertyReference="ApplicationSettings.SerialPortListener.Properties.Settings.GlobalReference.Default.truckConnectionString" Provider="Devart.Data.PostgreSql" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="weightTableAdapter" GeneratorDataComponentClassName="weightTableAdapter" Name="weight" UserDataComponentName="weightTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="truckConnectionString (Settings)" DbObjectName="&quot;public&quot;.weight" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        วันที่, เลขที่เอกสาร, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรวม, น้ำหนักสินค้า, เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, ทะเบียนรถ, weight_id, vat, คิว, 
+                         รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, จำนวณเงิน, น้ำหนักรถ, ล้าง, หมายเหตุ, ขนส่ง, carry_type_name, oil_content
+FROM            weight</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="วันที่" DataSetColumn="วันที่" />
+              <Mapping SourceColumn="เลขที่เอกสาร" DataSetColumn="เลขที่เอกสาร" />
+              <Mapping SourceColumn="จังหวัด" DataSetColumn="จังหวัด" />
+              <Mapping SourceColumn="คนขับ" DataSetColumn="คนขับ" />
+              <Mapping SourceColumn="ลูกค้า" DataSetColumn="ลูกค้า" />
+              <Mapping SourceColumn="น้ำหนักรวม" DataSetColumn="น้ำหนักรวม" />
+              <Mapping SourceColumn="น้ำหนักสินค้า" DataSetColumn="น้ำหนักสินค้า" />
+              <Mapping SourceColumn="เลขที่ใบตัก" DataSetColumn="เลขที่ใบตัก" />
+              <Mapping SourceColumn="โรงโม่" DataSetColumn="โรงโม่" />
+              <Mapping SourceColumn="ชนิดหิน" DataSetColumn="ชนิดหิน" />
+              <Mapping SourceColumn="จ่ายเงิน" DataSetColumn="จ่ายเงิน" />
+              <Mapping SourceColumn="รหัสผู้ชั่ง" DataSetColumn="รหัสผู้ชั่ง" />
+              <Mapping SourceColumn="รหัสผู้ตัก" DataSetColumn="รหัสผู้ตัก" />
+              <Mapping SourceColumn="ราคาตัน" DataSetColumn="ราคาตัน" />
+              <Mapping SourceColumn="จำนวนเงิน" DataSetColumn="จำนวณเงิน" />
+              <Mapping SourceColumn="ค่าขนส่ง" DataSetColumn="ค่าขนส่ง" />
+              <Mapping SourceColumn="วันที่ชั่งเข้า" DataSetColumn="วันที่ชั่งเข้า" />
+              <Mapping SourceColumn="เวลาชั่งเข้า" DataSetColumn="เวลาชั่งเข้า" />
+              <Mapping SourceColumn="วันที่ชั่งออก" DataSetColumn="วันที่ชั่งออก" />
+              <Mapping SourceColumn="เวลาชั่งออก" DataSetColumn="เวลาชั่งออก" />
+              <Mapping SourceColumn="รหัสลูกค้า" DataSetColumn="รหัสลูกค้า" />
+              <Mapping SourceColumn="ชื่อผู้ชั่ง" DataSetColumn="ชื่อผู้ชั่ง" />
+              <Mapping SourceColumn="ชื่อผู้ตัก" DataSetColumn="ชื่อผู้ตัก" />
+              <Mapping SourceColumn="จำนวณเงิน" DataSetColumn="จำนวณเงิน" />
+              <Mapping SourceColumn="ทะเบียนรถ" DataSetColumn="ทะเบียนรถ" />
+              <Mapping SourceColumn="weight_id" DataSetColumn="weight_id" />
+              <Mapping SourceColumn="vat" DataSetColumn="vat" />
+              <Mapping SourceColumn="คิว" DataSetColumn="คิว" />
+              <Mapping SourceColumn="รหัสผู้อนุมัติจ่าย" DataSetColumn="รหัสผู้อนุมัติจ่าย" />
+              <Mapping SourceColumn="ชื่อผู้อนุมัติจ่าย" DataSetColumn="ชื่อผู้อนุมัติจ่าย" />
+              <Mapping SourceColumn="ชนิดvat" DataSetColumn="ชนิดvat" />
+              <Mapping SourceColumn="จำนวนเงินสุทธิ" DataSetColumn="จำนวนเงินสุทธิ" />
+              <Mapping SourceColumn="ประเภทหิน" DataSetColumn="ประเภทหิน" />
+              <Mapping SourceColumn="หน้างาน" DataSetColumn="หน้างาน" />
+              <Mapping SourceColumn="ทีม" DataSetColumn="ทีม" />
+              <Mapping SourceColumn="น้ำหนักรถ" DataSetColumn="น้ำหนักรถ" />
+              <Mapping SourceColumn="ล้าง" DataSetColumn="ล้าง" />
+              <Mapping SourceColumn="หมายเหตุ" DataSetColumn="หมายเหตุ" />
+              <Mapping SourceColumn="ขนส่ง" DataSetColumn="ขนส่ง" />
+              <Mapping SourceColumn="carry_type_name" DataSetColumn="carry_type_name" />
+              <Mapping SourceColumn="oil_content" DataSetColumn="oil_content" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="truckDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="truckDataSet" msprop:Generator_UserDSName="truckDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="weight" msprop:Generator_TableClassName="weightDataTable" msprop:Generator_TableVarName="tableweight" msprop:Generator_RowChangedName="weightRowChanged" msprop:Generator_TablePropName="weight" msprop:Generator_RowDeletingName="weightRowDeleting" msprop:Generator_RowChangingName="weightRowChanging" msprop:Generator_RowEvHandlerName="weightRowChangeEventHandler" msprop:Generator_RowDeletedName="weightRowDeleted" msprop:Generator_RowClassName="weightRow" msprop:Generator_UserTableName="weight" msprop:Generator_RowEvArgName="weightRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="วันที่" msprop:Generator_ColumnVarNameInTable="columnวันที่" msprop:Generator_ColumnPropNameInRow="วันที่" msprop:Generator_ColumnPropNameInTable="วันที่Column" msprop:Generator_UserColumnName="วันที่" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="เลขที่เอกสาร" msprop:Generator_ColumnVarNameInTable="columnเลขที่เอกสาร" msprop:Generator_ColumnPropNameInRow="เลขที่เอกสาร" msprop:Generator_ColumnPropNameInTable="เลขที่เอกสารColumn" msprop:Generator_UserColumnName="เลขที่เอกสาร" type="xs:string" minOccurs="0" />
+              <xs:element name="จังหวัด" msprop:Generator_ColumnVarNameInTable="columnจังหวัด" msprop:Generator_ColumnPropNameInRow="จังหวัด" msprop:Generator_ColumnPropNameInTable="จังหวัดColumn" msprop:Generator_UserColumnName="จังหวัด" type="xs:string" minOccurs="0" />
+              <xs:element name="คนขับ" msprop:Generator_ColumnVarNameInTable="columnคนขับ" msprop:Generator_ColumnPropNameInRow="คนขับ" msprop:Generator_ColumnPropNameInTable="คนขับColumn" msprop:Generator_UserColumnName="คนขับ" type="xs:string" minOccurs="0" />
+              <xs:element name="ลูกค้า" msprop:Generator_ColumnVarNameInTable="columnลูกค้า" msprop:Generator_ColumnPropNameInRow="ลูกค้า" msprop:Generator_ColumnPropNameInTable="ลูกค้าColumn" msprop:Generator_UserColumnName="ลูกค้า" type="xs:string" minOccurs="0" />
+              <xs:element name="น้ำหนักรถ" msprop:Generator_ColumnVarNameInTable="columnน้ำหนักรถ" msprop:Generator_ColumnPropNameInRow="น้ำหนักรถ" msprop:Generator_ColumnPropNameInTable="น้ำหนักรถColumn" msprop:Generator_UserColumnName="น้ำหนักรถ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="น้ำหนักรวม" msprop:Generator_ColumnVarNameInTable="columnน้ำหนักรวม" msprop:Generator_ColumnPropNameInRow="น้ำหนักรวม" msprop:Generator_ColumnPropNameInTable="น้ำหนักรวมColumn" msprop:Generator_UserColumnName="น้ำหนักรวม" type="xs:decimal" minOccurs="0" />
+              <xs:element name="น้ำหนักสินค้า" msprop:Generator_ColumnVarNameInTable="columnน้ำหนักสินค้า" msprop:Generator_ColumnPropNameInRow="น้ำหนักสินค้า" msprop:Generator_ColumnPropNameInTable="น้ำหนักสินค้าColumn" msprop:Generator_UserColumnName="น้ำหนักสินค้า" type="xs:decimal" minOccurs="0" />
+              <xs:element name="เลขที่ใบตัก" msprop:Generator_ColumnVarNameInTable="columnเลขที่ใบตัก" msprop:Generator_ColumnPropNameInRow="เลขที่ใบตัก" msprop:Generator_ColumnPropNameInTable="เลขที่ใบตักColumn" msprop:Generator_UserColumnName="เลขที่ใบตัก" type="xs:string" minOccurs="0" />
+              <xs:element name="โรงโม่" msprop:Generator_ColumnVarNameInTable="columnโรงโม่" msprop:Generator_ColumnPropNameInRow="โรงโม่" msprop:Generator_ColumnPropNameInTable="โรงโม่Column" msprop:Generator_UserColumnName="โรงโม่" type="xs:string" minOccurs="0" />
+              <xs:element name="ชนิดหิน" msprop:Generator_ColumnVarNameInTable="columnชนิดหิน" msprop:Generator_ColumnPropNameInRow="ชนิดหิน" msprop:Generator_ColumnPropNameInTable="ชนิดหินColumn" msprop:Generator_UserColumnName="ชนิดหิน" type="xs:string" minOccurs="0" />
+              <xs:element name="จ่ายเงิน" msprop:Generator_ColumnVarNameInTable="columnจ่ายเงิน" msprop:Generator_ColumnPropNameInRow="จ่ายเงิน" msprop:Generator_ColumnPropNameInTable="จ่ายเงินColumn" msprop:Generator_UserColumnName="จ่ายเงิน" type="xs:string" minOccurs="0" />
+              <xs:element name="รหัสผู้ชั่ง" msprop:Generator_ColumnVarNameInTable="columnรหัสผู้ชั่ง" msprop:Generator_ColumnPropNameInRow="รหัสผู้ชั่ง" msprop:Generator_ColumnPropNameInTable="รหัสผู้ชั่งColumn" msprop:Generator_UserColumnName="รหัสผู้ชั่ง" type="xs:string" minOccurs="0" />
+              <xs:element name="รหัสผู้ตัก" msprop:Generator_ColumnVarNameInTable="columnรหัสผู้ตัก" msprop:Generator_ColumnPropNameInRow="รหัสผู้ตัก" msprop:Generator_ColumnPropNameInTable="รหัสผู้ตักColumn" msprop:Generator_UserColumnName="รหัสผู้ตัก" type="xs:string" minOccurs="0" />
+              <xs:element name="ราคาตัน" msprop:Generator_ColumnVarNameInTable="columnราคาตัน" msprop:Generator_ColumnPropNameInRow="ราคาตัน" msprop:Generator_ColumnPropNameInTable="ราคาตันColumn" msprop:Generator_UserColumnName="ราคาตัน" type="xs:decimal" minOccurs="0" />
+              <xs:element name="จำนวณเงิน" msprop:Generator_ColumnVarNameInTable="columnจำนวณเงิน" msprop:Generator_ColumnPropNameInRow="จำนวณเงิน" msprop:Generator_ColumnPropNameInTable="จำนวณเงินColumn" msprop:Generator_UserColumnName="จำนวณเงิน" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ค่าขนส่ง" msprop:Generator_ColumnVarNameInTable="columnค่าขนส่ง" msprop:Generator_ColumnPropNameInRow="ค่าขนส่ง" msprop:Generator_ColumnPropNameInTable="ค่าขนส่งColumn" msprop:Generator_UserColumnName="ค่าขนส่ง" type="xs:string" minOccurs="0" />
+              <xs:element name="วันที่ชั่งเข้า" msprop:Generator_ColumnVarNameInTable="columnวันที่ชั่งเข้า" msprop:Generator_ColumnPropNameInRow="วันที่ชั่งเข้า" msprop:Generator_ColumnPropNameInTable="วันที่ชั่งเข้าColumn" msprop:Generator_UserColumnName="วันที่ชั่งเข้า" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="เวลาชั่งเข้า" msprop:Generator_ColumnVarNameInTable="columnเวลาชั่งเข้า" msprop:Generator_ColumnPropNameInRow="เวลาชั่งเข้า" msprop:Generator_ColumnPropNameInTable="เวลาชั่งเข้าColumn" msprop:Generator_UserColumnName="เวลาชั่งเข้า" type="xs:string" minOccurs="0" />
+              <xs:element name="วันที่ชั่งออก" msprop:Generator_ColumnVarNameInTable="columnวันที่ชั่งออก" msprop:Generator_ColumnPropNameInRow="วันที่ชั่งออก" msprop:Generator_ColumnPropNameInTable="วันที่ชั่งออกColumn" msprop:Generator_UserColumnName="วันที่ชั่งออก" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="เวลาชั่งออก" msprop:Generator_ColumnVarNameInTable="columnเวลาชั่งออก" msprop:Generator_ColumnPropNameInRow="เวลาชั่งออก" msprop:Generator_ColumnPropNameInTable="เวลาชั่งออกColumn" msprop:Generator_UserColumnName="เวลาชั่งออก" type="xs:string" minOccurs="0" />
+              <xs:element name="รหัสลูกค้า" msprop:Generator_ColumnVarNameInTable="columnรหัสลูกค้า" msprop:Generator_ColumnPropNameInRow="รหัสลูกค้า" msprop:Generator_ColumnPropNameInTable="รหัสลูกค้าColumn" msprop:Generator_UserColumnName="รหัสลูกค้า" type="xs:string" minOccurs="0" />
+              <xs:element name="ชื่อผู้ชั่ง" msprop:Generator_ColumnVarNameInTable="columnชื่อผู้ชั่ง" msprop:Generator_ColumnPropNameInRow="ชื่อผู้ชั่ง" msprop:Generator_ColumnPropNameInTable="ชื่อผู้ชั่งColumn" msprop:Generator_UserColumnName="ชื่อผู้ชั่ง" type="xs:string" minOccurs="0" />
+              <xs:element name="ชื่อผู้ตัก" msprop:Generator_ColumnVarNameInTable="columnชื่อผู้ตัก" msprop:Generator_ColumnPropNameInRow="ชื่อผู้ตัก" msprop:Generator_ColumnPropNameInTable="ชื่อผู้ตักColumn" msprop:Generator_UserColumnName="ชื่อผู้ตัก" type="xs:string" minOccurs="0" />
+              <xs:element name="ทะเบียนรถ" msprop:Generator_ColumnVarNameInTable="columnทะเบียนรถ" msprop:Generator_ColumnPropNameInRow="ทะเบียนรถ" msprop:Generator_ColumnPropNameInTable="ทะเบียนรถColumn" msprop:Generator_UserColumnName="ทะเบียนรถ" type="xs:string" minOccurs="0" />
+              <xs:element name="weight_id" msprop:Generator_ColumnVarNameInTable="columnweight_id" msprop:Generator_ColumnPropNameInRow="weight_id" msprop:Generator_ColumnPropNameInTable="weight_idColumn" msprop:Generator_UserColumnName="weight_id" type="xs:int" />
+              <xs:element name="vat" msprop:Generator_ColumnVarNameInTable="columnvat" msprop:Generator_ColumnPropNameInRow="vat" msprop:Generator_ColumnPropNameInTable="vatColumn" msprop:Generator_UserColumnName="vat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="คิว" msprop:Generator_ColumnVarNameInTable="columnคิว" msprop:Generator_ColumnPropNameInRow="คิว" msprop:Generator_ColumnPropNameInTable="คิวColumn" msprop:Generator_UserColumnName="คิว" type="xs:decimal" minOccurs="0" />
+              <xs:element name="รหัสผู้อนุมัติจ่าย" msprop:Generator_ColumnVarNameInTable="columnรหัสผู้อนุมัติจ่าย" msprop:Generator_ColumnPropNameInRow="รหัสผู้อนุมัติจ่าย" msprop:Generator_ColumnPropNameInTable="รหัสผู้อนุมัติจ่ายColumn" msprop:Generator_UserColumnName="รหัสผู้อนุมัติจ่าย" type="xs:string" minOccurs="0" />
+              <xs:element name="ชื่อผู้อนุมัติจ่าย" msprop:Generator_ColumnVarNameInTable="columnชื่อผู้อนุมัติจ่าย" msprop:Generator_ColumnPropNameInRow="ชื่อผู้อนุมัติจ่าย" msprop:Generator_ColumnPropNameInTable="ชื่อผู้อนุมัติจ่ายColumn" msprop:Generator_UserColumnName="ชื่อผู้อนุมัติจ่าย" type="xs:string" minOccurs="0" />
+              <xs:element name="ชนิดvat" msprop:Generator_ColumnVarNameInTable="columnชนิดvat" msprop:Generator_ColumnPropNameInRow="ชนิดvat" msprop:Generator_ColumnPropNameInTable="ชนิดvatColumn" msprop:Generator_UserColumnName="ชนิดvat" type="xs:string" minOccurs="0" />
+              <xs:element name="จำนวนเงินสุทธิ" msprop:Generator_ColumnVarNameInTable="columnจำนวนเงินสุทธิ" msprop:Generator_ColumnPropNameInRow="จำนวนเงินสุทธิ" msprop:Generator_ColumnPropNameInTable="จำนวนเงินสุทธิColumn" msprop:Generator_UserColumnName="จำนวนเงินสุทธิ" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ประเภทหิน" msprop:Generator_ColumnVarNameInTable="columnประเภทหิน" msprop:Generator_ColumnPropNameInRow="ประเภทหิน" msprop:Generator_ColumnPropNameInTable="ประเภทหินColumn" msprop:Generator_UserColumnName="ประเภทหิน" type="xs:string" minOccurs="0" />
+              <xs:element name="หน้างาน" msprop:Generator_ColumnVarNameInTable="columnหน้างาน" msprop:Generator_ColumnPropNameInRow="หน้างาน" msprop:Generator_ColumnPropNameInTable="หน้างานColumn" msprop:Generator_UserColumnName="หน้างาน" type="xs:string" minOccurs="0" />
+              <xs:element name="ทีม" msprop:Generator_ColumnVarNameInTable="columnทีม" msprop:Generator_ColumnPropNameInRow="ทีม" msprop:Generator_ColumnPropNameInTable="ทีมColumn" msprop:Generator_UserColumnName="ทีม" type="xs:string" minOccurs="0" />
+              <xs:element name="ล้าง" msprop:Generator_ColumnVarNameInTable="columnล้าง" msprop:Generator_ColumnPropNameInRow="ล้าง" msprop:Generator_ColumnPropNameInTable="ล้างColumn" msprop:Generator_UserColumnName="ล้าง" type="xs:string" minOccurs="0" />
+              <xs:element name="ขนส่ง" msprop:Generator_ColumnVarNameInTable="columnขนส่ง" msprop:Generator_ColumnPropNameInRow="ขนส่ง" msprop:Generator_ColumnPropNameInTable="ขนส่งColumn" msprop:Generator_UserColumnName="ขนส่ง" type="xs:string" minOccurs="0" />
+              <xs:element name="หมายเหตุ" msprop:Generator_ColumnVarNameInTable="columnหมายเหตุ" msprop:Generator_ColumnPropNameInRow="หมายเหตุ" msprop:Generator_ColumnPropNameInTable="หมายเหตุColumn" msprop:Generator_UserColumnName="หมายเหตุ" type="xs:string" minOccurs="0" />
+              <xs:element name="carry_type_name" msprop:Generator_ColumnVarNameInTable="columncarry_type_name" msprop:Generator_ColumnPropNameInRow="carry_type_name" msprop:Generator_ColumnPropNameInTable="carry_type_nameColumn" msprop:Generator_UserColumnName="carry_type_name" type="xs:string" minOccurs="0" />
+              <xs:element name="oil_content" msprop:Generator_ColumnVarNameInTable="columnoil_content" msprop:Generator_ColumnPropNameInRow="oil_content" msprop:Generator_ColumnPropNameInTable="oil_contentColumn" msprop:Generator_UserColumnName="oil_content" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:weight" />
+      <xs:field xpath="mstns:weight_id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SerialPortListener</RootNamespace>
+    <AssemblyName>SerialPortListener</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iconNew.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Devart.Data, Version=5.0.2531.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.PostgreSql, Version=7.18.1739.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data.PostgreSql.Vs, Version=7.18.1739.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="baseApproveDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseApproveDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseCarCityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseCarCityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseCarDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseCarDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseCarTeamDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseCarTeamDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseCustomerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseCustomerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseScaleDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseScaleDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseScoopDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseScoopDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseSiteDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseSiteDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="baseStoneTypeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baseStoneTypeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="carTeamDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>carTeamDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="cleanDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cleanDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs" />
+    <Compile Include="customerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>customerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datalayer.cs" />
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FCancelPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCancelPassword.Designer.cs">
+      <DependentUpon>FCancelPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrint.Designer.cs">
+      <DependentUpon>FPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCarTeamReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCarTeamReport.Designer.cs">
+      <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCleanReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCleanReport.Designer.cs">
+      <DependentUpon>FPrintCleanReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCustomerReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCustomerReport.Designer.cs">
+      <DependentUpon>FPrintCustomerReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintDailyReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintDailyReport.Designer.cs">
+      <DependentUpon>FPrintDailyReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintInvoiceReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintInvoiceReport.Designer.cs">
+      <DependentUpon>FPrintInvoiceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintJointCarReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintJointCarReport.Designer.cs">
+      <DependentUpon>FPrintJointCarReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintMillReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintMillReport.Designer.cs">
+      <DependentUpon>FPrintMillReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintScoopReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintScoopReport.Designer.cs">
+      <DependentUpon>FPrintScoopReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintSiteReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintSiteReport.Designer.cs">
+      <DependentUpon>FPrintSiteReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintStoneTypeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintStoneTypeReport.Designer.cs">
+      <DependentUpon>FPrintStoneTypeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintTransportByTeamReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintTransportByTeamReport.Designer.cs">
+      <DependentUpon>FPrintTransportByTeamReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintTransportReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintTransportReport.Designer.cs">
+      <DependentUpon>FPrintTransportReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialPortManager.cs" />
+    <Compile Include="SerialSettings.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TableCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableCustomer.Designer.cs">
+      <DependentUpon>TableCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableFromDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableFromDB.Designer.cs">
+      <DependentUpon>TableFromDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="truckDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>truckDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="truckDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>truckDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="truckDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>truckDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="truckDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ucBackup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBackup.Designer.cs">
+      <DependentUpon>ucBackup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucHelp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucHelp.Designer.cs">
+      <DependentUpon>ucHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucReport.Designer.cs">
+      <DependentUpon>ucReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucSetting.Designer.cs">
+      <DependentUpon>ucSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucTruck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTruck.Designer.cs">
+      <DependentUpon>ucTruck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="usersDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>usersDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="Weight.cs" />
+    <Compile Include="WeightDailyReport.cs" />
+    <Compile Include="weightScoopDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>weightScoopDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WeightTempReport.cs" />
+    <EmbeddedResource Include="CarTeamReport.rdlc" />
+    <EmbeddedResource Include="CleanReport.rdlc" />
+    <EmbeddedResource Include="CustomerReport.rdlc" />
+    <EmbeddedResource Include="DailyReport.rdlc" />
+    <EmbeddedResource Include="FCancelPassword.resx">
+      <DependentUpon>FCancelPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrint.resx">
+      <DependentUpon>FPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCarTeamReport.resx">
+      <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCleanReport.resx">
+      <DependentUpon>FPrintCleanReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCustomerReport.resx">
+      <DependentUpon>FPrintCustomerReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintDailyReport.resx">
+      <DependentUpon>FPrintDailyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintInvoiceReport.resx">
+      <DependentUpon>FPrintInvoiceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintJointCarReport.resx">
+      <DependentUpon>FPrintJointCarReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintMillReport.resx">
+      <DependentUpon>FPrintMillReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintScoopReport.resx">
+      <DependentUpon>FPrintScoopReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintSiteReport.resx">
+      <DependentUpon>FPrintSiteReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintStoneTypeReport.resx">
+      <DependentUpon>FPrintStoneTypeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintTransportByTeamReport.resx">
+      <DependentUpon>FPrintTransportByTeamReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintTransportReport.resx">
+      <DependentUpon>FPrintTransportReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceReport.rdlc" />
+    <EmbeddedResource Include="JointCarReport.rdlc" />
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MillReport.rdlc" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ReportMain.rdlc" />
+    <EmbeddedResource Include="ScoopReport.rdlc" />
+    <EmbeddedResource Include="SiteReport.rdlc" />
+    <EmbeddedResource Include="StoneTypeReport.rdlc" />
+    <EmbeddedResource Include="TableCustomer.resx">
+      <DependentUpon>TableCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableFromDB.resx">
+      <DependentUpon>TableFromDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransportByTeamReport.rdlc" />
+    <EmbeddedResource Include="TransportReport.rdlc" />
+    <EmbeddedResource Include="ucBackup.resx">
+      <DependentUpon>ucBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucHelp.resx">
+      <DependentUpon>ucHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucReport.resx">
+      <DependentUpon>ucReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucSetting.resx">
+      <DependentUpon>ucSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucTruck.resx">
+      <DependentUpon>ucTruck.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="baseApproveDataSet.xsc">
+      <DependentUpon>baseApproveDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseApproveDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseApproveDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseApproveDataSet.xss">
+      <DependentUpon>baseApproveDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCarCityDataSet.xsc">
+      <DependentUpon>baseCarCityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCarCityDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseCarCityDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseCarCityDataSet.xss">
+      <DependentUpon>baseCarCityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCarDataSet.xsc">
+      <DependentUpon>baseCarDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCarDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseCarDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseCarDataSet.xss">
+      <DependentUpon>baseCarDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCarTeamDataSet.xsc">
+      <DependentUpon>baseCarTeamDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCarTeamDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseCarTeamDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseCarTeamDataSet.xss">
+      <DependentUpon>baseCarTeamDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCustomerDataSet.xsc">
+      <DependentUpon>baseCustomerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseCustomerDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseCustomerDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseCustomerDataSet.xss">
+      <DependentUpon>baseCustomerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseScaleDataSet.xsc">
+      <DependentUpon>baseScaleDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseScaleDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseScaleDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseScaleDataSet.xss">
+      <DependentUpon>baseScaleDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseScoopDataSet.xsc">
+      <DependentUpon>baseScoopDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseScoopDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseScoopDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseScoopDataSet.xss">
+      <DependentUpon>baseScoopDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseSiteDataSet.xsc">
+      <DependentUpon>baseSiteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseSiteDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseSiteDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseSiteDataSet.xss">
+      <DependentUpon>baseSiteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseStoneTypeDataSet.xsc">
+      <DependentUpon>baseStoneTypeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="baseStoneTypeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>baseStoneTypeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="baseStoneTypeDataSet.xss">
+      <DependentUpon>baseStoneTypeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="carTeamDataSet.xsc">
+      <DependentUpon>carTeamDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="carTeamDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>carTeamDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="carTeamDataSet.xss">
+      <DependentUpon>carTeamDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="cleanDataSet.xsc">
+      <DependentUpon>cleanDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="cleanDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>cleanDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cleanDataSet.xss">
+      <DependentUpon>cleanDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="customerDataSet.xsc">
+      <DependentUpon>customerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="customerDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>customerDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="customerDataSet.xss">
+      <DependentUpon>customerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="truckDataSet.xsc">
+      <DependentUpon>truckDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>truckDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="truckDataSet.xss">
+      <DependentUpon>truckDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet1.xsc">
+      <DependentUpon>truckDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>truckDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="truckDataSet1.xss">
+      <DependentUpon>truckDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet2.xsc">
+      <DependentUpon>truckDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>truckDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="truckDataSet2.xss">
+      <DependentUpon>truckDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet3.xsc">
+      <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>truckDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="truckDataSet3.xss">
+      <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="usersDataSet.xsc">
+      <DependentUpon>usersDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="usersDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>usersDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="usersDataSet.xss">
+      <DependentUpon>usersDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="weightScoopDataSet.xsc">
+      <DependentUpon>weightScoopDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="weightScoopDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>weightScoopDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="weightScoopDataSet.xss">
+      <DependentUpon>weightScoopDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\show_password_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_ftp_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_help_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_settings_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_truck_32px_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scales_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scales_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_silachai.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_silachai2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\data_backup_32px.png" />
+    <None Include="Resources\microsoft_excel_32px.png" />
+    <None Include="Resources\logo_silachai -2.PNG" />
+    <None Include="Resources\logo_old-removebg-preview.png" />
+    <None Include="Resources\search_32px.png" />
+    <None Include="Resources\search_24px.png" />
+    <None Include="Resources\add_24px.png" />
+    <None Include="Resources\edit_file_24px.png" />
+    <None Include="Resources\delete_bin_24px.png" />
+    <None Include="Resources\exit_24px.png" />
+    <None Include="Resources\save_24px.png" />
+    <None Include="Resources\erase_24px.png" />
+    <Content Include="iconNew.ico" />
+    <Content Include="icon_logo.ico" />
+    <Content Include="logo_old_Quj_1.ico" />
+    <None Include="Resources\user_male_32px.png" />
+    <None Include="Resources\password_32px.png" />
+    <None Include="Resources\password_32px_2.png" />
+    <None Include="Resources\user_male_32px_2.png" />
+    <None Include="Resources\ftp_32px.png" />
+    <None Include="Resources\help_32px.png" />
+    <None Include="Resources\print_32px_pink.png" />
+    <None Include="Resources\save_32px_pink.png" />
+    <None Include="Resources\settings_32px.png" />
+    <None Include="Resources\truck_32px.png" />
+    <None Include="Resources\user_male_32px1.png" />
+    <None Include="Resources\search_32px_pink.png" />
+    <None Include="Resources\search_32px_pinkL.png" />
+    <None Include="Resources\search_24px_pink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
