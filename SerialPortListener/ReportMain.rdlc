@@ -2711,9 +2711,6 @@
                 <Height>0.25in</Height>
                 <Width>0.84586in</Width>
                 <ZIndex>83</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>

@@ -2616,7 +2616,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.6cm</Top>
               <Height>0.6cm</Height>
-              <Width>5.82707cm</Width>
+              <Width>7.10334cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2664,9 +2664,9 @@
               </Paragraphs>
               <rd:DefaultName>PDateFrom</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>5.82707cm</Left>
+              <Left>7.10334cm</Left>
               <Height>0.6cm</Height>
-              <Width>5.19372cm</Width>
+              <Width>3.91745cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2755,7 +2755,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด(Sandvik)  1169</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>14pt</FontSize>
@@ -2768,7 +2768,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>5.82707cm</Width>
+              <Width>7.10334cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
