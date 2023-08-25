@@ -8,13 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Devart.Data.PostgreSql;
+
+using System.Data.Odbc;
 
 namespace SerialPortListener
 {
     public partial class FPrint : Form
     {
+        Datalayer dl;
         public FPrint()
         {
+            dl = new Datalayer();
             InitializeComponent();
         }
 
@@ -59,6 +64,7 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("TEmail",Company.TEmail),
                 new Microsoft.Reporting.WinForms.ReportParameter("TDocName",Company.TDocName),
                 new Microsoft.Reporting.WinForms.ReportParameter("TLogo",Company.TLogo),
+                new Microsoft.Reporting.WinForms.ReportParameter("PDatePrintAndCopyNum",Weight.DatePrintAndCopyNum),
             };
             //this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
@@ -80,5 +86,6 @@ namespace SerialPortListener
             this.reportViewer1.LocalReport.DisplayName = "ใบชั่งน้ำหนักสินค้า";
             this.reportViewer1.RefreshReport();
         }
+
     }
 }

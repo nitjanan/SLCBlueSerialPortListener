@@ -40,6 +40,15 @@ namespace SerialPortListener
         private static string _transport;
         private static string _note;
         private static string _oilContent;
+        private static string _siteId;
+        private static string _stoneTypeId;
+        private static string _millId;
+        private static string _carTeamId;
+        private static string _scaleId;
+
+        private static string _datePrint;
+        private static string _datePrintAndCopyNum;
+        private static string _timePrint;
 
         public static string Id
         {
@@ -340,6 +349,70 @@ namespace SerialPortListener
             { return _oilContent; }
             set
             { _oilContent = value; }
+        }
+
+        public static string SiteId
+        {
+            get
+            { return _siteId; }
+            set
+            { _siteId = value; }
+        }
+
+        public static string StoneTypeId
+        {
+            get
+            { return _stoneTypeId; }
+            set
+            { _stoneTypeId = value; }
+        }
+
+        public static string MillId
+        {
+            get
+            { return _millId; }
+            set
+            { _millId = value; }
+        }
+
+        public static string CarTeamId
+        {
+            get
+            { return _carTeamId; }
+            set
+            { _carTeamId = value; }
+        }
+
+        public static string ScaleId
+        {
+            get
+            { return _scaleId; }
+            set
+            { _scaleId = value; }
+        }
+
+        public static string DatePrint
+        {
+            get
+            { return _datePrint; }
+            set
+            { _datePrint = value; }
+        }
+
+        public static string DatePrintAndCopyNum
+        {
+            get
+            { return _datePrintAndCopyNum; }
+            set
+            { _datePrintAndCopyNum = value; }
+        }
+
+        public static string TimePrint
+        {
+            get
+            { return _timePrint; }
+            set
+            { _timePrint = value; }
         }
     }
 }

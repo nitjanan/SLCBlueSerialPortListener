@@ -150,6 +150,7 @@
             this.tbOilContent = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
+            this.cbbCarTeam = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -1303,10 +1304,11 @@
             // 
             this.tbCarTeam.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbCarTeam.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCarTeam.Location = new System.Drawing.Point(941, 199);
+            this.tbCarTeam.Location = new System.Drawing.Point(1139, 391);
             this.tbCarTeam.Name = "tbCarTeam";
-            this.tbCarTeam.Size = new System.Drawing.Size(187, 27);
+            this.tbCarTeam.Size = new System.Drawing.Size(57, 27);
             this.tbCarTeam.TabIndex = 22;
+            this.tbCarTeam.Visible = false;
             this.tbCarTeam.Click += new System.EventHandler(this.tbCarTeam_Click);
             // 
             // timerWeight
@@ -1666,11 +1668,20 @@
             this.label38.TabIndex = 133;
             this.label38.Text = "ลิตร";
             // 
+            // cbbCarTeam
+            // 
+            this.cbbCarTeam.FormattingEnabled = true;
+            this.cbbCarTeam.Location = new System.Drawing.Point(949, 201);
+            this.cbbCarTeam.Name = "cbbCarTeam";
+            this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
+            this.cbbCarTeam.TabIndex = 138;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
+            this.Controls.Add(this.cbbCarTeam);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.tbOilContent);
@@ -1900,6 +1911,7 @@
         private System.Windows.Forms.TextBox tbOilContent;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox cbbCarTeam;
     }
 }
 
