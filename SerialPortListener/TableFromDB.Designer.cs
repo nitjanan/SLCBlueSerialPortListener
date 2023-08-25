@@ -83,6 +83,10 @@
             this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
             this.btExport = new System.Windows.Forms.Button();
+            this.site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataFromDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
@@ -203,7 +207,11 @@
             this.ล้าง,
             this.ขนส่ง,
             this.หมายเหตุ,
-            this.oil_content});
+            this.oil_content,
+            this.site_id,
+            this.stone_type_id,
+            this.mill_id,
+            this.car_team_id});
             this.tableDataFromDB.DataSource = this.weightBindingSource;
             this.tableDataFromDB.Location = new System.Drawing.Point(12, 60);
             this.tableDataFromDB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -664,6 +672,38 @@
             this.btExport.UseVisualStyleBackColor = true;
             this.btExport.Click += new System.EventHandler(this.btExport_Click);
             // 
+            // site_id
+            // 
+            this.site_id.DataPropertyName = "site_id";
+            this.site_id.HeaderText = "site_id";
+            this.site_id.Name = "site_id";
+            this.site_id.ReadOnly = true;
+            this.site_id.Width = 79;
+            // 
+            // stone_type_id
+            // 
+            this.stone_type_id.DataPropertyName = "stone_type_id";
+            this.stone_type_id.HeaderText = "stone_type_id";
+            this.stone_type_id.Name = "stone_type_id";
+            this.stone_type_id.ReadOnly = true;
+            this.stone_type_id.Width = 136;
+            // 
+            // mill_id
+            // 
+            this.mill_id.DataPropertyName = "mill_id";
+            this.mill_id.HeaderText = "mill_id";
+            this.mill_id.Name = "mill_id";
+            this.mill_id.ReadOnly = true;
+            this.mill_id.Width = 77;
+            // 
+            // car_team_id
+            // 
+            this.car_team_id.DataPropertyName = "car_team_id";
+            this.car_team_id.HeaderText = "car_team_id";
+            this.car_team_id.Name = "car_team_id";
+            this.car_team_id.ReadOnly = true;
+            this.car_team_id.Width = 126;
+            // 
             // TableFromDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -756,5 +796,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ขนส่ง;
         private System.Windows.Forms.DataGridViewTextBoxColumn หมายเหตุ;
         private System.Windows.Forms.DataGridViewTextBoxColumn oil_content;
+        private System.Windows.Forms.DataGridViewTextBoxColumn site_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stone_type_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mill_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_team_id;
     }
 }

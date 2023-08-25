@@ -59,7 +59,7 @@ namespace SerialPortListener
             try {
 
                 //MessageBox.Show("test = "+ dl.connect());
-                string sql = "select username, firstname, password, permission from public.users where username = '" + tbUsername.Text + "' and password = '" + Utils.hashPassword(tbPassword.Text) + "'";
+                string sql = "select username, firstname, password, permission, users_id from public.users where username = '" + tbUsername.Text + "' and password = '" + Utils.hashPassword(tbPassword.Text) + "'";
                 OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
                 DataTable dt = new DataTable();
                 dl.connect();
@@ -73,10 +73,12 @@ namespace SerialPortListener
                     String rFirstname = dt.Rows[0][1].ToString();
                     String rPassword = dt.Rows[0][2].ToString();
                     String rPermission = dt.Rows[0][3].ToString();
+                    String rUserId = dt.Rows[0][4].ToString();
                     Globals.Username = rUsername;
                     Globals.Firstname = rFirstname;
                     Globals.Password = rPassword;
                     Globals.Permission = rPermission;
+                    Globals.UserId = rUserId;
                     MainForm mf = new MainForm(rUsername, rFirstname);
                     mf.ShowDialog();
                 }
