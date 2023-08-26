@@ -487,6 +487,7 @@ namespace SerialPortListener
             string selectedName = cbbCarTeam.Text;
             string selectedId = "";
 
+            //มี list Items ที่สร้างเอง 1 list เลยต้องใส่ if
             if (cbbCarTeam.Items.Count > 1)
             {
                 foreach (ComboboxValue item in cbbCarTeam.Items)
