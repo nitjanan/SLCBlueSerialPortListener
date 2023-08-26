@@ -2328,7 +2328,7 @@
             </TablixRowHierarchy>
             <DataSetName>cleanDataSet</DataSetName>
             <Height>4.2cm</Height>
-            <Width>19.9231cm</Width>
+            <Width>19.92309cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2367,7 +2367,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.6cm</Top>
               <Height>0.6cm</Height>
-              <Width>5.76728cm</Width>
+              <Width>7.40728cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2400,9 +2400,9 @@
               </Paragraphs>
               <rd:DefaultName>PDateFrom</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>5.76728cm</Left>
+              <Left>7.40728cm</Left>
               <Height>0.6cm</Height>
-              <Width>6.28684cm</Width>
+              <Width>4.64684cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2524,7 +2524,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด(Sandvik)  1169</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -2537,7 +2537,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>5.76728cm</Width>
+              <Width>7.40728cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
