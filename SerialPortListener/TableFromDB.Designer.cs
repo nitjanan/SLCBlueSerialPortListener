@@ -72,6 +72,10 @@
             this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.truckDataSet = new SerialPortListener.truckDataSet();
             this.label3 = new System.Windows.Forms.Label();
@@ -83,10 +87,6 @@
             this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
             this.btExport = new System.Windows.Forms.Button();
-            this.site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataFromDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
@@ -540,6 +540,38 @@
             this.oil_content.ReadOnly = true;
             this.oil_content.Width = 111;
             // 
+            // site_id
+            // 
+            this.site_id.DataPropertyName = "site_id";
+            this.site_id.HeaderText = "site_id";
+            this.site_id.Name = "site_id";
+            this.site_id.ReadOnly = true;
+            this.site_id.Width = 79;
+            // 
+            // stone_type_id
+            // 
+            this.stone_type_id.DataPropertyName = "stone_type_id";
+            this.stone_type_id.HeaderText = "stone_type_id";
+            this.stone_type_id.Name = "stone_type_id";
+            this.stone_type_id.ReadOnly = true;
+            this.stone_type_id.Width = 136;
+            // 
+            // mill_id
+            // 
+            this.mill_id.DataPropertyName = "mill_id";
+            this.mill_id.HeaderText = "mill_id";
+            this.mill_id.Name = "mill_id";
+            this.mill_id.ReadOnly = true;
+            this.mill_id.Width = 77;
+            // 
+            // car_team_id
+            // 
+            this.car_team_id.DataPropertyName = "car_team_id";
+            this.car_team_id.HeaderText = "car_team_id";
+            this.car_team_id.Name = "car_team_id";
+            this.car_team_id.ReadOnly = true;
+            this.car_team_id.Width = 126;
+            // 
             // weightBindingSource
             // 
             this.weightBindingSource.DataMember = "weight";
@@ -566,7 +598,7 @@
             this.btSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px_pink;
             this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btSearch.Location = new System.Drawing.Point(1077, 10);
             this.btSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -671,38 +703,6 @@
             this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btExport.UseVisualStyleBackColor = true;
             this.btExport.Click += new System.EventHandler(this.btExport_Click);
-            // 
-            // site_id
-            // 
-            this.site_id.DataPropertyName = "site_id";
-            this.site_id.HeaderText = "site_id";
-            this.site_id.Name = "site_id";
-            this.site_id.ReadOnly = true;
-            this.site_id.Width = 79;
-            // 
-            // stone_type_id
-            // 
-            this.stone_type_id.DataPropertyName = "stone_type_id";
-            this.stone_type_id.HeaderText = "stone_type_id";
-            this.stone_type_id.Name = "stone_type_id";
-            this.stone_type_id.ReadOnly = true;
-            this.stone_type_id.Width = 136;
-            // 
-            // mill_id
-            // 
-            this.mill_id.DataPropertyName = "mill_id";
-            this.mill_id.HeaderText = "mill_id";
-            this.mill_id.Name = "mill_id";
-            this.mill_id.ReadOnly = true;
-            this.mill_id.Width = 77;
-            // 
-            // car_team_id
-            // 
-            this.car_team_id.DataPropertyName = "car_team_id";
-            this.car_team_id.HeaderText = "car_team_id";
-            this.car_team_id.Name = "car_team_id";
-            this.car_team_id.ReadOnly = true;
-            this.car_team_id.Width = 126;
             // 
             // TableFromDB
             // 

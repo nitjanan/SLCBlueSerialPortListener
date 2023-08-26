@@ -186,9 +186,9 @@ namespace SerialPortListener
             calculatenumQ();
 
             disableBtAfterRead(0);
-            //if user admin enable all 
-            if (Globals.isPermissionTop())
-                disableBtAfterRead(3);
+            // version vat if (Globals.isPermissionTop())
+            disableBtAfterRead(3);
+
             if (Globals.isPermissionEditWeight())
                 disableBtAfterRead(999);
 
@@ -487,20 +487,23 @@ namespace SerialPortListener
             string selectedName = cbbCarTeam.Text;
             string selectedId = "";
 
-            foreach (ComboboxValue item in cbbCarTeam.Items)
-            {
-
-                if (selectedName == "") {
-                    selectedId = "";
-                    break;
-                }
-                else if (item.Name == selectedName)
+            if (cbbCarTeam.Items.Count > 1) {
+                foreach (ComboboxValue item in cbbCarTeam.Items)
                 {
-                    
-                    selectedId = item.Id;
-                    break;
+
+                    if (selectedName == "")
+                    {
+                        selectedId = "";
+                        break;
+                    }
+                    else if (item.Name == selectedName)
+                    {
+                        selectedId = item.Id;
+                        break;
+                    }
                 }
             }
+
             return selectedId;
         }
 
@@ -568,10 +571,10 @@ namespace SerialPortListener
 
         private void setDefaultFromDB(string username, String firstname)
         {
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
             ucTruck.Show();
             ucReport.Hide();
             ucHelp.Hide();
@@ -745,10 +748,12 @@ namespace SerialPortListener
                 dtWeightOutDate.Enabled = false;
                 dtWeightOutTime.Enabled = false;
 
-                tbWeightOut.Enabled = false;
-                tbWeightOut.Enabled = false;
-                tbWeightTotal.Enabled = false;
-                tbQ.Enabled = false;
+                if (!checkZeroStr(tbWeightOut.Text))
+                {
+                    tbWeightOut.Enabled = false;
+                    tbWeightTotal.Enabled = false;
+                    tbQ.Enabled = false;
+                }
             }
             else if (mode.Equals(3))//open all admin add
             {
@@ -795,10 +800,10 @@ namespace SerialPortListener
         private void btMenu1_Click(object sender, EventArgs e)
         {
             btMenu1.BackColor = Color.White;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucTruck.BringToFront();
             ucTruck.Show();
@@ -814,10 +819,10 @@ namespace SerialPortListener
         private void btMenu2_Click(object sender, EventArgs e)
         {
             btMenu2.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucReport.Show();
             ucTruck.Hide();
@@ -830,10 +835,10 @@ namespace SerialPortListener
         private void btMenu3_Click(object sender, EventArgs e)
         {
             btMenu3.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucSetting.Show();
             ucReport.Hide();
@@ -845,10 +850,10 @@ namespace SerialPortListener
         private void btMenu4_Click(object sender, EventArgs e)
         {
             btMenu4.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucHelp.Show();
             ucTruck.Hide();
@@ -861,10 +866,10 @@ namespace SerialPortListener
         private void btMenu5_Click(object sender, EventArgs e)
         {
             btMenu5.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
 
             ucBackup.Show();
             ucHelp.Hide();
@@ -2329,6 +2334,7 @@ namespace SerialPortListener
         private int findLastCopyByWeightId()
         {
             int copy_num = 0;
+
 
             if (tbId.Text != "")
             {
