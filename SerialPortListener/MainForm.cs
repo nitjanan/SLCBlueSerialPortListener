@@ -487,20 +487,24 @@ namespace SerialPortListener
             string selectedName = cbbCarTeam.Text;
             string selectedId = "";
 
-            foreach (ComboboxValue item in cbbCarTeam.Items)
+            if (cbbCarTeam.Items.Count > 1)
             {
-
-                if (selectedName == "") {
-                    selectedId = "";
-                    break;
-                }
-                else if (item.Name == selectedName)
+                foreach (ComboboxValue item in cbbCarTeam.Items)
                 {
-                    
-                    selectedId = item.Id;
-                    break;
+
+                    if (selectedName == "")
+                    {
+                        selectedId = "";
+                        break;
+                    }
+                    else if (item.Name == selectedName)
+                    {
+                        selectedId = item.Id;
+                        break;
+                    }
                 }
             }
+
             return selectedId;
         }
 
