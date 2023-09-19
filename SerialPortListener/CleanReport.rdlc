@@ -2524,7 +2524,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด(Sandvik) nonvat</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -2537,7 +2537,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>5.76728cm</Width>
+              <Width>12.05412cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
