@@ -151,6 +151,7 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.cbbCarTeam = new System.Windows.Forms.ComboBox();
+            this.cbS = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -1676,11 +1677,24 @@
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
             // 
+            // cbS
+            // 
+            this.cbS.AutoSize = true;
+            this.cbS.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbS.ForeColor = System.Drawing.Color.Brown;
+            this.cbS.Location = new System.Drawing.Point(870, 52);
+            this.cbS.Name = "cbS";
+            this.cbS.Size = new System.Drawing.Size(55, 45);
+            this.cbS.TabIndex = 140;
+            this.cbS.Text = "S";
+            this.cbS.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
+            this.Controls.Add(this.cbS);
             this.Controls.Add(this.cbbCarTeam);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label37);
@@ -1912,6 +1926,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox cbbCarTeam;
+        private System.Windows.Forms.CheckBox cbS;
     }
 }
 

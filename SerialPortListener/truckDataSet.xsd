@@ -13,7 +13,7 @@
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        วันที่, เลขที่เอกสาร, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรวม, น้ำหนักสินค้า, เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, ทะเบียนรถ, weight_id, vat, คิว, 
-                         รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, จำนวณเงิน, น้ำหนักรถ, ล้าง, หมายเหตุ, ขนส่ง, carry_type_name, oil_content, site_id, stone_type_id, mill_id, car_team_id
+                         รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, จำนวณเงิน, น้ำหนักรถ, ล้าง, หมายเหตุ, ขนส่ง, carry_type_name, oil_content, site_id, stone_type_id, mill_id, car_team_id, is_s
 FROM            weight</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -66,6 +66,7 @@ FROM            weight</CommandText>
               <Mapping SourceColumn="stone_type_id" DataSetColumn="stone_type_id" />
               <Mapping SourceColumn="mill_id" DataSetColumn="mill_id" />
               <Mapping SourceColumn="car_team_id" DataSetColumn="car_team_id" />
+              <Mapping SourceColumn="is_s" DataSetColumn="is_s" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -77,7 +78,7 @@ FROM            weight</CommandText>
   <xs:element name="truckDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="truckDataSet" msprop:Generator_UserDSName="truckDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="weight" msprop:Generator_TableClassName="weightDataTable" msprop:Generator_TableVarName="tableweight" msprop:Generator_TablePropName="weight" msprop:Generator_RowDeletingName="weightRowDeleting" msprop:Generator_RowChangingName="weightRowChanging" msprop:Generator_RowEvHandlerName="weightRowChangeEventHandler" msprop:Generator_RowDeletedName="weightRowDeleted" msprop:Generator_UserTableName="weight" msprop:Generator_RowChangedName="weightRowChanged" msprop:Generator_RowEvArgName="weightRowChangeEvent" msprop:Generator_RowClassName="weightRow">
+        <xs:element name="weight" msprop:Generator_TableClassName="weightDataTable" msprop:Generator_TableVarName="tableweight" msprop:Generator_RowChangedName="weightRowChanged" msprop:Generator_TablePropName="weight" msprop:Generator_RowDeletingName="weightRowDeleting" msprop:Generator_RowChangingName="weightRowChanging" msprop:Generator_RowEvHandlerName="weightRowChangeEventHandler" msprop:Generator_RowDeletedName="weightRowDeleted" msprop:Generator_RowClassName="weightRow" msprop:Generator_UserTableName="weight" msprop:Generator_RowEvArgName="weightRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="วันที่" msprop:Generator_ColumnVarNameInTable="columnวันที่" msprop:Generator_ColumnPropNameInRow="วันที่" msprop:Generator_ColumnPropNameInTable="วันที่Column" msprop:Generator_UserColumnName="วันที่" type="xs:dateTime" minOccurs="0" />
@@ -124,6 +125,7 @@ FROM            weight</CommandText>
               <xs:element name="stone_type_id" msprop:Generator_ColumnVarNameInTable="columnstone_type_id" msprop:Generator_ColumnPropNameInRow="stone_type_id" msprop:Generator_ColumnPropNameInTable="stone_type_idColumn" msprop:Generator_UserColumnName="stone_type_id" type="xs:string" minOccurs="0" />
               <xs:element name="mill_id" msprop:Generator_ColumnVarNameInTable="columnmill_id" msprop:Generator_ColumnPropNameInRow="mill_id" msprop:Generator_ColumnPropNameInTable="mill_idColumn" msprop:Generator_UserColumnName="mill_id" type="xs:string" minOccurs="0" />
               <xs:element name="car_team_id" msprop:Generator_ColumnVarNameInTable="columncar_team_id" msprop:Generator_ColumnPropNameInRow="car_team_id" msprop:Generator_ColumnPropNameInTable="car_team_idColumn" msprop:Generator_UserColumnName="car_team_id" type="xs:string" minOccurs="0" />
+              <xs:element name="is_s" msprop:Generator_ColumnVarNameInTable="columnis_s" msprop:Generator_ColumnPropNameInRow="is_s" msprop:Generator_ColumnPropNameInTable="is_sColumn" msprop:Generator_UserColumnName="is_s" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
