@@ -126,5 +126,13 @@ namespace SerialPortListener
                 return false;
         }
 
+        public static Boolean isPermissionAddSetting()
+        {
+            if (Globals.Permission == Utils.hashPassword("add_setting"))
+                return true;
+            else
+                return false;
+        }
+
     }
 }

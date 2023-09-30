@@ -1033,9 +1033,9 @@
             this.label20.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(289, 280);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(44, 21);
+            this.label20.Size = new System.Drawing.Size(51, 21);
             this.label20.TabIndex = 93;
-            this.label20.Text = "โรงโม่";
+            this.label20.Text = "ต้นทาง";
             // 
             // label27
             // 
@@ -1258,9 +1258,9 @@
             this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.Location = new System.Drawing.Point(289, 164);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(59, 21);
+            this.label31.Size = new System.Drawing.Size(65, 21);
             this.label31.TabIndex = 109;
-            this.label31.Text = "หน้างาน";
+            this.label31.Text = "ปลายทาง";
             // 
             // label32
             // 

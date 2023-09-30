@@ -98,7 +98,7 @@ namespace SerialPortListener
         {
             //this.base_scaleTableAdapter.Fill(this.baseScaleDataSet.base_scale);
             setDataSouceForDGVScale();
-            if (!Globals.isPermissionTop())
+            if (!Globals.isPermissionTop() && !Globals.isPermissionAddSetting())
             {
                 //แถบรหัสพนักงาน
                 tcSetting.TabPages.Remove(tabPage1);
