@@ -607,6 +607,7 @@
             this.cbbCustomerName.DropDownHeight = 300;
             this.cbbCustomerName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCustomerName.FormattingEnabled = true;
+            this.cbbCustomerName.IntegralHeight = false;
             this.cbbCustomerName.Location = new System.Drawing.Point(234, 30);
             this.cbbCustomerName.Name = "cbbCustomerName";
             this.cbbCustomerName.Size = new System.Drawing.Size(346, 29);
@@ -719,6 +720,7 @@
             this.cbbInvoiceCutomerName.DropDownHeight = 300;
             this.cbbInvoiceCutomerName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbInvoiceCutomerName.FormattingEnabled = true;
+            this.cbbInvoiceCutomerName.IntegralHeight = false;
             this.cbbInvoiceCutomerName.Location = new System.Drawing.Point(232, 30);
             this.cbbInvoiceCutomerName.Name = "cbbInvoiceCutomerName";
             this.cbbInvoiceCutomerName.Size = new System.Drawing.Size(346, 29);
@@ -1029,8 +1031,10 @@
             // 
             // cbbCarTeamName
             // 
+            this.cbbCarTeamName.DropDownHeight = 300;
             this.cbbCarTeamName.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCarTeamName.FormattingEnabled = true;
+            this.cbbCarTeamName.IntegralHeight = false;
             this.cbbCarTeamName.Location = new System.Drawing.Point(238, 151);
             this.cbbCarTeamName.Name = "cbbCarTeamName";
             this.cbbCarTeamName.Size = new System.Drawing.Size(183, 30);
@@ -1185,7 +1189,9 @@
             // 
             // cbMill
             // 
+            this.cbMill.DropDownHeight = 300;
             this.cbMill.FormattingEnabled = true;
+            this.cbMill.IntegralHeight = false;
             this.cbMill.Location = new System.Drawing.Point(247, 91);
             this.cbMill.Name = "cbMill";
             this.cbMill.Size = new System.Drawing.Size(346, 29);
@@ -1456,7 +1462,9 @@
             // 
             // cbbCarTeamNameByTeam
             // 
+            this.cbbCarTeamNameByTeam.DropDownHeight = 300;
             this.cbbCarTeamNameByTeam.FormattingEnabled = true;
+            this.cbbCarTeamNameByTeam.IntegralHeight = false;
             this.cbbCarTeamNameByTeam.Location = new System.Drawing.Point(240, 93);
             this.cbbCarTeamNameByTeam.Name = "cbbCarTeamNameByTeam";
             this.cbbCarTeamNameByTeam.Size = new System.Drawing.Size(345, 29);

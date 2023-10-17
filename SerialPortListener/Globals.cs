@@ -103,6 +103,7 @@ namespace SerialPortListener
             }
         }
 
+
         public static Boolean isPermissionTop() {
             if (Globals.Permission == Utils.hashPassword("admin"))
                 return true;

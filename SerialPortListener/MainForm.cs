@@ -78,9 +78,10 @@ namespace SerialPortListener
 
         public void getSettingDefault()
         {
+            lbCompanyCode.Text = Company.Code;
             /* autoComplete ผู้ตัก */
-            autoCompleteSetting(tbScoopId, "รหัสผู้ตัก", "base_scoop");
-            autoCompleteSetting(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
+            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+            autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
             /* autoComplete ผู้ชั่ง */
             autoCompleteSetting(tbScaleId, "username", "users");
@@ -263,7 +264,7 @@ namespace SerialPortListener
             cbbStoneType.Items.Clear();
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public.base_stone_type";
+            pgCommand.CommandText = "SELECT * FROM public.base_stone_type where inactive = false ORDER BY รหัสหิน";
             try
             {
                 dl.connect();
@@ -286,7 +287,7 @@ namespace SerialPortListener
             cbbMill.Items.Clear();
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public.base_mill ORDER BY รหัสโรงโม่";
+            pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 1 or weight_type = 3 ORDER BY รหัสโรงโม่";
             try
             {
                 dl.connect();
@@ -1168,7 +1169,35 @@ namespace SerialPortListener
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
                 disableBtAfterRead(4);
+                if (checkEmptyTB(tbNote))
+                {
+                    MessageBox.Show("กรุณาใส่เหตุผลในการยกเลิก", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tbNote.Select();
+                }
+                updateStatusCancel();
             }
+        }
+
+        private void updateStatusCancel()
+        {
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "UPDATE weight SET is_cancel =  true  WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                while (reader.Read())
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            dl.close();
         }
 
         private Boolean checkZeroStr(string str)
@@ -1327,6 +1356,34 @@ namespace SerialPortListener
             dl.close();
         }
 
+        /* autoComplete Setting */
+        private void autoCompleteSettingCompany(TextBox tb, string field, string tableName)
+        {
+            tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where company = '"+ Company.Code +"' " ;
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string rdStr = reader[field].ToString();
+                    coll.Add(rdStr);
+
+                }
+            }
+            catch (Exception)
+            {
+            }
+            tb.AutoCompleteCustomSource = coll;
+            dl.close();
+        }
+
         /*3 search anywhere customer */
         public void setautoCompleteCustomer(string fieldId, string fieldName, string tableName)
         {
@@ -1337,7 +1394,7 @@ namespace SerialPortListener
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             //old -- pgCommand.CommandText = "SELECT " + fieldName + " , " + fieldId + " FROM public." + tableName + " WHERE base_job_type_id IS NOT NULL AND base_vat_type_id  IS NOT NULL ORDER BY " + fieldId;
             //20-09 not show inactive not confirm
-            pgCommand.CommandText = "SELECT " + fieldName + " , " + fieldId + " FROM public." + tableName + " WHERE inactive = false ORDER BY " + fieldId;
+            pgCommand.CommandText = "SELECT " + fieldName + " , " + fieldId + " FROM public." + tableName + " WHERE weight_type = 1 or weight_type = 3 ORDER BY " + fieldId;
             try
             {
                 dl.connect();
@@ -1506,58 +1563,6 @@ namespace SerialPortListener
             }
         }
 
-
-
-        private void tbScoopId_TextChanged(object sender, EventArgs e)
-        {
-            if (tbScoopId != null && tbScoopId.Text != "")
-            {
-                //sql
-                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_scoop where รหัสผู้ตัก = '" + tbScoopId.Text + "' ";
-                try
-                {
-                    dl.connect();
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string rdStr = reader["ชื่อผู้ตัก"].ToString();
-                        tbScoopName.Text = rdStr;
-                    }
-                }
-                catch (Exception) {
-                }
-                dl.close();
-            }
-            else {
-                tbScoopName.Text = "";
-            }
-        }
-        private void tbScoopName_TextChanged(object sender, EventArgs e)
-        {
-            if (tbScoopName != null && tbScoopName.Text != "")
-            {
-                //sql
-                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_scoop where ชื่อผู้ตัก = '" + tbScoopName.Text + "' ";
-                try
-                {
-                    dl.connect();
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string rdStr = reader["รหัสผู้ตัก"].ToString();
-                        tbScoopId.Text = rdStr;
-                    }
-                }
-                catch (Exception) {
-                }
-                dl.close();
-            }
-            else {
-                tbScoopId.Text = "";
-            }
-        }
 
         private void tbScaleId_TextChanged(object sender, EventArgs e)
         {
@@ -2732,6 +2737,74 @@ namespace SerialPortListener
                 {
                 }
                 dl.close();
+            }
+        }
+
+        private void tbScoopId_Leave(object sender, EventArgs e)
+        {
+            if (tbScoopId != null && tbScoopId.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT * FROM public.base_scoop where รหัสผู้ตัก = '" + tbScoopId.Text + "' and company = '" + Company.Code + "' ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["ชื่อผู้ตัก"].ToString();
+                        tbScoopName.Text = rdStr;
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbScoopId.Text = "";
+                        tbScoopName.Text = "";
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbScoopName.Text = "";
+            }
+        }
+
+        private void tbScoopName_Leave(object sender, EventArgs e)
+        {
+            if (tbScoopName != null && tbScoopName.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT * FROM public.base_scoop where ชื่อผู้ตัก = '" + tbScoopName.Text + "' and company = '" + Company.Code + "' ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["รหัสผู้ตัก"].ToString();
+                        tbScoopId.Text = rdStr;
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbScoopId.Text = "";
+                        tbScoopName.Text = "";
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbScoopId.Text = "";
             }
         }
     }

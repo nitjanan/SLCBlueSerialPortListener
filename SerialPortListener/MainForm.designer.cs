@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbCompanyCode = new System.Windows.Forms.Label();
             this.btMenu5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btMenu4 = new System.Windows.Forms.Button();
@@ -260,6 +261,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.MidnightBlue;
+            this.panel3.Controls.Add(this.lbCompanyCode);
             this.panel3.Controls.Add(this.btMenu5);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.btMenu4);
@@ -271,6 +273,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(186, 647);
             this.panel3.TabIndex = 18;
+            // 
+            // lbCompanyCode
+            // 
+            this.lbCompanyCode.AutoSize = true;
+            this.lbCompanyCode.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCompanyCode.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbCompanyCode.Location = new System.Drawing.Point(55, 119);
+            this.lbCompanyCode.Name = "lbCompanyCode";
+            this.lbCompanyCode.Size = new System.Drawing.Size(73, 28);
+            this.lbCompanyCode.TabIndex = 107;
+            this.lbCompanyCode.Text = "code";
             // 
             // btMenu5
             // 
@@ -832,7 +845,7 @@
             this.tbScoopName.Name = "tbScoopName";
             this.tbScoopName.Size = new System.Drawing.Size(243, 27);
             this.tbScoopName.TabIndex = 25;
-            this.tbScoopName.TextChanged += new System.EventHandler(this.tbScoopName_TextChanged);
+            this.tbScoopName.Leave += new System.EventHandler(this.tbScoopName_Leave);
             // 
             // tbCarLicense
             // 
@@ -877,7 +890,7 @@
             this.tbScoopId.Name = "tbScoopId";
             this.tbScoopId.Size = new System.Drawing.Size(67, 27);
             this.tbScoopId.TabIndex = 24;
-            this.tbScoopId.TextChanged += new System.EventHandler(this.tbScoopId_TextChanged);
+            this.tbScoopId.Leave += new System.EventHandler(this.tbScoopId_Leave);
             // 
             // label21
             // 
@@ -1563,8 +1576,10 @@
             // 
             this.cbbMill.AccessibleName = "โรงโม่";
             this.cbbMill.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbbMill.DropDownHeight = 300;
             this.cbbMill.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbMill.FormattingEnabled = true;
+            this.cbbMill.IntegralHeight = false;
             this.cbbMill.Items.AddRange(new object[] {
             "ไม่มี",
             "โรงโม่ 1",
@@ -1618,8 +1633,10 @@
             // 
             this.cbbSite.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbSite.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbSite.DropDownHeight = 300;
             this.cbbSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbSite.FormattingEnabled = true;
+            this.cbbSite.IntegralHeight = false;
             this.cbbSite.Location = new System.Drawing.Point(370, 161);
             this.cbbSite.Name = "cbbSite";
             this.cbbSite.Size = new System.Drawing.Size(236, 29);
@@ -1912,6 +1929,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox cbbCarTeam;
+        private System.Windows.Forms.Label lbCompanyCode;
     }
 }
 

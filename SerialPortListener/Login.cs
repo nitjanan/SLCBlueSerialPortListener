@@ -35,6 +35,7 @@ namespace SerialPortListener
                     Company.Address = reader["address"].ToString();
                     Company.Telephone = reader["telephone"].ToString();
                     Company.Email = reader["email"].ToString();
+                    Company.Code = reader["code"].ToString();
                 }
             }
             catch (Exception)
