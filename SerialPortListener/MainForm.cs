@@ -181,15 +181,16 @@ namespace SerialPortListener
             cbbCarTeam.Text = "";
             tbNote.Text = "";
             tbOilContent.Text = "0.00";
+            cbS.Checked = false;
             fillStoneCombo();
             fillTransportCombo();
             fillMillCombo();
             calculatenumQ();
 
             disableBtAfterRead(0);
-            //if user admin enable all 
-            if (Globals.isPermissionTop())
-                disableBtAfterRead(3);
+            // version vat if (Globals.isPermissionTop())
+            disableBtAfterRead(3);
+
             if (Globals.isPermissionEditWeight())
                 disableBtAfterRead(999);
 
@@ -401,6 +402,9 @@ namespace SerialPortListener
             tbNote.Text = data.note;
             tbOilContent.Text = numberFormat(data.oilContent, 2);
 
+            //set is_s
+            setDataSToisS(data.isS);
+
             //setDataMillToRB(data.mill);
             setDataPayToRB(data.payType);
             setDataVatToRB(data.vatType);
@@ -541,6 +545,13 @@ namespace SerialPortListener
                 rbMillNo.Checked = true;
             */
         }
+
+        private void setDataSToisS(string dataS)
+        {
+            if (dataS.Equals("1"))
+                cbS.Checked = true;
+        }
+
         private void setDataPayToRB(string dataPay)
         {
             if (dataPay.Equals("เงินสด"))
@@ -573,10 +584,10 @@ namespace SerialPortListener
 
         private void setDefaultFromDB(string username, String firstname)
         {
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
             ucTruck.Show();
             ucReport.Hide();
             ucHelp.Hide();
@@ -653,10 +664,11 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
+                /*
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
+                */
                 /* เครื่องพี่รุ่ง */
                 //MatchCollection mc = Regex.Matches(str, @"\d+");
 
@@ -755,10 +767,12 @@ namespace SerialPortListener
                 dtWeightOutDate.Enabled = false;
                 dtWeightOutTime.Enabled = false;
 
-                tbWeightOut.Enabled = false;
-                tbWeightOut.Enabled = false;
-                tbWeightTotal.Enabled = false;
-                tbQ.Enabled = false;
+                if (!checkZeroStr(tbWeightOut.Text))
+                {
+                    tbWeightOut.Enabled = false;
+                    tbWeightTotal.Enabled = false;
+                    tbQ.Enabled = false;
+                }
             }
             else if (mode.Equals(3))//open all admin add
             {
@@ -805,10 +819,10 @@ namespace SerialPortListener
         private void btMenu1_Click(object sender, EventArgs e)
         {
             btMenu1.BackColor = Color.White;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucTruck.BringToFront();
             ucTruck.Show();
@@ -824,10 +838,10 @@ namespace SerialPortListener
         private void btMenu2_Click(object sender, EventArgs e)
         {
             btMenu2.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucReport.Show();
             ucTruck.Hide();
@@ -840,10 +854,10 @@ namespace SerialPortListener
         private void btMenu3_Click(object sender, EventArgs e)
         {
             btMenu3.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucSetting.Show();
             ucReport.Hide();
@@ -855,10 +869,10 @@ namespace SerialPortListener
         private void btMenu4_Click(object sender, EventArgs e)
         {
             btMenu4.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucHelp.Show();
             ucTruck.Hide();
@@ -871,10 +885,10 @@ namespace SerialPortListener
         private void btMenu5_Click(object sender, EventArgs e)
         {
             btMenu5.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
 
             ucBackup.Show();
             ucHelp.Hide();
@@ -1029,13 +1043,13 @@ namespace SerialPortListener
             Boolean isSuccess = false;
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "INSERT INTO weight (วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, oil_content, site_id, stone_type_id, mill_id, car_team_id)" +
+            pgCommand.CommandText = "INSERT INTO weight (วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, oil_content, site_id, stone_type_id, mill_id, car_team_id, is_s)" +
                                      "VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn) + "'" + ",'"
                                      + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text + "','"
                                      + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text + "','"
                                      + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1) + "','"
                                      + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) ,'" 
-                                     + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "' )";
+                                     + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "','" + cbS.Checked + "' )";
             try
             {
                 dl.connect();
@@ -1111,7 +1125,7 @@ namespace SerialPortListener
                                     " , วันที่ชั่งออก = '" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "' , เวลาชั่งออก = '" + dtWeightOutTime.Text + "'  , รหัสลูกค้า = '" + tbCustomerId.Text + "'  , ชื่อผู้ชั่ง = '" + tbScaleName.Text + "' , ชื่อผู้ตัก = '" + tbScoopName.Text + "' , vat = '" + numberFormat(tbVat.Text, 1) +
                                     "' , รหัสผู้อนุมัติจ่าย = '" + tbApproveId.Text + "' , ชื่อผู้อนุมัติจ่าย = '" + tbApproveName.Text + "' , คิว = '" + numberFormat(tbQ.Text, 1) + "' , ชนิดvat = '" + getVatRadioValue() + "' , จำนวนเงินสุทธิ = '" + numberFormat(tbAmountVat.Text, 1) + "' , ประเภทหิน = '" + cbbStoneColor.Text +
                                     "' , หน้างาน = '" + cbbSite.Text + "' , ทีม = '" + cbbCarTeam.Text + "' , ล้าง = '" + getCleanRadioValue() + "' , ขนส่ง = '" + cbbTransport.Text + "' , carry_type_name = '" + findcarryTypeByTransport() + "' , หมายเหตุ = '" + tbNote.Text + "' , oil_content = '" + numberFormat(tbOilContent.Text, 1) +
-                                    "' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate() +
+                                    "' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate() +"' , is_s = '" + cbS.Checked +
                                     "' WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
 
             try
@@ -2372,6 +2386,7 @@ namespace SerialPortListener
         private int findLastCopyByWeightId()
         {
             int copy_num = 0;
+
 
             if (tbId.Text != "")
             {

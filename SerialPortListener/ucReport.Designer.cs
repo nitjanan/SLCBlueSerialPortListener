@@ -541,7 +541,7 @@
             // btPrint
             // 
             this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrint.Location = new System.Drawing.Point(683, 417);
             this.btPrint.Name = "btPrint";
@@ -685,7 +685,7 @@
             // 
             this.btPrintCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintCustomer.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCustomer.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintCustomer.Location = new System.Drawing.Point(353, 201);
             this.btPrintCustomer.Name = "btPrintCustomer";
@@ -798,7 +798,7 @@
             // 
             this.btPrintInvoice.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintInvoice.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintInvoice.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintInvoice.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintInvoice.Location = new System.Drawing.Point(353, 201);
             this.btPrintInvoice.Name = "btPrintInvoice";
@@ -896,7 +896,7 @@
             // btPrintJointCar
             // 
             this.btPrintJointCar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintJointCar.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintJointCar.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintJointCar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintJointCar.Location = new System.Drawing.Point(353, 201);
             this.btPrintJointCar.Name = "btPrintJointCar";
@@ -993,7 +993,7 @@
             // btPrintScoop
             // 
             this.btPrintScoop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintScoop.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintScoop.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintScoop.Location = new System.Drawing.Point(353, 201);
             this.btPrintScoop.Name = "btPrintScoop";
@@ -1043,7 +1043,7 @@
             // btPrintCarTeam
             // 
             this.btPrintCarTeam.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintCarTeam.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCarTeam.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintCarTeam.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintCarTeam.Location = new System.Drawing.Point(451, 145);
             this.btPrintCarTeam.Name = "btPrintCarTeam";
@@ -1150,7 +1150,7 @@
             // btPrintClean
             // 
             this.btPrintClean.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintClean.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintClean.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintClean.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintClean.Location = new System.Drawing.Point(365, 209);
             this.btPrintClean.Name = "btPrintClean";
@@ -1234,7 +1234,7 @@
             // btPrintMill
             // 
             this.btPrintMill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintMill.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintMill.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintMill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintMill.Location = new System.Drawing.Point(369, 219);
             this.btPrintMill.Name = "btPrintMill";
@@ -1297,7 +1297,7 @@
             // btPrintSite
             // 
             this.btPrintSite.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintSite.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintSite.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintSite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintSite.Location = new System.Drawing.Point(369, 219);
             this.btPrintSite.Name = "btPrintSite";
@@ -1360,7 +1360,7 @@
             // btPrintStoneType
             // 
             this.btPrintStoneType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintStoneType.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintStoneType.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintStoneType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintStoneType.Location = new System.Drawing.Point(362, 217);
             this.btPrintStoneType.Name = "btPrintStoneType";
@@ -1423,7 +1423,7 @@
             // btPrintTransport
             // 
             this.btPrintTransport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintTransport.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintTransport.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintTransport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintTransport.Location = new System.Drawing.Point(358, 217);
             this.btPrintTransport.Name = "btPrintTransport";
@@ -1507,7 +1507,7 @@
             // btPrintTransportByTeam
             // 
             this.btPrintTransportByTeam.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintTransportByTeam.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintTransportByTeam.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
             this.btPrintTransportByTeam.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintTransportByTeam.Location = new System.Drawing.Point(361, 227);
             this.btPrintTransportByTeam.Name = "btPrintTransportByTeam";
