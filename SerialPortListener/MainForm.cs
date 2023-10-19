@@ -488,6 +488,7 @@ namespace SerialPortListener
             string selectedName = cbbCarTeam.Text;
             string selectedId = "";
 
+            //มี list Items ที่สร้างเอง 1 list เลยต้องใส่ if
             if (cbbCarTeam.Items.Count > 1)
             {
                 foreach (ComboboxValue item in cbbCarTeam.Items)
@@ -652,12 +653,13 @@ namespace SerialPortListener
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                /* เครื่องพี่จ๋า */
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
-                string remainingText = newString.Substring(newString.LastIndexOf("\r"));
+
+
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
+                string remainingText = newString.Substring(newString.LastIndexOf("p"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
-                /* เครื่องพี่รุ่ง */
+
                 //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
@@ -673,7 +675,8 @@ namespace SerialPortListener
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
 
@@ -2083,6 +2086,7 @@ namespace SerialPortListener
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
+                /*
                 using (var form = new FCancelPassword())
                 {
                     var result = form.ShowDialog();
@@ -2091,6 +2095,7 @@ namespace SerialPortListener
                         string password = form.ReturnPassword;
                         if (password == "pdg]bd=yj'")
                         {
+                */
                             tbWeightIn.Text = "0.00";
                             tbWeightOut.Text = "0.00";
                             tbWeightTotal.Text = "0.00";
@@ -2100,6 +2105,7 @@ namespace SerialPortListener
                             tbVat.Text = "0.00";
                             tbQ.Text = "0.00";
                             return true;
+                /*
                         }
                         else
                         {
@@ -2110,6 +2116,7 @@ namespace SerialPortListener
                         return false;
                     }
                 }
+                */
             }
             return true;
         }
