@@ -509,7 +509,6 @@ namespace SerialPortListener
                     }
                 }
             }
-
             return selectedId;
         }
 
@@ -1117,6 +1116,7 @@ namespace SerialPortListener
 
         private void updateAction()
         {
+
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "UPDATE weight SET ทะเบียนรถ = '" + tbCarLicense.Text.TrimEnd() + "' , จังหวัด = '" + tbCarCity.Text + "' , คนขับ = '" + tbDriverName.Text + "', ลูกค้า = '" + tbCustomerName.Text + "' , น้ำหนักรถ = '" + kgToTon(tbWeightIn) + "' , น้ำหนักรวม = '" + kgToTon(tbWeightOut) + "'" +
@@ -1135,7 +1135,7 @@ namespace SerialPortListener
                 //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 while (reader.Read())
                 {
-
+                    MessageBox.Show("update ss", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
