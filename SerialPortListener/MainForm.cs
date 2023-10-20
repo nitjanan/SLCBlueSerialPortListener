@@ -1136,16 +1136,25 @@ namespace SerialPortListener
         }
 
         //get combobox id use to save or update
-        private string getComboboxId(ComboBox cbb) {
+        private string getComboboxId(ComboBox cbb)
+        {
             string tmp = "";
 
-            if (cbb.SelectedIndex > -1)
+            try
             {
-                ComboboxValue tmpComboboxValue = (ComboboxValue)cbb.SelectedItem;
-                tmp = tmpComboboxValue.Id;
+                if (cbb.SelectedIndex > -1)
+                {
+                    ComboboxValue tmpComboboxValue = (ComboboxValue)cbb.SelectedItem;
+                    tmp = tmpComboboxValue.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
             return tmp;
         }
+
 
         private void disableAfterSave()
         {
