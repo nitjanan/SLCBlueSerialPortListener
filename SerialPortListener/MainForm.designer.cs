@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
             this.lbCompanyCode = new System.Windows.Forms.Label();
             this.btMenu5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -262,6 +263,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightCoral;
+            this.panel3.Controls.Add(this.label39);
             this.panel3.Controls.Add(this.lbCompanyCode);
             this.panel3.Controls.Add(this.btMenu5);
             this.panel3.Controls.Add(this.label1);
@@ -275,12 +277,23 @@
             this.panel3.Size = new System.Drawing.Size(186, 647);
             this.panel3.TabIndex = 18;
             // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label39.Location = new System.Drawing.Point(81, 114);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(87, 28);
+            this.label39.TabIndex = 108;
+            this.label39.Text = "Report";
+            // 
             // lbCompanyCode
             // 
             this.lbCompanyCode.AutoSize = true;
             this.lbCompanyCode.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCompanyCode.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbCompanyCode.Location = new System.Drawing.Point(55, 119);
+            this.lbCompanyCode.Location = new System.Drawing.Point(12, 114);
             this.lbCompanyCode.Name = "lbCompanyCode";
             this.lbCompanyCode.Size = new System.Drawing.Size(73, 28);
             this.lbCompanyCode.TabIndex = 107;
@@ -1945,6 +1958,7 @@
         private System.Windows.Forms.ComboBox cbbCarTeam;
         private System.Windows.Forms.Label lbCompanyCode;
         private System.Windows.Forms.CheckBox cbS;
+        private System.Windows.Forms.Label label39;
     }
 }
 

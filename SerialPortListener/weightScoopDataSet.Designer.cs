@@ -361,6 +361,8 @@ namespace SerialPortListener {
             
             private global::System.Data.DataColumn columnis_s;
             
+            private global::System.Data.DataColumn columnbase_weight_station_name;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public weightDataTable() {
@@ -724,6 +726,14 @@ namespace SerialPortListener {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn base_weight_station_nameColumn {
+                get {
+                    return this.columnbase_weight_station_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -800,7 +810,8 @@ namespace SerialPortListener {
                         string ขนส่ง, 
                         string ล้าง, 
                         decimal oil_content, 
-                        bool is_s) {
+                        bool is_s, 
+                        string base_weight_station_name) {
                 weightRow rowweightRow = ((weightRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         เลขที่เอกสาร,
@@ -843,7 +854,8 @@ namespace SerialPortListener {
                         ขนส่ง,
                         ล้าง,
                         oil_content,
-                        is_s};
+                        is_s,
+                        base_weight_station_name};
                 rowweightRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowweightRow);
                 return rowweightRow;
@@ -914,6 +926,7 @@ namespace SerialPortListener {
                 this.columnล้าง = base.Columns["ล้าง"];
                 this.columnoil_content = base.Columns["oil_content"];
                 this.columnis_s = base.Columns["is_s"];
+                this.columnbase_weight_station_name = base.Columns["base_weight_station_name"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1001,6 +1014,8 @@ namespace SerialPortListener {
                 base.Columns.Add(this.columnoil_content);
                 this.columnis_s = new global::System.Data.DataColumn("is_s", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnis_s);
+                this.columnbase_weight_station_name = new global::System.Data.DataColumn("base_weight_station_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbase_weight_station_name);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnweight_id}, true));
                 this.columnweight_id.AllowDBNull = false;
@@ -1798,6 +1813,22 @@ namespace SerialPortListener {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string base_weight_station_name {
+                get {
+                    try {
+                        return ((string)(this[this.tableweight.base_weight_station_nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'base_weight_station_name\' in table \'weight\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableweight.base_weight_station_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isเลขที่เอกสารNull() {
                 return this.IsNull(this.tableweight.เลขที่เอกสารColumn);
             }
@@ -2275,6 +2306,18 @@ namespace SerialPortListener {
             public void Setis_sNull() {
                 this[this.tableweight.is_sColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isbase_weight_station_nameNull() {
+                return this.IsNull(this.tableweight.base_weight_station_nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setbase_weight_station_nameNull() {
+                this[this.tableweight.base_weight_station_nameColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -2477,6 +2520,7 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ล้าง", "ล้าง");
             tableMapping.ColumnMappings.Add("oil_content", "oil_content");
             tableMapping.ColumnMappings.Add("is_s", "is_s");
+            tableMapping.ColumnMappings.Add("base_weight_station_name", "base_weight_station_name");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -2514,7 +2558,9 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
                 "เหตุ\" = :p101)) AND ((:p105 = 1 AND \"ขนส่ง\" IS NULL) OR (\"ขนส่ง\" = :p104)) AND (" +
                 "(:p108 = 1 AND \"ล้าง\" IS NULL) OR (\"ล้าง\" = :p107)) AND ((:IsNull_oil_content = " +
                 "1 AND \"oil_content\" IS NULL) OR (\"oil_content\" = :Original_oil_content)) AND ((:" +
-                "IsNull_is_s = 1 AND \"is_s\" IS NULL) OR (\"is_s\" = :Original_is_s)))";
+                "IsNull_is_s = 1 AND \"is_s\" IS NULL) OR (\"is_s\" = :Original_is_s)) AND ((:IsNull_" +
+                "base_weight_station_name = 1 AND \"base_weight_station_name\" IS NULL) OR (\"base_w" +
+                "eight_station_name\" = :Original_base_weight_station_name)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::Devart.Data.PostgreSql.PgSqlParameter param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "p3";
@@ -3177,6 +3223,22 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
             param.SourceColumn = "is_s";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_base_weight_station_name";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "base_weight_station_name";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_base_weight_station_name";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "base_weight_station_name";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE \"public\".\"weight\" SET \"เลขที่เอกสาร\" = :p1, \"ทะเบียนรถ\" = :p4, \"จังหวัด\" =" +
@@ -3189,42 +3251,45 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
                 " \"vat\" = :vat, \"คิว\" = :p76, \"รหัสผู้อนุมัติจ่าย\" = :p79, \"ชื่อผู้อนุมัติจ่าย\" =" +
                 " :p82, \"ชนิดvat\" = :p85, \"จำนวนเงินสุทธิ\" = :p88, \"ประเภทหิน\" = :p91, \"หน้างาน\" " +
                 "= :p94, \"ทีม\" = :p97, \"carry_type_name\" = :carry_type_name, \"หมายเหตุ\" = :p100, " +
-                "\"ขนส่ง\" = :p103, \"ล้าง\" = :p106, \"oil_content\" = :oil_content, \"is_s\" = :is_s WH" +
-                "ERE (((:p3 = 1 AND \"เลขที่เอกสาร\" IS NULL) OR (\"เลขที่เอกสาร\" = :p2)) AND ((:p6 " +
-                "= 1 AND \"ทะเบียนรถ\" IS NULL) OR (\"ทะเบียนรถ\" = :p5)) AND ((:p9 = 1 AND \"จังหวัด\"" +
-                " IS NULL) OR (\"จังหวัด\" = :p8)) AND ((:p12 = 1 AND \"คนขับ\" IS NULL) OR (\"คนขับ\" " +
-                "= :p11)) AND ((:p15 = 1 AND \"ลูกค้า\" IS NULL) OR (\"ลูกค้า\" = :p14)) AND ((:p18 =" +
-                " 1 AND \"น้ำหนักรถ\" IS NULL) OR (\"น้ำหนักรถ\" = :p17)) AND ((:p21 = 1 AND \"น้ำหนัก" +
-                "รวม\" IS NULL) OR (\"น้ำหนักรวม\" = :p20)) AND ((:p24 = 1 AND \"น้ำหนักสินค้า\" IS NU" +
-                "LL) OR (\"น้ำหนักสินค้า\" = :p23)) AND ((:p27 = 1 AND \"เลขที่ใบตัก\" IS NULL) OR (\"" +
-                "เลขที่ใบตัก\" = :p26)) AND ((:p30 = 1 AND \"โรงโม่\" IS NULL) OR (\"โรงโม่\" = :p29))" +
-                " AND ((:p33 = 1 AND \"ชนิดหิน\" IS NULL) OR (\"ชนิดหิน\" = :p32)) AND ((:p36 = 1 AND" +
-                " \"จ่ายเงิน\" IS NULL) OR (\"จ่ายเงิน\" = :p35)) AND ((:p39 = 1 AND \"รหัสผู้ชั่ง\" IS" +
-                " NULL) OR (\"รหัสผู้ชั่ง\" = :p38)) AND ((:p42 = 1 AND \"รหัสผู้ตัก\" IS NULL) OR (\"" +
-                "รหัสผู้ตัก\" = :p41)) AND ((:p45 = 1 AND \"ราคาตัน\" IS NULL) OR (\"ราคาตัน\" = :p44)" +
-                ") AND ((:p48 = 1 AND \"จำนวณเงิน\" IS NULL) OR (\"จำนวณเงิน\" = :p47)) AND ((:p51 = " +
-                "1 AND \"ค่าขนส่ง\" IS NULL) OR (\"ค่าขนส่ง\" = :p50)) AND ((:p54 = 1 AND \"เวลาชั่งเข" +
-                "้า\" IS NULL) OR (\"เวลาชั่งเข้า\" = :p53)) AND ((:p57 = 1 AND \"เวลาชั่งออก\" IS NUL" +
-                "L) OR (\"เวลาชั่งออก\" = :p56)) AND (\"weight_id\" = :Original_weight_id) AND ((:p60" +
-                " = 1 AND \"รหัสลูกค้า\" IS NULL) OR (\"รหัสลูกค้า\" = :p59)) AND ((:p63 = 1 AND \"ชื่" +
-                "อผู้ชั่ง\" IS NULL) OR (\"ชื่อผู้ชั่ง\" = :p62)) AND ((:p66 = 1 AND \"ชื่อผู้ตัก\" IS" +
-                " NULL) OR (\"ชื่อผู้ตัก\" = :p65)) AND ((:p69 = 1 AND \"วันที่\" IS NULL) OR (\"วันที" +
-                "่\" = :p68)) AND ((:p72 = 1 AND \"วันที่ชั่งเข้า\" IS NULL) OR (\"วันที่ชั่งเข้า\" = " +
-                ":p71)) AND ((:p75 = 1 AND \"วันที่ชั่งออก\" IS NULL) OR (\"วันที่ชั่งออก\" = :p74)) " +
-                "AND ((:IsNull_vat = 1 AND \"vat\" IS NULL) OR (\"vat\" = :Original_vat)) AND ((:p78 " +
-                "= 1 AND \"คิว\" IS NULL) OR (\"คิว\" = :p77)) AND ((:p81 = 1 AND \"รหัสผู้อนุมัติจ่าย" +
-                "\" IS NULL) OR (\"รหัสผู้อนุมัติจ่าย\" = :p80)) AND ((:p84 = 1 AND \"ชื่อผู้อนุมัติจ" +
-                "่าย\" IS NULL) OR (\"ชื่อผู้อนุมัติจ่าย\" = :p83)) AND ((:p87 = 1 AND \"ชนิดvat\" IS " +
-                "NULL) OR (\"ชนิดvat\" = :p86)) AND ((:p90 = 1 AND \"จำนวนเงินสุทธิ\" IS NULL) OR (\"จ" +
-                "ำนวนเงินสุทธิ\" = :p89)) AND ((:p93 = 1 AND \"ประเภทหิน\" IS NULL) OR (\"ประเภทหิน\" " +
-                "= :p92)) AND ((:p96 = 1 AND \"หน้างาน\" IS NULL) OR (\"หน้างาน\" = :p95)) AND ((:p99" +
-                " = 1 AND \"ทีม\" IS NULL) OR (\"ทีม\" = :p98)) AND ((:IsNull_carry_type_name = 1 AND" +
-                " \"carry_type_name\" IS NULL) OR (\"carry_type_name\" = :Original_carry_type_name)) " +
-                "AND ((:p102 = 1 AND \"หมายเหตุ\" IS NULL) OR (\"หมายเหตุ\" = :p101)) AND ((:p105 = 1" +
-                " AND \"ขนส่ง\" IS NULL) OR (\"ขนส่ง\" = :p104)) AND ((:p108 = 1 AND \"ล้าง\" IS NULL) " +
-                "OR (\"ล้าง\" = :p107)) AND ((:IsNull_oil_content = 1 AND \"oil_content\" IS NULL) OR" +
-                " (\"oil_content\" = :Original_oil_content)) AND ((:IsNull_is_s = 1 AND \"is_s\" IS N" +
-                "ULL) OR (\"is_s\" = :Original_is_s)))";
+                "\"ขนส่ง\" = :p103, \"ล้าง\" = :p106, \"oil_content\" = :oil_content, \"is_s\" = :is_s, \"" +
+                "base_weight_station_name\" = :base_weight_station_name WHERE (((:p3 = 1 AND \"เลขท" +
+                "ี่เอกสาร\" IS NULL) OR (\"เลขที่เอกสาร\" = :p2)) AND ((:p6 = 1 AND \"ทะเบียนรถ\" IS N" +
+                "ULL) OR (\"ทะเบียนรถ\" = :p5)) AND ((:p9 = 1 AND \"จังหวัด\" IS NULL) OR (\"จังหวัด\" " +
+                "= :p8)) AND ((:p12 = 1 AND \"คนขับ\" IS NULL) OR (\"คนขับ\" = :p11)) AND ((:p15 = 1 " +
+                "AND \"ลูกค้า\" IS NULL) OR (\"ลูกค้า\" = :p14)) AND ((:p18 = 1 AND \"น้ำหนักรถ\" IS NU" +
+                "LL) OR (\"น้ำหนักรถ\" = :p17)) AND ((:p21 = 1 AND \"น้ำหนักรวม\" IS NULL) OR (\"น้ำหน" +
+                "ักรวม\" = :p20)) AND ((:p24 = 1 AND \"น้ำหนักสินค้า\" IS NULL) OR (\"น้ำหนักสินค้า\" " +
+                "= :p23)) AND ((:p27 = 1 AND \"เลขที่ใบตัก\" IS NULL) OR (\"เลขที่ใบตัก\" = :p26)) AN" +
+                "D ((:p30 = 1 AND \"โรงโม่\" IS NULL) OR (\"โรงโม่\" = :p29)) AND ((:p33 = 1 AND \"ชนิ" +
+                "ดหิน\" IS NULL) OR (\"ชนิดหิน\" = :p32)) AND ((:p36 = 1 AND \"จ่ายเงิน\" IS NULL) OR " +
+                "(\"จ่ายเงิน\" = :p35)) AND ((:p39 = 1 AND \"รหัสผู้ชั่ง\" IS NULL) OR (\"รหัสผู้ชั่ง\"" +
+                " = :p38)) AND ((:p42 = 1 AND \"รหัสผู้ตัก\" IS NULL) OR (\"รหัสผู้ตัก\" = :p41)) AND" +
+                " ((:p45 = 1 AND \"ราคาตัน\" IS NULL) OR (\"ราคาตัน\" = :p44)) AND ((:p48 = 1 AND \"จำ" +
+                "นวณเงิน\" IS NULL) OR (\"จำนวณเงิน\" = :p47)) AND ((:p51 = 1 AND \"ค่าขนส่ง\" IS NULL" +
+                ") OR (\"ค่าขนส่ง\" = :p50)) AND ((:p54 = 1 AND \"เวลาชั่งเข้า\" IS NULL) OR (\"เวลาชั" +
+                "่งเข้า\" = :p53)) AND ((:p57 = 1 AND \"เวลาชั่งออก\" IS NULL) OR (\"เวลาชั่งออก\" = :" +
+                "p56)) AND (\"weight_id\" = :Original_weight_id) AND ((:p60 = 1 AND \"รหัสลูกค้า\" IS" +
+                " NULL) OR (\"รหัสลูกค้า\" = :p59)) AND ((:p63 = 1 AND \"ชื่อผู้ชั่ง\" IS NULL) OR (\"" +
+                "ชื่อผู้ชั่ง\" = :p62)) AND ((:p66 = 1 AND \"ชื่อผู้ตัก\" IS NULL) OR (\"ชื่อผู้ตัก\" " +
+                "= :p65)) AND ((:p69 = 1 AND \"วันที่\" IS NULL) OR (\"วันที่\" = :p68)) AND ((:p72 =" +
+                " 1 AND \"วันที่ชั่งเข้า\" IS NULL) OR (\"วันที่ชั่งเข้า\" = :p71)) AND ((:p75 = 1 AN" +
+                "D \"วันที่ชั่งออก\" IS NULL) OR (\"วันที่ชั่งออก\" = :p74)) AND ((:IsNull_vat = 1 AN" +
+                "D \"vat\" IS NULL) OR (\"vat\" = :Original_vat)) AND ((:p78 = 1 AND \"คิว\" IS NULL) O" +
+                "R (\"คิว\" = :p77)) AND ((:p81 = 1 AND \"รหัสผู้อนุมัติจ่าย\" IS NULL) OR (\"รหัสผู้อ" +
+                "นุมัติจ่าย\" = :p80)) AND ((:p84 = 1 AND \"ชื่อผู้อนุมัติจ่าย\" IS NULL) OR (\"ชื่อผ" +
+                "ู้อนุมัติจ่าย\" = :p83)) AND ((:p87 = 1 AND \"ชนิดvat\" IS NULL) OR (\"ชนิดvat\" = :p" +
+                "86)) AND ((:p90 = 1 AND \"จำนวนเงินสุทธิ\" IS NULL) OR (\"จำนวนเงินสุทธิ\" = :p89)) " +
+                "AND ((:p93 = 1 AND \"ประเภทหิน\" IS NULL) OR (\"ประเภทหิน\" = :p92)) AND ((:p96 = 1 " +
+                "AND \"หน้างาน\" IS NULL) OR (\"หน้างาน\" = :p95)) AND ((:p99 = 1 AND \"ทีม\" IS NULL) " +
+                "OR (\"ทีม\" = :p98)) AND ((:IsNull_carry_type_name = 1 AND \"carry_type_name\" IS NU" +
+                "LL) OR (\"carry_type_name\" = :Original_carry_type_name)) AND ((:p102 = 1 AND \"หมา" +
+                "ยเหตุ\" IS NULL) OR (\"หมายเหตุ\" = :p101)) AND ((:p105 = 1 AND \"ขนส่ง\" IS NULL) OR" +
+                " (\"ขนส่ง\" = :p104)) AND ((:p108 = 1 AND \"ล้าง\" IS NULL) OR (\"ล้าง\" = :p107)) AND" +
+                " ((:IsNull_oil_content = 1 AND \"oil_content\" IS NULL) OR (\"oil_content\" = :Origi" +
+                "nal_oil_content)) AND ((:IsNull_is_s = 1 AND \"is_s\" IS NULL) OR (\"is_s\" = :Origi" +
+                "nal_is_s)) AND ((:IsNull_base_weight_station_name = 1 AND \"base_weight_station_n" +
+                "ame\" IS NULL) OR (\"base_weight_station_name\" = :Original_base_weight_station_nam" +
+                "e)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "p1";
@@ -3485,6 +3550,12 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
             param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Boolean;
             param.IsNullable = true;
             param.SourceColumn = "is_s";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "base_weight_station_name";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "base_weight_station_name";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::Devart.Data.PostgreSql.PgSqlParameter();
             param.ParameterName = "p3";
@@ -4147,6 +4218,22 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
             param.SourceColumn = "is_s";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "IsNull_base_weight_station_name";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Int;
+            param.IsNullable = true;
+            param.SourceColumn = "base_weight_station_name";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::Devart.Data.PostgreSql.PgSqlParameter();
+            param.ParameterName = "Original_base_weight_station_name";
+            param.PgSqlType = global::Devart.Data.PostgreSql.PgSqlType.Text;
+            param.IsNullable = true;
+            param.SourceColumn = "base_weight_station_name";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4163,7 +4250,7 @@ namespace SerialPortListener.weightScoopDataSetTableAdapters {
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า, เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, เวลาชั่งเข้า, เวลาชั่งออก, weight_id, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, วันที่, วันที่ชั่งเข้า, 
-                         วันที่ชั่งออก, vat, คิว, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, carry_type_name, หมายเหตุ, ขนส่ง, ล้าง, oil_content, is_s
+                         วันที่ชั่งออก, vat, คิว, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, carry_type_name, หมายเหตุ, ขนส่ง, ล้าง, oil_content, is_s, base_weight_station_name
 FROM            weight";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -4266,7 +4353,8 @@ FROM            weight";
                     string p104, 
                     string p107, 
                     decimal Original_oil_content, 
-                    bool Original_is_s) {
+                    bool Original_is_s, 
+                    string Original_base_weight_station_name) {
             if ((p2 == null)) {
                 throw new global::System.ArgumentNullException("p2");
             }
@@ -4483,6 +4571,13 @@ FROM            weight";
             this.Adapter.DeleteCommand.Parameters[78].Value = ((decimal)(Original_oil_content));
             this.Adapter.DeleteCommand.Parameters[79].Value = ((object)(0));
             this.Adapter.DeleteCommand.Parameters[80].Value = ((bool)(Original_is_s));
+            if ((Original_base_weight_station_name == null)) {
+                throw new global::System.ArgumentNullException("Original_base_weight_station_name");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[81].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[82].Value = ((string)(Original_base_weight_station_name));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4545,6 +4640,7 @@ FROM            weight";
                     string p106, 
                     decimal oil_content, 
                     bool is_s, 
+                    string base_weight_station_name, 
                     string p2, 
                     string p5, 
                     string p8, 
@@ -4585,7 +4681,8 @@ FROM            weight";
                     string p104, 
                     string p107, 
                     decimal Original_oil_content, 
-                    bool Original_is_s) {
+                    bool Original_is_s, 
+                    string Original_base_weight_station_name) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
@@ -4762,222 +4859,235 @@ FROM            weight";
             }
             this.Adapter.UpdateCommand.Parameters[39].Value = ((decimal)(oil_content));
             this.Adapter.UpdateCommand.Parameters[40].Value = ((bool)(is_s));
+            if ((base_weight_station_name == null)) {
+                throw new global::System.ArgumentNullException("base_weight_station_name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((string)(base_weight_station_name));
+            }
             if ((p2 == null)) {
                 throw new global::System.ArgumentNullException("p2");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((string)(p2));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((string)(p2));
             }
             if ((p5 == null)) {
                 throw new global::System.ArgumentNullException("p5");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((string)(p5));
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((string)(p5));
             }
             if ((p8 == null)) {
                 throw new global::System.ArgumentNullException("p8");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(p8));
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((string)(p8));
             }
             if ((p11 == null)) {
                 throw new global::System.ArgumentNullException("p11");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(p11));
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((string)(p11));
             }
             if ((p14 == null)) {
                 throw new global::System.ArgumentNullException("p14");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(p14));
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((string)(p14));
             }
-            this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[52].Value = ((decimal)(p17));
-            this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[54].Value = ((decimal)(p20));
-            this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[56].Value = ((decimal)(p23));
+            this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[53].Value = ((decimal)(p17));
+            this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[55].Value = ((decimal)(p20));
+            this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[57].Value = ((decimal)(p23));
             if ((p26 == null)) {
                 throw new global::System.ArgumentNullException("p26");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((string)(p26));
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((string)(p26));
             }
             if ((p29 == null)) {
                 throw new global::System.ArgumentNullException("p29");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((string)(p29));
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((string)(p29));
             }
             if ((p32 == null)) {
                 throw new global::System.ArgumentNullException("p32");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((string)(p32));
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((string)(p32));
             }
             if ((p35 == null)) {
                 throw new global::System.ArgumentNullException("p35");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((string)(p35));
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((string)(p35));
             }
             if ((p38 == null)) {
                 throw new global::System.ArgumentNullException("p38");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((string)(p38));
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((string)(p38));
             }
             if ((p41 == null)) {
                 throw new global::System.ArgumentNullException("p41");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((string)(p41));
+                this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((string)(p41));
             }
-            this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[70].Value = ((decimal)(p44));
-            this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[72].Value = ((decimal)(p47));
+            this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[71].Value = ((decimal)(p44));
+            this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[73].Value = ((decimal)(p47));
             if ((p50 == null)) {
                 throw new global::System.ArgumentNullException("p50");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[74].Value = ((string)(p50));
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((string)(p50));
             }
             if ((p53 == null)) {
                 throw new global::System.ArgumentNullException("p53");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[76].Value = ((string)(p53));
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((string)(p53));
             }
             if ((p56 == null)) {
                 throw new global::System.ArgumentNullException("p56");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[78].Value = ((string)(p56));
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((string)(p56));
             }
-            this.Adapter.UpdateCommand.Parameters[79].Value = ((int)(Original_weight_id));
+            this.Adapter.UpdateCommand.Parameters[80].Value = ((int)(Original_weight_id));
             if ((p59 == null)) {
                 throw new global::System.ArgumentNullException("p59");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((string)(p59));
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((string)(p59));
             }
             if ((p62 == null)) {
                 throw new global::System.ArgumentNullException("p62");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((string)(p62));
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((string)(p62));
             }
             if ((p65 == null)) {
                 throw new global::System.ArgumentNullException("p65");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((string)(p65));
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((string)(p65));
             }
-            this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[87].Value = ((System.DateTime)(p68));
-            this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[89].Value = ((System.DateTime)(p71));
-            this.Adapter.UpdateCommand.Parameters[90].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[91].Value = ((System.DateTime)(p74));
-            this.Adapter.UpdateCommand.Parameters[92].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[93].Value = ((decimal)(Original_vat));
-            this.Adapter.UpdateCommand.Parameters[94].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[95].Value = ((decimal)(p77));
+            this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[88].Value = ((System.DateTime)(p68));
+            this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[90].Value = ((System.DateTime)(p71));
+            this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[92].Value = ((System.DateTime)(p74));
+            this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[94].Value = ((decimal)(Original_vat));
+            this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[96].Value = ((decimal)(p77));
             if ((p80 == null)) {
                 throw new global::System.ArgumentNullException("p80");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[96].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((string)(p80));
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((string)(p80));
             }
             if ((p83 == null)) {
                 throw new global::System.ArgumentNullException("p83");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[98].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((string)(p83));
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[100].Value = ((string)(p83));
             }
             if ((p86 == null)) {
                 throw new global::System.ArgumentNullException("p86");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[100].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((string)(p86));
+                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[102].Value = ((string)(p86));
             }
-            this.Adapter.UpdateCommand.Parameters[102].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[103].Value = ((decimal)(p89));
+            this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[104].Value = ((decimal)(p89));
             if ((p92 == null)) {
                 throw new global::System.ArgumentNullException("p92");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[104].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((string)(p92));
+                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[106].Value = ((string)(p92));
             }
             if ((p95 == null)) {
                 throw new global::System.ArgumentNullException("p95");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[106].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((string)(p95));
+                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[108].Value = ((string)(p95));
             }
             if ((p98 == null)) {
                 throw new global::System.ArgumentNullException("p98");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[108].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((string)(p98));
+                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[110].Value = ((string)(p98));
             }
             if ((Original_carry_type_name == null)) {
                 throw new global::System.ArgumentNullException("Original_carry_type_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[110].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[111].Value = ((string)(Original_carry_type_name));
+                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[112].Value = ((string)(Original_carry_type_name));
             }
             if ((p101 == null)) {
                 throw new global::System.ArgumentNullException("p101");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[112].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((string)(p101));
+                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[114].Value = ((string)(p101));
             }
             if ((p104 == null)) {
                 throw new global::System.ArgumentNullException("p104");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[114].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((string)(p104));
+                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[116].Value = ((string)(p104));
             }
             if ((p107 == null)) {
                 throw new global::System.ArgumentNullException("p107");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[116].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[117].Value = ((string)(p107));
+                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[118].Value = ((string)(p107));
             }
-            this.Adapter.UpdateCommand.Parameters[118].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[119].Value = ((decimal)(Original_oil_content));
-            this.Adapter.UpdateCommand.Parameters[120].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[121].Value = ((bool)(Original_is_s));
+            this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[120].Value = ((decimal)(Original_oil_content));
+            this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[122].Value = ((bool)(Original_is_s));
+            if ((Original_base_weight_station_name == null)) {
+                throw new global::System.ArgumentNullException("Original_base_weight_station_name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[124].Value = ((string)(Original_base_weight_station_name));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5039,6 +5149,7 @@ FROM            weight";
                     string p106, 
                     decimal oil_content, 
                     bool is_s, 
+                    string base_weight_station_name, 
                     string p2, 
                     string p5, 
                     string p8, 
@@ -5079,8 +5190,9 @@ FROM            weight";
                     string p104, 
                     string p107, 
                     decimal Original_oil_content, 
-                    bool Original_is_s) {
-            return this.Update(p1, p4, p7, p10, p13, p16, p19, p22, p25, p28, p31, p34, p37, p40, p43, p46, p49, p52, p55, Original_weight_id, p58, p61, p64, p67, p70, p73, vat, p76, p79, p82, p85, p88, p91, p94, p97, carry_type_name, p100, p103, p106, oil_content, is_s, p2, p5, p8, p11, p14, p17, p20, p23, p26, p29, p32, p35, p38, p41, p44, p47, p50, p53, p56, Original_weight_id, p59, p62, p65, p68, p71, p74, Original_vat, p77, p80, p83, p86, p89, p92, p95, p98, Original_carry_type_name, p101, p104, p107, Original_oil_content, Original_is_s);
+                    bool Original_is_s, 
+                    string Original_base_weight_station_name) {
+            return this.Update(p1, p4, p7, p10, p13, p16, p19, p22, p25, p28, p31, p34, p37, p40, p43, p46, p49, p52, p55, Original_weight_id, p58, p61, p64, p67, p70, p73, vat, p76, p79, p82, p85, p88, p91, p94, p97, carry_type_name, p100, p103, p106, oil_content, is_s, base_weight_station_name, p2, p5, p8, p11, p14, p17, p20, p23, p26, p29, p32, p35, p38, p41, p44, p47, p50, p53, p56, Original_weight_id, p59, p62, p65, p68, p71, p74, Original_vat, p77, p80, p83, p86, p89, p92, p95, p98, Original_carry_type_name, p101, p104, p107, Original_oil_content, Original_is_s, Original_base_weight_station_name);
         }
     }
     

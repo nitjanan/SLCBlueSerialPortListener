@@ -369,6 +369,8 @@ namespace SerialPortListener {
             
             private global::System.Data.DataColumn columnis_s;
             
+            private global::System.Data.DataColumn columnbase_weight_station_name;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public weightDataTable() {
@@ -764,6 +766,14 @@ namespace SerialPortListener {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn base_weight_station_nameColumn {
+                get {
+                    return this.columnbase_weight_station_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -844,7 +854,8 @@ namespace SerialPortListener {
                         string stone_type_id, 
                         string mill_id, 
                         string car_team_id, 
-                        bool is_s) {
+                        bool is_s, 
+                        string base_weight_station_name) {
                 weightRow rowweightRow = ((weightRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         วันที่,
@@ -891,7 +902,8 @@ namespace SerialPortListener {
                         stone_type_id,
                         mill_id,
                         car_team_id,
-                        is_s};
+                        is_s,
+                        base_weight_station_name};
                 rowweightRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowweightRow);
                 return rowweightRow;
@@ -966,6 +978,7 @@ namespace SerialPortListener {
                 this.columnmill_id = base.Columns["mill_id"];
                 this.columncar_team_id = base.Columns["car_team_id"];
                 this.columnis_s = base.Columns["is_s"];
+                this.columnbase_weight_station_name = base.Columns["base_weight_station_name"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1061,6 +1074,8 @@ namespace SerialPortListener {
                 base.Columns.Add(this.columncar_team_id);
                 this.columnis_s = new global::System.Data.DataColumn("is_s", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnis_s);
+                this.columnbase_weight_station_name = new global::System.Data.DataColumn("base_weight_station_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbase_weight_station_name);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnweight_id}, true));
                 this.columnweight_id.AllowDBNull = false;
@@ -1922,6 +1937,22 @@ namespace SerialPortListener {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string base_weight_station_name {
+                get {
+                    try {
+                        return ((string)(this[this.tableweight.base_weight_station_nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'base_weight_station_name\' in table \'weight\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableweight.base_weight_station_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isวันที่Null() {
                 return this.IsNull(this.tableweight.วันที่Column);
             }
@@ -2447,6 +2478,18 @@ namespace SerialPortListener {
             public void Setis_sNull() {
                 this[this.tableweight.is_sColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isbase_weight_station_nameNull() {
+                return this.IsNull(this.tableweight.base_weight_station_nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setbase_weight_station_nameNull() {
+                this[this.tableweight.base_weight_station_nameColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -2654,6 +2697,7 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("mill_id", "mill_id");
             tableMapping.ColumnMappings.Add("car_team_id", "car_team_id");
             tableMapping.ColumnMappings.Add("is_s", "is_s");
+            tableMapping.ColumnMappings.Add("base_weight_station_name", "base_weight_station_name");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2671,7 +2715,7 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             this._commandCollection[0] = new global::Devart.Data.PostgreSql.PgSqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        วันที่, เลขที่เอกสาร, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรวม, น้ำหนักสินค้า, เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, ทะเบียนรถ, weight_id, vat, คิว, 
-                         รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, จำนวณเงิน, น้ำหนักรถ, ล้าง, หมายเหตุ, ขนส่ง, carry_type_name, oil_content, site_id, stone_type_id, mill_id, car_team_id, is_s
+                         รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, จำนวณเงิน, น้ำหนักรถ, ล้าง, หมายเหตุ, ขนส่ง, carry_type_name, oil_content, site_id, stone_type_id, mill_id, car_team_id, is_s, base_weight_station_name
 FROM            weight";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
