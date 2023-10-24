@@ -4086,7 +4086,7 @@
                       </Style>
                     </TextRun>
                     <TextRun>
-                      <Value>=Parameters!PDateFrom.Value</Value>
+                      <Value>=Parameters!PDateTo.Value</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
