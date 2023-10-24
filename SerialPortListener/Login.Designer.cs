@@ -44,7 +44,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panel1.BackColor = System.Drawing.Color.Orange;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.label1);
@@ -94,7 +94,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.LightPink;
+            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -109,8 +109,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.LightPink;
-            this.pictureBox2.Image = global::SerialPortListener.Properties.Resources.password_32px;
+            this.pictureBox2.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.pictureBox2.Image = global::SerialPortListener.Properties.Resources.show_password_32px;
             this.pictureBox2.Location = new System.Drawing.Point(84, 185);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 32);
@@ -119,8 +119,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.LightPink;
-            this.pictureBox1.Image = global::SerialPortListener.Properties.Resources.user_male_32px;
+            this.pictureBox1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.pictureBox1.Image = global::SerialPortListener.Properties.Resources.user_32px;
             this.pictureBox1.Location = new System.Drawing.Point(84, 125);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 34);
@@ -131,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightCoral;
+            this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(441, 326);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbPassword);

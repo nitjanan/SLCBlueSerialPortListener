@@ -218,7 +218,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panel2.BackColor = System.Drawing.Color.Orange;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -262,7 +262,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.LightCoral;
+            this.panel3.BackColor = System.Drawing.Color.MidnightBlue;
             this.panel3.Controls.Add(this.label39);
             this.panel3.Controls.Add(this.lbCompanyCode);
             this.panel3.Controls.Add(this.btMenu5);
@@ -301,7 +301,7 @@
             // 
             // btMenu5
             // 
-            this.btMenu5.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu5.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btMenu5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -331,11 +331,11 @@
             // 
             // btMenu4
             // 
-            this.btMenu4.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu4.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btMenu4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btMenu4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu4.Image = global::SerialPortListener.Properties.Resources.help_32px;
+            this.btMenu4.Image = global::SerialPortListener.Properties.Resources.icons8_help_32px;
             this.btMenu4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btMenu4.Location = new System.Drawing.Point(9, 340);
             this.btMenu4.Name = "btMenu4";
@@ -348,11 +348,11 @@
             // 
             // btMenu3
             // 
-            this.btMenu3.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu3.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btMenu3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btMenu3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu3.Image = global::SerialPortListener.Properties.Resources.settings_32px;
+            this.btMenu3.Image = global::SerialPortListener.Properties.Resources.icons8_settings_32px;
             this.btMenu3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btMenu3.Location = new System.Drawing.Point(9, 293);
             this.btMenu3.Name = "btMenu3";
@@ -365,11 +365,11 @@
             // 
             // btMenu2
             // 
-            this.btMenu2.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btMenu2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btMenu2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu2.Image = global::SerialPortListener.Properties.Resources.ftp_32px;
+            this.btMenu2.Image = global::SerialPortListener.Properties.Resources.icons8_ftp_32px;
             this.btMenu2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btMenu2.Location = new System.Drawing.Point(9, 246);
             this.btMenu2.Name = "btMenu2";
@@ -382,7 +382,7 @@
             // 
             // btMenu1
             // 
-            this.btMenu1.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btMenu1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btMenu1.FlatAppearance.BorderSize = 0;
@@ -390,7 +390,7 @@
             this.btMenu1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btMenu1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btMenu1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu1.Image = global::SerialPortListener.Properties.Resources.truck_32px;
+            this.btMenu1.Image = global::SerialPortListener.Properties.Resources.icons8_truck_32px_2;
             this.btMenu1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btMenu1.Location = new System.Drawing.Point(9, 199);
             this.btMenu1.Name = "btMenu1";
@@ -1515,7 +1515,7 @@
             this.btSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px_pink;
+            this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px;
             this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btSave.Location = new System.Drawing.Point(438, 622);
             this.btSave.Name = "btSave";
@@ -1565,7 +1565,7 @@
             this.btPrintAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btPrintAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
+            this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintAll.Location = new System.Drawing.Point(899, 622);
             this.btPrintAll.Name = "btPrintAll";

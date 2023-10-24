@@ -36,17 +36,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbbSearchWeight = new System.Windows.Forms.ComboBox();
             this.tableDataFromDB = new System.Windows.Forms.DataGridView();
-            this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.truckDataSet = new SerialPortListener.truckDataSet();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btSearch = new System.Windows.Forms.Button();
-            this.btClose = new System.Windows.Forms.Button();
-            this.btDelete = new System.Windows.Forms.Button();
-            this.btUpdate = new System.Windows.Forms.Button();
-            this.btAdd = new System.Windows.Forms.Button();
-            this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
-            this.btExport = new System.Windows.Forms.Button();
             this.วันที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +77,17 @@
             this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.is_s = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.truckDataSet = new SerialPortListener.truckDataSet();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btSearch = new System.Windows.Forms.Button();
+            this.btClose = new System.Windows.Forms.Button();
+            this.btDelete = new System.Windows.Forms.Button();
+            this.btUpdate = new System.Windows.Forms.Button();
+            this.btAdd = new System.Windows.Forms.Button();
+            this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
+            this.btExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataFromDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
@@ -222,138 +222,6 @@
             this.tableDataFromDB.Size = new System.Drawing.Size(1153, 499);
             this.tableDataFromDB.TabIndex = 15;
             this.tableDataFromDB.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableDataFromDB_CellDoubleClick);
-            // 
-            // weightBindingSource
-            // 
-            this.weightBindingSource.DataMember = "weight";
-            this.weightBindingSource.DataSource = this.truckDataSet;
-            // 
-            // truckDataSet
-            // 
-            this.truckDataSet.DataSetName = "truckDataSet";
-            this.truckDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(414, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 21);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "น้ำหนัก:";
-            // 
-            // btSearch
-            // 
-            this.btSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px_pink;
-            this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSearch.Location = new System.Drawing.Point(1077, 10);
-            this.btSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(87, 32);
-            this.btSearch.TabIndex = 13;
-            this.btSearch.Text = "ค้นหา";
-            this.btSearch.UseVisualStyleBackColor = true;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
-            // 
-            // btClose
-            // 
-            this.btClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btClose.BackColor = System.Drawing.Color.Gray;
-            this.btClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btClose.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btClose.Image = global::SerialPortListener.Properties.Resources.exit_24px;
-            this.btClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btClose.Location = new System.Drawing.Point(1081, 577);
-            this.btClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btClose.Name = "btClose";
-            this.btClose.Size = new System.Drawing.Size(90, 39);
-            this.btClose.TabIndex = 8;
-            this.btClose.Text = "ออก";
-            this.btClose.UseVisualStyleBackColor = false;
-            this.btClose.Click += new System.EventHandler(this.btClose_Click);
-            // 
-            // btDelete
-            // 
-            this.btDelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btDelete.BackColor = System.Drawing.Color.IndianRed;
-            this.btDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btDelete.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDelete.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btDelete.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
-            this.btDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelete.Location = new System.Drawing.Point(252, 577);
-            this.btDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btDelete.Name = "btDelete";
-            this.btDelete.Size = new System.Drawing.Size(90, 39);
-            this.btDelete.TabIndex = 7;
-            this.btDelete.Text = "ลบ";
-            this.btDelete.UseVisualStyleBackColor = false;
-            this.btDelete.Visible = false;
-            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
-            // 
-            // btUpdate
-            // 
-            this.btUpdate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btUpdate.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btUpdate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btUpdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btUpdate.Image = global::SerialPortListener.Properties.Resources.edit_file_24px;
-            this.btUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btUpdate.Location = new System.Drawing.Point(133, 577);
-            this.btUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btUpdate.Name = "btUpdate";
-            this.btUpdate.Size = new System.Drawing.Size(90, 39);
-            this.btUpdate.TabIndex = 6;
-            this.btUpdate.Text = "แก้ไข";
-            this.btUpdate.UseVisualStyleBackColor = false;
-            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
-            // 
-            // btAdd
-            // 
-            this.btAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btAdd.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btAdd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btAdd.Image = global::SerialPortListener.Properties.Resources.add_24px;
-            this.btAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btAdd.Location = new System.Drawing.Point(11, 577);
-            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(90, 39);
-            this.btAdd.TabIndex = 5;
-            this.btAdd.Text = "เพิ่ม";
-            this.btAdd.UseVisualStyleBackColor = false;
-            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-            // 
-            // truckDataSetBindingSource
-            // 
-            this.truckDataSetBindingSource.DataSource = this.truckDataSet;
-            this.truckDataSetBindingSource.Position = 0;
-            // 
-            // weightTableAdapter
-            // 
-            this.weightTableAdapter.ClearBeforeFill = true;
-            // 
-            // btExport
-            // 
-            this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
-            this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExport.Location = new System.Drawing.Point(997, 582);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(78, 33);
-            this.btExport.TabIndex = 17;
-            this.btExport.Text = "Export";
-            this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btExport.UseVisualStyleBackColor = true;
-            this.btExport.Click += new System.EventHandler(this.btExport_Click);
             // 
             // วันที่
             // 
@@ -714,6 +582,138 @@
             this.is_s.ReadOnly = true;
             this.is_s.Visible = false;
             this.is_s.Width = 38;
+            // 
+            // weightBindingSource
+            // 
+            this.weightBindingSource.DataMember = "weight";
+            this.weightBindingSource.DataSource = this.truckDataSet;
+            // 
+            // truckDataSet
+            // 
+            this.truckDataSet.DataSetName = "truckDataSet";
+            this.truckDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(414, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 21);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "น้ำหนัก:";
+            // 
+            // btSearch
+            // 
+            this.btSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSearch.Location = new System.Drawing.Point(1077, 10);
+            this.btSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(87, 32);
+            this.btSearch.TabIndex = 13;
+            this.btSearch.Text = "ค้นหา";
+            this.btSearch.UseVisualStyleBackColor = true;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
+            // 
+            // btClose
+            // 
+            this.btClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btClose.BackColor = System.Drawing.Color.Gray;
+            this.btClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btClose.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btClose.Image = global::SerialPortListener.Properties.Resources.exit_24px;
+            this.btClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btClose.Location = new System.Drawing.Point(1081, 577);
+            this.btClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btClose.Name = "btClose";
+            this.btClose.Size = new System.Drawing.Size(90, 39);
+            this.btClose.TabIndex = 8;
+            this.btClose.Text = "ออก";
+            this.btClose.UseVisualStyleBackColor = false;
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
+            // 
+            // btDelete
+            // 
+            this.btDelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btDelete.BackColor = System.Drawing.Color.IndianRed;
+            this.btDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btDelete.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDelete.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btDelete.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
+            this.btDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btDelete.Location = new System.Drawing.Point(252, 577);
+            this.btDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btDelete.Name = "btDelete";
+            this.btDelete.Size = new System.Drawing.Size(90, 39);
+            this.btDelete.TabIndex = 7;
+            this.btDelete.Text = "ลบ";
+            this.btDelete.UseVisualStyleBackColor = false;
+            this.btDelete.Visible = false;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
+            // 
+            // btUpdate
+            // 
+            this.btUpdate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btUpdate.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btUpdate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btUpdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btUpdate.Image = global::SerialPortListener.Properties.Resources.edit_file_24px;
+            this.btUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btUpdate.Location = new System.Drawing.Point(133, 577);
+            this.btUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btUpdate.Name = "btUpdate";
+            this.btUpdate.Size = new System.Drawing.Size(90, 39);
+            this.btUpdate.TabIndex = 6;
+            this.btUpdate.Text = "แก้ไข";
+            this.btUpdate.UseVisualStyleBackColor = false;
+            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
+            // 
+            // btAdd
+            // 
+            this.btAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btAdd.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btAdd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btAdd.Image = global::SerialPortListener.Properties.Resources.add_24px;
+            this.btAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btAdd.Location = new System.Drawing.Point(11, 577);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(90, 39);
+            this.btAdd.TabIndex = 5;
+            this.btAdd.Text = "เพิ่ม";
+            this.btAdd.UseVisualStyleBackColor = false;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+            // 
+            // truckDataSetBindingSource
+            // 
+            this.truckDataSetBindingSource.DataSource = this.truckDataSet;
+            this.truckDataSetBindingSource.Position = 0;
+            // 
+            // weightTableAdapter
+            // 
+            this.weightTableAdapter.ClearBeforeFill = true;
+            // 
+            // btExport
+            // 
+            this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
+            this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btExport.Location = new System.Drawing.Point(997, 582);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(78, 33);
+            this.btExport.TabIndex = 17;
+            this.btExport.Text = "Export";
+            this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btExport.UseVisualStyleBackColor = true;
+            this.btExport.Click += new System.EventHandler(this.btExport_Click);
             // 
             // TableFromDB
             // 

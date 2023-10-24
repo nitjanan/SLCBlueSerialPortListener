@@ -17,8 +17,8 @@ namespace SerialPortListener
             //String cs = "User Id=sa;Host=192.168.10.132;Database=truck;Password=123456;Initial Schema=public;charset=UTF8";
             //string cs = "DSN=PostgreSQLM";
             //string cs = "DSN=PostgreSQLS";
-            string cs = "DSN=PostgreSQLCenterS";
-            //string cs = "DSN=PostgreSQLCenterM";
+            //string cs = "DSN=PostgreSQLCenterS";
+            string cs = "DSN=PostgreSQLCenterM";
             //string cs = "DSN=PostgreSQLCenterSTOCK";
             //string cs = "DSN=PostgreSQLCenterALL";
             conn = new OdbcConnection(cs);
