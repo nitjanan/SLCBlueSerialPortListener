@@ -1180,15 +1180,18 @@ namespace SerialPortListener
                     MessageBox.Show("กรุณาใส่เหตุผลในการยกเลิก", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tbNote.Select();
                 }
-                updateStatusCancel();
+                updateStatusCancel(true);
+            }
+            else {
+                updateStatusCancel(false);
             }
         }
 
-        private void updateStatusCancel()
+        private void updateStatusCancel(Boolean status)
         {
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "UPDATE weight SET is_cancel =  true  WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
+            pgCommand.CommandText = "UPDATE weight SET is_cancel =  " + status + "  WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
             try
             {
                 dl.connect();
