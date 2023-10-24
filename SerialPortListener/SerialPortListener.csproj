@@ -740,6 +740,16 @@
     <None Include="Resources\logo_silachai2.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ftp_32px11.png" />
+    <None Include="Resources\help_32px11.png" />
+    <None Include="Resources\password_32px_green1.png" />
+    <None Include="Resources\print_32px11.png" />
+    <None Include="Resources\save_32px11.png" />
+    <None Include="Resources\search_24px11.png" />
+    <None Include="Resources\search_32px11.png" />
+    <None Include="Resources\settings_32px11.png" />
+    <None Include="Resources\truck_32px11.png" />
+    <None Include="Resources\usergreen1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -609,7 +609,7 @@
             this.btSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_24px1;
             this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btSearch.Location = new System.Drawing.Point(1077, 10);
             this.btSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
