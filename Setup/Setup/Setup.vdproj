@@ -1377,7 +1377,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:SetupCenterALL"
+        "ProductName" = "8:SetupCenterALLExp"
         "ProductCode" = "8:{CC7B2909-3F89-4CB7-8868-25FCC58CDDB6}"
         "PackageCode" = "8:{15F698BC-5381-4E9F-9DFB-B8B9677324A3}"
         "UpgradeCode" = "8:{8AD8DF10-1231-4751-B04A-F0E74B90E8A8}"
