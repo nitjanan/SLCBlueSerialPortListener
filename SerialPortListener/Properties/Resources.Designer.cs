@@ -273,6 +273,16 @@ namespace SerialPortListener.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refresh_32px {
+            get {
+                object obj = ResourceManager.GetObject("refresh_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap save_24px {
             get {
                 object obj = ResourceManager.GetObject("save_24px", resourceCulture);
