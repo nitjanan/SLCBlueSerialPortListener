@@ -2824,5 +2824,21 @@ namespace SerialPortListener
                 tbScoopId.Text = "";
             }
         }
+
+        private void btRefresh_Click(object sender, EventArgs e)
+        {
+            /* autoComplete ผู้ตัก */
+            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+            autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
+
+
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
+
+            Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
+
+            fillStoneCombo();
+            fillTransportCombo();
+            fillMillCombo();
+        }
     }
 }
