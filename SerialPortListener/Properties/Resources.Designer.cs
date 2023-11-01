@@ -133,9 +133,29 @@ namespace SerialPortListener.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ftp_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("ftp_32px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap help_32px {
             get {
                 object obj = ResourceManager.GetObject("help_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("help_32px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,6 +273,16 @@ namespace SerialPortListener.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap password_32px_green {
+            get {
+                object obj = ResourceManager.GetObject("password_32px_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap print_32px {
             get {
                 object obj = ResourceManager.GetObject("print_32px", resourceCulture);
@@ -266,6 +296,16 @@ namespace SerialPortListener.Properties {
         internal static System.Drawing.Bitmap print_32px_pink {
             get {
                 object obj = ResourceManager.GetObject("print_32px_pink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("print_32px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +336,16 @@ namespace SerialPortListener.Properties {
         internal static System.Drawing.Bitmap save_32px_pink {
             get {
                 object obj = ResourceManager.GetObject("save_32px_pink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("save_32px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,6 +393,16 @@ namespace SerialPortListener.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_24px1 {
+            get {
+                object obj = ResourceManager.GetObject("search_24px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap search_32px {
             get {
                 object obj = ResourceManager.GetObject("search_32px", resourceCulture);
@@ -373,9 +433,29 @@ namespace SerialPortListener.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("search_32px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap settings_32px {
             get {
                 object obj = ResourceManager.GetObject("settings_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("settings_32px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -396,6 +476,16 @@ namespace SerialPortListener.Properties {
         internal static System.Drawing.Bitmap truck_32px {
             get {
                 object obj = ResourceManager.GetObject("truck_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap truck_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("truck_32px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -436,6 +526,16 @@ namespace SerialPortListener.Properties {
         internal static System.Drawing.Bitmap user_male_32px1 {
             get {
                 object obj = ResourceManager.GetObject("user_male_32px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap usergreen {
+            get {
+                object obj = ResourceManager.GetObject("usergreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
