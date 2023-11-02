@@ -738,7 +738,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!รหัสลูกค้า.Value &amp; "  " &amp; Fields!ลูกค้า.Value &amp; "  " &amp; Fields!หน้างาน.Value  &amp; "  " &amp; Fields!carry_type_name.Value  &amp; "  " &amp; Fields!จ่ายเงิน.Value</Value>
+                                  <Value>=Fields!รหัสลูกค้า.Value &amp; "  " &amp; IIf(Fields!is_s.Value = 1, "S"," ") &amp; "  " &amp; Fields!ลูกค้า.Value &amp; "  " &amp; Fields!หน้างาน.Value  &amp; "  " &amp; Fields!carry_type_name.Value  &amp; "  " &amp; Fields!จ่ายเงิน.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>16pt</FontSize>
@@ -763,7 +763,8 @@
                             <PaddingBottom>1pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>11</ColSpan>
+                        <ColSpan>12</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -776,42 +777,7 @@
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox13">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Angsana New</FontFamily>
-                                    <FontSize>16pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox13</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>1pt</PaddingLeft>
-                            <PaddingRight>1pt</PaddingRight>
-                            <PaddingTop>1pt</PaddingTop>
-                            <PaddingBottom>1pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -2725,6 +2691,7 @@
                       <GroupExpression>=Fields!หน้างาน.Value</GroupExpression>
                       <GroupExpression>=Fields!carry_type_name.Value</GroupExpression>
                       <GroupExpression>=Fields!จ่ายเงิน.Value</GroupExpression>
+                      <GroupExpression>=Fields!is_s.Value</GroupExpression>
                     </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
@@ -3007,7 +2974,7 @@
               <Top>0.6cm</Top>
               <Left>4.27433cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.75cm</Width>
+              <Width>2.45896cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -3041,9 +3008,9 @@
               </Paragraphs>
               <rd:DefaultName>PDateTo</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>8.62692cm</Left>
+              <Left>8.88588cm</Left>
               <Height>0.6cm</Height>
-              <Width>3.51782cm</Width>
+              <Width>2.96782cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -3076,9 +3043,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>7.02433cm</Left>
+              <Left>6.73329cm</Left>
               <Height>0.6cm</Height>
-              <Width>1.60259cm</Width>
+              <Width>2.15259cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -3144,7 +3111,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>7.02433cm</Width>
+              <Width>6.73329cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
