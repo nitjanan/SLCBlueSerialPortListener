@@ -173,6 +173,14 @@
           <DataField>ล้าง</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="oil_content">
+          <DataField>oil_content</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="is_s">
+          <DataField>is_s</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>weightScoopDataSet</rd:DataSetName>
@@ -683,7 +691,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!รหัสลูกค้า.Value &amp; "  " &amp; Fields!ลูกค้า.Value &amp; "  " &amp; Fields!หน้างาน.Value  &amp; "  " &amp; Fields!carry_type_name.Value  &amp; "  " &amp; Fields!จ่ายเงิน.Value</Value>
+                                  <Value>=Fields!รหัสลูกค้า.Value &amp; "  " &amp; IIf(Fields!is_s.Value = 1, "S"," ") &amp; "  " &amp; Fields!ลูกค้า.Value &amp; "  " &amp; Fields!หน้างาน.Value  &amp; "  " &amp; Fields!carry_type_name.Value  &amp; "  " &amp; Fields!จ่ายเงิน.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>16pt</FontSize>
@@ -709,6 +717,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>11</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -2483,6 +2492,7 @@
                       <GroupExpression>=Fields!หน้างาน.Value</GroupExpression>
                       <GroupExpression>=Fields!carry_type_name.Value</GroupExpression>
                       <GroupExpression>=Fields!จ่ายเงิน.Value</GroupExpression>
+                      <GroupExpression>=Fields!is_s.Value</GroupExpression>
                     </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
@@ -2868,9 +2878,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox134</rd:DefaultName>
-              <Left>17.40375cm</Left>
+              <Left>17.6231cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.51934cm</Width>
+              <Width>2.29999cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
