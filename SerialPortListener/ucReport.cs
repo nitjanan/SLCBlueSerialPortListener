@@ -67,7 +67,7 @@ namespace SerialPortListener
 
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT " + fieldName + " , " + fieldId + " FROM public." + tableName + " WHERE weight_type = 1 or weight_type = 3 ORDER BY " + fieldId;
+            pgCommand.CommandText = "SELECT " + fieldName + " , " + fieldId + " FROM public." + tableName + " WHERE weight_type = 1 or weight_type = 3 or base_vat_type_id is not null ORDER BY base_vat_type_id, " + fieldId;
             try
             {
                 dl.connect();
@@ -317,7 +317,7 @@ namespace SerialPortListener
 
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' AND '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' ORDER BY วันที่, เลขที่เอกสาร";
+            string sql = "select * from weight where วันที่ BETWEEN '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' AND '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ORDER BY วันที่, เลขที่เอกสาร";
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
             DataTable dt = new DataTable();
             cmd.Fill(dt);
@@ -406,7 +406,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromScoop.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToScoop.Value.ToString("yyyy-MM-dd") + "'";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromScoop.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToScoop.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ";
             if (tbScoopName.Text != "")
                 sql += " AND ชื่อผู้ตัก LIKE '%" + tbScoopName.Text + "%' ";
             sql += " ORDER BY วันที่, เลขที่เอกสาร ";
@@ -431,7 +431,7 @@ namespace SerialPortListener
 
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromJointCar.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToJointCar.Value.ToString("yyyy-MM-dd") + "'";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromJointCar.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToJointCar.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ";
             if (tbJointCarRegistration.Text != "")
                 sql += " AND ทะเบียนรถ LIKE '%" + tbJointCarRegistration.Text + "%' ";
             sql += " ORDER BY วันที่, เลขที่เอกสาร ";
@@ -477,7 +477,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromInvoice.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToInvoice.Value.ToString("yyyy-MM-dd") + "'";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromInvoice.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToInvoice.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ";
             if (tbInvoiceCutomerId.Text != "")
                 sql += " AND รหัสลูกค้า = '" + tbInvoiceCutomerId.Text + "' ";
             sql += " ORDER BY วันที่, เลขที่เอกสาร ";
@@ -501,7 +501,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromCustomer.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCustomer.Value.ToString("yyyy-MM-dd") + "' ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromCustomer.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCustomer.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ";
             if (tbCustomerId.Text != "")
                 sql += " AND รหัสลูกค้า = '" + tbCustomerId.Text + "' ";
             sql += " ORDER BY วันที่ ";
@@ -593,7 +593,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromClean.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToClean.Value.ToString("yyyy-MM-dd") + "' AND ล้าง = '" + getRadioValueClean() + "' ORDER BY วันที่, เลขที่เอกสาร ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromClean.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToClean.Value.ToString("yyyy-MM-dd") + "' AND ล้าง = '" + getRadioValueClean() + "' AND bws LIKE '%A' ORDER BY วันที่, เลขที่เอกสาร ";
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
             DataTable dt = new DataTable();
@@ -625,7 +625,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromMill.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToMill.Value.ToString("yyyy-MM-dd") + "' ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromMill.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToMill.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ";
             if (cbMill.SelectedIndex != 0)
                 sql += " AND โรงโม่ = '" + cbMill.Text + "'";
             sql += " ORDER BY วันที่, เลขที่เอกสาร ";
@@ -650,7 +650,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromSite.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToSite.Value.ToString("yyyy-MM-dd") + "' ORDER BY วันที่, เลขที่เอกสาร ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromSite.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToSite.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ORDER BY วันที่, เลขที่เอกสาร ";
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
             DataTable dt = new DataTable();
@@ -681,7 +681,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromStoneType.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToStoneType.Value.ToString("yyyy-MM-dd") + "' AND NOT น้ำหนักรวม = 0.00 AND NOT คิว = 0.00 AND NOT โรงโม่ = ' ' AND NOT รหัสลูกค้า LIKE '10%' ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromStoneType.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToStoneType.Value.ToString("yyyy-MM-dd") + "' AND NOT น้ำหนักรวม = 0.00 AND NOT คิว = 0.00 AND NOT โรงโม่ = ' ' AND NOT รหัสลูกค้า LIKE '10%' AND bws LIKE '%A' ";
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
             DataTable dt = new DataTable();
@@ -702,7 +702,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromTransport.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToTransport.Value.ToString("yyyy-MM-dd") + "' ORDER BY วันที่, เลขที่เอกสาร ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromTransport.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToTransport.Value.ToString("yyyy-MM-dd") + "' AND bws LIKE '%A' ORDER BY วันที่, เลขที่เอกสาร ";
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
             DataTable dt = new DataTable();
@@ -724,7 +724,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromTransportByTeam.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToTransportByTeam.Value.ToString("yyyy-MM-dd") + "' AND NOT รหัสลูกค้า = '09-A-001' AND NOT รหัสลูกค้า = '09-V-001' ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromTransportByTeam.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToTransportByTeam.Value.ToString("yyyy-MM-dd") + "' AND NOT รหัสลูกค้า = '09-A-001' AND NOT รหัสลูกค้า = '09-V-001' AND bws LIKE '%A' ";
             if (cbbCarTeamNameByTeam.SelectedIndex != 0)
                 sql += " AND ทีม = '" + cbbCarTeamNameByTeam.Text + "'";
             sql += " ORDER BY วันที่, เลขที่เอกสาร ";
