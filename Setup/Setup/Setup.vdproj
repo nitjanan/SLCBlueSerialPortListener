@@ -1501,7 +1501,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0056545F1E46404B8E02A8B001DC0689"
             {
-            "Name" = "8:truckWeightA"
+            "Name" = "8:truckWeightV"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
