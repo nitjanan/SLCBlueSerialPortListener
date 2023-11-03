@@ -663,20 +663,20 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
-                /*
+                
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
+                
                 /* เครื่องพี่รุ่ง */
-                MatchCollection mc = Regex.Matches(str, @"\d+");
+                //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
                     if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
                         tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        tbWeigtData.ForeColor = Color.LightCoral;
+                        //tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
                     {
@@ -1672,14 +1672,25 @@ namespace SerialPortListener
             }
         }
 
-        private void calculatenumQ() {
-            try {
-                double numCalQ = Convert.ToDouble(strCalQ);
-                double numWeightTotal = Convert.ToDouble(tbWeightTotal.Text);
-                double numQ = numWeightTotal / (numCalQ * 1000);
-                tbQ.Text = numQ.ToString("#,##0.00");
+        private void calculatenumQ()
+        {
+            try
+            {
+                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text))
+                {
+                    double numCalQ = Convert.ToDouble(strCalQ);
+                    double numWeightTotal = Convert.ToDouble(tbWeightTotal.Text);
+                    double numQ = numWeightTotal / (numCalQ * 1000);
+                    tbQ.Text = numQ.ToString("#,##0.00");
+                }
+                else
+                {
+                    tbQ.Text = "0.00";
+                }
+
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
 
             }
         }
@@ -2492,7 +2503,6 @@ namespace SerialPortListener
         private void showErrorWeightInEmty() {
             showErrorEmtyRadioButton(groupBox2);
             showErrorEmtyComboBox(cbbStoneType);
-            showErrorEmtyComboBox(cbbStoneColor);
             showErrorEmtyComboBox(cbbTransport);
             showErrorEmtyTextBox(tbCarLicense);
             showErrorEmtyTextBox(tbCarCity);
@@ -2502,7 +2512,6 @@ namespace SerialPortListener
         private void showErrorWeightOutEmty()
         {
             showErrorEmtyRadioButton(groupBox2);
-            showErrorEmtyComboBox(cbbStoneColor);
             showErrorEmtyTextBox(tbScoopId);
             showErrorEmtyTextBox(tbScoopName);
             //showErrorEmtyRadioButton(groupBox1);
@@ -2657,11 +2666,23 @@ namespace SerialPortListener
         private void tbWeightIn_Leave(object sender, EventArgs e)
         {
             convertFormatToDecimal(tbWeightIn);
+            checkNumWeightMany(tbWeightIn);
         }
 
         private void tbWeightOut_Leave(object sender, EventArgs e)
         {
             convertFormatToDecimal(tbWeightOut);
+            checkNumWeightMany(tbWeightOut);
+        }
+
+        private void checkNumWeightMany(TextBox tb)
+        {
+            if (tb.Text.Length > 9)
+            {
+                MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักเกิน กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tb.Text = "0.00";
+            }
+
         }
 
         private void tbCarLicense_KeyUp(object sender, KeyEventArgs e)
