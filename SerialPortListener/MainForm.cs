@@ -2478,7 +2478,6 @@ namespace SerialPortListener
         private void showErrorWeightInEmty() {
             showErrorEmtyRadioButton(groupBox2);
             showErrorEmtyComboBox(cbbStoneType);
-            showErrorEmtyComboBox(cbbStoneColor);
             showErrorEmtyComboBox(cbbTransport);
             showErrorEmtyTextBox(tbCarLicense);
             showErrorEmtyTextBox(tbCarCity);
@@ -2488,7 +2487,6 @@ namespace SerialPortListener
         private void showErrorWeightOutEmty()
         {
             showErrorEmtyRadioButton(groupBox2);
-            showErrorEmtyComboBox(cbbStoneColor);
             showErrorEmtyTextBox(tbScoopId);
             showErrorEmtyTextBox(tbScoopName);
             //showErrorEmtyRadioButton(groupBox1);
