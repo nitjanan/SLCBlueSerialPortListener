@@ -119,10 +119,6 @@
             this.tbCarTeam = new System.Windows.Forms.TextBox();
             this.timerWeight = new System.Windows.Forms.Timer(this.components);
             this.tbWeigtData = new System.Windows.Forms.TextBox();
-            this.ucSetting = new SerialPortListener.ucSetting();
-            this.ucReport = new SerialPortListener.ucReport();
-            this.ucHelp = new SerialPortListener.ucHelp();
-            this.ucBackup = new SerialPortListener.ucBackup();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -140,20 +136,6 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.cbbCarTeam = new System.Windows.Forms.ComboBox();
-            this.cbS = new System.Windows.Forms.CheckBox();
-            this.btRefresh = new System.Windows.Forms.Button();
-            this.btPrintAll = new System.Windows.Forms.Button();
-            this.btPrintOut = new System.Windows.Forms.Button();
-            this.btPrintIn = new System.Windows.Forms.Button();
-            this.btSave = new System.Windows.Forms.Button();
-            this.btMenu5 = new System.Windows.Forms.Button();
-            this.btMenu4 = new System.Windows.Forms.Button();
-            this.btMenu3 = new System.Windows.Forms.Button();
-            this.btMenu2 = new System.Windows.Forms.Button();
-            this.btMenu1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ucTruck = new SerialPortListener.ucTruck();
-            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -989,7 +971,7 @@
             this.groupBox1.Controls.Add(this.rbMill2);
             this.groupBox1.Location = new System.Drawing.Point(251, 54);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(38, 38);
+            this.groupBox1.Size = new System.Drawing.Size(315, 38);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Visible = false;
@@ -1249,49 +1231,6 @@
             this.tbWeigtData.Text = "0";
             this.tbWeigtData.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // ucSetting
-            // 
-            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSetting.Location = new System.Drawing.Point(0, 0);
-            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSetting.Name = "ucSetting";
-            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
-            this.ucSetting.TabIndex = 21;
-            // 
-            // ucReport
-            // 
-            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
-            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReport.Location = new System.Drawing.Point(0, 0);
-            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
-            this.ucReport.Name = "ucReport";
-            this.ucReport.Size = new System.Drawing.Size(1208, 686);
-            this.ucReport.TabIndex = 20;
-            this.ucReport.Visible = false;
-            // 
-            // ucHelp
-            // 
-            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
-            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucHelp.Location = new System.Drawing.Point(0, 0);
-            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.ucHelp.Name = "ucHelp";
-            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
-            this.ucHelp.TabIndex = 19;
-            this.ucHelp.Visible = false;
-            // 
-            // ucBackup
-            // 
-            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
-            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucBackup.Location = new System.Drawing.Point(0, 0);
-            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
-            this.ucBackup.Name = "ucBackup";
-            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
-            this.ucBackup.TabIndex = 108;
-            // 
             // panel5
             // 
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1513,219 +1452,11 @@
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
             // 
-            // cbS
-            // 
-            this.cbS.AutoSize = true;
-            this.cbS.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbS.ForeColor = System.Drawing.Color.Brown;
-            this.cbS.Location = new System.Drawing.Point(870, 52);
-            this.cbS.Name = "cbS";
-            this.cbS.Size = new System.Drawing.Size(55, 45);
-            this.cbS.TabIndex = 140;
-            this.cbS.Text = "S";
-            this.cbS.UseVisualStyleBackColor = true;
-            // 
-            // btRefresh
-            // 
-            this.btRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btRefresh.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRefresh.Image = global::SerialPortListener.Properties.Resources.refresh_32px;
-            this.btRefresh.Location = new System.Drawing.Point(475, 54);
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.Size = new System.Drawing.Size(44, 44);
-            this.btRefresh.TabIndex = 141;
-            this.btRefresh.UseVisualStyleBackColor = true;
-            this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
-            // 
-            // btPrintAll
-            // 
-            this.btPrintAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
-            this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintAll.Location = new System.Drawing.Point(899, 622);
-            this.btPrintAll.Name = "btPrintAll";
-            this.btPrintAll.Size = new System.Drawing.Size(105, 40);
-            this.btPrintAll.TabIndex = 123;
-            this.btPrintAll.Text = "พิมพ์";
-            this.btPrintAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintAll.UseVisualStyleBackColor = true;
-            this.btPrintAll.Click += new System.EventHandler(this.btPrintAll_Click);
-            // 
-            // btPrintOut
-            // 
-            this.btPrintOut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintOut.BackColor = System.Drawing.Color.MediumPurple;
-            this.btPrintOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintOut.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintOut.Location = new System.Drawing.Point(754, 622);
-            this.btPrintOut.Name = "btPrintOut";
-            this.btPrintOut.Size = new System.Drawing.Size(105, 40);
-            this.btPrintOut.TabIndex = 122;
-            this.btPrintOut.Text = "พิมพ์ออก";
-            this.btPrintOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintOut.UseVisualStyleBackColor = false;
-            this.btPrintOut.Click += new System.EventHandler(this.btPrintOut_Click);
-            // 
-            // btPrintIn
-            // 
-            this.btPrintIn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintIn.BackColor = System.Drawing.Color.DarkSalmon;
-            this.btPrintIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintIn.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintIn.Location = new System.Drawing.Point(604, 622);
-            this.btPrintIn.Name = "btPrintIn";
-            this.btPrintIn.Size = new System.Drawing.Size(105, 40);
-            this.btPrintIn.TabIndex = 47;
-            this.btPrintIn.Text = "พิมพ์เข้า";
-            this.btPrintIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintIn.UseVisualStyleBackColor = false;
-            this.btPrintIn.Click += new System.EventHandler(this.btPrintIn_Click);
-            // 
-            // btSave
-            // 
-            this.btSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px_pink;
-            this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSave.Location = new System.Drawing.Point(438, 622);
-            this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(105, 40);
-            this.btSave.TabIndex = 46;
-            this.btSave.Text = "บันทึก";
-            this.btSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSave.UseVisualStyleBackColor = true;
-            this.btSave.Click += new System.EventHandler(this.btSave_Click);
-            // 
-            // btMenu5
-            // 
-            this.btMenu5.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu5.Image = global::SerialPortListener.Properties.Resources.data_backup_32px;
-            this.btMenu5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu5.Location = new System.Drawing.Point(9, 387);
-            this.btMenu5.Name = "btMenu5";
-            this.btMenu5.Size = new System.Drawing.Size(171, 41);
-            this.btMenu5.TabIndex = 106;
-            this.btMenu5.TabStop = false;
-            this.btMenu5.Text = "backup";
-            this.btMenu5.UseVisualStyleBackColor = false;
-            this.btMenu5.Visible = false;
-            this.btMenu5.Click += new System.EventHandler(this.btMenu5_Click);
-            // 
-            // btMenu4
-            // 
-            this.btMenu4.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu4.Image = global::SerialPortListener.Properties.Resources.help_32px;
-            this.btMenu4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu4.Location = new System.Drawing.Point(9, 340);
-            this.btMenu4.Name = "btMenu4";
-            this.btMenu4.Size = new System.Drawing.Size(171, 41);
-            this.btMenu4.TabIndex = 104;
-            this.btMenu4.TabStop = false;
-            this.btMenu4.Text = "เกี่ยวกับ";
-            this.btMenu4.UseVisualStyleBackColor = false;
-            this.btMenu4.Click += new System.EventHandler(this.btMenu4_Click);
-            // 
-            // btMenu3
-            // 
-            this.btMenu3.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu3.Image = global::SerialPortListener.Properties.Resources.settings_32px;
-            this.btMenu3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu3.Location = new System.Drawing.Point(9, 293);
-            this.btMenu3.Name = "btMenu3";
-            this.btMenu3.Size = new System.Drawing.Size(171, 41);
-            this.btMenu3.TabIndex = 103;
-            this.btMenu3.TabStop = false;
-            this.btMenu3.Text = "ตั้งค่า";
-            this.btMenu3.UseVisualStyleBackColor = false;
-            this.btMenu3.Click += new System.EventHandler(this.btMenu3_Click);
-            // 
-            // btMenu2
-            // 
-            this.btMenu2.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu2.Image = global::SerialPortListener.Properties.Resources.ftp_32px;
-            this.btMenu2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu2.Location = new System.Drawing.Point(9, 246);
-            this.btMenu2.Name = "btMenu2";
-            this.btMenu2.Size = new System.Drawing.Size(171, 41);
-            this.btMenu2.TabIndex = 102;
-            this.btMenu2.TabStop = false;
-            this.btMenu2.Text = "รายงาน";
-            this.btMenu2.UseVisualStyleBackColor = false;
-            this.btMenu2.Click += new System.EventHandler(this.btMenu2_Click);
-            // 
-            // btMenu1
-            // 
-            this.btMenu1.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btMenu1.FlatAppearance.BorderSize = 0;
-            this.btMenu1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btMenu1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btMenu1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu1.Image = global::SerialPortListener.Properties.Resources.truck_32px;
-            this.btMenu1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu1.Location = new System.Drawing.Point(9, 199);
-            this.btMenu1.Name = "btMenu1";
-            this.btMenu1.Size = new System.Drawing.Size(171, 41);
-            this.btMenu1.TabIndex = 101;
-            this.btMenu1.TabStop = false;
-            this.btMenu1.Text = "บันทึกการชั่ง";
-            this.btMenu1.UseVisualStyleBackColor = false;
-            this.btMenu1.Click += new System.EventHandler(this.btMenu1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SerialPortListener.Properties.Resources.scales_32px;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 38);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // ucTruck
-            // 
-            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
-            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
-            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTruck.Location = new System.Drawing.Point(0, 0);
-            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
-            this.ucTruck.Name = "ucTruck";
-            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
-            this.ucTruck.TabIndex = 22;
-            // 
-            // serialSettingsBindingSource
-            // 
-            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
-            this.Controls.Add(this.btRefresh);
-            this.Controls.Add(this.cbS);
             this.Controls.Add(this.cbbCarTeam);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label37);
@@ -1958,8 +1689,6 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox cbbCarTeam;
         private System.Windows.Forms.Label lbCompanyCode;
-        private System.Windows.Forms.CheckBox cbS;
-        private System.Windows.Forms.Button btRefresh;
     }
 }
 
