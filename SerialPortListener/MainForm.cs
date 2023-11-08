@@ -1248,7 +1248,7 @@ namespace SerialPortListener
         }
 
         private string getMillRadioValue() {
-            string value = " ";
+            string value = "";
             if (rbMill1.Checked)
                 value = rbMill1.Text;
             else if (rbMill2.Checked)
@@ -1262,7 +1262,7 @@ namespace SerialPortListener
 
         private string getCleanRadioValue()
         {
-            string value = " ";
+            string value = "";
             if (rbCleanStone.Checked)
                 value = rbCleanStone.Text;
             else if (rbCleanWater.Checked)
@@ -1273,7 +1273,7 @@ namespace SerialPortListener
         }
         private string getPayRadioValue()
         {
-            string value = " ";
+            string value = "";
             if (rbCash.Checked)
                 value = rbCash.Text;
             else if (rbCredit.Checked)
@@ -1726,9 +1726,9 @@ namespace SerialPortListener
             Weight.StoneColor = strNotEmty(cbbStoneColor.Text);
             Weight.Site = strNotEmty(cbbSite.Text);
             Weight.ApproveName = strNotEmty(tbApproveName.Text);
-            Weight.Pay = getPayRadioValue();
+            Weight.Pay = strNotEmty(getPayRadioValue());
             Weight.VatType = getVatRadioValuePrint();
-            Weight.Clean = getCleanRadioValue();
+            Weight.Clean = strNotEmty(getCleanRadioValue());
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
