@@ -667,7 +667,7 @@ namespace SerialPortListener
                     if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
                         tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        //tbWeigtData.ForeColor = Color.LightCoral;
+                        tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
                     {
@@ -767,8 +767,6 @@ namespace SerialPortListener
             {
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
             }
             else if (mode.Equals(4))//disable all
             {
