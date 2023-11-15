@@ -173,6 +173,14 @@
           <DataField>ล้าง</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="oil_content">
+          <DataField>oil_content</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="is_s">
+          <DataField>is_s</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>weightScoopDataSet</rd:DataSetName>
@@ -683,7 +691,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!รหัสลูกค้า.Value &amp; "  " &amp; Fields!ลูกค้า.Value &amp; "  " &amp; Fields!หน้างาน.Value  &amp; "  " &amp; Fields!carry_type_name.Value  &amp; "  " &amp; Fields!จ่ายเงิน.Value</Value>
+                                  <Value>=Fields!รหัสลูกค้า.Value &amp; "  " &amp; IIf(Fields!is_s.Value = 1, "S"," ") &amp; "  " &amp; Fields!ลูกค้า.Value &amp; "  " &amp; Fields!หน้างาน.Value  &amp; "  " &amp; Fields!carry_type_name.Value  &amp; "  " &amp; Fields!จ่ายเงิน.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>16pt</FontSize>
