@@ -2757,6 +2757,7 @@ namespace SerialPortListener
             convertFormatToDecimal(tbWeightOut);
             checkNumWeightError(tbWeightOut);
             checkErrorWeightTotal();
+            checkErrorNumQ();
         }
 
         private void checkNumWeightError(TextBox tb) {
@@ -2787,6 +2788,14 @@ namespace SerialPortListener
         {
             if (tbWeightTotal.Text.Length < 8 && !checkZeroStr(tbWeightTotal.Text)) {
                 MessageBox.Show("ช่องน้ำหนักสุทธิ มีน้ำหนักผิดปกติ กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void checkErrorNumQ()
+        {
+            if (checkZeroStr(tbQ.Text))
+            {
+                MessageBox.Show("น้ำหนักคิวเป็น 0.00 กรุณาเช็คค่าคำนวณคิว", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
