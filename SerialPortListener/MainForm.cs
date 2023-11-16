@@ -2972,6 +2972,11 @@ namespace SerialPortListener
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
+            autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
+            autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
+
+            autoCompleteSettingInactive(tbStoneTypeId, "รหัสหิน", "base_stone_type");
+            autoCompleteSettingInactive(tbStoneTypeName, "ชื่อหิน", "base_stone_type");
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
