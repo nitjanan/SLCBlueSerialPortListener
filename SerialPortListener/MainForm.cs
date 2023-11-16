@@ -94,6 +94,12 @@ namespace SerialPortListener
             /* autoComplete จังหวัด */
             autoCompleteSetting(tbCarCity, "ชื่อจังหวัด", "base_car_city");
 
+            autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
+            autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
+
+            autoCompleteSettingInactive(tbStoneTypeId, "รหัสหิน", "base_stone_type");
+            autoCompleteSettingInactive(tbStoneTypeName, "ชื่อหิน", "base_stone_type");
+
             /* autoComplete ลูกค้า */
             //autoCompleteSetting(tbCustomerId, "รหัสลูกค้า", "base_customer");
             //autoCompleteSetting(tbCustomerName, "ชื่อลูกค้า", "base_customer");
@@ -141,6 +147,11 @@ namespace SerialPortListener
             tbCarCity.Text = "";
             tbDriverName.Text = "";
             cbbMill.Text = "";
+
+            tbStoneTypeId.Text = "";
+            tbStoneTypeName.Text = "";
+            tbMillId.Text = "";
+            tbMillName.Text = "";
 
             // login admin ให้เปลี่ยน
             if (Globals.isPermissionEditWeight())
@@ -374,7 +385,7 @@ namespace SerialPortListener
                 if (!checkEmptyTB(tbCarLicense))
                 {
                     tbCarLicense.Enabled = false;
-                    tbCarCity.Enabled = false;
+                    //tbCarCity.Enabled = false;
                 }
             }
             else {
@@ -386,10 +397,11 @@ namespace SerialPortListener
                 if (!checkEmptyTB(tbCarLicense))
                 {
                     tbCarLicense.Enabled = false;
-                    tbCarCity.Enabled = false;
+                    //tbCarCity.Enabled = false;
                 }
             }
-            cbbStoneType.Text = data.stoneType;//111111111111
+            tbStoneTypeId.Text = data.stoneTypeId;
+            tbStoneTypeName.Text = data.stoneType;//111111111111
             tbQ.Text = numberFormat(data.q, 2);
             tbApproveId.Text = data.approveId;
             tbApproveName.Text = data.approveName;
@@ -397,7 +409,9 @@ namespace SerialPortListener
             cbbTransport.Text = data.transport;
             cbbSite.Text = data.site;//111111111111
             cbbCarTeam.Text = data.team;//111111111111
-            cbbMill.Text = data.mill;//111111111111
+            tbMillId.Text = data.millId;
+            tbMillName.Text = data.mill;//111111111111
+
             tbNote.Text = data.note;
             tbOilContent.Text = numberFormat(data.oilContent, 2);
 
@@ -748,7 +762,7 @@ namespace SerialPortListener
                     tbWeightIn.Enabled = false;
                 if (!checkEmptyTB(tbCarLicense)) {
                     tbCarLicense.Enabled = false;
-                    tbCarCity.Enabled = false;
+                    //tbCarCity.Enabled = false;
                 }
 
             }
@@ -1032,11 +1046,11 @@ namespace SerialPortListener
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO weight (วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, bws, oil_content, site_id, stone_type_id, mill_id, car_team_id)" +
                                      "VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn) + "'" + ",'"
-                                     + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text + "','"
+                                     + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + tbMillName.Text + "','" + tbStoneTypeName.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text + "','"
                                      + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text + "','"
                                      + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1) + "','"
                                      + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) , (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 ) ,'"
-                                     + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "' )";
+                                     + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" +tbStoneTypeId.Text + "','" + tbMillId.Text + "','" + getComboboxId(cbbCarTeam) + "' )";
             try
             {
                 dl.connect();
@@ -1064,11 +1078,11 @@ namespace SerialPortListener
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO weight_log (weight_id, วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, oil_content, site_id, stone_type_id, mill_id, car_team_id)" +
                                      "VALUES ('" + tbId.Text + "','" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn) + "'" + ",'"
-                                     + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text + "','"
+                                     + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + tbMillName.Text + "','" + tbStoneTypeName.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text + "','"
                                      + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text + "','"
                                      + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1) + "','"
                                      + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) ,'"
-                                     + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "' )";
+                                     + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + tbStoneTypeId.Text + "','" + tbMillId.Text + "','" + getComboboxId(cbbCarTeam) + "' )";
             try
             {
                 dl.connect();
@@ -1109,12 +1123,12 @@ namespace SerialPortListener
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "UPDATE weight SET ทะเบียนรถ = '" + tbCarLicense.Text.TrimEnd() + "' , จังหวัด = '" + tbCarCity.Text + "' , คนขับ = '" + tbDriverName.Text + "', ลูกค้า = '" + tbCustomerName.Text + "' , น้ำหนักรถ = '" + kgToTon(tbWeightIn) + "' , น้ำหนักรวม = '" + kgToTon(tbWeightOut) + "'" +
-                                    " , น้ำหนักสินค้า = '" + kgToTon(tbWeightTotal) + "' , เลขที่ใบตัก = '" + tbRefNum.Text + "' , โรงโม่ = '" + cbbMill.Text + "' , ชนิดหิน = '" + cbbStoneType.Text + "' , จ่ายเงิน = '" + getPayRadioValue() + "' , รหัสผู้ชั่ง = '" + tbScaleId.Text + "'" +
+                                    " , น้ำหนักสินค้า = '" + kgToTon(tbWeightTotal) + "' , เลขที่ใบตัก = '" + tbRefNum.Text + "' , โรงโม่ = '" + tbMillName.Text + "' , ชนิดหิน = '" + tbStoneTypeName.Text + "' , จ่ายเงิน = '" + getPayRadioValue() + "' , รหัสผู้ชั่ง = '" + tbScaleId.Text + "'" +
                                     " , รหัสผู้ตัก = '" + tbScoopId.Text + "' , ราคาตัน = '" + numberFormat(tbPricePerTon.Text, 1) + "' , จำนวณเงิน = '" + numberFormat(tbAmount.Text, 1) + "' , ค่าขนส่ง = '" + tbShipCost.Text + "' , วันที่ชั่งเข้า = '" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "' , เวลาชั่งเข้า = '" + dtWeightInTime.Text + "'" +
                                     " , วันที่ชั่งออก = '" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "' , เวลาชั่งออก = '" + dtWeightOutTime.Text + "'  , รหัสลูกค้า = '" + tbCustomerId.Text + "'  , ชื่อผู้ชั่ง = '" + tbScaleName.Text + "' , ชื่อผู้ตัก = '" + tbScoopName.Text + "' , vat = '" + numberFormat(tbVat.Text, 1) +
                                     "' , รหัสผู้อนุมัติจ่าย = '" + tbApproveId.Text + "' , ชื่อผู้อนุมัติจ่าย = '" + tbApproveName.Text + "' , คิว = '" + numberFormat(tbQ.Text, 1) + "' , ชนิดvat = '" + getVatRadioValue() + "' , จำนวนเงินสุทธิ = '" + numberFormat(tbAmountVat.Text, 1) + "' , ประเภทหิน = '" + cbbStoneColor.Text +
                                     "' , หน้างาน = '" + cbbSite.Text + "' , ทีม = '" + cbbCarTeam.Text + "' , ล้าง = '" + getCleanRadioValue() + "' , ขนส่ง = '" + cbbTransport.Text + "' , carry_type_name = '" + findcarryTypeByTransport() + "' , หมายเหตุ = '" + tbNote.Text + "' , oil_content = '" + numberFormat(tbOilContent.Text, 1) +
-                                    "' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate() +
+                                    "' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + tbStoneTypeId.Text + "' , mill_id = '" + tbMillId.Text + "' , car_team_id = '" + getComboboxCarTeamUpdate() +
                                     "' WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
 
             try
@@ -1396,6 +1410,62 @@ namespace SerialPortListener
             dl.close();
         }
 
+        /* autoComplete Setting */
+        private void autoCompleteSettingWeightType(TextBox tb, string field, string tableName)
+        {
+            tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 1 or weight_type = 3 ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string rdStr = reader[field].ToString();
+                    coll.Add(rdStr);
+
+                }
+            }
+            catch (Exception)
+            {
+            }
+            tb.AutoCompleteCustomSource = coll;
+            dl.close();
+        }
+
+        /* autoComplete Setting */
+        private void autoCompleteSettingInactive(TextBox tb, string field, string tableName)
+        {
+            tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string rdStr = reader[field].ToString();
+                    coll.Add(rdStr);
+
+                }
+            }
+            catch (Exception)
+            {
+            }
+            tb.AutoCompleteCustomSource = coll;
+            dl.close();
+        }
+
         /*3 search anywhere customer */
         public void setautoCompleteCustomer(string fieldId, string fieldName, string tableName)
         {
@@ -1637,8 +1707,7 @@ namespace SerialPortListener
         {
             calculateAmount();
             calculateVat();
-            if (cbbStoneType.SelectedIndex != -1)
-                calculatenumQ();
+            calculatenumQ();
         }
 
         private void calculateAmount() {
@@ -1661,7 +1730,7 @@ namespace SerialPortListener
 
         private void calculatenumQ() {
             try {
-                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text))
+                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text) && tbStoneTypeName != null && tbStoneTypeName.Text != "")
                 {
                     double numCalQ = Convert.ToDouble(strCalQ);
                     double numWeightTotal = Convert.ToDouble(tbWeightTotal.Text);
@@ -1704,11 +1773,11 @@ namespace SerialPortListener
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
             Weight.DocNum = tbDocNum.Text;
-            Weight.Mill = strNotEmty(cbbMill.Text);
+            Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
-            Weight.StoneType = strNotEmty(cbbStoneType.Text);
+            Weight.StoneType = strNotEmty(tbStoneTypeName.Text);
             Weight.CarLicense = strNotEmty(tbCarLicense.Text);
             Weight.CarCity = strNotEmty(tbCarCity.Text);
             Weight.DateIn = strNotEmty(dtWeightInDate.Text);
@@ -1862,6 +1931,37 @@ namespace SerialPortListener
             //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน
             setDataCleanByCustomerAndStoneType();
         }
+
+
+
+        private void getAndCalQ()
+        {
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT ค่าคำนวณคิว FROM public.base_stone_type where ชื่อหิน = '" + tbStoneTypeName.Text + "' ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string rdStr = reader["ค่าคำนวณคิว"].ToString();
+                    strCalQ = rdStr;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+            //Weight.StoneColor = getPrintFromDB("base_stone_type", "ประเภทหิน", "ชื่อหิน", cbbStoneType.Text);
+            //คำนวณค่าคิว
+            calculatenumQ();
+
+            //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน
+            setDataCleanByCustomerAndStoneType();
+        }
+
         private void textboxFormatDecimal(object sender, KeyPressEventArgs e, TextBox textBox)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
@@ -2484,7 +2584,7 @@ namespace SerialPortListener
 
         private void showErrorWeightInEmty() {
             showErrorEmtyRadioButton(groupBox2);
-            showErrorEmtyComboBox(cbbStoneType);
+            showErrorEmtyTextBox(tbStoneTypeName);
             showErrorEmtyComboBox(cbbTransport);
             showErrorEmtyTextBox(tbCarLicense);
             showErrorEmtyTextBox(tbCarCity);
@@ -2497,7 +2597,7 @@ namespace SerialPortListener
             showErrorEmtyTextBox(tbScoopId);
             showErrorEmtyTextBox(tbScoopName);
             //showErrorEmtyRadioButton(groupBox1);
-            showErrorEmtyComboBox(cbbMill);
+            showErrorEmtyTextBox(tbMillName);
             showErrorEmtyRadioButton(groupBox4);
         }
 
@@ -2648,22 +2748,46 @@ namespace SerialPortListener
         private void tbWeightIn_Leave(object sender, EventArgs e)
         {
             convertFormatToDecimal(tbWeightIn);
-            checkNumWeightMany(tbWeightIn);
+            checkNumWeightError(tbWeightIn);
+            checkErrorWeightTotal();
         }
 
         private void tbWeightOut_Leave(object sender, EventArgs e)
         {
             convertFormatToDecimal(tbWeightOut);
-            checkNumWeightMany(tbWeightOut);
+            checkNumWeightError(tbWeightOut);
+            checkErrorWeightTotal();
         }
 
-        private void checkNumWeightMany(TextBox tb) {
-            if(tb.Text.Length > 9)
+        private void checkNumWeightError(TextBox tb) {
+            if (tb.Text.Length < 9 && !checkZeroStr(tb.Text))
             {
-                MessageBox.Show("ช่อง "+ tb.AccessibleName + "มีน้ำหนักเกิน กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tb.Text = "0.00";
+                MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักน้อยเกินไป กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tb.Focus();
             }
-        
+            else if (tb.Text.Length == 9) {
+                char lastNumber = tb.Text[5];
+                if (lastNumber != '0')
+                {
+                    MessageBox.Show("ช่อง " + tb.AccessibleName                                                                                                                                                                                                                                                                                                                             + "ไม่ได้ลงท้ายด้วย 0 กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tb.Text = "0.00";
+                    tb.Focus();
+                }
+            }
+            else if (tb.Text.Length > 9)
+            {
+                MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักเกิน กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tb.Text = "0.00";
+                tb.Focus();
+            }
+
+        }
+
+        private void checkErrorWeightTotal()
+        {
+            if (tbWeightTotal.Text.Length < 8 && !checkZeroStr(tbWeightTotal.Text)) {
+                MessageBox.Show("ช่องน้ำหนักสุทธิ มีน้ำหนักผิดปกติ กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void tbCarLicense_KeyUp(object sender, KeyEventArgs e)
@@ -2743,11 +2867,11 @@ namespace SerialPortListener
 
         private void setDataCleanByCustomerAndStoneType()
         {
-            if (tbCustomerId != null && tbCustomerId.Text != "" && cbbStoneType != null && cbbStoneType.Text != "")
+            if (tbCustomerId != null && tbCustomerId.Text != "" && tbStoneTypeName != null && tbStoneTypeName.Text != "")
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT ล้าง from weight where รหัสลูกค้า = '" + tbCustomerId.Text + "' and ชนิดหิน = '" + cbbStoneType.Text + "' order by weight_id  desc LIMIT 1 ";
+                pgCommand.CommandText = "SELECT ล้าง from weight where รหัสลูกค้า = '" + tbCustomerId.Text + "' and ชนิดหิน = '" + tbStoneTypeName.Text + "' order by weight_id  desc LIMIT 1 ";
                 try
                 {
                     dl.connect();
@@ -2854,6 +2978,146 @@ namespace SerialPortListener
             fillStoneCombo();
             fillTransportCombo();
             fillMillCombo();
+        }
+
+        private void tbStoneTypeId_Leave(object sender, EventArgs e)
+        {
+            if (tbStoneTypeId != null && tbStoneTypeId.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT ชื่อหิน FROM public.base_stone_type where รหัสหิน = '" + tbStoneTypeId.Text + "' and inactive = false ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["ชื่อหิน"].ToString();
+                        tbStoneTypeName.Text = rdStr;
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbStoneTypeId.Text = "";
+                        tbStoneTypeName.Text = "";
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbStoneTypeName.Text = "";
+            }
+
+            getAndCalQ();
+        }
+
+        private void tbStoneTypeName_Leave(object sender, EventArgs e)
+        {
+            if (tbStoneTypeName != null && tbStoneTypeName.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT รหัสหิน FROM public.base_stone_type where ชื่อหิน = '" + tbStoneTypeName.Text + "' and inactive = false ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["รหัสหิน"].ToString();
+                        tbStoneTypeId.Text = rdStr;
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbStoneTypeId.Text = "";
+                        tbStoneTypeName.Text = "";
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbStoneTypeId.Text = "";
+            }
+
+            getAndCalQ();
+        }
+
+        private void tbMillId_Leave(object sender, EventArgs e)
+        {
+            if (tbMillId != null && tbMillId.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT ชื่อโรงโม่ FROM public.base_mill where รหัสโรงโม่ = '" + tbMillId.Text + "' and (weight_type = 1 or weight_type = 3) ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["ชื่อโรงโม่"].ToString();
+                        tbMillName.Text = rdStr;
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbMillId.Text = "";
+                        tbMillName.Text = "";
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbMillName.Text = "";
+            }
+        }
+
+        private void tbMillName_Leave(object sender, EventArgs e)
+        {
+            if (tbMillName != null && tbMillName.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT รหัสโรงโม่ FROM public.base_mill where ชื่อโรงโม่ = '" + tbMillName.Text + "' and (weight_type = 1 or weight_type = 3) ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["รหัสโรงโม่"].ToString();
+                        tbMillId.Text = rdStr;
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbMillId.Text = "";
+                        tbMillName.Text = "";
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbMillId.Text = "";
+            }
         }
     }
 }
