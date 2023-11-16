@@ -119,10 +119,6 @@
             this.tbCarTeam = new System.Windows.Forms.TextBox();
             this.timerWeight = new System.Windows.Forms.Timer(this.components);
             this.tbWeigtData = new System.Windows.Forms.TextBox();
-            this.ucSetting = new SerialPortListener.ucSetting();
-            this.ucReport = new SerialPortListener.ucReport();
-            this.ucHelp = new SerialPortListener.ucHelp();
-            this.ucBackup = new SerialPortListener.ucBackup();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -973,10 +969,11 @@
             this.cbbStoneType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbStoneType.FormattingEnabled = true;
             this.cbbStoneType.IntegralHeight = false;
-            this.cbbStoneType.Location = new System.Drawing.Point(370, 234);
+            this.cbbStoneType.Location = new System.Drawing.Point(1139, 524);
             this.cbbStoneType.Name = "cbbStoneType";
-            this.cbbStoneType.Size = new System.Drawing.Size(337, 29);
+            this.cbbStoneType.Size = new System.Drawing.Size(57, 29);
             this.cbbStoneType.TabIndex = 15;
+            this.cbbStoneType.Visible = false;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             // 
             // groupBox1
@@ -1249,49 +1246,6 @@
             this.tbWeigtData.Text = "0";
             this.tbWeigtData.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // ucSetting
-            // 
-            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSetting.Location = new System.Drawing.Point(0, 0);
-            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSetting.Name = "ucSetting";
-            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
-            this.ucSetting.TabIndex = 21;
-            // 
-            // ucReport
-            // 
-            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
-            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReport.Location = new System.Drawing.Point(0, 0);
-            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
-            this.ucReport.Name = "ucReport";
-            this.ucReport.Size = new System.Drawing.Size(1208, 686);
-            this.ucReport.TabIndex = 20;
-            this.ucReport.Visible = false;
-            // 
-            // ucHelp
-            // 
-            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
-            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucHelp.Location = new System.Drawing.Point(0, 0);
-            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.ucHelp.Name = "ucHelp";
-            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
-            this.ucHelp.TabIndex = 19;
-            this.ucHelp.Visible = false;
-            // 
-            // ucBackup
-            // 
-            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
-            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucBackup.Location = new System.Drawing.Point(0, 0);
-            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
-            this.ucBackup.Name = "ucBackup";
-            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
-            this.ucBackup.TabIndex = 108;
-            // 
             // panel5
             // 
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1406,10 +1360,11 @@
             "โรงโม่ 2",
             "โรงโม่ 3",
             "Sandvik"});
-            this.cbbMill.Location = new System.Drawing.Point(370, 273);
+            this.cbbMill.Location = new System.Drawing.Point(1139, 563);
             this.cbbMill.Name = "cbbMill";
-            this.cbbMill.Size = new System.Drawing.Size(337, 29);
+            this.cbbMill.Size = new System.Drawing.Size(57, 29);
             this.cbbMill.TabIndex = 126;
+            this.cbbMill.Visible = false;
             // 
             // cbbCustomerName
             // 
