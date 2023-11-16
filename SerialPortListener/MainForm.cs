@@ -1719,8 +1719,7 @@ namespace SerialPortListener
         {
             calculateAmount();
             calculateVat();
-            if (cbbStoneType.SelectedIndex != -1)
-                calculatenumQ();
+            calculatenumQ();
         }
 
         private void calculateAmount() {
