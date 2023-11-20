@@ -2798,7 +2798,7 @@ namespace SerialPortListener
 
         private void checkErrorNumQ()
         {
-            if (checkZeroStr(tbQ.Text) && !checkZeroStr(tbWeightTotal.Text) && tbStoneTypeName != null && tbStoneTypeName.Text != "")
+            if (checkZeroStr(tbQ.Text) && !checkZeroStr(tbWeightOut.Text) && tbStoneTypeName != null && tbStoneTypeName.Text != "")
             {
                 MessageBox.Show("น้ำหนักคิวเป็น 0.00 กรุณาเช็คค่าคำนวณคิว", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
