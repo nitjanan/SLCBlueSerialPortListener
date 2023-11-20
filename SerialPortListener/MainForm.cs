@@ -2754,16 +2754,11 @@ namespace SerialPortListener
         }
 
         private void checkNumWeightError(TextBox tb) {
-            if (tb.Text.Length < 9 && !checkZeroStr(tb.Text))
-            {
-                MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักน้อยเกินไป กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tb.Focus();
-            }
-            else if (tb.Text.Length == 9) {
+            if (tb.Text.Length == 9) {
                 char lastNumber = tb.Text[5];
                 if (lastNumber != '0')
                 {
-                    MessageBox.Show("ช่อง " + tb.AccessibleName                                                                                                                                                                                                                                                                                                                             + "ไม่ได้ลงท้ายด้วย 0 กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("ช่อง " + tb.AccessibleName + "ไม่ได้ลงท้ายด้วย 0 กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tb.Text = "0.00";
                     tb.Focus();
                 }
@@ -2786,7 +2781,7 @@ namespace SerialPortListener
 
         private void checkErrorNumQ()
         {
-            if (checkZeroStr(tbQ.Text))
+            if (checkZeroStr(tbQ.Text) && !checkZeroStr(tbWeightTotal.Text) && tbStoneTypeName != null && tbStoneTypeName.Text != "")
             {
                 MessageBox.Show("น้ำหนักคิวเป็น 0.00 กรุณาเช็คค่าคำนวณคิว", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
