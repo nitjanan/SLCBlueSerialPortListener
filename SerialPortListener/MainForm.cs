@@ -678,20 +678,20 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
-                /*
+                
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
+                
                 /* เครื่องพี่รุ่ง */
-                MatchCollection mc = Regex.Matches(str, @"\d+");
+                //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
                     if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
                         tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        tbWeigtData.ForeColor = Color.LightCoral;
+                        //tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
                     {
@@ -2217,32 +2217,51 @@ namespace SerialPortListener
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
-                using (var form = new FCancelPassword())
+                if (!checkZeroStr(tbWeightTotal.Text))
                 {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
+                    using (var form = new FCancelPassword())
                     {
-                        string password = form.ReturnPassword;
-                        if (password == "pdg]bd=yj'")
+                        var result = form.ShowDialog();
+                        if (result == DialogResult.OK)
                         {
-                            tbWeightIn.Text = "0.00";
-                            tbWeightOut.Text = "0.00";
-                            tbWeightTotal.Text = "0.00";
-                            tbPricePerTon.Text = "0.00";
-                            tbAmount.Text = "0.00";
-                            tbAmountVat.Text = "0.00";
-                            tbVat.Text = "0.00";
-                            tbQ.Text = "0.00";
-                            return true;
+                            string password = form.ReturnPassword;
+                            if (password == "pdg]bd=yj'")
+                            {
+
+                                tbWeightIn.Text = "0.00";
+                                tbWeightOut.Text = "0.00";
+                                tbWeightTotal.Text = "0.00";
+                                tbPricePerTon.Text = "0.00";
+                                tbAmount.Text = "0.00";
+                                tbAmountVat.Text = "0.00";
+                                tbVat.Text = "0.00";
+                                tbQ.Text = "0.00";
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
                         }
                         else
                         {
                             return false;
                         }
                     }
-                    else {
-                        return false;
-                    }
+
+                }
+                else
+                {
+
+                    tbWeightIn.Text = "0.00";
+                    tbWeightOut.Text = "0.00";
+                    tbWeightTotal.Text = "0.00";
+                    tbPricePerTon.Text = "0.00";
+                    tbAmount.Text = "0.00";
+                    tbAmountVat.Text = "0.00";
+                    tbVat.Text = "0.00";
+                    tbQ.Text = "0.00";
+                    return true;
                 }
             }
             return true;
