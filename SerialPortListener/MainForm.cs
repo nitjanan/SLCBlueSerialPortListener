@@ -2532,6 +2532,8 @@ namespace SerialPortListener
             showErrorEmtyTextBox(tbMillId);
             showErrorEmtyTextBox(tbMillName);
             showErrorEmtyRadioButton(groupBox4);
+            showErrorEmtyTextBox(tbQ);
+
         }
 
         /*4 search anywhere customer */
