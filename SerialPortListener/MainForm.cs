@@ -1696,7 +1696,7 @@ namespace SerialPortListener
 
         private void calculatenumQ() {
             try {
-                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text))
+                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text) && !string.IsNullOrEmpty(strCalQ))
                 {
                     double numCalQ = Convert.ToDouble(strCalQ);
                     double numWeightTotal = Convert.ToDouble(tbWeightTotal.Text);
