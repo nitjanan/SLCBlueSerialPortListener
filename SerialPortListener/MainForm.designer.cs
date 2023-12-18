@@ -1467,6 +1467,7 @@
             this.cbbMill.Name = "cbbMill";
             this.cbbMill.Size = new System.Drawing.Size(55, 29);
             this.cbbMill.TabIndex = 126;
+            this.cbbMill.Visible = false;
             // 
             // cbbCustomerName
             // 

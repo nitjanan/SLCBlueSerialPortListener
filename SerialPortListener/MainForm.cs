@@ -1402,7 +1402,7 @@ namespace SerialPortListener
             dl.close();
         }
 
-        /* autoComplete Setting */
+        /* autoComplete Setting Weight Type*/
         private void autoCompleteSettingWeightType(TextBox tb, string field, string tableName)
         {
             tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -2879,6 +2879,9 @@ namespace SerialPortListener
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
+            /* autoComplete โรงโม่ */
+            autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
+            autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
@@ -2886,7 +2889,7 @@ namespace SerialPortListener
 
             fillStoneCombo();
             fillTransportCombo();
-            fillMillCombo();
+            //fillMillCombo();
         }
 
         private void tbMillId_Leave(object sender, EventArgs e)
