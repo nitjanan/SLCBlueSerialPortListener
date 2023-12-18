@@ -681,7 +681,7 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromStoneType.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToStoneType.Value.ToString("yyyy-MM-dd") + "' AND NOT น้ำหนักรวม = 0.00 AND NOT โรงโม่ = ' ' AND NOT รหัสลูกค้า LIKE '10%' AND (NOT site_id = '300PL' OR site_id IS NULL) AND bws LIKE '%A' ";
+            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromStoneType.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToStoneType.Value.ToString("yyyy-MM-dd") + "' AND NOT น้ำหนักรวม = 0.00 AND NOT คิว = 0.00 AND NOT โรงโม่ = ' ' AND NOT รหัสลูกค้า LIKE '10%' AND (NOT site_id = '300PL' OR site_id IS NULL) AND bws LIKE '%A' ";
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
             DataTable dt = new DataTable();
