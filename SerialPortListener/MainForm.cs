@@ -660,14 +660,14 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
-                
+                /*
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-               
+                */
 
                 /* เครื่องพี่รุ่ง */
-                //MatchCollection mc = Regex.Matches(str, @"\d+");
+                MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
