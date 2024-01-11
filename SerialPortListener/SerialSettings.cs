@@ -15,7 +15,7 @@ namespace SerialPortListener.Serial
         public event PropertyChangedEventHandler PropertyChanged;
         string _portName = "COM1";
         string[] _portNameCollection;
-        int _baudRate = 1200;
+        int _baudRate = 9600;
         BindingList<int> _baudRateCollection = new BindingList<int>();
         Parity _parity = Parity.None;
         int _dataBits = 8;
