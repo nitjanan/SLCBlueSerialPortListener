@@ -287,7 +287,6 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>carTeamDataSet</DataSetName>
-        <Left>0cm</Left>
         <Height>1.2cm</Height>
         <Width>18.30917cm</Width>
         <Style>
@@ -327,7 +326,6 @@
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Top>0.6cm</Top>
-          <Left>0cm</Left>
           <Height>0.6cm</Height>
           <Width>6.68042cm</Width>
           <Style>
@@ -381,7 +379,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
+                  <Value>บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด</Value>
                   <Style>
                     <FontFamily>Angsana New</FontFamily>
                     <FontSize>16pt</FontSize>

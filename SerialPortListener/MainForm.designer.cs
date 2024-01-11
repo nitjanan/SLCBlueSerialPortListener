@@ -155,6 +155,7 @@
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbMillId = new System.Windows.Forms.TextBox();
             this.tbMillName = new System.Windows.Forms.TextBox();
+            this.btPrintVRock = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -467,7 +468,7 @@
             // dtWeightInTime
             // 
             this.dtWeightInTime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dtWeightInTime.CustomFormat = "HH:mm";
+            this.dtWeightInTime.CustomFormat = "HH:mm:ss";
             this.dtWeightInTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightInTime.Location = new System.Drawing.Point(302, 33);
@@ -479,7 +480,7 @@
             // dtWeightOutTime
             // 
             this.dtWeightOutTime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dtWeightOutTime.CustomFormat = "HH:mm";
+            this.dtWeightOutTime.CustomFormat = "HH:mm:ss";
             this.dtWeightOutTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightOutTime.Location = new System.Drawing.Point(302, 72);
@@ -1634,7 +1635,7 @@
             this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintAll.Location = new System.Drawing.Point(899, 622);
+            this.btPrintAll.Location = new System.Drawing.Point(803, 623);
             this.btPrintAll.Name = "btPrintAll";
             this.btPrintAll.Size = new System.Drawing.Size(105, 40);
             this.btPrintAll.TabIndex = 123;
@@ -1651,7 +1652,7 @@
             this.btPrintOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintOut.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintOut.Location = new System.Drawing.Point(754, 622);
+            this.btPrintOut.Location = new System.Drawing.Point(658, 623);
             this.btPrintOut.Name = "btPrintOut";
             this.btPrintOut.Size = new System.Drawing.Size(105, 40);
             this.btPrintOut.TabIndex = 122;
@@ -1668,7 +1669,7 @@
             this.btPrintIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintIn.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintIn.Location = new System.Drawing.Point(604, 622);
+            this.btPrintIn.Location = new System.Drawing.Point(508, 623);
             this.btPrintIn.Name = "btPrintIn";
             this.btPrintIn.Size = new System.Drawing.Size(105, 40);
             this.btPrintIn.TabIndex = 47;
@@ -1684,7 +1685,7 @@
             this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px;
             this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSave.Location = new System.Drawing.Point(438, 622);
+            this.btSave.Location = new System.Drawing.Point(342, 623);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 40);
             this.btSave.TabIndex = 46;
@@ -1732,11 +1733,29 @@
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
             // 
+            // btPrintVRock
+            // 
+            this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btPrintVRock.BackColor = System.Drawing.Color.Gold;
+            this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintVRock.Location = new System.Drawing.Point(949, 623);
+            this.btPrintVRock.Name = "btPrintVRock";
+            this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
+            this.btPrintVRock.TabIndex = 142;
+            this.btPrintVRock.Text = "วี ร็อค";
+            this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintVRock.UseVisualStyleBackColor = false;
+            this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
+            this.Controls.Add(this.btPrintVRock);
             this.Controls.Add(this.tbMillId);
             this.Controls.Add(this.tbMillName);
             this.Controls.Add(this.btRefresh);
@@ -1975,6 +1994,7 @@
         private System.Windows.Forms.Button btRefresh;
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
+        private System.Windows.Forms.Button btPrintVRock;
     }
 }
 

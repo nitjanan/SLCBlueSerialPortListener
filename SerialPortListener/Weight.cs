@@ -13,6 +13,7 @@ namespace SerialPortListener
         private static string _docNum;
         private static string _mill;
         private static string _driverName;
+        private static string _customerId;
         private static string _customerName;
         private static string _stoneType;
         private static string _carLicense;
@@ -45,6 +46,7 @@ namespace SerialPortListener
         private static string _millId;
         private static string _carTeamId;
         private static string _scaleId;
+        private static string _scoopName;
 
         private static string _datePrint;
         private static string _datePrintAndCopyNum;
@@ -118,6 +120,18 @@ namespace SerialPortListener
             set
             {
                 _driverName = value;
+            }
+        }
+
+        public static string CustomerId
+        {
+            get
+            {
+                return _customerId;
+            }
+            set
+            {
+                _customerId = value;
             }
         }
 
@@ -413,6 +427,14 @@ namespace SerialPortListener
             { return _timePrint; }
             set
             { _timePrint = value; }
+        }
+
+        public static string ScoopName
+        {
+            get
+            { return _scoopName; }
+            set
+            { _scoopName = value; }
         }
     }
 }

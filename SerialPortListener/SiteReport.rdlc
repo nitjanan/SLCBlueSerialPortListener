@@ -1055,7 +1055,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>siteDataSet</DataSetName>
-            <Top>0cm</Top>
             <Height>3.6cm</Height>
             <Width>6.35333cm</Width>
             <Style>
@@ -1082,7 +1081,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
+                      <Value>บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>

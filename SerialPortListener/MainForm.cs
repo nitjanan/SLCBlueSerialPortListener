@@ -175,8 +175,8 @@ namespace SerialPortListener
             dtDate.Text = DateTime.Now.ToShortDateString();
             dtWeightInDate.Text = DateTime.Now.ToShortDateString();
             dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
-            dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
+            dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
+            dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
             tbQ.Text = "0.00";
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
@@ -236,7 +236,7 @@ namespace SerialPortListener
 
         private void generateNewSeqNumber() {
             string todayYear = DateTime.Now.ToString("yyyy");
-            string runningNumber = "000000";
+            string runningNumber = "0000000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO public.seq_doc_num (run_number, run_year) " +
                     "VALUES ('" + runningNumber + "', '" + todayYear + "') ";
@@ -660,14 +660,13 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
-                /*
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
-                string remainingText = newString.Substring(newString.LastIndexOf("\r"));
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
 
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
+                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+
+                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
                 /* เครื่องพี่รุ่ง */
-                MatchCollection mc = Regex.Matches(str, @"\d+");
+                //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
@@ -682,7 +681,8 @@ namespace SerialPortListener
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
 
@@ -715,6 +715,7 @@ namespace SerialPortListener
                 */
 
                 tbWeightIn.Text = numberFormat(tbWeigtData.Text, 2);
+                dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
 
                 calculateWeight();
                 _spManager.StartListening();
@@ -936,6 +937,7 @@ namespace SerialPortListener
                 tbWeightOut.Text = Regex.Match(substring, @"\d+").Value;
                 */
                 tbWeightOut.Text = numberFormat(tbWeigtData.Text, 2);
+                dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
 
                 calculateWeight();
                 _spManager.StartListening();
@@ -1738,7 +1740,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = tbDocNum.Text;
+            Weight.DocNum = "J" + tbDocNum.Text;
             Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -1768,6 +1770,7 @@ namespace SerialPortListener
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
+            Weight.Note = strNotEmty(tbNote.Text);
 
 
             if (mode.Equals(3))
@@ -1814,8 +1817,21 @@ namespace SerialPortListener
                 Company.TDocName = "เลขที่การชั่ง";
                 Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
+                Weight.Note = " ";
 
             }
+            else if (mode.Equals(4))
+            {
+                Weight.WeightIn = decimalToInt(tbWeightIn.Text);
+                Weight.WeightOut = decimalToInt(tbWeightOut.Text);
+                Weight.WeightTotal = decimalToInt(tbWeightTotal.Text);
+                Weight.CustomerId = strNotEmty(tbCustomerId.Text);
+                Weight.StoneTypeId = getStoneTypeId();
+                Weight.DocNum = tbDocNum.Text;
+                Weight.Price = decimalToInt(tbPricePerTon.Text);
+                Weight.AmountVat = decimalToInt(tbAmountVat.Text);
+            }
+
 
         }
 
@@ -1827,6 +1843,13 @@ namespace SerialPortListener
         {
             return str == "0.00" || str == "0" ? " " : str + " (L)";
         }
+
+        private string decimalToInt(string str)
+        {
+            int nt = Convert.ToInt32(Convert.ToDecimal(str));
+            return nt.ToString("#,##0");
+        }
+
 
         private string getPrintFromDB(string database, string field, string fieldCondition, string condition) {
             //sql
@@ -2961,5 +2984,48 @@ namespace SerialPortListener
                 tbMillId.Text = "";
             }
         }
+
+        private void btPrintVRock_Click(object sender, EventArgs e)
+        {
+            //ปริ้น
+            preparePrint(4);
+            if (checkDuplicateRunningNumber() && tbId.Text == "")
+            {
+                //ไม่ต้องทำไร
+            }
+            else
+            {
+                FPrintVRock f = new FPrintVRock();
+                f.ShowDialog();
+            }
+
+            //save อัตโนมัติ
+            autoSave();
+
+        }
+
+        private string getStoneTypeId()
+        {
+            string stoneTypeId = " ";
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT รหัสหิน FROM public.base_stone_type  where ชื่อหิน = '" + cbbStoneType.Text + "' ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    stoneTypeId = reader["รหัสหิน"].ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+            return stoneTypeId;
+        }
+
     }
 }
