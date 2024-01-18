@@ -648,6 +648,8 @@
             this.cbbCCCustomerName.Name = "cbbCCCustomerName";
             this.cbbCCCustomerName.Size = new System.Drawing.Size(346, 29);
             this.cbbCCCustomerName.TabIndex = 40;
+            this.cbbCCCustomerName.TextUpdate += new System.EventHandler(this.cbbCCCustomerName_TextUpdate);
+            this.cbbCCCustomerName.Leave += new System.EventHandler(this.cbbCCCustomerName_Leave);
             // 
             // tbCCId
             // 

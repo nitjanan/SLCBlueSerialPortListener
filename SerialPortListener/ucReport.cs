@@ -860,7 +860,48 @@ namespace SerialPortListener
 
         private void btPrintCC_Click(object sender, EventArgs e)
         {
+            //sql
+            dl.connect();
 
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select * from weight where วันที่ BETWEEN '" + dtFromCC.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCC.Value.ToString("yyyy-MM-dd") + "' ");
+            if (tbCCId.Text != "")
+                sql.Append(" AND รหัสลูกค้า = '" + tbCCId.Text + "' ");
+            if (cbCCStoneType.SelectedIndex != 0)
+                sql.Append(" AND ชนิดหิน = '" + cbCCStoneType.Text + "' ");
+            sql.Append(" ORDER BY วันที่ ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCC.Text;
+            WeightTempReport.DateTo = dtToCC.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("customerCompanyDataSet", dt);
+            FPrintCCReport fp = new FPrintCCReport(rds);
+            fp.ShowDialog();
+        }
+
+        private void cbbCCCustomerName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbCCId.Text = cbbCCCustomerName.Text.Substring(0, cbbCCCustomerName.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbCCId.Text = "";
+                cbbCCCustomerName.Text = "";
+            }
+        }
+
+        private void cbbCCCustomerName_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbCCCustomerName, listOriginalCCReport, listNewCCReport);
         }
     }  
 }
