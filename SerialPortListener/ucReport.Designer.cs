@@ -165,6 +165,7 @@
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.btPrintTransportByTeam = new System.Windows.Forms.Button();
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
@@ -188,6 +189,7 @@
             // tcReport
             // 
             this.tcReport.Controls.Add(this.tabPage1);
+            this.tcReport.Controls.Add(this.tabPage13);
             this.tcReport.Controls.Add(this.tabPage2);
             this.tcReport.Controls.Add(this.tabPage3);
             this.tcReport.Controls.Add(this.tabPage4);
@@ -1522,6 +1524,15 @@
             // 
             this.weightTableAdapter.ClearBeforeFill = true;
             // 
+            // tabPage13
+            // 
+            this.tabPage13.Location = new System.Drawing.Point(4, 26);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(755, 460);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "รายงานตามบริษัทและการขนส่ง";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
             // ucReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1702,5 +1713,6 @@
         private System.Windows.Forms.ComboBox cbbCarTeamNameByTeam;
         private System.Windows.Forms.ComboBox cbbCustomerName;
         private System.Windows.Forms.ComboBox cbbInvoiceCutomerName;
+        private System.Windows.Forms.TabPage tabPage13;
     }
 }
