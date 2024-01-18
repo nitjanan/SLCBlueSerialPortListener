@@ -1015,6 +1015,8 @@ namespace SerialPortListener
                 //เช็คค่าว่าง
                 if (tbDocNum.Text == "")
                     MessageBox.Show("เลขที่การชั่งเป็นค่าว่าง กรุณใส่เลขที่การชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (checkWeightInZero())
+                    MessageBox.Show("น้ำหนักชั่งเข้าเป็น 0.00 ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else if (!isPasswordCorrect)
                     MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //เช็คเลขซ้ำกัน
@@ -1143,6 +1145,16 @@ namespace SerialPortListener
 
             //ปิดช่องหลัง save
             disableAfterSave();
+        }
+
+        private Boolean checkWeightInZero()
+        {
+            string str = tbWeightIn.Text;
+            Double temp;
+            Boolean isOk = Double.TryParse(str, out temp);
+            Int32 value = isOk ? (Int32)temp : 0;
+
+            return value == 0 ? true : false;
         }
 
         //get combobox id use to save or update
@@ -1738,7 +1750,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = tbDocNum.Text;
+            Weight.DocNum = 'C' + tbDocNum.Text;
             Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -1773,8 +1785,9 @@ namespace SerialPortListener
             if (mode.Equals(3))
             {
                 //ปริ้นทั้ง IN และ OUT
-                Company.TDocName = "เลขที่การชั่ง";
+                Company.TDocName = "เลขที่";
                 Company.TLogo = "(Sandvik)";
+                Company.Tiso = "FM-MK-001 Rev.00 1/11/2565";
             }
             else if (mode.Equals(2)) {
                 //ปริ้น OUT
@@ -1794,6 +1807,7 @@ namespace SerialPortListener
                 Weight.Transport = " ";
                 Company.TDocName = " ";
                 Company.TLogo = " ";
+                Company.Tiso = " ";
             }
             else if (mode.Equals(1)) {
                 //ปริ้น IN
@@ -1811,8 +1825,8 @@ namespace SerialPortListener
                 Weight.Vat = " ";
                 Weight.AmountVat = " ";
                 Weight.OilContent = " ";
-                Company.TDocName = "เลขที่การชั่ง";
-                Company.TLogo = "(Sandvik)";
+                Company.TDocName = "เลขที่";
+                Company.Tiso = "FM-MK-001 Rev.00 1/11/2565";
                 Weight.DatePrintAndCopyNum = " ";
 
             }
@@ -2139,6 +2153,7 @@ namespace SerialPortListener
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
+                /*
                 using (var form = new FCancelPassword())
                 {
                     var result = form.ShowDialog();
@@ -2147,6 +2162,7 @@ namespace SerialPortListener
                         string password = form.ReturnPassword;
                         if (password == "pdg]bd=yj'")
                         {
+                */
                             tbWeightIn.Text = "0.00";
                             tbWeightOut.Text = "0.00";
                             tbWeightTotal.Text = "0.00";
@@ -2156,7 +2172,9 @@ namespace SerialPortListener
                             tbVat.Text = "0.00";
                             tbQ.Text = "0.00";
                             return true;
+                /*
                         }
+                   
                         else
                         {
                             return false;
@@ -2166,6 +2184,7 @@ namespace SerialPortListener
                         return false;
                     }
                 }
+                */
             }
             return true;
         }
