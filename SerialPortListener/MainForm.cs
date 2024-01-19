@@ -1029,6 +1029,8 @@ namespace SerialPortListener
                     MessageBox.Show("เลขที่การชั่งเป็นค่าว่าง กรุณใส่เลขที่การชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else if (!isPasswordCorrect)
                     MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (checkWeightInZero())
+                    MessageBox.Show("น้ำหนักชั่งเข้าเป็น 0.00 ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //เช็คเลขซ้ำกัน
                 else if (checkDuplicateRunningNumber())
                     MessageBox.Show("เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1757,7 +1759,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = tbDocNum.Text;
+            Weight.DocNum = "C" + tbDocNum.Text;
             Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -1792,7 +1794,7 @@ namespace SerialPortListener
             if (mode.Equals(3))
             {
                 //ปริ้นทั้ง IN และ OUT
-                Company.TDocName = "เลขที่การชั่ง";
+                Company.TDocName = "เลขที่";
                 Company.TLogo = "(Sandvik)";
             }
             else if (mode.Equals(2)) {
@@ -1830,7 +1832,7 @@ namespace SerialPortListener
                 Weight.Vat = " ";
                 Weight.AmountVat = " ";
                 Weight.OilContent = " ";
-                Company.TDocName = "เลขที่การชั่ง";
+                Company.TDocName = "เลขที่";
                 Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
 
@@ -2188,6 +2190,16 @@ namespace SerialPortListener
                 }
             }
             return true;
+        }
+
+        private Boolean checkWeightInZero()
+        {
+            string str = tbWeightIn.Text;
+            Double temp;
+            Boolean isOk = Double.TryParse(str, out temp);
+            Int32 value = isOk ? (Int32)temp : 0;
+
+            return value == 0 ? true : false;
         }
 
         private void checkResetWeight() {

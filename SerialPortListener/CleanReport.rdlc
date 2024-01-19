@@ -2599,7 +2599,7 @@
             </TablixRowHierarchy>
             <DataSetName>cleanDataSet</DataSetName>
             <Height>4.2cm</Height>
-            <Width>19.92309cm</Width>
+            <Width>19.9231cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2714,10 +2714,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
+                      <Value>บริษัท ครีเอทีฟ มิเนอรัล จำกัด (non vat)</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>

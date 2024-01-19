@@ -90,7 +90,15 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>เลขที่ </Value>
+                        <Value>=Parameters!TDocName.Value</Value>
+                        <Style>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value xml:space="preserve"> </Value>
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -99,7 +107,7 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Right</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
@@ -109,9 +117,6 @@
                 <Height>0.25in</Height>
                 <Width>0.5986in</Width>
                 <ZIndex>2</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -599,22 +604,22 @@
                       <TextRun>
                         <Value>=Parameters!PDocNum.Value</Value>
                         <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>14pt</FontSize>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>0.41718in</Top>
-                <Left>4.18204in</Left>
-                <Height>0.34056in</Height>
-                <Width>0.94864in</Width>
+                <Top>0.46608in</Top>
+                <Left>5.84039in</Left>
+                <Height>0.25in</Height>
+                <Width>1.3424in</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
@@ -2850,6 +2855,9 @@
                 <Height>0.6cm</Height>
                 <Width>2.5cm</Width>
                 <ZIndex>87</ZIndex>
+                <Visibility>
+                  <Hidden>true</Hidden>
+                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
