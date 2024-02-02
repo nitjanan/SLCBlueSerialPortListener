@@ -59,14 +59,9 @@
             this.label29 = new System.Windows.Forms.Label();
             this.btExport = new System.Windows.Forms.Button();
             this.dgvDailyReport = new System.Windows.Forms.DataGridView();
-            this.ทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.หน้างาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ประเภทหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.truckDataSet = new SerialPortListener.truckDataSet();
             this.tbdateTo = new System.Windows.Forms.DateTimePicker();
             this.tbdateFrom = new System.Windows.Forms.DateTimePicker();
             this.btPrint = new System.Windows.Forms.Button();
@@ -199,45 +194,30 @@
             this.dtToTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.btPrintTransportByTeam = new System.Windows.Forms.Button();
-            this.วันที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ทะเบียนรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.คนขับ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชนิดหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.วันที่ชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เวลาชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.น้ำหนักรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.วันที่ชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เวลาชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.น้ำหนักรวม = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.น้ำหนักสินค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.คิว = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เวลาชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เวลาชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.โรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชนิดหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ราคาตัน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จำนวนเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จำนวนเงินสุทธิ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.วันที่ชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.วันที่ชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสผู้ชั่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้ชั่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เลขที่ใบตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ค่าขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weight_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชนิดvat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จ่ายเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.truckDataSet = new SerialPortListener.truckDataSet();
-            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
             this.tabPage13.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.tabPage15.SuspendLayout();
@@ -254,8 +234,6 @@
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // tcReport
@@ -335,7 +313,7 @@
             this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintBil.Location = new System.Drawing.Point(401, 426);
+            this.btPrintBil.Location = new System.Drawing.Point(102, 426);
             this.btPrintBil.Name = "btPrintBil";
             this.btPrintBil.Size = new System.Drawing.Size(80, 30);
             this.btPrintBil.TabIndex = 79;
@@ -351,7 +329,7 @@
             this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(573, 426);
+            this.btPrintVRock.Location = new System.Drawing.Point(585, 426);
             this.btPrintVRock.Name = "btPrintVRock";
             this.btPrintVRock.Size = new System.Drawing.Size(80, 30);
             this.btPrintVRock.TabIndex = 78;
@@ -590,7 +568,7 @@
             // 
             this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
             this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExport.Location = new System.Drawing.Point(6, 426);
+            this.btExport.Location = new System.Drawing.Point(671, 426);
             this.btExport.Name = "btExport";
             this.btExport.Size = new System.Drawing.Size(78, 30);
             this.btExport.TabIndex = 52;
@@ -604,97 +582,44 @@
             this.dgvDailyReport.AutoGenerateColumns = false;
             this.dgvDailyReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDailyReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.วันที่,
-            this.เลขที่เอกสาร,
-            this.รหัสลูกค้า,
-            this.ลูกค้า,
+            this.Column1,
+            this.stone_type_id,
             this.ทะเบียนรถ,
-            this.คนขับ,
-            this.ทีม,
+            this.Column4,
+            this.ชนิดหิน,
+            this.เลขที่เอกสาร,
+            this.วันที่ชั่งเข้า,
+            this.เวลาชั่งเข้า,
             this.น้ำหนักรถ,
+            this.dataGridViewTextBoxColumn1,
+            this.วันที่ชั่งออก,
+            this.เวลาชั่งออก,
             this.น้ำหนักรวม,
             this.น้ำหนักสินค้า,
-            this.คิว,
-            this.เวลาชั่งเข้า,
-            this.เวลาชั่งออก,
-            this.โรงโม่,
-            this.ชนิดหิน,
-            this.ราคาตัน,
-            this.จำนวนเงิน,
-            this.vat,
-            this.จำนวนเงินสุทธิ,
-            this.วันที่ชั่งเข้า,
-            this.วันที่ชั่งออก,
-            this.รหัสผู้ชั่ง,
-            this.ชื่อผู้ชั่ง,
-            this.รหัสผู้ตัก,
-            this.ชื่อผู้ตัก,
-            this.รหัสผู้อนุมัติจ่าย,
-            this.ชื่อผู้อนุมัติจ่าย,
-            this.เลขที่ใบตัก,
-            this.ค่าขนส่ง,
-            this.weight_id,
-            this.ชนิดvat,
-            this.ล้าง,
-            this.ขนส่ง,
-            this.หมายเหตุ,
-            this.จังหวัด,
-            this.หน้างาน,
-            this.ประเภทหิน,
-            this.จ่ายเงิน,
-            this.oil_content});
+            this.dataGridViewTextBoxColumn2,
+            this.Column17,
+            this.Column18});
             this.dgvDailyReport.DataSource = this.weightBindingSource;
-            this.dgvDailyReport.Location = new System.Drawing.Point(6, 114);
+            this.dgvDailyReport.Location = new System.Drawing.Point(6, 374);
             this.dgvDailyReport.Name = "dgvDailyReport";
-            this.dgvDailyReport.Size = new System.Drawing.Size(743, 311);
+            this.dgvDailyReport.Size = new System.Drawing.Size(743, 51);
             this.dgvDailyReport.TabIndex = 51;
-            // 
-            // ทีม
-            // 
-            this.ทีม.DataPropertyName = "ทีม";
-            this.ทีม.HeaderText = "ทีม";
-            this.ทีม.Name = "ทีม";
-            // 
-            // ล้าง
-            // 
-            this.ล้าง.DataPropertyName = "ล้าง";
-            this.ล้าง.HeaderText = "ล้าง";
-            this.ล้าง.Name = "ล้าง";
-            // 
-            // ขนส่ง
-            // 
-            this.ขนส่ง.DataPropertyName = "ขนส่ง";
-            this.ขนส่ง.HeaderText = "ขนส่ง";
-            this.ขนส่ง.Name = "ขนส่ง";
-            // 
-            // หมายเหตุ
-            // 
-            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
-            this.หมายเหตุ.HeaderText = "หมายเหตุ";
-            this.หมายเหตุ.Name = "หมายเหตุ";
-            // 
-            // หน้างาน
-            // 
-            this.หน้างาน.DataPropertyName = "หน้างาน";
-            this.หน้างาน.HeaderText = "หน้างาน";
-            this.หน้างาน.Name = "หน้างาน";
-            // 
-            // ประเภทหิน
-            // 
-            this.ประเภทหิน.DataPropertyName = "ประเภทหิน";
-            this.ประเภทหิน.HeaderText = "ประเภทหิน";
-            this.ประเภทหิน.Name = "ประเภทหิน";
-            // 
-            // oil_content
-            // 
-            this.oil_content.DataPropertyName = "oil_content";
-            this.oil_content.HeaderText = "oil_content";
-            this.oil_content.Name = "oil_content";
+            this.dgvDailyReport.Visible = false;
             // 
             // weightBindingSource
             // 
             this.weightBindingSource.DataMember = "weight";
             this.weightBindingSource.DataSource = this.truckDataSetBindingSource;
+            // 
+            // truckDataSetBindingSource
+            // 
+            this.truckDataSetBindingSource.DataSource = this.truckDataSet;
+            this.truckDataSetBindingSource.Position = 0;
+            // 
+            // truckDataSet
+            // 
+            this.truckDataSet.DataSetName = "truckDataSet";
+            this.truckDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tbdateTo
             // 
@@ -717,13 +642,14 @@
             this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint.Location = new System.Drawing.Point(659, 426);
+            this.btPrint.Location = new System.Drawing.Point(6, 426);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(90, 30);
             this.btPrint.TabIndex = 48;
             this.btPrint.Text = "พิมพ์รายงาน";
             this.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrint.UseVisualStyleBackColor = true;
+            this.btPrint.Visible = false;
             this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
             // 
             // btSearch
@@ -2145,217 +2071,107 @@
             this.btPrintTransportByTeam.UseVisualStyleBackColor = true;
             this.btPrintTransportByTeam.Click += new System.EventHandler(this.btPrintTransportByTeam_Click);
             // 
-            // วันที่
+            // weightTableAdapter
             // 
-            this.วันที่.DataPropertyName = "วันที่";
-            this.วันที่.HeaderText = "วันที่";
-            this.วันที่.Name = "วันที่";
+            this.weightTableAdapter.ClearBeforeFill = true;
             // 
-            // เลขที่เอกสาร
+            // Column1
             // 
-            this.เลขที่เอกสาร.DataPropertyName = "เลขที่เอกสาร";
-            this.เลขที่เอกสาร.HeaderText = "เลขที่การชั่ง";
-            this.เลขที่เอกสาร.Name = "เลขที่เอกสาร";
+            this.Column1.HeaderText = "Company Code";
+            this.Column1.Name = "Column1";
             // 
-            // รหัสลูกค้า
+            // stone_type_id
             // 
-            this.รหัสลูกค้า.DataPropertyName = "รหัสลูกค้า";
-            this.รหัสลูกค้า.HeaderText = "รหัสลูกค้า";
-            this.รหัสลูกค้า.Name = "รหัสลูกค้า";
-            // 
-            // ลูกค้า
-            // 
-            this.ลูกค้า.DataPropertyName = "ลูกค้า";
-            this.ลูกค้า.HeaderText = "ชื่อลูกค้า";
-            this.ลูกค้า.Name = "ลูกค้า";
+            this.stone_type_id.DataPropertyName = "stone_type_id";
+            this.stone_type_id.HeaderText = "ProductCode";
+            this.stone_type_id.Name = "stone_type_id";
             // 
             // ทะเบียนรถ
             // 
             this.ทะเบียนรถ.DataPropertyName = "ทะเบียนรถ";
-            this.ทะเบียนรถ.HeaderText = "ทะเบียนรถ";
+            this.ทะเบียนรถ.HeaderText = "TRUCK";
             this.ทะเบียนรถ.Name = "ทะเบียนรถ";
             // 
-            // คนขับ
+            // Column4
             // 
-            this.คนขับ.DataPropertyName = "คนขับ";
-            this.คนขับ.HeaderText = "คนขับ";
-            this.คนขับ.Name = "คนขับ";
+            this.Column4.HeaderText = "CompanyName";
+            this.Column4.Name = "Column4";
+            // 
+            // ชนิดหิน
+            // 
+            this.ชนิดหิน.DataPropertyName = "ชนิดหิน";
+            this.ชนิดหิน.HeaderText = "ProDuctName";
+            this.ชนิดหิน.Name = "ชนิดหิน";
+            // 
+            // เลขที่เอกสาร
+            // 
+            this.เลขที่เอกสาร.DataPropertyName = "เลขที่เอกสาร";
+            this.เลขที่เอกสาร.HeaderText = "TICKET1";
+            this.เลขที่เอกสาร.Name = "เลขที่เอกสาร";
+            // 
+            // วันที่ชั่งเข้า
+            // 
+            this.วันที่ชั่งเข้า.DataPropertyName = "วันที่ชั่งเข้า";
+            this.วันที่ชั่งเข้า.HeaderText = "DAYIN";
+            this.วันที่ชั่งเข้า.Name = "วันที่ชั่งเข้า";
+            // 
+            // เวลาชั่งเข้า
+            // 
+            this.เวลาชั่งเข้า.DataPropertyName = "เวลาชั่งเข้า";
+            this.เวลาชั่งเข้า.HeaderText = "TMIN";
+            this.เวลาชั่งเข้า.Name = "เวลาชั่งเข้า";
             // 
             // น้ำหนักรถ
             // 
             this.น้ำหนักรถ.DataPropertyName = "น้ำหนักรถ";
-            this.น้ำหนักรถ.HeaderText = "น้ำหนักเข้า";
+            this.น้ำหนักรถ.HeaderText = "W1";
             this.น้ำหนักรถ.Name = "น้ำหนักรถ";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "เลขที่เอกสาร";
+            this.dataGridViewTextBoxColumn1.HeaderText = "TICKET2";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // วันที่ชั่งออก
+            // 
+            this.วันที่ชั่งออก.DataPropertyName = "วันที่ชั่งออก";
+            this.วันที่ชั่งออก.HeaderText = "DAYOUT";
+            this.วันที่ชั่งออก.Name = "วันที่ชั่งออก";
+            // 
+            // เวลาชั่งออก
+            // 
+            this.เวลาชั่งออก.DataPropertyName = "เวลาชั่งออก";
+            this.เวลาชั่งออก.HeaderText = "TMOUT";
+            this.เวลาชั่งออก.Name = "เวลาชั่งออก";
             // 
             // น้ำหนักรวม
             // 
             this.น้ำหนักรวม.DataPropertyName = "น้ำหนักรวม";
-            this.น้ำหนักรวม.HeaderText = "น้ำหนักออก";
+            this.น้ำหนักรวม.HeaderText = "W2";
             this.น้ำหนักรวม.Name = "น้ำหนักรวม";
             // 
             // น้ำหนักสินค้า
             // 
             this.น้ำหนักสินค้า.DataPropertyName = "น้ำหนักสินค้า";
-            this.น้ำหนักสินค้า.HeaderText = "น้ำหนักสุทธิ";
+            this.น้ำหนักสินค้า.HeaderText = "Wtotal";
             this.น้ำหนักสินค้า.Name = "น้ำหนักสินค้า";
             // 
-            // คิว
+            // dataGridViewTextBoxColumn2
             // 
-            this.คิว.DataPropertyName = "คิว";
-            this.คิว.HeaderText = "น้ำหนักคิว";
-            this.คิว.Name = "คิว";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "น้ำหนักสินค้า";
+            this.dataGridViewTextBoxColumn2.HeaderText = "delivery (Ton)";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // เวลาชั่งเข้า
+            // Column17
             // 
-            this.เวลาชั่งเข้า.DataPropertyName = "เวลาชั่งเข้า";
-            this.เวลาชั่งเข้า.HeaderText = "เวลาชั่งเข้า";
-            this.เวลาชั่งเข้า.Name = "เวลาชั่งเข้า";
+            this.Column17.HeaderText = "PRICE";
+            this.Column17.Name = "Column17";
             // 
-            // เวลาชั่งออก
+            // Column18
             // 
-            this.เวลาชั่งออก.DataPropertyName = "เวลาชั่งออก";
-            this.เวลาชั่งออก.HeaderText = "เวลาชั่งออก";
-            this.เวลาชั่งออก.Name = "เวลาชั่งออก";
-            // 
-            // โรงโม่
-            // 
-            this.โรงโม่.DataPropertyName = "โรงโม่";
-            this.โรงโม่.HeaderText = "โรงโม่";
-            this.โรงโม่.Name = "โรงโม่";
-            // 
-            // ชนิดหิน
-            // 
-            this.ชนิดหิน.DataPropertyName = "ชนิดหิน";
-            this.ชนิดหิน.HeaderText = "ชนิดหิน";
-            this.ชนิดหิน.Name = "ชนิดหิน";
-            // 
-            // ราคาตัน
-            // 
-            this.ราคาตัน.DataPropertyName = "ราคาตัน";
-            this.ราคาตัน.HeaderText = "ราคาตัน";
-            this.ราคาตัน.Name = "ราคาตัน";
-            // 
-            // จำนวนเงิน
-            // 
-            this.จำนวนเงิน.DataPropertyName = "จำนวณเงิน";
-            this.จำนวนเงิน.HeaderText = "จำนวนเงิน";
-            this.จำนวนเงิน.Name = "จำนวนเงิน";
-            // 
-            // vat
-            // 
-            this.vat.DataPropertyName = "vat";
-            this.vat.HeaderText = "ภาษี";
-            this.vat.Name = "vat";
-            // 
-            // จำนวนเงินสุทธิ
-            // 
-            this.จำนวนเงินสุทธิ.DataPropertyName = "จำนวนเงินสุทธิ";
-            this.จำนวนเงินสุทธิ.HeaderText = "จำนวนเงินรวมภาษี";
-            this.จำนวนเงินสุทธิ.Name = "จำนวนเงินสุทธิ";
-            // 
-            // วันที่ชั่งเข้า
-            // 
-            this.วันที่ชั่งเข้า.DataPropertyName = "วันที่ชั่งเข้า";
-            this.วันที่ชั่งเข้า.HeaderText = "วันที่ชั่งเข้า";
-            this.วันที่ชั่งเข้า.Name = "วันที่ชั่งเข้า";
-            // 
-            // วันที่ชั่งออก
-            // 
-            this.วันที่ชั่งออก.DataPropertyName = "วันที่ชั่งออก";
-            this.วันที่ชั่งออก.HeaderText = "วันที่ชั่งออก";
-            this.วันที่ชั่งออก.Name = "วันที่ชั่งออก";
-            // 
-            // รหัสผู้ชั่ง
-            // 
-            this.รหัสผู้ชั่ง.DataPropertyName = "รหัสผู้ชั่ง";
-            this.รหัสผู้ชั่ง.HeaderText = "รหัสผู้ชั่ง";
-            this.รหัสผู้ชั่ง.Name = "รหัสผู้ชั่ง";
-            // 
-            // ชื่อผู้ชั่ง
-            // 
-            this.ชื่อผู้ชั่ง.DataPropertyName = "ชื่อผู้ชั่ง";
-            this.ชื่อผู้ชั่ง.HeaderText = "ชื่อผู้ชั่ง";
-            this.ชื่อผู้ชั่ง.Name = "ชื่อผู้ชั่ง";
-            // 
-            // รหัสผู้ตัก
-            // 
-            this.รหัสผู้ตัก.DataPropertyName = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.HeaderText = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.Name = "รหัสผู้ตัก";
-            // 
-            // ชื่อผู้ตัก
-            // 
-            this.ชื่อผู้ตัก.DataPropertyName = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.HeaderText = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.Name = "ชื่อผู้ตัก";
-            // 
-            // รหัสผู้อนุมัติจ่าย
-            // 
-            this.รหัสผู้อนุมัติจ่าย.DataPropertyName = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.HeaderText = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.Name = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.Visible = false;
-            // 
-            // ชื่อผู้อนุมัติจ่าย
-            // 
-            this.ชื่อผู้อนุมัติจ่าย.DataPropertyName = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.HeaderText = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.Name = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.Visible = false;
-            // 
-            // เลขที่ใบตัก
-            // 
-            this.เลขที่ใบตัก.DataPropertyName = "เลขที่ใบตัก";
-            this.เลขที่ใบตัก.HeaderText = "เลขที่ใบตัก";
-            this.เลขที่ใบตัก.Name = "เลขที่ใบตัก";
-            this.เลขที่ใบตัก.Visible = false;
-            // 
-            // ค่าขนส่ง
-            // 
-            this.ค่าขนส่ง.DataPropertyName = "ค่าขนส่ง";
-            this.ค่าขนส่ง.HeaderText = "ค่าขนส่ง";
-            this.ค่าขนส่ง.Name = "ค่าขนส่ง";
-            this.ค่าขนส่ง.Visible = false;
-            // 
-            // weight_id
-            // 
-            this.weight_id.DataPropertyName = "weight_id";
-            this.weight_id.HeaderText = "weight_id";
-            this.weight_id.Name = "weight_id";
-            this.weight_id.Visible = false;
-            // 
-            // ชนิดvat
-            // 
-            this.ชนิดvat.DataPropertyName = "ชนิดvat";
-            this.ชนิดvat.HeaderText = "ชนิดvat";
-            this.ชนิดvat.Name = "ชนิดvat";
-            this.ชนิดvat.Visible = false;
-            // 
-            // จังหวัด
-            // 
-            this.จังหวัด.DataPropertyName = "จังหวัด";
-            this.จังหวัด.HeaderText = "จังหวัด";
-            this.จังหวัด.Name = "จังหวัด";
-            // 
-            // จ่ายเงิน
-            // 
-            this.จ่ายเงิน.DataPropertyName = "จ่ายเงิน";
-            this.จ่ายเงิน.HeaderText = "จ่ายเงิน";
-            this.จ่ายเงิน.Name = "จ่ายเงิน";
-            // 
-            // truckDataSetBindingSource
-            // 
-            this.truckDataSetBindingSource.DataSource = this.truckDataSet;
-            this.truckDataSetBindingSource.Position = 0;
-            // 
-            // truckDataSet
-            // 
-            this.truckDataSet.DataSetName = "truckDataSet";
-            this.truckDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // weightTableAdapter
-            // 
-            this.weightTableAdapter.ClearBeforeFill = true;
+            this.Column18.HeaderText = "companyCode";
+            this.Column18.Name = "Column18";
             // 
             // ucReport
             // 
@@ -2370,6 +2186,8 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).EndInit();
             this.tabPage13.ResumeLayout(false);
             this.tabPage13.PerformLayout();
             this.tabPage14.ResumeLayout(false);
@@ -2401,8 +2219,6 @@
             this.tabPage11.PerformLayout();
             this.tabPage12.ResumeLayout(false);
             this.tabPage12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2528,44 +2344,6 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button btExport;
         private System.Windows.Forms.DataGridView dgvDailyReport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn วันที่;
-        private System.Windows.Forms.DataGridViewTextBoxColumn เลขที่เอกสาร;
-        private System.Windows.Forms.DataGridViewTextBoxColumn รหัสลูกค้า;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ลูกค้า;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ทะเบียนรถ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn คนขับ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ทีม;
-        private System.Windows.Forms.DataGridViewTextBoxColumn น้ำหนักรถ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn น้ำหนักรวม;
-        private System.Windows.Forms.DataGridViewTextBoxColumn น้ำหนักสินค้า;
-        private System.Windows.Forms.DataGridViewTextBoxColumn คิว;
-        private System.Windows.Forms.DataGridViewTextBoxColumn เวลาชั่งเข้า;
-        private System.Windows.Forms.DataGridViewTextBoxColumn เวลาชั่งออก;
-        private System.Windows.Forms.DataGridViewTextBoxColumn โรงโม่;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ชนิดหิน;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ราคาตัน;
-        private System.Windows.Forms.DataGridViewTextBoxColumn จำนวนเงิน;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn จำนวนเงินสุทธิ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn วันที่ชั่งเข้า;
-        private System.Windows.Forms.DataGridViewTextBoxColumn วันที่ชั่งออก;
-        private System.Windows.Forms.DataGridViewTextBoxColumn รหัสผู้ชั่ง;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ชื่อผู้ชั่ง;
-        private System.Windows.Forms.DataGridViewTextBoxColumn รหัสผู้ตัก;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ชื่อผู้ตัก;
-        private System.Windows.Forms.DataGridViewTextBoxColumn รหัสผู้อนุมัติจ่าย;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ชื่อผู้อนุมัติจ่าย;
-        private System.Windows.Forms.DataGridViewTextBoxColumn เลขที่ใบตัก;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ค่าขนส่ง;
-        private System.Windows.Forms.DataGridViewTextBoxColumn weight_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ชนิดvat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ล้าง;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ขนส่ง;
-        private System.Windows.Forms.DataGridViewTextBoxColumn หมายเหตุ;
-        private System.Windows.Forms.DataGridViewTextBoxColumn จังหวัด;
-        private System.Windows.Forms.DataGridViewTextBoxColumn หน้างาน;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ประเภทหิน;
-        private System.Windows.Forms.DataGridViewTextBoxColumn จ่ายเงิน;
         private System.Windows.Forms.DateTimePicker tbdateTo;
         private System.Windows.Forms.DateTimePicker tbdateFrom;
         private System.Windows.Forms.Button btPrint;
@@ -2573,7 +2351,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btPrintBil;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oil_content;
         private System.Windows.Forms.TabPage tabPage13;
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.TabPage tabPage15;
@@ -2614,5 +2391,22 @@
         private System.Windows.Forms.ComboBox cbbCorpName;
         private System.Windows.Forms.ComboBox cbbCCName;
         private System.Windows.Forms.ComboBox cbbProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stone_type_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ทะเบียนรถ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ชนิดหิน;
+        private System.Windows.Forms.DataGridViewTextBoxColumn เลขที่เอกสาร;
+        private System.Windows.Forms.DataGridViewTextBoxColumn วันที่ชั่งเข้า;
+        private System.Windows.Forms.DataGridViewTextBoxColumn เวลาชั่งเข้า;
+        private System.Windows.Forms.DataGridViewTextBoxColumn น้ำหนักรถ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn วันที่ชั่งออก;
+        private System.Windows.Forms.DataGridViewTextBoxColumn เวลาชั่งออก;
+        private System.Windows.Forms.DataGridViewTextBoxColumn น้ำหนักรวม;
+        private System.Windows.Forms.DataGridViewTextBoxColumn น้ำหนักสินค้า;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
     }
 }

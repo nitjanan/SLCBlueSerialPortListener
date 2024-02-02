@@ -107,6 +107,22 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbProductName, listOriginalProductReport);
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
+
+            tcReport.TabPages.Remove(tabPage2);
+            tcReport.TabPages.Remove(tabPage3);
+            tcReport.TabPages.Remove(tabPage4);
+            tcReport.TabPages.Remove(tabPage5);
+            tcReport.TabPages.Remove(tabPage6);
+            tcReport.TabPages.Remove(tabPage7);
+            tcReport.TabPages.Remove(tabPage8);
+            tcReport.TabPages.Remove(tabPage9);
+            tcReport.TabPages.Remove(tabPage10);
+            tcReport.TabPages.Remove(tabPage11);
+            tcReport.TabPages.Remove(tabPage12);
+            tcReport.TabPages.Remove(tabPage13);
+            tcReport.TabPages.Remove(tabPage14);
+            tcReport.TabPages.Remove(tabPage15);
+            tcReport.TabPages.Remove(tabPage16);
         }
 
         /*3 search anywhere customer */
@@ -168,15 +184,11 @@ namespace SerialPortListener
         }
 
         private void setDefaultFormatDTGV() {
-            dgvDailyReport.Columns["ราคาตัน"].DefaultCellStyle.Format = "n2";
-            dgvDailyReport.Columns["จำนวนเงิน"].DefaultCellStyle.Format = "n2";
-            dgvDailyReport.Columns["จำนวนเงินสุทธิ"].DefaultCellStyle.Format = "n2";
-            dgvDailyReport.Columns["vat"].DefaultCellStyle.Format = "n2";
-            dgvDailyReport.Columns["คิว"].DefaultCellStyle.Format = "n2";
 
             dgvDailyReport.Columns["น้ำหนักรถ"].DefaultCellStyle.Format = "n3";
             dgvDailyReport.Columns["น้ำหนักรวม"].DefaultCellStyle.Format = "n3";
             dgvDailyReport.Columns["น้ำหนักสินค้า"].DefaultCellStyle.Format = "n3";
+
         }
 
         /* autoComplete Setting */
@@ -479,6 +491,7 @@ namespace SerialPortListener
 
         private void btExport_Click(object sender, EventArgs e)
         {
+
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
             Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
@@ -492,7 +505,7 @@ namespace SerialPortListener
             }
 
 
-            for (int i = 0; i < dgvDailyReport.Rows.Count; i++)
+            for (int i = 0; i < dgvDailyReport.Rows.Count - 1; i++)
             {
 
                 for (int j = 0; j < dgvDailyReport.Columns.Count; j++)
@@ -504,18 +517,33 @@ namespace SerialPortListener
                         tmpStr = dateFormatToPrint(dgvDailyReport.Rows[i].Cells[j].Value.ToString());
                     else
                         tmpStr = dgvDailyReport.Rows[i].Cells[j].Value.ToString();
+
+                    if (j == 0)
+                        tmpStr = "5";
+                    else if (j == 3)
+                        tmpStr = "บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด";
+                    else if (j == 15)
+                        tmpStr = "0";
+                    else if (j == 16)
+                        tmpStr = "212";
+
+                    if (j == 8 || j == 12 || j == 13) {
+                        tmpStr = ((int)(double.Parse(dgvDailyReport.Rows[i].Cells[j].Value.ToString()) * 1000)).ToString();
+                    }
+                        
                     worksheet.Cells[i + 2, j + 1] = tmpStr;
                 }
             }
 
             var saveFileDialoge = new SaveFileDialog();
-            saveFileDialoge.FileName = "JOBReport";
+            saveFileDialoge.FileName = "JOBReport"+ DateTime.Now.ToString("dd-MM-yyyy.HH.mm.ss");
             saveFileDialoge.DefaultExt = ".xlsx";
             if (saveFileDialoge.ShowDialog() == DialogResult.OK)
             {
                 workbook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }
             app.Quit();
+            
 
         }
 
