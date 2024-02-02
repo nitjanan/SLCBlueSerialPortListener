@@ -26,7 +26,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>1.13416in</Top>
+                <Top>1.26612in</Top>
                 <Left>5.30176in</Left>
                 <Height>0.27083in</Height>
                 <Width>1.60927in</Width>
@@ -60,7 +60,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCar</rd:DefaultName>
-                <Top>2.30845in</Top>
+                <Top>2.44041in</Top>
                 <Left>1.72521in</Left>
                 <Height>0.26001in</Height>
                 <Width>1.33713in</Width>
@@ -96,7 +96,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDateIn</rd:DefaultName>
-                <Top>2.30845in</Top>
+                <Top>2.44041in</Top>
                 <Left>3.06235in</Left>
                 <Height>0.26in</Height>
                 <Width>1.1197in</Width>
@@ -132,7 +132,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDateOut</rd:DefaultName>
-                <Top>2.50595in</Top>
+                <Top>2.63791in</Top>
                 <Left>3.06234in</Left>
                 <Height>0.26in</Height>
                 <Width>1.1197in</Width>
@@ -167,7 +167,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeIn</rd:DefaultName>
-                <Top>2.30845in</Top>
+                <Top>2.44041in</Top>
                 <Left>4.18204in</Left>
                 <Height>0.26001in</Height>
                 <Width>1.1101in</Width>
@@ -202,7 +202,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>2.50595in</Top>
+                <Top>2.63791in</Top>
                 <Left>4.18204in</Left>
                 <Height>0.26in</Height>
                 <Width>1.1101in</Width>
@@ -237,7 +237,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PWeightIn</rd:DefaultName>
-                <Top>2.30845in</Top>
+                <Top>2.44041in</Top>
                 <Left>5.29214in</Left>
                 <Height>0.26in</Height>
                 <Width>1.26002in</Width>
@@ -272,7 +272,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PWeightOut</rd:DefaultName>
-                <Top>2.50595in</Top>
+                <Top>2.63791in</Top>
                 <Left>5.29214in</Left>
                 <Height>0.26in</Height>
                 <Width>1.26003in</Width>
@@ -288,7 +288,7 @@
                 </Style>
               </Textbox>
               <Line Name="Line12">
-                <Top>4.20655in</Top>
+                <Top>4.33851in</Top>
                 <Left>5.10117in</Left>
                 <Height>0in</Height>
                 <Width>1.94378in</Width>
@@ -306,7 +306,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!PCustomerId.Value</Value>
+                        <Value>212</Value>
                         <Style>
                           <FontFamily>Angsana New</FontFamily>
                           <FontSize>16pt</FontSize>
@@ -317,7 +317,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCustomerName</rd:DefaultName>
-                <Top>1.13416in</Top>
+                <Top>1.26612in</Top>
                 <Left>1.72521in</Left>
                 <Height>0.2784in</Height>
                 <Width>3.08178in</Width>
@@ -352,7 +352,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.30845in</Top>
+                <Top>2.44041in</Top>
                 <Left>0.60551in</Left>
                 <Height>0.26in</Height>
                 <Width>1.11971in</Width>
@@ -387,7 +387,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.50595in</Top>
+                <Top>2.63791in</Top>
                 <Left>0.60551in</Left>
                 <Height>0.26in</Height>
                 <Width>1.1197in</Width>
@@ -422,7 +422,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.30845in</Top>
+                <Top>2.44041in</Top>
                 <Left>6.55216in</Left>
                 <Height>0.26in</Height>
                 <Width>0.34925in</Width>
@@ -457,7 +457,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.50595in</Top>
+                <Top>2.63791in</Top>
                 <Left>6.55217in</Left>
                 <Height>0.26in</Height>
                 <Width>0.34925in</Width>
@@ -482,7 +482,7 @@
                         <Value>บริษัท วี ร็อค ซัพพลาย จำกัด</Value>
                         <Style>
                           <FontFamily>Angsana New</FontFamily>
-                          <FontSize>16pt</FontSize>
+                          <FontSize>18pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -494,7 +494,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
                 <Left>0.35417in</Left>
-                <Height>0.26389in</Height>
+                <Height>0.3403in</Height>
                 <Width>6.538in</Width>
                 <ZIndex>14</ZIndex>
                 <Style>
@@ -514,7 +514,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>เลขที่ 111 หมู่ 5 ตำบลห้วยบางกะปิ อำเภอเมืองชลบุรี จังหวัดชลบุรี 20130</Value>
+                        <Value>เลขที่ 111 หมู่ 5 ตำบลห้วยกะปิ อำเภอเมืองชลบุรี จังหวัดชลบุรี 20130</Value>
                         <Style>
                           <FontFamily>Angsana New</FontFamily>
                           <FontSize>14pt</FontSize>
@@ -527,7 +527,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>0.70556cm</Top>
+                <Top>1.04074cm</Top>
                 <Left>0.89959cm</Left>
                 <Height>0.29514in</Height>
                 <Width>6.538in</Width>
@@ -562,7 +562,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>1.6316cm</Top>
+                <Top>1.96678cm</Top>
                 <Left>0.89959cm</Left>
                 <Height>0.27778in</Height>
                 <Width>6.538in</Width>
@@ -597,7 +597,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>2.31792cm</Top>
+                <Top>2.6531cm</Top>
                 <Left>1.56245cm</Left>
                 <Height>0.27083in</Height>
                 <Width>1.11971in</Width>
@@ -632,7 +632,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>2.31793cm</Top>
+                <Top>2.65311cm</Top>
                 <Left>4.38203cm</Left>
                 <Height>0.27083in</Height>
                 <Width>3.08178in</Width>
@@ -667,7 +667,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>2.88077cm</Top>
+                <Top>3.21595cm</Top>
                 <Left>1.56245cm</Left>
                 <Height>0.2784in</Height>
                 <Width>1.11971in</Width>
@@ -702,7 +702,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>3.41152cm</Top>
+                <Top>3.7467cm</Top>
                 <Left>1.53802cm</Left>
                 <Height>0.30556in</Height>
                 <Width>1.12933in</Width>
@@ -724,7 +724,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!PCustomerName.Value</Value>
+                        <Value>กิจการร่วมค้า CNNC</Value>
                         <Style>
                           <FontFamily>Angsana New</FontFamily>
                           <FontSize>16pt</FontSize>
@@ -735,7 +735,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCustomerName</rd:DefaultName>
-                <Top>1.34312in</Top>
+                <Top>1.47508in</Top>
                 <Left>1.72521in</Left>
                 <Height>0.30556in</Height>
                 <Width>3.08178in</Width>
@@ -770,7 +770,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>4.08031cm</Top>
+                <Top>4.41549cm</Top>
                 <Left>1.56246cm</Left>
                 <Height>0.29861in</Height>
                 <Width>1.11971in</Width>
@@ -824,7 +824,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCustomerName</rd:DefaultName>
-                <Top>1.60642in</Top>
+                <Top>1.73838in</Top>
                 <Left>1.72521in</Left>
                 <Height>0.29861in</Height>
                 <Width>3.08178in</Width>
@@ -859,7 +859,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>2.88077cm</Top>
+                <Top>3.21595cm</Top>
                 <Left>12.20975cm</Left>
                 <Height>0.27083in</Height>
                 <Width>0.49478in</Width>
@@ -875,7 +875,7 @@
                 </Style>
               </Textbox>
               <Line Name="Line19">
-                <Top>1.98204in</Top>
+                <Top>2.114in</Top>
                 <Left>0.60551in</Left>
                 <Height>0in</Height>
                 <Width>6.29592in</Width>
@@ -906,7 +906,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>5.01674cm</Top>
+                <Top>5.35192cm</Top>
                 <Left>1.53801cm</Left>
                 <Height>0.27083in</Height>
                 <Width>1.1197in</Width>
@@ -922,7 +922,7 @@
                 </Style>
               </Textbox>
               <Line Name="Line20">
-                <Top>2.28067in</Top>
+                <Top>2.41263in</Top>
                 <Left>0.60551in</Left>
                 <Height>0in</Height>
                 <Width>6.29591in</Width>
@@ -953,7 +953,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>5.01674cm</Top>
+                <Top>5.35192cm</Top>
                 <Left>4.38203cm</Left>
                 <Height>0.27083in</Height>
                 <Width>1.33713in</Width>
@@ -988,7 +988,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>5.03439cm</Top>
+                <Top>5.36957cm</Top>
                 <Left>7.77835cm</Left>
                 <Height>0.27083in</Height>
                 <Width>1.1197in</Width>
@@ -1023,7 +1023,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>5.01674cm</Top>
+                <Top>5.35192cm</Top>
                 <Left>10.62239cm</Left>
                 <Height>0.27083in</Height>
                 <Width>1.1101in</Width>
@@ -1058,7 +1058,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox71</rd:DefaultName>
-                <Top>5.03439cm</Top>
+                <Top>5.36957cm</Top>
                 <Left>13.44204cm</Left>
                 <Height>0.27083in</Height>
                 <Width>1.60928in</Width>
@@ -1093,7 +1093,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCar</rd:DefaultName>
-                <Top>2.50595in</Top>
+                <Top>2.63791in</Top>
                 <Left>1.72522in</Left>
                 <Height>0.26in</Height>
                 <Width>1.33713in</Width>
@@ -1128,7 +1128,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>3.99311in</Top>
+                <Top>4.12507in</Top>
                 <Left>4.19166in</Left>
                 <Height>0.25in</Height>
                 <Width>1.1101in</Width>
@@ -1144,7 +1144,7 @@
                 </Style>
               </Textbox>
               <Line Name="Line13">
-                <Top>4.20655in</Top>
+                <Top>4.33851in</Top>
                 <Left>1.54119in</Left>
                 <Height>0in</Height>
                 <Width>1.91253in</Width>
@@ -1175,7 +1175,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>3.99311in</Top>
+                <Top>4.12507in</Top>
                 <Left>0.60551in</Left>
                 <Height>0.25in</Height>
                 <Width>1.12934in</Width>
@@ -1191,7 +1191,7 @@
                 </Style>
               </Textbox>
               <Line Name="Line22">
-                <Top>1.98204in</Top>
+                <Top>2.114in</Top>
                 <Left>0.60551in</Left>
                 <Height>0.99796in</Height>
                 <Width>0in</Width>
@@ -1203,7 +1203,7 @@
                 </Style>
               </Line>
               <Line Name="Line23">
-                <Top>1.98204in</Top>
+                <Top>2.114in</Top>
                 <Left>6.90141in</Left>
                 <Height>1.75796in</Height>
                 <Width>0in</Width>
@@ -1215,7 +1215,7 @@
                 </Style>
               </Line>
               <Line Name="Line24">
-                <Top>1.97509in</Top>
+                <Top>2.10705in</Top>
                 <Left>4.19593in</Left>
                 <Height>1.76491in</Height>
                 <Width>0in</Width>
@@ -1227,7 +1227,7 @@
                 </Style>
               </Line>
               <Line Name="Line21">
-                <Top>2.8in</Top>
+                <Top>2.93196in</Top>
                 <Left>0.60552in</Left>
                 <Height>0in</Height>
                 <Width>6.29589in</Width>
@@ -1239,7 +1239,7 @@
                 </Style>
               </Line>
               <Line Name="Line26">
-                <Top>1.98204in</Top>
+                <Top>2.114in</Top>
                 <Left>5.29214in</Left>
                 <Height>1.75796in</Height>
                 <Width>0in</Width>
@@ -1251,7 +1251,7 @@
                 </Style>
               </Line>
               <Line Name="Line27">
-                <Top>1.97165in</Top>
+                <Top>2.10361in</Top>
                 <Left>3.06235in</Left>
                 <Height>1.00835in</Height>
                 <Width>0in</Width>
@@ -1263,7 +1263,7 @@
                 </Style>
               </Line>
               <Line Name="Line28">
-                <Top>1.98204in</Top>
+                <Top>2.114in</Top>
                 <Left>1.72522in</Left>
                 <Height>0.99796in</Height>
                 <Width>0in</Width>
@@ -1328,7 +1328,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.76595in</Top>
+                <Top>2.89791in</Top>
                 <Left>0.60552in</Left>
                 <Height>0.28779in</Height>
                 <Width>1.12399in</Width>
@@ -1362,7 +1362,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.76595in</Top>
+                <Top>2.89791in</Top>
                 <Left>1.73911in</Left>
                 <Height>0.28779in</Height>
                 <Width>2.43866in</Width>
@@ -1397,7 +1397,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeIn</rd:DefaultName>
-                <Top>2.79373in</Top>
+                <Top>2.92569in</Top>
                 <Left>4.31747in</Left>
                 <Height>0.26001in</Height>
                 <Width>0.96078in</Width>
@@ -1432,7 +1432,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>2.97734in</Top>
+                <Top>3.1093in</Top>
                 <Left>4.33136in</Left>
                 <Height>0.26in</Height>
                 <Width>0.96078in</Width>
@@ -1467,7 +1467,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>3.12319in</Top>
+                <Top>3.25515in</Top>
                 <Left>4.31747in</Left>
                 <Height>0.26in</Height>
                 <Width>0.97467in</Width>
@@ -1502,7 +1502,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeIn</rd:DefaultName>
-                <Top>2.77984in</Top>
+                <Top>2.9118in</Top>
                 <Left>5.27826in</Left>
                 <Height>0.26001in</Height>
                 <Width>1.2739in</Width>
@@ -1537,7 +1537,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>3.1093in</Top>
+                <Top>3.24126in</Top>
                 <Left>5.27825in</Left>
                 <Height>0.26in</Height>
                 <Width>1.27391in</Width>
@@ -1572,7 +1572,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>2.97734in</Top>
+                <Top>3.1093in</Top>
                 <Left>5.27826in</Left>
                 <Height>0.26in</Height>
                 <Width>1.2739in</Width>
@@ -1588,7 +1588,7 @@
                 </Style>
               </Textbox>
               <Line Name="Line30">
-                <Top>3.37in</Top>
+                <Top>3.50196in</Top>
                 <Left>4.19594in</Left>
                 <Height>0in</Height>
                 <Width>2.70548in</Width>
@@ -1619,7 +1619,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeIn</rd:DefaultName>
-                <Top>2.79374in</Top>
+                <Top>2.9257in</Top>
                 <Left>6.55216in</Left>
                 <Height>0.26001in</Height>
                 <Width>0.34in</Width>
@@ -1654,7 +1654,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>3.1232in</Top>
+                <Top>3.25516in</Top>
                 <Left>6.55217in</Left>
                 <Height>0.26in</Height>
                 <Width>0.34924in</Width>
@@ -1689,7 +1689,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PTimeOut</rd:DefaultName>
-                <Top>2.97734in</Top>
+                <Top>3.1093in</Top>
                 <Left>6.55216in</Left>
                 <Height>0.26in</Height>
                 <Width>0.34in</Width>

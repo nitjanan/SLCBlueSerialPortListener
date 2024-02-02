@@ -263,10 +263,6 @@ namespace SerialPortListener
                     sql.Append(" AND คนขับ LIKE '" + tbDriver.Text + "%' ");
                 if (cbbStoneType.SelectedIndex != 0)
                     sql.Append(" AND ชนิดหิน = '" + cbbStoneType.Text + "' ");
-                if (tbbCustomerName.Text != "")
-                    sql.Append(" AND ลูกค้า = '" + tbbCustomerName.Text + "' ");
-                if (tbbFromCustomerId.Text != "" && tbbToCustomerId.Text != "")
-                    sql.Append(" AND weight.รหัสลูกค้า BETWEEN '" + tbbFromCustomerId.Text + "' AND '" + tbbToCustomerId.Text + "' ");
                 if (cbbWeight.SelectedIndex == 0)
                     sql.Append(" AND NOT น้ำหนักรถ  = '0.00' AND NOT น้ำหนักรวม = '0.00' ");
                 if (cbbWeight.SelectedIndex == 2)
@@ -274,6 +270,7 @@ namespace SerialPortListener
                 if (cbbLineType.SelectedIndex != 0)
                     sql.Append(" AND line_type = '" + cbbLineType.Text + "' ");
 
+                sql.Append(" AND รหัสลูกค้า = '11-V-125' ");
                 sql.Append(" ORDER BY วันที่, เลขที่เอกสาร ");
 
                 OdbcDataAdapter adt = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
@@ -447,10 +444,6 @@ namespace SerialPortListener
                 sql.Append(" AND คนขับ LIKE '" + tbDriver.Text + "%' ");
             if (cbbStoneType.SelectedIndex != 0)
                 sql.Append(" AND ชนิดหิน = '" + cbbStoneType.Text + "' ");
-            if (tbbCustomerName.Text != "")
-                sql.Append(" AND ลูกค้า = '" + tbbCustomerName.Text + "' ");
-            if (tbbFromCustomerId.Text != "" && tbbToCustomerId.Text != "")
-                sql.Append(" AND weight.รหัสลูกค้า BETWEEN '" + tbbFromCustomerId.Text + "' AND '" + tbbToCustomerId.Text + "' ");
             if (cbbWeight.SelectedIndex == 0)
                 sql.Append(" AND NOT น้ำหนักรถ  = '0.00' AND NOT น้ำหนักรวม = '0.00' ");
             if (cbbWeight.SelectedIndex == 2)
@@ -458,6 +451,7 @@ namespace SerialPortListener
             if (cbbLineType.SelectedIndex != 0)
                 sql.Append(" AND line_type = '" + cbbLineType.Text + "' ");
 
+            sql.Append(" AND รหัสลูกค้า = '11-V-125' ");
             sql.Append(" ORDER BY วันที่, เลขที่เอกสาร ");
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
@@ -485,29 +479,24 @@ namespace SerialPortListener
 
         private void btExport_Click(object sender, EventArgs e)
         {
-            double sumTotal = 0;
-            double sumQ = 0;
-            double sumAmount = 0;
-            double sumAmountVat = 0;
             Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
             Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
             worksheet = workbook.Sheets["Sheet1"];
             worksheet = workbook.ActiveSheet;
-            worksheet.Name = "DailyReportSheet";
+            //worksheet.Name = "DailyReportSheet";
 
-            worksheet.Cells[1, 1] = "รายงานการชั่งสินค้าประจำวันที่ "+ tbdateFrom.Text + " - "+ tbdateTo.Text;
-            for (int i = 1; i< dgvDailyReport.Columns.Count + 1; i++) {
-                worksheet.Cells[3,i] = dgvDailyReport.Columns[i - 1].HeaderText;
+            for (int i = 1; i < dgvDailyReport.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dgvDailyReport.Columns[i - 1].HeaderText;
             }
 
-            for (int i = 0; i < dgvDailyReport.Rows.Count; i++) {
-                sumTotal += Convert.ToDouble(dgvDailyReport.Rows[i].Cells["น้ำหนักสินค้า"].Value);
-                sumQ += Convert.ToDouble(dgvDailyReport.Rows[i].Cells["คิว"].Value);
-                sumAmount += Convert.ToDouble(dgvDailyReport.Rows[i].Cells["จำนวนเงิน"].Value);
-                sumAmountVat += Convert.ToDouble(dgvDailyReport.Rows[i].Cells["จำนวนเงินสุทธิ"].Value);
 
-                for (int j = 0; j < dgvDailyReport.Columns.Count; j++) {
+            for (int i = 0; i < dgvDailyReport.Rows.Count; i++)
+            {
+
+                for (int j = 0; j < dgvDailyReport.Columns.Count; j++)
+                {
                     string tmpStr = null;
                     if (dgvDailyReport.Rows[i].Cells[j].Value == null)
                         tmpStr = "";
@@ -515,30 +504,16 @@ namespace SerialPortListener
                         tmpStr = dateFormatToPrint(dgvDailyReport.Rows[i].Cells[j].Value.ToString());
                     else
                         tmpStr = dgvDailyReport.Rows[i].Cells[j].Value.ToString();
-                    worksheet.Cells[i + 4, j + 1] = tmpStr;
+                    worksheet.Cells[i + 2, j + 1] = tmpStr;
                 }
             }
-            WeightDailyReport.SumToTal = sumTotal.ToString("#,##0.00");
-            WeightDailyReport.SumQ = sumQ.ToString("#,##0.00");
-            WeightDailyReport.SumAmount = sumAmount.ToString("#,##0.00");
-            WeightDailyReport.SumAmountVat = sumAmountVat.ToString("#,##0.00");
-
-            int coutRows = dgvDailyReport.Rows.Count+4;
-            worksheet.Cells[coutRows, 1] = "รวม";
-            worksheet.Cells[coutRows, 10] = WeightDailyReport.SumToTal;
-            worksheet.Cells[coutRows, 11] = WeightDailyReport.SumQ;
-            worksheet.Cells[coutRows, 12] = WeightDailyReport.SumAmount;
-            worksheet.Cells[coutRows, 13] = WeightDailyReport.SumAmountVat;
-
-            worksheet.Cells[coutRows + 1, 1] = "จำนวนเที่ยว";
-            worksheet.Cells[coutRows + 1, 2] = (dgvDailyReport.Rows.Count - 1).ToString();
-            worksheet.Cells[coutRows + 1, 3] = "เที่ยว";
 
             var saveFileDialoge = new SaveFileDialog();
-            saveFileDialoge.FileName = "DailyReport";
+            saveFileDialoge.FileName = "JOBReport";
             saveFileDialoge.DefaultExt = ".xlsx";
-            if (saveFileDialoge.ShowDialog() == DialogResult.OK) {
-                workbook.SaveAs(saveFileDialoge.FileName,Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            if (saveFileDialoge.ShowDialog() == DialogResult.OK)
+            {
+                workbook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             }
             app.Quit();
 
