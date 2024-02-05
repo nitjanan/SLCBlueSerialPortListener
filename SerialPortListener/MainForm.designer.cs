@@ -334,6 +334,7 @@
             this.btMenu4.TabStop = false;
             this.btMenu4.Text = "เกี่ยวกับ";
             this.btMenu4.UseVisualStyleBackColor = false;
+            this.btMenu4.Visible = false;
             this.btMenu4.Click += new System.EventHandler(this.btMenu4_Click);
             // 
             // btMenu3
@@ -351,6 +352,7 @@
             this.btMenu3.TabStop = false;
             this.btMenu3.Text = "ตั้งค่า";
             this.btMenu3.UseVisualStyleBackColor = false;
+            this.btMenu3.Visible = false;
             this.btMenu3.Click += new System.EventHandler(this.btMenu3_Click);
             // 
             // btMenu2
@@ -389,6 +391,7 @@
             this.btMenu1.TabStop = false;
             this.btMenu1.Text = "บันทึกการชั่ง";
             this.btMenu1.UseVisualStyleBackColor = false;
+            this.btMenu1.Visible = false;
             this.btMenu1.Click += new System.EventHandler(this.btMenu1_Click);
             // 
             // tbDocNum

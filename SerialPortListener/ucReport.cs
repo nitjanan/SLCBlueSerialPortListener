@@ -289,6 +289,7 @@ namespace SerialPortListener
                 DataTable dt = new DataTable();
                 adt.Fill(dt);
                 dgvDailyReport.DataSource = dt;
+                dgvExcelReport.DataSource = dt;
             }
             catch (Exception)
             {
@@ -487,64 +488,6 @@ namespace SerialPortListener
             DateTime date = Convert.ToDateTime(strDate);
             string dateFormat = date.ToString("dd/MM/yyyy");
             return dateFormat;
-        }
-
-        private void btExport_Click(object sender, EventArgs e)
-        {
-
-            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-            worksheet = workbook.Sheets["Sheet1"];
-            worksheet = workbook.ActiveSheet;
-            //worksheet.Name = "DailyReportSheet";
-
-            for (int i = 1; i < dgvDailyReport.Columns.Count + 1; i++)
-            {
-                worksheet.Cells[1, i] = dgvDailyReport.Columns[i - 1].HeaderText;
-            }
-
-
-            for (int i = 0; i < dgvDailyReport.Rows.Count - 1; i++)
-            {
-
-                for (int j = 0; j < dgvDailyReport.Columns.Count; j++)
-                {
-                    string tmpStr = null;
-                    if (dgvDailyReport.Rows[i].Cells[j].Value == null)
-                        tmpStr = "";
-                    else if (dgvDailyReport.Rows[i].Cells[j].ValueType.ToString().Equals("System.DateTime"))
-                        tmpStr = dateFormatToPrint(dgvDailyReport.Rows[i].Cells[j].Value.ToString());
-                    else
-                        tmpStr = dgvDailyReport.Rows[i].Cells[j].Value.ToString();
-
-                    if (j == 0)
-                        tmpStr = "5";
-                    else if (j == 3)
-                        tmpStr = "บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด";
-                    else if (j == 15)
-                        tmpStr = "0";
-                    else if (j == 16)
-                        tmpStr = "212";
-
-                    if (j == 8 || j == 12 || j == 13) {
-                        tmpStr = ((int)(double.Parse(dgvDailyReport.Rows[i].Cells[j].Value.ToString()) * 1000)).ToString();
-                    }
-                        
-                    worksheet.Cells[i + 2, j + 1] = tmpStr;
-                }
-            }
-
-            var saveFileDialoge = new SaveFileDialog();
-            saveFileDialoge.FileName = "JOBReport"+ DateTime.Now.ToString("dd-MM-yyyy.HH.mm.ss");
-            saveFileDialoge.DefaultExt = ".xlsx";
-            if (saveFileDialoge.ShowDialog() == DialogResult.OK)
-            {
-                workbook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-            }
-            app.Quit();
-            
-
         }
 
         private void btPrintScoop_Click(object sender, EventArgs e)
@@ -1438,6 +1381,64 @@ namespace SerialPortListener
         private void cbbProductName_TextUpdate(object sender, EventArgs e)
         {
             setSearchAnywhereToCombobox(cbbProductName, listOriginalProductReport, listNewProductReport);
+        }
+
+        private void btExport_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            //worksheet.Name = "DailyReportSheet";
+
+            Console.WriteLine("count = " + dgvExcelReport.Columns.Count);
+
+            for (int i = 1; i < dgvExcelReport.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dgvExcelReport.Columns[i - 1].HeaderText;
+            }
+
+            for (int i = 0; i < dgvExcelReport.Rows.Count - 1; i++)
+            {
+
+                for (int j = 0; j < dgvExcelReport.Columns.Count; j++)
+                {
+
+                    string tmpStr = null;
+                    if (dgvExcelReport.Rows[i].Cells[j].Value == null)
+                        tmpStr = "";
+                    else if (dgvExcelReport.Rows[i].Cells[j].ValueType.ToString().Equals("System.DateTime"))
+                        tmpStr = dateFormatToPrint(dgvExcelReport.Rows[i].Cells[j].Value.ToString());
+                    else
+                        tmpStr = dgvExcelReport.Rows[i].Cells[j].Value.ToString();
+
+                    if (j == 0)
+                        tmpStr = "5";
+                    else if (j == 3)
+                        tmpStr = "บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด";
+                    else if (j == 15)
+                        tmpStr = "0";
+                    else if (j == 16)
+                        tmpStr = "212";
+
+                    if (j == 8 || j == 12 || j == 13)
+                    {
+                        tmpStr = ((int)(double.Parse(dgvExcelReport.Rows[i].Cells[j].Value.ToString()) * 1000)).ToString();
+                    }
+
+                    worksheet.Cells[i + 2, j + 1] = tmpStr;
+                }
+            }
+
+            var saveFileDialoge = new SaveFileDialog();
+            saveFileDialoge.FileName = "JOBReport" + DateTime.Now.ToString("dd-MM-yyyy.HH.mm.ss");
+            saveFileDialoge.DefaultExt = ".xlsx";
+            if (saveFileDialoge.ShowDialog() == DialogResult.OK)
+            {
+                workbook.SaveAs(saveFileDialoge.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            }
+            app.Quit();
         }
     }  
 }
