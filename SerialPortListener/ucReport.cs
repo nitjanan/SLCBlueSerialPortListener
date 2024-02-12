@@ -490,6 +490,13 @@ namespace SerialPortListener
             return dateFormat;
         }
 
+        private string mdFormatToPrint(string strDate)
+        {
+            DateTime date = Convert.ToDateTime(strDate);
+            string dateFormat = date.ToString("MM/dd/yyyy");
+            return dateFormat;
+        }
+
         private void btPrintScoop_Click(object sender, EventArgs e)
         {
             //sql
@@ -1409,9 +1416,13 @@ namespace SerialPortListener
                     if (dgvExcelReport.Rows[i].Cells[j].Value == null)
                         tmpStr = "";
                     else if (dgvExcelReport.Rows[i].Cells[j].ValueType.ToString().Equals("System.DateTime"))
-                        tmpStr = dateFormatToPrint(dgvExcelReport.Rows[i].Cells[j].Value.ToString());
-                    else
+                    {
+                        tmpStr = mdFormatToPrint(dgvExcelReport.Rows[i].Cells[j].Value.ToString());
+                    }
+                    else { 
                         tmpStr = dgvExcelReport.Rows[i].Cells[j].Value.ToString();
+                    }
+                       
 
                     if (j == 0)
                         tmpStr = "5";
