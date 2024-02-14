@@ -1747,13 +1747,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.72367in</Height>
+        <Height>1.66117in</Height>
         <Style />
       </Body>
       <Width>7.87516in</Width>
       <Page>
         <PageHeader>
-          <Height>2.01083cm</Height>
+          <Height>1.95791cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1764,7 +1764,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด</Value>
+                      <Value>บริษัท วี ร็อค ซัพพลาย จำกัด</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
