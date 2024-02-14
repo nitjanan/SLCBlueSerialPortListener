@@ -372,7 +372,7 @@
             this.dataGridViewTextBoxColumn34,
             this.dataGridViewTextBoxColumn35});
             this.dgvExcelReport.DataSource = this.weightBindingSource;
-            this.dgvExcelReport.Location = new System.Drawing.Point(184, 426);
+            this.dgvExcelReport.Location = new System.Drawing.Point(88, 424);
             this.dgvExcelReport.Name = "dgvExcelReport";
             this.dgvExcelReport.Size = new System.Drawing.Size(395, 30);
             this.dgvExcelReport.TabIndex = 83;
@@ -787,7 +787,7 @@
             this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintBil.Location = new System.Drawing.Point(102, 426);
+            this.btPrintBil.Location = new System.Drawing.Point(6, 424);
             this.btPrintBil.Name = "btPrintBil";
             this.btPrintBil.Size = new System.Drawing.Size(80, 30);
             this.btPrintBil.TabIndex = 79;
@@ -1072,14 +1072,13 @@
             this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint.Location = new System.Drawing.Point(6, 426);
+            this.btPrint.Location = new System.Drawing.Point(489, 426);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(90, 30);
             this.btPrint.TabIndex = 48;
             this.btPrint.Text = "พิมพ์รายงาน";
             this.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrint.UseVisualStyleBackColor = true;
-            this.btPrint.Visible = false;
             this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
             // 
             // btSearch
