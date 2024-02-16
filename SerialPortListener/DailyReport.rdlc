@@ -2952,7 +2952,6 @@
             </TablixRowHierarchy>
             <DataSetName>dailyDataSet</DataSetName>
             <Top>0.02233cm</Top>
-            <Left>0cm</Left>
             <Height>2cm</Height>
             <Width>28.63393cm</Width>
             <ZIndex>1</ZIndex>
@@ -3018,7 +3017,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.6cm</Top>
               <Height>0.6cm</Height>
-              <Width>25.92225cm</Width>
+              <Width>27.21871cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3049,9 +3048,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Left>25.92225cm</Left>
+              <Left>27.21871cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.71168cm</Width>
+              <Width>1.41522cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -3083,7 +3082,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>25.92225cm</Width>
+              <Width>27.21871cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
