@@ -175,8 +175,8 @@ namespace SerialPortListener
             dtDate.Text = DateTime.Now.ToShortDateString();
             dtWeightInDate.Text = DateTime.Now.ToShortDateString();
             dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
-            dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
+            dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
+            dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
@@ -1740,7 +1740,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = "J" + tbDocNum.Text;
+            Weight.DocNum = "M" + tbDocNum.Text;
             Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -1771,6 +1771,7 @@ namespace SerialPortListener
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
             Weight.Note = strNotEmty(tbNote.Text);
+            Weight.ScoopName = strNotEmty(tbScoopName.Text);
 
 
             if (mode.Equals(3))
@@ -3026,6 +3027,5 @@ namespace SerialPortListener
 
             return stoneTypeId;
         }
-
     }
 }

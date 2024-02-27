@@ -60,6 +60,7 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("PClean",Weight.Clean),
                 new Microsoft.Reporting.WinForms.ReportParameter("PTransport",Weight.Transport),
                 new Microsoft.Reporting.WinForms.ReportParameter("POilContent",Weight.OilContent),
+                new Microsoft.Reporting.WinForms.ReportParameter("PScoopName",Weight.ScoopName),
                 new Microsoft.Reporting.WinForms.ReportParameter("TTelephone",Company.TTelephone),
                 new Microsoft.Reporting.WinForms.ReportParameter("TEmail",Company.TEmail),
                 new Microsoft.Reporting.WinForms.ReportParameter("TDocName",Company.TDocName),
