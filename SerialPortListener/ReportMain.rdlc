@@ -2765,10 +2765,42 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
+              <Textbox Name="PScoopName2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!PDatePrintAndCopyNum.Value</Value>
+                        <Style>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>PScoopName</rd:DefaultName>
+                <Top>4.32155in</Top>
+                <Left>2.96368in</Left>
+                <Height>0.25in</Height>
+                <Width>0.66737in</Width>
+                <ZIndex>88</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Height>11.7856cm</Height>
-            <Width>18.42069cm</Width>
+            <Height>11.81405cm</Height>
+            <Width>18.47454cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2776,7 +2808,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>4.64in</Height>
+        <Height>4.6512in</Height>
         <Style>
           <Border>
             <Style>None</Style>
