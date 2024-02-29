@@ -2162,7 +2162,8 @@ namespace SerialPortListener
         private Boolean checkCancelAction()
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
-            {
+             {
+                /*
                 using (var form = new FCancelPassword())
                 {
                     var result = form.ShowDialog();
@@ -2171,6 +2172,7 @@ namespace SerialPortListener
                         string password = form.ReturnPassword;
                         if (password == "pdg]bd=yj'")
                         {
+                */
                             tbWeightIn.Text = "0.00";
                             tbWeightOut.Text = "0.00";
                             tbWeightTotal.Text = "0.00";
@@ -2180,6 +2182,7 @@ namespace SerialPortListener
                             tbVat.Text = "0.00";
                             tbQ.Text = "0.00";
                             return true;
+                /*
                         }
                         else
                         {
@@ -2190,6 +2193,7 @@ namespace SerialPortListener
                         return false;
                     }
                 }
+                */
             }
             return true;
         }
