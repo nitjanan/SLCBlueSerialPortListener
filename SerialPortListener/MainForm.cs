@@ -1780,6 +1780,7 @@ namespace SerialPortListener
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
+            Company.TLogo = " ";
 
 
             if (mode.Equals(3))
