@@ -1772,7 +1772,7 @@ namespace SerialPortListener
             Weight.Id = tbId.Text;
             Weight.Note = strNotEmty(tbNote.Text);
             Weight.ScoopName = strNotEmty(tbScoopName.Text);
-
+            Company.TLogo = " ";
 
             if (mode.Equals(3))
             {
@@ -2542,9 +2542,9 @@ namespace SerialPortListener
         }
 
         private void showErrorWeightInEmty() {
-            showErrorEmtyRadioButton(groupBox2);
+            //showErrorEmtyRadioButton(groupBox2);
             showErrorEmtyComboBox(cbbStoneType);
-            showErrorEmtyComboBox(cbbTransport);
+            //showErrorEmtyComboBox(cbbTransport);
             showErrorEmtyTextBox(tbCarLicense);
             //showErrorEmtyTextBox(tbCarCity);
             showErrorEmtyTextBox(tbWeightIn);
@@ -2552,7 +2552,7 @@ namespace SerialPortListener
 
         private void showErrorWeightOutEmty()
         {
-            showErrorEmtyRadioButton(groupBox2);
+            //showErrorEmtyRadioButton(groupBox2);
             showErrorEmtyTextBox(tbScoopId);
             showErrorEmtyTextBox(tbScoopName);
             //showErrorEmtyRadioButton(groupBox1);
