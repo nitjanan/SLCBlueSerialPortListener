@@ -1032,8 +1032,10 @@ namespace SerialPortListener
                 else if (checkWeightInZero())
                     MessageBox.Show("น้ำหนักชั่งเข้าเป็น 0.00 ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //เช็คเลขซ้ำกัน
-                else if (checkDuplicateRunningNumber())
-                    MessageBox.Show("เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (checkDuplicateRunningNumber()) { 
+                    runningDocNumberDuplicate();
+                    saveAction();
+                }
                 else
                     saveAction();
             }
@@ -1045,6 +1047,45 @@ namespace SerialPortListener
                 else
                     MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        public void runningDocNumberDuplicate()
+        {
+            Boolean IsnewYear = false;
+            string todayYear = DateTime.Now.ToString("yyyy");
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public.seq_doc_num where run_year = '" + todayYear + "' ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    int rdNum = Convert.ToInt32(reader["run_number"].ToString());
+                    int diff = Convert.ToInt32(tbDocNum.Text) - rdNum;
+                    if (diff == 1)
+                        rdNum = rdNum + 2;
+                    else
+                        rdNum++;
+
+                    int lengthRdNum = reader["run_number"].ToString().Length;
+                    string format = "D" + lengthRdNum.ToString();
+                    tbDocNum.Text = rdNum.ToString(format);
+                }
+                else
+                {
+                    IsnewYear = true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+            if (IsnewYear)
+                generateNewSeqNumber();
+
         }
 
         private void saveAction() {
