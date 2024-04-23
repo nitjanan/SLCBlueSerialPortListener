@@ -744,6 +744,8 @@ namespace SerialPortListener
                 dtWeightInTime.Enabled = true;
                 dtWeightOutDate.Enabled = true;
                 dtWeightOutTime.Enabled = true;
+                // เฉพาะกงตาก 23-04-2024
+                tbWeightIn.Enabled = true;
             }
             else if (mode.Equals(1))// weight in
             {
@@ -3030,6 +3032,47 @@ namespace SerialPortListener
             dl.close();
 
             return stoneTypeId;
+        }
+
+        private void tbCarLicense_Leave(object sender, EventArgs e)
+        {
+            getWeightInOnDay(tbCarLicense);
+        }
+
+        private void getWeightInOnDay(TextBox tb)
+        {
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+            if ((tb != null && tb.Text != "" && checkZeroStr(tbWeightOut.Text)) && tbWeightIn.Enabled)
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT น้ำหนักรถ FROM public.weight where วันที่ = '" + today + "' and ทะเบียนรถ = '" + tbCarLicense.Text + "' ORDER BY weight_id DESC LIMIT 1 ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["น้ำหนักรถ"].ToString();
+                        tbWeightIn.Text = tonTokg(rdStr);
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbWeightIn.Text = "0.00";
+                    }
+
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else
+            {
+                tbWeightIn.Text = "0.00";
+            }
         }
     }
 }

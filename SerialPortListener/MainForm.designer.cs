@@ -185,7 +185,6 @@
             // 
             this.tbWeightIn.AccessibleName = "น้ำหนักเข้า";
             this.tbWeightIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbWeightIn.Enabled = false;
             this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightIn.Location = new System.Drawing.Point(438, 33);
             this.tbWeightIn.Name = "tbWeightIn";
@@ -864,6 +863,7 @@
             this.tbCarLicense.Tag = "";
             this.tbCarLicense.TextChanged += new System.EventHandler(this.tbCarLicense_TextChanged);
             this.tbCarLicense.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCarLicense_KeyUp);
+            this.tbCarLicense.Leave += new System.EventHandler(this.tbCarLicense_Leave);
             // 
             // tbCarCity
             // 
