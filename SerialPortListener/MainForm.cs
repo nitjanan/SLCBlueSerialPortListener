@@ -745,7 +745,7 @@ namespace SerialPortListener
                 dtWeightOutDate.Enabled = true;
                 dtWeightOutTime.Enabled = true;
                 // เฉพาะกงตาก 23-04-2024
-                tbWeightIn.Enabled = true;
+                //tbWeightIn.Enabled = true;
             }
             else if (mode.Equals(1))// weight in
             {
