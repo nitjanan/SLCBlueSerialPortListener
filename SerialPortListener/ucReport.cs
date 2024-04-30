@@ -36,6 +36,11 @@ namespace SerialPortListener
         // save new keywords
         List<string> listNewInvoiceReport = new List<string>();
 
+        // Bind default keywords
+        List<string> listOriginalCCReport = new List<string>();
+        // save new keywords
+        List<string> listNewCCReport = new List<string>();
+
         public ucReport()
         {
             dl = new Datalayer();
@@ -56,7 +61,9 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCustomerName, listOriginalCustomerReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCCustomerName, listOriginalCCReport);
 
+            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน");
         }
 
         /*3 search anywhere customer */
@@ -190,6 +197,35 @@ namespace SerialPortListener
             {
                 fillMillCombo(cbMill);
             }
+        }
+
+        private void fillTableComboByInactive(ComboBox cbb, string tableName, string field)
+        {
+            //ล้างก่อน
+            cbb.Items.Clear();
+
+            //
+            cbb.Items.Add("ทั้งหมด");
+            cbb.SelectedIndex = 0;
+
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string des = reader[field].ToString();
+                    cbb.Items.Add(des);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            dl.close();
         }
 
         private void fillCarTeamCombo(ComboBox cbb)
@@ -820,6 +856,52 @@ namespace SerialPortListener
                 tbInvoiceCutomerId.Text = "";
                 cbbInvoiceCutomerName.Text = "";
             }
+        }
+
+        private void btPrintCC_Click(object sender, EventArgs e)
+        {
+            //sql
+            dl.connect();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select * from weight where วันที่ BETWEEN '" + dtFromCC.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCC.Value.ToString("yyyy-MM-dd") + "' ");
+            if (tbCCId.Text != "")
+                sql.Append(" AND รหัสลูกค้า = '" + tbCCId.Text + "' ");
+            if (cbCCStoneType.SelectedIndex != 0)
+                sql.Append(" AND ชนิดหิน = '" + cbCCStoneType.Text + "' ");
+            sql.Append(" ORDER BY วันที่ ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCC.Text;
+            WeightTempReport.DateTo = dtToCC.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("customerCompanyDataSet", dt);
+            FPrintCCReport fp = new FPrintCCReport(rds);
+            fp.ShowDialog();
+        }
+
+        private void cbbCCCustomerName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbCCId.Text = cbbCCCustomerName.Text.Substring(0, cbbCCCustomerName.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbCCId.Text = "";
+                cbbCCCustomerName.Text = "";
+            }
+        }
+
+        private void cbbCCCustomerName_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbCCCustomerName, listOriginalCCReport, listNewCCReport);
         }
     }  
 }
