@@ -2160,10 +2160,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ครีเอทีฟ มิเนอรัล จำกัด</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -2172,7 +2172,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox119</rd:DefaultName>
-              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>7.44914cm</Width>
               <Style>
@@ -2205,7 +2204,6 @@
               </Paragraphs>
               <rd:DefaultName>Textbox119</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>7.44914cm</Width>
               <ZIndex>1</ZIndex>
