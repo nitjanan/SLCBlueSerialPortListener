@@ -211,6 +211,12 @@
     <Compile Include="FPrintCarTeamReport.Designer.cs">
       <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintCCReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCCReport.Designer.cs">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintCleanReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -373,6 +379,7 @@
     <Compile Include="WeightTempReport.cs" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
     <EmbeddedResource Include="CleanReport.rdlc" />
+    <EmbeddedResource Include="CustomerCompanyReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
     <EmbeddedResource Include="DailyReport.rdlc" />
     <EmbeddedResource Include="FCancelPassword.resx">
@@ -383,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintCarTeamReport.resx">
       <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCCReport.resx">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintCleanReport.resx">
       <DependentUpon>FPrintCleanReport.cs</DependentUpon>

@@ -21,17 +21,24 @@ namespace SerialPortListener
             InitializeComponent();
             setDefault();
         }
-        private void setDefault(){
+        private void setDefault()
+        {
+            setCompany();
+            setLC();
+        }
+
+        private void setCompany()
+        {
             //sql find company
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "SELECT * FROM public.base_company where base_company_id = 1 ";
             try
-             {
+            {
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    Company.CompanyName  = reader["company_name"].ToString();
+                    Company.CompanyName = reader["company_name"].ToString();
                     Company.Address = reader["address"].ToString();
                     Company.Telephone = reader["telephone"].ToString();
                     Company.Email = reader["email"].ToString();
@@ -42,8 +49,27 @@ namespace SerialPortListener
             {
             }
             dl.close();
-
         }
+        private void setLC()
+        {
+            //sql find company
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT base_weight_station_name FROM public.base_weight_station where base_weight_station_id = 1 ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Weight.LC = reader["base_weight_station_name"].ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+        }
+
         private void Login_Load(object sender, EventArgs e)
         {
 
