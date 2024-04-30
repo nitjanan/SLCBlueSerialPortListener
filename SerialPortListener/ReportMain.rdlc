@@ -2939,7 +2939,7 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
@@ -2949,6 +2949,40 @@
                 <Height>0.25in</Height>
                 <Width>0.65281in</Width>
                 <ZIndex>90</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Plc">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!Plc.Value</Value>
+                        <Style>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Plc</rd:DefaultName>
+                <Top>4.07413in</Top>
+                <Left>2.92926in</Left>
+                <Height>0.6cm</Height>
+                <Width>1.65814cm</Width>
+                <ZIndex>91</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -3144,6 +3178,10 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="PDatePrintAndCopyNum">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Plc">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -3347,6 +3385,11 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>9</RowIndex>
           <ParameterName>PDatePrintAndCopyNum</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>Plc</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

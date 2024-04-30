@@ -155,6 +155,7 @@
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbMillId = new System.Windows.Forms.TextBox();
             this.tbMillName = new System.Windows.Forms.TextBox();
+            this.tbLC = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -220,6 +221,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkOrange;
+            this.panel2.Controls.Add(this.tbLC);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -1732,6 +1734,16 @@
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
             // 
+            // tbLC
+            // 
+            this.tbLC.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbLC.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLC.Location = new System.Drawing.Point(1141, 9);
+            this.tbLC.Name = "tbLC";
+            this.tbLC.Size = new System.Drawing.Size(57, 27);
+            this.tbLC.TabIndex = 142;
+            this.tbLC.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1827,6 +1839,7 @@
             this.Text = "Weight";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -1975,6 +1988,7 @@
         private System.Windows.Forms.Button btRefresh;
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
+        private System.Windows.Forms.TextBox tbLC;
     }
 }
 

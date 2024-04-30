@@ -79,6 +79,8 @@ namespace SerialPortListener
         public void getSettingDefault()
         {
             lbCompanyCode.Text = Company.Code;
+            tbLC.Text = Weight.LC;
+
             /* autoComplete ผู้ตัก */
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
@@ -661,21 +663,21 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
-                
+                /*
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-               
+                */
 
                 /* เครื่องพี่รุ่ง */
-                //MatchCollection mc = Regex.Matches(str, @"\d+");
+                MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
                     if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
                         tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        //tbWeigtData.ForeColor = Color.LightCoral;
+                        tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
                     {
@@ -1772,6 +1774,7 @@ namespace SerialPortListener
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
+            Weight.LC = tbLC.Text;
 
 
             if (mode.Equals(3))
@@ -1818,6 +1821,7 @@ namespace SerialPortListener
                 Company.TDocName = "เลขที่การชั่ง";
                 Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
+                Weight.LC = " ";
 
             }
 
