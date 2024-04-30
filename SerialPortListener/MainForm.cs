@@ -79,6 +79,8 @@ namespace SerialPortListener
         public void getSettingDefault()
         {
             lbCompanyCode.Text = Company.Code;
+            tbLC.Text = Weight.LC;
+
             /* autoComplete ผู้ตัก */
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
@@ -1768,6 +1770,7 @@ namespace SerialPortListener
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
+            Weight.LC = tbLC.Text;
 
 
             if (mode.Equals(3))
@@ -1814,6 +1817,7 @@ namespace SerialPortListener
                 Company.TDocName = "เลขที่การชั่ง";
                 Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
+                Weight.LC = " ";
 
             }
 
