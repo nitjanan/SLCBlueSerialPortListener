@@ -59,7 +59,7 @@ namespace SerialPortListener
 
             //tabPage1
             cbbCustomerType.SelectedIndex = 0;
-            cbbWeight.SelectedIndex = 0;
+            cbbWeight.SelectedIndex = 1;
             cbbLineType.SelectedIndex = 0;
 
             /* autoComplete ลูกค้า */
