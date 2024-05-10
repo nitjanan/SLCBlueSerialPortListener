@@ -662,7 +662,7 @@ namespace SerialPortListener
                 /* เครื่องพี่จ๋า */
 
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+                string remainingText = newString.Substring(newString.LastIndexOf("p"));
 
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
                 /* เครื่องพี่รุ่ง */
