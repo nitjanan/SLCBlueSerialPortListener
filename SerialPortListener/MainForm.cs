@@ -175,8 +175,8 @@ namespace SerialPortListener
             dtDate.Text = DateTime.Now.ToShortDateString();
             dtWeightInDate.Text = DateTime.Now.ToShortDateString();
             dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
-            dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
+            dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
+            dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
@@ -236,7 +236,7 @@ namespace SerialPortListener
 
         private void generateNewSeqNumber() {
             string todayYear = DateTime.Now.ToString("yyyy");
-            string runningNumber = "0000000000";
+            string runningNumber = "000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO public.seq_doc_num (run_number, run_year) " +
                     "VALUES ('" + runningNumber + "', '" + todayYear + "') ";
@@ -1740,7 +1740,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = "J" + tbDocNum.Text;
+            Weight.DocNum = "T" + tbDocNum.Text;
             Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
