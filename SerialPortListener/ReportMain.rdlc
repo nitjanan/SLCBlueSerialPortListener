@@ -2866,8 +2866,7 @@
                       <TextRun>
                         <Value>=Parameters!PDatePrintAndCopyNum.Value</Value>
                         <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
                         </Style>
                       </TextRun>
                     </TextRuns>
