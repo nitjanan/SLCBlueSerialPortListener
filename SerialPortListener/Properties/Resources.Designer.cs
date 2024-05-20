@@ -83,6 +83,16 @@ namespace SerialPortListener.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap billing_machine_32px_pink {
+            get {
+                object obj = ResourceManager.GetObject("billing_machine_32px_pink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap data_backup_32px {
             get {
                 object obj = ResourceManager.GetObject("data_backup_32px", resourceCulture);

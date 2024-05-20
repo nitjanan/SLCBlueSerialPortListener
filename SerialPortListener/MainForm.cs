@@ -178,8 +178,8 @@ namespace SerialPortListener
             dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
             dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
-            rbbNonVat.Checked = false;
-            rbbVat.Checked = true;
+            rbbNonVat.Checked = true;
+            rbbVat.Checked = false;
             rbCleanStone.Checked = false;
             rbCleanWater.Checked = false;
             rbCleanNo.Checked = false;
@@ -580,10 +580,10 @@ namespace SerialPortListener
 
         private void setDefaultFromDB(string username, String firstname)
         {
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
             ucTruck.Show();
             ucReport.Hide();
             ucHelp.Hide();
@@ -821,10 +821,10 @@ namespace SerialPortListener
         private void btMenu1_Click(object sender, EventArgs e)
         {
             btMenu1.BackColor = Color.White;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucTruck.BringToFront();
             ucTruck.Show();
@@ -840,10 +840,10 @@ namespace SerialPortListener
         private void btMenu2_Click(object sender, EventArgs e)
         {
             btMenu2.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucReport.Show();
             ucTruck.Hide();
@@ -856,10 +856,10 @@ namespace SerialPortListener
         private void btMenu3_Click(object sender, EventArgs e)
         {
             btMenu3.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucSetting.Show();
             ucReport.Hide();
@@ -871,10 +871,10 @@ namespace SerialPortListener
         private void btMenu4_Click(object sender, EventArgs e)
         {
             btMenu4.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu5.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu5.BackColor = Color.LightPink;
 
             ucHelp.Show();
             ucTruck.Hide();
@@ -887,10 +887,10 @@ namespace SerialPortListener
         private void btMenu5_Click(object sender, EventArgs e)
         {
             btMenu5.BackColor = Color.White;
-            btMenu1.BackColor = Color.LightSkyBlue;
-            btMenu2.BackColor = Color.LightSkyBlue;
-            btMenu3.BackColor = Color.LightSkyBlue;
-            btMenu4.BackColor = Color.LightSkyBlue;
+            btMenu1.BackColor = Color.LightPink;
+            btMenu2.BackColor = Color.LightPink;
+            btMenu3.BackColor = Color.LightPink;
+            btMenu4.BackColor = Color.LightPink;
 
             ucBackup.Show();
             ucHelp.Hide();
