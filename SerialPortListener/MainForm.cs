@@ -658,27 +658,33 @@ namespace SerialPortListener
 
             try
             {
-                //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                /* เครื่องพี่จ๋า */
 
+                //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+                //ค่าบวกจับ p ค่าลบจับ r
+                var lastOperatorIndex = newString.LastIndexOfAny(new char[] { 'p', 'q' });
+                string remainingText = newString.Substring(lastOperatorIndex);
 
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                /* เครื่องพี่รุ่ง */
-                //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    //tbWeigtData.ForeColor = Color.LightGreen;
+                    if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
                     {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                        //ไม่ต้องทำไร
+                    }
+                    else if (Int32.Parse(mc[0].Value) < 10)
+                    {
+                        tbWeigtData.Text = "0";
+                        //tbWeigtData.ForeColor = Color.LightGreen;
+                    }
+                    else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    {
+                        tbWeigtData.Text = mc[0].Value;
                         //tbWeigtData.ForeColor = Color.LightCoral;
                     }
-                    else
-                    {
-                        tbWeigtData.ForeColor = Color.LightGreen;
-                    }
+
                 }
             }
             catch (Exception ex)
