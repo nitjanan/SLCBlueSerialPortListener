@@ -66,6 +66,9 @@ namespace SerialPortListener
             fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน");
             fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน");
 
+            /* autoComplete ต้นทาง */
+            fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
+
             //tabPage1
             cbbCustomerType.SelectedIndex = 0;
             cbbWeight.SelectedIndex = 0;
@@ -252,6 +255,35 @@ namespace SerialPortListener
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string des = reader[field].ToString();
+                    cbb.Items.Add(des);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            dl.close();
+        }
+
+        private void fillTableComboByWeightType(ComboBox cbb, string tableName, string field)
+        {
+            //ล้างก่อน
+            cbb.Items.Clear();
+
+            //
+            cbb.Items.Add("ทั้งหมด");
+            cbb.SelectedIndex = 0;
+
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 1 or weight_type = 3";
             try
             {
                 dl.connect();
