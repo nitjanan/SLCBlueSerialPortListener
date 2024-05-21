@@ -173,11 +173,11 @@
             this.tbData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbData.Location = new System.Drawing.Point(1139, 184);
+            this.tbData.Location = new System.Drawing.Point(1139, 205);
             this.tbData.Multiline = true;
             this.tbData.Name = "tbData";
             this.tbData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbData.Size = new System.Drawing.Size(59, 151);
+            this.tbData.Size = new System.Drawing.Size(57, 56);
             this.tbData.TabIndex = 13;
             this.tbData.Visible = false;
             // 
@@ -1332,7 +1332,6 @@
             // timerWeight
             // 
             this.timerWeight.Interval = 1000;
-            this.timerWeight.Tick += new System.EventHandler(this.timerWeight_Tick);
             // 
             // tbWeigtData
             // 
