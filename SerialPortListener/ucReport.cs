@@ -72,6 +72,8 @@ namespace SerialPortListener
             //tabPage1
             cbbCustomerType.SelectedIndex = 0;
             cbbWeight.SelectedIndex = 0;
+
+            dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
         }
 
         /*3 search anywhere customer */
@@ -188,7 +190,7 @@ namespace SerialPortListener
                 sql.Append("SELECT weight.*  FROM public.weight ");
                 if (cbbCustomerType.SelectedIndex != 0)
                     sql.Append(" INNER JOIN public.base_customer ON weight.รหัสลูกค้า = base_customer.รหัสลูกค้า ");
-                sql.Append(" WHERE วันที่ >= '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' AND  วันที่ <= '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' AND เวลาชั่งออก BETWEEN '" + dtFromOut.Value.ToString("HH:mm") + "' AND '" + dtToOut.Value.ToString("HH:mm") + "' ");
+                sql.Append(" WHERE (วันที่ = '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' and เวลาชั่งออก >= '" + dtFromOut.Value.ToString("HH:mm") + "' or วันที่  > '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "') AND (วันที่ = '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' and  เวลาชั่งออก <= '" + dtToOut.Value.ToString("HH:mm") + "' or  วันที่ < '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "') ");
                 if (cbbCustomerType.SelectedIndex != 0)
                     sql.Append(" AND base_customer.ประเภทลูกค้า = '" + getDataCustomerType(cbbCustomerType.Text) + "' ");
                 if (tbCarRegistration.Text != "")
@@ -430,7 +432,7 @@ namespace SerialPortListener
             sql.Append("SELECT weight.*  FROM public.weight ");
             if (cbbCustomerType.SelectedIndex != 0)
                 sql.Append(" INNER JOIN public.base_customer ON weight.รหัสลูกค้า = base_customer.รหัสลูกค้า ");
-            sql.Append(" WHERE วันที่ >= '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' AND  วันที่ <= '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' AND เวลาชั่งออก BETWEEN '" + dtFromOut.Value.ToString("HH:mm") + "' AND '" + dtToOut.Value.ToString("HH:mm") + "' ");
+            sql.Append(" WHERE (วันที่ = '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' and เวลาชั่งออก >= '" + dtFromOut.Value.ToString("HH:mm") + "' or วันที่  > '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "') AND (วันที่ = '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' and  เวลาชั่งออก <= '" + dtToOut.Value.ToString("HH:mm") + "' or  วันที่ < '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "') ");
             if (cbbCustomerType.SelectedIndex != 0)
                 sql.Append(" AND base_customer.ประเภทลูกค้า = '" + getDataCustomerType(cbbCustomerType.Text) + "' ");
             if (tbCarRegistration.Text != "")
@@ -1021,6 +1023,11 @@ namespace SerialPortListener
             return str;
         }
 
+        private string zeroNotEmty(string str)
+        {
+            return str == "0.00" || str == "0" ? " " : str + " (L)";
+        }
+
         private void btPrintBil_Click(object sender, EventArgs e)
         {
             if (dgvDailyReport.Rows.Count > 1)
@@ -1053,7 +1060,9 @@ namespace SerialPortListener
                 Weight.Clean = dgvDailyReport.CurrentRow.Cells["ล้าง"].Value.ToString();
                 Weight.Vat = numberFormat(dgvDailyReport.CurrentRow.Cells["vat"].Value.ToString(), 2);
                 Weight.Transport = strNotEmty(dgvDailyReport.CurrentRow.Cells["ขนส่ง"].Value.ToString());
+                Weight.OilContent = zeroNotEmty(dgvDailyReport.CurrentRow.Cells["oil_content"].Value.ToString());
 
+                Company.TLogo = "(Sandvik)";
                 Company.TTelephone = "โทร";
                 Company.TEmail = "E-mail";
 
