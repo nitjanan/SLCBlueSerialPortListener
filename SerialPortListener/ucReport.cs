@@ -1183,13 +1183,16 @@ namespace SerialPortListener
 
         private void tbbCustomerName_Leave(object sender, EventArgs e)
         {
-
+            if (tbbCustomerName.Text != "")
+            {
+                tbbFromCustomerId.Text = "";
+                tbbToCustomerId.Text = "";
+            }
         }
 
         private void tbbCustomerName_TextChanged(object sender, EventArgs e)
         {
             setCustomerNameToTextbox(tbbCustomerId, tbbCustomerName);
         }
-
     }  
 }
