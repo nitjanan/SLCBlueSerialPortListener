@@ -751,6 +751,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\refresh_32px.png" />
+    <None Include="Resources\billing_machine_32px_pink.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

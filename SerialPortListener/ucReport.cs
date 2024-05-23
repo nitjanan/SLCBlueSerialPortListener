@@ -63,7 +63,17 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCCustomerName, listOriginalCCReport);
 
-            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน");
+            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+            fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+
+            /* autoComplete ต้นทาง */
+            fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
+
+            //tabPage1
+            cbbCustomerType.SelectedIndex = 0;
+            cbbWeight.SelectedIndex = 0;
+
+            dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
         }
 
         /*3 search anywhere customer */
@@ -199,7 +209,7 @@ namespace SerialPortListener
             }
         }
 
-        private void fillTableComboByInactive(ComboBox cbb, string tableName, string field)
+        private void fillTableComboByInactive(ComboBox cbb, string tableName, string fieldName, string fieldId)
         {
             //ล้างก่อน
             cbb.Items.Clear();
@@ -210,7 +220,36 @@ namespace SerialPortListener
 
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false ";
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false order by " + fieldId;
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string des = reader[fieldName].ToString();
+                    cbb.Items.Add(des);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            dl.close();
+        }
+
+        private void fillTableComboByWeightType(ComboBox cbb, string tableName, string field)
+        {
+            //ล้างก่อน
+            cbb.Items.Clear();
+
+            //
+            cbb.Items.Add("ทั้งหมด");
+            cbb.SelectedIndex = 0;
+
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 1 or weight_type = 3";
             try
             {
                 dl.connect();
@@ -227,6 +266,7 @@ namespace SerialPortListener
             }
             dl.close();
         }
+
 
         private void fillCarTeamCombo(ComboBox cbb)
         {
