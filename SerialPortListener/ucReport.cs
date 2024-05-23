@@ -63,8 +63,8 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCCustomerName, listOriginalCCReport);
 
-            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน");
-            fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน");
+            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+            fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
 
             /* autoComplete ต้นทาง */
             fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
@@ -245,7 +245,7 @@ namespace SerialPortListener
             }
         }
 
-        private void fillTableComboByInactive(ComboBox cbb, string tableName, string field)
+        private void fillTableComboByInactive(ComboBox cbb, string tableName, string fieldName, string fieldId)
         {
             //ล้างก่อน
             cbb.Items.Clear();
@@ -256,14 +256,14 @@ namespace SerialPortListener
 
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false ";
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where inactive = false order by "+ fieldId;
             try
             {
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string des = reader[field].ToString();
+                    string des = reader[fieldName].ToString();
                     cbb.Items.Add(des);
                 }
             }
