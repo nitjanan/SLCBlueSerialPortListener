@@ -1174,12 +1174,9 @@ namespace SerialPortListener
                 tbbFromCustomerId.Text = "";
                 tbbToCustomerId.Text = "";
             }
-        }
-
-        private void tbbCustomerId_TextChanged(object sender, EventArgs e)
-        {
             setCustomerIdToTextbox(tbbCustomerId, tbbCustomerName);
         }
+
 
         private void tbbCustomerName_Leave(object sender, EventArgs e)
         {
@@ -1188,11 +1185,8 @@ namespace SerialPortListener
                 tbbFromCustomerId.Text = "";
                 tbbToCustomerId.Text = "";
             }
-        }
-
-        private void tbbCustomerName_TextChanged(object sender, EventArgs e)
-        {
             setCustomerNameToTextbox(tbbCustomerId, tbbCustomerName);
         }
+
     }  
 }
