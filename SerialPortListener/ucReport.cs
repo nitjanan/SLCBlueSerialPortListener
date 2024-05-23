@@ -69,6 +69,14 @@ namespace SerialPortListener
             /* autoComplete ต้นทาง */
             fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
 
+            /* autoComplete ลูกค้า */
+            autoCompleteSetting(tbbCustomerId, "รหัสลูกค้า", "base_customer");
+            autoCompleteSetting(tbbCustomerName, "ชื่อลูกค้า", "base_customer");
+
+            /* autoComplete ลูกค้า */
+            autoCompleteSetting(tbbFromCustomerId, "รหัสลูกค้า", "base_customer");
+            autoCompleteSetting(tbbToCustomerId, "รหัสลูกค้า", "base_customer");
+
             //tabPage1
             cbbCustomerType.SelectedIndex = 0;
             cbbWeight.SelectedIndex = 0;
@@ -126,7 +134,7 @@ namespace SerialPortListener
 
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName;
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 1 or weight_type = 3 ";
             try
             {
                 dl.connect();
