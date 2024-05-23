@@ -1033,6 +1033,7 @@ namespace SerialPortListener
 
             if (dgvDailyReport.Rows.Count > 1)
             {
+
                 preparePrint(3);
 
                 HandleSuccessfulPrint();
@@ -1086,13 +1087,11 @@ namespace SerialPortListener
 
             Company.TDocName = "เลขที่การชั่ง";
 
-            FPrint f = new FPrint();
-            f.ShowDialog();
-
         }
 
         private void HandleSuccessfulPrint()
         {
+
             int copy_num = findLastCopyByWeightId();
             copy_num++;
 
