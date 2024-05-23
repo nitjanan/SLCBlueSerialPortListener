@@ -717,7 +717,6 @@
                           </Style>
                         </Textbox>
                         <ColSpan>11</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -2899,7 +2898,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด</Value>
+                      <Value>บริษัท 39 ศิลาทอง จำกัด</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>

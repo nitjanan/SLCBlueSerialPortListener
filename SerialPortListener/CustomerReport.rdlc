@@ -1017,7 +1017,6 @@
                               <PaddingBottom>1pt</PaddingBottom>
                             </Style>
                           </Textbox>
-                          <rd:Selected>true</rd:Selected>
                         </CellContents>
                       </TablixHeader>
                       <TablixMembers>
@@ -1367,7 +1366,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
+                      <Value>บริษัท 39 ศิลาทอง จำกัด</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>

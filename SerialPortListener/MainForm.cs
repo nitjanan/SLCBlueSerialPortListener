@@ -1757,7 +1757,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = tbDocNum.Text;
+            Weight.DocNum = "T" + tbDocNum.Text;
             Weight.Mill = strNotEmty(tbMillName.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);

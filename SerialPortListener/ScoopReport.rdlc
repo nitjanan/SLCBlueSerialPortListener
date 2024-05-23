@@ -3287,10 +3287,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
+                      <Value>บริษัท 39 ศิลาทอง จำกัด</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>14pt</FontSize>
+                        <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
