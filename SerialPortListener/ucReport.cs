@@ -63,6 +63,14 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCCustomerName, listOriginalCCReport);
 
+            /* autoComplete ลูกค้า */
+            autoCompleteSetting(tbbCustomerId, "รหัสลูกค้า", "base_customer");
+            autoCompleteSetting(tbbCustomerName, "ชื่อลูกค้า", "base_customer");
+
+            /* autoComplete ลูกค้า */
+            autoCompleteSetting(tbbFromCustomerId, "รหัสลูกค้า", "base_customer");
+            autoCompleteSetting(tbbToCustomerId, "รหัสลูกค้า", "base_customer");
+
             fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
             fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
 
@@ -126,7 +134,7 @@ namespace SerialPortListener
 
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName;
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 1 or weight_type = 3 ";
             try
             {
                 dl.connect();
@@ -1174,10 +1182,6 @@ namespace SerialPortListener
                 tbbFromCustomerId.Text = "";
                 tbbToCustomerId.Text = "";
             }
-        }
-
-        private void tbbCustomerId_TextChanged(object sender, EventArgs e)
-        {
             setCustomerIdToTextbox(tbbCustomerId, tbbCustomerName);
         }
 
@@ -1188,10 +1192,6 @@ namespace SerialPortListener
                 tbbFromCustomerId.Text = "";
                 tbbToCustomerId.Text = "";
             }
-        }
-
-        private void tbbCustomerName_TextChanged(object sender, EventArgs e)
-        {
             setCustomerNameToTextbox(tbbCustomerId, tbbCustomerName);
         }
     }  

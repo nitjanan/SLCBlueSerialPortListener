@@ -64,6 +64,45 @@
             this.label44 = new System.Windows.Forms.Label();
             this.btExport = new System.Windows.Forms.Button();
             this.dgvDailyReport = new System.Windows.Forms.DataGridView();
+            this.วันที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ทะเบียนรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.จังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.คนขับ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.น้ำหนักรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.น้ำหนักรวม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.น้ำหนักสินค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.คิว = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.โรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.หน้างาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชนิดหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ประเภทหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ราคาตัน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.จำนวนเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.จำนวนเงินสุทธิ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.จ่ายเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.วันที่ชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เวลาชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.วันที่ชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เวลาชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.รหัสผู้ชั่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อผู้ชั่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.รหัสผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.รหัสผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.เลขที่ใบตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ค่าขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weight_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชนิดvat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.truckDataSet = new SerialPortListener.truckDataSet();
@@ -167,45 +206,6 @@
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.btPrintTransportByTeam = new System.Windows.Forms.Button();
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
-            this.วันที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ทะเบียนรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.คนขับ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.น้ำหนักรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.น้ำหนักรวม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.น้ำหนักสินค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.คิว = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.โรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.หน้างาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชนิดหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ประเภทหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ราคาตัน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จำนวนเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จำนวนเงินสุทธิ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.จ่ายเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.วันที่ชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เวลาชั่งเข้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.วันที่ชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เวลาชั่งออก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสผู้ชั่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้ชั่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.เลขที่ใบตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ค่าขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weight_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชนิดvat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
@@ -463,7 +463,6 @@
             this.tbbCustomerId.Name = "tbbCustomerId";
             this.tbbCustomerId.Size = new System.Drawing.Size(65, 26);
             this.tbbCustomerId.TabIndex = 55;
-            this.tbbCustomerId.TextChanged += new System.EventHandler(this.tbbCustomerId_TextChanged);
             this.tbbCustomerId.Leave += new System.EventHandler(this.tbbCustomerId_Leave);
             // 
             // tbbCustomerName
@@ -472,7 +471,6 @@
             this.tbbCustomerName.Name = "tbbCustomerName";
             this.tbbCustomerName.Size = new System.Drawing.Size(154, 26);
             this.tbbCustomerName.TabIndex = 54;
-            this.tbbCustomerName.TextChanged += new System.EventHandler(this.tbbCustomerId_TextChanged);
             this.tbbCustomerName.Leave += new System.EventHandler(this.tbbCustomerName_Leave);
             // 
             // label33
@@ -651,6 +649,244 @@
             this.dgvDailyReport.Name = "dgvDailyReport";
             this.dgvDailyReport.Size = new System.Drawing.Size(743, 307);
             this.dgvDailyReport.TabIndex = 9;
+            // 
+            // วันที่
+            // 
+            this.วันที่.DataPropertyName = "วันที่";
+            this.วันที่.HeaderText = "วันที่";
+            this.วันที่.Name = "วันที่";
+            // 
+            // เลขที่เอกสาร
+            // 
+            this.เลขที่เอกสาร.DataPropertyName = "เลขที่เอกสาร";
+            this.เลขที่เอกสาร.HeaderText = "เลขที่การชั่ง";
+            this.เลขที่เอกสาร.Name = "เลขที่เอกสาร";
+            // 
+            // รหัสลูกค้า
+            // 
+            this.รหัสลูกค้า.DataPropertyName = "รหัสลูกค้า";
+            this.รหัสลูกค้า.HeaderText = "รหัสลูกค้า";
+            this.รหัสลูกค้า.Name = "รหัสลูกค้า";
+            // 
+            // ลูกค้า
+            // 
+            this.ลูกค้า.DataPropertyName = "ลูกค้า";
+            this.ลูกค้า.HeaderText = "ลูกค้า";
+            this.ลูกค้า.Name = "ลูกค้า";
+            // 
+            // ทะเบียนรถ
+            // 
+            this.ทะเบียนรถ.DataPropertyName = "ทะเบียนรถ";
+            this.ทะเบียนรถ.HeaderText = "ทะเบียนรถ";
+            this.ทะเบียนรถ.Name = "ทะเบียนรถ";
+            // 
+            // จังหวัด
+            // 
+            this.จังหวัด.DataPropertyName = "จังหวัด";
+            this.จังหวัด.HeaderText = "จังหวัด";
+            this.จังหวัด.Name = "จังหวัด";
+            // 
+            // คนขับ
+            // 
+            this.คนขับ.DataPropertyName = "คนขับ";
+            this.คนขับ.HeaderText = "คนขับ";
+            this.คนขับ.Name = "คนขับ";
+            // 
+            // ทีม
+            // 
+            this.ทีม.DataPropertyName = "ทีม";
+            this.ทีม.HeaderText = "ทีม";
+            this.ทีม.Name = "ทีม";
+            // 
+            // น้ำหนักรถ
+            // 
+            this.น้ำหนักรถ.DataPropertyName = "น้ำหนักรถ";
+            this.น้ำหนักรถ.HeaderText = "น้ำหนักเข้า";
+            this.น้ำหนักรถ.Name = "น้ำหนักรถ";
+            // 
+            // น้ำหนักรวม
+            // 
+            this.น้ำหนักรวม.DataPropertyName = "น้ำหนักรวม";
+            this.น้ำหนักรวม.HeaderText = "น้ำหนักออก";
+            this.น้ำหนักรวม.Name = "น้ำหนักรวม";
+            // 
+            // น้ำหนักสินค้า
+            // 
+            this.น้ำหนักสินค้า.DataPropertyName = "น้ำหนักสินค้า";
+            this.น้ำหนักสินค้า.HeaderText = "น้ำหนักสุทธิ";
+            this.น้ำหนักสินค้า.Name = "น้ำหนักสินค้า";
+            // 
+            // คิว
+            // 
+            this.คิว.DataPropertyName = "คิว";
+            this.คิว.HeaderText = "น้ำหนักคิว";
+            this.คิว.Name = "คิว";
+            // 
+            // โรงโม่
+            // 
+            this.โรงโม่.DataPropertyName = "โรงโม่";
+            this.โรงโม่.HeaderText = "โรงโม่";
+            this.โรงโม่.Name = "โรงโม่";
+            // 
+            // หน้างาน
+            // 
+            this.หน้างาน.DataPropertyName = "หน้างาน";
+            this.หน้างาน.HeaderText = "หน้างาน";
+            this.หน้างาน.Name = "หน้างาน";
+            // 
+            // ชนิดหิน
+            // 
+            this.ชนิดหิน.DataPropertyName = "ชนิดหิน";
+            this.ชนิดหิน.HeaderText = "ชนิดหิน";
+            this.ชนิดหิน.Name = "ชนิดหิน";
+            // 
+            // ประเภทหิน
+            // 
+            this.ประเภทหิน.DataPropertyName = "ประเภทหิน";
+            this.ประเภทหิน.HeaderText = "ประเภทหิน";
+            this.ประเภทหิน.Name = "ประเภทหิน";
+            // 
+            // ราคาตัน
+            // 
+            this.ราคาตัน.DataPropertyName = "ราคาตัน";
+            this.ราคาตัน.HeaderText = "ราคาตัน";
+            this.ราคาตัน.Name = "ราคาตัน";
+            // 
+            // จำนวนเงิน
+            // 
+            this.จำนวนเงิน.DataPropertyName = "จำนวณเงิน";
+            this.จำนวนเงิน.HeaderText = "จำนวนเงิน";
+            this.จำนวนเงิน.Name = "จำนวนเงิน";
+            // 
+            // vat
+            // 
+            this.vat.DataPropertyName = "vat";
+            this.vat.HeaderText = "ภาษี";
+            this.vat.Name = "vat";
+            // 
+            // จำนวนเงินสุทธิ
+            // 
+            this.จำนวนเงินสุทธิ.DataPropertyName = "จำนวนเงินสุทธิ";
+            this.จำนวนเงินสุทธิ.HeaderText = "จำนวนเงินรวมภาษี";
+            this.จำนวนเงินสุทธิ.Name = "จำนวนเงินสุทธิ";
+            // 
+            // จ่ายเงิน
+            // 
+            this.จ่ายเงิน.DataPropertyName = "จ่ายเงิน";
+            this.จ่ายเงิน.HeaderText = "จ่ายเงิน";
+            this.จ่ายเงิน.Name = "จ่ายเงิน";
+            // 
+            // วันที่ชั่งเข้า
+            // 
+            this.วันที่ชั่งเข้า.DataPropertyName = "วันที่ชั่งเข้า";
+            this.วันที่ชั่งเข้า.HeaderText = "วันที่ชั่งเข้า";
+            this.วันที่ชั่งเข้า.Name = "วันที่ชั่งเข้า";
+            // 
+            // เวลาชั่งเข้า
+            // 
+            this.เวลาชั่งเข้า.DataPropertyName = "เวลาชั่งเข้า";
+            this.เวลาชั่งเข้า.HeaderText = "เวลาชั่งเข้า";
+            this.เวลาชั่งเข้า.Name = "เวลาชั่งเข้า";
+            // 
+            // วันที่ชั่งออก
+            // 
+            this.วันที่ชั่งออก.DataPropertyName = "วันที่ชั่งออก";
+            this.วันที่ชั่งออก.HeaderText = "วันที่ชั่งออก";
+            this.วันที่ชั่งออก.Name = "วันที่ชั่งออก";
+            // 
+            // เวลาชั่งออก
+            // 
+            this.เวลาชั่งออก.DataPropertyName = "เวลาชั่งออก";
+            this.เวลาชั่งออก.HeaderText = "เวลาชั่งออก";
+            this.เวลาชั่งออก.Name = "เวลาชั่งออก";
+            // 
+            // รหัสผู้ชั่ง
+            // 
+            this.รหัสผู้ชั่ง.DataPropertyName = "รหัสผู้ชั่ง";
+            this.รหัสผู้ชั่ง.HeaderText = "รหัสผู้ชั่ง";
+            this.รหัสผู้ชั่ง.Name = "รหัสผู้ชั่ง";
+            // 
+            // ชื่อผู้ชั่ง
+            // 
+            this.ชื่อผู้ชั่ง.DataPropertyName = "ชื่อผู้ชั่ง";
+            this.ชื่อผู้ชั่ง.HeaderText = "ชื่อผู้ชั่ง";
+            this.ชื่อผู้ชั่ง.Name = "ชื่อผู้ชั่ง";
+            // 
+            // รหัสผู้ตัก
+            // 
+            this.รหัสผู้ตัก.DataPropertyName = "รหัสผู้ตัก";
+            this.รหัสผู้ตัก.HeaderText = "รหัสผู้ตัก";
+            this.รหัสผู้ตัก.Name = "รหัสผู้ตัก";
+            // 
+            // ชื่อผู้ตัก
+            // 
+            this.ชื่อผู้ตัก.DataPropertyName = "ชื่อผู้ตัก";
+            this.ชื่อผู้ตัก.HeaderText = "ชื่อผู้ตัก";
+            this.ชื่อผู้ตัก.Name = "ชื่อผู้ตัก";
+            // 
+            // รหัสผู้อนุมัติจ่าย
+            // 
+            this.รหัสผู้อนุมัติจ่าย.DataPropertyName = "รหัสผู้อนุมัติจ่าย";
+            this.รหัสผู้อนุมัติจ่าย.HeaderText = "รหัสผู้อนุมัติจ่าย";
+            this.รหัสผู้อนุมัติจ่าย.Name = "รหัสผู้อนุมัติจ่าย";
+            // 
+            // ชื่อผู้อนุมัติจ่าย
+            // 
+            this.ชื่อผู้อนุมัติจ่าย.DataPropertyName = "ชื่อผู้อนุมัติจ่าย";
+            this.ชื่อผู้อนุมัติจ่าย.HeaderText = "ชื่อผู้อนุมัติจ่าย";
+            this.ชื่อผู้อนุมัติจ่าย.Name = "ชื่อผู้อนุมัติจ่าย";
+            // 
+            // เลขที่ใบตัก
+            // 
+            this.เลขที่ใบตัก.DataPropertyName = "เลขที่ใบตัก";
+            this.เลขที่ใบตัก.HeaderText = "เลขที่ใบตัก";
+            this.เลขที่ใบตัก.Name = "เลขที่ใบตัก";
+            this.เลขที่ใบตัก.Visible = false;
+            // 
+            // ค่าขนส่ง
+            // 
+            this.ค่าขนส่ง.DataPropertyName = "ค่าขนส่ง";
+            this.ค่าขนส่ง.HeaderText = "ค่าขนส่ง";
+            this.ค่าขนส่ง.Name = "ค่าขนส่ง";
+            this.ค่าขนส่ง.Visible = false;
+            // 
+            // weight_id
+            // 
+            this.weight_id.DataPropertyName = "weight_id";
+            this.weight_id.HeaderText = "weight_id";
+            this.weight_id.Name = "weight_id";
+            this.weight_id.Visible = false;
+            // 
+            // ชนิดvat
+            // 
+            this.ชนิดvat.DataPropertyName = "ชนิดvat";
+            this.ชนิดvat.HeaderText = "ชนิดvat";
+            this.ชนิดvat.Name = "ชนิดvat";
+            this.ชนิดvat.Visible = false;
+            // 
+            // ล้าง
+            // 
+            this.ล้าง.DataPropertyName = "ล้าง";
+            this.ล้าง.HeaderText = "ล้าง";
+            this.ล้าง.Name = "ล้าง";
+            // 
+            // ขนส่ง
+            // 
+            this.ขนส่ง.DataPropertyName = "ขนส่ง";
+            this.ขนส่ง.HeaderText = "ขนส่ง";
+            this.ขนส่ง.Name = "ขนส่ง";
+            // 
+            // หมายเหตุ
+            // 
+            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
+            this.หมายเหตุ.HeaderText = "หมายเหตุ";
+            this.หมายเหตุ.Name = "หมายเหตุ";
+            // 
+            // oil_content
+            // 
+            this.oil_content.DataPropertyName = "oil_content";
+            this.oil_content.HeaderText = "oil_content";
+            this.oil_content.Name = "oil_content";
             // 
             // weightBindingSource
             // 
@@ -1754,244 +1990,6 @@
             // weightTableAdapter
             // 
             this.weightTableAdapter.ClearBeforeFill = true;
-            // 
-            // วันที่
-            // 
-            this.วันที่.DataPropertyName = "วันที่";
-            this.วันที่.HeaderText = "วันที่";
-            this.วันที่.Name = "วันที่";
-            // 
-            // เลขที่เอกสาร
-            // 
-            this.เลขที่เอกสาร.DataPropertyName = "เลขที่เอกสาร";
-            this.เลขที่เอกสาร.HeaderText = "เลขที่การชั่ง";
-            this.เลขที่เอกสาร.Name = "เลขที่เอกสาร";
-            // 
-            // รหัสลูกค้า
-            // 
-            this.รหัสลูกค้า.DataPropertyName = "รหัสลูกค้า";
-            this.รหัสลูกค้า.HeaderText = "รหัสลูกค้า";
-            this.รหัสลูกค้า.Name = "รหัสลูกค้า";
-            // 
-            // ลูกค้า
-            // 
-            this.ลูกค้า.DataPropertyName = "ลูกค้า";
-            this.ลูกค้า.HeaderText = "ลูกค้า";
-            this.ลูกค้า.Name = "ลูกค้า";
-            // 
-            // ทะเบียนรถ
-            // 
-            this.ทะเบียนรถ.DataPropertyName = "ทะเบียนรถ";
-            this.ทะเบียนรถ.HeaderText = "ทะเบียนรถ";
-            this.ทะเบียนรถ.Name = "ทะเบียนรถ";
-            // 
-            // จังหวัด
-            // 
-            this.จังหวัด.DataPropertyName = "จังหวัด";
-            this.จังหวัด.HeaderText = "จังหวัด";
-            this.จังหวัด.Name = "จังหวัด";
-            // 
-            // คนขับ
-            // 
-            this.คนขับ.DataPropertyName = "คนขับ";
-            this.คนขับ.HeaderText = "คนขับ";
-            this.คนขับ.Name = "คนขับ";
-            // 
-            // ทีม
-            // 
-            this.ทีม.DataPropertyName = "ทีม";
-            this.ทีม.HeaderText = "ทีม";
-            this.ทีม.Name = "ทีม";
-            // 
-            // น้ำหนักรถ
-            // 
-            this.น้ำหนักรถ.DataPropertyName = "น้ำหนักรถ";
-            this.น้ำหนักรถ.HeaderText = "น้ำหนักเข้า";
-            this.น้ำหนักรถ.Name = "น้ำหนักรถ";
-            // 
-            // น้ำหนักรวม
-            // 
-            this.น้ำหนักรวม.DataPropertyName = "น้ำหนักรวม";
-            this.น้ำหนักรวม.HeaderText = "น้ำหนักออก";
-            this.น้ำหนักรวม.Name = "น้ำหนักรวม";
-            // 
-            // น้ำหนักสินค้า
-            // 
-            this.น้ำหนักสินค้า.DataPropertyName = "น้ำหนักสินค้า";
-            this.น้ำหนักสินค้า.HeaderText = "น้ำหนักสุทธิ";
-            this.น้ำหนักสินค้า.Name = "น้ำหนักสินค้า";
-            // 
-            // คิว
-            // 
-            this.คิว.DataPropertyName = "คิว";
-            this.คิว.HeaderText = "น้ำหนักคิว";
-            this.คิว.Name = "คิว";
-            // 
-            // โรงโม่
-            // 
-            this.โรงโม่.DataPropertyName = "โรงโม่";
-            this.โรงโม่.HeaderText = "โรงโม่";
-            this.โรงโม่.Name = "โรงโม่";
-            // 
-            // หน้างาน
-            // 
-            this.หน้างาน.DataPropertyName = "หน้างาน";
-            this.หน้างาน.HeaderText = "หน้างาน";
-            this.หน้างาน.Name = "หน้างาน";
-            // 
-            // ชนิดหิน
-            // 
-            this.ชนิดหิน.DataPropertyName = "ชนิดหิน";
-            this.ชนิดหิน.HeaderText = "ชนิดหิน";
-            this.ชนิดหิน.Name = "ชนิดหิน";
-            // 
-            // ประเภทหิน
-            // 
-            this.ประเภทหิน.DataPropertyName = "ประเภทหิน";
-            this.ประเภทหิน.HeaderText = "ประเภทหิน";
-            this.ประเภทหิน.Name = "ประเภทหิน";
-            // 
-            // ราคาตัน
-            // 
-            this.ราคาตัน.DataPropertyName = "ราคาตัน";
-            this.ราคาตัน.HeaderText = "ราคาตัน";
-            this.ราคาตัน.Name = "ราคาตัน";
-            // 
-            // จำนวนเงิน
-            // 
-            this.จำนวนเงิน.DataPropertyName = "จำนวณเงิน";
-            this.จำนวนเงิน.HeaderText = "จำนวนเงิน";
-            this.จำนวนเงิน.Name = "จำนวนเงิน";
-            // 
-            // vat
-            // 
-            this.vat.DataPropertyName = "vat";
-            this.vat.HeaderText = "ภาษี";
-            this.vat.Name = "vat";
-            // 
-            // จำนวนเงินสุทธิ
-            // 
-            this.จำนวนเงินสุทธิ.DataPropertyName = "จำนวนเงินสุทธิ";
-            this.จำนวนเงินสุทธิ.HeaderText = "จำนวนเงินรวมภาษี";
-            this.จำนวนเงินสุทธิ.Name = "จำนวนเงินสุทธิ";
-            // 
-            // จ่ายเงิน
-            // 
-            this.จ่ายเงิน.DataPropertyName = "จ่ายเงิน";
-            this.จ่ายเงิน.HeaderText = "จ่ายเงิน";
-            this.จ่ายเงิน.Name = "จ่ายเงิน";
-            // 
-            // วันที่ชั่งเข้า
-            // 
-            this.วันที่ชั่งเข้า.DataPropertyName = "วันที่ชั่งเข้า";
-            this.วันที่ชั่งเข้า.HeaderText = "วันที่ชั่งเข้า";
-            this.วันที่ชั่งเข้า.Name = "วันที่ชั่งเข้า";
-            // 
-            // เวลาชั่งเข้า
-            // 
-            this.เวลาชั่งเข้า.DataPropertyName = "เวลาชั่งเข้า";
-            this.เวลาชั่งเข้า.HeaderText = "เวลาชั่งเข้า";
-            this.เวลาชั่งเข้า.Name = "เวลาชั่งเข้า";
-            // 
-            // วันที่ชั่งออก
-            // 
-            this.วันที่ชั่งออก.DataPropertyName = "วันที่ชั่งออก";
-            this.วันที่ชั่งออก.HeaderText = "วันที่ชั่งออก";
-            this.วันที่ชั่งออก.Name = "วันที่ชั่งออก";
-            // 
-            // เวลาชั่งออก
-            // 
-            this.เวลาชั่งออก.DataPropertyName = "เวลาชั่งออก";
-            this.เวลาชั่งออก.HeaderText = "เวลาชั่งออก";
-            this.เวลาชั่งออก.Name = "เวลาชั่งออก";
-            // 
-            // รหัสผู้ชั่ง
-            // 
-            this.รหัสผู้ชั่ง.DataPropertyName = "รหัสผู้ชั่ง";
-            this.รหัสผู้ชั่ง.HeaderText = "รหัสผู้ชั่ง";
-            this.รหัสผู้ชั่ง.Name = "รหัสผู้ชั่ง";
-            // 
-            // ชื่อผู้ชั่ง
-            // 
-            this.ชื่อผู้ชั่ง.DataPropertyName = "ชื่อผู้ชั่ง";
-            this.ชื่อผู้ชั่ง.HeaderText = "ชื่อผู้ชั่ง";
-            this.ชื่อผู้ชั่ง.Name = "ชื่อผู้ชั่ง";
-            // 
-            // รหัสผู้ตัก
-            // 
-            this.รหัสผู้ตัก.DataPropertyName = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.HeaderText = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.Name = "รหัสผู้ตัก";
-            // 
-            // ชื่อผู้ตัก
-            // 
-            this.ชื่อผู้ตัก.DataPropertyName = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.HeaderText = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.Name = "ชื่อผู้ตัก";
-            // 
-            // รหัสผู้อนุมัติจ่าย
-            // 
-            this.รหัสผู้อนุมัติจ่าย.DataPropertyName = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.HeaderText = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.Name = "รหัสผู้อนุมัติจ่าย";
-            // 
-            // ชื่อผู้อนุมัติจ่าย
-            // 
-            this.ชื่อผู้อนุมัติจ่าย.DataPropertyName = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.HeaderText = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.Name = "ชื่อผู้อนุมัติจ่าย";
-            // 
-            // เลขที่ใบตัก
-            // 
-            this.เลขที่ใบตัก.DataPropertyName = "เลขที่ใบตัก";
-            this.เลขที่ใบตัก.HeaderText = "เลขที่ใบตัก";
-            this.เลขที่ใบตัก.Name = "เลขที่ใบตัก";
-            this.เลขที่ใบตัก.Visible = false;
-            // 
-            // ค่าขนส่ง
-            // 
-            this.ค่าขนส่ง.DataPropertyName = "ค่าขนส่ง";
-            this.ค่าขนส่ง.HeaderText = "ค่าขนส่ง";
-            this.ค่าขนส่ง.Name = "ค่าขนส่ง";
-            this.ค่าขนส่ง.Visible = false;
-            // 
-            // weight_id
-            // 
-            this.weight_id.DataPropertyName = "weight_id";
-            this.weight_id.HeaderText = "weight_id";
-            this.weight_id.Name = "weight_id";
-            this.weight_id.Visible = false;
-            // 
-            // ชนิดvat
-            // 
-            this.ชนิดvat.DataPropertyName = "ชนิดvat";
-            this.ชนิดvat.HeaderText = "ชนิดvat";
-            this.ชนิดvat.Name = "ชนิดvat";
-            this.ชนิดvat.Visible = false;
-            // 
-            // ล้าง
-            // 
-            this.ล้าง.DataPropertyName = "ล้าง";
-            this.ล้าง.HeaderText = "ล้าง";
-            this.ล้าง.Name = "ล้าง";
-            // 
-            // ขนส่ง
-            // 
-            this.ขนส่ง.DataPropertyName = "ขนส่ง";
-            this.ขนส่ง.HeaderText = "ขนส่ง";
-            this.ขนส่ง.Name = "ขนส่ง";
-            // 
-            // หมายเหตุ
-            // 
-            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
-            this.หมายเหตุ.HeaderText = "หมายเหตุ";
-            this.หมายเหตุ.Name = "หมายเหตุ";
-            // 
-            // oil_content
-            // 
-            this.oil_content.DataPropertyName = "oil_content";
-            this.oil_content.HeaderText = "oil_content";
-            this.oil_content.Name = "oil_content";
             // 
             // ucReport
             // 
