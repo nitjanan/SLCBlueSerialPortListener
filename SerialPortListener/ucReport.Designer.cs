@@ -203,6 +203,8 @@
             this.weight_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ชนิดvat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -641,6 +643,8 @@
             this.weight_id,
             this.ชนิดvat,
             this.ล้าง,
+            this.ขนส่ง,
+            this.หมายเหตุ,
             this.oil_content});
             this.dgvDailyReport.DataSource = this.weightBindingSource;
             this.dgvDailyReport.Location = new System.Drawing.Point(6, 111);
@@ -1971,6 +1975,18 @@
             this.ล้าง.HeaderText = "ล้าง";
             this.ล้าง.Name = "ล้าง";
             // 
+            // ขนส่ง
+            // 
+            this.ขนส่ง.DataPropertyName = "ขนส่ง";
+            this.ขนส่ง.HeaderText = "ขนส่ง";
+            this.ขนส่ง.Name = "ขนส่ง";
+            // 
+            // หมายเหตุ
+            // 
+            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
+            this.หมายเหตุ.HeaderText = "หมายเหตุ";
+            this.หมายเหตุ.Name = "หมายเหตุ";
+            // 
             // oil_content
             // 
             this.oil_content.DataPropertyName = "oil_content";
@@ -2197,6 +2213,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn weight_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ชนิดvat;
         private System.Windows.Forms.DataGridViewTextBoxColumn ล้าง;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ขนส่ง;
+        private System.Windows.Forms.DataGridViewTextBoxColumn หมายเหตุ;
         private System.Windows.Forms.DataGridViewTextBoxColumn oil_content;
     }
 }
