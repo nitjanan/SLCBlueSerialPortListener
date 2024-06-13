@@ -1033,12 +1033,12 @@ namespace SerialPortListener
 
         private string zeroNotEmty(string str)
         {
-            return str == "0.00" || str == "0" ? " " : str + " (L)";
+            return str == "0.00" || str == "0" ? " " : numberFormat(str, 2) + " (L)";
         }
 
         private void btPrintBil_Click(object sender, EventArgs e)
         {
-
+              
             if (dgvDailyReport.Rows.Count > 1)
             {
 
@@ -1047,7 +1047,7 @@ namespace SerialPortListener
                 HandleSuccessfulPrint();
 
                 FPrint f = new FPrint();
-                f.ShowDialog();
+                f.ShowDialog(); 
 
             }
             else
@@ -1066,7 +1066,7 @@ namespace SerialPortListener
             Weight.Date = dgvDailyReport.CurrentRow.Cells["วันที่"].Value.ToString();
             Weight.DriverName = strNotEmty(dgvDailyReport.CurrentRow.Cells["คนขับ"].Value.ToString());
             Weight.Mill = strNotEmty(dgvDailyReport.CurrentRow.Cells["โรงโม่"].Value.ToString());
-            Weight.Pay = dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value.ToString();
+            Weight.Pay = strNotEmty(dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value.ToString());
             Weight.Price = numberFormat(dgvDailyReport.CurrentRow.Cells["ราคาตัน"].Value.ToString(), 2);
             Weight.StoneType = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชนิดหิน"].Value.ToString());
             Weight.WeightIn = dgvDailyReport.CurrentRow.Cells["น้ำหนักรถ"].Value.ToString();
