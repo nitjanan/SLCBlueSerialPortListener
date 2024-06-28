@@ -665,6 +665,8 @@ namespace SerialPortListener
             tbData.AppendText(str);
             tbData.ScrollToCaret();
 
+            /* เครื่องแม่ขาออก
+
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
@@ -695,6 +697,7 @@ namespace SerialPortListener
             {
 
             }
+            */
 
 
         }
