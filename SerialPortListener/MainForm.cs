@@ -178,8 +178,8 @@ namespace SerialPortListener
             dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
             dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
-            rbbNonVat.Checked = false;
-            rbbVat.Checked = true;
+            rbbNonVat.Checked = true;
+            rbbVat.Checked = false;
             rbCleanStone.Checked = false;
             rbCleanWater.Checked = false;
             rbCleanNo.Checked = false;
@@ -660,14 +660,13 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
-                /*
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
+
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("kg"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
 
                 /* เครื่องพี่รุ่ง */
-                MatchCollection mc = Regex.Matches(str, @"\d+");
+                //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
@@ -682,10 +681,10 @@ namespace SerialPortListener
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
-
 
         }
 
@@ -1718,17 +1717,18 @@ namespace SerialPortListener
 
         private void tbPricePerTon_TextChanged(object sender, EventArgs e)
         {
-            calculateAmount();
+            //calculateAmount();
             calculateVat();
         }
         private void tbWeightTotal_TextChanged(object sender, EventArgs e)
         {
-            calculateAmount();
+            //calculateAmount();
             calculateVat();
             if (cbbStoneType.SelectedIndex != -1)
                 calculatenumQ();
         }
 
+        //ไม่ใช้แล้ว 03-09-2024 เนื่องจากมีการคำนวน vat (รวมภาษี) แบบใหม่ 
         private void calculateAmount() {
             try {
                 double total = 0;
@@ -1745,6 +1745,25 @@ namespace SerialPortListener
             catch (Exception ex) {
                 //MessageBox.Show(ex.ToString());
             }
+        }
+
+        private double getAmount()
+        {
+            double amount = 0;
+            try
+            {
+                double total = 0;
+                total = Convert.ToDouble(tbWeightTotal.Text);
+                double price = 0;
+                price = Convert.ToDouble(tbPricePerTon.Text);
+                amount = (total / 1000) * price;
+                tbAmount.Text = amount.ToString("#,##0.00");
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+            }
+            return amount;
         }
 
         private void calculatenumQ() {
@@ -1989,7 +2008,20 @@ namespace SerialPortListener
         private void rbbNonVat_CheckedChanged(object sender, EventArgs e)
         {
             if (rbbNonVat.Checked)
-                tbAmountVat.Text = tbAmount.Text;
+            {
+                try
+                {
+                    double tempAmount = getAmount();
+                    double vat = tempAmount - (tempAmount / 107) * 100;
+                    tbVat.Text = vat.ToString("#,##0.00");
+                    double total = tempAmount - vat;
+                    tbAmount.Text = total.ToString("#,##0.00");
+                    tbAmountVat.Text = tempAmount.ToString("#,##0.00");
+                }
+                catch (Exception ec)
+                {
+                }
+            }
         }
 
         private void rbbVat_CheckedChanged(object sender, EventArgs e)
@@ -1998,40 +2030,49 @@ namespace SerialPortListener
             {
                 try
                 {
-                    double tempAmount = Convert.ToDouble(tbAmount.Text);
+                    double tempAmount = getAmount();
                     double vat = (tempAmount * 7.0) / 100;
                     tbVat.Text = vat.ToString("#,##0.00");
                     double total = tempAmount + vat;
+                    tbAmount.Text = tempAmount.ToString("#,##0.00");
                     tbAmountVat.Text = total.ToString("#,##0.00");
                 }
                 catch (Exception ec)
                 {
 
                 }
-            }
-            else {
-                tbVat.Text = "0.00";
             }
         }
 
         private void calculateVat() {
+            double tempAmount = getAmount();
             if (rbbVat.Checked)
             {
                 try
                 {
-                    double tempAmount = Convert.ToDouble(tbAmount.Text);
                     double vat = (tempAmount * 7.0) / 100;
                     tbVat.Text = vat.ToString("#,##0.00");
                     double total = tempAmount + vat;
+                    tbAmount.Text = tempAmount.ToString("#,##0.00");
                     tbAmountVat.Text = total.ToString("#,##0.00");
                 }
                 catch (Exception ec)
                 {
                 }
-            } else if (rbbNonVat.Checked)
+            }
+            else if (rbbNonVat.Checked)
             {
-                tbAmountVat.Text = tbAmount.Text;
-                tbVat.Text = "0.00";
+                try
+                {
+                    double vat = tempAmount - (tempAmount / 107) * 100;
+                    tbVat.Text = vat.ToString("#,##0.00");
+                    double total = tempAmount - vat;
+                    tbAmount.Text = total.ToString("#,##0.00");
+                    tbAmountVat.Text = tempAmount.ToString("#,##0.00");
+                }
+                catch (Exception ec)
+                {
+                }
             }
         }
 
