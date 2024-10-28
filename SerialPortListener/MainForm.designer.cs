@@ -418,6 +418,7 @@
             // 
             this.dtWeightInDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightInDate.CustomFormat = "dd-MM-yyyy";
+            this.dtWeightInDate.Enabled = false;
             this.dtWeightInDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtWeightInDate.Location = new System.Drawing.Point(150, 33);
@@ -429,6 +430,7 @@
             // 
             this.dtWeightOutDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightOutDate.CustomFormat = "dd-MM-yyyy";
+            this.dtWeightOutDate.Enabled = false;
             this.dtWeightOutDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtWeightOutDate.Location = new System.Drawing.Point(150, 72);
@@ -468,6 +470,7 @@
             // 
             this.dtWeightInTime.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightInTime.CustomFormat = "HH:mm";
+            this.dtWeightInTime.Enabled = false;
             this.dtWeightInTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightInTime.Location = new System.Drawing.Point(302, 33);
@@ -480,6 +483,7 @@
             // 
             this.dtWeightOutTime.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightOutTime.CustomFormat = "HH:mm";
+            this.dtWeightOutTime.Enabled = false;
             this.dtWeightOutTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightOutTime.Location = new System.Drawing.Point(302, 72);

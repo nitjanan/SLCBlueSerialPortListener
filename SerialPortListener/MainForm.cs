@@ -738,10 +738,12 @@ namespace SerialPortListener
                 tbCarCity.Enabled = true;
 
                 tbCarCity.Enabled = true;
+                /*
                 dtWeightInDate.Enabled = true;
                 dtWeightInTime.Enabled = true;
                 dtWeightOutDate.Enabled = true;
                 dtWeightOutTime.Enabled = true;
+                */
             }
             else if (mode.Equals(1))// weight in
             {
