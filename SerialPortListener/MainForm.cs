@@ -237,9 +237,7 @@ namespace SerialPortListener
 
         private void generateNewSeqNumber() {
             string todayYear = DateTime.Now.ToString("yyyy");
-            string todayThaiShortYear = (Convert.ToInt32(todayYear) + 543).ToString().Substring(2); //เพิ่ม Thai year
-
-            string runningNumber = todayThaiShortYear + "000000";
+            string runningNumber = "000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO public.seq_doc_num (run_number, run_year) " +
                     "VALUES ('" + runningNumber + "', '" + todayYear + "') ";
