@@ -61,6 +61,7 @@ namespace SerialPortListener
             public String stoneTypeId;
             public String millId;
             public String carTeamId;
+            public String vat;
         }
         public TableFromDB(MainForm parent)
         {
@@ -199,6 +200,7 @@ namespace SerialPortListener
                 data.stoneTypeId = tableDataFromDB.CurrentRow.Cells["stone_type_id"].Value.ToString();
                 data.millId = tableDataFromDB.CurrentRow.Cells["mill_id"].Value.ToString();
                 data.carTeamId = tableDataFromDB.CurrentRow.Cells["car_team_id"].Value.ToString();
+                data.vat = tableDataFromDB.CurrentRow.Cells["vat"].Value.ToString();
 
 
                 //set Mode Weight
