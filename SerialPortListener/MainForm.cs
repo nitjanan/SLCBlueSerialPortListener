@@ -369,6 +369,7 @@ namespace SerialPortListener
             tbPricePerTon.Text = numberFormat(data.pricePerTon, 2);
             tbAmountVat.Text = numberFormat(data.amountVat, 2);
             tbAmount.Text = numberFormat(data.amount, 2);
+            tbVat.Text = numberFormat(data.vat, 2);
             tbShipCost.Text = data.shipCost;
             dtWeightInDate.Text = data.weightInDate;
             dtWeightInTime.Text = data.weightInTime;
