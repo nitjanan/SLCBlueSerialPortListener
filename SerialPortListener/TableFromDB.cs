@@ -62,6 +62,7 @@ namespace SerialPortListener
             public String millId;
             public String carTeamId;
             public String isS;
+            public String vat;
         }
         public TableFromDB(MainForm parent)
         {
@@ -201,6 +202,7 @@ namespace SerialPortListener
                 data.millId = tableDataFromDB.CurrentRow.Cells["mill_id"].Value.ToString();
                 data.carTeamId = tableDataFromDB.CurrentRow.Cells["car_team_id"].Value.ToString();
                 data.isS = tableDataFromDB.CurrentRow.Cells["is_s"].Value.ToString();
+                data.vat = tableDataFromDB.CurrentRow.Cells["vat"].Value.ToString();
 
 
                 //set Mode Weight
