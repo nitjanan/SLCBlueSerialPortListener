@@ -1735,6 +1735,7 @@
             this.tbMillId.Name = "tbMillId";
             this.tbMillId.Size = new System.Drawing.Size(10, 27);
             this.tbMillId.TabIndex = 142;
+            this.tbMillId.Visible = false;
             this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
             // 
             // tbMillName
@@ -1746,6 +1747,7 @@
             this.tbMillName.Name = "tbMillName";
             this.tbMillName.Size = new System.Drawing.Size(10, 27);
             this.tbMillName.TabIndex = 143;
+            this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
             // 
             // MainForm
