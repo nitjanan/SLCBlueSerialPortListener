@@ -1071,6 +1071,8 @@
             // 
             this.cbbStoneType.AccessibleName = "ชนิดหิน";
             this.cbbStoneType.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbbStoneType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbStoneType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbStoneType.DropDownHeight = 300;
             this.cbbStoneType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbStoneType.FormattingEnabled = true;
@@ -1498,6 +1500,8 @@
             // 
             this.cbbMill.AccessibleName = "โรงโม่";
             this.cbbMill.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbbMill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbMill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbMill.DropDownHeight = 300;
             this.cbbMill.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbMill.FormattingEnabled = true;
@@ -1508,11 +1512,10 @@
             "โรงโม่ 2",
             "โรงโม่ 3",
             "Sandvik"});
-            this.cbbMill.Location = new System.Drawing.Point(1139, 425);
+            this.cbbMill.Location = new System.Drawing.Point(370, 273);
             this.cbbMill.Name = "cbbMill";
-            this.cbbMill.Size = new System.Drawing.Size(57, 29);
+            this.cbbMill.Size = new System.Drawing.Size(337, 29);
             this.cbbMill.TabIndex = 126;
-            this.cbbMill.Visible = false;
             // 
             // cbbCustomerName
             // 
@@ -1728,9 +1731,9 @@
             this.tbMillId.AccessibleName = "รหัสผู้ตัก";
             this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(370, 272);
+            this.tbMillId.Location = new System.Drawing.Point(1157, 565);
             this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(88, 27);
+            this.tbMillId.Size = new System.Drawing.Size(10, 27);
             this.tbMillId.TabIndex = 142;
             this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
             // 
@@ -1739,9 +1742,9 @@
             this.tbMillName.AccessibleName = "ผู้ตัก";
             this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(464, 272);
+            this.tbMillName.Location = new System.Drawing.Point(1173, 564);
             this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(243, 27);
+            this.tbMillName.Size = new System.Drawing.Size(10, 27);
             this.tbMillName.TabIndex = 143;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
             // 
