@@ -1745,25 +1745,6 @@ namespace SerialPortListener
             return amount;
         }
 
-        private double getAmount()
-        {
-            double amount = 0;
-            try
-            {
-                double total = 0;
-                total = Convert.ToDouble(tbWeightTotal.Text);
-                double price = 0;
-                price = Convert.ToDouble(tbPricePerTon.Text);
-                amount = (total / 1000) * price;
-                tbAmount.Text = amount.ToString("#,##0.00");
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.ToString());
-            }
-            return amount;
-        }
-
         private void calculatenumQ()
         {
             try
@@ -2070,10 +2051,9 @@ namespace SerialPortListener
                     tbAmount.Text = total.ToString("#,##0.00");
                     tbAmountVat.Text = tempAmount.ToString("#,##0.00");
                 }
-            } else if (rbbNonVat.Checked)
-            {
-                tbAmountVat.Text = tbAmount.Text;
-                tbVat.Text = "0.00";
+                catch (Exception ec)
+                {
+                }
             }
         }
 
