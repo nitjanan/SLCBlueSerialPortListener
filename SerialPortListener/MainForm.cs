@@ -2067,9 +2067,6 @@ namespace SerialPortListener
 
                 }
             }
-            else {
-                tbVat.Text = "0.00";
-            }
         }
 
         private void calculateVat() {
@@ -2098,10 +2095,9 @@ namespace SerialPortListener
                     tbAmount.Text = total.ToString("#,##0.00");
                     tbAmountVat.Text = tempAmount.ToString("#,##0.00");
                 }
-            } else if (rbbNonVat.Checked)
-            {
-                tbAmountVat.Text = tbAmount.Text;
-                tbVat.Text = "0.00";
+                catch (Exception ec)
+                {
+                }
             }
         }
 
