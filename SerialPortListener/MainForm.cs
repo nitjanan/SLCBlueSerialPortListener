@@ -675,7 +675,7 @@ namespace SerialPortListener
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KN"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
+
 
                 /* เครื่องพี่รุ่ง */
                 //MatchCollection mc = Regex.Matches(str, @"\d+");
@@ -1170,7 +1170,6 @@ namespace SerialPortListener
         private string getComboboxId(ComboBox cbb)
         {
             string tmp = "";
-
             try
             {
                 if (cbb.SelectedIndex > -1)
