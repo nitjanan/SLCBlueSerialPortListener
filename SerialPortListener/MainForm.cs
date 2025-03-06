@@ -676,10 +676,6 @@ namespace SerialPortListener
                 string remainingText = newString.Substring(lastOperatorIndex);
 
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
-
-                /* เครื่องพี่รุ่ง */
-                MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
