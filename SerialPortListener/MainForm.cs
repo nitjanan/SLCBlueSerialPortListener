@@ -675,7 +675,6 @@ namespace SerialPortListener
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("kg"));
                 string remainingText = newString.Substring(newString.LastIndexOf("\r"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
 
                 /* เครื่องพี่รุ่ง */
                 //MatchCollection mc = Regex.Matches(str, @"\d+");
@@ -2089,10 +2088,9 @@ namespace SerialPortListener
                     tbAmount.Text = total.ToString("#,##0.00");
                     tbAmountVat.Text = tempAmount.ToString("#,##0.00");
                 }
-            } else if (rbbNonVat.Checked)
-            {
-                tbAmountVat.Text = tbAmount.Text;
-                tbVat.Text = "0.00";
+                catch (Exception ec)
+                {
+                }
             }
         }
 
