@@ -2764,10 +2764,45 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
+              <Textbox Name="PPay2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!POilContent.Value</Value>
+                        <Style>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>PPay</rd:DefaultName>
+                <Top>3.58933in</Top>
+                <Left>3.67272in</Left>
+                <Height>0.25in</Height>
+                <Width>0.73573in</Width>
+                <ZIndex>88</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Height>11.7856cm</Height>
-            <Width>18.42069cm</Width>
+            <Width>18.47454cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
