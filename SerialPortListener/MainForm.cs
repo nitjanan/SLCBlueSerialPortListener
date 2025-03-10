@@ -676,15 +676,17 @@ namespace SerialPortListener
             tbData.AppendText(str);
             tbData.ScrollToCaret();
 
+            /*
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-
+                //JOB ขาออก (เครื่องแม่)
                 //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
                 //string remainingText = newString.Substring(newString.LastIndexOf("q"));
 
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("p"));
+                //JOB ล่างสุด
+                //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
+                //string remainingText = newString.Substring(newString.LastIndexOf("p"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
                 if (mc.Count > 0)
@@ -709,9 +711,9 @@ namespace SerialPortListener
             {
 
             }
+            */
 
-
-            /*
+            
             // JOB ขาเข้า
             try
             {
@@ -743,7 +745,6 @@ namespace SerialPortListener
 
             }
 
-            */
         }
 
         // Handles the "Start Listening"-buttom click event
