@@ -668,10 +668,11 @@ namespace SerialPortListener
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-
+                //JOB ขาออก (เครื่องแม่)
                 //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
                 //string remainingText = newString.Substring(newString.LastIndexOf("q"));
 
+                //JOB ล่างสุด
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
                 string remainingText = newString.Substring(newString.LastIndexOf("p"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
