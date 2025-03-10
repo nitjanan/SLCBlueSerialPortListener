@@ -2073,9 +2073,6 @@ namespace SerialPortListener
 
                 }
             }
-            else {
-                tbVat.Text = "0.00";
-            }
         }
 
         private void calculateVat() {
