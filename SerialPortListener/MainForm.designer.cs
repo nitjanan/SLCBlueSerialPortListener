@@ -142,19 +142,19 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.cbbCarTeam = new System.Windows.Forms.ComboBox();
-            this.ucSetting = new SerialPortListener.ucSetting();
-            this.ucReport = new SerialPortListener.ucReport();
-            this.ucHelp = new SerialPortListener.ucHelp();
-            this.ucBackup = new SerialPortListener.ucBackup();
             this.btRefresh = new System.Windows.Forms.Button();
             this.btPrintAll = new System.Windows.Forms.Button();
             this.btPrintOut = new System.Windows.Forms.Button();
             this.btPrintIn = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
-            this.ucTruck = new SerialPortListener.ucTruck();
-            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbMillId = new System.Windows.Forms.TextBox();
             this.tbMillName = new System.Windows.Forms.TextBox();
+            this.ucTruck = new SerialPortListener.ucTruck();
+            this.ucSetting = new SerialPortListener.ucSetting();
+            this.ucReport = new SerialPortListener.ucReport();
+            this.ucHelp = new SerialPortListener.ucHelp();
+            this.ucBackup = new SerialPortListener.ucBackup();
+            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -1081,6 +1081,7 @@
             this.cbbStoneType.Size = new System.Drawing.Size(337, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
+            this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
             // 
             // groupBox1
             // 
@@ -1472,6 +1473,7 @@
             this.cbbMill.Name = "cbbMill";
             this.cbbMill.Size = new System.Drawing.Size(337, 29);
             this.cbbMill.TabIndex = 126;
+            this.cbbMill.Leave += new System.EventHandler(this.cbbMill_Leave);
             // 
             // cbbCustomerName
             // 
@@ -1523,6 +1525,7 @@
             this.cbbSite.Name = "cbbSite";
             this.cbbSite.Size = new System.Drawing.Size(236, 29);
             this.cbbSite.TabIndex = 130;
+            this.cbbSite.Leave += new System.EventHandler(this.cbbSite_Leave);
             // 
             // tbOilContent
             // 
@@ -1574,49 +1577,6 @@
             this.cbbCarTeam.Name = "cbbCarTeam";
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
-            // 
-            // ucSetting
-            // 
-            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSetting.Location = new System.Drawing.Point(0, 0);
-            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSetting.Name = "ucSetting";
-            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
-            this.ucSetting.TabIndex = 21;
-            // 
-            // ucReport
-            // 
-            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
-            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReport.Location = new System.Drawing.Point(0, 0);
-            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
-            this.ucReport.Name = "ucReport";
-            this.ucReport.Size = new System.Drawing.Size(1208, 686);
-            this.ucReport.TabIndex = 20;
-            this.ucReport.Visible = false;
-            // 
-            // ucHelp
-            // 
-            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
-            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucHelp.Location = new System.Drawing.Point(0, 0);
-            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.ucHelp.Name = "ucHelp";
-            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
-            this.ucHelp.TabIndex = 19;
-            this.ucHelp.Visible = false;
-            // 
-            // ucBackup
-            // 
-            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
-            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucBackup.Location = new System.Drawing.Point(0, 0);
-            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
-            this.ucBackup.Name = "ucBackup";
-            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
-            this.ucBackup.TabIndex = 108;
             // 
             // btRefresh
             // 
@@ -1696,23 +1656,6 @@
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
-            // ucTruck
-            // 
-            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
-            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
-            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTruck.Location = new System.Drawing.Point(0, 0);
-            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
-            this.ucTruck.Name = "ucTruck";
-            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
-            this.ucTruck.TabIndex = 22;
-            // 
-            // serialSettingsBindingSource
-            // 
-            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
             // tbMillId
             // 
             this.tbMillId.AccessibleName = "รหัสผู้ตัก";
@@ -1736,6 +1679,66 @@
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            // 
+            // ucTruck
+            // 
+            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
+            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
+            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucTruck.Location = new System.Drawing.Point(0, 0);
+            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
+            this.ucTruck.Name = "ucTruck";
+            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
+            this.ucTruck.TabIndex = 22;
+            // 
+            // ucSetting
+            // 
+            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSetting.Location = new System.Drawing.Point(0, 0);
+            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.ucSetting.Name = "ucSetting";
+            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
+            this.ucSetting.TabIndex = 21;
+            // 
+            // ucReport
+            // 
+            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
+            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucReport.Location = new System.Drawing.Point(0, 0);
+            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
+            this.ucReport.Name = "ucReport";
+            this.ucReport.Size = new System.Drawing.Size(1208, 686);
+            this.ucReport.TabIndex = 20;
+            this.ucReport.Visible = false;
+            // 
+            // ucHelp
+            // 
+            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
+            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucHelp.Location = new System.Drawing.Point(0, 0);
+            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
+            this.ucHelp.Name = "ucHelp";
+            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
+            this.ucHelp.TabIndex = 19;
+            this.ucHelp.Visible = false;
+            // 
+            // ucBackup
+            // 
+            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
+            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucBackup.Location = new System.Drawing.Point(0, 0);
+            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
+            this.ucBackup.Name = "ucBackup";
+            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
+            this.ucBackup.TabIndex = 108;
+            // 
+            // serialSettingsBindingSource
+            // 
+            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
             // MainForm
             // 
