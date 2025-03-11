@@ -3042,5 +3042,79 @@ namespace SerialPortListener
             }
         }
 
+        private void cbbStoneType_Leave(object sender, EventArgs e)
+        {
+            if (cbbStoneType != null && cbbStoneType.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT * FROM public.base_stone_type where inactive = false and ชื่อหิน = '" + cbbStoneType.Text + "' ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        cbbStoneType.Text = "";
+                        MessageBox.Show("ไม่มีข้อมูลชนิดหินนี้ในระบบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+        }
+
+        private void cbbMill_Leave(object sender, EventArgs e)
+        {
+            if (cbbMill != null && cbbMill.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = '" + cbbMill.Text + "' ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        cbbMill.Text = "";
+                        MessageBox.Show("ไม่มีข้อมูลต้นทางนี้ในระบบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+        }
+
+        private void cbbSite_Leave(object sender, EventArgs e)
+        {
+            if (cbbSite != null && cbbSite.Text != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT * FROM public.base_site where (weight_type = 1 or weight_type = 3) and base_site_name = '" + cbbSite.Text + "' ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        cbbSite.Text = "";
+                        MessageBox.Show("ไม่มีข้อมูลปลายทางนี้ในระบบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+        }
     }
 }
