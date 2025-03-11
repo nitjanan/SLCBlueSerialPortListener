@@ -1086,6 +1086,7 @@
             this.cbbStoneType.Size = new System.Drawing.Size(337, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
+            this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
             // 
             // groupBox1
             // 
@@ -1520,6 +1521,7 @@
             this.cbbMill.Name = "cbbMill";
             this.cbbMill.Size = new System.Drawing.Size(337, 29);
             this.cbbMill.TabIndex = 126;
+            this.cbbMill.Leave += new System.EventHandler(this.cbbMill_Leave);
             // 
             // cbbCustomerName
             // 
@@ -1571,6 +1573,7 @@
             this.cbbSite.Name = "cbbSite";
             this.cbbSite.Size = new System.Drawing.Size(236, 29);
             this.cbbSite.TabIndex = 130;
+            this.cbbSite.Leave += new System.EventHandler(this.cbbSite_Leave);
             // 
             // tbOilContent
             // 
