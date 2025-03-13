@@ -327,7 +327,7 @@
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Top>0.6cm</Top>
           <Height>0.6cm</Height>
-          <Width>6.68042cm</Width>
+          <Width>10.43813cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -379,7 +379,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>บริษัท 39 ศิลาทอง จำกัด</Value>
+                  <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด สาขา 00003 nonvat</Value>
                   <Style>
                     <FontFamily>Angsana New</FontFamily>
                     <FontSize>16pt</FontSize>
@@ -392,7 +392,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Height>0.6cm</Height>
-          <Width>6.68042cm</Width>
+          <Width>10.43813cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>

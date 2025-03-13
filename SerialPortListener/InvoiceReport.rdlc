@@ -2898,7 +2898,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท 39 ศิลาทอง จำกัด</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด สาขา 00003 nonvat</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -2911,7 +2911,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>7.02433cm</Width>
+              <Width>12.14474cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
