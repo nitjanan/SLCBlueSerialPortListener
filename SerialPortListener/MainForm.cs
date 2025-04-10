@@ -234,7 +234,8 @@ namespace SerialPortListener
 
         }
 
-        private void generateNewSeqNumber() {
+        private void generateNewSeqNumber()
+        {
             string todayYear = DateTime.Now.ToString("yyyy");
             string runningNumber = "000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -245,7 +246,8 @@ namespace SerialPortListener
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
             }
-            catch (Exception) {
+            catch (Exception)
+            {
             }
             dl.close();
 
