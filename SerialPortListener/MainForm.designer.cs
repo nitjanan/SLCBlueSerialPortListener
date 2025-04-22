@@ -1334,7 +1334,6 @@
             // timerWeight
             // 
             this.timerWeight.Interval = 1000;
-            this.timerWeight.Tick += new System.EventHandler(this.timerWeight_Tick);
             // 
             // tbWeigtData
             // 
