@@ -88,6 +88,10 @@ namespace SerialPortListener
         public void getSettingDefault()
         {
             lbCompanyCode.Text = Company.Code;
+
+            if (Globals.isPermissionAutoWeight()) //สิทธิ user รายการซื้อให้ set น้ำหนักเป็น 100 auto
+                tbWeigtData.Text = "100";
+
             /* autoComplete ผู้ตัก */
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
@@ -660,90 +664,99 @@ namespace SerialPortListener
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
-            if (this.InvokeRequired)
+            if (Globals.isPermissionAutoWeight()) //สิทธิ user รายการซื้อให้ set น้ำหนักเป็น 100 auto
             {
-                // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
-                this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
-                return;
+                tbWeigtData.Text = "100";
             }
+            else {
 
-            int maxTextLength = 50; // maximum text length in text box
-            if (tbData.TextLength > maxTextLength)
-                tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
-
-            // This application is connected to a GPS sending ASCCI characters, so data is converted to text
-            string str = Encoding.ASCII.GetString(e.Data);
-            tbData.AppendText(str);
-            tbData.ScrollToCaret();
-
-            try
-            {
-                //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                //JOB ขาออก (เครื่องแม่)
-                //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
-                //string remainingText = newString.Substring(newString.LastIndexOf("q"));
-
-                //JOB ล่างสุด
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("p"));
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-                if (mc.Count > 0)
+                if (this.InvokeRequired)
                 {
-                    if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
+                    // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
+                    this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
+                    return;
+                }
+
+                int maxTextLength = 50; // maximum text length in text box
+                if (tbData.TextLength > maxTextLength)
+                    tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
+
+                // This application is connected to a GPS sending ASCCI characters, so data is converted to text
+                string str = Encoding.ASCII.GetString(e.Data);
+                tbData.AppendText(str);
+                tbData.ScrollToCaret();
+
+                /*
+                try
+                {
+                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
+                    //JOB ขาออก (เครื่องแม่)
+                    //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
+                    //string remainingText = newString.Substring(newString.LastIndexOf("q"));
+
+
+                    //JOB ล่างสุด
+                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
+                    string remainingText = newString.Substring(newString.LastIndexOf("p"));
+                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
+
+                    if (mc.Count > 0)
                     {
-                        string tmp = mc[0].Value;
-                        tbWeigtData.Text = tmp.Remove(tmp.Length - 1);
+                        if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
+                        {
+                            string tmp = mc[0].Value;
+                            tbWeigtData.Text = tmp.Remove(tmp.Length - 1);
+                        }
+                        else if (Int32.Parse(mc[0].Value) < 10)
+                        {
+                            tbWeigtData.Text = "0";
+                        }
+                        else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                        {
+                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                        }
+
                     }
-                    else if (Int32.Parse(mc[0].Value) < 10)
-                    {
-                        tbWeigtData.Text = "0";
-                    }
-                    else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                    {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                    }
+                }
+                catch (Exception ex)
+                {
 
                 }
-            }
-            catch (Exception ex)
-            {
+                */
 
-            }
-
-
-            /*
-            // JOB ขาเข้า
-            try
-            {
-                //แสดงเลขน้ำหนักที่กำลังวิ่ง
-
-
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
-
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-  
-
-                if (mc.Count > 0)
+                
+                // JOB ขาเข้า
+                try
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
+
+
+                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
+                    string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+
+                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
+
+
+                    if (mc.Count > 0)
                     {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                            //tbWeigtData.ForeColor = Color.LightCoral;
+                        if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                        {
+                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                                //tbWeigtData.ForeColor = Color.LightCoral;
+                        }
+                        else
+                        {
+                            tbWeigtData.ForeColor = Color.LightGreen;
+                        }
+
                     }
-                    else
-                    {
-                        tbWeigtData.ForeColor = Color.LightGreen;
-                    }
+                }
+                catch (Exception ex)
+                {
 
                 }
-            }
-            catch (Exception ex)
-            {
 
             }
-            */
 
         }
 
