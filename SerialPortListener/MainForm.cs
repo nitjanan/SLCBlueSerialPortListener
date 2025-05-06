@@ -815,8 +815,8 @@ namespace SerialPortListener
             {
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
+                tbWeightTotal.Enabled = false;
+                tbQ.Enabled = false;
             }
             else if (mode.Equals(4))//disable all
             {
