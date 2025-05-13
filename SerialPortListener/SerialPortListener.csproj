@@ -277,6 +277,12 @@
     <Compile Include="FPrintTransportReport.Designer.cs">
       <DependentUpon>FPrintTransportReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FSettingLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FSettingLine.Designer.cs">
+      <DependentUpon>FSettingLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -416,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintTransportReport.resx">
       <DependentUpon>FPrintTransportReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSettingLine.resx">
+      <DependentUpon>FSettingLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvoiceReport.rdlc" />
     <EmbeddedResource Include="JointCarReport.rdlc" />
@@ -743,6 +752,7 @@
     <None Include="Resources\refresh_64px.png" />
     <None Include="Resources\refresh_48px.png" />
     <None Include="Resources\refresh_32px.png" />
+    <None Include="Resources\settings_20px.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

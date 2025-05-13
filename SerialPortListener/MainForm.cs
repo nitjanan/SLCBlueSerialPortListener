@@ -37,6 +37,7 @@ namespace SerialPortListener
         bool isCheckedCleanNo = false;
         bool isCheckedSelfPick = false;
         bool isCheckedSendTo = false;
+        bool isCheckedLineType = false;
 
         /*1 search anywhere customer */
         // Bind default keywords
@@ -104,11 +105,112 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
+            //แสดงค่าน้ำหนักสายสั้นและสายยาว
+            showTimeAndWeigt();
+
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
 
             tbWeigtData.Enter += (s, e) => { tbWeigtData.Parent.Focus(); };
 
         }
+
+        public void showTimeAndWeigt()
+        {
+            showTimeAndWeigtTotal();
+            showTimeAndWeigtTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
+            showTimeAndWeigtTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
+        }
+
+        public void showTimeAndWeigtTotal()
+        {
+            string beginDate = findBaseSettingLine("base_setting_line_date_from");
+            string beginTime = findBaseSettingLine("base_setting_line_time_from");
+            string site_name = findBaseSettingLine("base_site_name");
+
+            //sql get weight id
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT COUNT(weight_id) AS C, SUM(น้ำหนักสินค้า) AS Q  FROM weight WHERE (วันที่ = '" + beginDate + "' AND เวลาชั่งออก >= '" + beginTime + "' OR  วันที่ > '" + beginDate + "') AND NOT น้ำหนักรวม = '0.00' ";
+            if (site_name != "ทั้งหมด")
+                pgCommand.CommandText += " AND หน้างาน = '" + site_name + "' ";
+
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    lbTime.Text = reader["C"].ToString();
+
+                    if (reader["Q"].ToString() != "")
+                        lbWeightTotal.Text = reader["Q"].ToString();
+                    else
+                        lbWeightTotal.Text = "0.000";
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+        }
+        public string findBaseSettingLine(string field)
+        {
+            string str = "";
+
+            //sql get weight id
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT " + field + "  FROM base_setting_line WHERE base_setting_line_id = 1";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    str = reader[field].ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+            return str;
+
+        }
+
+        public void showTimeAndWeigtTotalByLineType(string lineType, Label time, Label weightTotal)
+        {
+            string beginDate = findBaseSettingLine("base_setting_line_date_from");
+            string beginTime = findBaseSettingLine("base_setting_line_time_from");
+            string site_name = findBaseSettingLine("base_site_name");
+
+            //sql get weight id
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT COUNT(weight_id) AS C, SUM(น้ำหนักสินค้า) AS Q  FROM weight WHERE (วันที่ = '" + beginDate + "' AND เวลาชั่งออก >= '" + beginTime + "' OR  วันที่ > '" + beginDate + "') AND NOT น้ำหนักรวม = '0.00' AND line_type = '" + lineType + "' ";
+            if (site_name != "ทั้งหมด")
+                pgCommand.CommandText += " AND หน้างาน = '" + site_name + "' ";
+
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    time.Text = reader["C"].ToString();
+                    if (reader["Q"].ToString() != "")
+                        weightTotal.Text = reader["Q"].ToString();
+                    else
+                        weightTotal.Text = "0.000";
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+        }
+
         public void EnableWeightInAndOut()
         {
             btReadIn.Enabled = true;
@@ -830,16 +932,18 @@ namespace SerialPortListener
             btMenu3.BackColor = Color.LightSkyBlue;
             btMenu4.BackColor = Color.LightSkyBlue;
             btMenu5.BackColor = Color.LightSkyBlue;
-
-            ucTruck.BringToFront();
+            /*
             ucTruck.Show();
             ucReport.Hide();
             ucHelp.Hide();
             ucSetting.Hide();
             ucBackup.Hide();
-
+            ucTruck.BringToFront();
+            
             TableFromDB mf = new TableFromDB(this);
             mf.ShowDialog();
+            */
+            clickWeightIn();
         }
 
         private void btMenu2_Click(object sender, EventArgs e)
@@ -1243,6 +1347,14 @@ namespace SerialPortListener
 
         private Boolean checkEmptyTB(TextBox tb) {
             return string.IsNullOrEmpty(tb.Text) == true ? true : false;
+        }
+
+        private Boolean checkEmtyRadioButton(GroupBox gb)
+        {
+            var rd = gb.Controls.OfType<RadioButton>()
+                    .FirstOrDefault(n => n.Checked);
+
+            return rd == null ? true : false;
         }
 
 
@@ -2179,6 +2291,44 @@ namespace SerialPortListener
             
         }
 
+
+
+        private void getWeightInOnShortLine()
+        {
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+            if ((tbCarLicense != null && tbCarLicense.Text != "" && checkZeroStr(tbWeightOut.Text) && rbShortLine.Checked) && tbWeightIn.Enabled)
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "SELECT น้ำหนักรถ FROM public.weight where วันที่ = '" + today + "' and ทะเบียนรถ = '" + tbCarLicense.Text + "' ORDER BY weight_id DESC LIMIT 1 ";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string rdStr = reader["น้ำหนักรถ"].ToString();
+                        tbWeightIn.Text = tonTokg(rdStr);
+                    }
+                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
+                    if (!reader.HasRows)
+                    {
+                        tbWeightIn.Text = "0.00";
+                    }
+
+                }
+                catch (Exception)
+                {
+                }
+                dl.close();
+            }
+            else if ((rbLongLine.Checked || checkEmtyRadioButton(groupBox5)) && tbWeightIn.Enabled)
+            {
+                tbWeightIn.Text = "0.00";
+            }
+        }
+
         private void tbCarTeam_Click(object sender, EventArgs e)
         {
             tbCarTeam.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -3093,6 +3243,101 @@ namespace SerialPortListener
                 {
                 }
                 dl.close();
+            }
+        }
+
+
+        private void btSettingLine_Click(object sender, EventArgs e)
+        {
+            FSettingLine fs = new FSettingLine(this);
+            fs.ShowDialog();
+        }
+
+        private void rbShortLine_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            isCheckedLineType = radio.Checked;
+        }
+
+        private void rbShortLine_Click(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            if (radio.Checked && !isCheckedLineType)
+                radio.Checked = false;
+            else
+            {
+                radio.Checked = true;
+                isCheckedLineType = false;
+            }
+
+            //ดึงน้ำหนักหากเป็นสายสั้น
+            getWeightInOnShortLine();
+        }
+
+        private void tbCarLicense_Leave(object sender, EventArgs e)
+        {
+            getWeightInOnShortLine();
+        }
+
+        private void rbLongLine_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            isCheckedLineType = radio.Checked;
+        }
+
+        private void rbLongLine_Click(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            if (radio.Checked && !isCheckedLineType)
+                radio.Checked = false;
+            else
+            {
+                radio.Checked = true;
+                isCheckedLineType = false;
+            }
+
+            //ดึงน้ำหนักหากเป็นสายสั้น
+            getWeightInOnShortLine();
+        }
+
+        private void rbWeightIn_Click(object sender, EventArgs e)
+        {
+            clickWeightIn();
+        }
+
+        private void clickWeightIn()
+        {
+            ucTruck.BringToFront();
+            ucTruck.Show();
+            resetMainForm();
+            EnableWeightInAndOut();
+            getSettingDefault();
+
+            /* สร้างเลข DocNum */
+            runningDocNumber();
+            /* เช็คเลขที่เอกสาร หากเป็นค่าว่างให้เปิดช่องให้กรอกได้ */
+            checkDocNumEmty();
+            AfterGetDataFromTable();
+
+            rbWeightIn.Checked = true;
+            //ปิดปุ่มอ่านน้ำหนักออก
+            btReadOut.Enabled = true;
+        }
+
+        private void rbWeightOut_Click(object sender, EventArgs e)
+        {
+            ucTruck.BringToFront();
+            ucTruck.Show();
+            resetMainForm();
+
+            TableFromDB mf = new TableFromDB(this);
+            mf.ShowDialog();
+            //ปิดปุ่มอ่านน้ำหนักเข้า
+            btReadIn.Enabled = false;
+
+            if (!Globals.isPermissionEditWeight())
+            {
+                tbCarLicense.Enabled = false;
             }
         }
     }

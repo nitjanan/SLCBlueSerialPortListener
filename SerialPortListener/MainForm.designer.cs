@@ -95,6 +95,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.tbQOrigin = new System.Windows.Forms.TextBox();
+            this.tbWeightOrigin = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.tbQ = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -146,6 +151,24 @@
             this.ucReport = new SerialPortListener.ucReport();
             this.ucHelp = new SerialPortListener.ucHelp();
             this.ucBackup = new SerialPortListener.ucBackup();
+            this.tbMillId = new System.Windows.Forms.TextBox();
+            this.tbMillName = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.lbLongTime = new System.Windows.Forms.Label();
+            this.lbLongWeightTotal = new System.Windows.Forms.Label();
+            this.lbShortTime = new System.Windows.Forms.Label();
+            this.lbShortWeightTotal = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.lbWeightTotal = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rbShortLine = new System.Windows.Forms.RadioButton();
+            this.rbLongLine = new System.Windows.Forms.RadioButton();
+            this.rbWeightOut = new System.Windows.Forms.RadioButton();
+            this.rbWeightIn = new System.Windows.Forms.RadioButton();
+            this.btSettingLine = new System.Windows.Forms.Button();
             this.btRefresh = new System.Windows.Forms.Button();
             this.btPrintAll = new System.Windows.Forms.Button();
             this.btPrintOut = new System.Windows.Forms.Button();
@@ -153,8 +176,8 @@
             this.btSave = new System.Windows.Forms.Button();
             this.ucTruck = new SerialPortListener.ucTruck();
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tbMillId = new System.Windows.Forms.TextBox();
-            this.tbMillName = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -164,6 +187,8 @@
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,7 +211,7 @@
             this.tbWeightIn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightIn.Enabled = false;
             this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightIn.Location = new System.Drawing.Point(438, 33);
+            this.tbWeightIn.Location = new System.Drawing.Point(436, 32);
             this.tbWeightIn.Name = "tbWeightIn";
             this.tbWeightIn.Size = new System.Drawing.Size(150, 27);
             this.tbWeightIn.TabIndex = 32;
@@ -201,7 +226,7 @@
             this.btReadIn.BackColor = System.Drawing.Color.Plum;
             this.btReadIn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btReadIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btReadIn.Location = new System.Drawing.Point(651, 34);
+            this.btReadIn.Location = new System.Drawing.Point(649, 33);
             this.btReadIn.Name = "btReadIn";
             this.btReadIn.Size = new System.Drawing.Size(96, 29);
             this.btReadIn.TabIndex = 33;
@@ -395,7 +420,7 @@
             this.tbDocNum.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbDocNum.Enabled = false;
             this.tbDocNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDocNum.Location = new System.Drawing.Point(813, 121);
+            this.tbDocNum.Location = new System.Drawing.Point(813, 137);
             this.tbDocNum.Name = "tbDocNum";
             this.tbDocNum.Size = new System.Drawing.Size(315, 27);
             this.tbDocNum.TabIndex = 11;
@@ -408,7 +433,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.MintCream;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(723, 120);
+            this.label2.Location = new System.Drawing.Point(726, 139);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 21);
             this.label2.TabIndex = 24;
@@ -420,7 +445,7 @@
             this.dtWeightInDate.CustomFormat = "dd-MM-yyyy";
             this.dtWeightInDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtWeightInDate.Location = new System.Drawing.Point(150, 33);
+            this.dtWeightInDate.Location = new System.Drawing.Point(148, 32);
             this.dtWeightInDate.Name = "dtWeightInDate";
             this.dtWeightInDate.Size = new System.Drawing.Size(138, 27);
             this.dtWeightInDate.TabIndex = 30;
@@ -431,7 +456,7 @@
             this.dtWeightOutDate.CustomFormat = "dd-MM-yyyy";
             this.dtWeightOutDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtWeightOutDate.Location = new System.Drawing.Point(150, 72);
+            this.dtWeightOutDate.Location = new System.Drawing.Point(148, 71);
             this.dtWeightOutDate.Name = "dtWeightOutDate";
             this.dtWeightOutDate.Size = new System.Drawing.Size(138, 27);
             this.dtWeightOutDate.TabIndex = 34;
@@ -441,7 +466,7 @@
             this.tbWeightOut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightOut.Enabled = false;
             this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightOut.Location = new System.Drawing.Point(438, 70);
+            this.tbWeightOut.Location = new System.Drawing.Point(436, 69);
             this.tbWeightOut.Name = "tbWeightOut";
             this.tbWeightOut.Size = new System.Drawing.Size(150, 27);
             this.tbWeightOut.TabIndex = 36;
@@ -456,7 +481,7 @@
             this.btReadOut.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btReadOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btReadOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btReadOut.Location = new System.Drawing.Point(651, 72);
+            this.btReadOut.Location = new System.Drawing.Point(649, 71);
             this.btReadOut.Name = "btReadOut";
             this.btReadOut.Size = new System.Drawing.Size(96, 30);
             this.btReadOut.TabIndex = 37;
@@ -470,7 +495,7 @@
             this.dtWeightInTime.CustomFormat = "HH:mm";
             this.dtWeightInTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtWeightInTime.Location = new System.Drawing.Point(302, 33);
+            this.dtWeightInTime.Location = new System.Drawing.Point(300, 32);
             this.dtWeightInTime.Name = "dtWeightInTime";
             this.dtWeightInTime.ShowUpDown = true;
             this.dtWeightInTime.Size = new System.Drawing.Size(105, 27);
@@ -482,7 +507,7 @@
             this.dtWeightOutTime.CustomFormat = "HH:mm";
             this.dtWeightOutTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtWeightOutTime.Location = new System.Drawing.Point(302, 72);
+            this.dtWeightOutTime.Location = new System.Drawing.Point(300, 71);
             this.dtWeightOutTime.Name = "dtWeightOutTime";
             this.dtWeightOutTime.ShowUpDown = true;
             this.dtWeightOutTime.Size = new System.Drawing.Size(105, 27);
@@ -503,7 +528,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.MintCream;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(289, 123);
+            this.label5.Location = new System.Drawing.Point(289, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 21);
             this.label5.TabIndex = 36;
@@ -529,7 +554,7 @@
             this.tbCustomerName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbCustomerName.Enabled = false;
             this.tbCustomerName.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCustomerName.Location = new System.Drawing.Point(450, 98);
+            this.tbCustomerName.Location = new System.Drawing.Point(450, 114);
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(257, 22);
             this.tbCustomerName.TabIndex = 9;
@@ -541,7 +566,7 @@
             // 
             this.btLoadCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btLoadCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLoadCustomer.Location = new System.Drawing.Point(677, 122);
+            this.btLoadCustomer.Location = new System.Drawing.Point(685, 137);
             this.btLoadCustomer.Name = "btLoadCustomer";
             this.btLoadCustomer.Size = new System.Drawing.Size(30, 27);
             this.btLoadCustomer.TabIndex = 10;
@@ -555,7 +580,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.MintCream;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(287, 236);
+            this.label6.Location = new System.Drawing.Point(287, 215);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 21);
             this.label6.TabIndex = 40;
@@ -566,7 +591,7 @@
             this.rbCash.AutoSize = true;
             this.rbCash.BackColor = System.Drawing.Color.MintCream;
             this.rbCash.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCash.Location = new System.Drawing.Point(31, 11);
+            this.rbCash.Location = new System.Drawing.Point(23, 11);
             this.rbCash.Name = "rbCash";
             this.rbCash.Size = new System.Drawing.Size(66, 25);
             this.rbCash.TabIndex = 13;
@@ -580,7 +605,7 @@
             this.rbCredit.AutoSize = true;
             this.rbCredit.BackColor = System.Drawing.Color.MintCream;
             this.rbCredit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCredit.Location = new System.Drawing.Point(242, 11);
+            this.rbCredit.Location = new System.Drawing.Point(234, 11);
             this.rbCredit.Name = "rbCredit";
             this.rbCredit.Size = new System.Drawing.Size(70, 25);
             this.rbCredit.TabIndex = 15;
@@ -635,7 +660,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(604, 38);
+            this.label7.Location = new System.Drawing.Point(602, 37);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 21);
             this.label7.TabIndex = 47;
@@ -646,7 +671,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(604, 76);
+            this.label8.Location = new System.Drawing.Point(602, 75);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 21);
             this.label8.TabIndex = 48;
@@ -657,7 +682,7 @@
             this.tbWeightTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightTotal.Enabled = false;
             this.tbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightTotal.Location = new System.Drawing.Point(438, 109);
+            this.tbWeightTotal.Location = new System.Drawing.Point(436, 108);
             this.tbWeightTotal.Name = "tbWeightTotal";
             this.tbWeightTotal.Size = new System.Drawing.Size(150, 27);
             this.tbWeightTotal.TabIndex = 38;
@@ -672,7 +697,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.MintCream;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(723, 164);
+            this.label9.Location = new System.Drawing.Point(287, 180);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 21);
             this.label9.TabIndex = 50;
@@ -685,7 +710,7 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.MintCream;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(723, 205);
+            this.label10.Location = new System.Drawing.Point(729, 215);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 21);
             this.label10.TabIndex = 53;
@@ -695,7 +720,7 @@
             // 
             this.tbDriverName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbDriverName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDriverName.Location = new System.Drawing.Point(813, 199);
+            this.tbDriverName.Location = new System.Drawing.Point(813, 217);
             this.tbDriverName.Name = "tbDriverName";
             this.tbDriverName.Size = new System.Drawing.Size(96, 27);
             this.tbDriverName.TabIndex = 21;
@@ -704,7 +729,7 @@
             // 
             this.tbPricePerTon.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbPricePerTon.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPricePerTon.Location = new System.Drawing.Point(604, 526);
+            this.tbPricePerTon.Location = new System.Drawing.Point(611, 536);
             this.tbPricePerTon.Name = "tbPricePerTon";
             this.tbPricePerTon.Size = new System.Drawing.Size(130, 27);
             this.tbPricePerTon.TabIndex = 40;
@@ -717,7 +742,7 @@
             // 
             this.tbAmountVat.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbAmountVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAmountVat.Location = new System.Drawing.Point(905, 568);
+            this.tbAmountVat.Location = new System.Drawing.Point(912, 578);
             this.tbAmountVat.Name = "tbAmountVat";
             this.tbAmountVat.Size = new System.Drawing.Size(132, 27);
             this.tbAmountVat.TabIndex = 45;
@@ -742,7 +767,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.MintCream;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(528, 526);
+            this.label11.Location = new System.Drawing.Point(535, 536);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 21);
             this.label11.TabIndex = 58;
@@ -754,7 +779,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.MintCream;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(806, 529);
+            this.label14.Location = new System.Drawing.Point(813, 539);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(72, 21);
             this.label14.TabIndex = 61;
@@ -766,7 +791,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(57, 38);
+            this.label12.Location = new System.Drawing.Point(55, 37);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(76, 21);
             this.label12.TabIndex = 64;
@@ -777,7 +802,7 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(57, 77);
+            this.label15.Location = new System.Drawing.Point(55, 76);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(80, 21);
             this.label15.TabIndex = 65;
@@ -788,7 +813,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(604, 114);
+            this.label16.Location = new System.Drawing.Point(602, 113);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(31, 21);
             this.label16.TabIndex = 66;
@@ -799,11 +824,11 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(285, 114);
+            this.label17.Location = new System.Drawing.Point(294, 111);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(81, 21);
+            this.label17.Size = new System.Drawing.Size(136, 21);
             this.label17.TabIndex = 67;
-            this.label17.Text = "น้ำหนักสุทธิ";
+            this.label17.Text = "น้ำหนักสุทธิปลายทาง";
             // 
             // label18
             // 
@@ -811,7 +836,7 @@
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.MintCream;
             this.label18.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(722, 318);
+            this.label18.Location = new System.Drawing.Point(729, 297);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(36, 21);
             this.label18.TabIndex = 70;
@@ -823,17 +848,18 @@
             this.label19.AutoSize = true;
             this.label19.BackColor = System.Drawing.Color.MintCream;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(725, 239);
+            this.label19.Location = new System.Drawing.Point(218, 608);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(38, 21);
             this.label19.TabIndex = 73;
             this.label19.Text = "ผู้ตัก";
+            this.label19.Visible = false;
             // 
             // tbScaleId
             // 
             this.tbScaleId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbScaleId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbScaleId.Location = new System.Drawing.Point(813, 312);
+            this.tbScaleId.Location = new System.Drawing.Point(811, 291);
             this.tbScaleId.Name = "tbScaleId";
             this.tbScaleId.Size = new System.Drawing.Size(66, 27);
             this.tbScaleId.TabIndex = 26;
@@ -844,10 +870,11 @@
             this.tbScoopName.AccessibleName = "ผู้ตัก";
             this.tbScoopName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbScoopName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbScoopName.Location = new System.Drawing.Point(885, 235);
+            this.tbScoopName.Location = new System.Drawing.Point(315, 604);
             this.tbScoopName.Name = "tbScoopName";
-            this.tbScoopName.Size = new System.Drawing.Size(243, 27);
+            this.tbScoopName.Size = new System.Drawing.Size(10, 27);
             this.tbScoopName.TabIndex = 25;
+            this.tbScoopName.Visible = false;
             this.tbScoopName.Leave += new System.EventHandler(this.tbScoopName_Leave);
             // 
             // tbCarLicense
@@ -856,20 +883,21 @@
             this.tbCarLicense.AccessibleName = "ทะเบียนรถ";
             this.tbCarLicense.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbCarLicense.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCarLicense.Location = new System.Drawing.Point(813, 161);
+            this.tbCarLicense.Location = new System.Drawing.Point(370, 177);
             this.tbCarLicense.Name = "tbCarLicense";
-            this.tbCarLicense.Size = new System.Drawing.Size(243, 27);
+            this.tbCarLicense.Size = new System.Drawing.Size(273, 27);
             this.tbCarLicense.TabIndex = 16;
             this.tbCarLicense.Tag = "";
             this.tbCarLicense.TextChanged += new System.EventHandler(this.tbCarLicense_TextChanged);
             this.tbCarLicense.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCarLicense_KeyUp);
+            this.tbCarLicense.Leave += new System.EventHandler(this.tbCarLicense_Leave);
             // 
             // tbCarCity
             // 
             this.tbCarCity.AccessibleName = "จังหวัด";
             this.tbCarCity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbCarCity.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCarCity.Location = new System.Drawing.Point(1062, 161);
+            this.tbCarCity.Location = new System.Drawing.Point(649, 177);
             this.tbCarCity.Name = "tbCarCity";
             this.tbCarCity.Size = new System.Drawing.Size(67, 27);
             this.tbCarCity.TabIndex = 17;
@@ -878,9 +906,9 @@
             // 
             this.tbScaleName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbScaleName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbScaleName.Location = new System.Drawing.Point(885, 312);
+            this.tbScaleName.Location = new System.Drawing.Point(883, 291);
             this.tbScaleName.Name = "tbScaleName";
-            this.tbScaleName.Size = new System.Drawing.Size(241, 27);
+            this.tbScaleName.Size = new System.Drawing.Size(243, 27);
             this.tbScaleName.TabIndex = 27;
             this.tbScaleName.TextChanged += new System.EventHandler(this.tbScaleName_TextChanged);
             // 
@@ -889,10 +917,11 @@
             this.tbScoopId.AccessibleName = "รหัสผู้ตัก";
             this.tbScoopId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbScoopId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbScoopId.Location = new System.Drawing.Point(812, 235);
+            this.tbScoopId.Location = new System.Drawing.Point(299, 604);
             this.tbScoopId.Name = "tbScoopId";
-            this.tbScoopId.Size = new System.Drawing.Size(67, 27);
+            this.tbScoopId.Size = new System.Drawing.Size(10, 27);
             this.tbScoopId.TabIndex = 24;
+            this.tbScoopId.Visible = false;
             this.tbScoopId.Leave += new System.EventHandler(this.tbScoopId_Leave);
             // 
             // label21
@@ -900,7 +929,7 @@
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(203, 7);
+            this.label21.Location = new System.Drawing.Point(201, 6);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(27, 17);
             this.label21.TabIndex = 85;
@@ -911,7 +940,7 @@
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(320, 7);
+            this.label22.Location = new System.Drawing.Point(318, 6);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(27, 17);
             this.label22.TabIndex = 86;
@@ -922,7 +951,7 @@
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(488, 7);
+            this.label23.Location = new System.Drawing.Point(486, 6);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(41, 17);
             this.label23.TabIndex = 87;
@@ -934,7 +963,7 @@
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.MintCream;
             this.label24.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(740, 529);
+            this.label24.Location = new System.Drawing.Point(747, 539);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(35, 21);
             this.label24.TabIndex = 88;
@@ -946,7 +975,7 @@
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.Color.MintCream;
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(1043, 526);
+            this.label25.Location = new System.Drawing.Point(1050, 536);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(35, 21);
             this.label25.TabIndex = 89;
@@ -956,6 +985,11 @@
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.BackColor = System.Drawing.Color.OldLace;
+            this.panel4.Controls.Add(this.label39);
+            this.panel4.Controls.Add(this.tbQOrigin);
+            this.panel4.Controls.Add(this.tbWeightOrigin);
+            this.panel4.Controls.Add(this.label40);
+            this.panel4.Controls.Add(this.label44);
             this.panel4.Controls.Add(this.label28);
             this.panel4.Controls.Add(this.tbQ);
             this.panel4.Controls.Add(this.tbWeightIn);
@@ -976,17 +1010,74 @@
             this.panel4.Controls.Add(this.label15);
             this.panel4.Controls.Add(this.label16);
             this.panel4.Controls.Add(this.label17);
-            this.panel4.Location = new System.Drawing.Point(289, 355);
+            this.panel4.Location = new System.Drawing.Point(291, 332);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(840, 153);
+            this.panel4.Size = new System.Drawing.Size(840, 185);
             this.panel4.TabIndex = 91;
+            // 
+            // label39
+            // 
+            this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(751, 151);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(26, 21);
+            this.label39.TabIndex = 94;
+            this.label39.Text = "คิว";
+            // 
+            // tbQOrigin
+            // 
+            this.tbQOrigin.AccessibleName = "คิว";
+            this.tbQOrigin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbQOrigin.Enabled = false;
+            this.tbQOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbQOrigin.Location = new System.Drawing.Point(649, 146);
+            this.tbQOrigin.Name = "tbQOrigin";
+            this.tbQOrigin.Size = new System.Drawing.Size(96, 27);
+            this.tbQOrigin.TabIndex = 91;
+            this.tbQOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tbWeightOrigin
+            // 
+            this.tbWeightOrigin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbWeightOrigin.Enabled = false;
+            this.tbWeightOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightOrigin.Location = new System.Drawing.Point(436, 146);
+            this.tbWeightOrigin.Name = "tbWeightOrigin";
+            this.tbWeightOrigin.Size = new System.Drawing.Size(150, 27);
+            this.tbWeightOrigin.TabIndex = 90;
+            this.tbWeightOrigin.Text = "0.00";
+            this.tbWeightOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label40
+            // 
+            this.label40.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(602, 151);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(31, 21);
+            this.label40.TabIndex = 92;
+            this.label40.Text = "กก.";
+            // 
+            // label44
+            // 
+            this.label44.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(294, 149);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(122, 21);
+            this.label44.TabIndex = 93;
+            this.label44.Text = "น้ำหนักสุทธิต้นทาง";
             // 
             // label28
             // 
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(753, 114);
+            this.label28.Location = new System.Drawing.Point(751, 113);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(26, 21);
             this.label28.TabIndex = 89;
@@ -998,7 +1089,7 @@
             this.tbQ.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbQ.Enabled = false;
             this.tbQ.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbQ.Location = new System.Drawing.Point(651, 109);
+            this.tbQ.Location = new System.Drawing.Point(649, 108);
             this.tbQ.Name = "tbQ";
             this.tbQ.Size = new System.Drawing.Size(96, 27);
             this.tbQ.TabIndex = 39;
@@ -1010,7 +1101,7 @@
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox3.Controls.Add(this.rbbNonVat);
             this.groupBox3.Controls.Add(this.rbbVat);
-            this.groupBox3.Location = new System.Drawing.Point(289, 557);
+            this.groupBox3.Location = new System.Drawing.Point(296, 567);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(219, 38);
             this.groupBox3.TabIndex = 97;
@@ -1048,7 +1139,7 @@
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.MintCream;
             this.label20.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(289, 280);
+            this.label20.Location = new System.Drawing.Point(289, 259);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(51, 21);
             this.label20.TabIndex = 93;
@@ -1060,7 +1151,7 @@
             this.label27.AutoSize = true;
             this.label27.BackColor = System.Drawing.Color.MintCream;
             this.label27.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(289, 201);
+            this.label27.Location = new System.Drawing.Point(726, 180);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(33, 21);
             this.label27.TabIndex = 94;
@@ -1076,9 +1167,9 @@
             this.cbbStoneType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbStoneType.FormattingEnabled = true;
             this.cbbStoneType.IntegralHeight = false;
-            this.cbbStoneType.Location = new System.Drawing.Point(370, 234);
+            this.cbbStoneType.Location = new System.Drawing.Point(368, 215);
             this.cbbStoneType.Name = "cbbStoneType";
-            this.cbbStoneType.Size = new System.Drawing.Size(337, 29);
+            this.cbbStoneType.Size = new System.Drawing.Size(347, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
@@ -1133,9 +1224,9 @@
             this.groupBox2.Controls.Add(this.rbTrans);
             this.groupBox2.Controls.Add(this.rbCredit);
             this.groupBox2.Controls.Add(this.rbCash);
-            this.groupBox2.Location = new System.Drawing.Point(370, 190);
+            this.groupBox2.Location = new System.Drawing.Point(813, 169);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(337, 38);
+            this.groupBox2.Size = new System.Drawing.Size(313, 38);
             this.groupBox2.TabIndex = 97;
             this.groupBox2.TabStop = false;
             // 
@@ -1144,7 +1235,7 @@
             this.rbTrans.AutoSize = true;
             this.rbTrans.BackColor = System.Drawing.Color.MintCream;
             this.rbTrans.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTrans.Location = new System.Drawing.Point(136, 11);
+            this.rbTrans.Location = new System.Drawing.Point(128, 11);
             this.rbTrans.Name = "rbTrans";
             this.rbTrans.Size = new System.Drawing.Size(71, 25);
             this.rbTrans.TabIndex = 14;
@@ -1166,7 +1257,7 @@
             // 
             this.tbAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAmount.Location = new System.Drawing.Point(905, 523);
+            this.tbAmount.Location = new System.Drawing.Point(912, 533);
             this.tbAmount.Name = "tbAmount";
             this.tbAmount.Size = new System.Drawing.Size(132, 27);
             this.tbAmount.TabIndex = 41;
@@ -1213,7 +1304,7 @@
             // 
             this.tbVat.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbVat.Location = new System.Drawing.Point(604, 568);
+            this.tbVat.Location = new System.Drawing.Point(611, 578);
             this.tbVat.Name = "tbVat";
             this.tbVat.Size = new System.Drawing.Size(130, 27);
             this.tbVat.TabIndex = 44;
@@ -1227,7 +1318,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.MintCream;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(804, 571);
+            this.label13.Location = new System.Drawing.Point(811, 581);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(98, 21);
             this.label13.TabIndex = 104;
@@ -1239,7 +1330,7 @@
             this.label26.AutoSize = true;
             this.label26.BackColor = System.Drawing.Color.MintCream;
             this.label26.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(528, 571);
+            this.label26.Location = new System.Drawing.Point(535, 581);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(63, 21);
             this.label26.TabIndex = 105;
@@ -1252,7 +1343,7 @@
             this.label29.AutoSize = true;
             this.label29.BackColor = System.Drawing.Color.MintCream;
             this.label29.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(1046, 571);
+            this.label29.Location = new System.Drawing.Point(1053, 581);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(35, 21);
             this.label29.TabIndex = 106;
@@ -1264,7 +1355,7 @@
             this.label30.AutoSize = true;
             this.label30.BackColor = System.Drawing.Color.MintCream;
             this.label30.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(740, 571);
+            this.label30.Location = new System.Drawing.Point(747, 581);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(35, 21);
             this.label30.TabIndex = 107;
@@ -1276,7 +1367,7 @@
             this.label31.AutoSize = true;
             this.label31.BackColor = System.Drawing.Color.MintCream;
             this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(289, 164);
+            this.label31.Location = new System.Drawing.Point(729, 259);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(65, 21);
             this.label31.TabIndex = 109;
@@ -1288,11 +1379,12 @@
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.MintCream;
             this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(289, 317);
+            this.label32.Location = new System.Drawing.Point(218, 641);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(73, 21);
             this.label32.TabIndex = 111;
             this.label32.Text = "ประเภทหิน";
+            this.label32.Visible = false;
             // 
             // cbbStoneColor
             // 
@@ -1303,10 +1395,11 @@
             this.cbbStoneColor.Items.AddRange(new object[] {
             "หินขาว",
             "หินดำ"});
-            this.cbbStoneColor.Location = new System.Drawing.Point(370, 312);
+            this.cbbStoneColor.Location = new System.Drawing.Point(299, 636);
             this.cbbStoneColor.Name = "cbbStoneColor";
-            this.cbbStoneColor.Size = new System.Drawing.Size(88, 29);
+            this.cbbStoneColor.Size = new System.Drawing.Size(10, 29);
             this.cbbStoneColor.TabIndex = 23;
+            this.cbbStoneColor.Visible = false;
             // 
             // label33
             // 
@@ -1314,7 +1407,7 @@
             this.label33.AutoSize = true;
             this.label33.BackColor = System.Drawing.Color.MintCream;
             this.label33.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(915, 202);
+            this.label33.Location = new System.Drawing.Point(915, 220);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(28, 21);
             this.label33.TabIndex = 113;
@@ -1342,12 +1435,12 @@
             this.tbWeigtData.BackColor = System.Drawing.Color.DimGray;
             this.tbWeigtData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbWeigtData.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbWeigtData.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeigtData.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeigtData.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbWeigtData.Location = new System.Drawing.Point(14, -5);
+            this.tbWeigtData.Location = new System.Drawing.Point(14, -7);
             this.tbWeigtData.Name = "tbWeigtData";
             this.tbWeigtData.ReadOnly = true;
-            this.tbWeigtData.Size = new System.Drawing.Size(95, 47);
+            this.tbWeigtData.Size = new System.Drawing.Size(191, 86);
             this.tbWeigtData.TabIndex = 117;
             this.tbWeigtData.TabStop = false;
             this.tbWeigtData.Text = "0";
@@ -1359,20 +1452,20 @@
             this.panel5.BackColor = System.Drawing.Color.DimGray;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.tbWeigtData);
-            this.panel5.Location = new System.Drawing.Point(661, 54);
+            this.panel5.Location = new System.Drawing.Point(613, 51);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(129, 44);
+            this.panel5.Size = new System.Drawing.Size(229, 74);
             this.panel5.TabIndex = 118;
             // 
             // label34
             // 
             this.label34.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label34.Location = new System.Drawing.Point(805, 60);
+            this.label34.Location = new System.Drawing.Point(848, 65);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(44, 30);
+            this.label34.Size = new System.Drawing.Size(59, 42);
             this.label34.TabIndex = 119;
             this.label34.Text = "กก.";
             // 
@@ -1380,11 +1473,11 @@
             // 
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label35.Location = new System.Drawing.Point(572, 60);
+            this.label35.Location = new System.Drawing.Point(504, 65);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(75, 30);
+            this.label35.Size = new System.Drawing.Size(103, 42);
             this.label35.TabIndex = 120;
             this.label35.Text = "น้ำหนัก";
             // 
@@ -1394,11 +1487,12 @@
             this.groupBox4.Controls.Add(this.rbCleanNo);
             this.groupBox4.Controls.Add(this.rbCleanWater);
             this.groupBox4.Controls.Add(this.rbCleanStone);
-            this.groupBox4.Location = new System.Drawing.Point(464, 303);
+            this.groupBox4.Location = new System.Drawing.Point(315, 636);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(243, 38);
+            this.groupBox4.Size = new System.Drawing.Size(10, 38);
             this.groupBox4.TabIndex = 121;
             this.groupBox4.TabStop = false;
+            this.groupBox4.Visible = false;
             // 
             // rbCleanNo
             // 
@@ -1448,7 +1542,7 @@
             this.cbbTransport.AccessibleName = "ขนส่ง";
             this.cbbTransport.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTransport.FormattingEnabled = true;
-            this.cbbTransport.Location = new System.Drawing.Point(612, 161);
+            this.cbbTransport.Location = new System.Drawing.Point(1031, 256);
             this.cbbTransport.Name = "cbbTransport";
             this.cbbTransport.Size = new System.Drawing.Size(95, 29);
             this.cbbTransport.TabIndex = 125;
@@ -1469,9 +1563,9 @@
             "โรงโม่ 2",
             "โรงโม่ 3",
             "Sandvik"});
-            this.cbbMill.Location = new System.Drawing.Point(370, 272);
+            this.cbbMill.Location = new System.Drawing.Point(368, 256);
             this.cbbMill.Name = "cbbMill";
-            this.cbbMill.Size = new System.Drawing.Size(337, 29);
+            this.cbbMill.Size = new System.Drawing.Size(347, 29);
             this.cbbMill.TabIndex = 126;
             this.cbbMill.Leave += new System.EventHandler(this.cbbMill_Leave);
             // 
@@ -1481,9 +1575,9 @@
             this.cbbCustomerName.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCustomerName.FormattingEnabled = true;
             this.cbbCustomerName.IntegralHeight = false;
-            this.cbbCustomerName.Location = new System.Drawing.Point(370, 121);
+            this.cbbCustomerName.Location = new System.Drawing.Point(370, 137);
             this.cbbCustomerName.Name = "cbbCustomerName";
-            this.cbbCustomerName.Size = new System.Drawing.Size(301, 28);
+            this.cbbCustomerName.Size = new System.Drawing.Size(309, 28);
             this.cbbCustomerName.TabIndex = 127;
             this.cbbCustomerName.SelectedIndexChanged += new System.EventHandler(this.cbbCustomerName_SelectedIndexChanged);
             this.cbbCustomerName.TextUpdate += new System.EventHandler(this.cbbCustomerName_TextUpdate);
@@ -1495,7 +1589,7 @@
             this.label36.AutoSize = true;
             this.label36.BackColor = System.Drawing.Color.MintCream;
             this.label36.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(723, 276);
+            this.label36.Location = new System.Drawing.Point(289, 297);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(65, 21);
             this.label36.TabIndex = 128;
@@ -1507,9 +1601,9 @@
             this.tbNote.AccessibleName = "ทะเบียนรถ";
             this.tbNote.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbNote.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNote.Location = new System.Drawing.Point(813, 272);
+            this.tbNote.Location = new System.Drawing.Point(368, 295);
             this.tbNote.Name = "tbNote";
-            this.tbNote.Size = new System.Drawing.Size(313, 27);
+            this.tbNote.Size = new System.Drawing.Size(190, 27);
             this.tbNote.TabIndex = 129;
             this.tbNote.Tag = "";
             // 
@@ -1521,9 +1615,9 @@
             this.cbbSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbSite.FormattingEnabled = true;
             this.cbbSite.IntegralHeight = false;
-            this.cbbSite.Location = new System.Drawing.Point(370, 161);
+            this.cbbSite.Location = new System.Drawing.Point(813, 256);
             this.cbbSite.Name = "cbbSite";
-            this.cbbSite.Size = new System.Drawing.Size(236, 29);
+            this.cbbSite.Size = new System.Drawing.Size(212, 29);
             this.cbbSite.TabIndex = 130;
             this.cbbSite.Leave += new System.EventHandler(this.cbbSite_Leave);
             // 
@@ -1535,7 +1629,7 @@
             this.tbOilContent.BackColor = System.Drawing.SystemColors.Window;
             this.tbOilContent.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOilContent.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbOilContent.Location = new System.Drawing.Point(335, 523);
+            this.tbOilContent.Location = new System.Drawing.Point(342, 533);
             this.tbOilContent.Name = "tbOilContent";
             this.tbOilContent.Size = new System.Drawing.Size(132, 27);
             this.tbOilContent.TabIndex = 131;
@@ -1551,7 +1645,7 @@
             this.label37.BackColor = System.Drawing.Color.MintCream;
             this.label37.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.Red;
-            this.label37.Location = new System.Drawing.Point(289, 526);
+            this.label37.Location = new System.Drawing.Point(296, 536);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(46, 21);
             this.label37.TabIndex = 132;
@@ -1564,7 +1658,7 @@
             this.label38.BackColor = System.Drawing.Color.MintCream;
             this.label38.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.ForeColor = System.Drawing.Color.Red;
-            this.label38.Location = new System.Drawing.Point(473, 526);
+            this.label38.Location = new System.Drawing.Point(480, 536);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(35, 21);
             this.label38.TabIndex = 133;
@@ -1573,7 +1667,7 @@
             // cbbCarTeam
             // 
             this.cbbCarTeam.FormattingEnabled = true;
-            this.cbbCarTeam.Location = new System.Drawing.Point(949, 201);
+            this.cbbCarTeam.Location = new System.Drawing.Point(949, 219);
             this.cbbCarTeam.Name = "cbbCarTeam";
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
@@ -1621,12 +1715,259 @@
             this.ucBackup.Size = new System.Drawing.Size(1208, 686);
             this.ucBackup.TabIndex = 108;
             // 
+            // tbMillId
+            // 
+            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
+            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
+            this.tbMillId.Name = "tbMillId";
+            this.tbMillId.Size = new System.Drawing.Size(10, 27);
+            this.tbMillId.TabIndex = 140;
+            this.tbMillId.Visible = false;
+            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
+            // 
+            // tbMillName
+            // 
+            this.tbMillName.AccessibleName = "ผู้ตัก";
+            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
+            this.tbMillName.Name = "tbMillName";
+            this.tbMillName.Size = new System.Drawing.Size(10, 27);
+            this.tbMillName.TabIndex = 141;
+            this.tbMillName.Visible = false;
+            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Pink;
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.Controls.Add(this.lbTime, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbLongTime, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lbLongWeightTotal, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lbShortTime, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbShortWeightTotal, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label41, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbWeightTotal, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label42, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label43, 0, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(190, 56);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(254, 74);
+            this.tableLayoutPanel1.TabIndex = 142;
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTime.Location = new System.Drawing.Point(78, 49);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(21, 24);
+            this.lbTime.TabIndex = 143;
+            this.lbTime.Text = "0";
+            this.lbTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lbLongTime
+            // 
+            this.lbLongTime.AutoSize = true;
+            this.lbLongTime.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbLongTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbLongTime.Location = new System.Drawing.Point(78, 25);
+            this.lbLongTime.Name = "lbLongTime";
+            this.lbLongTime.Size = new System.Drawing.Size(21, 23);
+            this.lbLongTime.TabIndex = 142;
+            this.lbLongTime.Text = "0";
+            this.lbLongTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lbLongWeightTotal
+            // 
+            this.lbLongWeightTotal.AutoSize = true;
+            this.lbLongWeightTotal.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbLongWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbLongWeightTotal.Location = new System.Drawing.Point(191, 25);
+            this.lbLongWeightTotal.Name = "lbLongWeightTotal";
+            this.lbLongWeightTotal.Size = new System.Drawing.Size(59, 23);
+            this.lbLongWeightTotal.TabIndex = 141;
+            this.lbLongWeightTotal.Text = "0.000";
+            this.lbLongWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lbShortTime
+            // 
+            this.lbShortTime.AutoSize = true;
+            this.lbShortTime.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbShortTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbShortTime.Location = new System.Drawing.Point(78, 1);
+            this.lbShortTime.Name = "lbShortTime";
+            this.lbShortTime.Size = new System.Drawing.Size(21, 23);
+            this.lbShortTime.TabIndex = 140;
+            this.lbShortTime.Text = "0";
+            this.lbShortTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lbShortWeightTotal
+            // 
+            this.lbShortWeightTotal.AutoSize = true;
+            this.lbShortWeightTotal.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbShortWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbShortWeightTotal.Location = new System.Drawing.Point(191, 1);
+            this.lbShortWeightTotal.Name = "lbShortWeightTotal";
+            this.lbShortWeightTotal.Size = new System.Drawing.Size(59, 23);
+            this.lbShortWeightTotal.TabIndex = 139;
+            this.lbShortWeightTotal.Text = "0.000";
+            this.lbShortWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label41.Location = new System.Drawing.Point(4, 1);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(33, 23);
+            this.label41.TabIndex = 136;
+            this.label41.Text = "สั้น";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lbWeightTotal
+            // 
+            this.lbWeightTotal.AutoSize = true;
+            this.lbWeightTotal.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbWeightTotal.Location = new System.Drawing.Point(191, 49);
+            this.lbWeightTotal.Name = "lbWeightTotal";
+            this.lbWeightTotal.Size = new System.Drawing.Size(59, 24);
+            this.lbWeightTotal.TabIndex = 135;
+            this.lbWeightTotal.Text = "0.000";
+            this.lbWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label42.Location = new System.Drawing.Point(4, 25);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(38, 23);
+            this.label42.TabIndex = 137;
+            this.label42.Text = "ยาว";
+            this.label42.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label43.Location = new System.Drawing.Point(4, 49);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(39, 23);
+            this.label43.TabIndex = 138;
+            this.label43.Text = "รวม";
+            this.label43.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.AccessibleName = "ชนิดสาย";
+            this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox5.Controls.Add(this.rbShortLine);
+            this.groupBox5.Controls.Add(this.rbLongLine);
+            this.groupBox5.Location = new System.Drawing.Point(564, 286);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(152, 38);
+            this.groupBox5.TabIndex = 143;
+            this.groupBox5.TabStop = false;
+            // 
+            // rbShortLine
+            // 
+            this.rbShortLine.AccessibleName = "";
+            this.rbShortLine.AutoSize = true;
+            this.rbShortLine.BackColor = System.Drawing.Color.MintCream;
+            this.rbShortLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbShortLine.Location = new System.Drawing.Point(6, 10);
+            this.rbShortLine.Name = "rbShortLine";
+            this.rbShortLine.Size = new System.Drawing.Size(71, 25);
+            this.rbShortLine.TabIndex = 42;
+            this.rbShortLine.Text = "สายสั้น";
+            this.rbShortLine.UseVisualStyleBackColor = false;
+            this.rbShortLine.CheckedChanged += new System.EventHandler(this.rbShortLine_CheckedChanged);
+            this.rbShortLine.Click += new System.EventHandler(this.rbShortLine_Click);
+            // 
+            // rbLongLine
+            // 
+            this.rbLongLine.AccessibleName = "";
+            this.rbLongLine.AutoSize = true;
+            this.rbLongLine.BackColor = System.Drawing.Color.MintCream;
+            this.rbLongLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbLongLine.Location = new System.Drawing.Point(77, 10);
+            this.rbLongLine.Name = "rbLongLine";
+            this.rbLongLine.Size = new System.Drawing.Size(74, 25);
+            this.rbLongLine.TabIndex = 43;
+            this.rbLongLine.Text = "สายยาว";
+            this.rbLongLine.UseVisualStyleBackColor = false;
+            this.rbLongLine.CheckedChanged += new System.EventHandler(this.rbLongLine_CheckedChanged);
+            this.rbLongLine.Click += new System.EventHandler(this.rbLongLine_Click);
+            // 
+            // rbWeightOut
+            // 
+            this.rbWeightOut.AutoSize = true;
+            this.rbWeightOut.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbWeightOut.ForeColor = System.Drawing.Color.DarkRed;
+            this.rbWeightOut.Location = new System.Drawing.Point(930, 89);
+            this.rbWeightOut.Name = "rbWeightOut";
+            this.rbWeightOut.Size = new System.Drawing.Size(100, 36);
+            this.rbWeightOut.TabIndex = 145;
+            this.rbWeightOut.Text = "ชั่งออก";
+            this.rbWeightOut.UseVisualStyleBackColor = true;
+            this.rbWeightOut.Click += new System.EventHandler(this.rbWeightOut_Click);
+            // 
+            // rbWeightIn
+            // 
+            this.rbWeightIn.AutoSize = true;
+            this.rbWeightIn.Checked = true;
+            this.rbWeightIn.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbWeightIn.ForeColor = System.Drawing.Color.DarkGreen;
+            this.rbWeightIn.Location = new System.Drawing.Point(930, 56);
+            this.rbWeightIn.Name = "rbWeightIn";
+            this.rbWeightIn.Size = new System.Drawing.Size(95, 36);
+            this.rbWeightIn.TabIndex = 144;
+            this.rbWeightIn.TabStop = true;
+            this.rbWeightIn.Text = "ชั่งเข้า";
+            this.rbWeightIn.UseVisualStyleBackColor = true;
+            this.rbWeightIn.Click += new System.EventHandler(this.rbWeightIn_Click);
+            // 
+            // btSettingLine
+            // 
+            this.btSettingLine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btSettingLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSettingLine.Image = global::SerialPortListener.Properties.Resources.settings_20px;
+            this.btSettingLine.Location = new System.Drawing.Point(446, 54);
+            this.btSettingLine.Name = "btSettingLine";
+            this.btSettingLine.Size = new System.Drawing.Size(30, 30);
+            this.btSettingLine.TabIndex = 146;
+            this.btSettingLine.UseVisualStyleBackColor = true;
+            this.btSettingLine.Click += new System.EventHandler(this.btSettingLine_Click);
+            // 
             // btRefresh
             // 
             this.btRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btRefresh.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btRefresh.Image = global::SerialPortListener.Properties.Resources.refresh_32px;
-            this.btRefresh.Location = new System.Drawing.Point(475, 54);
+            this.btRefresh.Location = new System.Drawing.Point(1057, 82);
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.Size = new System.Drawing.Size(44, 44);
             this.btRefresh.TabIndex = 139;
@@ -1716,35 +2057,40 @@
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
-            // tbMillId
+            // label45
             // 
-            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
-            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
-            this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 27);
-            this.tbMillId.TabIndex = 140;
-            this.tbMillId.Visible = false;
-            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label45.Location = new System.Drawing.Point(327, 39);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(74, 16);
+            this.label45.TabIndex = 147;
+            this.label45.Text = "น้ำหนักสุทธิ (ตัน)";
             // 
-            // tbMillName
+            // label46
             // 
-            this.tbMillName.AccessibleName = "ผู้ตัก";
-            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
-            this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 27);
-            this.tbMillName.TabIndex = 141;
-            this.tbMillName.Visible = false;
-            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label46.Location = new System.Drawing.Point(237, 39);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(54, 16);
+            this.label46.TabIndex = 148;
+            this.label46.Text = "จำนวนเที่ยว";
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.label46);
+            this.Controls.Add(this.btSettingLine);
+            this.Controls.Add(this.rbWeightOut);
+            this.Controls.Add(this.rbWeightIn);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tbMillId);
             this.Controls.Add(this.tbMillName);
             this.Controls.Add(this.btRefresh);
@@ -1850,6 +2196,10 @@
             this.panel5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1983,6 +2333,29 @@
         private System.Windows.Forms.Button btRefresh;
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Label lbLongTime;
+        private System.Windows.Forms.Label lbLongWeightTotal;
+        private System.Windows.Forms.Label lbShortTime;
+        private System.Windows.Forms.Label lbShortWeightTotal;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label lbWeightTotal;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton rbShortLine;
+        private System.Windows.Forms.RadioButton rbLongLine;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox tbQOrigin;
+        private System.Windows.Forms.TextBox tbWeightOrigin;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.RadioButton rbWeightOut;
+        private System.Windows.Forms.RadioButton rbWeightIn;
+        private System.Windows.Forms.Button btSettingLine;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label46;
     }
 }
 
