@@ -56,6 +56,29 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCustomerName, listOriginalCustomerReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
+            /*
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCCustomerName, listOriginalCCReport);
+
+            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+            fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+
+            // autoComplete ต้นทาง
+            fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
+            */
+
+            /* autoComplete ลูกค้า */
+            autoCompleteSetting(tbbCustomerId, "รหัสลูกค้า", "base_customer");
+            autoCompleteSetting(tbbCustomerName, "ชื่อลูกค้า", "base_customer");
+
+            /* autoComplete ลูกค้า */
+            autoCompleteSetting(tbbFromCustomerId, "รหัสลูกค้า", "base_customer");
+            autoCompleteSetting(tbbToCustomerId, "รหัสลูกค้า", "base_customer");
+
+            //tabPage1
+            cbbCustomerType.SelectedIndex = 0;
+            cbbWeight.SelectedIndex = 0;
+
+            dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
 
         }
 
