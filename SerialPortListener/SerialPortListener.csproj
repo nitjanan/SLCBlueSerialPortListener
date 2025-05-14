@@ -199,6 +199,18 @@
     <Compile Include="FCancelPassword.Designer.cs">
       <DependentUpon>FCancelPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintCCReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCCReport.Designer.cs">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCorpReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCorpReport.Designer.cs">
+      <DependentUpon>FPrintCorpReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +252,12 @@
     </Compile>
     <Compile Include="FPrintJointCarReport.Designer.cs">
       <DependentUpon>FPrintJointCarReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintLineTypeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintLineTypeReport.Designer.cs">
+      <DependentUpon>FPrintLineTypeReport.cs</DependentUpon>
     </Compile>
     <Compile Include="FPrintMillReport.cs">
       <SubType>Form</SubType>
@@ -384,10 +402,18 @@
     <Compile Include="WeightTempReport.cs" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
     <EmbeddedResource Include="CleanReport.rdlc" />
+    <EmbeddedResource Include="CustomerCompanyReport.rdlc" />
+    <EmbeddedResource Include="CustomerCorporationReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
     <EmbeddedResource Include="DailyReport.rdlc" />
     <EmbeddedResource Include="FCancelPassword.resx">
       <DependentUpon>FCancelPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCCReport.resx">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCorpReport.resx">
+      <DependentUpon>FPrintCorpReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrint.resx">
       <DependentUpon>FPrint.cs</DependentUpon>
@@ -409,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintJointCarReport.resx">
       <DependentUpon>FPrintJointCarReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintLineTypeReport.resx">
+      <DependentUpon>FPrintLineTypeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintMillReport.resx">
       <DependentUpon>FPrintMillReport.cs</DependentUpon>
@@ -433,6 +462,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvoiceReport.rdlc" />
     <EmbeddedResource Include="JointCarReport.rdlc" />
+    <EmbeddedResource Include="LineTypeReport.rdlc" />
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

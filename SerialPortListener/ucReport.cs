@@ -50,6 +50,7 @@ namespace SerialPortListener
 
             /* autoComplete ทะเบียนรถ */
             autoCompleteSettingDistinct(tbJointCarRegistration, "ทะเบียนรถ", "weight");
+            autoCompleteSettingDistinct(tbLineCarRegistration, "ทะเบียนรถ", "weight");
 
             /* autoComplete ชื่อผู้ตัก */
             autoCompleteSettingDistinct(tbScoopName, "ชื่อผู้ตัก", "weight");
@@ -60,9 +61,12 @@ namespace SerialPortListener
 
             //setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCCustomerName, listOriginalCCReport);
 
-            //fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+            fillTableComboByInactive(cbCCStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
             fillTableCombo(cbbCarTeam, "base_car_team", "ชื่อทีม");
+            fillTableCombo(cbbTransportTeam, "base_car_team", "ชื่อทีม");
             fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+            //ปลายทาง ต้องดึง weight_type = 4
+            fillTableCombo(cbbLineSite, "base_site", "base_site_name");
 
             // autoComplete ต้นทาง
             //fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
@@ -80,8 +84,10 @@ namespace SerialPortListener
             cbbCustomerType.SelectedIndex = 0;
             cbbWeight.SelectedIndex = 0;
             cbbLineType.SelectedIndex = 0;
+            cbCorpWeight.SelectedIndex = 0;
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
+            dtFromOutLine.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
 
         }
 
@@ -331,10 +337,26 @@ namespace SerialPortListener
 
         private void tcReport_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tcReport.SelectedTab == tabPage6){
+            if (tcReport.SelectedTab == tabPage1)
+            {
+                cbbCarTeam.SelectedIndex = 0;
+                fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
+            }
+            else if (tcReport.SelectedTab == tabPage6)
+            {
                 fillCarTeamCombo(cbbCarTeamName);
-            }else if(tcReport.SelectedTab == tabPage12){
+            }
+            else if (tcReport.SelectedTab == tabPage12)
+            {
                 fillCarTeamCombo(cbbCarTeamNameByTeam);
+            }
+            else if (tcReport.SelectedTab == tabPage15)
+            {
+                cbCorpLineType.SelectedIndex = 0;
+            }
+            else if (tcReport.SelectedTab == tabPage14)
+            {
+                cbCCLineType.SelectedIndex = 0;
             }
             else if (tcReport.SelectedTab == tabPage8)
             {
@@ -879,9 +901,14 @@ namespace SerialPortListener
         {
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + dtFromTransport.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToTransport.Value.ToString("yyyy-MM-dd") + "' ORDER BY วันที่, เลขที่เอกสาร ";
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select * from weight where วันที่ BETWEEN '" + dtFromTransport.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToTransport.Value.ToString("yyyy-MM-dd") + "' ");
+            if (cbbTransportTeam.SelectedIndex != 0)
+                sql.Append(" AND ทีม = '" + cbbTransportTeam.Text + "' ");
+            sql.Append(" ORDER BY วันที่, เลขที่เอกสาร ");
 
-            OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
             DataTable dt = new DataTable();
             cmd.Fill(dt);
             dl.close();
@@ -997,6 +1024,97 @@ namespace SerialPortListener
                 tbInvoiceCutomerId.Text = "";
                 cbbInvoiceCutomerName.Text = "";
             }
+        }
+
+        private void btPrintCorp_Click(object sender, EventArgs e)
+        {
+            //sql
+            dl.connect();
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append("select * from weight where วันที่ BETWEEN '" + dtFromCorp.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCorp.Value.ToString("yyyy-MM-dd") + "' ");
+            if (tbCorpId.Text != "")
+                sql.Append(" AND รหัสลูกค้า = '" + tbCorpId.Text + "' ");
+            if (cbCorpWeight.SelectedIndex == 0)
+                sql.Append(" AND NOT น้ำหนักรถ  = '0.00' AND NOT น้ำหนักรวม = '0.00' ");
+            if (cbCorpWeight.SelectedIndex == 2)
+                sql.Append(" AND น้ำหนักรวม = '0.00' ");
+            if (cbCorpLineType.SelectedIndex != 2)
+                sql.Append(" AND line_type = '" + cbCorpLineType.Text + "' ");
+            sql.Append(" ORDER BY วันที่ ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCorp.Text;
+            WeightTempReport.DateTo = dtToCorp.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("CorpDataSet", dt);
+            FPrintCorpReport fp = new FPrintCorpReport(rds);
+            fp.ShowDialog();
+        }
+
+        private void btPrintCC_Click(object sender, EventArgs e)
+        {
+            //sql
+            dl.connect();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("select * from weight where วันที่ BETWEEN '" + dtFromCC.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCC.Value.ToString("yyyy-MM-dd") + "' ");
+            if (tbCCId.Text != "")
+                sql.Append(" AND รหัสลูกค้า = '" + tbCCId.Text + "' ");
+            if (cbCCLineType.SelectedIndex != 2)
+                sql.Append(" AND line_type = '" + cbCCLineType.Text + "' ");
+            if (cbCCStoneType.SelectedIndex != 0)
+                sql.Append(" AND ชนิดหิน = '" + cbCCStoneType.Text + "' ");
+            sql.Append(" ORDER BY วันที่ ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCC.Text;
+            WeightTempReport.DateTo = dtToCC.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("customerCompanyDataSet", dt);
+            FPrintCCReport fp = new FPrintCCReport(rds);
+            fp.ShowDialog();
+        }
+
+        private void btPrintLine_Click(object sender, EventArgs e)
+        {
+            //sql
+            dl.connect();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT *  FROM weight ");
+            sql.Append(" WHERE (วันที่ = '" + dtFromLine.Value.ToString("yyyy-MM-dd") + "' and เวลาชั่งออก >= '" + dtFromOutLine.Value.ToString("HH:mm") + "' or วันที่  > '" + dtFromLine.Value.ToString("yyyy-MM-dd") + "') AND (วันที่ = '" + dtToLine.Value.ToString("yyyy-MM-dd") + "' and  เวลาชั่งออก <= '" + dtToOutLine.Value.ToString("HH:mm") + "' or  วันที่ < '" + dtToLine.Value.ToString("yyyy-MM-dd") + "') ");
+            if (tbLineCarRegistration.Text != "")
+                sql.Append(" AND ทะเบียนรถ = '" + tbLineCarRegistration.Text + "'");
+            if (cbbLineSite.SelectedIndex != 0)
+                sql.Append(" AND หน้างาน = '" + cbbLineSite.Text + "'");
+            sql.Append(" ORDER BY วันที่, เวลาชั่งออก ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromLine.Text;
+            WeightTempReport.DateTo = dtToLine.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("lineTypeDataSet", dt);
+            FPrintLineTypeReport fp = new FPrintLineTypeReport(rds);
+            fp.ShowDialog();
         }
     }  
 }
