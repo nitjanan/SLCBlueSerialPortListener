@@ -313,11 +313,6 @@
     <Compile Include="TableFromDB.Designer.cs">
       <DependentUpon>TableFromDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="truckDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>truckDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="truckDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -332,6 +327,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="truckDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>truckDataSet4.xsd</DependentUpon>
     </Compile>
     <Compile Include="ucBackup.cs">
       <SubType>UserControl</SubType>
@@ -643,7 +643,6 @@
     </None>
     <None Include="truckDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>truckDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="truckDataSet.xss">
@@ -681,6 +680,17 @@
     </None>
     <None Include="truckDataSet3.xss">
       <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet4.xsc">
+      <DependentUpon>truckDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>truckDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="truckDataSet4.xss">
+      <DependentUpon>truckDataSet4.xsd</DependentUpon>
     </None>
     <None Include="usersDataSet.xsc">
       <DependentUpon>usersDataSet.xsd</DependentUpon>

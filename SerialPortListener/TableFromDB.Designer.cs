@@ -87,6 +87,9 @@
             this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
             this.btExport = new System.Windows.Forms.Button();
+            this.origin_q = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.origin_weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.line_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataFromDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
@@ -159,7 +162,8 @@
             this.cbbSearchWeight.FormattingEnabled = true;
             this.cbbSearchWeight.Items.AddRange(new object[] {
             "ทั้งหมด",
-            "ยังไม่ได้ชั่งออก"});
+            "ยังไม่ได้ชั่งออก",
+            "ชั่งสำเร็จ"});
             this.cbbSearchWeight.Location = new System.Drawing.Point(484, 13);
             this.cbbSearchWeight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbbSearchWeight.Name = "cbbSearchWeight";
@@ -211,7 +215,10 @@
             this.site_id,
             this.stone_type_id,
             this.mill_id,
-            this.car_team_id});
+            this.car_team_id,
+            this.origin_q,
+            this.origin_weight,
+            this.line_type});
             this.tableDataFromDB.DataSource = this.weightBindingSource;
             this.tableDataFromDB.Location = new System.Drawing.Point(12, 60);
             this.tableDataFromDB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -655,7 +662,7 @@
             this.btUpdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btUpdate.Image = global::SerialPortListener.Properties.Resources.edit_file_24px;
             this.btUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btUpdate.Location = new System.Drawing.Point(133, 577);
+            this.btUpdate.Location = new System.Drawing.Point(12, 577);
             this.btUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btUpdate.Name = "btUpdate";
             this.btUpdate.Size = new System.Drawing.Size(90, 39);
@@ -673,13 +680,14 @@
             this.btAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btAdd.Image = global::SerialPortListener.Properties.Resources.add_24px;
             this.btAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btAdd.Location = new System.Drawing.Point(11, 577);
+            this.btAdd.Location = new System.Drawing.Point(129, 577);
             this.btAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(90, 39);
             this.btAdd.TabIndex = 5;
             this.btAdd.Text = "เพิ่ม";
             this.btAdd.UseVisualStyleBackColor = false;
+            this.btAdd.Visible = false;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
             // 
             // truckDataSetBindingSource
@@ -703,6 +711,29 @@
             this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btExport.UseVisualStyleBackColor = true;
             this.btExport.Click += new System.EventHandler(this.btExport_Click);
+            // 
+            // origin_q
+            // 
+            this.origin_q.DataPropertyName = "origin_q";
+            this.origin_q.HeaderText = "origin_q";
+            this.origin_q.Name = "origin_q";
+            this.origin_q.ReadOnly = true;
+            this.origin_q.Width = 92;
+            // 
+            // origin_weight
+            // 
+            this.origin_weight.DataPropertyName = "origin_weight";
+            this.origin_weight.HeaderText = "origin_weight";
+            this.origin_weight.Name = "origin_weight";
+            this.origin_weight.ReadOnly = true;
+            this.origin_weight.Width = 133;
+            // 
+            // line_type
+            // 
+            this.line_type.DataPropertyName = "line_type";
+            this.line_type.HeaderText = "line_type";
+            this.line_type.Name = "line_type";
+            this.line_type.ReadOnly = true;
             // 
             // TableFromDB
             // 
@@ -800,5 +831,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stone_type_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn mill_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn car_team_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn origin_q;
+        private System.Windows.Forms.DataGridViewTextBoxColumn origin_weight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn line_type;
     }
 }

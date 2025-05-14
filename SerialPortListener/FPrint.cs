@@ -60,6 +60,7 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("PClean",Weight.Clean),
                 new Microsoft.Reporting.WinForms.ReportParameter("PTransport",Weight.Transport),
                 new Microsoft.Reporting.WinForms.ReportParameter("POilContent",Weight.OilContent),
+                new Microsoft.Reporting.WinForms.ReportParameter("PNote",Weight.Note),
                 new Microsoft.Reporting.WinForms.ReportParameter("TTelephone",Company.TTelephone),
                 new Microsoft.Reporting.WinForms.ReportParameter("TEmail",Company.TEmail),
                 new Microsoft.Reporting.WinForms.ReportParameter("TDocName",Company.TDocName),
@@ -76,8 +77,9 @@ namespace SerialPortListener
               กระดาษต่อเนื่อง */
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.Standard9x11;
 
-            ps.Margins = new System.Drawing.Printing.Margins(46, 46, 60, 30);
+            ps.Margins = new System.Drawing.Printing.Margins(35, 35, 25, 25);
             this.reportViewer1.SetPageSettings(ps);
+
 
             this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;

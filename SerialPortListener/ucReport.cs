@@ -154,13 +154,49 @@ namespace SerialPortListener
             dl.close();
         }
 
+        private string getDataCustomerType(string str)
+        {
+            if (str == "ขาย")
+                return "1";
+            else if (str == "สต็อก")
+                return "2";
+            else
+                return "";
+        }
+
         private void setDataWeightToDTGV()
         {
             try
             {
                 dl.connect();
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT *  FROM public.weight WHERE วันที่ >= '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' AND  วันที่ <= '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' ORDER BY วันที่, เลขที่เอกสาร");
+                sql.Append("SELECT weight.*  FROM public.weight ");
+                if (cbbCustomerType.SelectedIndex != 0)
+                    sql.Append(" INNER JOIN public.base_customer ON weight.รหัสลูกค้า = base_customer.รหัสลูกค้า ");
+                sql.Append(" WHERE (วันที่ = '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' and เวลาชั่งออก >= '" + dtFromOut.Value.ToString("HH:mm") + "' or วันที่  > '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "') AND (วันที่ = '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' and  เวลาชั่งออก <= '" + dtToOut.Value.ToString("HH:mm") + "' or  วันที่ < '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "') ");
+                if (cbbCustomerType.SelectedIndex != 0)
+                    sql.Append(" AND base_customer.ประเภทลูกค้า = '" + getDataCustomerType(cbbCustomerType.Text) + "' ");
+                if (tbCarRegistration.Text != "")
+                    sql.Append(" AND ทะเบียนรถ LIKE '" + tbCarRegistration.Text + "%' ");
+                if (cbbCarTeam.SelectedIndex != 0)
+                    sql.Append(" AND ทีม = '" + cbbCarTeam.Text + "' ");
+                if (tbDriver.Text != "")
+                    sql.Append(" AND คนขับ LIKE '" + tbDriver.Text + "%' ");
+                if (cbbStoneType.SelectedIndex != 0)
+                    sql.Append(" AND ชนิดหิน = '" + cbbStoneType.Text + "' ");
+                if (tbbCustomerName.Text != "")
+                    sql.Append(" AND ลูกค้า = '" + tbbCustomerName.Text + "' ");
+                if (tbbFromCustomerId.Text != "" && tbbToCustomerId.Text != "")
+                    sql.Append(" AND weight.รหัสลูกค้า BETWEEN '" + tbbFromCustomerId.Text + "' AND '" + tbbToCustomerId.Text + "' ");
+                if (cbbWeight.SelectedIndex == 0)
+                    sql.Append(" AND NOT น้ำหนักรถ  = '0.00' AND NOT น้ำหนักรวม = '0.00' ");
+                if (cbbWeight.SelectedIndex == 2)
+                    sql.Append(" AND น้ำหนักรวม = '0.00' ");
+                if (cbbLineType.SelectedIndex != 0)
+                    sql.Append(" AND line_type = '" + cbbLineType.Text + "' ");
+
+                sql.Append(" ORDER BY วันที่, เลขที่เอกสาร ");
+
                 OdbcDataAdapter adt = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
                 DataTable dt = new DataTable();
                 adt.Fill(dt);
@@ -317,8 +353,35 @@ namespace SerialPortListener
 
             //sql
             dl.connect();
-            string sql = "select * from weight where วันที่ BETWEEN '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' AND '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' ORDER BY วันที่, เลขที่เอกสาร";
-            OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT weight.*  FROM public.weight ");
+            if (cbbCustomerType.SelectedIndex != 0)
+                sql.Append(" INNER JOIN public.base_customer ON weight.รหัสลูกค้า = base_customer.รหัสลูกค้า ");
+            sql.Append(" WHERE (วันที่ = '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "' and เวลาชั่งออก >= '" + dtFromOut.Value.ToString("HH:mm") + "' or วันที่  > '" + tbdateFrom.Value.ToString("yyyy-MM-dd") + "') AND (วันที่ = '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "' and  เวลาชั่งออก <= '" + dtToOut.Value.ToString("HH:mm") + "' or  วันที่ < '" + tbdateTo.Value.ToString("yyyy-MM-dd") + "') ");
+            if (cbbCustomerType.SelectedIndex != 0)
+                sql.Append(" AND base_customer.ประเภทลูกค้า = '" + getDataCustomerType(cbbCustomerType.Text) + "' ");
+            if (tbCarRegistration.Text != "")
+                sql.Append(" AND ทะเบียนรถ LIKE '" + tbCarRegistration.Text + "%' ");
+            if (cbbCarTeam.SelectedIndex != 0)
+                sql.Append(" AND ทีม = '" + cbbCarTeam.Text + "' ");
+            if (tbDriver.Text != "")
+                sql.Append(" AND คนขับ LIKE '" + tbDriver.Text + "%' ");
+            if (cbbStoneType.SelectedIndex != 0)
+                sql.Append(" AND ชนิดหิน = '" + cbbStoneType.Text + "' ");
+            if (tbbCustomerName.Text != "")
+                sql.Append(" AND ลูกค้า = '" + tbbCustomerName.Text + "' ");
+            if (tbbFromCustomerId.Text != "" && tbbToCustomerId.Text != "")
+                sql.Append(" AND weight.รหัสลูกค้า BETWEEN '" + tbbFromCustomerId.Text + "' AND '" + tbbToCustomerId.Text + "' ");
+            if (cbbWeight.SelectedIndex == 0)
+                sql.Append(" AND NOT น้ำหนักรถ  = '0.00' AND NOT น้ำหนักรวม = '0.00' ");
+            if (cbbWeight.SelectedIndex == 2)
+                sql.Append(" AND น้ำหนักรวม = '0.00' ");
+            if (cbbLineType.SelectedIndex != 0)
+                sql.Append(" AND line_type = '" + cbbLineType.Text + "' ");
+
+            sql.Append(" ORDER BY วันที่, เลขที่เอกสาร ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
             DataTable dt = new DataTable();
             cmd.Fill(dt);
             dl.close();

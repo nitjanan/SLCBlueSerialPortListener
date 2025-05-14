@@ -72,7 +72,7 @@ namespace SerialPortListener
             dl = new Datalayer();
             InitializeComponent();
             mainForm = parent;
-            cbbSearchWeight.SelectedIndex = 0;
+            cbbSearchWeight.SelectedIndex = 1;
             setDefaultFormatDTGV();
         }
 
@@ -269,9 +269,10 @@ namespace SerialPortListener
                 StringBuilder sql = new StringBuilder();
                 sql.Append("SELECT * FROM public.weight where วันที่ between '").Append(dateFrom.Value.ToString("yyyy-MM-dd")).Append("'  AND  '").Append(dateTo.Value.ToString("yyyy-MM-dd")).Append("'");
                 if (cbbSearchWeight.SelectedIndex == 1)
-                    sql.Append(" AND น้ำหนักรวม = '0.00' ORDER BY น้ำหนักรถ ");
-                else
-                    sql.Append(" ORDER BY วันที่, เลขที่เอกสาร");
+                    sql.Append(" AND น้ำหนักรวม = '0.00' ");
+                else if (cbbSearchWeight.SelectedIndex == 2)
+                    sql.Append(" AND NOT น้ำหนักรถ  = '0.00' AND NOT น้ำหนักรวม = '0.00' ");
+                sql.Append(" ORDER BY วันที่, เลขที่เอกสาร ");
                 OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
                 DataTable dt = new DataTable();
                 cmd.Fill(dt);

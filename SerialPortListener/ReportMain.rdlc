@@ -32,9 +32,6 @@
                 <Left>0.27871cm</Left>
                 <Height>0.71466cm</Height>
                 <Width>8.78448cm</Width>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -70,9 +67,6 @@
                 <Height>0.22933in</Height>
                 <Width>3.47234in</Width>
                 <ZIndex>1</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -90,7 +84,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>เลขที่ </Value>
+                        <Value>=Parameters!TDocName.Value</Value>
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -99,19 +93,16 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Right</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>0.46608in</Top>
-                <Left>5.2279in</Left>
+                <Top>0.47996in</Top>
+                <Left>5.22792in</Left>
                 <Height>0.25in</Height>
-                <Width>0.5986in</Width>
+                <Width>0.89671in</Width>
                 <ZIndex>2</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -148,9 +139,6 @@
                 <Height>0.25in</Height>
                 <Width>0.81882in</Width>
                 <ZIndex>3</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -185,11 +173,8 @@
                 <Top>0.85496in</Top>
                 <Left>5.00397in</Left>
                 <Height>0.25in</Height>
-                <Width>0.62747in</Width>
+                <Width>0.64134in</Width>
                 <ZIndex>4</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -222,13 +207,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>0.85496in</Top>
-                <Left>5.70088in</Left>
+                <Left>5.68698in</Left>
                 <Height>0.25in</Height>
-                <Width>1.07712in</Width>
+                <Width>1.1049in</Width>
                 <ZIndex>5</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -246,7 +228,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>โรงโม่ </Value>
+                        <Value>ขนส่ง </Value>
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -265,9 +247,6 @@
                 <Height>0.25in</Height>
                 <Width>0.48957in</Width>
                 <ZIndex>6</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -304,9 +283,6 @@
                 <Height>0.25in</Height>
                 <Width>1.18687in</Width>
                 <ZIndex>7</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -343,9 +319,6 @@
                 <Height>0.25in</Height>
                 <Width>1.44654in</Width>
                 <ZIndex>8</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -380,11 +353,8 @@
                 <Top>2.26988in</Top>
                 <Left>4.19594in</Left>
                 <Height>0.25in</Height>
-                <Width>1.4355in</Width>
+                <Width>1.44937in</Width>
                 <ZIndex>9</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -421,9 +391,6 @@
                 <Height>0.25in</Height>
                 <Width>1.43266in</Width>
                 <ZIndex>10</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -460,9 +427,6 @@
                 <Height>0.25in</Height>
                 <Width>1.46043in</Width>
                 <ZIndex>11</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -499,9 +463,6 @@
                 <Height>0.25in</Height>
                 <Width>1.46327in</Width>
                 <ZIndex>12</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -538,9 +499,6 @@
                 <Height>0.25in</Height>
                 <Width>0.423in</Width>
                 <ZIndex>13</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -577,9 +535,6 @@
                 <Height>0.25in</Height>
                 <Width>0.9065in</Width>
                 <ZIndex>14</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -600,21 +555,21 @@
                         <Value>=Parameters!PDocNum.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>14pt</FontSize>
+                          <FontSize>12pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>0.41718in</Top>
-                <Left>4.18204in</Left>
-                <Height>0.34056in</Height>
-                <Width>0.94864in</Width>
+                <Top>0.47996in</Top>
+                <Left>6.12463in</Left>
+                <Height>0.25in</Height>
+                <Width>1.05818in</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
@@ -644,9 +599,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PDriverName</rd:DefaultName>
                 <Top>2.82544in</Top>
-                <Left>0.53273in</Left>
-                <Height>0.29167in</Height>
-                <Width>1.21937in</Width>
+                <Left>0.94244in</Left>
+                <Height>0.25in</Height>
+                <Width>2.63965in</Width>
                 <ZIndex>16</ZIndex>
                 <Style>
                   <Border>
@@ -676,9 +631,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PStoneType</rd:DefaultName>
                 <Top>1.61711in</Top>
-                <Left>1.01623in</Left>
+                <Left>0.94244in</Left>
                 <Height>0.25in</Height>
-                <Width>2.56584in</Width>
+                <Width>2.63963in</Width>
                 <ZIndex>17</ZIndex>
                 <Style>
                   <Border>
@@ -697,7 +652,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!PMill.Value</Value>
+                        <Value>=Parameters!PTeam.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -709,9 +664,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PMill</rd:DefaultName>
                 <Top>1.90877in</Top>
-                <Left>0.62993in</Left>
+                <Left>0.94244in</Left>
                 <Height>0.25in</Height>
-                <Width>1.12217in</Width>
+                <Width>2.62574in</Width>
                 <ZIndex>18</ZIndex>
                 <Style>
                   <Border>
@@ -743,9 +698,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PCar</rd:DefaultName>
                 <Top>2.53377in</Top>
-                <Left>0.97022in</Left>
+                <Left>0.94244in</Left>
                 <Height>0.25in</Height>
-                <Width>1.46727in</Width>
+                <Width>1.49505in</Width>
                 <ZIndex>19</ZIndex>
                 <Style>
                   <Border>
@@ -776,9 +731,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PCity</rd:DefaultName>
                 <Top>2.53377in</Top>
-                <Left>2.47916in</Left>
+                <Left>2.43749in</Left>
                 <Height>0.25in</Height>
-                <Width>1.10292in</Width>
+                <Width>1.14459in</Width>
                 <ZIndex>20</ZIndex>
                 <Style>
                   <Border>
@@ -801,6 +756,7 @@
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
+                          <Format>dd/MM/yyyy</Format>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -836,6 +792,7 @@
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
+                          <Format>dd/MM/yyyy</Format>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -875,7 +832,7 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Left</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
@@ -910,7 +867,7 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Left</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
@@ -953,7 +910,7 @@
                 <Top>1.17441in</Top>
                 <Left>5.687in</Left>
                 <Height>0.25in</Height>
-                <Width>1.091in</Width>
+                <Width>1.10487in</Width>
                 <ZIndex>25</ZIndex>
                 <Style>
                   <Border>
@@ -986,9 +943,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PWeightOut</rd:DefaultName>
                 <Top>1.49385in</Top>
-                <Left>5.70088in</Left>
+                <Left>5.68698in</Left>
                 <Height>0.25in</Height>
-                <Width>1.07712in</Width>
+                <Width>1.10489in</Width>
                 <ZIndex>26</ZIndex>
                 <Style>
                   <Border>
@@ -1021,9 +978,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PWeightTotal</rd:DefaultName>
                 <Top>1.84108in</Top>
-                <Left>5.70088in</Left>
+                <Left>5.68698in</Left>
                 <Height>0.25in</Height>
-                <Width>1.07712in</Width>
+                <Width>1.10489in</Width>
                 <ZIndex>27</ZIndex>
                 <Style>
                   <Border>
@@ -1201,9 +1158,6 @@
                 <Height>0.25in</Height>
                 <Width>1.46327in</Width>
                 <ZIndex>32</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1235,9 +1189,9 @@
                 </Paragraphs>
                 <rd:DefaultName>PQ</rd:DefaultName>
                 <Top>2.26988in</Top>
-                <Left>5.70088in</Left>
+                <Left>5.68698in</Left>
                 <Height>0.25in</Height>
-                <Width>1.07712in</Width>
+                <Width>1.10489in</Width>
                 <ZIndex>33</ZIndex>
                 <Style>
                   <Border>
@@ -1290,9 +1244,6 @@
                 <Height>0in</Height>
                 <Width>2.21266in</Width>
                 <ZIndex>35</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>Dashed</Style>
@@ -1325,9 +1276,6 @@
                 <Height>0.25in</Height>
                 <Width>1.26074in</Width>
                 <ZIndex>36</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1364,9 +1312,6 @@
                 <Height>0.25in</Height>
                 <Width>1.38749in</Width>
                 <ZIndex>37</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1383,108 +1328,12 @@
                 <Height>0in</Height>
                 <Width>1.26074in</Width>
                 <ZIndex>38</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>Dashed</Style>
                   </Border>
                 </Style>
               </Line>
-              <Textbox Name="Textbox25">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>ผู้ตัก</Value>
-                        <Style>
-                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>3.71554in</Top>
-                <Left>0.11258in</Left>
-                <Height>0.25in</Height>
-                <Width>0.38614in</Width>
-                <ZIndex>39</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Line Name="Line17">
-                <Top>3.92146in</Top>
-                <Left>0.42918in</Left>
-                <Height>0in</Height>
-                <Width>1.2542in</Width>
-                <ZIndex>40</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>Dashed</Style>
-                  </Border>
-                </Style>
-              </Line>
-              <Textbox Name="Textbox26">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>คลังสินค้า</Value>
-                        <Style>
-                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>3.72822in</Top>
-                <Left>1.68622in</Left>
-                <Height>0.25in</Height>
-                <Width>0.79516in</Width>
-                <ZIndex>41</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Textbox Name="Textbox27">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -1507,13 +1356,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>0.85496in</Top>
-                <Left>4.1849in</Left>
+                <Left>4.03622in</Left>
                 <Height>0.25in</Height>
-                <Width>0.74962in</Width>
-                <ZIndex>42</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <Width>0.93997in</Width>
+                <ZIndex>39</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1525,14 +1371,11 @@
                 </Style>
               </Textbox>
               <Line Name="Line1">
-                <Top>0.06649in</Top>
+                <Top>0.07in</Top>
                 <Left>0.08195in</Left>
-                <Height>4.59056in</Height>
+                <Height>4.47993in</Height>
                 <Width>0in</Width>
-                <ZIndex>43</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>40</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1542,12 +1385,9 @@
               <Line Name="Line2">
                 <Top>0.16889cm</Top>
                 <Left>7.25224in</Left>
-                <Height>11.67361cm</Height>
+                <Height>11.38793cm</Height>
                 <Width>0in</Width>
-                <ZIndex>44</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>41</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1557,12 +1397,9 @@
               <Line Name="Line3">
                 <Top>0.16889cm</Top>
                 <Left>3.60985in</Left>
-                <Height>11.62361cm</Height>
+                <Height>11.4144cm</Height>
                 <Width>0in</Width>
-                <ZIndex>45</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>42</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1574,10 +1411,7 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>7.17029in</Width>
-                <ZIndex>46</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>43</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1589,10 +1423,7 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>7.17028in</Width>
-                <ZIndex>47</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>44</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1604,10 +1435,7 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>7.17028in</Width>
-                <ZIndex>48</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>45</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1619,10 +1447,7 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>7.17028in</Width>
-                <ZIndex>49</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>46</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1634,10 +1459,7 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>7.17029in</Width>
-                <ZIndex>50</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>47</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1649,10 +1471,7 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>3.5279in</Width>
-                <ZIndex>51</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>48</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1664,10 +1483,7 @@
                 <Left>5.15846in</Left>
                 <Height>0.71903in</Height>
                 <Width>0in</Width>
-                <ZIndex>52</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>49</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1699,10 +1515,7 @@
                 <Left>0.10973in</Left>
                 <Height>0.25in</Height>
                 <Width>0.90083in</Width>
-                <ZIndex>53</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>50</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1738,10 +1551,7 @@
                 <Left>0.11258in</Left>
                 <Height>0.25in</Height>
                 <Width>0.46181in</Width>
-                <ZIndex>54</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>51</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1769,11 +1579,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCustomerName</rd:DefaultName>
-                <Top>0.79941in</Top>
+                <Top>0.82718in</Top>
                 <Left>0.60217in</Left>
                 <Height>0.27778in</Height>
                 <Width>2.97991in</Width>
-                <ZIndex>55</ZIndex>
+                <ZIndex>52</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1809,10 +1619,7 @@
                 <Left>3.65152in</Left>
                 <Height>0.25in</Height>
                 <Width>0.34304in</Width>
-                <ZIndex>56</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>53</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1848,10 +1655,7 @@
                 <Left>3.64047in</Left>
                 <Height>0.25in</Height>
                 <Width>0.35409in</Width>
-                <ZIndex>57</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>54</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1886,7 +1690,7 @@
                 <Left>0.11258in</Left>
                 <Height>0.25in</Height>
                 <Width>0.46181in</Width>
-                <ZIndex>58</ZIndex>
+                <ZIndex>55</ZIndex>
                 <Visibility>
                   <Hidden>true</Hidden>
                 </Visibility>
@@ -1905,28 +1709,10 @@
                 <Left>0.08195in</Left>
                 <Height>0in</Height>
                 <Width>3.5279in</Width>
-                <ZIndex>59</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>56</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
-                  </Border>
-                </Style>
-              </Line>
-              <Line Name="Line18">
-                <Top>3.92146in</Top>
-                <Left>2.37499in</Left>
-                <Height>0in</Height>
-                <Width>1.20708in</Width>
-                <ZIndex>60</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>Dashed</Style>
                   </Border>
                 </Style>
               </Line>
@@ -1954,7 +1740,7 @@
                 <Left>0.11258in</Left>
                 <Height>0.25in</Height>
                 <Width>0.59711in</Width>
-                <ZIndex>61</ZIndex>
+                <ZIndex>57</ZIndex>
                 <Visibility>
                   <Hidden>true</Hidden>
                 </Visibility>
@@ -1973,10 +1759,7 @@
                 <Left>3.60984in</Left>
                 <Height>0in</Height>
                 <Width>3.64239in</Width>
-                <ZIndex>62</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>58</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -2008,46 +1791,7 @@
                 <Left>1.79377in</Left>
                 <Height>0.25in</Height>
                 <Width>0.64372in</Width>
-                <ZIndex>63</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="PVatType">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!PVatType.Value</Value>
-                        <Style>
-                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
-                          <FontSize>12pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>PVatType</rd:DefaultName>
-                <Top>0.13593in</Top>
-                <Left>5.2279in</Left>
-                <Height>0.25in</Height>
-                <Width>1.95489in</Width>
-                <ZIndex>64</ZIndex>
+                <ZIndex>59</ZIndex>
                 <Visibility>
                   <Hidden>true</Hidden>
                 </Visibility>
@@ -2081,7 +1825,7 @@
                 <Left>0.60217in</Left>
                 <Height>0.25in</Height>
                 <Width>2.9799in</Width>
-                <ZIndex>65</ZIndex>
+                <ZIndex>60</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2101,7 +1845,6 @@
                         <Value>=Parameters!PCustomerSend.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -2109,11 +1852,14 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PCustomerSend</rd:DefaultName>
-                <Top>1.32544in</Top>
+                <Top>1.33933in</Top>
                 <Left>0.72358in</Left>
-                <Height>0.26389in</Height>
+                <Height>0.25in</Height>
                 <Width>2.85849in</Width>
-                <ZIndex>66</ZIndex>
+                <ZIndex>61</ZIndex>
+                <Visibility>
+                  <Hidden>true</Hidden>
+                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2146,7 +1892,7 @@
                 <Left>2.43749in</Left>
                 <Height>0.25in</Height>
                 <Width>1.14458in</Width>
-                <ZIndex>67</ZIndex>
+                <ZIndex>62</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2162,10 +1908,7 @@
                 <Left>5.15846in</Left>
                 <Height>0.55902in</Height>
                 <Width>0in</Width>
-                <ZIndex>68</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>63</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -2179,7 +1922,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>จ่ายสินค้า</Value>
+                        <Value>หมายเหตุ</Value>
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -2193,53 +1936,11 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>3.46554in</Top>
-                <Left>0.10973in</Left>
+                <Top>3.46433in</Top>
+                <Left>0.11258in</Left>
                 <Height>0.25in</Height>
-                <Width>0.81882in</Width>
-                <ZIndex>69</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox38">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>ทีม</Value>
-                        <Style>
-                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>2.82544in</Top>
-                <Left>1.79377in</Left>
-                <Height>0.25in</Height>
-                <Width>0.37164in</Width>
-                <ZIndex>70</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <Width>0.84375in</Width>
+                <ZIndex>64</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2255,10 +1956,7 @@
                 <Left>0.97022in</Left>
                 <Height>0in</Height>
                 <Width>2.59796in</Width>
-                <ZIndex>71</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>65</ZIndex>
                 <Style>
                   <Border>
                     <Style>Dashed</Style>
@@ -2287,13 +1985,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>1.17441in</Top>
-                <Left>6.83356in</Left>
+                <Left>6.83354in</Left>
                 <Height>0.25in</Height>
-                <Width>0.34923in</Width>
-                <ZIndex>72</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <Width>0.34925in</Width>
+                <ZIndex>66</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2326,13 +2021,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>1.50775in</Top>
-                <Left>6.84744in</Left>
+                <Left>6.83354in</Left>
                 <Height>0.25in</Height>
-                <Width>0.33535in</Width>
-                <ZIndex>73</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <Width>0.34925in</Width>
+                <ZIndex>67</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2365,13 +2057,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>1.8272in</Top>
-                <Left>6.84744in</Left>
+                <Left>6.83354in</Left>
                 <Height>0.25in</Height>
-                <Width>0.33535in</Width>
-                <ZIndex>74</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <Width>0.34925in</Width>
+                <ZIndex>68</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2404,13 +2093,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>2.26989in</Top>
-                <Left>6.84744in</Left>
+                <Left>6.83354in</Left>
                 <Height>0.25in</Height>
-                <Width>0.33535in</Width>
-                <ZIndex>75</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <Width>0.34925in</Width>
+                <ZIndex>69</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2446,10 +2132,7 @@
                 <Left>6.83354in</Left>
                 <Height>0.25in</Height>
                 <Width>0.36313in</Width>
-                <ZIndex>76</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>70</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2485,10 +2168,7 @@
                 <Left>6.83354in</Left>
                 <Height>0.25in</Height>
                 <Width>0.36313in</Width>
-                <ZIndex>77</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>71</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2524,10 +2204,7 @@
                 <Left>6.83354in</Left>
                 <Height>0.25in</Height>
                 <Width>0.36313in</Width>
-                <ZIndex>78</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>72</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2563,10 +2240,7 @@
                 <Left>6.83354in</Left>
                 <Height>0.25in</Height>
                 <Width>0.36313in</Width>
-                <ZIndex>79</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>73</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2602,7 +2276,7 @@
                 <Left>5.22791in</Left>
                 <Height>0.25in</Height>
                 <Width>1.95489in</Width>
-                <ZIndex>80</ZIndex>
+                <ZIndex>74</ZIndex>
                 <Visibility>
                   <Hidden>true</Hidden>
                 </Visibility>
@@ -2623,7 +2297,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>FM-AC-002</Value>
+                        <Value>FM-PD-03 rev.001</Value>
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -2640,42 +2314,10 @@
                 <Left>5.22792in</Left>
                 <Height>0.25in</Height>
                 <Width>1.95489in</Width>
-                <ZIndex>81</ZIndex>
+                <ZIndex>75</ZIndex>
                 <Visibility>
                   <Hidden>true</Hidden>
                 </Visibility>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="PTeam">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!PTeam.Value</Value>
-                        <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>PTeam</rd:DefaultName>
-                <Top>7.17661cm</Top>
-                <Left>5.34141cm</Left>
-                <Height>0.74085cm</Height>
-                <Width>3.75707cm</Width>
-                <ZIndex>82</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2693,7 +2335,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!TLogo.Value</Value>
+                        <Value>(Sandvik)</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
                           <FontSize>12pt</FontSize>
@@ -2711,7 +2353,7 @@
                 <Left>2.73621in</Left>
                 <Height>0.25in</Height>
                 <Width>0.84586in</Width>
-                <ZIndex>83</ZIndex>
+                <ZIndex>76</ZIndex>
                 <Visibility>
                   <Hidden>true</Hidden>
                 </Visibility>
@@ -2748,42 +2390,7 @@
                 <Left>0.10973in</Left>
                 <Height>0.25in</Height>
                 <Width>3.47234in</Width>
-                <ZIndex>84</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="PApproveName">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!PApproveName.Value</Value>
-                        <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>PApproveName</rd:DefaultName>
-                <Top>8.83439cm</Top>
-                <Left>2.39379cm</Left>
-                <Height>0.6cm</Height>
-                <Width>6.67662cm</Width>
-                <ZIndex>85</ZIndex>
+                <ZIndex>77</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2816,40 +2423,7 @@
                 <Left>6.19122cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.90727cm</Width>
-                <ZIndex>86</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="TDocName">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!TDocName.Value</Value>
-                        <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>TDocName</rd:DefaultName>
-                <Top>1.18384cm</Top>
-                <Left>9.16899cm</Left>
-                <Height>0.6cm</Height>
-                <Width>2.5cm</Width>
-                <ZIndex>87</ZIndex>
+                <ZIndex>78</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2879,10 +2453,80 @@
                 </Paragraphs>
                 <rd:DefaultName>PTransport</rd:DefaultName>
                 <Top>5.72994cm</Top>
-                <Left>3.3992cm</Left>
+                <Left>3.29336cm</Left>
                 <Height>0.6cm</Height>
-                <Width>2.72147cm</Width>
-                <ZIndex>88</ZIndex>
+                <Width>2.89786cm</Width>
+                <ZIndex>79</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox1">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!PVatType.Value</Value>
+                        <Style>
+                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
+                          <FontSize>14pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox1</rd:DefaultName>
+                <Top>0.31883cm</Top>
+                <Left>13.27892cm</Left>
+                <Height>0.75918cm</Height>
+                <Width>4.96537cm</Width>
+                <ZIndex>80</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="PCar2">
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!PNote.Value</Value>
+                        <Style>
+                          <FontFamily>Leelawadee UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>PCar</rd:DefaultName>
+                <Top>3.47811in</Top>
+                <Left>0.94244in</Left>
+                <Height>0.47114in</Height>
+                <Width>2.62574in</Width>
+                <ZIndex>81</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2914,10 +2558,10 @@
                 </Paragraphs>
                 <rd:DefaultName>PPay</rd:DefaultName>
                 <Top>3.58933in</Top>
-                <Left>3.64047in</Left>
+                <Left>3.62374in</Left>
                 <Height>0.2488in</Height>
                 <Width>0.86in</Width>
-                <ZIndex>89</ZIndex>
+                <ZIndex>82</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2951,7 +2595,7 @@
                 <Left>2.92926in</Left>
                 <Height>0.25in</Height>
                 <Width>0.65281in</Width>
-                <ZIndex>90</ZIndex>
+                <ZIndex>83</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2964,7 +2608,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Height>11.8425cm</Height>
+            <Height>11.7856cm</Height>
             <Width>18.42069cm</Width>
             <Style>
               <Border>
@@ -2973,22 +2617,22 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>11.8425cm</Height>
+        <Height>4.64in</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>18.5284cm</Width>
+      <Width>7.29465in</Width>
       <Page>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
-        <LeftMargin>1.143cm</LeftMargin>
-        <RightMargin>1.143cm</RightMargin>
-        <TopMargin>1.143cm</TopMargin>
-        <BottomMargin>1.143cm</BottomMargin>
-        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <PageHeight>5.5in</PageHeight>
+        <PageWidth>8in</PageWidth>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.2in</TopMargin>
+        <BottomMargin>0.2in</BottomMargin>
+        <ColumnSpacing>0.05118in</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
@@ -3147,6 +2791,10 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="PDatePrintAndCopyNum">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PNote">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -3351,6 +2999,11 @@
           <RowIndex>9</RowIndex>
           <ParameterName>PDatePrintAndCopyNum</ParameterName>
         </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>PNote</ParameterName>
+        </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
@@ -3482,6 +3135,6 @@ AIydeNz6wYY1kkYvzlS3zS+VpcWIb0TRh+oSNBB8a+bDR6ORGpP0zTv9G5i31OoZRpTT34chouVzWbsY
 +3QJyo7Km5p0TOhJGiNK3P3GsUGGppD6xNjjClMeWz4f0TpzicqsZY/X+VrP/yUUI1OVLYjREJ/73PWrz3/+m3f56lf//urrX3/oRPf1S5WNzE/33KVzds89N+6+9olP/EW43J7pHpMvfelv7x6X/vUcLSvrxOt8GRQjU5Uti5GIiEgfxchURTESEZE9oRiZqihGIiKyJxQjUxXFSERE9oRiZKqiGImIyJ5QjExVFCMREdkTipGpimIkIiJ7QjEyVVGMRERkTyhGpiqKkYiI7AnFyFRFMRIRkT2hGJmqKEYiIrInFCNTFcVIRET2hGJkqqIYiYjInlCMTFUUIxER2ROKkamKYiQiIntCMTJVUYxERGRPKEamKoqRiIjsCcXIVEUxEhGRPaEYmaooRiIisicUI1MVxUhERPaEYmSqohiJiMieUIxMVRQjERHZE4qRqYpiJCIie0IxMlVRjEREZE80EaOXvvY1OSiKkYiI7IkmYiSSUIxERGTLKEbSFMVIRES2jGIkTVGMRERky4wSo//61rdETty6/s2rH/3Jn97lX++97+rBB/9JRERkkxSLkTHGGGPMEaMYGWOMMcbciWJkjDHGGHMnipExxhhjzJ0oRsYYY4wxp1xd/R/Ap4JjbBGvmwAAAABJRU5ErkJggg==</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>57a2e602-b891-4962-99f5-cc2a0da3624f</rd:ReportID>
 </Report>
