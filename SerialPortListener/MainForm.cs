@@ -2014,7 +2014,7 @@ namespace SerialPortListener
             Weight.ApproveName = strNotEmty(tbApproveName.Text);
             Weight.Pay = strNotEmty(getPayRadioValue());
             Weight.VatType = getVatRadioValuePrint();
-            Weight.Clean = getCleanRadioValue();
+            Weight.Clean = strNotEmty(getCleanRadioValue());
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Note = strNotEmty(tbNote.Text);
