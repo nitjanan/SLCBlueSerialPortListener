@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tcReport = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btPrintBil = new System.Windows.Forms.Button();
             this.cbbLineType = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
             this.cbbWeight = new System.Windows.Forms.ComboBox();
@@ -58,12 +59,15 @@
             this.label29 = new System.Windows.Forms.Label();
             this.tbdateTo = new System.Windows.Forms.DateTimePicker();
             this.tbdateFrom = new System.Windows.Forms.DateTimePicker();
+            this.btSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btExport = new System.Windows.Forms.Button();
             this.dgvDailyReport = new System.Windows.Forms.DataGridView();
             this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.truckDataSet = new SerialPortListener.truckDataSet();
+            this.btPrint = new System.Windows.Forms.Button();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.label55 = new System.Windows.Forms.Label();
             this.cbCorpLineType = new System.Windows.Forms.ComboBox();
@@ -76,6 +80,7 @@
             this.label53 = new System.Windows.Forms.Label();
             this.dtToCorp = new System.Windows.Forms.DateTimePicker();
             this.dtFromCorp = new System.Windows.Forms.DateTimePicker();
+            this.btPrintCorp = new System.Windows.Forms.Button();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.label57 = new System.Windows.Forms.Label();
             this.cbCCStoneType = new System.Windows.Forms.ComboBox();
@@ -88,6 +93,7 @@
             this.label50 = new System.Windows.Forms.Label();
             this.dtToCC = new System.Windows.Forms.DateTimePicker();
             this.dtFromCC = new System.Windows.Forms.DateTimePicker();
+            this.btPrintCC = new System.Windows.Forms.Button();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.cbbTransportTeam = new System.Windows.Forms.ComboBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -95,6 +101,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.dtToTransport = new System.Windows.Forms.DateTimePicker();
             this.dtFromTransport = new System.Windows.Forms.DateTimePicker();
+            this.btPrintTransport = new System.Windows.Forms.Button();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.label39 = new System.Windows.Forms.Label();
             this.cbbLineSite = new System.Windows.Forms.ComboBox();
@@ -108,6 +115,7 @@
             this.label44 = new System.Windows.Forms.Label();
             this.dtToLine = new System.Windows.Forms.DateTimePicker();
             this.dtFromLine = new System.Windows.Forms.DateTimePicker();
+            this.btPrintLine = new System.Windows.Forms.Button();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.label58 = new System.Windows.Forms.Label();
             this.cbbSumSite = new System.Windows.Forms.ComboBox();
@@ -121,6 +129,7 @@
             this.label63 = new System.Windows.Forms.Label();
             this.dtToSum = new System.Windows.Forms.DateTimePicker();
             this.dtFromSum = new System.Windows.Forms.DateTimePicker();
+            this.btPrintSum = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cbbCustomerName = new System.Windows.Forms.ComboBox();
             this.tbCustomerId = new System.Windows.Forms.TextBox();
@@ -130,6 +139,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dtToCustomer = new System.Windows.Forms.DateTimePicker();
             this.dtFromCustomer = new System.Windows.Forms.DateTimePicker();
+            this.btPrintCustomer = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.cbbInvoiceCutomerName = new System.Windows.Forms.ComboBox();
             this.tbInvoiceCutomerId = new System.Windows.Forms.TextBox();
@@ -139,6 +149,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dtToInvoice = new System.Windows.Forms.DateTimePicker();
             this.dtFromInvoice = new System.Windows.Forms.DateTimePicker();
+            this.btPrintInvoice = new System.Windows.Forms.Button();
+            this.btExportInvoice = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tbJointCarRegistration = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -146,6 +158,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dtToJointCar = new System.Windows.Forms.DateTimePicker();
             this.dtFromJointCar = new System.Windows.Forms.DateTimePicker();
+            this.btPrintJointCar = new System.Windows.Forms.Button();
+            this.btExportJointCar = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tbScoopName = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -153,8 +167,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtToScoop = new System.Windows.Forms.DateTimePicker();
             this.dtFromScoop = new System.Windows.Forms.DateTimePicker();
+            this.btPrintScoop = new System.Windows.Forms.Button();
+            this.btExportScoop = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.cbbCarTeamName = new System.Windows.Forms.ComboBox();
+            this.btPrintCarTeam = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbCleanNo = new System.Windows.Forms.RadioButton();
@@ -164,6 +181,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.dtToClean = new System.Windows.Forms.DateTimePicker();
             this.dtFromClean = new System.Windows.Forms.DateTimePicker();
+            this.btPrintClean = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.label16 = new System.Windows.Forms.Label();
             this.cbMill = new System.Windows.Forms.ComboBox();
@@ -171,16 +189,19 @@
             this.label15 = new System.Windows.Forms.Label();
             this.dtToMill = new System.Windows.Forms.DateTimePicker();
             this.dtFromMill = new System.Windows.Forms.DateTimePicker();
+            this.btPrintMill = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.dtToSite = new System.Windows.Forms.DateTimePicker();
             this.dtFromSite = new System.Windows.Forms.DateTimePicker();
+            this.btPrintSite = new System.Windows.Forms.Button();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.dtToStoneType = new System.Windows.Forms.DateTimePicker();
             this.dtFromStoneType = new System.Windows.Forms.DateTimePicker();
+            this.btPrintStoneType = new System.Windows.Forms.Button();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.label28 = new System.Windows.Forms.Label();
             this.cbbCarTeamNameByTeam = new System.Windows.Forms.ComboBox();
@@ -188,30 +209,9 @@
             this.label27 = new System.Windows.Forms.Label();
             this.dtToTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
+            this.btPrintTransportByTeam = new System.Windows.Forms.Button();
             this.tabPage16 = new System.Windows.Forms.TabPage();
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
-            this.btPrintBil = new System.Windows.Forms.Button();
-            this.btSearch = new System.Windows.Forms.Button();
-            this.btExport = new System.Windows.Forms.Button();
-            this.btPrint = new System.Windows.Forms.Button();
-            this.btPrintCorp = new System.Windows.Forms.Button();
-            this.btPrintCC = new System.Windows.Forms.Button();
-            this.btPrintTransport = new System.Windows.Forms.Button();
-            this.btPrintLine = new System.Windows.Forms.Button();
-            this.btPrintSum = new System.Windows.Forms.Button();
-            this.btPrintCustomer = new System.Windows.Forms.Button();
-            this.btPrintInvoice = new System.Windows.Forms.Button();
-            this.btExportInvoice = new System.Windows.Forms.Button();
-            this.btPrintJointCar = new System.Windows.Forms.Button();
-            this.btExportJointCar = new System.Windows.Forms.Button();
-            this.btPrintScoop = new System.Windows.Forms.Button();
-            this.btExportScoop = new System.Windows.Forms.Button();
-            this.btPrintCarTeam = new System.Windows.Forms.Button();
-            this.btPrintClean = new System.Windows.Forms.Button();
-            this.btPrintMill = new System.Windows.Forms.Button();
-            this.btPrintSite = new System.Windows.Forms.Button();
-            this.btPrintStoneType = new System.Windows.Forms.Button();
-            this.btPrintTransportByTeam = new System.Windows.Forms.Button();
             this.วันที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -248,6 +248,9 @@
             this.weight_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ชนิดvat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
@@ -343,6 +346,20 @@
             this.tabPage1.Size = new System.Drawing.Size(755, 460);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "รายงานการชั่งสินค้าประจำวัน";
+            // 
+            // btPrintBil
+            // 
+            this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
+            this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintBil.Location = new System.Drawing.Point(584, 430);
+            this.btPrintBil.Name = "btPrintBil";
+            this.btPrintBil.Size = new System.Drawing.Size(69, 30);
+            this.btPrintBil.TabIndex = 74;
+            this.btPrintBil.Text = "พิมพ์บิล";
+            this.btPrintBil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintBil.UseVisualStyleBackColor = true;
+            this.btPrintBil.Click += new System.EventHandler(this.btPrintBil_Click);
             // 
             // cbbLineType
             // 
@@ -590,6 +607,19 @@
             this.tbdateFrom.Size = new System.Drawing.Size(90, 26);
             this.tbdateFrom.TabIndex = 47;
             // 
+            // btSearch
+            // 
+            this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSearch.Location = new System.Drawing.Point(699, 87);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(47, 23);
+            this.btSearch.TabIndex = 46;
+            this.btSearch.Text = "ค้นหา";
+            this.btSearch.UseVisualStyleBackColor = true;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -607,6 +637,20 @@
             this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 44;
             this.label1.Text = "จากวันที่:";
+            // 
+            // btExport
+            // 
+            this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
+            this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btExport.Location = new System.Drawing.Point(6, 430);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(90, 30);
+            this.btExport.TabIndex = 10;
+            this.btExport.Text = "Export";
+            this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btExport.UseVisualStyleBackColor = true;
+            this.btExport.Visible = false;
+            this.btExport.Click += new System.EventHandler(this.btExport_Click);
             // 
             // dgvDailyReport
             // 
@@ -648,7 +692,10 @@
             this.ค่าขนส่ง,
             this.weight_id,
             this.ชนิดvat,
-            this.ล้าง});
+            this.ล้าง,
+            this.ขนส่ง,
+            this.oil_content,
+            this.หมายเหตุ});
             this.dgvDailyReport.DataSource = this.weightBindingSource;
             this.dgvDailyReport.Location = new System.Drawing.Point(6, 121);
             this.dgvDailyReport.Name = "dgvDailyReport";
@@ -669,6 +716,20 @@
             // 
             this.truckDataSet.DataSetName = "truckDataSet";
             this.truckDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // btPrint
+            // 
+            this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrint.Location = new System.Drawing.Point(659, 430);
+            this.btPrint.Name = "btPrint";
+            this.btPrint.Size = new System.Drawing.Size(90, 30);
+            this.btPrint.TabIndex = 6;
+            this.btPrint.Text = "พิมพ์รายงาน";
+            this.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrint.UseVisualStyleBackColor = true;
+            this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
             // 
             // tabPage15
             // 
@@ -804,6 +865,21 @@
             this.dtFromCorp.Name = "dtFromCorp";
             this.dtFromCorp.Size = new System.Drawing.Size(123, 27);
             this.dtFromCorp.TabIndex = 40;
+            // 
+            // btPrintCorp
+            // 
+            this.btPrintCorp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintCorp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintCorp.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCorp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintCorp.Location = new System.Drawing.Point(364, 271);
+            this.btPrintCorp.Name = "btPrintCorp";
+            this.btPrintCorp.Size = new System.Drawing.Size(75, 36);
+            this.btPrintCorp.TabIndex = 44;
+            this.btPrintCorp.Text = "พิมพ์";
+            this.btPrintCorp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintCorp.UseVisualStyleBackColor = true;
+            this.btPrintCorp.Click += new System.EventHandler(this.btPrintCorp_Click);
             // 
             // tabPage14
             // 
@@ -950,6 +1026,21 @@
             this.dtFromCC.Size = new System.Drawing.Size(123, 27);
             this.dtFromCC.TabIndex = 44;
             // 
+            // btPrintCC
+            // 
+            this.btPrintCC.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintCC.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintCC.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintCC.Location = new System.Drawing.Point(366, 291);
+            this.btPrintCC.Name = "btPrintCC";
+            this.btPrintCC.Size = new System.Drawing.Size(75, 36);
+            this.btPrintCC.TabIndex = 48;
+            this.btPrintCC.Text = "พิมพ์";
+            this.btPrintCC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintCC.UseVisualStyleBackColor = true;
+            this.btPrintCC.Click += new System.EventHandler(this.btPrintCC_Click);
+            // 
             // tabPage11
             // 
             this.tabPage11.BackColor = System.Drawing.Color.MintCream;
@@ -1022,6 +1113,20 @@
             this.dtFromTransport.Name = "dtFromTransport";
             this.dtFromTransport.Size = new System.Drawing.Size(123, 27);
             this.dtFromTransport.TabIndex = 26;
+            // 
+            // btPrintTransport
+            // 
+            this.btPrintTransport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintTransport.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintTransport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintTransport.Location = new System.Drawing.Point(358, 217);
+            this.btPrintTransport.Name = "btPrintTransport";
+            this.btPrintTransport.Size = new System.Drawing.Size(75, 36);
+            this.btPrintTransport.TabIndex = 30;
+            this.btPrintTransport.Text = "พิมพ์";
+            this.btPrintTransport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintTransport.UseVisualStyleBackColor = true;
+            this.btPrintTransport.Click += new System.EventHandler(this.btPrintTransport_Click);
             // 
             // tabPage13
             // 
@@ -1166,6 +1271,21 @@
             this.dtFromLine.Size = new System.Drawing.Size(123, 27);
             this.dtFromLine.TabIndex = 44;
             // 
+            // btPrintLine
+            // 
+            this.btPrintLine.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintLine.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintLine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintLine.Location = new System.Drawing.Point(359, 270);
+            this.btPrintLine.Name = "btPrintLine";
+            this.btPrintLine.Size = new System.Drawing.Size(75, 36);
+            this.btPrintLine.TabIndex = 48;
+            this.btPrintLine.Text = "พิมพ์";
+            this.btPrintLine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintLine.UseVisualStyleBackColor = true;
+            this.btPrintLine.Click += new System.EventHandler(this.btPrintLine_Click);
+            // 
             // tabPage17
             // 
             this.tabPage17.BackColor = System.Drawing.Color.AliceBlue;
@@ -1309,6 +1429,21 @@
             this.dtFromSum.Size = new System.Drawing.Size(123, 27);
             this.dtFromSum.TabIndex = 57;
             // 
+            // btPrintSum
+            // 
+            this.btPrintSum.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintSum.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintSum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintSum.Location = new System.Drawing.Point(359, 270);
+            this.btPrintSum.Name = "btPrintSum";
+            this.btPrintSum.Size = new System.Drawing.Size(75, 36);
+            this.btPrintSum.TabIndex = 61;
+            this.btPrintSum.Text = "พิมพ์";
+            this.btPrintSum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintSum.UseVisualStyleBackColor = true;
+            this.btPrintSum.Click += new System.EventHandler(this.btPrintSum_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.AliceBlue;
@@ -1406,6 +1541,21 @@
             this.dtFromCustomer.Name = "dtFromCustomer";
             this.dtFromCustomer.Size = new System.Drawing.Size(123, 27);
             this.dtFromCustomer.TabIndex = 12;
+            // 
+            // btPrintCustomer
+            // 
+            this.btPrintCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintCustomer.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintCustomer.Location = new System.Drawing.Point(353, 201);
+            this.btPrintCustomer.Name = "btPrintCustomer";
+            this.btPrintCustomer.Size = new System.Drawing.Size(75, 36);
+            this.btPrintCustomer.TabIndex = 16;
+            this.btPrintCustomer.Text = "พิมพ์";
+            this.btPrintCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintCustomer.UseVisualStyleBackColor = true;
+            this.btPrintCustomer.Click += new System.EventHandler(this.btPrintCustomer_Click);
             // 
             // tabPage3
             // 
@@ -1505,6 +1655,35 @@
             this.dtFromInvoice.Size = new System.Drawing.Size(123, 27);
             this.dtFromInvoice.TabIndex = 6;
             // 
+            // btPrintInvoice
+            // 
+            this.btPrintInvoice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintInvoice.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintInvoice.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintInvoice.Location = new System.Drawing.Point(353, 201);
+            this.btPrintInvoice.Name = "btPrintInvoice";
+            this.btPrintInvoice.Size = new System.Drawing.Size(75, 36);
+            this.btPrintInvoice.TabIndex = 11;
+            this.btPrintInvoice.Text = "พิมพ์";
+            this.btPrintInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintInvoice.UseVisualStyleBackColor = true;
+            this.btPrintInvoice.Click += new System.EventHandler(this.btPrintInvoice_Click);
+            // 
+            // btExportInvoice
+            // 
+            this.btExportInvoice.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btExportInvoice.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
+            this.btExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btExportInvoice.Location = new System.Drawing.Point(148, 201);
+            this.btExportInvoice.Name = "btExportInvoice";
+            this.btExportInvoice.Size = new System.Drawing.Size(75, 36);
+            this.btExportInvoice.TabIndex = 10;
+            this.btExportInvoice.Text = "Export";
+            this.btExportInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btExportInvoice.UseVisualStyleBackColor = true;
+            this.btExportInvoice.Visible = false;
+            // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Ivory;
@@ -1574,6 +1753,33 @@
             this.dtFromJointCar.Name = "dtFromJointCar";
             this.dtFromJointCar.Size = new System.Drawing.Size(123, 27);
             this.dtFromJointCar.TabIndex = 6;
+            // 
+            // btPrintJointCar
+            // 
+            this.btPrintJointCar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintJointCar.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintJointCar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintJointCar.Location = new System.Drawing.Point(353, 201);
+            this.btPrintJointCar.Name = "btPrintJointCar";
+            this.btPrintJointCar.Size = new System.Drawing.Size(75, 36);
+            this.btPrintJointCar.TabIndex = 11;
+            this.btPrintJointCar.Text = "พิมพ์";
+            this.btPrintJointCar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintJointCar.UseVisualStyleBackColor = true;
+            this.btPrintJointCar.Click += new System.EventHandler(this.btPrintJointCar_Click);
+            // 
+            // btExportJointCar
+            // 
+            this.btExportJointCar.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
+            this.btExportJointCar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btExportJointCar.Location = new System.Drawing.Point(148, 201);
+            this.btExportJointCar.Name = "btExportJointCar";
+            this.btExportJointCar.Size = new System.Drawing.Size(75, 36);
+            this.btExportJointCar.TabIndex = 10;
+            this.btExportJointCar.Text = "Export";
+            this.btExportJointCar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btExportJointCar.UseVisualStyleBackColor = true;
+            this.btExportJointCar.Visible = false;
             // 
             // tabPage5
             // 
@@ -1645,6 +1851,33 @@
             this.dtFromScoop.Size = new System.Drawing.Size(123, 27);
             this.dtFromScoop.TabIndex = 0;
             // 
+            // btPrintScoop
+            // 
+            this.btPrintScoop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintScoop.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintScoop.Location = new System.Drawing.Point(353, 201);
+            this.btPrintScoop.Name = "btPrintScoop";
+            this.btPrintScoop.Size = new System.Drawing.Size(75, 36);
+            this.btPrintScoop.TabIndex = 5;
+            this.btPrintScoop.Text = "พิมพ์";
+            this.btPrintScoop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintScoop.UseVisualStyleBackColor = true;
+            this.btPrintScoop.Click += new System.EventHandler(this.btPrintScoop_Click);
+            // 
+            // btExportScoop
+            // 
+            this.btExportScoop.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
+            this.btExportScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btExportScoop.Location = new System.Drawing.Point(148, 201);
+            this.btExportScoop.Name = "btExportScoop";
+            this.btExportScoop.Size = new System.Drawing.Size(75, 36);
+            this.btExportScoop.TabIndex = 4;
+            this.btExportScoop.Text = "Export";
+            this.btExportScoop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btExportScoop.UseVisualStyleBackColor = true;
+            this.btExportScoop.Visible = false;
+            // 
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.AliceBlue;
@@ -1667,6 +1900,20 @@
             this.cbbCarTeamName.Name = "cbbCarTeamName";
             this.cbbCarTeamName.Size = new System.Drawing.Size(183, 30);
             this.cbbCarTeamName.TabIndex = 7;
+            // 
+            // btPrintCarTeam
+            // 
+            this.btPrintCarTeam.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintCarTeam.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCarTeam.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintCarTeam.Location = new System.Drawing.Point(451, 145);
+            this.btPrintCarTeam.Name = "btPrintCarTeam";
+            this.btPrintCarTeam.Size = new System.Drawing.Size(75, 36);
+            this.btPrintCarTeam.TabIndex = 6;
+            this.btPrintCarTeam.Text = "พิมพ์";
+            this.btPrintCarTeam.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintCarTeam.UseVisualStyleBackColor = true;
+            this.btPrintCarTeam.Click += new System.EventHandler(this.btPrintCarTeam_Click);
             // 
             // tabPage7
             // 
@@ -1761,6 +2008,20 @@
             this.dtFromClean.Size = new System.Drawing.Size(123, 27);
             this.dtFromClean.TabIndex = 6;
             // 
+            // btPrintClean
+            // 
+            this.btPrintClean.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintClean.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintClean.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintClean.Location = new System.Drawing.Point(365, 209);
+            this.btPrintClean.Name = "btPrintClean";
+            this.btPrintClean.Size = new System.Drawing.Size(75, 36);
+            this.btPrintClean.TabIndex = 10;
+            this.btPrintClean.Text = "พิมพ์";
+            this.btPrintClean.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintClean.UseVisualStyleBackColor = true;
+            this.btPrintClean.Click += new System.EventHandler(this.btPrintClean_Click);
+            // 
             // tabPage8
             // 
             this.tabPage8.BackColor = System.Drawing.Color.FloralWhite;
@@ -1831,6 +2092,20 @@
             this.dtFromMill.Size = new System.Drawing.Size(123, 27);
             this.dtFromMill.TabIndex = 11;
             // 
+            // btPrintMill
+            // 
+            this.btPrintMill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintMill.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintMill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintMill.Location = new System.Drawing.Point(369, 219);
+            this.btPrintMill.Name = "btPrintMill";
+            this.btPrintMill.Size = new System.Drawing.Size(75, 36);
+            this.btPrintMill.TabIndex = 15;
+            this.btPrintMill.Text = "พิมพ์";
+            this.btPrintMill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintMill.UseVisualStyleBackColor = true;
+            this.btPrintMill.Click += new System.EventHandler(this.btPrintMill_Click);
+            // 
             // tabPage9
             // 
             this.tabPage9.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1880,6 +2155,20 @@
             this.dtFromSite.Size = new System.Drawing.Size(123, 27);
             this.dtFromSite.TabIndex = 16;
             // 
+            // btPrintSite
+            // 
+            this.btPrintSite.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintSite.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintSite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintSite.Location = new System.Drawing.Point(369, 219);
+            this.btPrintSite.Name = "btPrintSite";
+            this.btPrintSite.Size = new System.Drawing.Size(75, 36);
+            this.btPrintSite.TabIndex = 20;
+            this.btPrintSite.Text = "พิมพ์";
+            this.btPrintSite.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintSite.UseVisualStyleBackColor = true;
+            this.btPrintSite.Click += new System.EventHandler(this.btPrintSite_Click);
+            // 
             // tabPage10
             // 
             this.tabPage10.BackColor = System.Drawing.Color.Beige;
@@ -1928,6 +2217,20 @@
             this.dtFromStoneType.Name = "dtFromStoneType";
             this.dtFromStoneType.Size = new System.Drawing.Size(123, 27);
             this.dtFromStoneType.TabIndex = 21;
+            // 
+            // btPrintStoneType
+            // 
+            this.btPrintStoneType.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintStoneType.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintStoneType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintStoneType.Location = new System.Drawing.Point(362, 217);
+            this.btPrintStoneType.Name = "btPrintStoneType";
+            this.btPrintStoneType.Size = new System.Drawing.Size(75, 36);
+            this.btPrintStoneType.TabIndex = 25;
+            this.btPrintStoneType.Text = "พิมพ์";
+            this.btPrintStoneType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintStoneType.UseVisualStyleBackColor = true;
+            this.btPrintStoneType.Click += new System.EventHandler(this.btPrintStoneType_Click);
             // 
             // tabPage12
             // 
@@ -1999,316 +2302,6 @@
             this.dtFromTransportByTeam.Size = new System.Drawing.Size(123, 27);
             this.dtFromTransportByTeam.TabIndex = 31;
             // 
-            // tabPage16
-            // 
-            this.tabPage16.Location = new System.Drawing.Point(4, 26);
-            this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(755, 460);
-            this.tabPage16.TabIndex = 15;
-            this.tabPage16.Text = "tabPage16";
-            this.tabPage16.UseVisualStyleBackColor = true;
-            // 
-            // weightTableAdapter
-            // 
-            this.weightTableAdapter.ClearBeforeFill = true;
-            // 
-            // btPrintBil
-            // 
-            this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
-            this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintBil.Location = new System.Drawing.Point(584, 430);
-            this.btPrintBil.Name = "btPrintBil";
-            this.btPrintBil.Size = new System.Drawing.Size(69, 30);
-            this.btPrintBil.TabIndex = 74;
-            this.btPrintBil.Text = "พิมพ์บิล";
-            this.btPrintBil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintBil.UseVisualStyleBackColor = true;
-            this.btPrintBil.Click += new System.EventHandler(this.btPrintBil_Click);
-            // 
-            // btSearch
-            // 
-            this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
-            this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSearch.Location = new System.Drawing.Point(699, 87);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(47, 23);
-            this.btSearch.TabIndex = 46;
-            this.btSearch.Text = "ค้นหา";
-            this.btSearch.UseVisualStyleBackColor = true;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
-            // 
-            // btExport
-            // 
-            this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
-            this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExport.Location = new System.Drawing.Point(6, 430);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(90, 30);
-            this.btExport.TabIndex = 10;
-            this.btExport.Text = "Export";
-            this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btExport.UseVisualStyleBackColor = true;
-            this.btExport.Visible = false;
-            this.btExport.Click += new System.EventHandler(this.btExport_Click);
-            // 
-            // btPrint
-            // 
-            this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint.Location = new System.Drawing.Point(659, 430);
-            this.btPrint.Name = "btPrint";
-            this.btPrint.Size = new System.Drawing.Size(90, 30);
-            this.btPrint.TabIndex = 6;
-            this.btPrint.Text = "พิมพ์รายงาน";
-            this.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrint.UseVisualStyleBackColor = true;
-            this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
-            // 
-            // btPrintCorp
-            // 
-            this.btPrintCorp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintCorp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintCorp.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintCorp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintCorp.Location = new System.Drawing.Point(364, 271);
-            this.btPrintCorp.Name = "btPrintCorp";
-            this.btPrintCorp.Size = new System.Drawing.Size(75, 36);
-            this.btPrintCorp.TabIndex = 44;
-            this.btPrintCorp.Text = "พิมพ์";
-            this.btPrintCorp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintCorp.UseVisualStyleBackColor = true;
-            this.btPrintCorp.Click += new System.EventHandler(this.btPrintCorp_Click);
-            // 
-            // btPrintCC
-            // 
-            this.btPrintCC.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintCC.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintCC.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintCC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintCC.Location = new System.Drawing.Point(366, 291);
-            this.btPrintCC.Name = "btPrintCC";
-            this.btPrintCC.Size = new System.Drawing.Size(75, 36);
-            this.btPrintCC.TabIndex = 48;
-            this.btPrintCC.Text = "พิมพ์";
-            this.btPrintCC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintCC.UseVisualStyleBackColor = true;
-            this.btPrintCC.Click += new System.EventHandler(this.btPrintCC_Click);
-            // 
-            // btPrintTransport
-            // 
-            this.btPrintTransport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintTransport.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintTransport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintTransport.Location = new System.Drawing.Point(358, 217);
-            this.btPrintTransport.Name = "btPrintTransport";
-            this.btPrintTransport.Size = new System.Drawing.Size(75, 36);
-            this.btPrintTransport.TabIndex = 30;
-            this.btPrintTransport.Text = "พิมพ์";
-            this.btPrintTransport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintTransport.UseVisualStyleBackColor = true;
-            this.btPrintTransport.Click += new System.EventHandler(this.btPrintTransport_Click);
-            // 
-            // btPrintLine
-            // 
-            this.btPrintLine.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintLine.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintLine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintLine.Location = new System.Drawing.Point(359, 270);
-            this.btPrintLine.Name = "btPrintLine";
-            this.btPrintLine.Size = new System.Drawing.Size(75, 36);
-            this.btPrintLine.TabIndex = 48;
-            this.btPrintLine.Text = "พิมพ์";
-            this.btPrintLine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintLine.UseVisualStyleBackColor = true;
-            this.btPrintLine.Click += new System.EventHandler(this.btPrintLine_Click);
-            // 
-            // btPrintSum
-            // 
-            this.btPrintSum.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintSum.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintSum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintSum.Location = new System.Drawing.Point(359, 270);
-            this.btPrintSum.Name = "btPrintSum";
-            this.btPrintSum.Size = new System.Drawing.Size(75, 36);
-            this.btPrintSum.TabIndex = 61;
-            this.btPrintSum.Text = "พิมพ์";
-            this.btPrintSum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintSum.UseVisualStyleBackColor = true;
-            this.btPrintSum.Click += new System.EventHandler(this.btPrintSum_Click);
-            // 
-            // btPrintCustomer
-            // 
-            this.btPrintCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintCustomer.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintCustomer.Location = new System.Drawing.Point(353, 201);
-            this.btPrintCustomer.Name = "btPrintCustomer";
-            this.btPrintCustomer.Size = new System.Drawing.Size(75, 36);
-            this.btPrintCustomer.TabIndex = 16;
-            this.btPrintCustomer.Text = "พิมพ์";
-            this.btPrintCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintCustomer.UseVisualStyleBackColor = true;
-            this.btPrintCustomer.Click += new System.EventHandler(this.btPrintCustomer_Click);
-            // 
-            // btPrintInvoice
-            // 
-            this.btPrintInvoice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintInvoice.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintInvoice.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintInvoice.Location = new System.Drawing.Point(353, 201);
-            this.btPrintInvoice.Name = "btPrintInvoice";
-            this.btPrintInvoice.Size = new System.Drawing.Size(75, 36);
-            this.btPrintInvoice.TabIndex = 11;
-            this.btPrintInvoice.Text = "พิมพ์";
-            this.btPrintInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintInvoice.UseVisualStyleBackColor = true;
-            this.btPrintInvoice.Click += new System.EventHandler(this.btPrintInvoice_Click);
-            // 
-            // btExportInvoice
-            // 
-            this.btExportInvoice.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btExportInvoice.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
-            this.btExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExportInvoice.Location = new System.Drawing.Point(148, 201);
-            this.btExportInvoice.Name = "btExportInvoice";
-            this.btExportInvoice.Size = new System.Drawing.Size(75, 36);
-            this.btExportInvoice.TabIndex = 10;
-            this.btExportInvoice.Text = "Export";
-            this.btExportInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btExportInvoice.UseVisualStyleBackColor = true;
-            this.btExportInvoice.Visible = false;
-            // 
-            // btPrintJointCar
-            // 
-            this.btPrintJointCar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintJointCar.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintJointCar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintJointCar.Location = new System.Drawing.Point(353, 201);
-            this.btPrintJointCar.Name = "btPrintJointCar";
-            this.btPrintJointCar.Size = new System.Drawing.Size(75, 36);
-            this.btPrintJointCar.TabIndex = 11;
-            this.btPrintJointCar.Text = "พิมพ์";
-            this.btPrintJointCar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintJointCar.UseVisualStyleBackColor = true;
-            this.btPrintJointCar.Click += new System.EventHandler(this.btPrintJointCar_Click);
-            // 
-            // btExportJointCar
-            // 
-            this.btExportJointCar.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
-            this.btExportJointCar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExportJointCar.Location = new System.Drawing.Point(148, 201);
-            this.btExportJointCar.Name = "btExportJointCar";
-            this.btExportJointCar.Size = new System.Drawing.Size(75, 36);
-            this.btExportJointCar.TabIndex = 10;
-            this.btExportJointCar.Text = "Export";
-            this.btExportJointCar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btExportJointCar.UseVisualStyleBackColor = true;
-            this.btExportJointCar.Visible = false;
-            // 
-            // btPrintScoop
-            // 
-            this.btPrintScoop.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintScoop.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintScoop.Location = new System.Drawing.Point(353, 201);
-            this.btPrintScoop.Name = "btPrintScoop";
-            this.btPrintScoop.Size = new System.Drawing.Size(75, 36);
-            this.btPrintScoop.TabIndex = 5;
-            this.btPrintScoop.Text = "พิมพ์";
-            this.btPrintScoop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintScoop.UseVisualStyleBackColor = true;
-            this.btPrintScoop.Click += new System.EventHandler(this.btPrintScoop_Click);
-            // 
-            // btExportScoop
-            // 
-            this.btExportScoop.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
-            this.btExportScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExportScoop.Location = new System.Drawing.Point(148, 201);
-            this.btExportScoop.Name = "btExportScoop";
-            this.btExportScoop.Size = new System.Drawing.Size(75, 36);
-            this.btExportScoop.TabIndex = 4;
-            this.btExportScoop.Text = "Export";
-            this.btExportScoop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btExportScoop.UseVisualStyleBackColor = true;
-            this.btExportScoop.Visible = false;
-            // 
-            // btPrintCarTeam
-            // 
-            this.btPrintCarTeam.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintCarTeam.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintCarTeam.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintCarTeam.Location = new System.Drawing.Point(451, 145);
-            this.btPrintCarTeam.Name = "btPrintCarTeam";
-            this.btPrintCarTeam.Size = new System.Drawing.Size(75, 36);
-            this.btPrintCarTeam.TabIndex = 6;
-            this.btPrintCarTeam.Text = "พิมพ์";
-            this.btPrintCarTeam.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintCarTeam.UseVisualStyleBackColor = true;
-            this.btPrintCarTeam.Click += new System.EventHandler(this.btPrintCarTeam_Click);
-            // 
-            // btPrintClean
-            // 
-            this.btPrintClean.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintClean.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintClean.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintClean.Location = new System.Drawing.Point(365, 209);
-            this.btPrintClean.Name = "btPrintClean";
-            this.btPrintClean.Size = new System.Drawing.Size(75, 36);
-            this.btPrintClean.TabIndex = 10;
-            this.btPrintClean.Text = "พิมพ์";
-            this.btPrintClean.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintClean.UseVisualStyleBackColor = true;
-            this.btPrintClean.Click += new System.EventHandler(this.btPrintClean_Click);
-            // 
-            // btPrintMill
-            // 
-            this.btPrintMill.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintMill.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintMill.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintMill.Location = new System.Drawing.Point(369, 219);
-            this.btPrintMill.Name = "btPrintMill";
-            this.btPrintMill.Size = new System.Drawing.Size(75, 36);
-            this.btPrintMill.TabIndex = 15;
-            this.btPrintMill.Text = "พิมพ์";
-            this.btPrintMill.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintMill.UseVisualStyleBackColor = true;
-            this.btPrintMill.Click += new System.EventHandler(this.btPrintMill_Click);
-            // 
-            // btPrintSite
-            // 
-            this.btPrintSite.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintSite.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintSite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintSite.Location = new System.Drawing.Point(369, 219);
-            this.btPrintSite.Name = "btPrintSite";
-            this.btPrintSite.Size = new System.Drawing.Size(75, 36);
-            this.btPrintSite.TabIndex = 20;
-            this.btPrintSite.Text = "พิมพ์";
-            this.btPrintSite.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintSite.UseVisualStyleBackColor = true;
-            this.btPrintSite.Click += new System.EventHandler(this.btPrintSite_Click);
-            // 
-            // btPrintStoneType
-            // 
-            this.btPrintStoneType.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintStoneType.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintStoneType.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintStoneType.Location = new System.Drawing.Point(362, 217);
-            this.btPrintStoneType.Name = "btPrintStoneType";
-            this.btPrintStoneType.Size = new System.Drawing.Size(75, 36);
-            this.btPrintStoneType.TabIndex = 25;
-            this.btPrintStoneType.Text = "พิมพ์";
-            this.btPrintStoneType.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintStoneType.UseVisualStyleBackColor = true;
-            this.btPrintStoneType.Click += new System.EventHandler(this.btPrintStoneType_Click);
-            // 
             // btPrintTransportByTeam
             // 
             this.btPrintTransportByTeam.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -2322,6 +2315,19 @@
             this.btPrintTransportByTeam.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintTransportByTeam.UseVisualStyleBackColor = true;
             this.btPrintTransportByTeam.Click += new System.EventHandler(this.btPrintTransportByTeam_Click);
+            // 
+            // tabPage16
+            // 
+            this.tabPage16.Location = new System.Drawing.Point(4, 26);
+            this.tabPage16.Name = "tabPage16";
+            this.tabPage16.Size = new System.Drawing.Size(755, 460);
+            this.tabPage16.TabIndex = 15;
+            this.tabPage16.Text = "tabPage16";
+            this.tabPage16.UseVisualStyleBackColor = true;
+            // 
+            // weightTableAdapter
+            // 
+            this.weightTableAdapter.ClearBeforeFill = true;
             // 
             // วันที่
             // 
@@ -2542,6 +2548,24 @@
             this.ล้าง.DataPropertyName = "ล้าง";
             this.ล้าง.HeaderText = "ล้าง";
             this.ล้าง.Name = "ล้าง";
+            // 
+            // ขนส่ง
+            // 
+            this.ขนส่ง.DataPropertyName = "ขนส่ง";
+            this.ขนส่ง.HeaderText = "ขนส่ง";
+            this.ขนส่ง.Name = "ขนส่ง";
+            // 
+            // oil_content
+            // 
+            this.oil_content.DataPropertyName = "oil_content";
+            this.oil_content.HeaderText = "oil_content";
+            this.oil_content.Name = "oil_content";
+            // 
+            // หมายเหตุ
+            // 
+            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
+            this.หมายเหตุ.HeaderText = "หมายเหตุ";
+            this.หมายเหตุ.Name = "หมายเหตุ";
             // 
             // ucReport
             // 
@@ -2814,5 +2838,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn weight_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ชนิดvat;
         private System.Windows.Forms.DataGridViewTextBoxColumn ล้าง;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ขนส่ง;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oil_content;
+        private System.Windows.Forms.DataGridViewTextBoxColumn หมายเหตุ;
     }
 }

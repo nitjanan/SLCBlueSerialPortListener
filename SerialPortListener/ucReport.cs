@@ -1163,46 +1163,21 @@ namespace SerialPortListener
                 str = deci.ToString("#,##0.00");
             return str;
         }
+        private string zeroNotEmty(string str)
+        {
+            return str == "0.00" || str == "0" ? " " : str + " (L)";
+        }
 
 
         private void btPrintBil_Click(object sender, EventArgs e)
         {
+
             if (dgvDailyReport.Rows.Count > 1)
             {
-                Weight.DocNum = "P" + dgvDailyReport.CurrentRow.Cells["เลขที่เอกสาร"].Value.ToString();
-                Weight.Amount = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงิน"].Value.ToString(), 2);
-                Weight.CarCity = strNotEmty(dgvDailyReport.CurrentRow.Cells["จังหวัด"].Value.ToString());
-                Weight.CarLicense = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทะเบียนรถ"].Value.ToString());
-                Weight.CustomerName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ลูกค้า"].Value.ToString());
-                Weight.Date = dgvDailyReport.CurrentRow.Cells["วันที่"].Value.ToString();
-                Weight.DriverName = strNotEmty(dgvDailyReport.CurrentRow.Cells["คนขับ"].Value.ToString());
-                Weight.Mill = strNotEmty(dgvDailyReport.CurrentRow.Cells["โรงโม่"].Value.ToString());
-                Weight.Pay = dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value.ToString();
-                Weight.Price = numberFormat(dgvDailyReport.CurrentRow.Cells["ราคาตัน"].Value.ToString(), 2);
-                Weight.StoneType = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชนิดหิน"].Value.ToString());
-                Weight.WeightIn = dgvDailyReport.CurrentRow.Cells["น้ำหนักรถ"].Value.ToString();
-                Weight.DateIn = dateFormatToPrint(dgvDailyReport.CurrentRow.Cells["วันที่ชั่งเข้า"].Value.ToString());
-                Weight.TimeIn = strNotEmty(dgvDailyReport.CurrentRow.Cells["เวลาชั่งเข้า"].Value.ToString());
-                Weight.WeightOut = dgvDailyReport.CurrentRow.Cells["น้ำหนักรวม"].Value.ToString();
-                Weight.DateOut = dateFormatToPrint(dgvDailyReport.CurrentRow.Cells["วันที่ชั่งออก"].Value.ToString());
-                Weight.TimeOut = strNotEmty(dgvDailyReport.CurrentRow.Cells["เวลาชั่งออก"].Value.ToString());
-                Weight.WeightTotal = dgvDailyReport.CurrentRow.Cells["น้ำหนักสินค้า"].Value.ToString();
-                Weight.Q = dgvDailyReport.CurrentRow.Cells["คิว"].Value.ToString();
-                Weight.ApproveName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชื่อผู้อนุมัติจ่าย"].Value.ToString());
-                Weight.AmountVat = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงินสุทธิ"].Value.ToString(), 2);
-                Weight.VatType = getVatRadioValuePrint();
-                Weight.StoneColor = strNotEmty(dgvDailyReport.CurrentRow.Cells["ประเภทหิน"].Value.ToString());
-                Weight.Site = strNotEmty(dgvDailyReport.CurrentRow.Cells["หน้างาน"].Value.ToString());
-                Weight.Team = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทีม"].Value.ToString());
-                Weight.Clean = dgvDailyReport.CurrentRow.Cells["ล้าง"].Value.ToString();
-                Weight.Vat = numberFormat(dgvDailyReport.CurrentRow.Cells["vat"].Value.ToString(), 2);
-                Weight.Transport = strNotEmty(dgvDailyReport.CurrentRow.Cells["ขนส่ง"].Value.ToString());
-                Weight.Note = strNotEmty(dgvDailyReport.CurrentRow.Cells["หมายเหตุ"].Value.ToString());
 
-                Company.TTelephone = "โทร";
-                Company.TEmail = "E-mail";
+                preparePrint(3);
 
-                Company.TDocName = "เลขที่การชั่ง";
+                HandleSuccessfulPrint();
 
                 FPrint f = new FPrint();
                 f.ShowDialog();
@@ -1212,6 +1187,109 @@ namespace SerialPortListener
             {
                 MessageBox.Show("ไม่พบข้อมูลที่ต้องการปริ้นบิล  กรุณาเลือกรายการ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void preparePrint(int mode)
+        {
+
+            Weight.DocNum = "P" + dgvDailyReport.CurrentRow.Cells["เลขที่เอกสาร"].Value.ToString();
+            Weight.Amount = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงิน"].Value.ToString(), 2);
+            Weight.CarCity = strNotEmty(dgvDailyReport.CurrentRow.Cells["จังหวัด"].Value.ToString());
+            Weight.CarLicense = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทะเบียนรถ"].Value.ToString());
+            Weight.CustomerName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ลูกค้า"].Value.ToString());
+            Weight.Date = dgvDailyReport.CurrentRow.Cells["วันที่"].Value.ToString();
+            Weight.DriverName = strNotEmty(dgvDailyReport.CurrentRow.Cells["คนขับ"].Value.ToString());
+            Weight.Mill = strNotEmty(dgvDailyReport.CurrentRow.Cells["โรงโม่"].Value.ToString());
+            Weight.Pay = strNotEmty(dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value.ToString());
+            Weight.Price = numberFormat(dgvDailyReport.CurrentRow.Cells["ราคาตัน"].Value.ToString(), 2);
+            Weight.StoneType = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชนิดหิน"].Value.ToString());
+            Weight.WeightIn = dgvDailyReport.CurrentRow.Cells["น้ำหนักรถ"].Value.ToString();
+            Weight.DateIn = dateFormatToPrint(dgvDailyReport.CurrentRow.Cells["วันที่ชั่งเข้า"].Value.ToString());
+            Weight.TimeIn = strNotEmty(dgvDailyReport.CurrentRow.Cells["เวลาชั่งเข้า"].Value.ToString());
+            Weight.WeightOut = dgvDailyReport.CurrentRow.Cells["น้ำหนักรวม"].Value.ToString();
+            Weight.DateOut = dateFormatToPrint(dgvDailyReport.CurrentRow.Cells["วันที่ชั่งออก"].Value.ToString());
+            Weight.TimeOut = strNotEmty(dgvDailyReport.CurrentRow.Cells["เวลาชั่งออก"].Value.ToString());
+            Weight.WeightTotal = dgvDailyReport.CurrentRow.Cells["น้ำหนักสินค้า"].Value.ToString();
+            Weight.Q = dgvDailyReport.CurrentRow.Cells["คิว"].Value.ToString();
+            Weight.ApproveName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชื่อผู้อนุมัติจ่าย"].Value.ToString());
+            Weight.AmountVat = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงินสุทธิ"].Value.ToString(), 2);
+            Weight.VatType = getVatRadioValuePrint();
+            Weight.StoneColor = strNotEmty(dgvDailyReport.CurrentRow.Cells["ประเภทหิน"].Value.ToString());
+            Weight.Site = strNotEmty(dgvDailyReport.CurrentRow.Cells["หน้างาน"].Value.ToString());
+            Weight.Team = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทีม"].Value.ToString());
+            Weight.Clean = strNotEmty(dgvDailyReport.CurrentRow.Cells["ล้าง"].Value.ToString());
+            Weight.Vat = numberFormat(dgvDailyReport.CurrentRow.Cells["vat"].Value.ToString(), 2);
+            Weight.Transport = strNotEmty(dgvDailyReport.CurrentRow.Cells["ขนส่ง"].Value.ToString());
+            Weight.ScoopName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชื่อผู้ตัก"].Value.ToString());
+            Weight.OilContent = zeroNotEmty(dgvDailyReport.CurrentRow.Cells["oil_content"].Value.ToString());
+            Weight.Note = strNotEmty(dgvDailyReport.CurrentRow.Cells["หมายเหตุ"].Value.ToString());
+            Weight.Id = strNotEmty(dgvDailyReport.CurrentRow.Cells["weight_id"].Value.ToString());
+
+            Company.TLogo = "(Sandvik)";
+            Company.TTelephone = "โทร";
+            Company.TEmail = "E-mail";
+
+            Company.TDocName = "เลขที่การชั่ง";
+        }
+
+
+        private void HandleSuccessfulPrint()
+        {
+
+            int copy_num = findLastCopyByWeightId();
+            copy_num++;
+
+            Weight.DatePrint = DateTime.Now.ToString("yyyy-MM-dd");
+            Weight.DatePrintAndCopyNum = DateTime.Now.ToString("dd/MM") + "#" + copy_num;
+            Weight.TimePrint = DateTime.Now.ToString("HH:mm:ss");
+
+            //save weight copy
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "INSERT INTO weight_copy (copy_num, date_print, time_print, user_print, weight_id )" +
+                                     "VALUES ('" + copy_num + "','" + Weight.DatePrint + "','" + Weight.TimePrint + "','" + Globals.UserId + "','" + Weight.Id + "' )";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            dl.close();
+        }
+
+        private int findLastCopyByWeightId()
+        {
+            int copy_num = 0;
+
+            if (Weight.Id != "")
+            {
+                //sql
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText = "select copy_num from weight_copy where weight_id = '" + Weight.Id + "' ORDER BY weight_copy_id DESC LIMIT 1";
+                try
+                {
+                    dl.connect();
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        copy_num = Convert.ToInt32(reader["copy_num"].ToString());
+                    }
+                    else
+                    {
+                        copy_num = 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dl.close();
+            }
+
+            return copy_num;
         }
 
         private string getVatRadioValuePrint()

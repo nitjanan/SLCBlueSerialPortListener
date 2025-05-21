@@ -45,6 +45,7 @@ namespace SerialPortListener
         private static string _millId;
         private static string _carTeamId;
         private static string _scaleId;
+        private static string _scoopName;
 
         private static string _datePrint;
         private static string _datePrintAndCopyNum;
@@ -389,6 +390,14 @@ namespace SerialPortListener
             { return _scaleId; }
             set
             { _scaleId = value; }
+        }
+
+        public static string ScoopName
+        {
+            get
+            { return _scoopName; }
+            set
+            { _scoopName = value; }
         }
 
         public static string DatePrint
