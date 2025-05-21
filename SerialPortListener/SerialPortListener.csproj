@@ -283,6 +283,12 @@
     <Compile Include="FPrintStoneTypeReport.Designer.cs">
       <DependentUpon>FPrintStoneTypeReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintSumLineReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintSumLineReport.Designer.cs">
+      <DependentUpon>FPrintSumLineReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintTransportByTeamReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +457,9 @@
     <EmbeddedResource Include="FPrintStoneTypeReport.resx">
       <DependentUpon>FPrintStoneTypeReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintSumLineReport.resx">
+      <DependentUpon>FPrintSumLineReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FPrintTransportByTeamReport.resx">
       <DependentUpon>FPrintTransportByTeamReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -484,6 +493,7 @@
     <EmbeddedResource Include="ScoopReport.rdlc" />
     <EmbeddedResource Include="SiteReport.rdlc" />
     <EmbeddedResource Include="StoneTypeReport.rdlc" />
+    <EmbeddedResource Include="SumLineReport.rdlc" />
     <EmbeddedResource Include="TableCustomer.resx">
       <DependentUpon>TableCustomer.cs</DependentUpon>
     </EmbeddedResource>

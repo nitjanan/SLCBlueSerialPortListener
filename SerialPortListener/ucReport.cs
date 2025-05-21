@@ -51,6 +51,7 @@ namespace SerialPortListener
             /* autoComplete ทะเบียนรถ */
             autoCompleteSettingDistinct(tbJointCarRegistration, "ทะเบียนรถ", "weight");
             autoCompleteSettingDistinct(tbLineCarRegistration, "ทะเบียนรถ", "weight");
+            autoCompleteSettingDistinct(tbSumCar, "ทะเบียนรถ", "weight");
 
             /* autoComplete ชื่อผู้ตัก */
             autoCompleteSettingDistinct(tbScoopName, "ชื่อผู้ตัก", "weight");
@@ -67,6 +68,7 @@ namespace SerialPortListener
             fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
             //ปลายทาง ต้องดึง weight_type = 4
             fillTableCombo(cbbLineSite, "base_site", "base_site_name");
+            fillTableCombo(cbbSumSite, "base_site", "base_site_name");
 
             // autoComplete ต้นทาง
             //fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
@@ -1114,6 +1116,35 @@ namespace SerialPortListener
             //open winform
             Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("lineTypeDataSet", dt);
             FPrintLineTypeReport fp = new FPrintLineTypeReport(rds);
+            fp.ShowDialog();
+        }
+
+        private void btPrintSum_Click(object sender, EventArgs e)
+        {
+            //sql
+            dl.connect();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT *  FROM weight ");
+            sql.Append(" WHERE (วันที่ = '" + dtFromSum.Value.ToString("yyyy-MM-dd") + "' and เวลาชั่งออก >= '" + dtFromOutSum.Value.ToString("HH:mm") + "' or วันที่  > '" + dtFromSum.Value.ToString("yyyy-MM-dd") + "') AND (วันที่ = '" + dtToSum.Value.ToString("yyyy-MM-dd") + "' and  เวลาชั่งออก <= '" + dtToOutSum.Value.ToString("HH:mm") + "' or  วันที่ < '" + dtToSum.Value.ToString("yyyy-MM-dd") + "') ");
+            if (tbSumCar.Text != "")
+                sql.Append(" AND ทะเบียนรถ = '" + tbSumCar.Text + "'");
+            if (cbbSumSite.SelectedIndex != 0)
+                sql.Append(" AND หน้างาน = '" + cbbSumSite.Text + "'");
+            sql.Append(" ORDER BY วันที่, เวลาชั่งออก ");
+
+            OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromSum.Text;
+            WeightTempReport.DateTo = dtToSum.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("sumLineDataSet", dt);
+            FPrintSumLineReport fp = new FPrintSumLineReport(rds);
             fp.ShowDialog();
         }
     }  

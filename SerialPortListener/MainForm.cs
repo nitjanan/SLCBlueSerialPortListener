@@ -81,16 +81,16 @@ namespace SerialPortListener
         {
             lbCompanyCode.Text = Company.Code;
             /* autoComplete ผู้ตัก */
-            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
-            autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
+            //autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+            //autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
             /* autoComplete ผู้ชั่ง */
             autoCompleteSetting(tbScaleId, "username", "users");
             autoCompleteSetting(tbScaleName, "firstname", "users");
 
             /* autoComplete ผู้อนุมัติ */
-            autoCompleteSetting(tbApproveId, "รหัสผู้อนุมัติจ่าย", "base_approve");
-            autoCompleteSetting(tbApproveName, "ชื่อผู้อนุมัติจ่าย", "base_approve");
+            //autoCompleteSetting(tbApproveId, "รหัสผู้อนุมัติจ่าย", "base_approve");
+            //autoCompleteSetting(tbApproveName, "ชื่อผู้อนุมัติจ่าย", "base_approve");
 
             /* autoComplete จังหวัด */
             autoCompleteSetting(tbCarCity, "ชื่อจังหวัด", "base_car_city");
@@ -126,6 +126,7 @@ namespace SerialPortListener
             string beginDate = findBaseSettingLine("base_setting_line_date_from");
             string beginTime = findBaseSettingLine("base_setting_line_time_from");
             string site_name = findBaseSettingLine("base_site_name");
+            double deci_q = 0;
 
             //sql get weight id
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -142,9 +143,14 @@ namespace SerialPortListener
                     lbTime.Text = reader["C"].ToString();
 
                     if (reader["Q"].ToString() != "")
-                        lbWeightTotal.Text = reader["Q"].ToString();
+                    {
+                        deci_q = Convert.ToDouble(reader["Q"].ToString());
+                        lbWeightTotal.Text = deci_q.ToString("#,##0.000");
+                    }
                     else
+                    {
                         lbWeightTotal.Text = "0.000";
+                    }
                 }
 
             }
@@ -184,6 +190,7 @@ namespace SerialPortListener
             string beginDate = findBaseSettingLine("base_setting_line_date_from");
             string beginTime = findBaseSettingLine("base_setting_line_time_from");
             string site_name = findBaseSettingLine("base_site_name");
+            double deci_q = 0;
 
             //sql get weight id
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -199,9 +206,14 @@ namespace SerialPortListener
                 {
                     time.Text = reader["C"].ToString();
                     if (reader["Q"].ToString() != "")
-                        weightTotal.Text = reader["Q"].ToString();
-                    else
+                    {
+                        deci_q = Convert.ToDouble(reader["Q"].ToString());
+                        weightTotal.Text = deci_q.ToString("#,##0.000");
+                    }
+                    else { 
                         weightTotal.Text = "0.000";
+                    }
+                        
                 }
             }
             catch (Exception)
@@ -294,6 +306,7 @@ namespace SerialPortListener
             fillStoneCombo();
             fillTransportCombo();
             fillMillCombo();
+            fillSiteCombo();
             calculatenumQ();
 
             disableBtAfterRead(0);
@@ -560,7 +573,7 @@ namespace SerialPortListener
             setDataLineTypeToRB(data.lineType);
 
             //ดึงหน้างาน
-            fillSiteCombo();
+            //ท่าเรือดึงปลายทาง weight_type = 4 fillSiteCombo();
 
             AfterGetDataFromTable();
 
@@ -665,7 +678,6 @@ namespace SerialPortListener
                     }
                 }
             }
-
             return selectedId;
         }
 
@@ -1976,7 +1988,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = tbDocNum.Text;
+            Weight.DocNum = "P" + tbDocNum.Text;
             Weight.Mill = strNotEmty(cbbMill.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -2002,18 +2014,16 @@ namespace SerialPortListener
             Weight.ApproveName = strNotEmty(tbApproveName.Text);
             Weight.Pay = strNotEmty(getPayRadioValue());
             Weight.VatType = getVatRadioValuePrint();
-            Weight.Clean = strNotEmty(getCleanRadioValue());
+            Weight.Clean = getCleanRadioValue();
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Note = strNotEmty(tbNote.Text);
             Weight.Id = tbId.Text;
 
-
             if (mode.Equals(3))
             {
                 //ปริ้นทั้ง IN และ OUT
                 Company.TDocName = "เลขที่การชั่ง";
-                Company.TLogo = "(Sandvik)";
             }
             else if (mode.Equals(2)) {
                 //ปริ้น OUT
@@ -2032,7 +2042,6 @@ namespace SerialPortListener
                 Weight.Team = " ";
                 Weight.Transport = " ";
                 Company.TDocName = " ";
-                Company.TLogo = " ";
             }
             else if (mode.Equals(1)) {
                 //ปริ้น IN
@@ -2051,7 +2060,6 @@ namespace SerialPortListener
                 Weight.AmountVat = " ";
                 Weight.OilContent = " ";
                 Company.TDocName = "เลขที่การชั่ง";
-                Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
 
             }
@@ -2833,7 +2841,7 @@ namespace SerialPortListener
             //showErrorEmtyRadioButton(groupBox1);
             //showErrorEmtyComboBox(cbbMill);
             showErrorEmtyComboBox(cbbMill);
-            showErrorEmtyRadioButton(groupBox4);
+            //showErrorEmtyRadioButton(groupBox4);
             showErrorEmtyTextBox(tbQ);
 
         }
@@ -2890,9 +2898,36 @@ namespace SerialPortListener
         {
                 checkResetWeight();
                 customerNameTextChanged();
-                fillSiteCombo();
+                //ท่าเรือดึงปลายทาง weight_type = 4 fillSiteCombo();
         }
 
+
+        private void fillSiteCombo()
+        {
+            //ล้างก่อน
+            cbbSite.Items.Clear();
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public.base_site where weight_type = 4 ORDER BY base_site_id DESC";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string id = reader["base_site_id"].ToString();
+                    string des = reader["base_site_name"].ToString();
+                    cbbSite.Items.Add(new ComboboxValue(id, des));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            dl.close();
+        }
+
+        /* ท่าเรือดึงปลายทาง weight_type = 4
         private void fillSiteCombo()
         {
             //ล้างก่อน
@@ -2918,6 +2953,7 @@ namespace SerialPortListener
             }
             dl.close();
         }
+        */
 
         private void fillCarTeamCombo()
         {
@@ -2951,7 +2987,7 @@ namespace SerialPortListener
 
         private void cbbCustomerName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbbSite.Text = "";
+            //ท่าเรือดึงปลายทาง weight_type = 4 cbbSite.Text = "";
         }
 
         private string findcarryTypeByTransport()
@@ -3180,7 +3216,7 @@ namespace SerialPortListener
         private void btRefresh_Click(object sender, EventArgs e)
         {
             /* autoComplete ผู้ตัก */
-            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+        autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
             /* autoComplete โรงโม่ */
@@ -3194,6 +3230,7 @@ namespace SerialPortListener
             fillStoneCombo();
             fillTransportCombo();
             fillMillCombo();
+            fillSiteCombo();
         }
 
         private void tbMillId_Leave(object sender, EventArgs e)
@@ -3320,7 +3357,7 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_site where (weight_type = 1 or weight_type = 3) and base_site_name = '" + cbbSite.Text + "' ";
+                pgCommand.CommandText = "SELECT * FROM public.base_site where weight_type = 4 and base_site_name = '" + cbbSite.Text + "' ";
                 try
                 {
                     dl.connect();

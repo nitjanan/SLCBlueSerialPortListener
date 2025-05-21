@@ -2634,7 +2634,6 @@
             </TablixRowHierarchy>
             <DataSetName>lineTypeDataSet</DataSetName>
             <Top>0.03528cm</Top>
-            <Left>0cm</Left>
             <Height>4.2cm</Height>
             <Width>19.92309cm</Width>
             <Style>
@@ -2673,7 +2672,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>6.24602cm</Width>
               <Style>
@@ -2706,7 +2704,6 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>6.24602cm</Width>
               <ZIndex>1</ZIndex>
