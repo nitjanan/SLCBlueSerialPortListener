@@ -2024,6 +2024,7 @@ namespace SerialPortListener
             {
                 //ปริ้นทั้ง IN และ OUT
                 Company.TDocName = "เลขที่การชั่ง";
+                Company.TLogo = "(Sandvik)";
             }
             else if (mode.Equals(2)) {
                 //ปริ้น OUT
@@ -2042,6 +2043,7 @@ namespace SerialPortListener
                 Weight.Team = " ";
                 Weight.Transport = " ";
                 Company.TDocName = " ";
+                Company.TLogo = " ";
             }
             else if (mode.Equals(1)) {
                 //ปริ้น IN
@@ -2060,6 +2062,7 @@ namespace SerialPortListener
                 Weight.AmountVat = " ";
                 Weight.OilContent = " ";
                 Company.TDocName = "เลขที่การชั่ง";
+                Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
 
             }

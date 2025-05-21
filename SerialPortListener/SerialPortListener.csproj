@@ -819,6 +819,7 @@
     <None Include="Resources\refresh_48px.png" />
     <None Include="Resources\refresh_32px.png" />
     <None Include="Resources\settings_20px.png" />
+    <None Include="Resources\receipt_32px.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

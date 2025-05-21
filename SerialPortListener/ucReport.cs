@@ -1147,5 +1147,120 @@ namespace SerialPortListener
             FPrintSumLineReport fp = new FPrintSumLineReport(rds);
             fp.ShowDialog();
         }
+
+        private string strNotEmty(string str)
+        {
+            return str == "" ? " " : str;
+        }
+
+        private string numberFormat(string numStr, int format)
+        {
+            double deci = Convert.ToDouble(numStr);
+            string str = "";
+            if (format == 1)
+                str = deci.ToString();
+            else if (format == 2)
+                str = deci.ToString("#,##0.00");
+            return str;
+        }
+
+
+        private void btPrintBil_Click(object sender, EventArgs e)
+        {
+            if (dgvDailyReport.Rows.Count > 1)
+            {
+                Weight.DocNum = "P" + dgvDailyReport.CurrentRow.Cells["เลขที่เอกสาร"].Value.ToString();
+                //Weight.Amount = (dgvDailyReport.CurrentRow.Cells["จำนวนเงิน"].Value.ToString(), 2);
+                Weight.CarCity = strNotEmty(dgvDailyReport.CurrentRow.Cells["จังหวัด"].Value.ToString());
+                Weight.CarLicense = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทะเบียนรถ"].Value.ToString());
+                Weight.CustomerName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ลูกค้า"].Value.ToString());
+                Weight.Date = dgvDailyReport.CurrentRow.Cells["วันที่"].Value.ToString();
+                Weight.DriverName = strNotEmty(dgvDailyReport.CurrentRow.Cells["คนขับ"].Value.ToString());
+                Weight.Mill = strNotEmty(dgvDailyReport.CurrentRow.Cells["โรงโม่"].Value.ToString());
+                Weight.Pay = dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value.ToString();
+                Weight.Price = numberFormat(dgvDailyReport.CurrentRow.Cells["ราคาตัน"].Value.ToString(), 2);
+                Weight.StoneType = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชนิดหิน"].Value.ToString());
+                Weight.WeightIn = dgvDailyReport.CurrentRow.Cells["น้ำหนักรถ"].Value.ToString();
+                Weight.DateIn = dateFormatToPrint(dgvDailyReport.CurrentRow.Cells["วันที่ชั่งเข้า"].Value.ToString());
+                Weight.TimeIn = strNotEmty(dgvDailyReport.CurrentRow.Cells["เวลาชั่งเข้า"].Value.ToString());
+                Weight.WeightOut = dgvDailyReport.CurrentRow.Cells["น้ำหนักรวม"].Value.ToString();
+                Weight.DateOut = dateFormatToPrint(dgvDailyReport.CurrentRow.Cells["วันที่ชั่งออก"].Value.ToString());
+                Weight.TimeOut = strNotEmty(dgvDailyReport.CurrentRow.Cells["เวลาชั่งออก"].Value.ToString());
+                Weight.WeightTotal = dgvDailyReport.CurrentRow.Cells["น้ำหนักสินค้า"].Value.ToString();
+                Weight.Q = dgvDailyReport.CurrentRow.Cells["คิว"].Value.ToString();
+                Weight.ApproveName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชื่อผู้อนุมัติจ่าย"].Value.ToString());
+                Weight.AmountVat = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงินสุทธิ"].Value.ToString(), 2);
+                Weight.VatType = getVatRadioValuePrint();
+                Weight.StoneColor = strNotEmty(dgvDailyReport.CurrentRow.Cells["ประเภทหิน"].Value.ToString());
+                Weight.Site = strNotEmty(dgvDailyReport.CurrentRow.Cells["หน้างาน"].Value.ToString());
+                Weight.Team = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทีม"].Value.ToString());
+                Weight.Clean = dgvDailyReport.CurrentRow.Cells["ล้าง"].Value.ToString();
+                Weight.Vat = numberFormat(dgvDailyReport.CurrentRow.Cells["vat"].Value.ToString(), 2);
+                Weight.Transport = strNotEmty(dgvDailyReport.CurrentRow.Cells["ขนส่ง"].Value.ToString());
+                Weight.Note = strNotEmty(dgvDailyReport.CurrentRow.Cells["หมายเหตุ"].Value.ToString());
+
+                Company.TTelephone = "โทร";
+                Company.TEmail = "E-mail";
+
+                Company.TDocName = "เลขที่การชั่ง";
+
+                FPrint f = new FPrint();
+                f.ShowDialog();
+
+            }
+            else
+            {
+                MessageBox.Show("ไม่พบข้อมูลที่ต้องการปริ้นบิล  กรุณาเลือกรายการ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private string getVatRadioValuePrint()
+        {
+            string value = null;
+            /*
+            if (rbbNonVat.Checked)
+            {
+                value = "ใบส่งของ";
+                Company.CompanyName = " ";
+                Company.Address = " ";
+                Company.Email = " ";
+                Company.Telephone = " ";
+                Company.TTelephone = " ";
+                Company.TEmail = " ";
+            }
+            else if (rbbVat.Checked)
+            {
+            */
+            value = "ใบส่งสินค้า";
+            getDefaultCompany();
+            /*
+            }
+            */
+            return value;
+        }
+
+        private void getDefaultCompany()
+        {
+            //sql find company
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public.base_company where base_company_id = 1 ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Company.CompanyName = strNotEmty(reader["company_name"].ToString());
+                    Company.Address = strNotEmty(reader["address"].ToString());
+                    Company.Telephone = strNotEmty(reader["telephone"].ToString());
+                    Company.Email = strNotEmty(reader["email"].ToString());
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+        }
     }  
 }
