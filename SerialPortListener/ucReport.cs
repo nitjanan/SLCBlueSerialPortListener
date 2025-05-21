@@ -1170,7 +1170,7 @@ namespace SerialPortListener
             if (dgvDailyReport.Rows.Count > 1)
             {
                 Weight.DocNum = "P" + dgvDailyReport.CurrentRow.Cells["เลขที่เอกสาร"].Value.ToString();
-                //Weight.Amount = (dgvDailyReport.CurrentRow.Cells["จำนวนเงิน"].Value.ToString(), 2);
+                Weight.Amount = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงิน"].Value.ToString(), 2);
                 Weight.CarCity = strNotEmty(dgvDailyReport.CurrentRow.Cells["จังหวัด"].Value.ToString());
                 Weight.CarLicense = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทะเบียนรถ"].Value.ToString());
                 Weight.CustomerName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ลูกค้า"].Value.ToString());
