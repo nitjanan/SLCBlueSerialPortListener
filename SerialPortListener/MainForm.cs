@@ -832,21 +832,28 @@ namespace SerialPortListener
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
 
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
+                string remainingText = newString.Substring(newString.LastIndexOf("p"));
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
                 if (mc.Count > 0)
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    //tbWeigtData.ForeColor = Color.LightGreen;
+                    if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
                     {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                            //tbWeigtData.ForeColor = Color.LightCoral;
+                        //ลบตัวสุดท้ายออก
+                        tbWeigtData.Text = mc[0].Value.Remove(mc[0].Value.Length - 1, 1);
                     }
-                    else
+                    else if (Int32.Parse(mc[0].Value) < 10)
                     {
-                        tbWeigtData.ForeColor = Color.LightGreen;
+                        tbWeigtData.Text = "0";
+                        //tbWeigtData.ForeColor = Color.LightGreen;
+                    }
+                    else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    {
+                        tbWeigtData.Text = mc[0].Value;
+                        //tbWeigtData.ForeColor = Color.LightCoral;
                     }
 
                 }
