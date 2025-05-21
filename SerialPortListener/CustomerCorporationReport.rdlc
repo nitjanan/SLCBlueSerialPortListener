@@ -2160,6 +2160,7 @@
             </TablixRowHierarchy>
             <DataSetName>CorpDataSet</DataSetName>
             <Top>0.02cm</Top>
+            <Left>0.00001cm</Left>
             <Height>3.6cm</Height>
             <Width>19.98893cm</Width>
             <Style>
@@ -2198,7 +2199,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>0.01968cm</Left>
               <Height>0.6cm</Height>
               <Width>5.03937cm</Width>
               <Style>
@@ -2231,7 +2231,6 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.63528cm</Top>
-              <Left>0.01968cm</Left>
               <Height>0.6cm</Height>
               <Width>5.03937cm</Width>
               <ZIndex>1</ZIndex>
@@ -2267,7 +2266,7 @@
               </Paragraphs>
               <rd:DefaultName>PDateFrom</rd:DefaultName>
               <Top>0.63528cm</Top>
-              <Left>5.05906cm</Left>
+              <Left>5.03938cm</Left>
               <Height>0.6cm</Height>
               <Width>2.41772cm</Width>
               <ZIndex>2</ZIndex>
@@ -2309,7 +2308,7 @@
               </Paragraphs>
               <rd:DefaultName>PDateTo</rd:DefaultName>
               <Top>0.63528cm</Top>
-              <Left>7.47678cm</Left>
+              <Left>7.4571cm</Left>
               <Height>0.6cm</Height>
               <Width>3.59771cm</Width>
               <ZIndex>3</ZIndex>
@@ -2343,7 +2342,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox48</rd:DefaultName>
-              <Left>17.69382cm</Left>
+              <Left>17.69383cm</Left>
               <Height>0.6cm</Height>
               <Width>2.27542cm</Width>
               <ZIndex>4</ZIndex>

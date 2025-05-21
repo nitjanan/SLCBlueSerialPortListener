@@ -2467,7 +2467,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>transportDataSet</DataSetName>
-            <Left>0cm</Left>
             <Height>4.2cm</Height>
             <Width>19.92309cm</Width>
             <Style>
@@ -2494,10 +2493,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
+                      <Value>บริษัท เซ้าเทิร์นพอร์ท จำกัด</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>14pt</FontSize>
+                        <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>

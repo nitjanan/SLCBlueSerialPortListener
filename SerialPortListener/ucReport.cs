@@ -67,8 +67,8 @@ namespace SerialPortListener
             fillTableCombo(cbbTransportTeam, "base_car_team", "ชื่อทีม");
             fillTableComboByInactive(cbbStoneType, "base_stone_type", "ชื่อหิน", "รหัสหิน");
             //ปลายทาง ต้องดึง weight_type = 4
-            fillTableCombo(cbbLineSite, "base_site", "base_site_name");
-            fillTableCombo(cbbSumSite, "base_site", "base_site_name");
+            fillTableComboByWeightType(cbbLineSite, "base_site", "base_site_name");
+            fillTableComboByWeightType(cbbSumSite, "base_site", "base_site_name");
 
             // autoComplete ต้นทาง
             //fillTableComboByWeightType(cbbMill, "base_mill", "ชื่อโรงโม่");
@@ -162,7 +162,7 @@ namespace SerialPortListener
 
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 1 or weight_type = 3";
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 4";
             try
             {
                 dl.connect();

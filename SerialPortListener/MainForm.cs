@@ -3219,7 +3219,7 @@ namespace SerialPortListener
         private void btRefresh_Click(object sender, EventArgs e)
         {
             /* autoComplete ผู้ตัก */
-        autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
             /* autoComplete โรงโม่ */
