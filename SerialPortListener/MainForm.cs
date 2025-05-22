@@ -686,7 +686,6 @@ namespace SerialPortListener
                 tbData.AppendText(str);
                 tbData.ScrollToCaret();
 
-                /*
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
@@ -717,14 +716,14 @@ namespace SerialPortListener
                         }
 
                     }
+
                 }
                 catch (Exception ex)
                 {
 
                 }
-                */
 
-                
+                /*
                 // JOB ขาเข้า
                 try
                 {
@@ -755,6 +754,7 @@ namespace SerialPortListener
                 {
 
                 }
+                */
 
             }
 
