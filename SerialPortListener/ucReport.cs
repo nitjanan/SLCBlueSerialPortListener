@@ -87,6 +87,7 @@ namespace SerialPortListener
             cbbWeight.SelectedIndex = 0;
             cbbLineType.SelectedIndex = 0;
             cbCorpWeight.SelectedIndex = 0;
+            cbCCLineType.SelectedIndex = 0;
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
             dtFromOutLine.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
