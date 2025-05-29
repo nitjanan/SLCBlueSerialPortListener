@@ -22,7 +22,8 @@ namespace SerialPortListener
             InitializeComponent();
             mainForm = parent;
             dl = new Datalayer();
-            fillTableCombo(cbbSite, "base_site", "base_site_name");
+            //fillTableCombo(cbbSite, "base_site", "base_site_name");
+            fillTableComboByWeightType(cbbSite, "base_site", "base_site_name");
             setDataSetting();
         }
 
@@ -76,6 +77,36 @@ namespace SerialPortListener
 
             }
             dl.close();
+        }
+
+        private void fillTableComboByWeightType(ComboBox cbb, string tableName, string field)
+        {
+            //ล้างก่อน
+            cbb.Items.Clear();
+
+            //
+            cbb.Items.Add("ทั้งหมด");
+            cbb.SelectedIndex = 0;
+
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 4";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string des = reader[field].ToString();
+                    cbb.Items.Add(des);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            dl.close();
+
         }
 
         private void btSaveLine_Click(object sender, EventArgs e)

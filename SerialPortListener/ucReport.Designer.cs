@@ -544,6 +544,8 @@
             // 
             // cbbStoneType
             // 
+            this.cbbStoneType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbStoneType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbStoneType.DropDownHeight = 200;
             this.cbbStoneType.FormattingEnabled = true;
             this.cbbStoneType.IntegralHeight = false;
@@ -563,6 +565,8 @@
             // 
             // cbbCarTeam
             // 
+            this.cbbCarTeam.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbCarTeam.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbCarTeam.DropDownHeight = 200;
             this.cbbCarTeam.FormattingEnabled = true;
             this.cbbCarTeam.IntegralHeight = false;
