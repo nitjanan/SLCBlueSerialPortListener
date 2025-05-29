@@ -26,6 +26,22 @@ namespace SerialPortListener
                 return _instance;
             }
         }
+
+        // Bind default keywords
+        List<string> listOriginalCusnamReport = new List<string>();
+        // save new keywords
+        List<string> listNewCusnamReport = new List<string>();
+
+        // Bind default keywords
+        List<string> listOriginalCCCustomerReport = new List<string>();
+        // save new keywords
+        List<string> listNewCCCustomerReport = new List<string>();
+
+        // Bind default keywords
+        List<string> listOriginalCorpReport = new List<string>();
+        // save new keywords
+        List<string> listNewCorpReport = new List<string>();
+
         // Bind default keywords
         List<string> listOriginalCustomerReport = new List<string>();
         // save new keywords
@@ -56,6 +72,9 @@ namespace SerialPortListener
             /* autoComplete ชื่อผู้ตัก */
             autoCompleteSettingDistinct(tbScoopName, "ชื่อผู้ตัก", "weight");
 
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCusnam, listOriginalCusnamReport);
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbCCCustomer, listOriginalCCCustomerReport);
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCorp, listOriginalCorpReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCustomerName, listOriginalCustomerReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
 
@@ -307,8 +326,8 @@ namespace SerialPortListener
                     sql.Append(" AND คนขับ LIKE '" + tbDriver.Text + "%' ");
                 if (cbbStoneType.SelectedIndex != 0)
                     sql.Append(" AND ชนิดหิน = '" + cbbStoneType.Text + "' ");
-                if (tbbCustomerName.Text != "")
-                    sql.Append(" AND ลูกค้า = '" + tbbCustomerName.Text + "' ");
+                if (tbbCustomerId.Text != "")
+                    sql.Append(" AND weight.รหัสลูกค้า = '" + tbbCustomerId.Text + "' ");
                 if (tbbFromCustomerId.Text != "" && tbbToCustomerId.Text != "")
                     sql.Append(" AND weight.รหัสลูกค้า BETWEEN '" + tbbFromCustomerId.Text + "' AND '" + tbbToCustomerId.Text + "' ");
                 if (cbbWeight.SelectedIndex == 0)
@@ -507,8 +526,8 @@ namespace SerialPortListener
                 sql.Append(" AND คนขับ LIKE '" + tbDriver.Text + "%' ");
             if (cbbStoneType.SelectedIndex != 0)
                 sql.Append(" AND ชนิดหิน = '" + cbbStoneType.Text + "' ");
-            if (tbbCustomerName.Text != "")
-                sql.Append(" AND ลูกค้า = '" + tbbCustomerName.Text + "' ");
+            if (tbbCustomerId.Text != "")
+                sql.Append(" AND weight.รหัสลูกค้า = '" + tbbCustomerId.Text + "' "); ;
             if (tbbFromCustomerId.Text != "" && tbbToCustomerId.Text != "")
                 sql.Append(" AND weight.รหัสลูกค้า BETWEEN '" + tbbFromCustomerId.Text + "' AND '" + tbbToCustomerId.Text + "' ");
             if (cbbWeight.SelectedIndex == 0)
@@ -1340,6 +1359,61 @@ namespace SerialPortListener
             }
             dl.close();
 
+        }
+
+        private void cbbCusnam_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbbCustomerId.Text = cbbCusnam.Text.Substring(0, cbbCusnam.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbbCustomerId.Text = "";
+                cbbCusnam.Text = "";
+            }
+        }
+
+        private void cbbCusnam_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbCusnam, listOriginalCusnamReport, listNewCusnamReport);
+        }
+
+
+        private void cbCCCustomer_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbCCId.Text = cbCCCustomer.Text.Substring(0, cbCCCustomer.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbCCId.Text = "";
+                cbCCCustomer.Text = "";
+            }
+        }
+
+        private void cbCCCustomer_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbCCCustomer, listOriginalCCCustomerReport, listNewCCCustomerReport);
+        }
+
+        private void cbbCorp_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbCorpId.Text = cbbCorp.Text.Substring(0, cbbCorp.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbCorpId.Text = "";
+                cbbCorp.Text = "";
+            }
+        }
+
+        private void cbbCorp_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbCorp, listOriginalCorpReport, listNewCorpReport);
         }
     }  
 }

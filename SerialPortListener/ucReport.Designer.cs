@@ -250,6 +250,9 @@
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.btPrintTransportByTeam = new System.Windows.Forms.Button();
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
+            this.cbbCusnam = new System.Windows.Forms.ComboBox();
+            this.cbCCCustomer = new System.Windows.Forms.ComboBox();
+            this.cbbCorp = new System.Windows.Forms.ComboBox();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
@@ -303,6 +306,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.GhostWhite;
+            this.tabPage1.Controls.Add(this.cbbCusnam);
             this.tabPage1.Controls.Add(this.btPrintBil);
             this.tabPage1.Controls.Add(this.cbbLineType);
             this.tabPage1.Controls.Add(this.label41);
@@ -512,17 +516,19 @@
             // 
             // tbbCustomerId
             // 
-            this.tbbCustomerId.Location = new System.Drawing.Point(449, 87);
+            this.tbbCustomerId.Location = new System.Drawing.Point(701, 60);
             this.tbbCustomerId.Name = "tbbCustomerId";
-            this.tbbCustomerId.Size = new System.Drawing.Size(90, 26);
+            this.tbbCustomerId.Size = new System.Drawing.Size(10, 26);
             this.tbbCustomerId.TabIndex = 57;
+            this.tbbCustomerId.Visible = false;
             // 
             // tbbCustomerName
             // 
-            this.tbbCustomerName.Location = new System.Drawing.Point(544, 87);
+            this.tbbCustomerName.Location = new System.Drawing.Point(717, 60);
             this.tbbCustomerName.Name = "tbbCustomerName";
-            this.tbbCustomerName.Size = new System.Drawing.Size(152, 26);
+            this.tbbCustomerName.Size = new System.Drawing.Size(10, 26);
             this.tbbCustomerName.TabIndex = 56;
+            this.tbbCustomerName.Visible = false;
             // 
             // label33
             // 
@@ -974,6 +980,7 @@
             // tabPage15
             // 
             this.tabPage15.BackColor = System.Drawing.Color.Azure;
+            this.tabPage15.Controls.Add(this.cbbCorp);
             this.tabPage15.Controls.Add(this.label55);
             this.tabPage15.Controls.Add(this.cbCorpLineType);
             this.tabPage15.Controls.Add(this.label54);
@@ -1045,10 +1052,11 @@
             // tbCorpId
             // 
             this.tbCorpId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCorpId.Location = new System.Drawing.Point(247, 163);
+            this.tbCorpId.Location = new System.Drawing.Point(247, 44);
             this.tbCorpId.Name = "tbCorpId";
             this.tbCorpId.Size = new System.Drawing.Size(87, 27);
             this.tbCorpId.TabIndex = 47;
+            this.tbCorpId.Visible = false;
             // 
             // label51
             // 
@@ -1063,10 +1071,11 @@
             // tbCorpName
             // 
             this.tbCorpName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCorpName.Location = new System.Drawing.Point(340, 163);
+            this.tbCorpName.Location = new System.Drawing.Point(340, 44);
             this.tbCorpName.Name = "tbCorpName";
             this.tbCorpName.Size = new System.Drawing.Size(253, 27);
             this.tbCorpName.TabIndex = 45;
+            this.tbCorpName.Visible = false;
             // 
             // label52
             // 
@@ -1124,6 +1133,7 @@
             // tabPage14
             // 
             this.tabPage14.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage14.Controls.Add(this.cbCCCustomer);
             this.tabPage14.Controls.Add(this.label57);
             this.tabPage14.Controls.Add(this.cbCCStoneType);
             this.tabPage14.Controls.Add(this.label56);
@@ -1205,10 +1215,11 @@
             // tbCCId
             // 
             this.tbCCId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCCId.Location = new System.Drawing.Point(244, 125);
+            this.tbCCId.Location = new System.Drawing.Point(244, 48);
             this.tbCCId.Name = "tbCCId";
             this.tbCCId.Size = new System.Drawing.Size(87, 27);
             this.tbCCId.TabIndex = 51;
+            this.tbCCId.Visible = false;
             // 
             // label48
             // 
@@ -1223,10 +1234,11 @@
             // tbCCName
             // 
             this.tbCCName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCCName.Location = new System.Drawing.Point(337, 125);
+            this.tbCCName.Location = new System.Drawing.Point(337, 48);
             this.tbCCName.Name = "tbCCName";
             this.tbCCName.Size = new System.Drawing.Size(253, 27);
             this.tbCCName.TabIndex = 49;
+            this.tbCCName.Visible = false;
             // 
             // label49
             // 
@@ -2560,6 +2572,45 @@
             // 
             this.weightTableAdapter.ClearBeforeFill = true;
             // 
+            // cbbCusnam
+            // 
+            this.cbbCusnam.DropDownHeight = 300;
+            this.cbbCusnam.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbCusnam.FormattingEnabled = true;
+            this.cbbCusnam.IntegralHeight = false;
+            this.cbbCusnam.Location = new System.Drawing.Point(449, 86);
+            this.cbbCusnam.Name = "cbbCusnam";
+            this.cbbCusnam.Size = new System.Drawing.Size(246, 29);
+            this.cbbCusnam.TabIndex = 75;
+            this.cbbCusnam.TextUpdate += new System.EventHandler(this.cbbCusnam_TextUpdate);
+            this.cbbCusnam.Leave += new System.EventHandler(this.cbbCusnam_Leave);
+            // 
+            // cbCCCustomer
+            // 
+            this.cbCCCustomer.DropDownHeight = 300;
+            this.cbCCCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCCCustomer.FormattingEnabled = true;
+            this.cbCCCustomer.IntegralHeight = false;
+            this.cbCCCustomer.Location = new System.Drawing.Point(244, 125);
+            this.cbCCCustomer.Name = "cbCCCustomer";
+            this.cbCCCustomer.Size = new System.Drawing.Size(346, 29);
+            this.cbCCCustomer.TabIndex = 56;
+            this.cbCCCustomer.TextUpdate += new System.EventHandler(this.cbCCCustomer_TextUpdate);
+            this.cbCCCustomer.Leave += new System.EventHandler(this.cbCCCustomer_Leave);
+            // 
+            // cbbCorp
+            // 
+            this.cbbCorp.DropDownHeight = 300;
+            this.cbbCorp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbCorp.FormattingEnabled = true;
+            this.cbbCorp.IntegralHeight = false;
+            this.cbbCorp.Location = new System.Drawing.Point(247, 163);
+            this.cbbCorp.Name = "cbbCorp";
+            this.cbbCorp.Size = new System.Drawing.Size(346, 29);
+            this.cbbCorp.TabIndex = 57;
+            this.cbbCorp.TextUpdate += new System.EventHandler(this.cbbCorp_TextUpdate);
+            this.cbbCorp.Leave += new System.EventHandler(this.cbbCorp_Leave);
+            // 
             // ucReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2833,5 +2884,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ขนส่ง;
         private System.Windows.Forms.DataGridViewTextBoxColumn oil_content;
         private System.Windows.Forms.DataGridViewTextBoxColumn หมายเหตุ;
+        private System.Windows.Forms.ComboBox cbbCusnam;
+        private System.Windows.Forms.ComboBox cbCCCustomer;
+        private System.Windows.Forms.ComboBox cbbCorp;
     }
 }
