@@ -110,6 +110,7 @@ namespace SerialPortListener
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
             dtFromOutLine.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
+            dtFromOutSum.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
 
         }
 

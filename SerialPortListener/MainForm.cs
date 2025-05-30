@@ -299,6 +299,10 @@ namespace SerialPortListener
             rbCleanStone.Checked = false;
             rbCleanWater.Checked = false;
             rbCleanNo.Checked = false;
+
+            rbShortLine.Checked = false;
+            rbLongLine.Checked = false;
+
             cbbSite.Text = "";
             cbbCarTeam.Text = "";
             tbNote.Text = "";
