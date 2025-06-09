@@ -383,7 +383,8 @@ namespace SerialPortListener
             }
             else if (tcReport.SelectedTab == tabPage8)
             {
-                fillMillCombo(cbMill);
+                //fillMillCombo(cbMill);
+                fillTableComboByWeightType(cbMill, "base_mill", "ชื่อโรงโม่");
             }
         }
 

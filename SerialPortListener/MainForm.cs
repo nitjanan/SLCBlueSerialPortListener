@@ -441,7 +441,7 @@ namespace SerialPortListener
             cbbMill.Items.Clear();
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 1 or weight_type = 3 ORDER BY รหัสโรงโม่";
+            pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 4 ORDER BY รหัสโรงโม่";
             try
             {
                 dl.connect();
@@ -3253,7 +3253,7 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and รหัสโรงโม่ = '" + tbMillId.Text + "' ";
+                pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 4 and รหัสโรงโม่ = '" + tbMillId.Text + "' ";
                 try
                 {
                     dl.connect();
@@ -3287,7 +3287,7 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = '" + tbMillName.Text + "' ";
+                pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 4 and ชื่อโรงโม่ = '" + tbMillName.Text + "' ";
                 try
                 {
                     dl.connect();
@@ -3346,7 +3346,7 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = '" + cbbMill.Text + "' ";
+                pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 4 and ชื่อโรงโม่ = '" + cbbMill.Text + "' ";
                 try
                 {
                     dl.connect();
