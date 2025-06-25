@@ -1041,6 +1041,7 @@
             this.rbbVat.TabIndex = 43;
             this.rbbVat.Text = "ไม่รวมภาษี";
             this.rbbVat.UseVisualStyleBackColor = false;
+            this.rbbVat.Visible = false;
             this.rbbVat.CheckedChanged += new System.EventHandler(this.rbbVat_CheckedChanged);
             // 
             // label20
