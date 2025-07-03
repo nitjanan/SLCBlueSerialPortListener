@@ -1040,6 +1040,7 @@
             this.tbQOrigin.TabIndex = 91;
             this.tbQOrigin.Text = "0.00";
             this.tbQOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbQOrigin.Leave += new System.EventHandler(this.tbQOrigin_Leave);
             // 
             // tbWeightOrigin
             // 

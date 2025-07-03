@@ -1543,7 +1543,9 @@ namespace SerialPortListener
 
         private string getVatRadioValuePrint()
         {
-            string value = null;
+            string value = "ใบส่งสินค้า";
+            getDefaultCompany();
+            /*
             if (rbbNonVat.Checked)
             {
                 value = "ใบส่งของ";
@@ -1559,6 +1561,7 @@ namespace SerialPortListener
                 value = "ใบส่งสินค้า";
                 getDefaultCompany();
             }
+            */
             return value;
         }
 
@@ -1574,10 +1577,10 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    Company.CompanyName = reader["company_name"].ToString();
-                    Company.Address = reader["address"].ToString();
-                    Company.Telephone = reader["telephone"].ToString();
-                    Company.Email = reader["email"].ToString();
+                    Company.CompanyName = strNotEmty(reader["company_name"].ToString());
+                    Company.Address = strNotEmty(reader["address"].ToString());
+                    Company.Telephone = strNotEmty(reader["telephone"].ToString());
+                    Company.Email = strNotEmty(reader["email"].ToString());
                 }
             }
             catch (Exception)
@@ -1808,8 +1811,8 @@ namespace SerialPortListener
         {
             //customerIdTextChanged();
 
-            //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน
-            setDataCleanByCustomerAndStoneType();
+            //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน ท่าเรือ 03/07/2025
+            //setDataCleanByCustomerAndStoneType();
         }
 
         private void customerIdTextChanged()
@@ -2155,8 +2158,8 @@ namespace SerialPortListener
             //คำนวณค่าคิว
             calculatenumQ();
 
-            //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน
-            setDataCleanByCustomerAndStoneType();
+            //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน ท่าเรือ 03/07/2025
+            //setDataCleanByCustomerAndStoneType();
         }
         private void textboxFormatDecimal(object sender, KeyPressEventArgs e, TextBox textBox)
         {
@@ -3507,6 +3510,32 @@ namespace SerialPortListener
 
             convertFormatToDecimal(tbWeightOrigin);
             checkNumWeightMany(tbWeightOrigin);
+        }
+
+        private void tbQOrigin_Leave(object sender, EventArgs e)
+        {
+
+            if (cbbStoneType.SelectedIndex != -1)
+                calculatenumWeightOrigin();
+
+            convertFormatToDecimal(tbQOrigin);
+
+        }
+
+        private void calculatenumWeightOrigin()
+        {
+            try
+            {
+                double numCalQ = Convert.ToDouble(strCalQ);
+                double numQ = Convert.ToDouble(tbQOrigin.Text);
+                double numWeightTotal = numQ * numCalQ * 1000;
+                int roundOffWeight = ((int)Math.Round(numWeightTotal / 10.0)) * 10;
+                tbWeightOrigin.Text = roundOffWeight.ToString("#,##0.00");
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }
