@@ -686,13 +686,14 @@ namespace SerialPortListener
                 tbData.AppendText(str);
                 tbData.ScrollToCaret();
 
+
+                /*
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
                     //JOB ขาออก (เครื่องแม่)
                     //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
                     //string remainingText = newString.Substring(newString.LastIndexOf("q"));
-
 
                     //JOB ล่างสุด
                     string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
@@ -722,8 +723,9 @@ namespace SerialPortListener
                 {
 
                 }
+                */
 
-                /*
+                
                 // JOB ขาเข้า
                 try
                 {
@@ -754,7 +756,7 @@ namespace SerialPortListener
                 {
 
                 }
-                */
+                
 
             }
 
