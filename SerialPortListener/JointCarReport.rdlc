@@ -2950,7 +2950,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด</Value>
+                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด สาขาที่00007</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -2963,7 +2963,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>5.82707cm</Width>
+              <Width>10.65037cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
