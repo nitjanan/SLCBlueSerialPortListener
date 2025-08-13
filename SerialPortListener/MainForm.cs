@@ -695,7 +695,7 @@ namespace SerialPortListener
                     //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
                     //string remainingText = newString.Substring(newString.LastIndexOf("q"));
 
-                    //JOB ล่างสุด
+                    //JOB ล่างสุด ก่อน 13-08-2025 
                     string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
                     string remainingText = newString.Substring(newString.LastIndexOf("p"));
                     MatchCollection mc = Regex.Matches(remainingText, @"\d+");
@@ -725,8 +725,8 @@ namespace SerialPortListener
                 }
                 */
 
-                
-                // JOB ขาเข้า
+
+                // JOB ขาเข้า และ  New JOB ล่างสุด 13-08-2025
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
