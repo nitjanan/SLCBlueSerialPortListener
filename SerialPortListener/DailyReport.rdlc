@@ -2348,7 +2348,7 @@
             <DataSetName>dailyDataSet</DataSetName>
             <Top>0.05035cm</Top>
             <Height>1.83812cm</Height>
-            <Width>20.27286cm</Width>
+            <Width>20.27287cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -2464,7 +2464,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด</Value>
+                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด สาขาที่ 00008</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>

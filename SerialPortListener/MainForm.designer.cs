@@ -833,6 +833,7 @@
             // tbScaleId
             // 
             this.tbScaleId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleId.Enabled = false;
             this.tbScaleId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleId.Location = new System.Drawing.Point(813, 312);
             this.tbScaleId.Name = "tbScaleId";
@@ -878,6 +879,7 @@
             // tbScaleName
             // 
             this.tbScaleName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleName.Enabled = false;
             this.tbScaleName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleName.Location = new System.Drawing.Point(885, 312);
             this.tbScaleName.Name = "tbScaleName";

@@ -2811,7 +2811,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.6cm</Top>
               <Height>0.6cm</Height>
-              <Width>5.82707cm</Width>
+              <Width>7.10334cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2859,9 +2859,9 @@
               </Paragraphs>
               <rd:DefaultName>PDateFrom</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>5.82707cm</Left>
+              <Left>7.10334cm</Left>
               <Height>0.6cm</Height>
-              <Width>4.8233cm</Width>
+              <Width>3.54703cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2950,7 +2950,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด</Value>
+                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด สาขาที่ 00008</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -2963,7 +2963,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>5.82707cm</Width>
+              <Width>7.10334cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
