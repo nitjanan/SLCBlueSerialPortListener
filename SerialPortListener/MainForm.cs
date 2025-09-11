@@ -670,22 +670,20 @@ namespace SerialPortListener
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                /* เครื่องพี่จ๋า */
 
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KN"));
-                string remainingText = newString.Substring(newString.LastIndexOf("\r"));
+
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
+                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
-
-                /* เครื่องพี่รุ่ง */
-                //MatchCollection mc = Regex.Matches(str, @"\d+");
 
                 if (mc.Count > 0)
                 {
                     if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
                         tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                            //tbWeigtData.ForeColor = Color.LightCoral;
+                        //tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
                     {
