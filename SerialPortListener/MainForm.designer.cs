@@ -1027,6 +1027,7 @@
             this.rbbNonVat.TabIndex = 42;
             this.rbbNonVat.Text = "รวมภาษี";
             this.rbbNonVat.UseVisualStyleBackColor = false;
+            this.rbbNonVat.Visible = false;
             this.rbbNonVat.CheckedChanged += new System.EventHandler(this.rbbNonVat_CheckedChanged);
             // 
             // rbbVat
