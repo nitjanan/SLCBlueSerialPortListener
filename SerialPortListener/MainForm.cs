@@ -178,8 +178,8 @@ namespace SerialPortListener
             dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
             dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
-            rbbNonVat.Checked = true;
-            rbbVat.Checked = false;
+            rbbNonVat.Checked = false;
+            rbbVat.Checked = true;
             rbCleanStone.Checked = false;
             rbCleanWater.Checked = false;
             rbCleanNo.Checked = false;
