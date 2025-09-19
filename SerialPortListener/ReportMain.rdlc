@@ -612,9 +612,6 @@
                 <Height>0.25in</Height>
                 <Width>1.24714in</Width>
                 <ZIndex>16</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2797,18 +2794,6 @@
                 <Height>0in</Height>
                 <Width>1.1875in</Width>
                 <ZIndex>89</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Dashed</Style>
-                  </Border>
-                </Style>
-              </Line>
-              <Line Name="Line22">
-                <Top>3.04766in</Top>
-                <Left>0.51991in</Left>
-                <Height>0in</Height>
-                <Width>1.29504in</Width>
-                <ZIndex>90</ZIndex>
                 <Style>
                   <Border>
                     <Style>Dashed</Style>
