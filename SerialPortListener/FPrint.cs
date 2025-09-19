@@ -77,7 +77,7 @@ namespace SerialPortListener
               กระดาษต่อเนื่อง */
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.Standard9x11;
 
-            ps.Margins = new System.Drawing.Printing.Margins(46, 46, 60, 30);
+            ps.Margins = new System.Drawing.Printing.Margins(46, 46, 30, 30);
             this.reportViewer1.SetPageSettings(ps);
 
             this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
