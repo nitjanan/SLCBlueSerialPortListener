@@ -1891,7 +1891,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด สาขาที่ 00008</Value>
+                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด (เหมืองแร่คุณธวัช)</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -1905,7 +1905,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Left>0.00001cm</Left>
               <Height>0.6cm</Height>
-              <Width>6.7298cm</Width>
+              <Width>8.17147cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1938,7 +1938,7 @@
               <Top>0.63528cm</Top>
               <Left>0.00001cm</Left>
               <Height>0.6cm</Height>
-              <Width>4.91772cm</Width>
+              <Width>8.17147cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1964,70 +1964,14 @@
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>PDateFrom</rd:DefaultName>
-              <Top>0.63528cm</Top>
-              <Left>4.91773cm</Left>
-              <Height>0.6cm</Height>
-              <Width>1.81208cm</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox7">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
                     <TextRun>
-                      <Value>-</Value>
+                      <Value> - </Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0.63528cm</Top>
-              <Left>6.72981cm</Left>
-              <Height>0.6cm</Height>
-              <Width>1.44167cm</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="PDateTo">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
                     <TextRun>
                       <Value>=Parameters!PDateTo.Value</Value>
                       <Style>
@@ -2037,15 +1981,17 @@
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>PDateTo</rd:DefaultName>
+              <rd:DefaultName>PDateFrom</rd:DefaultName>
               <Top>0.63528cm</Top>
               <Left>8.17148cm</Left>
               <Height>0.6cm</Height>
-              <Width>2.58476cm</Width>
-              <ZIndex>4</ZIndex>
+              <Width>6.43414cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2079,7 +2025,7 @@
               <Left>17.95228cm</Left>
               <Height>0.6cm</Height>
               <Width>1.99729cm</Width>
-              <ZIndex>5</ZIndex>
+              <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
