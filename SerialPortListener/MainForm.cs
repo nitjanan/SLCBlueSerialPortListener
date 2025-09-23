@@ -687,53 +687,13 @@ namespace SerialPortListener
                 tbData.ScrollToCaret();
 
 
-                /*
-                try
-                {
-                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                    //JOB ขาออก (เครื่องแม่)
-                    //string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
-                    //string remainingText = newString.Substring(newString.LastIndexOf("q"));
-
-                    //JOB ล่างสุด ก่อน 13-08-2025 
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                    string remainingText = newString.Substring(newString.LastIndexOf("p"));
-                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-                    if (mc.Count > 0)
-                    {
-                        if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
-                        {
-                            string tmp = mc[0].Value;
-                            tbWeigtData.Text = tmp.Remove(tmp.Length - 1);
-                        }
-                        else if (Int32.Parse(mc[0].Value) < 10)
-                        {
-                            tbWeigtData.Text = "0";
-                        }
-                        else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                        {
-                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        }
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-
-                }
-                */
-
-
-                // JOB ขาเข้า และ  New JOB ล่างสุด 13-08-2025
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
 
 
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                    string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(",Kg"));
+                    string remainingText = newString.Substring(newString.LastIndexOf("ST,GS,"));
 
                     MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
@@ -743,7 +703,7 @@ namespace SerialPortListener
                         if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                         {
                             tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                                //tbWeigtData.ForeColor = Color.LightCoral;
+                            //tbWeigtData.ForeColor = Color.LightCoral;
                         }
                         else
                         {
@@ -756,7 +716,6 @@ namespace SerialPortListener
                 {
 
                 }
-                
 
             }
 
