@@ -561,6 +561,7 @@ namespace SerialPortListener
         }
         private void setDataPayToRB(string dataPay)
         {
+             //
             if (dataPay.Equals("เงินสด"))
                 rbCash.Checked = true;
             else if (dataPay.Equals("เงินเชื่อ"))
