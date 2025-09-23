@@ -833,6 +833,7 @@
             // tbScaleId
             // 
             this.tbScaleId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleId.Enabled = false;
             this.tbScaleId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleId.Location = new System.Drawing.Point(813, 312);
             this.tbScaleId.Name = "tbScaleId";
@@ -878,6 +879,7 @@
             // tbScaleName
             // 
             this.tbScaleName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleName.Enabled = false;
             this.tbScaleName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleName.Location = new System.Drawing.Point(885, 312);
             this.tbScaleName.Name = "tbScaleName";
@@ -1640,7 +1642,7 @@
             this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintAll.Location = new System.Drawing.Point(803, 623);
+            this.btPrintAll.Location = new System.Drawing.Point(940, 623);
             this.btPrintAll.Name = "btPrintAll";
             this.btPrintAll.Size = new System.Drawing.Size(105, 40);
             this.btPrintAll.TabIndex = 123;
@@ -1657,7 +1659,7 @@
             this.btPrintOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintOut.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintOut.Location = new System.Drawing.Point(658, 623);
+            this.btPrintOut.Location = new System.Drawing.Point(754, 623);
             this.btPrintOut.Name = "btPrintOut";
             this.btPrintOut.Size = new System.Drawing.Size(105, 40);
             this.btPrintOut.TabIndex = 122;
@@ -1674,7 +1676,7 @@
             this.btPrintIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintIn.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintIn.Location = new System.Drawing.Point(508, 623);
+            this.btPrintIn.Location = new System.Drawing.Point(566, 623);
             this.btPrintIn.Name = "btPrintIn";
             this.btPrintIn.Size = new System.Drawing.Size(105, 40);
             this.btPrintIn.TabIndex = 47;
@@ -1690,7 +1692,7 @@
             this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px;
             this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSave.Location = new System.Drawing.Point(342, 623);
+            this.btSave.Location = new System.Drawing.Point(370, 623);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 40);
             this.btSave.TabIndex = 46;
@@ -1748,13 +1750,14 @@
             this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(949, 623);
+            this.btPrintVRock.Location = new System.Drawing.Point(192, 623);
             this.btPrintVRock.Name = "btPrintVRock";
             this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
             this.btPrintVRock.TabIndex = 142;
             this.btPrintVRock.Text = "วี ร็อค";
             this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintVRock.UseVisualStyleBackColor = false;
+            this.btPrintVRock.Visible = false;
             this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
             // 
             // MainForm

@@ -851,8 +851,8 @@ namespace SerialPortListener
             {
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
+                tbWeightTotal.Enabled = false;
+                tbQ.Enabled = false;
             }
             else if (mode.Equals(4))//disable all
             {
@@ -870,8 +870,8 @@ namespace SerialPortListener
             else if (mode.Equals(999)) {//open all edit weight
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
+                tbWeightTotal.Enabled = false;
+                tbQ.Enabled = false;
 
                 tbCarLicense.Enabled = true;
                 tbCarCity.Enabled = true;
@@ -1839,7 +1839,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = "J" + tbDocNum.Text;
+            Weight.DocNum = "N" + tbDocNum.Text;
             Weight.Mill = strNotEmty(cbbMill.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);

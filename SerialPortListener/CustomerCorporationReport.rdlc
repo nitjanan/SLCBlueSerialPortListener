@@ -946,7 +946,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1892,7 +1891,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด</Value>
+                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด (เหมืองแร่คุณธวัช)</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -1906,7 +1905,7 @@
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Left>0.00001cm</Left>
               <Height>0.6cm</Height>
-              <Width>6.7298cm</Width>
+              <Width>8.17147cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
