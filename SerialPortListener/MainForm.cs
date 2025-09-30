@@ -714,7 +714,9 @@ namespace SerialPortListener
                 }
                 catch (Exception ex)
                 {
-
+                    // When port is closed or error occurs
+                    tbWeigtData.Text = "Error";
+                    tbWeigtData.ForeColor = Color.DarkRed;
                 }
 
             }
