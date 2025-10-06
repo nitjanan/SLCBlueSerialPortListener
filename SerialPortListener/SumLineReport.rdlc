@@ -367,6 +367,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1389,34 +1390,43 @@
                         <TablixMember>
                           <TablixMembers>
                             <TablixMember>
-                              <Group Name="ทะเบียนรถ">
+                              <Group Name="วันที่">
                                 <GroupExpressions>
-                                  <GroupExpression>=Fields!ทะเบียนรถ.Value</GroupExpression>
+                                  <GroupExpression>=Fields!วันที่.Value</GroupExpression>
                                 </GroupExpressions>
                               </Group>
                               <SortExpressions>
                                 <SortExpression>
-                                  <Value>=Fields!ทะเบียนรถ.Value</Value>
+                                  <Value>=Fields!วันที่.Value</Value>
                                 </SortExpression>
                               </SortExpressions>
+                              <TablixMembers>
+                                <TablixMember>
+                                  <Group Name="ทะเบียนรถ">
+                                    <GroupExpressions>
+                                      <GroupExpression>=Fields!ทะเบียนรถ.Value</GroupExpression>
+                                    </GroupExpressions>
+                                  </Group>
+                                  <SortExpressions>
+                                    <SortExpression>
+                                      <Value>=Fields!ทะเบียนรถ.Value</Value>
+                                    </SortExpression>
+                                  </SortExpressions>
+                                </TablixMember>
+                              </TablixMembers>
                             </TablixMember>
-                            <TablixMember>
-                              <KeepWithGroup>Before</KeepWithGroup>
-                            </TablixMember>
+                            <TablixMember />
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>Before</KeepWithGroup>
-                    </TablixMember>
+                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>sumLineDataSet</DataSetName>
             <Top>0.03528cm</Top>
-            <Left>0cm</Left>
             <Height>3.6cm</Height>
             <Width>19.92309cm</Width>
             <Style>
