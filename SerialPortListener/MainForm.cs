@@ -720,10 +720,12 @@ namespace SerialPortListener
                     tbCarLicense.Enabled = false;
                 }
 
+                /* เปิดช่องจังหวัด
                 if (!checkEmptyTB(tbCarCity))
                 {
                     tbCarCity.Enabled = false;
                 }
+                */
             }
             else
             {
@@ -737,10 +739,11 @@ namespace SerialPortListener
                     tbCarLicense.Enabled = false;
                 }
 
+                /*
                 if (!checkEmptyTB(tbCarCity))
                 {
                     tbCarCity.Enabled = false;
-                }
+                }*/
             }
             cbbStoneType.Text = data.stoneType;//111111111111
             tbQ.Text = numberFormat(data.q, 2);
@@ -807,7 +810,7 @@ namespace SerialPortListener
                 disableBtAfterRead(999);
             }
             */
-        }
+            }
 
         public bool isHaveDataOld()
         {
@@ -1173,10 +1176,12 @@ namespace SerialPortListener
                     tbCarLicense.Enabled = false;
                 }
 
+                /* เปิดช่องจังหวัด
                 if (!checkEmptyTB(tbCarCity))
                 {
                     tbCarCity.Enabled = false;
                 }
+                */
 
             }
             else if (mode.Equals(2))// weight out
