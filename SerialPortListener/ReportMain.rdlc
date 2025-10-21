@@ -2529,28 +2529,25 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>(Sandvik)</Value>
+                        <Value>KT</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>12pt</FontSize>
+                          <FontSize>26pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Right</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>0.08038in</Top>
-                <Left>2.75741in</Left>
-                <Height>0.25in</Height>
-                <Width>0.84586in</Width>
+                <Top>0.13593in</Top>
+                <Left>0.17259in</Left>
+                <Height>0.63569in</Height>
+                <Width>3.43068in</Width>
                 <ZIndex>81</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
