@@ -26,6 +26,7 @@ namespace SerialPortListener
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateFrom",WeightDailyReport.DateFrom),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateTo",WeightDailyReport.DateTo),
+                new Microsoft.Reporting.WinForms.ReportParameter("PMainComp",WeightTempReport.MainComp), //set หัวกระดาษรายงาน 17-11-2025
             };
             this.rvDailyReport.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             this.rvDailyReport.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;

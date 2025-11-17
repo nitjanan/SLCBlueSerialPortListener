@@ -35,6 +35,7 @@
             this.btReadIn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbbMainComp = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
@@ -221,12 +222,26 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkOrange;
+            this.panel2.Controls.Add(this.cbbMainComp);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1208, 39);
             this.panel2.TabIndex = 17;
+            // 
+            // cbbMainComp
+            // 
+            this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbMainComp.FormattingEnabled = true;
+            this.cbbMainComp.Items.AddRange(new object[] {
+            "บริษัท โชคพนาไมนิ่ง จำกัด",
+            "บริษัท โชคพนา (2512) จำกัด"});
+            this.cbbMainComp.Location = new System.Drawing.Point(184, 4);
+            this.cbbMainComp.Name = "cbbMainComp";
+            this.cbbMainComp.Size = new System.Drawing.Size(260, 30);
+            this.cbbMainComp.TabIndex = 108;
+            this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -297,7 +312,7 @@
             this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btMenu5.Image = global::SerialPortListener.Properties.Resources.data_backup_32px;
             this.btMenu5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu5.Location = new System.Drawing.Point(9, 387);
+            this.btMenu5.Location = new System.Drawing.Point(9, 451);
             this.btMenu5.Name = "btMenu5";
             this.btMenu5.Size = new System.Drawing.Size(171, 41);
             this.btMenu5.TabIndex = 106;
@@ -2006,6 +2021,7 @@
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
         private System.Windows.Forms.Button btPrintVRock;
+        private System.Windows.Forms.ComboBox cbbMainComp;
     }
 }
 

@@ -27,6 +27,7 @@ namespace SerialPortListener
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateFrom",WeightTempReport.DateFrom),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateTo",WeightTempReport.DateTo),
+                new Microsoft.Reporting.WinForms.ReportParameter("PMainComp",WeightTempReport.MainComp), //set หัวกระดาษรายงาน 17-11-2025
             };
 
             this.rvMillReport.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);

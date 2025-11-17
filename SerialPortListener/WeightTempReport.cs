@@ -10,6 +10,7 @@ namespace SerialPortListener
     {
         private static string _dateFrom;
         private static string _dateTo;
+        private static string _mainComp;
 
         public static string DateFrom
         {
@@ -32,6 +33,18 @@ namespace SerialPortListener
             set
             {
                 _dateTo = value;
+            }
+        }
+
+        public static string MainComp
+        {
+            get
+            {
+                return _mainComp;
+            }
+            set
+            {
+                _mainComp = value;
             }
         }
     }

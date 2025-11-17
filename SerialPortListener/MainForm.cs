@@ -104,6 +104,10 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
+            //set หัวกระดาษรายงาน 17-11-2025
+            cbbMainComp.SelectedIndex = 0;
+            WeightTempReport.MainComp = cbbMainComp.Text;
+
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
 
             tbWeigtData.Enter += (s, e) => { tbWeigtData.Parent.Focus(); };
@@ -3207,6 +3211,12 @@ namespace SerialPortListener
                 }
                 dl.close();
             }
+        }
+
+        //set หัวกระดาษรายงาน 17-11-2025
+        private void cbbMainComp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WeightTempReport.MainComp = cbbMainComp.Text;
         }
     }
 }

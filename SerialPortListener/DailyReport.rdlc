@@ -2348,7 +2348,7 @@
             <DataSetName>dailyDataSet</DataSetName>
             <Top>0.05035cm</Top>
             <Height>1.83812cm</Height>
-            <Width>20.27286cm</Width>
+            <Width>20.27287cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -2464,7 +2464,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท โชคพนาไมนิ่ง จำกัด</Value>
+                      <Value>=Parameters!PMainComp.Value</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
                         <FontSize>16pt</FontSize>
@@ -2521,6 +2521,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="PMainComp">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2536,6 +2540,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>PDateTo</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>PMainComp</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -56,7 +56,6 @@ namespace SerialPortListener
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             try {
 
                 //MessageBox.Show("test = "+ dl.connect());
@@ -80,6 +79,7 @@ namespace SerialPortListener
                     Globals.Password = rPassword;
                     Globals.Permission = rPermission;
                     Globals.UserId = rUserId;
+
                     MainForm mf = new MainForm(rUsername, rFirstname);
                     mf.ShowDialog();
                 }
