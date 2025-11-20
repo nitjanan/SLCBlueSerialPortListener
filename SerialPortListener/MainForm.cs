@@ -751,10 +751,12 @@ namespace SerialPortListener
                 tbCarCity.Enabled = true;
 
                 tbCarCity.Enabled = true;
+                /*
                 dtWeightInDate.Enabled = true;
                 dtWeightInTime.Enabled = true;
                 dtWeightOutDate.Enabled = true;
                 dtWeightOutTime.Enabled = true;
+                */
                 // เฉพาะกงตาก 23-04-2024
                 //tbWeightIn.Enabled = true;
             }
@@ -791,8 +793,8 @@ namespace SerialPortListener
             {
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
+                //tbWeightTotal.Enabled = true;
+                //tbQ.Enabled = true;
             }
             else if (mode.Equals(4))//disable all
             {
@@ -810,8 +812,8 @@ namespace SerialPortListener
             else if (mode.Equals(999)) {//open all edit weight
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
+                //tbWeightTotal.Enabled = true;
+                //tbQ.Enabled = true;
 
                 tbCarLicense.Enabled = true;
                 tbCarCity.Enabled = true;
