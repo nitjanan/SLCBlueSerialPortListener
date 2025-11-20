@@ -1038,9 +1038,14 @@ namespace SerialPortListener
                     MessageBox.Show("เลขที่การชั่งเป็นค่าว่าง กรุณใส่เลขที่การชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else if (!isPasswordCorrect)
                     MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (checkWeightInZero())
+                    MessageBox.Show("น้ำหนักชั่งเข้าเป็น 0.00 ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //เช็คเลขซ้ำกัน
-                else if (checkDuplicateRunningNumber())
-                    MessageBox.Show("เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (checkDuplicateRunningNumber()) {
+                    //MessageBox.Show("เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    runningDocNumberDuplicate();
+                    saveAction();
+                }
                 else
                     saveAction();
             }
@@ -1164,6 +1169,55 @@ namespace SerialPortListener
 
             //ปิดช่องหลัง save
             disableAfterSave();
+        }
+
+        public void runningDocNumberDuplicate()
+        {
+            Boolean IsnewYear = false;
+            string todayYear = DateTime.Now.ToString("yyyy");
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public.seq_doc_num where run_year = '" + todayYear + "' ";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    int rdNum = Convert.ToInt32(reader["run_number"].ToString());
+                    int diff = Convert.ToInt32(tbDocNum.Text) - rdNum;
+                    if (diff == 1)
+                        rdNum = rdNum + 2;
+                    else
+                        rdNum++;
+
+                    int lengthRdNum = reader["run_number"].ToString().Length;
+                    string format = "D" + lengthRdNum.ToString();
+                    tbDocNum.Text = rdNum.ToString(format);
+                }
+                else
+                {
+                    IsnewYear = true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+            if (IsnewYear)
+                generateNewSeqNumber();
+
+        }
+
+        private Boolean checkWeightInZero()
+        {
+            string str = tbWeightIn.Text;
+            Double temp;
+            Boolean isOk = Double.TryParse(str, out temp);
+            Int32 value = isOk ? (Int32)temp : 0;
+
+            return value == 0 ? true : false;
         }
 
         //get combobox id use to save or update
