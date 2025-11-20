@@ -80,7 +80,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.tbScaleId = new System.Windows.Forms.TextBox();
@@ -95,11 +95,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label39 = new System.Windows.Forms.Label();
+            this.lbQOrigin = new System.Windows.Forms.Label();
             this.tbQOrigin = new System.Windows.Forms.TextBox();
             this.tbWeightOrigin = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
+            this.lbkgOrigin = new System.Windows.Forms.Label();
+            this.lbOrigin = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.tbQ = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -443,6 +443,7 @@
             // 
             this.dtWeightInDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightInDate.CustomFormat = "dd-MM-yyyy";
+            this.dtWeightInDate.Enabled = false;
             this.dtWeightInDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtWeightInDate.Location = new System.Drawing.Point(148, 28);
@@ -454,6 +455,7 @@
             // 
             this.dtWeightOutDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightOutDate.CustomFormat = "dd-MM-yyyy";
+            this.dtWeightOutDate.Enabled = false;
             this.dtWeightOutDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtWeightOutDate.Location = new System.Drawing.Point(148, 67);
@@ -493,6 +495,7 @@
             // 
             this.dtWeightInTime.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightInTime.CustomFormat = "HH:mm";
+            this.dtWeightInTime.Enabled = false;
             this.dtWeightInTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightInTime.Location = new System.Drawing.Point(300, 28);
@@ -505,6 +508,7 @@
             // 
             this.dtWeightOutTime.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtWeightOutTime.CustomFormat = "HH:mm";
+            this.dtWeightOutTime.Enabled = false;
             this.dtWeightOutTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightOutTime.Location = new System.Drawing.Point(300, 67);
@@ -819,16 +823,16 @@
             this.label16.TabIndex = 66;
             this.label16.Text = "กก.";
             // 
-            // label17
+            // lbTotal
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(294, 107);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(136, 21);
-            this.label17.TabIndex = 67;
-            this.label17.Text = "น้ำหนักสุทธิปลายทาง";
+            this.lbTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotal.Location = new System.Drawing.Point(294, 107);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(136, 21);
+            this.lbTotal.TabIndex = 67;
+            this.lbTotal.Text = "น้ำหนักสุทธิปลายทาง";
             // 
             // label18
             // 
@@ -987,11 +991,11 @@
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.BackColor = System.Drawing.Color.OldLace;
-            this.panel4.Controls.Add(this.label39);
+            this.panel4.Controls.Add(this.lbQOrigin);
             this.panel4.Controls.Add(this.tbQOrigin);
             this.panel4.Controls.Add(this.tbWeightOrigin);
-            this.panel4.Controls.Add(this.label40);
-            this.panel4.Controls.Add(this.label44);
+            this.panel4.Controls.Add(this.lbkgOrigin);
+            this.panel4.Controls.Add(this.lbOrigin);
             this.panel4.Controls.Add(this.label28);
             this.panel4.Controls.Add(this.tbQ);
             this.panel4.Controls.Add(this.tbWeightIn);
@@ -1011,22 +1015,22 @@
             this.panel4.Controls.Add(this.label12);
             this.panel4.Controls.Add(this.label15);
             this.panel4.Controls.Add(this.label16);
-            this.panel4.Controls.Add(this.label17);
+            this.panel4.Controls.Add(this.lbTotal);
             this.panel4.Location = new System.Drawing.Point(293, 345);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(840, 176);
             this.panel4.TabIndex = 91;
             // 
-            // label39
+            // lbQOrigin
             // 
-            this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(751, 147);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(26, 21);
-            this.label39.TabIndex = 94;
-            this.label39.Text = "คิว";
+            this.lbQOrigin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbQOrigin.AutoSize = true;
+            this.lbQOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbQOrigin.Location = new System.Drawing.Point(751, 147);
+            this.lbQOrigin.Name = "lbQOrigin";
+            this.lbQOrigin.Size = new System.Drawing.Size(26, 21);
+            this.lbQOrigin.TabIndex = 94;
+            this.lbQOrigin.Text = "คิว";
             // 
             // tbQOrigin
             // 
@@ -1054,27 +1058,27 @@
             this.tbWeightOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbWeightOrigin.Leave += new System.EventHandler(this.tbWeightOrigin_Leave);
             // 
-            // label40
+            // lbkgOrigin
             // 
-            this.label40.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(602, 147);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(31, 21);
-            this.label40.TabIndex = 92;
-            this.label40.Text = "กก.";
+            this.lbkgOrigin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbkgOrigin.AutoSize = true;
+            this.lbkgOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbkgOrigin.Location = new System.Drawing.Point(602, 147);
+            this.lbkgOrigin.Name = "lbkgOrigin";
+            this.lbkgOrigin.Size = new System.Drawing.Size(31, 21);
+            this.lbkgOrigin.TabIndex = 92;
+            this.lbkgOrigin.Text = "กก.";
             // 
-            // label44
+            // lbOrigin
             // 
-            this.label44.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(294, 145);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(122, 21);
-            this.label44.TabIndex = 93;
-            this.label44.Text = "น้ำหนักสุทธิต้นทาง";
+            this.lbOrigin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbOrigin.AutoSize = true;
+            this.lbOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOrigin.Location = new System.Drawing.Point(294, 145);
+            this.lbOrigin.Name = "lbOrigin";
+            this.lbOrigin.Size = new System.Drawing.Size(122, 21);
+            this.lbOrigin.TabIndex = 93;
+            this.lbOrigin.Text = "น้ำหนักสุทธิต้นทาง";
             // 
             // label28
             // 
@@ -2268,7 +2272,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Button btSave;
         private System.Windows.Forms.Button btPrintIn;
         private System.Windows.Forms.Label label18;
@@ -2343,11 +2347,11 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton rbShortLine;
         private System.Windows.Forms.RadioButton rbLongLine;
-        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label lbQOrigin;
         private System.Windows.Forms.TextBox tbQOrigin;
         private System.Windows.Forms.TextBox tbWeightOrigin;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label lbkgOrigin;
+        private System.Windows.Forms.Label lbOrigin;
         private System.Windows.Forms.RadioButton rbWeightOut;
         private System.Windows.Forms.RadioButton rbWeightIn;
         private System.Windows.Forms.Button btSettingLine;

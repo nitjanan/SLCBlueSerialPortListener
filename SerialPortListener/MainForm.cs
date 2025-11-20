@@ -920,12 +920,23 @@ namespace SerialPortListener
                 tbCarLicense.Enabled = true;
                 tbCarCity.Enabled = true;
 
+                ////////// 20-11-2025 user ปกติปิดช่องทั้งหมด และซ่อนน้ำหนักต้นทาง ////////////
+                /*
                 dtWeightInDate.Enabled = true;
                 dtWeightInTime.Enabled = true;
                 dtWeightOutDate.Enabled = true;
                 dtWeightOutTime.Enabled = true;
+                */
 
-                tbWeightIn.Enabled = true;
+                lbTotal.Text = "น้ำหนักสุทธิ";
+                tbWeightIn.Enabled = false;
+                lbOrigin.Visible = false;
+                tbWeightOrigin.Visible = false;
+                lbkgOrigin.Visible = false;
+                tbQOrigin.Visible = false;
+                lbQOrigin.Visible = false;
+
+                ////////// 20-11-2025 user ปกติปิดช่องทั้งหมด และซ่อนน้ำหนักต้นทาง ////////////
             }
             else if (mode.Equals(1))
             {
@@ -963,6 +974,21 @@ namespace SerialPortListener
                 tbWeightOut.Enabled = true;
                 tbWeightTotal.Enabled = false;
                 tbQ.Enabled = false;
+
+                ////////// 20-11-2025 user admin เปิดช่องคีย์ทั้งหมด ////////////
+                dtWeightInDate.Enabled = true;
+                dtWeightInTime.Enabled = true;
+                dtWeightOutDate.Enabled = true;
+                dtWeightOutTime.Enabled = true;
+
+                lbTotal.Text = "น้ำหนักสุทธิปลายทาง";
+                tbWeightIn.Enabled = true;
+                lbOrigin.Visible = true;
+                tbWeightOrigin.Visible = true;
+                lbkgOrigin.Visible = true;
+                tbQOrigin.Visible = true;
+                lbQOrigin.Visible = true;
+                ////////// 20-11-2025 user admin เปิดช่องคีย์ทั้งหมด ////////////
             }
             else if (mode.Equals(4))//disable all
             {
