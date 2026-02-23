@@ -216,6 +216,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FCancelPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +348,11 @@
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="newDODataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>newDODataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerialPortManager.cs" />
@@ -352,6 +362,12 @@
     </Compile>
     <Compile Include="TableCustomer.Designer.cs">
       <DependentUpon>TableCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableDeliveryOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableDeliveryOrder.Designer.cs">
+      <DependentUpon>TableDeliveryOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="TableFromDB.cs">
       <SubType>Form</SubType>
@@ -378,6 +394,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="truckDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>truckDataSet4.xsd</DependentUpon>
     </Compile>
     <Compile Include="ucBackup.cs">
       <SubType>UserControl</SubType>
@@ -514,6 +535,9 @@
     <EmbeddedResource Include="StoneTypeReport.rdlc" />
     <EmbeddedResource Include="TableCustomer.resx">
       <DependentUpon>TableCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableDeliveryOrder.resx">
+      <DependentUpon>TableDeliveryOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableFromDB.resx">
       <DependentUpon>TableFromDB.cs</DependentUpon>
@@ -691,6 +715,28 @@
     <None Include="DataSet2.xss">
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
+    <None Include="DoDataSet.xsc">
+      <DependentUpon>DoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DoDataSet.xss">
+      <DependentUpon>DoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="newDODataSet.xsc">
+      <DependentUpon>newDODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="newDODataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>newDODataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="newDODataSet.xss">
+      <DependentUpon>newDODataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -744,6 +790,17 @@
     </None>
     <None Include="truckDataSet3.xss">
       <DependentUpon>truckDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet4.xsc">
+      <DependentUpon>truckDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="truckDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>truckDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="truckDataSet4.xss">
+      <DependentUpon>truckDataSet4.xsd</DependentUpon>
     </None>
     <None Include="usersDataSet.xsc">
       <DependentUpon>usersDataSet.xsd</DependentUpon>
@@ -812,6 +869,9 @@
     <None Include="Resources\logo_silachai2.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\booking.png" />
+    <None Include="Resources\do1.png" />
+    <None Include="Resources\do.png" />
     <None Include="Resources\refresh_64px.png" />
     <None Include="Resources\refresh_48px.png" />
     <None Include="Resources\refresh_32px.png" />
