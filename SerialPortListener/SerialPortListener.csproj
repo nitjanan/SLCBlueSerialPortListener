@@ -206,6 +206,7 @@
       <DependentUpon>customerDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Datalayer.cs" />
+    <Compile Include="DatalayerNew.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

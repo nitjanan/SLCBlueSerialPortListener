@@ -160,6 +160,7 @@
             this.tbDoId = new System.Windows.Forms.TextBox();
             this.tbDoDocNo = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
+            this.tbOldDoId = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -261,7 +262,7 @@
             this.dtDate.CustomFormat = "dd-MM-yyyy";
             this.dtDate.Enabled = false;
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDate.Location = new System.Drawing.Point(1104, 42);
+            this.dtDate.Location = new System.Drawing.Point(1105, 42);
             this.dtDate.Name = "dtDate";
             this.dtDate.Size = new System.Drawing.Size(94, 23);
             this.dtDate.TabIndex = 7;
@@ -1779,7 +1780,7 @@
             this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
             // tbDoId
             // 
-            this.tbDoId.Location = new System.Drawing.Point(1139, 71);
+            this.tbDoId.Location = new System.Drawing.Point(1071, 69);
             this.tbDoId.Name = "tbDoId";
             this.tbDoId.Size = new System.Drawing.Size(57, 23);
             this.tbDoId.TabIndex = 143;
@@ -1810,12 +1811,21 @@
             this.label39.TabIndex = 145;
             this.label39.Text = "เลขที่ใบส่งของ";
             // 
+            // tbOldDoId
+            // 
+            this.tbOldDoId.Location = new System.Drawing.Point(1134, 68);
+            this.tbOldDoId.Name = "tbOldDoId";
+            this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbOldDoId.TabIndex = 146;
+            this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
             this.Controls.Add(this.btPrintVRock);
+            this.Controls.Add(this.tbOldDoId);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.tbDoDocNo);
             this.Controls.Add(this.tbDoId);
@@ -2063,6 +2073,7 @@
         private System.Windows.Forms.TextBox tbDoId;
         private System.Windows.Forms.TextBox tbDoDocNo;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox tbOldDoId;
     }
 }
 
