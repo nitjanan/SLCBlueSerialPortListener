@@ -93,19 +93,18 @@
                         <Value>=Parameters!TDocName.Value</Value>
                         <Style>
                           <FontFamily>Yu Gothic UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>0.52163in</Top>
-                <Left>3.65883in</Left>
+                <Top>1.18384cm</Top>
+                <Left>9.16899cm</Left>
                 <Height>0.25in</Height>
                 <Width>0.89671in</Width>
                 <ZIndex>2</ZIndex>
@@ -597,21 +596,21 @@
                         <Value>=Parameters!PDocNum.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>12pt</FontSize>
+                          <FontSize>14pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Left</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>0.52163in</Top>
-                <Left>4.55554in</Left>
-                <Height>0.25in</Height>
-                <Width>1.05818in</Width>
+                <Top>0.41718in</Top>
+                <Left>4.18204in</Left>
+                <Height>0.34056in</Height>
+                <Width>1.17276in</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
