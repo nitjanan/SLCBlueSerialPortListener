@@ -660,7 +660,7 @@ namespace SerialPortListener
                 return;
             }
 
-            int maxTextLength = 1000; // maximum text length in text box
+            int maxTextLength = 500; // maximum text length in text box
             if (tbData.TextLength > maxTextLength)
                 tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
 
