@@ -104,8 +104,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>0.47996in</Top>
-                <Left>5.24912in</Left>
+                <Top>0.52163in</Top>
+                <Left>3.65883in</Left>
                 <Height>0.25in</Height>
                 <Width>0.89671in</Width>
                 <ZIndex>2</ZIndex>
@@ -608,8 +608,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>0.47996in</Top>
-                <Left>6.14583in</Left>
+                <Top>0.52163in</Top>
+                <Left>4.55554in</Left>
                 <Height>0.25in</Height>
                 <Width>1.05818in</Width>
                 <ZIndex>15</ZIndex>
@@ -688,7 +688,6 @@
                 </Style>
               </Textbox>
               <Textbox Name="PMill">
-                <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
@@ -708,7 +707,7 @@
                 <Top>1.90877in</Top>
                 <Left>0.65113in</Left>
                 <Height>0.25in</Height>
-                <Width>1.16384in</Width>
+                <Width>2.9411in</Width>
                 <ZIndex>18</ZIndex>
                 <Style>
                   <Border>
