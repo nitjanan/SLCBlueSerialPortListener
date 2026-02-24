@@ -50,12 +50,6 @@ namespace SerialPortListener
             this.deliveryorderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.doDataSet = new SerialPortListener.DoDataSet();
             this.dgvDO = new System.Windows.Forms.DataGridView();
-            this.deliveryorderBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.newDODataSet = new SerialPortListener.newDODataSet();
-            this.deliveryorderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btSelect = new System.Windows.Forms.Button();
-            this.delivery_orderTableAdapter = new SerialPortListener.DoDataSetTableAdapters.delivery_orderTableAdapter();
-            this.delivery_orderTableAdapter2 = new SerialPortListener.newDODataSetTableAdapters.delivery_orderTableAdapter();
             this.doc_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.delivery_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_company = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +70,12 @@ namespace SerialPortListener
             this.bws = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.do_id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deliveryorderBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.newDODataSet = new SerialPortListener.newDODataSet();
+            this.deliveryorderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btSelect = new System.Windows.Forms.Button();
+            this.delivery_orderTableAdapter = new SerialPortListener.DoDataSetTableAdapters.delivery_orderTableAdapter();
+            this.delivery_orderTableAdapter2 = new SerialPortListener.newDODataSetTableAdapters.delivery_orderTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryorderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doDataSet)).BeginInit();
@@ -253,46 +253,6 @@ namespace SerialPortListener
             this.dgvDO.TabIndex = 1;
             this.dgvDO.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDO_CellDoubleClick);
             // 
-            // deliveryorderBindingSource2
-            // 
-            this.deliveryorderBindingSource2.DataMember = "delivery_order";
-            this.deliveryorderBindingSource2.DataSource = this.newDODataSet;
-            // 
-            // newDODataSet
-            // 
-            this.newDODataSet.DataSetName = "newDODataSet";
-            this.newDODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // deliveryorderBindingSource1
-            // 
-            this.deliveryorderBindingSource1.DataMember = "delivery_order";
-            // 
-            // btSelect
-            // 
-            this.btSelect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btSelect.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSelect.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSelect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btSelect.Image = global::SerialPortListener.Properties.Resources.add_24px;
-            this.btSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSelect.Location = new System.Drawing.Point(28, 468);
-            this.btSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btSelect.Name = "btSelect";
-            this.btSelect.Size = new System.Drawing.Size(92, 32);
-            this.btSelect.TabIndex = 7;
-            this.btSelect.Text = "เลือก";
-            this.btSelect.UseVisualStyleBackColor = false;
-            this.btSelect.Click += new System.EventHandler(this.btSelect_Click);
-            // 
-            // delivery_orderTableAdapter
-            // 
-            this.delivery_orderTableAdapter.ClearBeforeFill = true;
-            // 
-            // delivery_orderTableAdapter2
-            // 
-            this.delivery_orderTableAdapter2.ClearBeforeFill = true;
-            // 
             // doc_no
             // 
             this.doc_no.DataPropertyName = "doc_no";
@@ -442,6 +402,46 @@ namespace SerialPortListener
             this.product_code.HeaderText = "รหัสสินค้า";
             this.product_code.Name = "product_code";
             this.product_code.ReadOnly = true;
+            // 
+            // deliveryorderBindingSource2
+            // 
+            this.deliveryorderBindingSource2.DataMember = "delivery_order";
+            this.deliveryorderBindingSource2.DataSource = this.newDODataSet;
+            // 
+            // newDODataSet
+            // 
+            this.newDODataSet.DataSetName = "newDODataSet";
+            this.newDODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // deliveryorderBindingSource1
+            // 
+            this.deliveryorderBindingSource1.DataMember = "delivery_order";
+            // 
+            // btSelect
+            // 
+            this.btSelect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btSelect.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSelect.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSelect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btSelect.Image = global::SerialPortListener.Properties.Resources.add_24px;
+            this.btSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSelect.Location = new System.Drawing.Point(13, 468);
+            this.btSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btSelect.Name = "btSelect";
+            this.btSelect.Size = new System.Drawing.Size(92, 32);
+            this.btSelect.TabIndex = 7;
+            this.btSelect.Text = "เลือก";
+            this.btSelect.UseVisualStyleBackColor = false;
+            this.btSelect.Click += new System.EventHandler(this.btSelect_Click);
+            // 
+            // delivery_orderTableAdapter
+            // 
+            this.delivery_orderTableAdapter.ClearBeforeFill = true;
+            // 
+            // delivery_orderTableAdapter2
+            // 
+            this.delivery_orderTableAdapter2.ClearBeforeFill = true;
             // 
             // TableDeliveryOrder
             // 

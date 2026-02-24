@@ -76,7 +76,12 @@ namespace SerialPortListener
         }
 
         private void setDatoDo() {
+            //set old do id
+            mainForm.setOldDOId();
+
+            //reset old do id
             mainForm.resetFromDO();
+
             DataDO data_do = new DataDO();
             if (dgvDO.Rows.Count > 1)
             {
@@ -110,19 +115,17 @@ namespace SerialPortListener
         private void setSearchDataDO()
         {
             DateTime today = DateTime.Today;
-
+            DateTime dateMainForm = DateTime.Parse(mainForm.getdtDate());//ดึงวันที่ตาม mainform
             try
             {
                 dl.connect();
 
-                string sql = @"SELECT * 
-                   FROM public.delivery_order 
-                   WHERE delivery_date = ? ORDER BY doc_no";
+                string sql = @"select * from public.delivery_order where (car_company_tot < car_company or car_customer_tot < car_customer) and delivery_date = ? ORDER BY doc_no";
 
                 using (OdbcCommand cmd = new OdbcCommand(sql, dl.sqlConn()))
                 {
                     // ใส่ parameter ตามลำดับ ?
-                    cmd.Parameters.Add("delivery_date", OdbcType.Date).Value = today;
+                    cmd.Parameters.Add("delivery_date", OdbcType.Date).Value = dateMainForm;
 
                     using (OdbcDataAdapter adt = new OdbcDataAdapter(cmd))
                     {
