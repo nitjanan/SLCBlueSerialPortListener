@@ -1345,7 +1345,7 @@
             this.tbWeigtData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbWeigtData.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbWeigtData.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeigtData.ForeColor = System.Drawing.Color.LightGreen;
+            this.tbWeigtData.ForeColor = System.Drawing.Color.LightCoral;
             this.tbWeigtData.Location = new System.Drawing.Point(14, -5);
             this.tbWeigtData.Name = "tbWeigtData";
             this.tbWeigtData.ReadOnly = true;

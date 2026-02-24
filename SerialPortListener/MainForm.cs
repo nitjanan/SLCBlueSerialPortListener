@@ -668,7 +668,7 @@ namespace SerialPortListener
                 return;
             }
 
-            int maxTextLength = 1000; // maximum text length in text box
+            int maxTextLength = 500; // maximum text length in text box
             if (tbData.TextLength > maxTextLength)
                 tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
 
@@ -679,38 +679,38 @@ namespace SerialPortListener
 
             try
             {
-                //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                //ค่าบวกจับ p ค่าลบจับ r
-                var lastOperatorIndex = newString.LastIndexOfAny(new char[] { 'p', 'q' });
-                string remainingText = newString.Substring(lastOperatorIndex);
+                string remainingText = newString.Substring(newString.LastIndexOf(""));
 
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                
-                /* เครื่องพี่รุ่ง */
-                //MatchCollection mc = Regex.Matches(str, @"\d+");
+                MatchCollection mc = Regex.Matches(remainingText, @"-?\d+");
 
                 if (mc.Count > 0)
                 {
-                    //tbWeigtData.ForeColor = Color.LightGreen;
-                    if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
+                    string value = mc[0].Value;
+
+                    // แปลงเป็นตัวเลขเพื่อเช็คค่า
+                    if (int.TryParse(value, out int weightValue))
                     {
-                        //ไม่ต้องทำไร
-                    }
-                    else if (Int32.Parse(mc[0].Value) < 10)
-                    {
-                        tbWeigtData.Text = "0";
-                        //tbWeigtData.ForeColor = Color.LightGreen;
-                    }
-                    else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                    {
-                        tbWeigtData.Text = mc[0].Value;
-                        //tbWeigtData.ForeColor = Color.LightCoral;
+                        // จัด format เลข (ถ้าไม่ติดลบให้ตัด 0 ด้านหน้า)
+                        if (!value.StartsWith("-"))
+                            value = weightValue.ToString();
+
+                        tbWeigtData.Text = value;
+
+                        // ถ้าติดลบ หรือ เป็น 0
+                        if (weightValue <= 0)
+                        {
+                            tbWeigtData.ForeColor = Color.LightCoral;
+                        }
+                        else
+                        {
+                            tbWeigtData.ForeColor = Color.LightGreen;
+                        }
                     }
                 }
             }
-            catch (Exception ex) {
-
+            catch (Exception ex)
+            {
             }
 
 
