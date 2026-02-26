@@ -501,6 +501,7 @@
             this.tbRefNum.Name = "tbRefNum";
             this.tbRefNum.Size = new System.Drawing.Size(59, 27);
             this.tbRefNum.TabIndex = 35;
+            this.tbRefNum.Visible = false;
             // 
             // label5
             // 
@@ -1168,6 +1169,7 @@
             this.tbId.Size = new System.Drawing.Size(57, 23);
             this.tbId.TabIndex = 98;
             this.tbId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbId.Visible = false;
             // 
             // tbAmount
             // 
@@ -1785,6 +1787,7 @@
             this.tbDoId.Size = new System.Drawing.Size(57, 23);
             this.tbDoId.TabIndex = 143;
             this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDoId.Visible = false;
             // 
             // tbDoDocNo
             // 
@@ -1818,6 +1821,7 @@
             this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
             this.tbOldDoId.TabIndex = 146;
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbOldDoId.Visible = false;
             // 
             // MainForm
             // 
