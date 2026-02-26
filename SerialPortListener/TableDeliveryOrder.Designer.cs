@@ -76,6 +76,9 @@ namespace SerialPortListener
             this.btSelect = new System.Windows.Forms.Button();
             this.delivery_orderTableAdapter = new SerialPortListener.DoDataSetTableAdapters.delivery_orderTableAdapter();
             this.delivery_orderTableAdapter2 = new SerialPortListener.newDODataSetTableAdapters.delivery_orderTableAdapter();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbbSearchDO = new System.Windows.Forms.ComboBox();
+            this.btSearchDO = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryorderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doDataSet)).BeginInit();
@@ -245,11 +248,11 @@ namespace SerialPortListener
             this.do_id2,
             this.product_code});
             this.dgvDO.DataSource = this.deliveryorderBindingSource2;
-            this.dgvDO.Location = new System.Drawing.Point(13, 13);
+            this.dgvDO.Location = new System.Drawing.Point(13, 51);
             this.dgvDO.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDO.Name = "dgvDO";
             this.dgvDO.ReadOnly = true;
-            this.dgvDO.Size = new System.Drawing.Size(1089, 446);
+            this.dgvDO.Size = new System.Drawing.Size(1089, 408);
             this.dgvDO.TabIndex = 1;
             this.dgvDO.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDO_CellDoubleClick);
             // 
@@ -429,7 +432,7 @@ namespace SerialPortListener
             this.btSelect.Location = new System.Drawing.Point(13, 468);
             this.btSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btSelect.Name = "btSelect";
-            this.btSelect.Size = new System.Drawing.Size(92, 32);
+            this.btSelect.Size = new System.Drawing.Size(87, 32);
             this.btSelect.TabIndex = 7;
             this.btSelect.Text = "เลือก";
             this.btSelect.UseVisualStyleBackColor = false;
@@ -443,17 +446,63 @@ namespace SerialPortListener
             // 
             this.delivery_orderTableAdapter2.ClearBeforeFill = true;
             // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(778, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 21);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "ใบส่งของ:";
+            // 
+            // cbbSearchDO
+            // 
+            this.cbbSearchDO.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbbSearchDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSearchDO.FormattingEnabled = true;
+            this.cbbSearchDO.Items.AddRange(new object[] {
+            "ทั้งหมด",
+            "ยังไม่สำเร็จ",
+            "สำเร็จแล้ว"});
+            this.cbbSearchDO.Location = new System.Drawing.Point(848, 13);
+            this.cbbSearchDO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbbSearchDO.Name = "cbbSearchDO";
+            this.cbbSearchDO.Size = new System.Drawing.Size(151, 29);
+            this.cbbSearchDO.TabIndex = 18;
+            // 
+            // btSearchDO
+            // 
+            this.btSearchDO.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btSearchDO.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSearchDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSearchDO.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearchDO.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSearchDO.Location = new System.Drawing.Point(1015, 10);
+            this.btSearchDO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btSearchDO.Name = "btSearchDO";
+            this.btSearchDO.Size = new System.Drawing.Size(87, 32);
+            this.btSearchDO.TabIndex = 17;
+            this.btSearchDO.Text = "ค้นหา";
+            this.btSearchDO.UseVisualStyleBackColor = true;
+            this.btSearchDO.Click += new System.EventHandler(this.btSearchDO_Click);
+            // 
             // TableDeliveryOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1115, 511);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cbbSearchDO);
+            this.Controls.Add(this.btSearchDO);
             this.Controls.Add(this.btSelect);
             this.Controls.Add(this.dgvDO);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "TableDeliveryOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ข้อมูลใบส่งของ";
@@ -466,6 +515,7 @@ namespace SerialPortListener
             ((System.ComponentModel.ISupportInitialize)(this.newDODataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryorderBindingSource1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -522,5 +572,8 @@ namespace SerialPortListener
         private System.Windows.Forms.DataGridViewTextBoxColumn bws;
         private System.Windows.Forms.DataGridViewTextBoxColumn do_id2;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_code;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbbSearchDO;
+        private System.Windows.Forms.Button btSearchDO;
     }
 }

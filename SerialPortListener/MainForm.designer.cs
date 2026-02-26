@@ -500,6 +500,7 @@ namespace SerialPortListener
             this.tbRefNum.Name = "tbRefNum";
             this.tbRefNum.Size = new System.Drawing.Size(59, 27);
             this.tbRefNum.TabIndex = 35;
+            this.tbRefNum.Visible = false;
             // 
             // label5
             // 
@@ -837,6 +838,7 @@ namespace SerialPortListener
             // tbScaleId
             // 
             this.tbScaleId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleId.Enabled = false;
             this.tbScaleId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleId.Location = new System.Drawing.Point(813, 312);
             this.tbScaleId.Name = "tbScaleId";
@@ -882,6 +884,7 @@ namespace SerialPortListener
             // tbScaleName
             // 
             this.tbScaleName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleName.Enabled = false;
             this.tbScaleName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleName.Location = new System.Drawing.Point(885, 312);
             this.tbScaleName.Name = "tbScaleName";
@@ -1165,6 +1168,7 @@ namespace SerialPortListener
             this.tbId.Size = new System.Drawing.Size(57, 23);
             this.tbId.TabIndex = 98;
             this.tbId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbId.Visible = false;
             // 
             // tbAmount
             // 
@@ -1763,6 +1767,7 @@ namespace SerialPortListener
             this.tbDoId.Size = new System.Drawing.Size(57, 23);
             this.tbDoId.TabIndex = 143;
             this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDoId.Visible = false;
             // 
             // tbDoDocNo
             // 
@@ -1796,6 +1801,7 @@ namespace SerialPortListener
             this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
             this.tbOldDoId.TabIndex = 146;
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbOldDoId.Visible = false;
             // 
             // MainForm
             // 

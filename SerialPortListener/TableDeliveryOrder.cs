@@ -44,6 +44,7 @@ namespace SerialPortListener
             try
             {
                 // TODO: This line of code loads data into the 'truckDataSet.weight' table. You can move, or remove it, as needed.
+                cbbSearchDO.SelectedIndex = 1;
                 setSearchDataDO();
             }
             catch (Exception ex)
@@ -120,9 +121,15 @@ namespace SerialPortListener
             {
                 dl.connect();
 
-                string sql = @"select * from public.delivery_order where (car_company_tot < car_company or car_customer_tot < car_customer) and delivery_date = ? ORDER BY doc_no";
+                StringBuilder sql = new StringBuilder();
+                sql.Append(@"select * from public.delivery_order where ");
+                if (cbbSearchDO.SelectedIndex == 1)
+                    sql.Append("(car_company_tot < car_company or car_customer_tot < car_customer) and ");
+                else if (cbbSearchDO.SelectedIndex == 2)
+                    sql.Append("(car_company_tot = car_company and car_customer_tot = car_customer) and ");
+                sql.Append("delivery_date = ? ORDER BY doc_no ");
 
-                using (OdbcCommand cmd = new OdbcCommand(sql, dl.sqlConn()))
+                using (OdbcCommand cmd = new OdbcCommand(sql.ToString(), dl.sqlConn()))
                 {
                     // ใส่ parameter ตามลำดับ ?
                     cmd.Parameters.Add("delivery_date", OdbcType.Date).Value = dateMainForm;
@@ -154,6 +161,11 @@ namespace SerialPortListener
         private void btSelect_Click(object sender, EventArgs e)
         {
             prepareDataDOToMainForm();
+        }
+
+        private void btSearchDO_Click(object sender, EventArgs e)
+        {
+            setSearchDataDO();
         }
     }
 
