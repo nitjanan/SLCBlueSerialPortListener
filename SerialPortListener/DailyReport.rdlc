@@ -222,10 +222,10 @@
                   <Width>1.52511cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.27995cm</Width>
+                  <Width>2.49862cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.71864cm</Width>
+                  <Width>1.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.6cm</Width>
@@ -2291,7 +2291,6 @@
                             <PaddingBottom>0.25pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3706,7 +3705,7 @@
             </TablixRowHierarchy>
             <DataSetName>dailyDataSet</DataSetName>
             <Height>2cm</Height>
-            <Width>28.64766cm</Width>
+            <Width>28.64767cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
