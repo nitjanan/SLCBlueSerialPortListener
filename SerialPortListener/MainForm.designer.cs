@@ -260,6 +260,7 @@
             this.dtDate.Name = "dtDate";
             this.dtDate.Size = new System.Drawing.Size(94, 23);
             this.dtDate.TabIndex = 7;
+            this.dtDate.Value = new System.DateTime(2026, 4, 22, 14, 18, 0, 0);
             // 
             // panel3
             // 
@@ -424,6 +425,7 @@
             this.dtWeightInDate.Name = "dtWeightInDate";
             this.dtWeightInDate.Size = new System.Drawing.Size(138, 27);
             this.dtWeightInDate.TabIndex = 30;
+            this.dtWeightInDate.Value = new System.DateTime(2026, 4, 22, 14, 18, 0, 0);
             // 
             // dtWeightOutDate
             // 
@@ -435,6 +437,7 @@
             this.dtWeightOutDate.Name = "dtWeightOutDate";
             this.dtWeightOutDate.Size = new System.Drawing.Size(138, 27);
             this.dtWeightOutDate.TabIndex = 34;
+            this.dtWeightOutDate.Value = new System.DateTime(2026, 4, 22, 14, 18, 0, 0);
             // 
             // tbWeightOut
             // 

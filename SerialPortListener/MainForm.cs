@@ -172,9 +172,9 @@ namespace SerialPortListener
             tbVat.Text = "0.00";
             tbApproveId.Text = "";
             tbApproveName.Text = "";
-            dtDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
+            dtDate.Text = "22/04/2026";
+            dtWeightInDate.Text = "22/04/2026";
+            dtWeightOutDate.Text = "22/04/2026";
             dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
             dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
