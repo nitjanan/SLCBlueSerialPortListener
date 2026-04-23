@@ -74,15 +74,6 @@ namespace SerialPortListener
             getSettingDefault();
 
             _spManager.StartListening();
-
-            timerWeight.Interval = 5000; // 5 seconds
-            timerWeight.Tick += Timer_Tick;
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            _spManager.StopListening();
-            _spManager.StartListening();
         }
 
         public void getSettingDefault()
@@ -181,9 +172,9 @@ namespace SerialPortListener
             tbVat.Text = "0.00";
             tbApproveId.Text = "";
             tbApproveName.Text = "";
-            dtDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
+            dtDate.Text = "22/04/2026";
+            dtWeightInDate.Text = "22/04/2026";
+            dtWeightOutDate.Text = "22/04/2026";
             dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
             dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
@@ -667,7 +658,7 @@ namespace SerialPortListener
                 return;
             }
 
-            int maxTextLength = 50; // maximum text length in text box
+            int maxTextLength = 1000; // maximum text length in text box
             if (tbData.TextLength > maxTextLength)
                 tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
 
@@ -679,26 +670,30 @@ namespace SerialPortListener
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-
-
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
+                //ค่าบวกจับ p ค่าลบจับ r
+                var lastOperatorIndex = newString.LastIndexOfAny(new char[] { 'p', 'q' });
+                string remainingText = newString.Substring(lastOperatorIndex);
 
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
-
                 if (mc.Count > 0)
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    //tbWeigtData.ForeColor = Color.LightGreen;
+                    if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
                     {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                        //ไม่ต้องทำไร
+                    }
+                    else if (Int32.Parse(mc[0].Value) < 10)
+                    {
+                        tbWeigtData.Text = "0";
+                        //tbWeigtData.ForeColor = Color.LightGreen;
+                    }
+                    else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    {
+                        tbWeigtData.Text = mc[0].Value;
                         //tbWeigtData.ForeColor = Color.LightCoral;
                     }
-                    else
-                    {
-                        tbWeigtData.ForeColor = Color.LightGreen;
-                    }
-
                 }
             }
             catch (Exception ex)
@@ -797,8 +792,8 @@ namespace SerialPortListener
             {
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = false;
-                tbQ.Enabled = false;
+                tbWeightTotal.Enabled = true;
+                tbQ.Enabled = true;
             }
             else if (mode.Equals(4))//disable all
             {
