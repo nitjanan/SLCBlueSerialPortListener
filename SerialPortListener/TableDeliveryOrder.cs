@@ -41,6 +41,10 @@ namespace SerialPortListener
         private void TableDeliveryOrder_Load(object sender, EventArgs e)
         {
 
+            dgvDO.Columns[3].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+            dgvDO.Columns[5].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+            dgvDO.Columns[10].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+
             try
             {
                 // TODO: This line of code loads data into the 'truckDataSet.weight' table. You can move, or remove it, as needed.

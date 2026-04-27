@@ -1436,7 +1436,8 @@ namespace SerialPortListener
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
                 pgCommand.CommandText = "UPDATE delivery_order SET car_company_tot = '" + calculateDOTotal(do_id, 1) + "' , car_customer_tot = '" + calculateDOTotal(do_id, 2) +
-                                        "' , qty_tot = '" + calculateQtyTotal(do_id) + "' , bws = (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 ) " + 
+                                        "' , qty_tot = '" + calculateQtyTotal(do_id) + "' , bws = (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 ) " +
+                                        " , branch = (SELECT code FROM base_company WHERE base_company_id = 1 ) " + 
                                         " WHERE delivery_date = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND do_id = " + do_id + " ; ";
                 try
                 {
