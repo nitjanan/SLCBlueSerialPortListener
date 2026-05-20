@@ -41,9 +41,12 @@ namespace SerialPortListener
         private void TableDeliveryOrder_Load(object sender, EventArgs e)
         {
 
-            dgvDO.Columns[3].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
-            dgvDO.Columns[5].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
-            dgvDO.Columns[10].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+            //dgvDO.Columns[3].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+            //dgvDO.Columns[5].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+            //dgvDO.Columns[10].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
+
+            // ถ้าค่า = 0 ให้ตัวอักษรเป็นสีแดง
+            dgvDO.CellFormatting += dgvDO_CellFormatting;
 
             try
             {
@@ -55,6 +58,27 @@ namespace SerialPortListener
             {
             }
 
+        }
+
+        private void dgvDO_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // ตรวจเฉพาะ column 4 และ 5
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            {
+                if (e.Value != null)
+                {
+                    decimal value;
+
+                    if (decimal.TryParse(e.Value.ToString(), out value))
+                    {
+                        if (value == 0)
+                        {
+                            e.CellStyle.ForeColor = Color.Red;
+                            e.CellStyle.SelectionForeColor = Color.Red;
+                        }
+                    }
+                }
+            }
         }
 
         private void prepareDataDOToMainForm()
