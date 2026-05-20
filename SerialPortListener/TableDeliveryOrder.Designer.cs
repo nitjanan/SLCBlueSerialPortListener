@@ -50,26 +50,6 @@ namespace SerialPortListener
             this.deliveryorderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.doDataSet = new SerialPortListener.DoDataSet();
             this.dgvDO = new System.Windows.Forms.DataGridView();
-            this.doc_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.delivery_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_company = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_company_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_customer_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customer_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unit_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sale_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_company_rem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_customer_rem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bws = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.do_id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.product_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deliveryorderBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.newDODataSet = new SerialPortListener.newDODataSet();
             this.deliveryorderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -79,6 +59,26 @@ namespace SerialPortListener
             this.label3 = new System.Windows.Forms.Label();
             this.cbbSearchDO = new System.Windows.Forms.ComboBox();
             this.btSearchDO = new System.Windows.Forms.Button();
+            this.doc_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delivery_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_customer_rem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_company_rem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customer_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customer_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unit_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.note2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_customer_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_company = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_company_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sale_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bws = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.do_id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.product_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryorderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doDataSet)).BeginInit();
@@ -229,10 +229,8 @@ namespace SerialPortListener
             this.dgvDO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.doc_no,
             this.delivery_date,
-            this.car_company,
-            this.car_company_tot,
-            this.car_customer,
-            this.car_customer_tot,
+            this.car_customer_rem,
+            this.car_company_rem,
             this.customer_code,
             this.customer_name,
             this.product_name,
@@ -240,10 +238,12 @@ namespace SerialPortListener
             this.qty_tot,
             this.unit_name,
             this.note2,
+            this.car_customer,
+            this.car_customer_tot,
+            this.car_company,
+            this.car_company_tot,
             this.sale_name,
             this.status,
-            this.car_company_rem,
-            this.car_customer_rem,
             this.bws,
             this.do_id2,
             this.product_code});
@@ -255,156 +255,6 @@ namespace SerialPortListener
             this.dgvDO.Size = new System.Drawing.Size(1089, 408);
             this.dgvDO.TabIndex = 1;
             this.dgvDO.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDO_CellDoubleClick);
-            // 
-            // doc_no
-            // 
-            this.doc_no.DataPropertyName = "doc_no";
-            this.doc_no.HeaderText = "เลขที่ใบส่งของ";
-            this.doc_no.Name = "doc_no";
-            this.doc_no.ReadOnly = true;
-            this.doc_no.Width = 120;
-            // 
-            // delivery_date
-            // 
-            this.delivery_date.DataPropertyName = "delivery_date";
-            this.delivery_date.HeaderText = "วันที่ส่ง";
-            this.delivery_date.Name = "delivery_date";
-            this.delivery_date.ReadOnly = true;
-            // 
-            // car_company
-            // 
-            this.car_company.DataPropertyName = "car_company";
-            this.car_company.HeaderText = "plan รถบริษัท(เที่ยว)";
-            this.car_company.Name = "car_company";
-            this.car_company.ReadOnly = true;
-            this.car_company.Width = 85;
-            // 
-            // car_company_tot
-            // 
-            this.car_company_tot.DataPropertyName = "car_company_tot";
-            this.car_company_tot.HeaderText = "รถบริษัท ชั่งแล้ว(เที่ยว)";
-            this.car_company_tot.Name = "car_company_tot";
-            this.car_company_tot.ReadOnly = true;
-            this.car_company_tot.Width = 85;
-            // 
-            // car_customer
-            // 
-            this.car_customer.DataPropertyName = "car_customer";
-            this.car_customer.HeaderText = "plan รถลูกค้า(เที่ยว)";
-            this.car_customer.Name = "car_customer";
-            this.car_customer.ReadOnly = true;
-            this.car_customer.Width = 85;
-            // 
-            // car_customer_tot
-            // 
-            this.car_customer_tot.DataPropertyName = "car_customer_tot";
-            this.car_customer_tot.HeaderText = "รถลูกค้า ชั่งแล้ว(เที่ยว)";
-            this.car_customer_tot.Name = "car_customer_tot";
-            this.car_customer_tot.ReadOnly = true;
-            this.car_customer_tot.Width = 85;
-            // 
-            // customer_code
-            // 
-            this.customer_code.DataPropertyName = "customer_code";
-            this.customer_code.HeaderText = "รหัสลูกค้า";
-            this.customer_code.Name = "customer_code";
-            this.customer_code.ReadOnly = true;
-            this.customer_code.Width = 90;
-            // 
-            // customer_name
-            // 
-            this.customer_name.DataPropertyName = "customer_name";
-            this.customer_name.HeaderText = "ชื่อลูกค้า";
-            this.customer_name.Name = "customer_name";
-            this.customer_name.ReadOnly = true;
-            this.customer_name.Width = 120;
-            // 
-            // product_name
-            // 
-            this.product_name.DataPropertyName = "product_name";
-            this.product_name.HeaderText = "ชื่อสินค้า";
-            this.product_name.Name = "product_name";
-            this.product_name.ReadOnly = true;
-            // 
-            // qty2
-            // 
-            this.qty2.DataPropertyName = "qty";
-            this.qty2.HeaderText = "plan จำนวนหิน";
-            this.qty2.Name = "qty2";
-            this.qty2.ReadOnly = true;
-            this.qty2.Width = 95;
-            // 
-            // qty_tot
-            // 
-            this.qty_tot.DataPropertyName = "qty_tot";
-            this.qty_tot.HeaderText = "จำนวนหินชั่งแล้ว";
-            this.qty_tot.Name = "qty_tot";
-            this.qty_tot.ReadOnly = true;
-            // 
-            // unit_name
-            // 
-            this.unit_name.DataPropertyName = "unit_name";
-            this.unit_name.HeaderText = "หน่วย";
-            this.unit_name.Name = "unit_name";
-            this.unit_name.ReadOnly = true;
-            // 
-            // note2
-            // 
-            this.note2.DataPropertyName = "note";
-            this.note2.HeaderText = "หมายเหตุ";
-            this.note2.Name = "note2";
-            this.note2.ReadOnly = true;
-            // 
-            // sale_name
-            // 
-            this.sale_name.DataPropertyName = "sale_name";
-            this.sale_name.HeaderText = "พนักงานขาย";
-            this.sale_name.Name = "sale_name";
-            this.sale_name.ReadOnly = true;
-            // 
-            // status
-            // 
-            this.status.DataPropertyName = "status";
-            this.status.HeaderText = "status";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            // 
-            // car_company_rem
-            // 
-            this.car_company_rem.DataPropertyName = "car_company_rem";
-            this.car_company_rem.HeaderText = "รถบริษัทคงเหลือ (เที่ยว)";
-            this.car_company_rem.Name = "car_company_rem";
-            this.car_company_rem.ReadOnly = true;
-            this.car_company_rem.Width = 110;
-            // 
-            // car_customer_rem
-            // 
-            this.car_customer_rem.DataPropertyName = "car_customer_rem";
-            this.car_customer_rem.HeaderText = "รถลูกค้าคงเหลือ  (เที่ยว)";
-            this.car_customer_rem.Name = "car_customer_rem";
-            this.car_customer_rem.ReadOnly = true;
-            this.car_customer_rem.Width = 110;
-            // 
-            // bws
-            // 
-            this.bws.DataPropertyName = "bws";
-            this.bws.HeaderText = "bws";
-            this.bws.Name = "bws";
-            this.bws.ReadOnly = true;
-            // 
-            // do_id2
-            // 
-            this.do_id2.DataPropertyName = "do_id";
-            this.do_id2.HeaderText = "do_id";
-            this.do_id2.Name = "do_id2";
-            this.do_id2.ReadOnly = true;
-            // 
-            // product_code
-            // 
-            this.product_code.DataPropertyName = "product_code";
-            this.product_code.HeaderText = "รหัสสินค้า";
-            this.product_code.Name = "product_code";
-            this.product_code.ReadOnly = true;
             // 
             // deliveryorderBindingSource2
             // 
@@ -488,6 +338,157 @@ namespace SerialPortListener
             this.btSearchDO.UseVisualStyleBackColor = true;
             this.btSearchDO.Click += new System.EventHandler(this.btSearchDO_Click);
             // 
+            // doc_no
+            // 
+            this.doc_no.DataPropertyName = "doc_no";
+            this.doc_no.HeaderText = "เลขที่ใบส่งของ";
+            this.doc_no.Name = "doc_no";
+            this.doc_no.ReadOnly = true;
+            this.doc_no.Width = 120;
+            // 
+            // delivery_date
+            // 
+            this.delivery_date.DataPropertyName = "delivery_date";
+            this.delivery_date.HeaderText = "วันที่ส่ง";
+            this.delivery_date.Name = "delivery_date";
+            this.delivery_date.ReadOnly = true;
+            // 
+            // car_customer_rem
+            // 
+            this.car_customer_rem.DataPropertyName = "car_customer_rem";
+            this.car_customer_rem.HeaderText = "รับเองเหลือ (เที่ยว)";
+            this.car_customer_rem.Name = "car_customer_rem";
+            this.car_customer_rem.ReadOnly = true;
+            this.car_customer_rem.Width = 90;
+            // 
+            // car_company_rem
+            // 
+            this.car_company_rem.DataPropertyName = "car_company_rem";
+            this.car_company_rem.HeaderText = "ส่งให้เหลือ (เที่ยว)";
+            this.car_company_rem.Name = "car_company_rem";
+            this.car_company_rem.ReadOnly = true;
+            this.car_company_rem.Width = 90;
+            // 
+            // customer_code
+            // 
+            this.customer_code.DataPropertyName = "customer_code";
+            this.customer_code.HeaderText = "รหัสลูกค้า";
+            this.customer_code.Name = "customer_code";
+            this.customer_code.ReadOnly = true;
+            this.customer_code.Width = 90;
+            // 
+            // customer_name
+            // 
+            this.customer_name.DataPropertyName = "customer_name";
+            this.customer_name.HeaderText = "ชื่อลูกค้า";
+            this.customer_name.Name = "customer_name";
+            this.customer_name.ReadOnly = true;
+            this.customer_name.Width = 170;
+            // 
+            // product_name
+            // 
+            this.product_name.DataPropertyName = "product_name";
+            this.product_name.HeaderText = "ชื่อสินค้า";
+            this.product_name.Name = "product_name";
+            this.product_name.ReadOnly = true;
+            this.product_name.Width = 120;
+            // 
+            // qty2
+            // 
+            this.qty2.DataPropertyName = "qty";
+            this.qty2.HeaderText = "plan จำนวนหิน";
+            this.qty2.Name = "qty2";
+            this.qty2.ReadOnly = true;
+            this.qty2.Width = 95;
+            // 
+            // qty_tot
+            // 
+            this.qty_tot.DataPropertyName = "qty_tot";
+            this.qty_tot.HeaderText = "จำนวนหินชั่งแล้ว";
+            this.qty_tot.Name = "qty_tot";
+            this.qty_tot.ReadOnly = true;
+            // 
+            // unit_name
+            // 
+            this.unit_name.DataPropertyName = "unit_name";
+            this.unit_name.HeaderText = "หน่วย";
+            this.unit_name.Name = "unit_name";
+            this.unit_name.ReadOnly = true;
+            // 
+            // note2
+            // 
+            this.note2.DataPropertyName = "note";
+            this.note2.HeaderText = "หมายเหตุ";
+            this.note2.Name = "note2";
+            this.note2.ReadOnly = true;
+            // 
+            // car_customer
+            // 
+            this.car_customer.DataPropertyName = "car_customer";
+            this.car_customer.HeaderText = "plan รับเอง(เที่ยว)";
+            this.car_customer.Name = "car_customer";
+            this.car_customer.ReadOnly = true;
+            this.car_customer.Width = 85;
+            // 
+            // car_customer_tot
+            // 
+            this.car_customer_tot.DataPropertyName = "car_customer_tot";
+            this.car_customer_tot.HeaderText = "ชั่งแล้ว รับเอง(เที่ยว)";
+            this.car_customer_tot.Name = "car_customer_tot";
+            this.car_customer_tot.ReadOnly = true;
+            this.car_customer_tot.Width = 85;
+            // 
+            // car_company
+            // 
+            this.car_company.DataPropertyName = "car_company";
+            this.car_company.HeaderText = "plan ส่งให้(เที่ยว)";
+            this.car_company.Name = "car_company";
+            this.car_company.ReadOnly = true;
+            this.car_company.Width = 85;
+            // 
+            // car_company_tot
+            // 
+            this.car_company_tot.DataPropertyName = "car_company_tot";
+            this.car_company_tot.HeaderText = "ชั่งแล้ว ส่งให้(เที่ยว)";
+            this.car_company_tot.Name = "car_company_tot";
+            this.car_company_tot.ReadOnly = true;
+            this.car_company_tot.Width = 85;
+            // 
+            // sale_name
+            // 
+            this.sale_name.DataPropertyName = "sale_name";
+            this.sale_name.HeaderText = "พนักงานขาย";
+            this.sale_name.Name = "sale_name";
+            this.sale_name.ReadOnly = true;
+            // 
+            // status
+            // 
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            // 
+            // bws
+            // 
+            this.bws.DataPropertyName = "bws";
+            this.bws.HeaderText = "bws";
+            this.bws.Name = "bws";
+            this.bws.ReadOnly = true;
+            // 
+            // do_id2
+            // 
+            this.do_id2.DataPropertyName = "do_id";
+            this.do_id2.HeaderText = "do_id";
+            this.do_id2.Name = "do_id2";
+            this.do_id2.ReadOnly = true;
+            // 
+            // product_code
+            // 
+            this.product_code.DataPropertyName = "product_code";
+            this.product_code.HeaderText = "รหัสสินค้า";
+            this.product_code.Name = "product_code";
+            this.product_code.ReadOnly = true;
+            // 
             // TableDeliveryOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -552,12 +553,13 @@ namespace SerialPortListener
         private newDODataSet newDODataSet;
         private System.Windows.Forms.BindingSource deliveryorderBindingSource2;
         private newDODataSetTableAdapters.delivery_orderTableAdapter delivery_orderTableAdapter2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbbSearchDO;
+        private System.Windows.Forms.Button btSearchDO;
         private System.Windows.Forms.DataGridViewTextBoxColumn doc_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn delivery_date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car_company;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car_company_tot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car_customer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car_customer_tot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_customer_rem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_company_rem;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_code;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_name;
@@ -565,15 +567,14 @@ namespace SerialPortListener
         private System.Windows.Forms.DataGridViewTextBoxColumn qty_tot;
         private System.Windows.Forms.DataGridViewTextBoxColumn unit_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn note2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_customer_tot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_company;
+        private System.Windows.Forms.DataGridViewTextBoxColumn car_company_tot;
         private System.Windows.Forms.DataGridViewTextBoxColumn sale_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car_company_rem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn car_customer_rem;
         private System.Windows.Forms.DataGridViewTextBoxColumn bws;
         private System.Windows.Forms.DataGridViewTextBoxColumn do_id2;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_code;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbbSearchDO;
-        private System.Windows.Forms.Button btSearchDO;
     }
 }
