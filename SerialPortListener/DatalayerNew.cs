@@ -9,7 +9,7 @@ namespace SerialPortListener
 {
     public class DatalayerNew
     {
-        private string connectionString = "DSN=PostgreSQLM";
+        private string connectionString = "DSN=PostgreSQLS";
 
         public OdbcConnection CreateConnection()
         {
