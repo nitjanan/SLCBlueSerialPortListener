@@ -161,6 +161,7 @@ namespace SerialPortListener
             this.tbDoDocNo = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.tbOldDoId = new System.Windows.Forms.TextBox();
+
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -547,7 +548,7 @@ namespace SerialPortListener
             // 
             this.btLoadCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btLoadCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLoadCustomer.Location = new System.Drawing.Point(855, 63);
+            this.btLoadCustomer.Location = new System.Drawing.Point(1153, 462);
             this.btLoadCustomer.Name = "btLoadCustomer";
             this.btLoadCustomer.Size = new System.Drawing.Size(30, 27);
             this.btLoadCustomer.TabIndex = 10;
@@ -601,7 +602,7 @@ namespace SerialPortListener
             this.rbVat.AutoSize = true;
             this.rbVat.BackColor = System.Drawing.Color.MintCream;
             this.rbVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbVat.Location = new System.Drawing.Point(891, 64);
+            this.rbVat.Location = new System.Drawing.Point(1139, 431);
             this.rbVat.Name = "rbVat";
             this.rbVat.Size = new System.Drawing.Size(57, 25);
             this.rbVat.TabIndex = 44;
@@ -1749,29 +1750,61 @@ namespace SerialPortListener
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
-            // tbMillId
+            // tbDoId
             // 
-            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
-            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(1157, 565);
-            this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 27);
-            this.tbMillId.TabIndex = 142;
-            this.tbMillId.Visible = false;
-            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
+            this.tbDoId.Location = new System.Drawing.Point(1071, 69);
+            this.tbDoId.Name = "tbDoId";
+            this.tbDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbDoId.TabIndex = 143;
+            this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDoId.Visible = false;
             // 
-            // tbMillName
+            // tbDoDocNo
             // 
-            this.tbMillName.AccessibleName = "ผู้ตัก";
-            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(1173, 564);
-            this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 27);
-            this.tbMillName.TabIndex = 143;
-            this.tbMillName.Visible = false;
-            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            this.tbDoDocNo.BackColor = System.Drawing.SystemColors.Window;
+            this.tbDoDocNo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDoDocNo.ForeColor = System.Drawing.Color.MediumBlue;
+            this.tbDoDocNo.Location = new System.Drawing.Point(1024, 92);
+            this.tbDoDocNo.Name = "tbDoDocNo";
+            this.tbDoDocNo.ReadOnly = true;
+            this.tbDoDocNo.Size = new System.Drawing.Size(105, 23);
+            this.tbDoDocNo.TabIndex = 144;
+            this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label39
+            // 
+            this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.MintCream;
+            this.label39.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label39.Location = new System.Drawing.Point(922, 94);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(96, 21);
+            this.label39.TabIndex = 145;
+            this.label39.Text = "เลขที่ใบส่งของ";
+            // 
+            // tbOldDoId
+            // 
+            this.tbOldDoId.Location = new System.Drawing.Point(1134, 68);
+            this.tbOldDoId.Name = "tbOldDoId";
+            this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbOldDoId.TabIndex = 146;
+            this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbOldDoId.Visible = false;
+            // 
+            // cbS
+            // 
+            this.cbS.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbS.AutoSize = true;
+            this.cbS.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbS.ForeColor = System.Drawing.Color.Brown;
+            this.cbS.Location = new System.Drawing.Point(870, 52);
+            this.cbS.Name = "cbS";
+            this.cbS.Size = new System.Drawing.Size(55, 45);
+            this.cbS.TabIndex = 140;
+            this.cbS.Text = "S";
+            this.cbS.UseVisualStyleBackColor = true;
             // 
             // tbDoId
             // 
@@ -1903,6 +1936,7 @@ namespace SerialPortListener
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbData);
+            this.Controls.Add(this.cbS);
             this.Controls.Add(this.ucTruck);
             this.Controls.Add(this.ucSetting);
             this.Controls.Add(this.ucReport);
@@ -2061,11 +2095,13 @@ namespace SerialPortListener
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox cbbCarTeam;
+
         private System.Windows.Forms.Label lbCompanyCode;
         private System.Windows.Forms.CheckBox cbS;
         private System.Windows.Forms.Button btRefresh;
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
+
         private System.Windows.Forms.Button btLoadDO;
         private System.Windows.Forms.TextBox tbDoId;
         private System.Windows.Forms.TextBox tbDoDocNo;
