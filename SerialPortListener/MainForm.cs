@@ -3110,7 +3110,8 @@ namespace SerialPortListener
                 MessageBox.Show("' " + gb.AccessibleName + "' เป็นค่าว่าง กรุณาใส่ข้อมูลให้ครบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void showErrorWeightInEmty() {
+        private void showErrorWeightInEmty()
+        {
             showErrorEmtyRadioButton(groupBox2);
             showErrorEmtyComboBox(cbbStoneType);
             showErrorEmtyComboBox(cbbTransport);
@@ -3126,11 +3127,10 @@ namespace SerialPortListener
             showErrorEmtyTextBox(tbScoopName);
             //showErrorEmtyRadioButton(groupBox1);
             //showErrorEmtyComboBox(cbbMill);
-            //showErrorEmtyTextBox(tbMillId);
-            //showErrorEmtyTextBox(tbMillName);
             showErrorEmtyComboBox(cbbMill);
             showErrorEmtyRadioButton(groupBox4);
             showErrorEmtyTextBox(tbQ);
+
         }
 
         /*4 search anywhere customer */
