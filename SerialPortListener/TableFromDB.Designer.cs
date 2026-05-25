@@ -87,6 +87,8 @@
             this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.do_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.do_doc_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.is_s = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataFromDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
@@ -213,6 +215,8 @@
             this.stone_type_id,
             this.mill_id,
             this.car_team_id,
+            this.do_id,
+            this.do_doc_no;
             this.is_s});
             this.tableDataFromDB.DataSource = this.weightBindingSource;
             this.tableDataFromDB.Location = new System.Drawing.Point(12, 60);
@@ -706,6 +710,22 @@
             this.car_team_id.ReadOnly = true;
             this.car_team_id.Width = 126;
             // 
+            // do_id
+            // 
+            this.do_id.DataPropertyName = "do_id";
+            this.do_id.HeaderText = "do_id";
+            this.do_id.Name = "do_id";
+            this.do_id.ReadOnly = true;
+            this.do_id.Width = 75;
+            // 
+            // do_doc_no
+            // 
+            this.do_doc_no.DataPropertyName = "do_doc_no";
+            this.do_doc_no.HeaderText = "do_doc_no";
+            this.do_doc_no.Name = "do_doc_no";
+            this.do_doc_no.ReadOnly = true;
+            this.do_doc_no.Width = 119;
+            // 
             // is_s
             // 
             this.is_s.DataPropertyName = "is_s";
@@ -811,6 +831,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stone_type_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn mill_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn car_team_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn do_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn do_doc_no;
         private System.Windows.Forms.DataGridViewCheckBoxColumn is_s;
     }
 }
