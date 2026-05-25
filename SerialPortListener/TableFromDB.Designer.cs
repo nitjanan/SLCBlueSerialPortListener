@@ -216,8 +216,9 @@
             this.mill_id,
             this.car_team_id,
             this.do_id,
-            this.do_doc_no;
-            this.is_s});
+            this.do_doc_no,
+            this.is_s
+            });
             this.tableDataFromDB.DataSource = this.weightBindingSource;
             this.tableDataFromDB.Location = new System.Drawing.Point(12, 60);
             this.tableDataFromDB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

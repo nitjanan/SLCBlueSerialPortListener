@@ -1834,7 +1834,7 @@
             this.btPrintAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btPrintAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px_pink;
+            this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btPrintAll.Location = new System.Drawing.Point(899, 622);
             this.btPrintAll.Name = "btPrintAll";
