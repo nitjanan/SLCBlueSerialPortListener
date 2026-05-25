@@ -785,7 +785,6 @@ namespace SerialPortListener
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
                 string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
-
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
                 if (mc.Count > 0)
