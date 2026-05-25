@@ -1587,30 +1587,7 @@
             this.cbbCarTeam.Name = "cbbCarTeam";
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
-            // 
-            // tbMillId
-            // 
-            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
-            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
-            this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 27);
-            this.tbMillId.TabIndex = 140;
-            this.tbMillId.Visible = false;
-            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
-            // 
-            // tbMillName
-            // 
-            this.tbMillName.AccessibleName = "ผู้ตัก";
-            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
-            this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 27);
-            this.tbMillName.TabIndex = 141;
-            this.tbMillName.Visible = false;
-            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+
             // 
             // ucSetting
             // 
@@ -1666,101 +1643,7 @@
             this.btLoadDO.TabIndex = 142;
             this.btLoadDO.UseVisualStyleBackColor = true;
             this.btLoadDO.Click += new System.EventHandler(this.btLoadDO_Click);
-            // 
-            // btRefresh
-            // 
-            this.btRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btRefresh.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRefresh.Image = global::SerialPortListener.Properties.Resources.refresh_32px;
-            this.btRefresh.Location = new System.Drawing.Point(475, 54);
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.Size = new System.Drawing.Size(44, 44);
-            this.btRefresh.TabIndex = 139;
-            this.btRefresh.UseVisualStyleBackColor = true;
-            this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
-            // 
-            // btPrintAll
-            // 
-            this.btPrintAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintAll.Location = new System.Drawing.Point(899, 622);
-            this.btPrintAll.Name = "btPrintAll";
-            this.btPrintAll.Size = new System.Drawing.Size(105, 40);
-            this.btPrintAll.TabIndex = 123;
-            this.btPrintAll.Text = "พิมพ์";
-            this.btPrintAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintAll.UseVisualStyleBackColor = true;
-            this.btPrintAll.Click += new System.EventHandler(this.btPrintAll_Click);
-            // 
-            // btPrintOut
-            // 
-            this.btPrintOut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintOut.BackColor = System.Drawing.Color.MediumPurple;
-            this.btPrintOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintOut.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintOut.Location = new System.Drawing.Point(754, 622);
-            this.btPrintOut.Name = "btPrintOut";
-            this.btPrintOut.Size = new System.Drawing.Size(105, 40);
-            this.btPrintOut.TabIndex = 122;
-            this.btPrintOut.Text = "พิมพ์ออก";
-            this.btPrintOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintOut.UseVisualStyleBackColor = false;
-            this.btPrintOut.Click += new System.EventHandler(this.btPrintOut_Click);
-            // 
-            // btPrintIn
-            // 
-            this.btPrintIn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintIn.BackColor = System.Drawing.Color.DarkSalmon;
-            this.btPrintIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintIn.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintIn.Location = new System.Drawing.Point(604, 622);
-            this.btPrintIn.Name = "btPrintIn";
-            this.btPrintIn.Size = new System.Drawing.Size(105, 40);
-            this.btPrintIn.TabIndex = 47;
-            this.btPrintIn.Text = "พิมพ์เข้า";
-            this.btPrintIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintIn.UseVisualStyleBackColor = false;
-            this.btPrintIn.Click += new System.EventHandler(this.btPrintIn_Click);
-            // 
-            // btSave
-            // 
-            this.btSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px;
-            this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSave.Location = new System.Drawing.Point(438, 622);
-            this.btSave.Name = "btSave";
-            this.btSave.Size = new System.Drawing.Size(105, 40);
-            this.btSave.TabIndex = 46;
-            this.btSave.Text = "บันทึก";
-            this.btSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSave.UseVisualStyleBackColor = true;
-            this.btSave.Click += new System.EventHandler(this.btSave_Click);
-            // 
-            // ucTruck
-            // 
-            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
-            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
-            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTruck.Location = new System.Drawing.Point(0, 0);
-            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
-            this.ucTruck.Name = "ucTruck";
-            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
-            this.ucTruck.TabIndex = 22;
-            // 
-            // serialSettingsBindingSource
-            // 
-            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
+
             // 
             // tbDoId
             // 
