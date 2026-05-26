@@ -1216,6 +1216,8 @@ namespace SerialPortListener
 
             //UpdateDeliveryOrderFromApi before save
             await UpdateDeliveryOrderFromApi();
+            // after update delivery order
+            autoSave();
         }
 
         private void autoSave()
@@ -4066,8 +4068,6 @@ namespace SerialPortListener
                 finally
                 {
                     btLoadDO.Enabled = true;
-                    // after update delivery order
-                    autoSave();
                 }
             }
         }
