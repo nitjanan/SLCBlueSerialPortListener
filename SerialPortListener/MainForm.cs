@@ -1205,10 +1205,10 @@ namespace SerialPortListener
 
 
         private async void btSave_Click(object sender, EventArgs e)
-        {   
-           
+        {
+
+            //UpdateDeliveryOrderFromApi before save
             await UpdateDeliveryOrderFromApi();
-            autoSave();
         }
 
         private void autoSave()
@@ -3955,6 +3955,8 @@ namespace SerialPortListener
                 finally
                 {
                     btLoadDO.Enabled = true;
+                    // after update delivery order
+                    autoSave();
                 }
             }
         }
