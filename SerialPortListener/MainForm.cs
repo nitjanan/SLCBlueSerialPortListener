@@ -1118,42 +1118,55 @@ namespace SerialPortListener
 
         private int checkDeliveryOrder()
         {
-            int car_company = 0;
-            int car_customer = 0;
+            if (tbDoId.Text != "") {
+                int car_company_rem = -1;
+                int car_customer_rem = -1;
 
-            try
-            {
-                dl.connect();
-                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText =
-                    "SELECT car_company, car_customer " +
-                    "FROM delivery_order WHERE do_id = ?";
-                pgCommand.Parameters.AddWithValue("do_id", tbDoId.Text);
-
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                while (reader.Read())
+                try
                 {
-                    car_company = Convert.ToInt32(reader["car_company"]);
-                    car_customer = Convert.ToInt32(reader["car_customer"]);
+                    dl.connect();
+
+                    OdbcCommand pgCommand =
+                        (OdbcCommand)dl.sqlConn().CreateCommand();
+
+                    pgCommand.CommandText =
+                        @"SELECT car_company_rem, car_customer_rem
+                      FROM delivery_order
+                      WHERE do_id = ?";
+
+                    pgCommand.Parameters.AddWithValue("", tbDoId.Text);
+
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        car_company_rem =
+                            Convert.ToInt32(reader["car_company_rem"]);
+
+                        car_customer_rem =
+                            Convert.ToInt32(reader["car_customer_rem"]);
+                    }
+
+                    reader.Close();
                 }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-            finally
-            {
-                dl.close();
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("checkDeliveryOrder" + ex.Message);
+                    return -1;
+                }
+                finally
+                {
+                    dl.close();
+                }
 
-            string carryType = findcarryTypeByTransport();
+                string carryType = findcarryTypeByTransport();
 
-            if (carryType == "รับเอง")
-                return (getDeliveryNotDoId(carryType) + 1) > car_customer ? 1 : 0;
-            else if (carryType == "ส่งให้")
-                return (getDeliveryNotDoId(carryType) + 1) > car_company ? 2 : 0;
+                if (carryType == "รับเอง" && car_customer_rem <= 0)
+                    return 1;
 
+                if (carryType == "ส่งให้" && car_company_rem <= 0)
+                    return 2;
+            }
             return 0;
         }
 
@@ -1191,16 +1204,20 @@ namespace SerialPortListener
         }
 
 
-        private void btSave_Click(object sender, EventArgs e)
-        {
+        private async void btSave_Click(object sender, EventArgs e)
+        {   
+           
+            await UpdateDeliveryOrderFromApi();
             autoSave();
         }
 
-        private async void autoSave()
+        private void autoSave()
         {
+
             Boolean isPasswordCorrect = true;
             string tmpDoId = tbDoId.Text;
             string tmpOldDoId = tbOldDoId.Text;
+            int checkResult = checkDeliveryOrder();
 
             if (tbId.Text == "")
             {
@@ -1219,23 +1236,27 @@ namespace SerialPortListener
                     cbbTransport.Select();
                     MessageBox.Show("ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (tbDoId.Text != "" && checkDeliveryOrder() != 0)
+                else if (tbDoId.Text != "" && checkResult != 0)
                 {
-                    int num_err = checkDeliveryOrder();
                     string error = "";
 
-                    if (num_err == 1)
-                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    else if (num_err == 2)
-                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    MessageBox.Show(error + " ระบบไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (checkResult == 1)
+                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    else if (checkResult == 2)
+                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    MessageBox.Show(
+                        error + " ระบบไม่สามารถบันทึกข้อมูลได้",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
                 else {
-                    await UpdateDeliveryOrderFromApi();
 
                     saveAction();
                     //prepareUpdateDo(tmpDoId, tmpOldDoId); เปลี่ยนให้ update delivery_order จาก center
-
                     prepareWeightDelivery(tmpDoId, tmpOldDoId);
                 }
             }
@@ -1248,7 +1269,7 @@ namespace SerialPortListener
                     cbbTransport.Select();
                     MessageBox.Show("ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (tbDoId.Text != "" && checkDeliveryOrder() != 0)
+                else if (tbDoId.Text != "" && checkResult != 0)
                 {
                     int num_err = checkDeliveryOrder();
                     string error = "";
@@ -1260,7 +1281,6 @@ namespace SerialPortListener
                     MessageBox.Show(error + " ระบบไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (isPasswordCorrect) {
-                    await UpdateDeliveryOrderFromApi();
 
                     updateAction();
                     //prepareUpdateDo(tmpDoId, tmpOldDoId); เปลี่ยนให้ update delivery_order จาก center
@@ -1389,7 +1409,6 @@ namespace SerialPortListener
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
             }
             dl.close();
 
@@ -1452,15 +1471,19 @@ namespace SerialPortListener
 
         private async void prepareWeightDelivery(string tmpDoId, string tmpOldDoId)
         {
-            if (tmpOldDoId != tmpDoId)
+            if (tbDoId.Text != "")
             {
+                if (tmpOldDoId != tmpDoId)
+                {
 
-                await UCWeightDelivery(tmpOldDoId, true);
-                await UCWeightDelivery(tmpDoId, false);
-            }
-            else
-            {
-                await UCWeightDelivery(tmpDoId, false);
+                    await UCWeightDelivery(tmpOldDoId, true);
+                    await UCWeightDelivery(tmpDoId, false);
+                }
+                else
+                {
+                    await UCWeightDelivery(tmpDoId, false);
+                }
+
             }
         }
 
@@ -3742,187 +3765,191 @@ namespace SerialPortListener
 
         private async Task UpdateDeliveryOrderFromApi()
         {
-            string baseUrl = getBaseApi(1);
-            string username = getBaseApi(2);
-            string password = getBaseApi(3);
-            string compCode = getBaseApi(4);
 
-            string today = DateTime.Now.ToString("yyyy-MM-dd");
-
-            string jwtUrl = $"{baseUrl}/jwt/create/";
-            string apiUrl = $"{baseUrl}/deliveryorder/summary/api/by/comp/{today}/{compCode}";
-
-            try
+            if (tbDoId.Text != "")
             {
-                btLoadDO.Enabled = false;
+                string baseUrl = getBaseApi(1);
+                string username = getBaseApi(2);
+                string password = getBaseApi(3);
+                string compCode = getBaseApi(4);
 
-                using (HttpClient client = new HttpClient())
+                string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+                string jwtUrl = $"{baseUrl}/jwt/create/";
+                string apiUrl = $"{baseUrl}/deliveryorder/summary/api/by/comp/{today}/{compCode}";
+
+                try
                 {
-                    // =========================
-                    // JWT LOGIN
-                    // =========================
-                    var loginData = new
+                    btLoadDO.Enabled = false;
+
+                    using (HttpClient client = new HttpClient())
                     {
-                        username = username,
-                        password = password
-                    };
+                        // =========================
+                        // JWT LOGIN
+                        // =========================
+                        var loginData = new
+                        {
+                            username = username,
+                            password = password
+                        };
 
-                    string loginJson =
-                        JsonConvert.SerializeObject(loginData);
+                        string loginJson =
+                            JsonConvert.SerializeObject(loginData);
 
-                    var loginContent = new StringContent(
-                        loginJson,
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                        var loginContent = new StringContent(
+                            loginJson,
+                            Encoding.UTF8,
+                            "application/json"
+                        );
 
-                    HttpResponseMessage jwtResponse =
-                        await client.PostAsync(jwtUrl, loginContent);
+                        HttpResponseMessage jwtResponse =
+                            await client.PostAsync(jwtUrl, loginContent);
 
-                    // JWT ERROR
-                    if (!jwtResponse.IsSuccessStatusCode)
-                    {
-                        string jwtError =
+                        // JWT ERROR
+                        if (!jwtResponse.IsSuccessStatusCode)
+                        {
+                            string jwtError =
+                                await jwtResponse.Content.ReadAsStringAsync();
+
+                            MessageBox.Show(
+                                "JWT ERROR : " + jwtError,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+
+                            return;
+                        }
+
+                        string jwtResult =
                             await jwtResponse.Content.ReadAsStringAsync();
 
-                        MessageBox.Show(
-                            "JWT ERROR : " + jwtError,
-                            "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                        );
+                        dynamic jwtObj =
+                            JsonConvert.DeserializeObject(jwtResult);
 
-                        return;
-                    }
+                        string accessToken =
+                            jwtObj.access.ToString();
 
-                    string jwtResult =
-                        await jwtResponse.Content.ReadAsStringAsync();
+                        // =========================
+                        // SET TOKEN
+                        // =========================
+                        client.DefaultRequestHeaders.Authorization =
+                            new AuthenticationHeaderValue(
+                                "Bearer",
+                                accessToken
+                            );
 
-                    dynamic jwtObj =
-                        JsonConvert.DeserializeObject(jwtResult);
+                        // =========================
+                        // GET API
+                        // =========================
+                        HttpResponseMessage apiResponse =
+                            await client.GetAsync(apiUrl);
 
-                    string accessToken =
-                        jwtObj.access.ToString();
+                        // API ERROR
+                        if (!apiResponse.IsSuccessStatusCode)
+                        {
+                            string apiError =
+                                await apiResponse.Content.ReadAsStringAsync();
 
-                    // =========================
-                    // SET TOKEN
-                    // =========================
-                    client.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue(
-                            "Bearer",
-                            accessToken
-                        );
+                            MessageBox.Show(
+                                "API ERROR : " + apiError,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
 
-                    // =========================
-                    // GET API
-                    // =========================
-                    HttpResponseMessage apiResponse =
-                        await client.GetAsync(apiUrl);
+                            return;
+                        }
 
-                    // API ERROR
-                    if (!apiResponse.IsSuccessStatusCode)
-                    {
-                        string apiError =
+                        string json =
                             await apiResponse.Content.ReadAsStringAsync();
 
+                        // JSON -> LIST
+                        List<DeliveryOrder> orders =
+                            JsonConvert.DeserializeObject<List<DeliveryOrder>>(json);
+
+                        // =========================
+                        // UPDATE DATABASE
+                        // =========================
+                        dl.connect();
+
+                        foreach (var item in orders)
+                        {
+                            OdbcCommand pgCommand =
+                                (OdbcCommand)dl.sqlConn().CreateCommand();
+
+                            pgCommand.CommandText = @"
+                                UPDATE delivery_order
+                                SET
+                                    car_company_tot = ?,
+                                    car_customer_tot = ?,
+                                    qty_tot = ?,
+                                    car_company_rem = ?,
+                                    car_customer_rem = ?
+                                WHERE doc_no = ?
+                            ";
+
+                            // PARAMETER
+                            pgCommand.Parameters.AddWithValue(
+                                "",
+                                item.car_company_tot
+                            );
+
+                            pgCommand.Parameters.AddWithValue(
+                                "",
+                                item.car_customer_tot
+                            );
+
+                            pgCommand.Parameters.AddWithValue(
+                                "",
+                                Convert.ToDecimal(item.qty_tot)
+                            );
+
+                            pgCommand.Parameters.AddWithValue(
+                                "",
+                                item.car_company_rem
+                            );
+
+                            pgCommand.Parameters.AddWithValue(
+                                "",
+                                item.car_customer_rem
+                            );
+
+                            pgCommand.Parameters.AddWithValue(
+                                "",
+                                item.doc_no
+                            );
+
+                            pgCommand.ExecuteNonQuery();
+                        }
+
+                        dl.close();
+
+                        /*
                         MessageBox.Show(
-                            "API ERROR : " + apiError,
-                            "Error",
+                            "Update Success",
+                            "Success",
                             MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
+                            MessageBoxIcon.Information
                         );
-
-                        return;
+                        */
                     }
-
-                    string json =
-                        await apiResponse.Content.ReadAsStringAsync();
-
-                    // JSON -> LIST
-                    List<DeliveryOrder> orders =
-                        JsonConvert.DeserializeObject<List<DeliveryOrder>>(json);
-
-                    // =========================
-                    // UPDATE DATABASE
-                    // =========================
-                    dl.connect();
-
-                    foreach (var item in orders)
-                    {
-                        OdbcCommand pgCommand =
-                            (OdbcCommand)dl.sqlConn().CreateCommand();
-
-                        pgCommand.CommandText = @"
-                            UPDATE delivery_order
-                            SET
-                                car_company_tot = ?,
-                                car_customer_tot = ?,
-                                qty_tot = ?,
-                                car_company_rem = ?,
-                                car_customer_rem = ?
-                            WHERE doc_no = ?
-                        ";
-
-                        // PARAMETER
-                        pgCommand.Parameters.AddWithValue(
-                            "",
-                            item.car_company_tot
-                        );
-
-                        pgCommand.Parameters.AddWithValue(
-                            "",
-                            item.car_customer_tot
-                        );
-
-                        pgCommand.Parameters.AddWithValue(
-                            "",
-                            Convert.ToDecimal(item.qty_tot)
-                        );
-
-                        pgCommand.Parameters.AddWithValue(
-                            "",
-                            item.car_company_rem
-                        );
-
-                        pgCommand.Parameters.AddWithValue(
-                            "",
-                            item.car_customer_rem
-                        );
-
-                        pgCommand.Parameters.AddWithValue(
-                            "",
-                            item.doc_no
-                        );
-
-                        pgCommand.ExecuteNonQuery();
-                    }
-
+                }
+                catch (Exception ex)
+                {
                     dl.close();
 
-                    /*
                     MessageBox.Show(
-                        "Update Success",
-                        "Success",
+                        ex.Message,
+                        "Error",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
+                        MessageBoxIcon.Error
                     );
-                    */
                 }
-            }
-            catch (Exception ex)
-            {
-                dl.close();
-
-                MessageBox.Show(
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-            finally
-            {
-                btLoadDO.Enabled = true;
+                finally
+                {
+                    btLoadDO.Enabled = true;
+                }
             }
         }
 

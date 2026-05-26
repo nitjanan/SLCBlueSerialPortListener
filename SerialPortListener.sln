@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialPortListener", "SerialPortListener\SerialPortListener.csproj", "{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup\Setup.vdproj", "{C14EF4A0-EF4D-4AB9-BA32-1673E6D59BBF}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupM", "SetupM\SetupM.vdproj", "{9FEE4769-A1DD-4D65-A9A4-E45E2562C466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|x86.ActiveCfg = Release|x86
 		{D6883E9E-C532-4FDF-AFEE-61C47F8A4A1D}.Release|x86.Build.0 = Release|x86
-		{C14EF4A0-EF4D-4AB9-BA32-1673E6D59BBF}.Debug|Any CPU.ActiveCfg = Debug
-		{C14EF4A0-EF4D-4AB9-BA32-1673E6D59BBF}.Debug|x86.ActiveCfg = Debug
-		{C14EF4A0-EF4D-4AB9-BA32-1673E6D59BBF}.Release|Any CPU.ActiveCfg = Release
-		{C14EF4A0-EF4D-4AB9-BA32-1673E6D59BBF}.Release|x86.ActiveCfg = Release
+		{9FEE4769-A1DD-4D65-A9A4-E45E2562C466}.Debug|Any CPU.ActiveCfg = Debug
+		{9FEE4769-A1DD-4D65-A9A4-E45E2562C466}.Debug|x86.ActiveCfg = Debug
+		{9FEE4769-A1DD-4D65-A9A4-E45E2562C466}.Release|Any CPU.ActiveCfg = Release
+		{9FEE4769-A1DD-4D65-A9A4-E45E2562C466}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
