@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +20,12 @@ namespace SerialPortListener.Serial
             // Finding installed serial ports on hardware
             _currentSerialSettings.PortNameCollection = SerialPort.GetPortNames();
             _currentSerialSettings.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(_currentSerialSettings_PropertyChanged);
+
             /*
             // If serial ports is found, we select the first found
             if (_currentSerialSettings.PortNameCollection.Length > 0)
                 _currentSerialSettings.PortName = _currentSerialSettings.PortNameCollection[0];
+
             */
         }
 
@@ -62,6 +64,7 @@ namespace SerialPortListener.Serial
             // if serial port is changed, a new baud query is issued
             if (e.PropertyName.Equals("PortName"))
                 UpdateBaudRateCollection();
+
             */
         }
 
