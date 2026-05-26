@@ -1200,16 +1200,20 @@ namespace SerialPortListener
         }
 
 
-        private void btSave_Click(object sender, EventArgs e)
+        private async void btSave_Click(object sender, EventArgs e)
         {
+
+            await UpdateDeliveryOrderFromApi();
             autoSave();
         }
 
-        private async void autoSave()
+        private void autoSave()
         {
+
             Boolean isPasswordCorrect = true;
             string tmpDoId = tbDoId.Text;
             string tmpOldDoId = tbOldDoId.Text;
+            int checkResult = checkDeliveryOrder();
 
             if (tbId.Text == "")
             {
@@ -1228,23 +1232,28 @@ namespace SerialPortListener
                     cbbTransport.Select();
                     MessageBox.Show("ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (tbDoId.Text != "" && checkDeliveryOrder() != 0)
+                else if (tbDoId.Text != "" && checkResult != 0)
                 {
-                    int num_err = checkDeliveryOrder();
                     string error = "";
 
-                    if (num_err == 1)
-                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    else if (num_err == 2)
-                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    MessageBox.Show(error + " ระบบไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (checkResult == 1)
+                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    else if (checkResult == 2)
+                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    MessageBox.Show(
+                        error + " ระบบไม่สามารถบันทึกข้อมูลได้",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
-                else {
-                    await UpdateDeliveryOrderFromApi();
+                else
+                {
 
                     saveAction();
                     //prepareUpdateDo(tmpDoId, tmpOldDoId); เปลี่ยนให้ update delivery_order จาก center
-
                     prepareWeightDelivery(tmpDoId, tmpOldDoId);
                 }
             }
@@ -1257,19 +1266,25 @@ namespace SerialPortListener
                     cbbTransport.Select();
                     MessageBox.Show("ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (tbDoId.Text != "" && checkDeliveryOrder() != 0)
+                else if (tbDoId.Text != "" && checkResult != 0)
                 {
-                    int num_err = checkDeliveryOrder();
                     string error = "";
 
-                    if (num_err == 1)
-                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    else if (num_err == 2)
-                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    MessageBox.Show(error + " ระบบไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (checkResult == 1)
+                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    else if (checkResult == 2)
+                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    MessageBox.Show(
+                        error + " ระบบไม่สามารถบันทึกข้อมูลได้",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
-                else if (isPasswordCorrect) {
-                    await UpdateDeliveryOrderFromApi();
+                else if (isPasswordCorrect)
+                {
 
                     updateAction();
                     //prepareUpdateDo(tmpDoId, tmpOldDoId); เปลี่ยนให้ update delivery_order จาก center
@@ -1461,141 +1476,149 @@ namespace SerialPortListener
 
         private async void prepareWeightDelivery(string tmpDoId, string tmpOldDoId)
         {
-            if (tmpOldDoId != tmpDoId)
+            if (tbDoId.Text != "")
             {
+                if (tmpOldDoId != tmpDoId)
+                {
 
-                await UCWeightDelivery(tmpOldDoId, true);
-                await UCWeightDelivery(tmpDoId, false);
-            }
-            else
-            {
-                await UCWeightDelivery(tmpDoId, false);
+                    await UCWeightDelivery(tmpOldDoId, true);
+                    await UCWeightDelivery(tmpDoId, false);
+                }
+                else
+                {
+                    await UCWeightDelivery(tmpDoId, false);
+                }
+
             }
         }
 
 
         private async Task UCWeightDelivery(string do_id, Boolean is_cancel)
-        {   
-            try
+        {
+
+            if (tbDoId.Text != "")
             {
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    // =========================
-                    // JWT LOGIN
-                    // =========================
-                    string baseUrl = getBaseApi(1);
-                    string username = getBaseApi(2);
-                    string password = getBaseApi(3);
-
-                    string jwtUrl = $"{baseUrl}/jwt/create/";
-
-                    var loginData = new
+                    using (HttpClient client = new HttpClient())
                     {
-                        username = username,
-                        password = password
-                    };
+                        // =========================
+                        // JWT LOGIN
+                        // =========================
+                        string baseUrl = getBaseApi(1);
+                        string username = getBaseApi(2);
+                        string password = getBaseApi(3);
 
-                    string loginJson =
-                        JsonConvert.SerializeObject(loginData);
+                        string jwtUrl = $"{baseUrl}/jwt/create/";
 
-                    var loginContent = new StringContent(
-                        loginJson,
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                        var loginData = new
+                        {
+                            username = username,
+                            password = password
+                        };
 
-                    HttpResponseMessage jwtResponse =
-                        await client.PostAsync(jwtUrl, loginContent);
+                        string loginJson =
+                            JsonConvert.SerializeObject(loginData);
 
-                    // JWT ERROR
-                    if (!jwtResponse.IsSuccessStatusCode)
-                    {
-                        string jwtError =
-                            await jwtResponse.Content.ReadAsStringAsync();
-
-                        Console.WriteLine("JWT ERROR : " + jwtError);
-
-                        // STOP PROCESS
-                        return;
-                    }
-
-                    string jwtResult =
-                        await jwtResponse.Content.ReadAsStringAsync();
-
-                    dynamic jwtObj =
-                        JsonConvert.DeserializeObject(jwtResult);
-
-                    string accessToken = jwtObj.access;
-
-                    // =========================
-                    // SET TOKEN
-                    // =========================
-                    client.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue(
-                            "Bearer",
-                            accessToken
+                        var loginContent = new StringContent(
+                            loginJson,
+                            Encoding.UTF8,
+                            "application/json"
                         );
 
-                    // =========================
-                    // CREATE DELIVERY ORDER
-                    // =========================
-                    string apiUrl = $"{baseUrl}/api/uc_weight_delivery/";
+                        HttpResponseMessage jwtResponse =
+                            await client.PostAsync(jwtUrl, loginContent);
 
-                    DateTime deliveryDate = DateTime.Parse(findValueByDO(do_id, 2));
+                        // JWT ERROR
+                        if (!jwtResponse.IsSuccessStatusCode)
+                        {
+                            string jwtError =
+                                await jwtResponse.Content.ReadAsStringAsync();
 
-                    Boolean real_is_cancel = false;
-                    if (is_cancel == true)//กรณี มี old_do_id (เปลี่ยน do_id)
-                        real_is_cancel = is_cancel;
-                    else
-                        real_is_cancel = isCancelDO();//กรณี do_id เดิมเช็คว่าเป็นการยกเลิกรายการไหม
+                            Console.WriteLine("JWT ERROR : " + jwtError);
 
-                    var apiData = new
-                    {
-                        weight_id = Convert.ToInt32(tbId.Text),
-                        delivery_date = deliveryDate.ToString("yyyy-MM-dd"),
-                        bws = findBWS(),
-                        do_id = Convert.ToInt32(do_id),
-                        do_doc_no = findValueByDO(do_id, 1),
-                        carry_type_name = findcarryTypeByTransport(),
-                        weight_ton = kgToTon(tbWeightTotal),
-                        weight_q = Convert.ToDouble(tbQ.Text),
-                        unit_name = findValueByDO(do_id, 3),
-                        car_company = Convert.ToInt32(findValueByDO(do_id, 4)),
-                        car_customer = Convert.ToInt32(findValueByDO(do_id, 5)),
-                        is_cancel = real_is_cancel,
-                    };
+                            // STOP PROCESS
+                            return;
+                        }
 
-                    string apiJson =
-                        JsonConvert.SerializeObject(apiData);
+                        string jwtResult =
+                            await jwtResponse.Content.ReadAsStringAsync();
 
-                    var apiContent = new StringContent(
-                        apiJson,
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                        dynamic jwtObj =
+                            JsonConvert.DeserializeObject(jwtResult);
 
-                    HttpResponseMessage apiResponse =
-                        await client.PostAsync(apiUrl, apiContent);
+                        string accessToken = jwtObj.access;
 
-                    if (apiResponse.IsSuccessStatusCode)
-                    {
-                        string result =
-                            await apiResponse.Content.ReadAsStringAsync();
+                        // =========================
+                        // SET TOKEN
+                        // =========================
+                        client.DefaultRequestHeaders.Authorization =
+                            new AuthenticationHeaderValue(
+                                "Bearer",
+                                accessToken
+                            );
 
-                        Console.WriteLine("SUCCESS : " + result);
-                    }
-                    else
-                    {
-                        string error =
-                            await apiResponse.Content.ReadAsStringAsync();
+                        // =========================
+                        // CREATE DELIVERY ORDER
+                        // =========================
+                        string apiUrl = $"{baseUrl}/api/uc_weight_delivery/";
 
-                        Console.WriteLine("API ERROR : " + error);
+                        DateTime deliveryDate = DateTime.Parse(findValueByDO(do_id, 2));
+
+                        Boolean real_is_cancel = false;
+                        if (is_cancel == true)//กรณี มี old_do_id (เปลี่ยน do_id)
+                            real_is_cancel = is_cancel;
+                        else
+                            real_is_cancel = isCancelDO();//กรณี do_id เดิมเช็คว่าเป็นการยกเลิกรายการไหม
+
+                        var apiData = new
+                        {
+                            weight_id = Convert.ToInt32(tbId.Text),
+                            delivery_date = deliveryDate.ToString("yyyy-MM-dd"),
+                            bws = findBWS(),
+                            do_id = Convert.ToInt32(do_id),
+                            do_doc_no = findValueByDO(do_id, 1),
+                            carry_type_name = findcarryTypeByTransport(),
+                            weight_ton = kgToTon(tbWeightTotal),
+                            weight_q = Convert.ToDouble(tbQ.Text),
+                            unit_name = findValueByDO(do_id, 3),
+                            car_company = Convert.ToInt32(findValueByDO(do_id, 4)),
+                            car_customer = Convert.ToInt32(findValueByDO(do_id, 5)),
+                            is_cancel = real_is_cancel,
+                        };
+
+                        string apiJson =
+                            JsonConvert.SerializeObject(apiData);
+
+                        var apiContent = new StringContent(
+                            apiJson,
+                            Encoding.UTF8,
+                            "application/json"
+                        );
+
+                        HttpResponseMessage apiResponse =
+                            await client.PostAsync(apiUrl, apiContent);
+
+                        if (apiResponse.IsSuccessStatusCode)
+                        {
+                            string result =
+                                await apiResponse.Content.ReadAsStringAsync();
+
+                            Console.WriteLine("SUCCESS : " + result);
+                        }
+                        else
+                        {
+                            string error =
+                                await apiResponse.Content.ReadAsStringAsync();
+
+                            Console.WriteLine("API ERROR : " + error);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("EXCEPTION : " + ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine("EXCEPTION : " + ex.Message);
+                }
             }
         }
 
