@@ -1217,7 +1217,8 @@ namespace SerialPortListener
         private async void btSave_Click(object sender, EventArgs e)
         {
             //UpdateDeliveryOrderFromApi before save
-            await UpdateDeliveryOrderFromApi();
+            if(tbDoId.Text != "")
+                await UpdateDeliveryOrderFromApi();
             // after update delivery order
             autoSave();
         }
