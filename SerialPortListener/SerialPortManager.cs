@@ -21,9 +21,12 @@ namespace SerialPortListener.Serial
             _currentSerialSettings.PortNameCollection = SerialPort.GetPortNames();
             _currentSerialSettings.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(_currentSerialSettings_PropertyChanged);
 
+            /*
             // If serial ports is found, we select the first found
             if (_currentSerialSettings.PortNameCollection.Length > 0)
                 _currentSerialSettings.PortName = _currentSerialSettings.PortNameCollection[0];
+
+            */
         }
 
         
@@ -57,9 +60,12 @@ namespace SerialPortListener.Serial
 
         void _currentSerialSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            /*
             // if serial port is changed, a new baud query is issued
             if (e.PropertyName.Equals("PortName"))
                 UpdateBaudRateCollection();
+
+            */
         }
 
         
