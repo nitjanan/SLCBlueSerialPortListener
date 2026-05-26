@@ -1122,7 +1122,7 @@ namespace SerialPortListener
 
         private int checkDeliveryOrder()
         {
-            if (tbDoId.Text != "") {
+            if (tbDoDocNo.Text != "") {
                 int car_company_rem = -1;
                 int car_customer_rem = -1;
 
@@ -1136,9 +1136,9 @@ namespace SerialPortListener
                     pgCommand.CommandText =
                         @"SELECT car_company_rem, car_customer_rem
                       FROM delivery_order
-                      WHERE do_id = ?";
+                      WHERE doc_no = ?";
 
-                    pgCommand.Parameters.AddWithValue("", tbDoId.Text);
+                    pgCommand.Parameters.AddWithValue("", tbDoDocNo.Text);
 
                     OdbcDataReader reader = pgCommand.ExecuteReader();
 
