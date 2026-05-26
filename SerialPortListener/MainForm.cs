@@ -1127,68 +1127,55 @@ namespace SerialPortListener
 
         private int checkDeliveryOrder()
         {
-            if (tbDoDocNo.Text != "")
+            int car_company = 0;
+            int car_customer = 0;
+
+            try
             {
-                int car_company_rem = -1;
-                int car_customer_rem = -1;
+                dl.connect();
+                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+                pgCommand.CommandText =
+                    "SELECT car_company, car_customer " +
+                    "FROM delivery_order WHERE do_id = ?";
+                pgCommand.Parameters.AddWithValue("do_id", tbDoId.Text);
 
-                try
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
                 {
-                    dl.connect();
-
-                    OdbcCommand pgCommand =
-                        (OdbcCommand)dl.sqlConn().CreateCommand();
-
-                    pgCommand.CommandText =
-                        @"SELECT car_company_rem, car_customer_rem
-                      FROM delivery_order
-                      WHERE doc_no = ?";
-
-                    pgCommand.Parameters.AddWithValue("", tbDoDocNo.Text);
-
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        car_company_rem =
-                            Convert.ToInt32(reader["car_company_rem"]);
-
-                        car_customer_rem =
-                            Convert.ToInt32(reader["car_customer_rem"]);
-                    }
-
-                    reader.Close();
+                    car_company = Convert.ToInt32(reader["car_company"]);
+                    car_customer = Convert.ToInt32(reader["car_customer"]);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("checkDeliveryOrder" + ex.Message);
-                    return -1;
-                }
-                finally
-                {
-                    dl.close();
-                }
-
-                string carryType = findcarryTypeByTransport();
-
-                if (carryType == "รับเอง" && car_customer_rem <= 0)
-                    return 1;
-
-                if (carryType == "ส่งให้" && car_company_rem <= 0)
-                    return 2;
+                reader.Close();
             }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+            finally
+            {
+                dl.close();
+            }
+
+            string carryType = findcarryTypeByTransport();
+
+            if (carryType == "รับเอง")
+                return (getDeliveryNotDoId(carryType) + 1) > car_customer ? 1 : 0;
+            else if (carryType == "ส่งให้")
+                return (getDeliveryNotDoId(carryType) + 1) > car_company ? 2 : 0;
+
             return 0;
         }
 
-        private int  getDeliveryNotDoId(string carryType) {
+        private int getDeliveryNotDoId(string carryType)
+        {
 
             int count_id = 0;
 
             //sql find company
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             StringBuilder sql = new StringBuilder();
-            sql.Append("select count(do_id) as count_id from weight where ");
-            sql.Append("do_id = '" + tbDoId.Text + "' and carry_type_name = '" + carryType + "' ");
+            sql.Append("select count(weight_id) as count_id from weight_delivery where ");
+            sql.Append("do_doc_no = '" + tbDoDocNo.Text + "' and carry_type_name = '" + carryType + "' ");
             if (tbId.Text != "")
                 sql.Append(" and weight_id != '" + tbId.Text + "' ");
 
@@ -1216,9 +1203,10 @@ namespace SerialPortListener
 
         private async void btSave_Click(object sender, EventArgs e)
         {
+
             //UpdateDeliveryOrderFromApi before save
-            if(tbDoId.Text != "")
-                await UpdateDeliveryOrderFromApi();
+            if (tbDoId.Text != "")
+                await CUWeightDeliveryFromApi();
             // after update delivery order
             autoSave();
         }
@@ -3974,6 +3962,189 @@ namespace SerialPortListener
             finally
             {
                 btLoadDO.Enabled = true;
+            }
+        }
+
+        private async Task CUWeightDeliveryFromApi()
+        {
+
+            string baseUrl = getBaseApi(1);
+            string username = getBaseApi(2);
+            string password = getBaseApi(3);
+            string compCode = getBaseApi(4);
+
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+            string jwtUrl = $"{baseUrl}/jwt/create/";
+            string apiUrl = $"{baseUrl}/weightdelivery/summary/api/by/comp/{today}/{compCode}";
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // =========================
+                    // JWT LOGIN
+                    // =========================
+                    var loginData = new
+                    {
+                        username = username,
+                        password = password
+                    };
+
+                    string loginJson =
+                        JsonConvert.SerializeObject(loginData);
+
+                    var loginContent = new StringContent(
+                        loginJson,
+                        Encoding.UTF8,
+                        "application/json"
+                    );
+
+                    HttpResponseMessage jwtResponse =
+                        await client.PostAsync(jwtUrl, loginContent);
+
+                    // JWT ERROR
+                    if (!jwtResponse.IsSuccessStatusCode)
+                    {
+                        string jwtError =
+                            await jwtResponse.Content.ReadAsStringAsync();
+
+                        MessageBox.Show(
+                            "JWT ERROR : " + jwtError,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        return;
+                    }
+
+                    string jwtResult =
+                        await jwtResponse.Content.ReadAsStringAsync();
+
+                    dynamic jwtObj =
+                        JsonConvert.DeserializeObject(jwtResult);
+
+                    string accessToken =
+                        jwtObj.access.ToString();
+
+                    // =========================
+                    // SET TOKEN
+                    // =========================
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue(
+                            "Bearer",
+                            accessToken
+                        );
+
+                    // =========================
+                    // GET API
+                    // =========================
+                    HttpResponseMessage apiResponse =
+                        await client.GetAsync(apiUrl);
+
+                    // API ERROR
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        string apiError =
+                            await apiResponse.Content.ReadAsStringAsync();
+
+                        MessageBox.Show(
+                            "API ERROR : " + apiError,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        return;
+                    }
+
+                    string json =
+                        await apiResponse.Content.ReadAsStringAsync();
+
+                    // JSON -> LIST
+                    List<WeightDelivery> orders =
+                        JsonConvert.DeserializeObject<List<WeightDelivery>>(json);
+
+                    // =========================
+                    // UPDATE DATABASE
+                    // =========================
+                    dl.connect();
+
+                    foreach (var item in orders)
+                    {
+                        OdbcCommand pgCommand =
+                            (OdbcCommand)dl.sqlConn().CreateCommand();
+
+                        pgCommand.CommandText = @"
+								INSERT INTO weight_delivery
+								(
+									weight_id,
+									delivery_date,
+									bws,
+									comp_code,
+									do_doc_no,
+									carry_type_name,
+									is_cancel
+								)
+								VALUES
+								(
+									?, ?, ?, ?, ?, ?, ?
+								)
+								ON CONFLICT (weight_id)
+								DO UPDATE SET
+									delivery_date = EXCLUDED.delivery_date,
+									bws = EXCLUDED.bws,
+									comp_code = EXCLUDED.comp_code,
+									do_doc_no = EXCLUDED.do_doc_no,
+									carry_type_name = EXCLUDED.carry_type_name,
+									is_cancel = EXCLUDED.is_cancel
+							";
+
+                        pgCommand.Parameters.AddWithValue("", item.weight_id);
+
+                        pgCommand.Parameters.AddWithValue("",
+                            Convert.ToDateTime(item.delivery_date));
+
+                        pgCommand.Parameters.AddWithValue("", item.bws);
+
+                        pgCommand.Parameters.AddWithValue("", item.comp_code);
+
+
+                        pgCommand.Parameters.AddWithValue("", item.do_doc_no);
+
+                        pgCommand.Parameters.AddWithValue("", item.carry_type_name);
+
+                        pgCommand.Parameters.AddWithValue("", item.is_cancel);
+
+                        pgCommand.ExecuteNonQuery();
+                    }
+
+                    dl.close();
+
+                    /*
+                    MessageBox.Show(
+                        "Update Success",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    */
+                }
+            }
+            catch (Exception ex)
+            {
+                dl.close();
+
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            finally
+            {
             }
         }
 
