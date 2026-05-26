@@ -1144,51 +1144,30 @@ namespace SerialPortListener
                 int car_company_rem = -1;
                 int car_customer_rem = -1;
 
-                try
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
                 {
-                    dl.connect();
-
-                    OdbcCommand pgCommand =
-                        (OdbcCommand)dl.sqlConn().CreateCommand();
-
-                    pgCommand.CommandText =
-                        @"SELECT car_company_rem, car_customer_rem
-                      FROM delivery_order
-                      WHERE doc_no = ?";
-
-                    pgCommand.Parameters.AddWithValue("", tbDoDocNo.Text);
-
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        car_company_rem =
-                            Convert.ToInt32(reader["car_company_rem"]);
-
-                        car_customer_rem =
-                            Convert.ToInt32(reader["car_customer_rem"]);
-                    }
-
-                    reader.Close();
+                    car_company = Convert.ToInt32(reader["car_company"]);
+                    car_customer = Convert.ToInt32(reader["car_customer"]);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("checkDeliveryOrder" + ex.Message);
-                    return -1;
-                }
-                finally
-                {
-                    dl.close();
-                }
-
-                string carryType = findcarryTypeByTransport();
-
-                if (carryType == "รับเอง" && car_customer_rem <= 0)
-                    return 1;
-
-                if (carryType == "ส่งให้" && car_company_rem <= 0)
-                    return 2;
+                reader.Close();
             }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+            finally
+            {
+                dl.close();
+            }
+
+            string carryType = findcarryTypeByTransport();
+
+            if (carryType == "รับเอง")
+                return (getDeliveryNotDoId(carryType) + 1) > car_customer ? 1 : 0;
+            else if (carryType == "ส่งให้")
+                return (getDeliveryNotDoId(carryType) + 1) > car_company ? 2 : 0;
+
             return 0;
         }
         */
@@ -1235,7 +1214,8 @@ namespace SerialPortListener
             return 0;
         }
 
-        private int  getDeliveryNotDoId(string carryType) {
+        private int getDeliveryNotDoId(string carryType)
+        {
 
             int count_id = 0;
 
@@ -4219,5 +4199,6 @@ namespace SerialPortListener
             {
             }
         }
+
     }
 }
