@@ -1223,7 +1223,6 @@ namespace SerialPortListener
             string tmpDoId = tbDoId.Text;
             string tmpOldDoId = tbOldDoId.Text;
             int checkResult = checkDeliveryOrder();
-            MessageBox.Show('checkResult =========== ', checkResult);
 
             if (tbId.Text == "")
             {
