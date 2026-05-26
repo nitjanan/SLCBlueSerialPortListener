@@ -1218,7 +1218,8 @@ namespace SerialPortListener
         {
 
             //UpdateDeliveryOrderFromApi before save
-            await UpdateDeliveryOrderFromApi();
+            if(tbDoId.Text != "")
+                await UpdateDeliveryOrderFromApi();
             // after update delivery order
             autoSave();
         }
@@ -3795,8 +3796,6 @@ namespace SerialPortListener
         private async Task UpdateDeliveryOrderFromApi()
         {
 
-            if (tbDoId.Text != "")
-            {
                 string baseUrl = getBaseApi(1);
                 string username = getBaseApi(2);
                 string password = getBaseApi(3);
@@ -3979,7 +3978,6 @@ namespace SerialPortListener
                 {
                     btLoadDO.Enabled = true;
                 }
-            }
             }
         }
 
