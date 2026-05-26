@@ -1271,14 +1271,20 @@ namespace SerialPortListener
                 }
                 else if (tbDoId.Text != "" && checkResult != 0)
                 {
-                    int num_err = checkDeliveryOrder();
                     string error = "";
 
-                    if (num_err == 1)
-                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    else if (num_err == 2)
-                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว กรุณาเปลี่ยนขนส่งหรือติดต่อพนักงานขาย";
-                    MessageBox.Show(error + " ระบบไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if (checkResult == 1)
+                        error = "รถลูกค้าเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    else if (checkResult == 2)
+                        error = "รถบริษัทเกินกว่าที่ plan ในใบส่งของแล้ว";
+
+                    MessageBox.Show(
+                        error + " ระบบไม่สามารถบันทึกข้อมูลได้",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
                 else if (isPasswordCorrect) {
 
