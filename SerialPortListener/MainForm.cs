@@ -1233,7 +1233,7 @@ namespace SerialPortListener
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             StringBuilder sql = new StringBuilder();
             sql.Append("select count(weight_id) as count_id from weight_delivery where ");
-            sql.Append("do_doc_no = '" + tbDoDocNo.Text + "' and carry_type_name = '" + carryType + "' ");
+            sql.Append("do_doc_no = '" + tbDoDocNo.Text + "' and carry_type_name = '" + carryType + "' and is_cancel = false ");
             if (tbId.Text != "")
                 sql.Append(" and weight_id != '" + tbId.Text + "' ");
 
@@ -1533,8 +1533,7 @@ namespace SerialPortListener
 
         private async void prepareWeightDelivery(string tmpDoId, string tmpOldDoId)
         {
-            if (tbDoId.Text != "")
-            {
+
                 if (tmpOldDoId != tmpDoId)
                 {
 
@@ -1546,15 +1545,14 @@ namespace SerialPortListener
                     await UCWeightDelivery(tmpDoId, false);
                 }
 
-            }
+
         }
 
 
         private async Task UCWeightDelivery(string do_id, Boolean is_cancel)
         {
 
-            if (tbDoId.Text != "")
-            {
+
                 try
                 {
                     using (HttpClient client = new HttpClient())
@@ -1676,7 +1674,6 @@ namespace SerialPortListener
                 {
                     Console.WriteLine("EXCEPTION : " + ex.Message);
                 }
-            }
         }
 
         private Boolean isCancelDO() {
