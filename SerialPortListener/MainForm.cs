@@ -1545,7 +1545,6 @@ namespace SerialPortListener
                     await UCWeightDelivery(tmpDoId, false);
                 }
 
-
         }
 
 
