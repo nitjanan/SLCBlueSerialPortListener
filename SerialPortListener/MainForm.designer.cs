@@ -1787,6 +1787,7 @@
             this.tbDoId.Size = new System.Drawing.Size(57, 23);
             this.tbDoId.TabIndex = 143;
             this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDoId.Visible = false;
             // 
             // tbDoDocNo
             // 
@@ -1820,6 +1821,7 @@
             this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
             this.tbOldDoId.TabIndex = 146;
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbOldDoId.Visible = false;
             // 
             // MainForm
             // 
