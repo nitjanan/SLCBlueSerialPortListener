@@ -4301,12 +4301,14 @@ namespace SerialPortListener
             }
             catch (Exception ex)
             {
+                /*
                 MessageBox.Show(
                     ex.ToString(),
                     "ERROR",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                */
             }
         }
 
@@ -4592,12 +4594,14 @@ namespace SerialPortListener
             {
                 dl.close();
 
+                /*
                 MessageBox.Show(
                     ex.ToString(),
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
+                */
                 return false;
             }
             finally
