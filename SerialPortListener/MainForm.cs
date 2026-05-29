@@ -4117,6 +4117,7 @@ namespace SerialPortListener
             }
         }
 
+
         private void btRefresh_Click(object sender, EventArgs e)
         {
             /* autoComplete ผู้ตัก */
