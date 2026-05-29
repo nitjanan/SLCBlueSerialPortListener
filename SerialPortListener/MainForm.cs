@@ -48,7 +48,7 @@ namespace SerialPortListener
         List<string> listOriginalCustomerName = new List<string>();
         // save new keywords
         List<string> listNewCustomerName = new List<string>();
-        
+
         List<string> listCusDO = new List<string>();
 
         class ComboboxValue
@@ -70,17 +70,59 @@ namespace SerialPortListener
 
         public class DeliveryOrder
         {
-            public int id { get; set; }
-            public string delivery_date { get; set; }
+            // --- Fields from BASE_URL (Phase 1 download) ---
             public string doc_no { get; set; }
-            public int car_company_tot { get; set; }
-            public int car_customer_tot { get; set; }
-            public int car_company_rem { get; set; }
-            public int car_customer_rem { get; set; }
-            public string qty_tot { get; set; }
+            public string delivery_date { get; set; }
+            public string delivery_type { get; set; }
+            public string car_company { get; set; }
+            public string car_customer { get; set; }
+            public string car_company_rem { get; set; }
+            public string car_customer_rem { get; set; }
+            public string customer_code { get; set; }
+            public string customer_name { get; set; }
+            public string customer_address { get; set; }
+            public string product_code { get; set; }
+            public string product_name { get; set; }
+            public object qty { get; set; }
             public string unit_name { get; set; }
-            public string comp_code { get; set; }
-            public int company { get; set; }
+            public string sale_name { get; set; }
+            public string note { get; set; }
+            public string status { get; set; }
+
+            // --- Fields from summary API (Phase 2 update) ---
+            public object car_company_tot { get; set; }
+            public object car_customer_tot { get; set; }
+            public object qty_tot { get; set; }
+        }
+
+        // ============================================================
+        // API response wrapper  { "data": [...], ... }
+        // ============================================================
+        public class DeliveryOrderPageResponse
+        {
+            public List<DeliveryOrderApiItem> data { get; set; }
+        }
+
+        // ============================================================
+        // camelCase fields from BASE_URL
+        // ============================================================
+        public class DeliveryOrderApiItem
+        {
+            public string docNo { get; set; }
+            public string deliveryDate { get; set; }
+            public string deliveryType { get; set; }
+            public string carCompany { get; set; }
+            public string carCustomer { get; set; }
+            public string customerCode { get; set; }
+            public string customerName { get; set; }
+            public string customerAddress { get; set; }
+            public string productCode { get; set; }
+            public string productName { get; set; }
+            public object qty { get; set; }
+            public string unitName { get; set; }
+            public string saleName { get; set; }
+            public string note { get; set; }
+            public string status { get; set; }
         }
 
 
@@ -148,15 +190,18 @@ namespace SerialPortListener
             btReadOut.Enabled = true;
         }
 
-        public void disableReadWeightIn() {
+        public void disableReadWeightIn()
+        {
             btReadIn.Enabled = false;
         }
 
-        public void disableReadWeightOut() {
+        public void disableReadWeightOut()
+        {
             btReadOut.Enabled = false;
         }
 
-        public void resetMainForm() {
+        public void resetMainForm()
+        {
             tbId.Text = "";
             tbDocNum.Text = "";
             rbMill1.Checked = false;
@@ -187,7 +232,8 @@ namespace SerialPortListener
                 tbScaleId.Text = "003";
                 tbScaleName.Text = "รุ่งฤดี";
             }
-            else {
+            else
+            {
                 tbScaleId.Text = Globals.Username;
                 tbScaleName.Text = Globals.Firstname;
             }
@@ -259,10 +305,11 @@ namespace SerialPortListener
             tbCustomerId.Text = "";
             tbCustomerName.Text = "";
             cbbStoneType.Text = "";
-             
+
         }
 
-        public void runningDocNumber() {
+        public void runningDocNumber()
+        {
             Boolean IsnewYear = false;
             string todayYear = DateTime.Now.ToString("yyyy");
 
@@ -295,7 +342,8 @@ namespace SerialPortListener
 
         }
 
-        private void generateNewSeqNumber() {
+        private void generateNewSeqNumber()
+        {
             string todayYear = DateTime.Now.ToString("yyyy");
             string runningNumber = "000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -306,7 +354,8 @@ namespace SerialPortListener
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
             }
-            catch (Exception) {
+            catch (Exception)
+            {
             }
             dl.close();
 
@@ -326,7 +375,8 @@ namespace SerialPortListener
             }
         }
 
-        private void fillStoneCombo() {
+        private void fillStoneCombo()
+        {
             //ล้างก่อน
             cbbStoneType.Items.Clear();
             //เพิ่ม combobox
@@ -336,13 +386,15 @@ namespace SerialPortListener
             {
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
-                while (reader.Read()) {
+                while (reader.Read())
+                {
                     string id = reader["รหัสหิน"].ToString();
                     string des = reader["ชื่อหิน"].ToString();
                     cbbStoneType.Items.Add(new ComboboxValue(id, des));
                 }
             }
-            catch (Exception) {
+            catch (Exception)
+            {
 
             }
             dl.close();
@@ -398,14 +450,16 @@ namespace SerialPortListener
         }
 
         //เรียกจาก TableFromDB
-        public void AfterGetDataFromTable() {
+        public void AfterGetDataFromTable()
+        {
             ucTruck.Hide();
             ucReport.Hide();
             ucHelp.Hide();
             ucSetting.Hide();
         }
 
-        public void setDataFromClassTableFromDB(DataToUpdate data) {
+        public void setDataFromClassTableFromDB(DataToUpdate data)
+        {
 
             tbId.Text = data.id;
             dtDate.Text = data.date;
@@ -416,7 +470,8 @@ namespace SerialPortListener
             tbCustomerId.Text = data.customerId;
             tbCustomerName.Text = data.customerName;
 
-            if (data.customerId != "" && data.customerName != "" && data.doId != "") {
+            if (data.customerId != "" && data.customerName != "" && data.doId != "")
+            {
                 cbbCustomerName.Items.Clear();
                 listCusDO.Clear();
 
@@ -459,7 +514,8 @@ namespace SerialPortListener
                     tbCarCity.Enabled = false;
                 }
             }
-            else {
+            else
+            {
                 dtWeightOutDate.Text = data.weightOutDate;
                 dtWeightOutTime.Text = data.weightOutTime;
                 //disable after read out
@@ -492,7 +548,8 @@ namespace SerialPortListener
             //ใบส่งของ
             tbDoId.Text = data.doId;
             tbDoDocNo.Text = data.doDocNo;
-            if (tbDoId.Text != "") {
+            if (tbDoId.Text != "")
+            {
                 cbbStoneType.Enabled = false;
             }
 
@@ -559,7 +616,8 @@ namespace SerialPortListener
             cbbStoneType.Enabled = false;
         }
 
-        private string getComboboxSiteUpdate() {
+        private string getComboboxSiteUpdate()
+        {
 
             string selectedName = cbbSite.Text;
             string selectedId = "";
@@ -659,7 +717,8 @@ namespace SerialPortListener
             return str;
         }
 
-        private void setDataMillToRB(string dataMill) {
+        private void setDataMillToRB(string dataMill)
+        {
             cbbMill.Text = dataMill; //111111111111
             /*
             if (dataMill.Equals("โรงโม่ 1"))
@@ -718,7 +777,8 @@ namespace SerialPortListener
             tbScaleId.Text = username;
             tbScaleName.Text = firstname;
 
-            if (Globals.isPermissionSales()) {
+            if (Globals.isPermissionSales())
+            {
                 btMenu1.Enabled = false;
                 btMenu3.Enabled = false;
             }
@@ -726,8 +786,8 @@ namespace SerialPortListener
             if (!Globals.isPermissionAddSetting())
             {
                 btMenu3.Enabled = false;
-                
-                
+
+
                 btLoadCustomer.Enabled = false;
             }
 
@@ -846,7 +906,8 @@ namespace SerialPortListener
                 if (!Globals.isPermissionTop())
                     disableBtAfterRead(1);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
             }
         }
 
@@ -855,7 +916,8 @@ namespace SerialPortListener
          * mode 1 -> disable after read in
          * mode 2 -> disable after read out
          */
-        private void disableBtAfterRead(int mode) {
+        private void disableBtAfterRead(int mode)
+        {
             if (mode.Equals(0))
             {
                 tbCarLicense.Enabled = true;
@@ -873,9 +935,10 @@ namespace SerialPortListener
                 dtWeightInDate.Enabled = false;
                 dtWeightInTime.Enabled = false;
 
-                if(!checkZeroStr(tbWeightIn.Text))
+                if (!checkZeroStr(tbWeightIn.Text))
                     tbWeightIn.Enabled = false;
-                if (!checkEmptyTB(tbCarLicense)) {
+                if (!checkEmptyTB(tbCarLicense))
+                {
                     tbCarLicense.Enabled = false;
                 }
 
@@ -916,7 +979,8 @@ namespace SerialPortListener
                 tbWeightTotal.Enabled = false;
                 tbQ.Enabled = false;
             }
-            else if (mode.Equals(999)) {//open all edit weight
+            else if (mode.Equals(999))
+            {//open all edit weight
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
                 tbWeightTotal.Enabled = true;
@@ -1054,7 +1118,8 @@ namespace SerialPortListener
 
         private void btReadOut_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 _spManager.StopListening();
 
                 /*
@@ -1071,18 +1136,22 @@ namespace SerialPortListener
                 if (!Globals.isPermissionTop())
                     disableBtAfterRead(2);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
             }
         }
 
-        private void calculateWeight() {
+        private void calculateWeight()
+        {
             string weightIn = tbWeightIn.Text;
             string weightOut = tbWeightOut.Text;
             double numWeightIn = 0;
             double numWeightOut = 0;
 
-            if (weightIn != "" && weightIn != null && weightOut != "" && weightOut != null) {
-                try {
+            if (weightIn != "" && weightIn != null && weightOut != "" && weightOut != null)
+            {
+                try
+                {
 
                     numWeightIn = Convert.ToDouble(weightIn);
                     numWeightOut = Convert.ToDouble(weightOut);
@@ -1094,13 +1163,15 @@ namespace SerialPortListener
                     tbWeightTotal.Text = numWeight.ToString("#,##0.00");
 
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                 }
             }
 
         }
 
-        private Boolean checkDuplicateRunningNumber() {
+        private Boolean checkDuplicateRunningNumber()
+        {
             Boolean isDuplicate = false;
             string todayYear = DateTime.Now.ToString("yyyy");
             string startDate = todayYear + "-01-01";
@@ -1262,40 +1333,116 @@ namespace SerialPortListener
 
         private async void btSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // =========================
+                // UPDATE DELIVERY ORDER FROM API BEFORE SAVE
+                // =========================
+                if (tbDoId.Text != "")
+                {
+                    bool apiSuccess = await CUWeightDeliveryFromApi();
 
-            //UpdateDeliveryOrderFromApi before save
-            if(tbDoId.Text != "")
-                await CUWeightDeliveryFromApi();
-            // after update delivery order
-            autoSave();
+                    if (!apiSuccess)
+                    {
+                        MessageBox.Show(
+                            "ไม่สามารถเชื่อมต่อ API ได้ ระบบจะไม่บันทึกข้อมูล กรุณาเชื่อมต่อ Internet",
+                            "API Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        return;
+                    }
+                }
+
+                // =========================
+                // SAVE
+                // =========================
+                await autoSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "ERROR",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
-        private void autoSave()
+        private async Task autoSave()
         {
-
             Boolean isPasswordCorrect = true;
+
             string tmpDoId = tbDoId.Text;
             string tmpOldDoId = tbOldDoId.Text;
+
             int checkResult = checkDeliveryOrder();
 
+            // =========================================================
+            // INSERT
+            // =========================================================
             if (tbId.Text == "")
             {
                 isPasswordCorrect = checkCancelAction();
 
-                //เช็คค่าว่าง
+                // เช็คค่าว่าง
                 if (tbDocNum.Text == "")
-                    MessageBox.Show("เลขที่การชั่งเป็นค่าว่าง กรุณใส่เลขที่การชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                else if (!isPasswordCorrect)
-                    MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //เช็คเลขซ้ำกัน
-                else if (checkDuplicateRunningNumber())
-                    MessageBox.Show("เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                else if (tbDoId.Text != "" && cbbTransport.Text == "")
+                {
+                    MessageBox.Show(
+                        "เลขที่การชั่งเป็นค่าว่าง กรุณาใส่เลขที่การชั่ง",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
+                }
+
+                // PASSWORD
+                if (!isPasswordCorrect)
+                {
+                    MessageBox.Show(
+                        "รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
+                }
+
+                // CHECK DUPLICATE
+                if (checkDuplicateRunningNumber())
+                {
+                    MessageBox.Show(
+                        "เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
+                }
+
+                // TRANSPORT EMPTY
+                if (tbDoId.Text != "" && cbbTransport.Text == "")
                 {
                     cbbTransport.Select();
-                    MessageBox.Show("ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    MessageBox.Show(
+                        "ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
                 }
-                else if (tbDoId.Text != "" && checkResult != 0)
+
+                // CHECK PLAN
+                if (tbDoId.Text != "" && checkResult != 0)
                 {
                     string error = "";
 
@@ -1311,24 +1458,81 @@ namespace SerialPortListener
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
                     );
-                }
-                else {
 
-                    saveAction();
-                    //prepareUpdateDo(tmpDoId, tmpOldDoId); เปลี่ยนให้ update delivery_order จาก center
-                    prepareWeightDelivery(tmpDoId, tmpOldDoId);
+                    return;
+                }
+
+                // =========================
+                // HAS DO → CHECK API CONNECT FIRST
+                // =========================
+                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
+                {
+                    bool canConnect = await CheckApiConnect();
+
+                    if (!canConnect)
+                    {
+                        MessageBox.Show(
+                            "ไม่สามารถเชื่อมต่อ API ได้ ระบบจะไม่บันทึกข้อมูล กรุณาเชื่อมต่อ Internet",
+                            "API Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        return; // ← STOP
+                    }
+                }
+
+                // =========================
+                // SAVE DATABASE
+                // =========================
+                saveAction();
+
+                // =========================
+                // SEND WEIGHT DELIVERY
+                // =========================
+                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
+                {
+                    int newWeightId = Convert.ToInt32(tbId.Text);
+
+                    bool weightSuccess =
+                        await prepareWeightDelivery(tmpDoId, tmpOldDoId, newWeightId);
+
+                    if (!weightSuccess)
+                    {
+                        MessageBox.Show(
+                            "บันทึกข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
+                            "API Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                    }
                 }
             }
+
+            // =========================================================
+            // UPDATE
+            // =========================================================
             else
             {
                 isPasswordCorrect = checkCancelAction();
 
+                // TRANSPORT EMPTY
                 if (tbDoId.Text != "" && cbbTransport.Text == "")
                 {
                     cbbTransport.Select();
-                    MessageBox.Show("ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    MessageBox.Show(
+                        "ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
                 }
-                else if (tbDoId.Text != "" && checkResult != 0)
+
+                // CHECK PLAN
+                if (tbDoId.Text != "" && checkResult != 0)
                 {
                     string error = "";
 
@@ -1344,16 +1548,95 @@ namespace SerialPortListener
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
                     );
-                }
-                else if (isPasswordCorrect) {
 
-                    updateAction();
-                    //prepareUpdateDo(tmpDoId, tmpOldDoId); เปลี่ยนให้ update delivery_order จาก center
-
-                    prepareWeightDelivery(tmpDoId, tmpOldDoId);
+                    return;
                 }
-                else
-                    MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // PASSWORD
+                if (!isPasswordCorrect)
+                {
+                    MessageBox.Show(
+                        "รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้",
+                        "แจ้งเตือน",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    return;
+                }
+
+                // =========================
+                // HAS DO → CHECK API CONNECT FIRST
+                // =========================
+                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
+                {
+                    bool canConnect = await CheckApiConnect();
+
+                    if (!canConnect)
+                    {
+                        MessageBox.Show(
+                            "ไม่สามารถเชื่อมต่อ API ได้ ระบบจะไม่แก้ไขข้อมูล กรุณาเชื่อมต่อ Internet",
+                            "API Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        return; // ← STOP
+                    }
+                }
+
+                // =========================
+                // UPDATE DATABASE
+                // =========================
+                updateAction();
+
+                // =========================
+                // SEND WEIGHT DELIVERY
+                // =========================
+                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
+                {
+                    int currentWeightId = Convert.ToInt32(tbId.Text);
+
+                    bool weightSuccess =
+                        await prepareWeightDelivery(tmpDoId, tmpOldDoId, currentWeightId);
+
+                    if (!weightSuccess)
+                    {
+                        MessageBox.Show(
+                            "แก้ไขข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
+                            "API Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                    }
+                }
+            }
+        }
+
+        // =========================
+        // CHECK API CONNECT (JWT PING ONLY)
+        // =========================
+        private async Task<bool> CheckApiConnect()
+        {
+            try
+            {
+                string baseUrl = getBaseApi(1, 1);
+                string username = getBaseApi(2, 1);
+                string password = getBaseApi(3, 1);
+
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(10);
+
+                    string accessToken =
+                        await GetJwtToken(client, baseUrl, username, password);
+
+                    return accessToken != null;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -1400,7 +1683,7 @@ namespace SerialPortListener
 
         private void saveWeightHistory()
         {
-            
+
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO weight_log (weight_id, วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, oil_content, site_id, stone_type_id, mill_id, car_team_id, do_id, do_doc_no)" +
@@ -1424,7 +1707,8 @@ namespace SerialPortListener
 
         }
 
-        private void setWeightId() {
+        private void setWeightId()
+        {
             //sql get weight id
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "SELECT weight_id FROM public.weight WHERE เลขที่เอกสาร = '" + tbDocNum.Text + "' AND วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' ";
@@ -1432,13 +1716,13 @@ namespace SerialPortListener
             {
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
-                while (reader.Read()) 
+                while (reader.Read())
                 {
                     string rdStr = reader["weight_id"].ToString();
                     tbId.Text = rdStr;
                     //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            } 
+            }
             catch (Exception)
             {
             }
@@ -1456,7 +1740,7 @@ namespace SerialPortListener
             sql.Append("' , วันที่ชั่งออก = '" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "' , เวลาชั่งออก = '" + dtWeightOutTime.Text + "'  , รหัสลูกค้า = '" + tbCustomerId.Text + "'  , ชื่อผู้ชั่ง = '" + tbScaleName.Text + "' , ชื่อผู้ตัก = '" + tbScoopName.Text + "' , vat = '" + numberFormat(tbVat.Text, 1));
             sql.Append("' , รหัสผู้อนุมัติจ่าย = '" + tbApproveId.Text + "' , ชื่อผู้อนุมัติจ่าย = '" + tbApproveName.Text + "' , คิว = '" + numberFormat(tbQ.Text, 1) + "' , ชนิดvat = '" + getVatRadioValue() + "' , จำนวนเงินสุทธิ = '" + numberFormat(tbAmountVat.Text, 1) + "' , ประเภทหิน = '" + cbbStoneColor.Text);
             sql.Append("' , หน้างาน = '" + cbbSite.Text + "' , ทีม = '" + cbbCarTeam.Text + "' , ล้าง = '" + getCleanRadioValue() + "' , ขนส่ง = '" + cbbTransport.Text + "' , carry_type_name = '" + findcarryTypeByTransport() + "' , หมายเหตุ = '" + tbNote.Text + "' , oil_content = '" + numberFormat(tbOilContent.Text, 1));
-            sql.Append("' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate()  + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate());
+            sql.Append("' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate());
             sql.Append("' , do_id = " + CheckText(tbDoId.Text) + " , do_doc_no = '" + tbDoDocNo.Text);
             sql.Append("' WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ");
 
@@ -1504,11 +1788,12 @@ namespace SerialPortListener
 
         private void disableAfterSave()
         {
-            if (!Globals.isPermissionEditWeight()) {
+            if (!Globals.isPermissionEditWeight())
+            {
                 if (!checkZeroStr(tbWeightIn.Text))
                     disableBtAfterRead(1);
                 if (!checkZeroStr(tbWeightOut.Text))
-                    disableBtAfterRead(2);     
+                    disableBtAfterRead(2);
             }
 
             //รหัสยกเลิกให้ปิดช่องให้หมด
@@ -1516,10 +1801,11 @@ namespace SerialPortListener
 
             //19-09-2023 มาเก็บ weight history ตรงนี้นะ
             saveWeightHistory();
-                
+
         }
 
-        private void prepareUpdateDo(string tmpDoId, string tmpOldDoId) {
+        private void prepareUpdateDo(string tmpDoId, string tmpOldDoId)
+        {
 
             //MessageBox.Show("tmpOldDoId = "+ tmpOldDoId + ", tmpDoId = " + tmpDoId);
             //20-02-2026 มาเก็บ Delivery Order ตรงนี้นะ
@@ -1534,73 +1820,75 @@ namespace SerialPortListener
             }
         }
 
-        private async void prepareWeightDelivery(string tmpDoId, string tmpOldDoId)
+
+        private async Task<bool> prepareWeightDelivery(
+            string tmpDoId,
+            string tmpOldDoId,
+            int weightId
+        )
         {
+            try
+            {
+                // =========================
+                // SKIP IF NO DO SELECTED
+                // =========================
+                if (string.IsNullOrEmpty(tmpDoId) || tmpDoId == "0")
+                    return true;
+
                 if (tmpOldDoId != tmpDoId)
                 {
+                    // only cancel old DO if it was actually set
+                    if (!string.IsNullOrEmpty(tmpOldDoId) && tmpOldDoId != "0")
+                    {
+                        bool oldResult = await UCWeightDelivery(tmpOldDoId, true, weightId);
+                        if (!oldResult) return false;
+                    }
 
-                    await UCWeightDelivery(tmpOldDoId, true);
-                    await UCWeightDelivery(tmpDoId, false);
+                    bool newResult = await UCWeightDelivery(tmpDoId, false, weightId);
+                    if (!newResult) return false;
                 }
                 else
                 {
-                    await UCWeightDelivery(tmpDoId, false);
+                    bool result = await UCWeightDelivery(tmpDoId, false, weightId);
+                    if (!result) return false;
                 }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "ERROR",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return false;
+            }
         }
 
 
-        private async Task UCWeightDelivery(string do_id, Boolean is_cancel)
-        {   
+        private async Task<bool> UCWeightDelivery(string do_id, bool is_cancel, int weightId)
+        {
             try
             {
                 using (HttpClient client = new HttpClient())
                 {
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
                     // =========================
                     // JWT LOGIN
                     // =========================
-                    string baseUrl = getBaseApi(1);
-                    string username = getBaseApi(2);
-                    string password = getBaseApi(3);
+                    string baseUrl = getBaseApi(1, 1);
+                    string username = getBaseApi(2, 1);
+                    string password = getBaseApi(3, 1);
 
-                    string jwtUrl = $"{baseUrl}/jwt/create/";
+                    string accessToken =
+                        await GetJwtToken(client, baseUrl, username, password);
 
-                    var loginData = new
-                    {
-                        username = username,
-                        password = password
-                    };
-
-                    string loginJson =
-                        JsonConvert.SerializeObject(loginData);
-
-                    var loginContent = new StringContent(
-                        loginJson,
-                        Encoding.UTF8,
-                        "application/json"
-                    );
-
-                    HttpResponseMessage jwtResponse =
-                        await client.PostAsync(jwtUrl, loginContent);
-
-                    // JWT ERROR
-                    if (!jwtResponse.IsSuccessStatusCode)
-                    {
-                        string jwtError =
-                            await jwtResponse.Content.ReadAsStringAsync();
-
-                        Console.WriteLine("JWT ERROR : " + jwtError);
-
-                        // STOP PROCESS
-                        return;
-                    }
-
-                    string jwtResult =
-                        await jwtResponse.Content.ReadAsStringAsync();
-
-                    dynamic jwtObj =
-                        JsonConvert.DeserializeObject(jwtResult);
-
-                    string accessToken = jwtObj.access;
+                    if (accessToken == null)
+                        return false;
 
                     // =========================
                     // SET TOKEN
@@ -1612,43 +1900,68 @@ namespace SerialPortListener
                         );
 
                     // =========================
-                    // CREATE DELIVERY ORDER
+                    // API URL
                     // =========================
-                    string apiUrl = $"{baseUrl}/api/uc_weight_delivery/";
+                    string apiUrl =
+                        $"{baseUrl}/api/uc_weight_delivery/";
 
-                    DateTime deliveryDate = DateTime.Parse(findValueByDO(do_id, 2));
+                    DateTime deliveryDate =
+                        DateTime.Parse(findValueByDO(do_id, 2));
 
-                    Boolean real_is_cancel = false;
-                    if (is_cancel == true)//กรณี มี old_do_id (เปลี่ยน do_id)
-                        real_is_cancel = is_cancel;
-                    else
-                        real_is_cancel = isCancelDO();//กรณี do_id เดิมเช็คว่าเป็นการยกเลิกรายการไหม
+                    bool real_is_cancel = is_cancel || isCancelDO();
 
+                    // =========================
+                    // API DATA
+                    // =========================
                     var apiData = new
                     {
-                        weight_id = Convert.ToInt32(tbId.Text),
-                        delivery_date = deliveryDate.ToString("yyyy-MM-dd"),
+                        weight_id = weightId,
+
+                        delivery_date =
+                            deliveryDate.ToString("yyyy-MM-dd"),
+
                         bws = findBWS(),
-                        do_id = Convert.ToInt32(do_id),
-                        do_doc_no = findValueByDO(do_id, 1),
-                        carry_type_name = findcarryTypeByTransport(),
-                        weight_ton = kgToTon(tbWeightTotal),
-                        weight_q = Convert.ToDouble(tbQ.Text),
-                        unit_name = findValueByDO(do_id, 3),
-                        car_company = Convert.ToInt32(findValueByDO(do_id, 4)),
-                        car_customer = Convert.ToInt32(findValueByDO(do_id, 5)),
-                        is_cancel = real_is_cancel,
+
+                        do_id =
+                            Convert.ToInt32(do_id),
+
+                        do_doc_no =
+                            findValueByDO(do_id, 1),
+
+                        carry_type_name =
+                            findcarryTypeByTransport(),
+
+                        weight_ton =
+                            kgToTon(tbWeightTotal),
+
+                        weight_q =
+                            Convert.ToDouble(tbQ.Text),
+
+                        unit_name =
+                            findValueByDO(do_id, 3),
+
+                        car_company =
+                            Convert.ToInt32(findValueByDO(do_id, 4)),
+
+                        car_customer =
+                            Convert.ToInt32(findValueByDO(do_id, 5)),
+
+                        is_cancel = real_is_cancel
                     };
 
                     string apiJson =
                         JsonConvert.SerializeObject(apiData);
 
-                    var apiContent = new StringContent(
-                        apiJson,
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                    var apiContent =
+                        new StringContent(
+                            apiJson,
+                            Encoding.UTF8,
+                            "application/json"
+                        );
 
+                    // =========================
+                    // CALL API
+                    // =========================
                     HttpResponseMessage apiResponse =
                         await client.PostAsync(apiUrl, apiContent);
 
@@ -1658,25 +1971,109 @@ namespace SerialPortListener
                             await apiResponse.Content.ReadAsStringAsync();
 
                         Console.WriteLine("SUCCESS : " + result);
+
+                        return true;
                     }
                     else
                     {
                         string error =
                             await apiResponse.Content.ReadAsStringAsync();
 
-                        Console.WriteLine("API ERROR : " + error);
+                        MessageBox.Show(
+                            "API ERROR : " + error,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+
+                        return false;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("EXCEPTION : " + ex.Message);
+                MessageBox.Show(
+                    ex.ToString(),
+                    "EXCEPTION",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return false;
             }
         }
 
-        private Boolean isCancelDO() {
+
+        private async Task<string> GetJwtToken(HttpClient client, string baseUrl, string username, string password)
+        {
+            try
+            {
+                string jwtUrl = $"{baseUrl}/jwt/create/";
+
+                var loginData = new
+                {
+                    username = username,
+                    password = password
+                };
+
+                string loginJson =
+                    JsonConvert.SerializeObject(loginData);
+
+                var loginContent =
+                    new StringContent(
+                        loginJson,
+                        Encoding.UTF8,
+                        "application/json"
+                    );
+
+                HttpResponseMessage jwtResponse =
+                    await client.PostAsync(jwtUrl, loginContent);
+
+                if (!jwtResponse.IsSuccessStatusCode)
+                {
+                    string jwtError =
+                        await jwtResponse.Content.ReadAsStringAsync();
+
+                    /*
+                    MessageBox.Show(
+                        "JWT ERROR : " + jwtError,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    */
+
+                    return null;
+                }
+
+                string jwtResult =
+                    await jwtResponse.Content.ReadAsStringAsync();
+
+                dynamic jwtObj =
+                    JsonConvert.DeserializeObject(jwtResult);
+
+                return jwtObj.access.ToString();
+            }
+            catch (Exception ex)
+            {
+                /*
+                MessageBox.Show(
+                    ex.ToString(),
+                    "JWT EXCEPTION",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                */
+                return null;
+            }
+        }
+
+
+        private Boolean isCancelDO()
+        {
             Boolean is_cancel = false;
-            if (tbCustomerId.Text == "09-V-001") {
+            if (tbCustomerId.Text == "09-V-001")
+            {
                 is_cancel = true;
             }
             return is_cancel;
@@ -1684,11 +2081,12 @@ namespace SerialPortListener
 
         private void updateDeliveryOrder(string do_id)
         {
-            if (do_id != "") {
+            if (do_id != "")
+            {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
                 pgCommand.CommandText = "UPDATE delivery_order SET car_company_tot = '" + calculateDOTotal(do_id, 1) + "' , car_customer_tot = '" + calculateDOTotal(do_id, 2) +
-                                        "' , qty_tot = '" + calculateQtyTotal(do_id) + "'" + 
+                                        "' , qty_tot = '" + calculateQtyTotal(do_id) + "'" +
                                         " WHERE delivery_date = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND do_id = " + do_id + " ; ";
                 try
                 {
@@ -1734,10 +2132,10 @@ namespace SerialPortListener
             sql.Append("SELECT ");
             sql.Append("COUNT(weight.do_id) AS count_id, SUM(weight.น้ำหนักสินค้า) AS ton_qty_total, SUM(weight.คิว) AS q_qty_total, MAX(delivery_order.unit_name) AS unit_name ");
             sql.Append("FROM weight JOIN delivery_order ON weight.do_id = delivery_order.do_id ");
-            sql.Append("WHERE weight.do_id = '"+ do_id + "' ;");
+            sql.Append("WHERE weight.do_id = '" + do_id + "' ;");
             pgCommand.CommandText = sql.ToString();
             try
-            {                      
+            {
                 dl.connect();
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
@@ -1762,13 +2160,14 @@ namespace SerialPortListener
         }
 
 
-        private string getDoFromSql(string do_id, string carry_type_name) {
+        private string getDoFromSql(string do_id, string carry_type_name)
+        {
 
             string count_id = "";
 
             //sql find company
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "select count(do_id) as count_id from weight where do_id = '" + do_id + "' and carry_type_name = '"+ carry_type_name +"' ";
+            pgCommand.CommandText = "select count(do_id) as count_id from weight where do_id = '" + do_id + "' and carry_type_name = '" + carry_type_name + "' ";
             try
             {
                 dl.connect();
@@ -1799,7 +2198,8 @@ namespace SerialPortListener
                 }
                 updateStatusCancel(true);
             }
-            else {
+            else
+            {
                 updateStatusCancel(false);
             }
         }
@@ -1835,7 +2235,8 @@ namespace SerialPortListener
             return value == 0 ? true : false;
         }
 
-        private Boolean checkEmptyTB(TextBox tb) {
+        private Boolean checkEmptyTB(TextBox tb)
+        {
             return string.IsNullOrEmpty(tb.Text) == true ? true : false;
         }
 
@@ -1862,7 +2263,8 @@ namespace SerialPortListener
             return isSuccess;
         }
 
-        private string getMillRadioValue() {
+        private string getMillRadioValue()
+        {
             string value = "";
             if (rbMill1.Checked)
                 value = rbMill1.Text;
@@ -1976,7 +2378,8 @@ namespace SerialPortListener
 
                 }
             }
-            catch (Exception) {
+            catch (Exception)
+            {
             }
             tb.AutoCompleteCustomSource = coll;
             dl.close();
@@ -1991,7 +2394,7 @@ namespace SerialPortListener
 
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where company = '"+ Company.Code +"' " ;
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where company = '" + Company.Code + "' ";
             try
             {
                 dl.connect();
@@ -2019,7 +2422,7 @@ namespace SerialPortListener
 
             //sql
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public." + tableName +" WHERE weight_type = 1 or weight_type = 3 ";
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " WHERE weight_type = 1 or weight_type = 3 ";
 
             try
             {
@@ -2069,7 +2472,7 @@ namespace SerialPortListener
 
 
             if (tbDoId.Text == "")
-              cbbCustomerName.Items.AddRange(listOriginalCustomerName.ToArray());
+                cbbCustomerName.Items.AddRange(listOriginalCustomerName.ToArray());
         }
 
         private void tbCustomerName_TextChanged(object sender, EventArgs e)
@@ -2093,7 +2496,8 @@ namespace SerialPortListener
                 if (isWrong)
                     cbbCustomerName.Text = "";
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 tbCustomerId.Text = "";
                 tbCustomerName.Text = "";
                 cbbCustomerName.Text = "";
@@ -2238,18 +2642,21 @@ namespace SerialPortListener
                         tbScaleName.Text = rdStr;
                     }
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                 }
                 dl.close();
             }
-            else {
+            else
+            {
                 tbScaleName.Text = "";
             }
         }
 
         private void tbScaleName_TextChanged(object sender, EventArgs e)
         {
-            if (tbScaleName != null && tbScaleName.Text != "") {
+            if (tbScaleName != null && tbScaleName.Text != "")
+            {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
                 pgCommand.CommandText = "SELECT * FROM public.users where firstname = '" + tbScaleName.Text + "' ";
@@ -2263,11 +2670,13 @@ namespace SerialPortListener
                         tbScaleId.Text = rdStr;
                     }
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                 }
                 dl.close();
             }
-            else {
+            else
+            {
                 tbScaleId.Text = "";
             }
 
@@ -2287,8 +2696,10 @@ namespace SerialPortListener
         }
 
         //ไม่ใช้แล้ว 03-09-2024 เนื่องจากมีการคำนวน vat (รวมภาษี) แบบใหม่
-        private void calculateAmount() {
-            try {
+        private void calculateAmount()
+        {
+            try
+            {
                 double total = 0;
                 total = Convert.ToDouble(tbWeightTotal.Text);
                 double price = 0;
@@ -2300,7 +2711,8 @@ namespace SerialPortListener
                 //set Temp
                 tbAmount.Text = tbAmountVat.Text;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 //MessageBox.Show(ex.ToString());
             }
         }
@@ -2324,8 +2736,10 @@ namespace SerialPortListener
             return amount;
         }
 
-        private void calculatenumQ() {
-            try {
+        private void calculatenumQ()
+        {
+            try
+            {
                 if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text) && !string.IsNullOrEmpty(strCalQ))
                 {
                     double numCalQ = Convert.ToDouble(strCalQ);
@@ -2333,17 +2747,19 @@ namespace SerialPortListener
                     double numQ = numWeightTotal / (numCalQ * 1000);
                     tbQ.Text = numQ.ToString("#,##0.00");
                 }
-                else {
+                else
+                {
                     tbQ.Text = "0.00";
                 }
 
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
 
             }
         }
 
-        private void btPrintIn_Click(object sender, EventArgs e)
+        private async void btPrintIn_Click(object sender, EventArgs e)
         {
             //เช็คค่าว่าง
             showErrorWeightInEmty();
@@ -2351,12 +2767,14 @@ namespace SerialPortListener
             //ปริ้น
             preparePrint(1);
 
-            if (checkDuplicateRunningNumber() && tbId.Text == "") {
+            if (checkDuplicateRunningNumber() && tbId.Text == "")
+            {
                 //ไม่ต้องทำไร
             }
-            else {
+            else
+            {
                 //save อัตโนมัติ
-                autoSave();
+                await autoSave();
 
                 FPrint f = new FPrint();
                 f.ShowDialog();
@@ -2364,7 +2782,8 @@ namespace SerialPortListener
 
         }
 
-        private void preparePrint(int mode) {
+        private void preparePrint(int mode)
+        {
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
@@ -2406,7 +2825,8 @@ namespace SerialPortListener
                 Company.TDocName = "เลขที่การชั่ง";
                 Company.TLogo = "(Sandvik)";
             }
-            else if (mode.Equals(2)) {
+            else if (mode.Equals(2))
+            {
                 //ปริ้น OUT
                 Weight.Pay = " ";
                 Weight.DocNum = " ";
@@ -2425,7 +2845,8 @@ namespace SerialPortListener
                 Company.TDocName = " ";
                 Company.TLogo = " ";
             }
-            else if (mode.Equals(1)) {
+            else if (mode.Equals(1))
+            {
                 //ปริ้น IN
                 Weight.Mill = " ";
                 Weight.StoneColor = " ";
@@ -2452,11 +2873,12 @@ namespace SerialPortListener
 
         public string CheckText(string text)
         {
-            string doIdValue =  string.IsNullOrWhiteSpace(text) ? "NULL" : text.Trim();
+            string doIdValue = string.IsNullOrWhiteSpace(text) ? "NULL" : text.Trim();
             return doIdValue;
 
         }
-        private string strNotEmty(string str) {
+        private string strNotEmty(string str)
+        {
             return str == "" ? " " : str;
         }
 
@@ -2465,7 +2887,8 @@ namespace SerialPortListener
             return str == "0.00" || str == "0" ? " " : str + " (L)";
         }
 
-        private string getPrintFromDB(string database, string field, string fieldCondition, string condition) {
+        private string getPrintFromDB(string database, string field, string fieldCondition, string condition)
+        {
             //sql
             string rdStr = " ";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -2485,7 +2908,8 @@ namespace SerialPortListener
             dl.close();
 
 
-            if (rdStr == null || rdStr == "") {
+            if (rdStr == null || rdStr == "")
+            {
                 rdStr = " ";
             }
 
@@ -2606,7 +3030,8 @@ namespace SerialPortListener
             }
         }
 
-        private void calculateVat() {
+        private void calculateVat()
+        {
             double tempAmount = getAmount();
             if (rbbVat.Checked)
             {
@@ -2699,13 +3124,15 @@ namespace SerialPortListener
         {
 
         }
-        private void convertFormatToDecimal(TextBox tb) {
+        private void convertFormatToDecimal(TextBox tb)
+        {
             try
             {
                 double d = Convert.ToDouble(tb.Text);
                 tb.Text = d.ToString("#,##0.00");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show("ชนิดของข้อมูลผิด กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tb.Text = "0.00";
             }
@@ -2779,7 +3206,7 @@ namespace SerialPortListener
                 tbCarTeam.Text = "";
             }
             */
-            
+
         }
 
         private void tbCarTeam_Click(object sender, EventArgs e)
@@ -2827,7 +3254,8 @@ namespace SerialPortListener
                             return false;
                         }
                     }
-                    else {
+                    else
+                    {
                         return false;
                     }
                 }
@@ -2836,8 +3264,10 @@ namespace SerialPortListener
             return true;
         }
 
-        private void checkResetWeight() {
-            if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001") {
+        private void checkResetWeight()
+        {
+            if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
+            {
                 tbWeightIn.Text = "0.00";
                 tbWeightOut.Text = "0.00";
                 tbWeightTotal.Text = "0.00";
@@ -2868,7 +3298,7 @@ namespace SerialPortListener
 
         private void rbMill1_Click(object sender, EventArgs e)
         {
-            
+
             RadioButton radio = (RadioButton)sender;
             if (radio.Checked)
             {
@@ -3022,19 +3452,21 @@ namespace SerialPortListener
             }
         }
 
-        private void btPrintOut_Click(object sender, EventArgs e)
+        private async void btPrintOut_Click(object sender, EventArgs e)
         {
             //เช็คค่าว่าง
             showErrorWeightOutEmty();
 
             //ปริ้น
             preparePrint(2);
-            if (checkDuplicateRunningNumber() && tbId.Text == ""){
+            if (checkDuplicateRunningNumber() && tbId.Text == "")
+            {
                 //ไม่ต้องทำไร
             }
-            else{
+            else
+            {
                 //save อัตโนมัติ
-                autoSave();
+                await autoSave();
                 HandleSuccessfulPrint();
                 //Print
                 FPrint f = new FPrint();
@@ -3043,7 +3475,7 @@ namespace SerialPortListener
 
         }
 
-        private void btPrintAll_Click(object sender, EventArgs e)
+        private async void btPrintAll_Click(object sender, EventArgs e)
         {
             //เช็คค่าว่าง
             showErrorWeightInEmty();
@@ -3051,12 +3483,14 @@ namespace SerialPortListener
 
             //ปริ้น
             preparePrint(3);
-            if (checkDuplicateRunningNumber() && tbId.Text == ""){
+            if (checkDuplicateRunningNumber() && tbId.Text == "")
+            {
                 //ไม่ต้องทำไร
             }
-            else {
+            else
+            {
                 //save อัตโนมัติ
-                autoSave();
+                await autoSave();
                 HandleSuccessfulPrint();
                 //Print
                 FPrint f = new FPrint();
@@ -3070,7 +3504,7 @@ namespace SerialPortListener
             copy_num++;
 
             Weight.DatePrint = DateTime.Now.ToString("yyyy-MM-dd");
-            Weight.DatePrintAndCopyNum = DateTime.Now.ToString("dd/MM") + "#"+ copy_num;
+            Weight.DatePrintAndCopyNum = DateTime.Now.ToString("dd/MM") + "#" + copy_num;
             Weight.TimePrint = DateTime.Now.ToString("HH:mm:ss");
 
             //save weight copy
@@ -3162,7 +3596,7 @@ namespace SerialPortListener
         private void showErrorEmtyTextBox(TextBox tb)
         {
             if (string.IsNullOrEmpty(tb.Text) || tb.Text == "0.00")
-                MessageBox.Show("' "+ tb.AccessibleName + "' เป็นค่าว่าง กรุณาใส่ข้อมูลให้ครบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("' " + tb.AccessibleName + "' เป็นค่าว่าง กรุณาใส่ข้อมูลให้ครบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void showErrorEmtyComboBox(ComboBox cbb)
@@ -3175,11 +3609,12 @@ namespace SerialPortListener
         {
             var rd = gb.Controls.OfType<RadioButton>()
                     .FirstOrDefault(n => n.Checked);
-            if(rd == null)
+            if (rd == null)
                 MessageBox.Show("' " + gb.AccessibleName + "' เป็นค่าว่าง กรุณาใส่ข้อมูลให้ครบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void showErrorWeightInEmty() {
+        private void showErrorWeightInEmty()
+        {
             showErrorEmtyRadioButton(groupBox2);
             showErrorEmtyComboBox(cbbStoneType);
             showErrorEmtyComboBox(cbbTransport);
@@ -3203,15 +3638,17 @@ namespace SerialPortListener
 
         /*4 search anywhere customer */
         private void cbbCustomerName_TextUpdate(object sender, EventArgs e)
-        {   
-             setSearchAnywhereToCombobox(cbbCustomerName,listOriginalCustomerName,listNewCustomerName);
+        {
+            setSearchAnywhereToCombobox(cbbCustomerName, listOriginalCustomerName, listNewCustomerName);
         }
 
         /*5 search anywhere customer */
-        private void setSearchAnywhereToCombobox(ComboBox cb, List<string> listOriginal, List<string> listNew) {
+        private void setSearchAnywhereToCombobox(ComboBox cb, List<string> listOriginal, List<string> listNew)
+        {
 
 
-            if (tbDoId.Text == "") {
+            if (tbDoId.Text == "")
+            {
                 try
                 {
                     //clear combobox
@@ -3256,9 +3693,9 @@ namespace SerialPortListener
 
         private void cbbCustomerName_Leave(object sender, EventArgs e)
         {
-                checkResetWeight();
-                customerNameTextChanged();
-                fillSiteCombo();
+            checkResetWeight();
+            customerNameTextChanged();
+            fillSiteCombo();
         }
 
         private void fillSiteCombo()
@@ -3290,31 +3727,31 @@ namespace SerialPortListener
         private void fillCarTeamCombo()
         {
 
-                //ล้างก่อน
-                cbbCarTeam.Items.Clear();
+            //ล้างก่อน
+            cbbCarTeam.Items.Clear();
 
-                //เพิ่ม combobox
-                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT base_car_team.รหัสทีม , base_car_team.ชื่อทีม FROM base_car INNER JOIN base_car_team ON base_car.รหัสทีม = base_car_team.รหัสทีม WHERE base_car.ชื่อรถร่วม = '" + tbCarLicense.Text + "' order by base_car_team.รหัสทีม";
-                try
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT base_car_team.รหัสทีม , base_car_team.ชื่อทีม FROM base_car INNER JOIN base_car_team ON base_car.รหัสทีม = base_car_team.รหัสทีม WHERE base_car.ชื่อรถร่วม = '" + tbCarLicense.Text + "' order by base_car_team.รหัสทีม";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
                 {
-                    dl.connect();
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string id = reader["รหัสทีม"].ToString();
-                        string des = reader["ชื่อทีม"].ToString();
-                        //cbbSite.Items.Add(des);
-                        cbbCarTeam.Items.Add(new ComboboxValue(id, des));
-                        cbbCarTeam.SelectedIndex = 0;
-                    }
+                    string id = reader["รหัสทีม"].ToString();
+                    string des = reader["ชื่อทีม"].ToString();
+                    //cbbSite.Items.Add(des);
+                    cbbCarTeam.Items.Add(new ComboboxValue(id, des));
+                    cbbCarTeam.SelectedIndex = 0;
                 }
-                catch (Exception)
-                {
+            }
+            catch (Exception)
+            {
 
-                }
-                dl.close();
-                cbbCarTeam.Items.Add("");
+            }
+            dl.close();
+            cbbCarTeam.Items.Add("");
         }
 
         private void cbbCustomerName_SelectedIndexChanged(object sender, EventArgs e)
@@ -3333,10 +3770,10 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                     carryTypeName = reader["base_carry_type_name"].ToString();
+                    carryTypeName = reader["base_carry_type_name"].ToString();
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
             }
@@ -3402,7 +3839,7 @@ namespace SerialPortListener
 
             if (mode.Equals(1))
                 return doc_no;
-            else if(mode.Equals(2))
+            else if (mode.Equals(2))
                 return delivery_date;
             else if (mode.Equals(3))
                 return unitName;
@@ -3414,15 +3851,16 @@ namespace SerialPortListener
                 return "";
         }
 
-        private string getBaseApi(int mode)
+        private string getBaseApi(int mode , int base_api_id)
         {
             string url = "";
             string username = "";
             string password = "";
             string comp_code = "";
+            string token = "";
 
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT url, username, password, comp_code FROM base_api where id = 1 ";
+            pgCommand.CommandText = "SELECT url, username, password, comp_code, token FROM base_api where id = " + base_api_id;
             try
             {
                 dl.connect();
@@ -3433,6 +3871,7 @@ namespace SerialPortListener
                     username = reader["username"].ToString();
                     password = reader["password"].ToString();
                     comp_code = reader["comp_code"].ToString();
+                    token = reader["token"].ToString();
                 }
             }
             catch (Exception)
@@ -3449,6 +3888,8 @@ namespace SerialPortListener
                 return password;
             else if (mode.Equals(4))
                 return comp_code;
+            else if (mode.Equals(5))
+                return token;
             else
                 return "";
         }
@@ -3470,13 +3911,14 @@ namespace SerialPortListener
             checkNumWeightMany(tbWeightOut);
         }
 
-        private void checkNumWeightMany(TextBox tb) {
-            if(tb.Text.Length > 9)
+        private void checkNumWeightMany(TextBox tb)
+        {
+            if (tb.Text.Length > 9)
             {
-                MessageBox.Show("ช่อง "+ tb.AccessibleName + "มีน้ำหนักเกิน กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักเกิน กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tb.Text = "0.00";
             }
-        
+
         }
 
         private void tbCarLicense_KeyUp(object sender, KeyEventArgs e)
@@ -3817,240 +4259,244 @@ namespace SerialPortListener
 
         private async void btLoadDO_Click(object sender, EventArgs e)
         {
-            await UpdateDeliveryOrderFromApi();
+            try
+            {
+                // =============================================
+                // PHASE 1 : DOWNLOAD from BASE_URL → INSERT
+                // =============================================
+                bool downloadSuccess = await DownloadAndInsertDeliveryOrders();
 
-            TableDeliveryOrder td = new TableDeliveryOrder(this);
-            td.ShowDialog();
+                if (!downloadSuccess)
+                {
+                    MessageBox.Show(
+                        "ไม่สามารถดาวน์โหลดข้อมูลจาก BASE_URL ได้",
+                        "Download Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return;
+                }
+
+                // =============================================
+                // PHASE 2 : UPDATE summary via JWT API
+                // =============================================
+                bool apiSuccess = await UpdateDeliveryOrderFromApi();
+
+                if (!apiSuccess)
+                {
+                    MessageBox.Show(
+                        "ไม่สามารถเชื่อมต่อ API ได้ กรุณาเชื่อมต่อ Internet",
+                        "API Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return;
+                }
+
+                // =============================================
+                // PHASE 3 : OPEN WEBAPP FORM
+                // =============================================
+                TableDeliveryOrder td = new TableDeliveryOrder(this);
+                td.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "ERROR",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
 
 
-        private async Task UpdateDeliveryOrderFromApi()
+        // ----------------------------------------------------------
+        // PHASE 1 : DOWNLOAD ALL PAGES from BASE_URL + INSERT
+        // เทียบกับ fetch_all_pages() + main() ใน Python
+        // ----------------------------------------------------------
+        private async Task<bool> DownloadAndInsertDeliveryOrders()
         {
-
-                string baseUrl = getBaseApi(1);
-                string username = getBaseApi(2);
-                string password = getBaseApi(3);
-                string compCode = getBaseApi(4);
+            try
+            {
+                btLoadDO.Enabled = false;
 
                 string today = DateTime.Now.ToString("yyyy-MM-dd");
+                string DOWNLOAD_BASE_URL = getBaseApi(1, 2);
+                string DOWNLOAD_TOKEN = getBaseApi(5, 2);
+                string compCode = getBaseApi(4, 2);
 
-                string jwtUrl = $"{baseUrl}/jwt/create/";
-                string apiUrl = $"{baseUrl}/deliveryorder/summary/api/by/comp/{today}/{compCode}";
-
-                try
+                using (HttpClient client = new HttpClient())
                 {
-                    btLoadDO.Enabled = false;
+                    client.Timeout = TimeSpan.FromSeconds(30);
 
-                    using (HttpClient client = new HttpClient())
+                    // Static token (เหมือน TOKEN = "xxx" ใน Python)
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", DOWNLOAD_TOKEN);
+
+                    client.DefaultRequestHeaders.Accept.Add(
+                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json")
+                    );
+
+                    int page = 1;
+                    int totalRecords = 0;
+
+                    // =============================================
+                    // LOOP ทุก page (เทียบกับ while True ใน Python)
+                    // =============================================
+                    while (true)
                     {
-                        // =========================
-                        // JWT LOGIN
-                        // =========================
-                        var loginData = new
+                        string pagedUrl =
+                            $"{DOWNLOAD_BASE_URL}" +
+                            $"?company={compCode}" +
+                            $"&deliveryDate={today}" +
+                            $"&page={page}";
+
+                        HttpResponseMessage response =
+                            await client.GetAsync(pagedUrl);
+
+                        if (!response.IsSuccessStatusCode)
                         {
-                            username = username,
-                            password = password
-                        };
-
-                        string loginJson =
-                            JsonConvert.SerializeObject(loginData);
-
-                        var loginContent = new StringContent(
-                            loginJson,
-                            Encoding.UTF8,
-                            "application/json"
-                        );
-
-                        HttpResponseMessage jwtResponse =
-                            await client.PostAsync(jwtUrl, loginContent);
-
-                        // JWT ERROR
-                        if (!jwtResponse.IsSuccessStatusCode)
-                        {
-                            string jwtError =
-                                await jwtResponse.Content.ReadAsStringAsync();
+                            string error =
+                                await response.Content.ReadAsStringAsync();
 
                             MessageBox.Show(
-                                "JWT ERROR : " + jwtError,
+                                $"DOWNLOAD ERROR (page {page}) : {error}",
                                 "Error",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error
                             );
-
-                            return;
-                        }
-
-                        string jwtResult =
-                            await jwtResponse.Content.ReadAsStringAsync();
-
-                        dynamic jwtObj =
-                            JsonConvert.DeserializeObject(jwtResult);
-
-                        string accessToken =
-                            jwtObj.access.ToString();
-
-                        // =========================
-                        // SET TOKEN
-                        // =========================
-                        client.DefaultRequestHeaders.Authorization =
-                            new AuthenticationHeaderValue(
-                                "Bearer",
-                                accessToken
-                            );
-
-                        // =========================
-                        // GET API
-                        // =========================
-                        HttpResponseMessage apiResponse =
-                            await client.GetAsync(apiUrl);
-
-                        // API ERROR
-                        if (!apiResponse.IsSuccessStatusCode)
-                        {
-                            string apiError =
-                                await apiResponse.Content.ReadAsStringAsync();
-
-                            MessageBox.Show(
-                                "API ERROR : " + apiError,
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                            );
-
-                            return;
+                            return false;
                         }
 
                         string json =
-                            await apiResponse.Content.ReadAsStringAsync();
+                            await response.Content.ReadAsStringAsync();
 
-                        // JSON -> LIST
-                        List<DeliveryOrder> orders =
-                            JsonConvert.DeserializeObject<List<DeliveryOrder>>(json);
+                        // Parse  { "data": [...] }
+                        DeliveryOrderPageResponse pageObj =
+                            JsonConvert.DeserializeObject<DeliveryOrderPageResponse>(json);
 
-                        // =========================
-                        // UPDATE DATABASE
-                        // =========================
+                        // ไม่มีข้อมูลแล้ว → หยุด loop
+                        if (pageObj?.data == null || pageObj.data.Count == 0)
+                            break;
+
+                        // =============================================
+                        // INSERT INTO local DB
+                        // ON CONFLICT (doc_no) DO NOTHING
+                        // =============================================
                         dl.connect();
 
-                        foreach (var item in orders)
+                        foreach (DeliveryOrderApiItem item in pageObj.data)
                         {
-                            OdbcCommand pgCommand =
+                            OdbcCommand cmd =
                                 (OdbcCommand)dl.sqlConn().CreateCommand();
 
-                            pgCommand.CommandText = @"
-                                UPDATE delivery_order
-                                SET
-                                    car_company_tot = ?,
-                                    car_customer_tot = ?,
-                                    qty_tot = ?,
-                                    car_company_rem = ?,
-                                    car_customer_rem = ?
-                                WHERE doc_no = ?
-                            ";
+                            // WHERE NOT EXISTS = ON CONFLICT DO NOTHING
+                            cmd.CommandText = @"
+                            INSERT INTO delivery_order (
+                                doc_no, delivery_date, delivery_type,
+                                car_company, car_customer,
+                                car_company_rem, car_customer_rem,
+                                customer_code, customer_name, customer_address,
+                                product_code, product_name, qty, unit_name,
+                                sale_name, note, status
+                            )
+                            SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                            WHERE NOT EXISTS (
+                                SELECT 1 FROM delivery_order WHERE doc_no = ?
+                            )
+                        ";
 
-                            // PARAMETER
-                            pgCommand.Parameters.AddWithValue(
-                                "",
-                                item.car_company_tot
-                            );
+                            // --- VALUES (เทียบกับ convert_api_to_db() ใน Python) ---
+                            cmd.Parameters.AddWithValue("", item.docNo ?? "");
+                            cmd.Parameters.AddWithValue("", item.deliveryDate ?? "");
+                            cmd.Parameters.AddWithValue("", item.deliveryType ?? "");
+                            cmd.Parameters.AddWithValue("", item.carCompany ?? "");
+                            cmd.Parameters.AddWithValue("", item.carCustomer ?? "");
+                            cmd.Parameters.AddWithValue("", item.carCompany ?? ""); // car_company_rem
+                            cmd.Parameters.AddWithValue("", item.carCustomer ?? ""); // car_customer_rem
+                            cmd.Parameters.AddWithValue("", item.customerCode ?? "");
+                            cmd.Parameters.AddWithValue("", item.customerName ?? "");
+                            cmd.Parameters.AddWithValue("", item.customerAddress ?? "");
+                            cmd.Parameters.AddWithValue("", item.productCode ?? "");
+                            cmd.Parameters.AddWithValue("", item.productName ?? "");
+                            cmd.Parameters.AddWithValue("",
+                                item.qty != null ? Convert.ToDecimal(item.qty) : 0m);
+                            cmd.Parameters.AddWithValue("", item.unitName ?? "");
+                            cmd.Parameters.AddWithValue("", item.saleName ?? "");
+                            cmd.Parameters.AddWithValue("", item.note ?? "");
+                            cmd.Parameters.AddWithValue("", item.status ?? "");
 
-                            pgCommand.Parameters.AddWithValue(
-                                "",
-                                item.car_customer_tot
-                            );
+                            // param สำหรับ WHERE NOT EXISTS
+                            cmd.Parameters.AddWithValue("", item.docNo ?? "");
 
-                            pgCommand.Parameters.AddWithValue(
-                                "",
-                                Convert.ToDecimal(item.qty_tot)
-                            );
-
-                            pgCommand.Parameters.AddWithValue(
-                                "",
-                                item.car_company_rem
-                            );
-
-                            pgCommand.Parameters.AddWithValue(
-                                "",
-                                item.car_customer_rem
-                            );
-
-                            pgCommand.Parameters.AddWithValue(
-                                "",
-                                item.doc_no
-                            );
-
-                            pgCommand.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
+                            totalRecords++;
                         }
 
                         dl.close();
 
-                        /*
-                        MessageBox.Show(
-                            "Update Success",
-                            "Success",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information
-                        );
-                        */
+                        page++;
                     }
-                }
-                catch (Exception ex)
-                {
-                    dl.close();
 
-                    MessageBox.Show(
-                        ex.Message,
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                    // จบ loop ทุก page สำเร็จ
+                    return true;
                 }
-                finally
-                {
-                    btLoadDO.Enabled = true;
-                }
+            }
+            catch (Exception ex)
+            {
+                dl.close();
+
+                MessageBox.Show(
+                    "DOWNLOAD INSERT ERROR : " + ex.ToString(),
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return false;
+            }
+            finally
+            {
+                btLoadDO.Enabled = true;
+            }
         }
 
-
-        private async Task CUWeightDeliveryFromApi()
+        // ----------------------------------------------------------
+        // PHASE 2 : UPDATE summary via JWT API (เดิม)
+        // ----------------------------------------------------------
+        private async Task<bool> UpdateDeliveryOrderFromApi()
         {
-
-            string baseUrl = getBaseApi(1);
-            string username = getBaseApi(2);
-            string password = getBaseApi(3);
-            string compCode = getBaseApi(4);
+            string baseUrl = getBaseApi(1, 1);
+            string username = getBaseApi(2, 1);
+            string password = getBaseApi(3, 1);
+            string compCode = getBaseApi(4, 1);
 
             string today = DateTime.Now.ToString("yyyy-MM-dd");
-
             string jwtUrl = $"{baseUrl}/jwt/create/";
-            string apiUrl = $"{baseUrl}/weightdelivery/summary/api/by/comp/{today}/{compCode}";
+            string summaryUrl =
+                $"{baseUrl}/deliveryorder/summary/api/by/comp/{today}/{compCode}";
 
             try
             {
+                btLoadDO.Enabled = false;
+
                 using (HttpClient client = new HttpClient())
                 {
-                    // =========================
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
+                    // =============================================
                     // JWT LOGIN
-                    // =========================
-                    var loginData = new
-                    {
-                        username = username,
-                        password = password
-                    };
+                    // =============================================
+                    var loginData = new { username = username, password = password };
 
-                    string loginJson =
-                        JsonConvert.SerializeObject(loginData);
+                    string loginJson = JsonConvert.SerializeObject(loginData);
 
-                    var loginContent = new StringContent(
-                        loginJson,
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+                    var loginContent =
+                        new StringContent(loginJson, Encoding.UTF8, "application/json");
 
                     HttpResponseMessage jwtResponse =
                         await client.PostAsync(jwtUrl, loginContent);
 
-                    // JWT ERROR
                     if (!jwtResponse.IsSuccessStatusCode)
                     {
                         string jwtError =
@@ -4062,8 +4508,7 @@ namespace SerialPortListener
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error
                         );
-
-                        return;
+                        return false;
                     }
 
                     string jwtResult =
@@ -4072,8 +4517,124 @@ namespace SerialPortListener
                     dynamic jwtObj =
                         JsonConvert.DeserializeObject(jwtResult);
 
-                    string accessToken =
-                        jwtObj.access.ToString();
+                    string accessToken = jwtObj.access.ToString();
+
+                    // =============================================
+                    // SET BEARER TOKEN
+                    // =============================================
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", accessToken);
+
+                    // =============================================
+                    // GET SUMMARY API
+                    // =============================================
+                    HttpResponseMessage apiResponse =
+                        await client.GetAsync(summaryUrl);
+
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        string apiError =
+                            await apiResponse.Content.ReadAsStringAsync();
+
+                        MessageBox.Show(
+                            "API ERROR : " + apiError,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                        return false;
+                    }
+
+                    string json =
+                        await apiResponse.Content.ReadAsStringAsync();
+
+                    List<DeliveryOrder> orders =
+                        JsonConvert.DeserializeObject<List<DeliveryOrder>>(json);
+
+                    // =============================================
+                    // UPDATE local DB
+                    // =============================================
+                    dl.connect();
+
+                    foreach (DeliveryOrder item in orders)
+                    {
+                        OdbcCommand pgCommand =
+                            (OdbcCommand)dl.sqlConn().CreateCommand();
+
+                        pgCommand.CommandText = @"
+                        UPDATE delivery_order
+                        SET
+                            car_company_tot  = ?,
+                            car_customer_tot = ?,
+                            qty_tot          = ?,
+                            car_company_rem  = ?,
+                            car_customer_rem = ?
+                        WHERE doc_no = ?
+                    ";
+
+                        pgCommand.Parameters.AddWithValue("", item.car_company_tot);
+                        pgCommand.Parameters.AddWithValue("", item.car_customer_tot);
+                        pgCommand.Parameters.AddWithValue("",
+                            Convert.ToDecimal(item.qty_tot));
+                        pgCommand.Parameters.AddWithValue("", item.car_company_rem);
+                        pgCommand.Parameters.AddWithValue("", item.car_customer_rem);
+                        pgCommand.Parameters.AddWithValue("", item.doc_no);
+
+                        pgCommand.ExecuteNonQuery();
+                    }
+
+                    dl.close();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                dl.close();
+
+                MessageBox.Show(
+                    ex.ToString(),
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return false;
+            }
+            finally
+            {
+                btLoadDO.Enabled = true;
+            }
+        }
+
+
+        private async Task<bool> CUWeightDeliveryFromApi()
+        {
+            string baseUrl = getBaseApi(1, 1);
+            string username = getBaseApi(2, 1);
+            string password = getBaseApi(3, 1);
+            string compCode = getBaseApi(4, 1);
+
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+
+            string jwtUrl =
+                $"{baseUrl}/jwt/create/";
+
+            string apiUrl =
+                $"{baseUrl}/weightdelivery/summary/api/by/comp/{today}/{compCode}";
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
+                    // =========================
+                    // JWT LOGIN
+                    // =========================
+                    string accessToken = await GetJwtToken(client, baseUrl, username, password);
+
+                    if (accessToken == null)
+                        return false;
 
                     // =========================
                     // SET TOKEN
@@ -4090,7 +4651,6 @@ namespace SerialPortListener
                     HttpResponseMessage apiResponse =
                         await client.GetAsync(apiUrl);
 
-                    // API ERROR
                     if (!apiResponse.IsSuccessStatusCode)
                     {
                         string apiError =
@@ -4103,13 +4663,12 @@ namespace SerialPortListener
                             MessageBoxIcon.Error
                         );
 
-                        return;
+                        return false;
                     }
 
                     string json =
                         await apiResponse.Content.ReadAsStringAsync();
 
-                    // JSON -> LIST
                     List<WeightDelivery> orders =
                         JsonConvert.DeserializeObject<List<WeightDelivery>>(json);
 
@@ -4118,65 +4677,55 @@ namespace SerialPortListener
                     // =========================
                     dl.connect();
 
-                    foreach (var item in orders)
+                    try
                     {
-                        OdbcCommand pgCommand =
-                            (OdbcCommand)dl.sqlConn().CreateCommand();
+                        foreach (var item in orders)
+                        {
+                            OdbcCommand pgCommand =
+                                (OdbcCommand)dl.sqlConn().CreateCommand();
 
-                        pgCommand.CommandText = @"
-								INSERT INTO weight_delivery
-								(
-									weight_id,
-									delivery_date,
-									bws,
-									comp_code,
-									do_doc_no,
-									carry_type_name,
-									is_cancel
-								)
-								VALUES
-								(
-									?, ?, ?, ?, ?, ?, ?
-								)
-								ON CONFLICT (weight_id)
-								DO UPDATE SET
-									delivery_date = EXCLUDED.delivery_date,
-									bws = EXCLUDED.bws,
-									comp_code = EXCLUDED.comp_code,
-									do_doc_no = EXCLUDED.do_doc_no,
-									carry_type_name = EXCLUDED.carry_type_name,
-									is_cancel = EXCLUDED.is_cancel
-							";
+                            pgCommand.CommandText = @"
+                        INSERT INTO weight_delivery
+                        (
+                            weight_id,
+                            delivery_date,
+                            bws,
+                            comp_code,
+                            do_doc_no,
+                            carry_type_name,
+                            is_cancel
+                        )
+                        VALUES
+                        (
+                            ?, ?, ?, ?, ?, ?, ?
+                        )
+                        ON CONFLICT (weight_id)
+                        DO UPDATE SET
+                            delivery_date = EXCLUDED.delivery_date,
+                            bws = EXCLUDED.bws,
+                            comp_code = EXCLUDED.comp_code,
+                            do_doc_no = EXCLUDED.do_doc_no,
+                            carry_type_name = EXCLUDED.carry_type_name,
+                            is_cancel = EXCLUDED.is_cancel
+                    ";
 
-                        pgCommand.Parameters.AddWithValue("", item.weight_id);
+                            pgCommand.Parameters.AddWithValue("", item.weight_id);
+                            pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
+                            pgCommand.Parameters.AddWithValue("", item.bws);
+                            pgCommand.Parameters.AddWithValue("", item.comp_code);
+                            pgCommand.Parameters.AddWithValue("", item.do_doc_no);
+                            pgCommand.Parameters.AddWithValue("", item.carry_type_name);
+                            pgCommand.Parameters.AddWithValue("", item.is_cancel);
 
-                        pgCommand.Parameters.AddWithValue("",
-                            Convert.ToDateTime(item.delivery_date));
-
-                        pgCommand.Parameters.AddWithValue("", item.bws);
-
-                        pgCommand.Parameters.AddWithValue("", item.comp_code);
-
-
-                        pgCommand.Parameters.AddWithValue("", item.do_doc_no);
-
-                        pgCommand.Parameters.AddWithValue("", item.carry_type_name);
-
-                        pgCommand.Parameters.AddWithValue("", item.is_cancel);
-
-                        pgCommand.ExecuteNonQuery();
+                            pgCommand.ExecuteNonQuery();
+                        }
+                    }
+                    finally
+                    {
+                        dl.close();
                     }
 
-                    dl.close();
-
-                    /*
-                    MessageBox.Show(
-                        "Update Success",
-                        "Success",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                    */
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -4184,15 +4733,18 @@ namespace SerialPortListener
                 dl.close();
 
                 MessageBox.Show(
-                    ex.Message,
-                    "Error",
+                    ex.ToString(),
+                    "ERROR",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-            }
-            finally
-            {
+
+                return false;
             }
         }
+
+
     }
+
+
 }
