@@ -4088,7 +4088,7 @@ namespace SerialPortListener
             }
 
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText =
+            pgCommand.CommandText = 
                 "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
                 "WHERE ชื่อผู้ตัก = '" + tbScoopName.Text + "' " +
                 "AND company = '" + Company.Code + "' " +
