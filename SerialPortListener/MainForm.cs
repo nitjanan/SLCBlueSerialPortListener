@@ -4030,69 +4030,91 @@ namespace SerialPortListener
 
         private void tbScoopId_Leave(object sender, EventArgs e)
         {
-            if (tbScoopId != null && tbScoopId.Text != "")
-            {
-                //sql
-                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_scoop where รหัสผู้ตัก = '" + tbScoopId.Text + "' and company = '" + Company.Code + "' ";
-                try
-                {
-                    dl.connect();
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string rdStr = reader["ชื่อผู้ตัก"].ToString();
-                        tbScoopName.Text = rdStr;
-                    }
-                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
-                    if (!reader.HasRows)
-                    {
-                        tbScoopId.Text = "";
-                        tbScoopName.Text = "";
-                    }
-                }
-                catch (Exception)
-                {
-                }
-                dl.close();
-            }
-            else
+            Application.Idle += TbScoopId_Idle;
+        }
+
+        private void TbScoopId_Idle(object sender, EventArgs e)
+        {
+            Application.Idle -= TbScoopId_Idle; // fire only once
+
+            if (tbScoopId == null || tbScoopId.Text == "")
             {
                 tbScoopName.Text = "";
+                return;
+            }
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText =
+                "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
+                "WHERE รหัสผู้ตัก = '" + tbScoopId.Text + "' " +
+                "AND company = '" + Company.Code + "' " +
+                "LIMIT 1";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    tbScoopName.Text = reader["ชื่อผู้ตัก"].ToString();
+                }
+                else
+                {
+                    tbScoopId.Text = "";
+                    tbScoopName.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dl.close();
             }
         }
 
         private void tbScoopName_Leave(object sender, EventArgs e)
         {
-            if (tbScoopName != null && tbScoopName.Text != "")
-            {
-                //sql
-                OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_scoop where ชื่อผู้ตัก = '" + tbScoopName.Text + "' and company = '" + Company.Code + "' ";
-                try
-                {
-                    dl.connect();
-                    OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string rdStr = reader["รหัสผู้ตัก"].ToString();
-                        tbScoopId.Text = rdStr;
-                    }
-                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
-                    if (!reader.HasRows)
-                    {
-                        tbScoopId.Text = "";
-                        tbScoopName.Text = "";
-                    }
-                }
-                catch (Exception)
-                {
-                }
-                dl.close();
-            }
-            else
+            Application.Idle += TbScoopName_Idle;
+        }
+
+        private void TbScoopName_Idle(object sender, EventArgs e)
+        {
+            Application.Idle -= TbScoopName_Idle; // fire only once
+
+            if (tbScoopName == null || tbScoopName.Text == "")
             {
                 tbScoopId.Text = "";
+                return;
+            }
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText =
+                "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
+                "WHERE ชื่อผู้ตัก = '" + tbScoopName.Text + "' " +
+                "AND company = '" + Company.Code + "' " +
+                "LIMIT 1";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    tbScoopId.Text = reader["รหัสผู้ตัก"].ToString();
+                }
+                else
+                {
+                    tbScoopId.Text = "";
+                    tbScoopName.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                dl.close();
             }
         }
 
