@@ -4689,29 +4689,29 @@ namespace SerialPortListener
                                 (OdbcCommand)dl.sqlConn().CreateCommand();
 
                             pgCommand.CommandText = @"
-                        INSERT INTO weight_delivery
-                        (
-                            weight_id,
-                            delivery_date,
-                            bws,
-                            comp_code,
-                            do_doc_no,
-                            carry_type_name,
-                            is_cancel
-                        )
-                        VALUES
-                        (
-                            ?, ?, ?, ?, ?, ?, ?
-                        )
-                        ON CONFLICT (weight_id)
-                        DO UPDATE SET
-                            delivery_date = EXCLUDED.delivery_date,
-                            bws = EXCLUDED.bws,
-                            comp_code = EXCLUDED.comp_code,
-                            do_doc_no = EXCLUDED.do_doc_no,
-                            carry_type_name = EXCLUDED.carry_type_name,
-                            is_cancel = EXCLUDED.is_cancel
-                    ";
+                            INSERT INTO weight_delivery
+                                (
+                                    weight_id,
+                                    delivery_date,
+                                    bws,
+                                    comp_code,
+                                    do_doc_no,
+                                    carry_type_name,
+                                    is_cancel
+                                )
+                                VALUES
+                                (
+                                    ?, ?, ?, ?, ?, ?, ?
+                                )
+                                ON CONFLICT (weight_id)
+                                DO UPDATE SET
+                                    delivery_date = EXCLUDED.delivery_date,
+                                    bws = EXCLUDED.bws,
+                                    comp_code = EXCLUDED.comp_code,
+                                    do_doc_no = EXCLUDED.do_doc_no,
+                                    carry_type_name = EXCLUDED.carry_type_name,
+                                    is_cancel = EXCLUDED.is_cancel
+                            ";
 
                             pgCommand.Parameters.AddWithValue("", item.weight_id);
                             pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
