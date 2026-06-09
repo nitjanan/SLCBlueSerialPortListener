@@ -50,15 +50,6 @@ namespace SerialPortListener
             this.deliveryorderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.doDataSet = new SerialPortListener.DoDataSet();
             this.dgvDO = new System.Windows.Forms.DataGridView();
-            this.deliveryorderBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.newDODataSet = new SerialPortListener.newDODataSet();
-            this.deliveryorderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btSelect = new System.Windows.Forms.Button();
-            this.delivery_orderTableAdapter = new SerialPortListener.DoDataSetTableAdapters.delivery_orderTableAdapter();
-            this.delivery_orderTableAdapter2 = new SerialPortListener.newDODataSetTableAdapters.delivery_orderTableAdapter();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbbSearchDO = new System.Windows.Forms.ComboBox();
-            this.btSearchDO = new System.Windows.Forms.Button();
             this.doc_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.delivery_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_customer_rem = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +70,15 @@ namespace SerialPortListener
             this.bws = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.do_id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deliveryorderBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.newDODataSet = new SerialPortListener.newDODataSet();
+            this.deliveryorderBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btSelect = new System.Windows.Forms.Button();
+            this.delivery_orderTableAdapter = new SerialPortListener.DoDataSetTableAdapters.delivery_orderTableAdapter();
+            this.delivery_orderTableAdapter2 = new SerialPortListener.newDODataSetTableAdapters.delivery_orderTableAdapter();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbbSearchDO = new System.Windows.Forms.ComboBox();
+            this.btSearchDO = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryorderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doDataSet)).BeginInit();
@@ -256,88 +256,6 @@ namespace SerialPortListener
             this.dgvDO.TabIndex = 1;
             this.dgvDO.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDO_CellDoubleClick);
             // 
-            // deliveryorderBindingSource2
-            // 
-            this.deliveryorderBindingSource2.DataMember = "delivery_order";
-            this.deliveryorderBindingSource2.DataSource = this.newDODataSet;
-            // 
-            // newDODataSet
-            // 
-            this.newDODataSet.DataSetName = "newDODataSet";
-            this.newDODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // deliveryorderBindingSource1
-            // 
-            this.deliveryorderBindingSource1.DataMember = "delivery_order";
-            // 
-            // btSelect
-            // 
-            this.btSelect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btSelect.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btSelect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSelect.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSelect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btSelect.Image = global::SerialPortListener.Properties.Resources.add_24px;
-            this.btSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSelect.Location = new System.Drawing.Point(13, 468);
-            this.btSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btSelect.Name = "btSelect";
-            this.btSelect.Size = new System.Drawing.Size(87, 32);
-            this.btSelect.TabIndex = 7;
-            this.btSelect.Text = "เลือก";
-            this.btSelect.UseVisualStyleBackColor = false;
-            this.btSelect.Click += new System.EventHandler(this.btSelect_Click);
-            // 
-            // delivery_orderTableAdapter
-            // 
-            this.delivery_orderTableAdapter.ClearBeforeFill = true;
-            // 
-            // delivery_orderTableAdapter2
-            // 
-            this.delivery_orderTableAdapter2.ClearBeforeFill = true;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(778, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 21);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "ใบส่งของ:";
-            // 
-            // cbbSearchDO
-            // 
-            this.cbbSearchDO.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cbbSearchDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbSearchDO.FormattingEnabled = true;
-            this.cbbSearchDO.Items.AddRange(new object[] {
-            "ทั้งหมด",
-            "ยังไม่สำเร็จ",
-            "สำเร็จแล้ว"});
-            this.cbbSearchDO.Location = new System.Drawing.Point(848, 13);
-            this.cbbSearchDO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbbSearchDO.Name = "cbbSearchDO";
-            this.cbbSearchDO.Size = new System.Drawing.Size(151, 29);
-            this.cbbSearchDO.TabIndex = 18;
-            // 
-            // btSearchDO
-            // 
-            this.btSearchDO.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btSearchDO.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSearchDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSearchDO.Image = global::SerialPortListener.Properties.Resources.search_32px;
-            this.btSearchDO.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSearchDO.Location = new System.Drawing.Point(1015, 10);
-            this.btSearchDO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btSearchDO.Name = "btSearchDO";
-            this.btSearchDO.Size = new System.Drawing.Size(87, 32);
-            this.btSearchDO.TabIndex = 17;
-            this.btSearchDO.Text = "ค้นหา";
-            this.btSearchDO.UseVisualStyleBackColor = true;
-            this.btSearchDO.Click += new System.EventHandler(this.btSearchDO_Click);
-            // 
             // doc_no
             // 
             this.doc_no.DataPropertyName = "doc_no";
@@ -488,6 +406,89 @@ namespace SerialPortListener
             this.product_code.HeaderText = "รหัสสินค้า";
             this.product_code.Name = "product_code";
             this.product_code.ReadOnly = true;
+            // 
+            // deliveryorderBindingSource2
+            // 
+            this.deliveryorderBindingSource2.DataMember = "delivery_order";
+            this.deliveryorderBindingSource2.DataSource = this.newDODataSet;
+            // 
+            // newDODataSet
+            // 
+            this.newDODataSet.DataSetName = "newDODataSet";
+            this.newDODataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // deliveryorderBindingSource1
+            // 
+            this.deliveryorderBindingSource1.DataMember = "delivery_order";
+            // 
+            // btSelect
+            // 
+            this.btSelect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btSelect.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btSelect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSelect.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSelect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btSelect.Image = global::SerialPortListener.Properties.Resources.add_24px;
+            this.btSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSelect.Location = new System.Drawing.Point(13, 468);
+            this.btSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btSelect.Name = "btSelect";
+            this.btSelect.Size = new System.Drawing.Size(87, 32);
+            this.btSelect.TabIndex = 7;
+            this.btSelect.Text = "เลือก";
+            this.btSelect.UseVisualStyleBackColor = false;
+            this.btSelect.Click += new System.EventHandler(this.btSelect_Click);
+            // 
+            // delivery_orderTableAdapter
+            // 
+            this.delivery_orderTableAdapter.ClearBeforeFill = true;
+            // 
+            // delivery_orderTableAdapter2
+            // 
+            this.delivery_orderTableAdapter2.ClearBeforeFill = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(778, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 21);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "ใบส่งของ:";
+            // 
+            // cbbSearchDO
+            // 
+            this.cbbSearchDO.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbbSearchDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSearchDO.FormattingEnabled = true;
+            this.cbbSearchDO.Items.AddRange(new object[] {
+            "ทั้งหมด",
+            "ยังไม่สำเร็จ",
+            "สำเร็จแล้ว",
+            "ยกเลิก"});
+            this.cbbSearchDO.Location = new System.Drawing.Point(848, 13);
+            this.cbbSearchDO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbbSearchDO.Name = "cbbSearchDO";
+            this.cbbSearchDO.Size = new System.Drawing.Size(151, 29);
+            this.cbbSearchDO.TabIndex = 18;
+            // 
+            // btSearchDO
+            // 
+            this.btSearchDO.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btSearchDO.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSearchDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSearchDO.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearchDO.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSearchDO.Location = new System.Drawing.Point(1015, 10);
+            this.btSearchDO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btSearchDO.Name = "btSearchDO";
+            this.btSearchDO.Size = new System.Drawing.Size(87, 32);
+            this.btSearchDO.TabIndex = 17;
+            this.btSearchDO.Text = "ค้นหา";
+            this.btSearchDO.UseVisualStyleBackColor = true;
+            this.btSearchDO.Click += new System.EventHandler(this.btSearchDO_Click);
             // 
             // TableDeliveryOrder
             // 
