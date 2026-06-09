@@ -50,12 +50,15 @@ namespace SerialPortListener
 
             try
             {
-                // TODO: This line of code loads data into the 'truckDataSet.weight' table. You can move, or remove it, as needed.
-                cbbSearchDO.SelectedIndex = 1;
+                // เลือก "ยังไม่สำเร็จ"
+                cbbSearchDO.SelectedItem = "ยังไม่สำเร็จ";
+
+                // โหลดข้อมูล
                 setSearchDataDO();
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -143,23 +146,40 @@ namespace SerialPortListener
 
         private void setSearchDataDO()
         {
-            DateTime today = DateTime.Today;
-            DateTime dateMainForm = DateTime.Parse(mainForm.getdtDate());//ดึงวันที่ตาม mainform
+            DateTime dateMainForm = DateTime.Parse(mainForm.getdtDate());
+
             try
             {
                 dl.connect();
 
                 StringBuilder sql = new StringBuilder();
-                sql.Append(@"select * from public.delivery_order where ");
+                sql.Append("SELECT * FROM public.delivery_order WHERE ");
+
                 if (cbbSearchDO.SelectedIndex == 1)
-                    sql.Append("(car_company_tot < car_company or car_customer_tot < car_customer) and ");
+                {
+                    // ยังไม่สำเร็จ
+                    sql.Append("(car_company_rem > 0 OR car_customer_rem > 0) ");
+                    sql.Append("AND status = 'open' AND ");
+                }
                 else if (cbbSearchDO.SelectedIndex == 2)
-                    sql.Append("(car_company_tot = car_company and car_customer_tot = car_customer) and ");
-                sql.Append("delivery_date = ? ORDER BY doc_no ");
+                {
+                    // สำเร็จแล้ว
+                    sql.Append("(car_company_rem <= 0 AND car_customer_rem <= 0) ");
+                    sql.Append("AND status = 'open' AND ");
+                }
+                else if (cbbSearchDO.SelectedIndex == 3)
+                {
+                    // ยกเลิก
+                    sql.Append("status = 'cancel' AND ");
+                }
+
+                // กรณี index = 0 (ทั้งหมด) จะไม่เพิ่มเงื่อนไข status
+
+                sql.Append("delivery_date = ? ");
+                sql.Append("ORDER BY doc_no");
 
                 using (OdbcCommand cmd = new OdbcCommand(sql.ToString(), dl.sqlConn()))
                 {
-                    // ใส่ parameter ตามลำดับ ?
                     cmd.Parameters.Add("delivery_date", OdbcType.Date).Value = dateMainForm;
 
                     using (OdbcDataAdapter adt = new OdbcDataAdapter(cmd))
@@ -172,13 +192,14 @@ namespace SerialPortListener
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             finally
             {
                 dl.close();
             }
-
         }
 
         private void dgvDO_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
