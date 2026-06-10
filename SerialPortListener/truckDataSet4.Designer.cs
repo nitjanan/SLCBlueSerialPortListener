@@ -417,6 +417,12 @@ namespace SerialPortListener {
             
             private global::System.Data.DataColumn columnbws;
             
+            private global::System.Data.DataColumn columndo_id;
+            
+            private global::System.Data.DataColumn columndo_doc_no;
+            
+            private global::System.Data.DataColumn columnstone_desc;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public weightDataTable() {
@@ -1004,6 +1010,30 @@ namespace SerialPortListener {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn do_idColumn {
+                get {
+                    return this.columndo_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn do_doc_noColumn {
+                get {
+                    return this.columndo_doc_no;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn stone_descColumn {
+                get {
+                    return this.columnstone_desc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1107,7 +1137,10 @@ namespace SerialPortListener {
                         string exp_remission, 
                         string exp_note, 
                         string exp_type, 
-                        string bws) {
+                        string bws, 
+                        int do_id, 
+                        string do_doc_no, 
+                        string stone_desc) {
                 weightRow rowweightRow = ((weightRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         เลขที่เอกสาร,
@@ -1178,7 +1211,10 @@ namespace SerialPortListener {
                         exp_remission,
                         exp_note,
                         exp_type,
-                        bws};
+                        bws,
+                        do_id,
+                        do_doc_no,
+                        stone_desc};
                 rowweightRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowweightRow);
                 return rowweightRow;
@@ -1277,6 +1313,9 @@ namespace SerialPortListener {
                 this.columnexp_note = base.Columns["exp_note"];
                 this.columnexp_type = base.Columns["exp_type"];
                 this.columnbws = base.Columns["bws"];
+                this.columndo_id = base.Columns["do_id"];
+                this.columndo_doc_no = base.Columns["do_doc_no"];
+                this.columnstone_desc = base.Columns["stone_desc"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1420,6 +1459,12 @@ namespace SerialPortListener {
                 base.Columns.Add(this.columnexp_type);
                 this.columnbws = new global::System.Data.DataColumn("bws", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbws);
+                this.columndo_id = new global::System.Data.DataColumn("do_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndo_id);
+                this.columndo_doc_no = new global::System.Data.DataColumn("do_doc_no", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndo_doc_no);
+                this.columnstone_desc = new global::System.Data.DataColumn("stone_desc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstone_desc);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnweight_id}, true));
                 this.columnเลขที่เอกสาร.MaxLength = 4095;
@@ -1473,6 +1518,8 @@ namespace SerialPortListener {
                 this.columnexp_note.MaxLength = 4095;
                 this.columnexp_type.MaxLength = 4095;
                 this.columnbws.MaxLength = 4095;
+                this.columndo_doc_no.MaxLength = 4095;
+                this.columnstone_desc.MaxLength = 4095;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2714,6 +2761,54 @@ namespace SerialPortListener {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int do_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableweight.do_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'do_id\' in table \'weight\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableweight.do_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string do_doc_no {
+                get {
+                    try {
+                        return ((string)(this[this.tableweight.do_doc_noColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'do_doc_no\' in table \'weight\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableweight.do_doc_noColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string stone_desc {
+                get {
+                    try {
+                        return ((string)(this[this.tableweight.stone_descColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'stone_desc\' in table \'weight\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableweight.stone_descColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isเลขที่เอกสารNull() {
                 return this.IsNull(this.tableweight.เลขที่เอกสารColumn);
             }
@@ -3527,6 +3622,42 @@ namespace SerialPortListener {
             public void SetbwsNull() {
                 this[this.tableweight.bwsColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isdo_idNull() {
+                return this.IsNull(this.tableweight.do_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setdo_idNull() {
+                this[this.tableweight.do_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isdo_doc_noNull() {
+                return this.IsNull(this.tableweight.do_doc_noColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setdo_doc_noNull() {
+                this[this.tableweight.do_doc_noColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isstone_descNull() {
+                return this.IsNull(this.tableweight.stone_descColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setstone_descNull() {
+                this[this.tableweight.stone_descColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -3757,286 +3888,10 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("exp_note", "exp_note");
             tableMapping.ColumnMappings.Add("exp_type", "exp_type");
             tableMapping.ColumnMappings.Add("bws", "bws");
+            tableMapping.ColumnMappings.Add("do_id", "do_id");
+            tableMapping.ColumnMappings.Add("do_doc_no", "do_doc_no");
+            tableMapping.ColumnMappings.Add("stone_desc", "stone_desc");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM ""truck_m"".""public"".""weight"" WHERE (((? = 1 AND ""น้ำหนักรถ"" IS NULL) OR (""น้ำหนักรถ"" = ?)) AND ((? = 1 AND ""น้ำหนักรวม"" IS NULL) OR (""น้ำหนักรวม"" = ?)) AND ((? = 1 AND ""น้ำหนักสินค้า"" IS NULL) OR (""น้ำหนักสินค้า"" = ?)) AND ((? = 1 AND ""ราคาตัน"" IS NULL) OR (""ราคาตัน"" = ?)) AND ((? = 1 AND ""จำนวณเงิน"" IS NULL) OR (""จำนวณเงิน"" = ?)) AND ((? = 1 AND ""วันที่"" IS NULL) OR (""วันที่"" = ?)) AND ((? = 1 AND ""วันที่ชั่งเข้า"" IS NULL) OR (""วันที่ชั่งเข้า"" = ?)) AND ((? = 1 AND ""วันที่ชั่งออก"" IS NULL) OR (""วันที่ชั่งออก"" = ?)) AND ((? = 1 AND ""vat"" IS NULL) OR (""vat"" = ?)) AND ((? = 1 AND ""คิว"" IS NULL) OR (""คิว"" = ?)) AND ((? = 1 AND ""จำนวนเงินสุทธิ"" IS NULL) OR (""จำนวนเงินสุทธิ"" = ?)) AND (""weight_id"" = ?) AND ((? = 1 AND ""oil_content"" IS NULL) OR (""oil_content"" = ?)) AND ((? = 1 AND ""origin_q"" IS NULL) OR (""origin_q"" = ?)) AND ((? = 1 AND ""origin_weight"" IS NULL) OR (""origin_weight"" = ?)) AND ((? = 1 AND ""ค่าบรรทุก"" IS NULL) OR (""ค่าบรรทุก"" = ?)) AND ((? = 1 AND ""จำนวนตัน"" IS NULL) OR (""จำนวนตัน"" = ?)) AND ((? = 1 AND ""จำนวนกระสอบ"" IS NULL) OR (""จำนวนกระสอบ"" = ?)) AND ((? = 1 AND ""ค่าขึ้น"" IS NULL) OR (""ค่าขึ้น"" = ?)) AND ((? = 1 AND ""ค่าลง"" IS NULL) OR (""ค่าลง"" = ?)) AND ((? = 1 AND ""ค่าขึ้นรวม"" IS NULL) OR (""ค่าขึ้นรวม"" = ?)) AND ((? = 1 AND ""ค่าลงรวม"" IS NULL) OR (""ค่าลงรวม"" = ?)) AND ((? = 1 AND ""ค่าบรรทุกรวม"" IS NULL) OR (""ค่าบรรทุกรวม"" = ?)) AND ((? = 1 AND ""is_s"" IS NULL) OR (""is_s"" = ?)) AND ((? = 1 AND ""is_cancel"" IS NULL) OR (""is_cancel"" = ?)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_น้ำหนักรถ", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักรถ", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_น้ำหนักรถ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรถ", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_น้ำหนักรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_น้ำหนักรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_น้ำหนักสินค้า", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักสินค้า", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_น้ำหนักสินค้า", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักสินค้า", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ราคาตัน", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ราคาตัน", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ราคาตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ราคาตัน", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวณเงิน", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวณเงิน", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวณเงิน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวณเงิน", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_วันที่", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_วันที่", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_วันที่ชั่งเข้า", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งเข้า", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_วันที่ชั่งเข้า", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งเข้า", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_วันที่ชั่งออก", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งออก", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_วันที่ชั่งออก", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งออก", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_vat", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "vat", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_vat", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "vat", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_คิว", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "คิว", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_คิว", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "คิว", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวนเงินสุทธิ", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวนเงินสุทธิ", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวนเงินสุทธิ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนเงินสุทธิ", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_weight_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "weight_id", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_oil_content", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "oil_content", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_oil_content", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "oil_content", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_origin_q", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "origin_q", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_origin_q", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_q", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_origin_weight", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "origin_weight", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_origin_weight", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_weight", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าบรรทุก", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าบรรทุก", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าบรรทุก", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุก", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวนตัน", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวนตัน", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวนตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนตัน", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวนกระสอบ", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวนกระสอบ", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวนกระสอบ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนกระสอบ", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าขึ้น", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าขึ้น", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าขึ้น", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้น", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าลง", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าลง", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าลง", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลง", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าขึ้นรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าขึ้นรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าขึ้นรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้นรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าลงรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าลงรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าลงรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลงรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าบรรทุกรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าบรรทุกรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าบรรทุกรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุกรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_is_s", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_s", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_is_s", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_s", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_is_cancel", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_cancel", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_is_cancel", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_cancel", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO ""truck_m"".""public"".""weight"" (""เลขที่เอกสาร"", ""ทะเบียนรถ"", ""จังหวัด"", ""คนขับ"", ""ลูกค้า"", ""น้ำหนักรถ"", ""น้ำหนักรวม"", ""น้ำหนักสินค้า"", ""เลขที่ใบตัก"", ""โรงโม่"", ""ชนิดหิน"", ""จ่ายเงิน"", ""รหัสผู้ชั่ง"", ""รหัสผู้ตัก"", ""ราคาตัน"", ""จำนวณเงิน"", ""ค่าขนส่ง"", ""เวลาชั่งเข้า"", ""เวลาชั่งออก"", ""รหัสลูกค้า"", ""ชื่อผู้ชั่ง"", ""ชื่อผู้ตัก"", ""วันที่"", ""วันที่ชั่งเข้า"", ""วันที่ชั่งออก"", ""vat"", ""คิว"", ""รหัสผู้อนุมัติจ่าย"", ""ชื่อผู้อนุมัติจ่าย"", ""ชนิดvat"", ""จำนวนเงินสุทธิ"", ""ประเภทหิน"", ""หน้างาน"", ""ทีม"", ""ล้าง"", ""ขนส่ง"", ""หมายเหตุ"", ""carry_type_name"", ""oil_content"", ""base_weight_station_name"", ""ลักษณะถุง"", ""ชนิดปุ๋ย"", ""น้ำหนักบรรจุ"", ""origin_q"", ""origin_weight"", ""ค่าบรรทุก"", ""จำนวนตัน"", ""จำนวนกระสอบ"", ""ค่าขึ้น"", ""ค่าลง"", ""ค่าขึ้นรวม"", ""ค่าลงรวม"", ""ค่าบรรทุกรวม"", ""is_s"", ""site_id"", ""stone_type_id"", ""mill_id"", ""car_team_id"", ""รหัสทะเบียนรถ"", ""รหัสคนขับ"", ""line_type"", ""is_cancel"", ""exp_bill"", ""exp_change"", ""exp_remission"", ""exp_note"", ""exp_type"", ""bws"") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เลขที่เอกสาร", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เลขที่เอกสาร", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ทะเบียนรถ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ทะเบียนรถ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จังหวัด", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จังหวัด", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("คนขับ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "คนขับ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ลูกค้า", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ลูกค้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักรถ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรถ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักสินค้า", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักสินค้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เลขที่ใบตัก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เลขที่ใบตัก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("โรงโม่", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "โรงโม่", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชนิดหิน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชนิดหิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จ่ายเงิน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จ่ายเงิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสผู้ชั่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสผู้ชั่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสผู้ตัก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสผู้ตัก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ราคาตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ราคาตัน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวณเงิน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวณเงิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าขนส่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าขนส่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เวลาชั่งเข้า", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เวลาชั่งเข้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เวลาชั่งออก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เวลาชั่งออก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสลูกค้า", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสลูกค้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชื่อผู้ชั่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชื่อผู้ชั่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชื่อผู้ตัก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชื่อผู้ตัก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("วันที่", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("วันที่ชั่งเข้า", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งเข้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("วันที่ชั่งออก", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งออก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("vat", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "vat", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("คิว", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "คิว", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสผู้อนุมัติจ่าย", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสผู้อนุมัติจ่าย", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชื่อผู้อนุมัติจ่าย", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชื่อผู้อนุมัติจ่าย", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชนิดvat", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชนิดvat", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวนเงินสุทธิ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนเงินสุทธิ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ประเภทหิน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ประเภทหิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("หน้างาน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "หน้างาน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ทีม", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ทีม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ล้าง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ล้าง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ขนส่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ขนส่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("หมายเหตุ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "หมายเหตุ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("carry_type_name", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "carry_type_name", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("oil_content", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "oil_content", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("base_weight_station_name", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "base_weight_station_name", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ลักษณะถุง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ลักษณะถุง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชนิดปุ๋ย", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชนิดปุ๋ย", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักบรรจุ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักบรรจุ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("origin_q", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_q", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("origin_weight", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_weight", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าบรรทุก", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวนตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนตัน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวนกระสอบ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนกระสอบ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าขึ้น", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้น", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าลง", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าขึ้นรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้นรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าลงรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลงรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าบรรทุกรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุกรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("is_s", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_s", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("site_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "site_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("stone_type_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "stone_type_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("mill_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "mill_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("car_team_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "car_team_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสทะเบียนรถ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสทะเบียนรถ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสคนขับ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสคนขับ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("line_type", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "line_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("is_cancel", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_cancel", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_bill", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_bill", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_change", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_change", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_remission", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_remission", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_note", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_note", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_type", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("bws", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "bws", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE \"truck_m\".\"public\".\"weight\" SET \"เลขที่เอกสาร\" = ?, \"ทะเบียนรถ\" = ?, \"จังห" +
-                "วัด\" = ?, \"คนขับ\" = ?, \"ลูกค้า\" = ?, \"น้ำหนักรถ\" = ?, \"น้ำหนักรวม\" = ?, \"น้ำหนัก" +
-                "สินค้า\" = ?, \"เลขที่ใบตัก\" = ?, \"โรงโม่\" = ?, \"ชนิดหิน\" = ?, \"จ่ายเงิน\" = ?, \"รห" +
-                "ัสผู้ชั่ง\" = ?, \"รหัสผู้ตัก\" = ?, \"ราคาตัน\" = ?, \"จำนวณเงิน\" = ?, \"ค่าขนส่ง\" = ?" +
-                ", \"เวลาชั่งเข้า\" = ?, \"เวลาชั่งออก\" = ?, \"รหัสลูกค้า\" = ?, \"ชื่อผู้ชั่ง\" = ?, \"ช" +
-                "ื่อผู้ตัก\" = ?, \"วันที่\" = ?, \"วันที่ชั่งเข้า\" = ?, \"วันที่ชั่งออก\" = ?, \"vat\" =" +
-                " ?, \"คิว\" = ?, \"รหัสผู้อนุมัติจ่าย\" = ?, \"ชื่อผู้อนุมัติจ่าย\" = ?, \"ชนิดvat\" = ?" +
-                ", \"จำนวนเงินสุทธิ\" = ?, \"ประเภทหิน\" = ?, \"หน้างาน\" = ?, \"ทีม\" = ?, \"ล้าง\" = ?, \"" +
-                "ขนส่ง\" = ?, \"หมายเหตุ\" = ?, \"carry_type_name\" = ?, \"oil_content\" = ?, \"base_weig" +
-                "ht_station_name\" = ?, \"ลักษณะถุง\" = ?, \"ชนิดปุ๋ย\" = ?, \"น้ำหนักบรรจุ\" = ?, \"orig" +
-                "in_q\" = ?, \"origin_weight\" = ?, \"ค่าบรรทุก\" = ?, \"จำนวนตัน\" = ?, \"จำนวนกระสอบ\" =" +
-                " ?, \"ค่าขึ้น\" = ?, \"ค่าลง\" = ?, \"ค่าขึ้นรวม\" = ?, \"ค่าลงรวม\" = ?, \"ค่าบรรทุกรวม\"" +
-                " = ?, \"is_s\" = ?, \"site_id\" = ?, \"stone_type_id\" = ?, \"mill_id\" = ?, \"car_team_i" +
-                "d\" = ?, \"รหัสทะเบียนรถ\" = ?, \"รหัสคนขับ\" = ?, \"line_type\" = ?, \"is_cancel\" = ?, " +
-                "\"exp_bill\" = ?, \"exp_change\" = ?, \"exp_remission\" = ?, \"exp_note\" = ?, \"exp_type" +
-                "\" = ?, \"bws\" = ? WHERE (((? = 1 AND \"น้ำหนักรถ\" IS NULL) OR (\"น้ำหนักรถ\" = ?)) A" +
-                "ND ((? = 1 AND \"น้ำหนักรวม\" IS NULL) OR (\"น้ำหนักรวม\" = ?)) AND ((? = 1 AND \"น้ำ" +
-                "หนักสินค้า\" IS NULL) OR (\"น้ำหนักสินค้า\" = ?)) AND ((? = 1 AND \"ราคาตัน\" IS NULL" +
-                ") OR (\"ราคาตัน\" = ?)) AND ((? = 1 AND \"จำนวณเงิน\" IS NULL) OR (\"จำนวณเงิน\" = ?))" +
-                " AND ((? = 1 AND \"วันที่\" IS NULL) OR (\"วันที่\" = ?)) AND ((? = 1 AND \"วันที่ชั่" +
-                "งเข้า\" IS NULL) OR (\"วันที่ชั่งเข้า\" = ?)) AND ((? = 1 AND \"วันที่ชั่งออก\" IS NU" +
-                "LL) OR (\"วันที่ชั่งออก\" = ?)) AND ((? = 1 AND \"vat\" IS NULL) OR (\"vat\" = ?)) AND" +
-                " ((? = 1 AND \"คิว\" IS NULL) OR (\"คิว\" = ?)) AND ((? = 1 AND \"จำนวนเงินสุทธิ\" IS " +
-                "NULL) OR (\"จำนวนเงินสุทธิ\" = ?)) AND (\"weight_id\" = ?) AND ((? = 1 AND \"oil_cont" +
-                "ent\" IS NULL) OR (\"oil_content\" = ?)) AND ((? = 1 AND \"origin_q\" IS NULL) OR (\"o" +
-                "rigin_q\" = ?)) AND ((? = 1 AND \"origin_weight\" IS NULL) OR (\"origin_weight\" = ?)" +
-                ") AND ((? = 1 AND \"ค่าบรรทุก\" IS NULL) OR (\"ค่าบรรทุก\" = ?)) AND ((? = 1 AND \"จำ" +
-                "นวนตัน\" IS NULL) OR (\"จำนวนตัน\" = ?)) AND ((? = 1 AND \"จำนวนกระสอบ\" IS NULL) OR " +
-                "(\"จำนวนกระสอบ\" = ?)) AND ((? = 1 AND \"ค่าขึ้น\" IS NULL) OR (\"ค่าขึ้น\" = ?)) AND " +
-                "((? = 1 AND \"ค่าลง\" IS NULL) OR (\"ค่าลง\" = ?)) AND ((? = 1 AND \"ค่าขึ้นรวม\" IS N" +
-                "ULL) OR (\"ค่าขึ้นรวม\" = ?)) AND ((? = 1 AND \"ค่าลงรวม\" IS NULL) OR (\"ค่าลงรวม\" =" +
-                " ?)) AND ((? = 1 AND \"ค่าบรรทุกรวม\" IS NULL) OR (\"ค่าบรรทุกรวม\" = ?)) AND ((? = " +
-                "1 AND \"is_s\" IS NULL) OR (\"is_s\" = ?)) AND ((? = 1 AND \"is_cancel\" IS NULL) OR (" +
-                "\"is_cancel\" = ?)))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เลขที่เอกสาร", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เลขที่เอกสาร", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ทะเบียนรถ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ทะเบียนรถ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จังหวัด", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จังหวัด", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("คนขับ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "คนขับ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ลูกค้า", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ลูกค้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักรถ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรถ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักสินค้า", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักสินค้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เลขที่ใบตัก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เลขที่ใบตัก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("โรงโม่", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "โรงโม่", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชนิดหิน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชนิดหิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จ่ายเงิน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จ่ายเงิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสผู้ชั่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสผู้ชั่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสผู้ตัก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสผู้ตัก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ราคาตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ราคาตัน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวณเงิน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวณเงิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าขนส่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าขนส่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เวลาชั่งเข้า", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เวลาชั่งเข้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("เวลาชั่งออก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "เวลาชั่งออก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสลูกค้า", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสลูกค้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชื่อผู้ชั่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชื่อผู้ชั่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชื่อผู้ตัก", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชื่อผู้ตัก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("วันที่", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("วันที่ชั่งเข้า", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งเข้า", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("วันที่ชั่งออก", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งออก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("vat", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "vat", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("คิว", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "คิว", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสผู้อนุมัติจ่าย", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสผู้อนุมัติจ่าย", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชื่อผู้อนุมัติจ่าย", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชื่อผู้อนุมัติจ่าย", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชนิดvat", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชนิดvat", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวนเงินสุทธิ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนเงินสุทธิ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ประเภทหิน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ประเภทหิน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("หน้างาน", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "หน้างาน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ทีม", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ทีม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ล้าง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ล้าง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ขนส่ง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ขนส่ง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("หมายเหตุ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "หมายเหตุ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("carry_type_name", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "carry_type_name", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("oil_content", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "oil_content", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("base_weight_station_name", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "base_weight_station_name", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ลักษณะถุง", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ลักษณะถุง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ชนิดปุ๋ย", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ชนิดปุ๋ย", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("น้ำหนักบรรจุ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักบรรจุ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("origin_q", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_q", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("origin_weight", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_weight", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าบรรทุก", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุก", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวนตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนตัน", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("จำนวนกระสอบ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนกระสอบ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าขึ้น", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้น", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าลง", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลง", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าขึ้นรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้นรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าลงรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลงรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ค่าบรรทุกรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุกรวม", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("is_s", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_s", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("site_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "site_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("stone_type_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "stone_type_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("mill_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "mill_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("car_team_id", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "car_team_id", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสทะเบียนรถ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสทะเบียนรถ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("รหัสคนขับ", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "รหัสคนขับ", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("line_type", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "line_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("is_cancel", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_cancel", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_bill", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_bill", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_change", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_change", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_remission", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_remission", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_note", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_note", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("exp_type", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "exp_type", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("bws", global::System.Data.Odbc.OdbcType.NText, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "bws", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_น้ำหนักรถ", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักรถ", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_น้ำหนักรถ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรถ", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_น้ำหนักรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_น้ำหนักรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_น้ำหนักสินค้า", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "น้ำหนักสินค้า", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_น้ำหนักสินค้า", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "น้ำหนักสินค้า", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ราคาตัน", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ราคาตัน", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ราคาตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ราคาตัน", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวณเงิน", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวณเงิน", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวณเงิน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวณเงิน", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_วันที่", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_วันที่", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_วันที่ชั่งเข้า", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งเข้า", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_วันที่ชั่งเข้า", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งเข้า", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_วันที่ชั่งออก", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งออก", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_วันที่ชั่งออก", global::System.Data.Odbc.OdbcType.Date, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "วันที่ชั่งออก", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_vat", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "vat", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_vat", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "vat", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_คิว", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "คิว", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_คิว", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "คิว", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวนเงินสุทธิ", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวนเงินสุทธิ", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวนเงินสุทธิ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนเงินสุทธิ", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_weight_id", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "weight_id", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_oil_content", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "oil_content", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_oil_content", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "oil_content", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_origin_q", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "origin_q", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_origin_q", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_q", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_origin_weight", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "origin_weight", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_origin_weight", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "origin_weight", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าบรรทุก", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าบรรทุก", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าบรรทุก", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุก", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวนตัน", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวนตัน", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวนตัน", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนตัน", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_จำนวนกระสอบ", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "จำนวนกระสอบ", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_จำนวนกระสอบ", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "จำนวนกระสอบ", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าขึ้น", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าขึ้น", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าขึ้น", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้น", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าลง", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าลง", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าลง", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลง", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าขึ้นรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าขึ้นรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าขึ้นรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าขึ้นรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าลงรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าลงรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าลงรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าลงรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_ค่าบรรทุกรวม", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ค่าบรรทุกรวม", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_ค่าบรรทุกรวม", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(28)), ((byte)(6)), "ค่าบรรทุกรวม", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_is_s", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_s", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_is_s", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_s", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_is_cancel", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_cancel", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_is_cancel", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "is_cancel", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4052,7 +3907,11 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ""เลขที่เอกสาร"", ""ทะเบียนรถ"", ""จังหวัด"", ""คนขับ"", ""ลูกค้า"", ""น้ำหนักรถ"", ""น้ำหนักรวม"", ""น้ำหนักสินค้า"", ""เลขที่ใบตัก"", ""โรงโม่"", ""ชนิดหิน"", ""จ่ายเงิน"", ""รหัสผู้ชั่ง"", ""รหัสผู้ตัก"", ""ราคาตัน"", ""จำนวณเงิน"", ""ค่าขนส่ง"", ""เวลาชั่งเข้า"", ""เวลาชั่งออก"", ""รหัสลูกค้า"", ""ชื่อผู้ชั่ง"", ""ชื่อผู้ตัก"", ""วันที่"", ""วันที่ชั่งเข้า"", ""วันที่ชั่งออก"", ""vat"", ""คิว"", ""รหัสผู้อนุมัติจ่าย"", ""ชื่อผู้อนุมัติจ่าย"", ""ชนิดvat"", ""จำนวนเงินสุทธิ"", ""ประเภทหิน"", ""หน้างาน"", ""ทีม"", ""ล้าง"", ""weight_id"", ""ขนส่ง"", ""หมายเหตุ"", ""carry_type_name"", ""oil_content"", ""base_weight_station_name"", ""ลักษณะถุง"", ""ชนิดปุ๋ย"", ""น้ำหนักบรรจุ"", ""origin_q"", ""origin_weight"", ""ค่าบรรทุก"", ""จำนวนตัน"", ""จำนวนกระสอบ"", ""ค่าขึ้น"", ""ค่าลง"", ""ค่าขึ้นรวม"", ""ค่าลงรวม"", ""ค่าบรรทุกรวม"", ""is_s"", ""site_id"", ""stone_type_id"", ""mill_id"", ""car_team_id"", ""รหัสทะเบียนรถ"", ""รหัสคนขับ"", ""line_type"", ""is_cancel"", ""exp_bill"", ""exp_change"", ""exp_remission"", ""exp_note"", ""exp_type"", ""bws"" FROM ""public"".""weight""";
+            this._commandCollection[0].CommandText = @"SELECT        เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า, เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, เวลาชั่งเข้า, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, วันที่, วันที่ชั่งเข้า, วันที่ชั่งออก, vat, คิว, 
+                         รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, weight_id, ขนส่ง, หมายเหตุ, carry_type_name, oil_content, base_weight_station_name, ลักษณะถุง, ชนิดปุ๋ย, น้ำหนักบรรจุ, origin_q, origin_weight, ค่าบรรทุก, จำนวนตัน, 
+                         จำนวนกระสอบ, ค่าขึ้น, ค่าลง, ค่าขึ้นรวม, ค่าลงรวม, ค่าบรรทุกรวม, is_s, site_id, stone_type_id, mill_id, car_team_id, รหัสทะเบียนรถ, รหัสคนขับ, line_type, is_cancel, exp_bill, exp_change, exp_remission, exp_note, exp_type, bws, do_id, 
+                         do_doc_no, stone_desc
+FROM            ""public"".weight";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4079,998 +3938,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(truckDataSet.weightDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(truckDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "weight");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(
-                    decimal Original_น้ำหนักรถ, 
-                    decimal Original_น้ำหนักรวม, 
-                    decimal Original_น้ำหนักสินค้า, 
-                    decimal Original_ราคาตัน, 
-                    decimal Original_จำนวณเงิน, 
-                    System.DateTime Original_วันที่, 
-                    System.DateTime Original_วันที่ชั่งเข้า, 
-                    System.DateTime Original_วันที่ชั่งออก, 
-                    decimal Original_vat, 
-                    decimal Original_คิว, 
-                    decimal Original_จำนวนเงินสุทธิ, 
-                    int Original_weight_id, 
-                    decimal Original_oil_content, 
-                    decimal Original_origin_q, 
-                    decimal Original_origin_weight, 
-                    decimal Original_ค่าบรรทุก, 
-                    decimal Original_จำนวนตัน, 
-                    decimal Original_จำนวนกระสอบ, 
-                    decimal Original_ค่าขึ้น, 
-                    decimal Original_ค่าลง, 
-                    decimal Original_ค่าขึ้นรวม, 
-                    decimal Original_ค่าลงรวม, 
-                    decimal Original_ค่าบรรทุกรวม, 
-                    string Original_is_s, 
-                    string Original_is_cancel) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((decimal)(Original_น้ำหนักรถ));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_น้ำหนักรวม));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_น้ำหนักสินค้า));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_ราคาตัน));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[9].Value = ((decimal)(Original_จำนวณเงิน));
-            this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[11].Value = ((System.DateTime)(Original_วันที่));
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[13].Value = ((System.DateTime)(Original_วันที่ชั่งเข้า));
-            this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[15].Value = ((System.DateTime)(Original_วันที่ชั่งออก));
-            this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[17].Value = ((decimal)(Original_vat));
-            this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[19].Value = ((decimal)(Original_คิว));
-            this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[21].Value = ((decimal)(Original_จำนวนเงินสุทธิ));
-            this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_weight_id));
-            this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[24].Value = ((decimal)(Original_oil_content));
-            this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[26].Value = ((decimal)(Original_origin_q));
-            this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[28].Value = ((decimal)(Original_origin_weight));
-            this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[30].Value = ((decimal)(Original_ค่าบรรทุก));
-            this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[32].Value = ((decimal)(Original_จำนวนตัน));
-            this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[34].Value = ((decimal)(Original_จำนวนกระสอบ));
-            this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[36].Value = ((decimal)(Original_ค่าขึ้น));
-            this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[38].Value = ((decimal)(Original_ค่าลง));
-            this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[40].Value = ((decimal)(Original_ค่าขึ้นรวม));
-            this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[42].Value = ((decimal)(Original_ค่าลงรวม));
-            this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[44].Value = ((decimal)(Original_ค่าบรรทุกรวม));
-            if ((Original_is_s == null)) {
-                throw new global::System.ArgumentNullException("Original_is_s");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[46].Value = ((string)(Original_is_s));
-            }
-            if ((Original_is_cancel == null)) {
-                throw new global::System.ArgumentNullException("Original_is_cancel");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[48].Value = ((string)(Original_is_cancel));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    string เลขที่เอกสาร, 
-                    string ทะเบียนรถ, 
-                    string จังหวัด, 
-                    string คนขับ, 
-                    string ลูกค้า, 
-                    decimal น้ำหนักรถ, 
-                    decimal น้ำหนักรวม, 
-                    decimal น้ำหนักสินค้า, 
-                    string เลขที่ใบตัก, 
-                    string โรงโม่, 
-                    string ชนิดหิน, 
-                    string จ่ายเงิน, 
-                    string รหัสผู้ชั่ง, 
-                    string รหัสผู้ตัก, 
-                    decimal ราคาตัน, 
-                    decimal จำนวณเงิน, 
-                    string ค่าขนส่ง, 
-                    string เวลาชั่งเข้า, 
-                    string เวลาชั่งออก, 
-                    string รหัสลูกค้า, 
-                    string ชื่อผู้ชั่ง, 
-                    string ชื่อผู้ตัก, 
-                    System.DateTime วันที่, 
-                    System.DateTime วันที่ชั่งเข้า, 
-                    System.DateTime วันที่ชั่งออก, 
-                    decimal vat, 
-                    decimal คิว, 
-                    string รหัสผู้อนุมัติจ่าย, 
-                    string ชื่อผู้อนุมัติจ่าย, 
-                    string ชนิดvat, 
-                    decimal จำนวนเงินสุทธิ, 
-                    string ประเภทหิน, 
-                    string หน้างาน, 
-                    string ทีม, 
-                    string ล้าง, 
-                    string ขนส่ง, 
-                    string หมายเหตุ, 
-                    string carry_type_name, 
-                    decimal oil_content, 
-                    string base_weight_station_name, 
-                    string ลักษณะถุง, 
-                    string ชนิดปุ๋ย, 
-                    string น้ำหนักบรรจุ, 
-                    decimal origin_q, 
-                    decimal origin_weight, 
-                    decimal ค่าบรรทุก, 
-                    decimal จำนวนตัน, 
-                    decimal จำนวนกระสอบ, 
-                    decimal ค่าขึ้น, 
-                    decimal ค่าลง, 
-                    decimal ค่าขึ้นรวม, 
-                    decimal ค่าลงรวม, 
-                    decimal ค่าบรรทุกรวม, 
-                    string is_s, 
-                    string site_id, 
-                    string stone_type_id, 
-                    string mill_id, 
-                    string car_team_id, 
-                    string รหัสทะเบียนรถ, 
-                    string รหัสคนขับ, 
-                    string line_type, 
-                    string is_cancel, 
-                    string exp_bill, 
-                    string exp_change, 
-                    string exp_remission, 
-                    string exp_note, 
-                    string exp_type, 
-                    string bws) {
-            if ((เลขที่เอกสาร == null)) {
-                throw new global::System.ArgumentNullException("เลขที่เอกสาร");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(เลขที่เอกสาร));
-            }
-            if ((ทะเบียนรถ == null)) {
-                throw new global::System.ArgumentNullException("ทะเบียนรถ");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ทะเบียนรถ));
-            }
-            if ((จังหวัด == null)) {
-                throw new global::System.ArgumentNullException("จังหวัด");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(จังหวัด));
-            }
-            if ((คนขับ == null)) {
-                throw new global::System.ArgumentNullException("คนขับ");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(คนขับ));
-            }
-            if ((ลูกค้า == null)) {
-                throw new global::System.ArgumentNullException("ลูกค้า");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(ลูกค้า));
-            }
-            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(น้ำหนักรถ));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(น้ำหนักรวม));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(น้ำหนักสินค้า));
-            if ((เลขที่ใบตัก == null)) {
-                throw new global::System.ArgumentNullException("เลขที่ใบตัก");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(เลขที่ใบตัก));
-            }
-            if ((โรงโม่ == null)) {
-                throw new global::System.ArgumentNullException("โรงโม่");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(โรงโม่));
-            }
-            if ((ชนิดหิน == null)) {
-                throw new global::System.ArgumentNullException("ชนิดหิน");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(ชนิดหิน));
-            }
-            if ((จ่ายเงิน == null)) {
-                throw new global::System.ArgumentNullException("จ่ายเงิน");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(จ่ายเงิน));
-            }
-            if ((รหัสผู้ชั่ง == null)) {
-                throw new global::System.ArgumentNullException("รหัสผู้ชั่ง");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(รหัสผู้ชั่ง));
-            }
-            if ((รหัสผู้ตัก == null)) {
-                throw new global::System.ArgumentNullException("รหัสผู้ตัก");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(รหัสผู้ตัก));
-            }
-            this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(ราคาตัน));
-            this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(จำนวณเงิน));
-            if ((ค่าขนส่ง == null)) {
-                throw new global::System.ArgumentNullException("ค่าขนส่ง");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(ค่าขนส่ง));
-            }
-            if ((เวลาชั่งเข้า == null)) {
-                throw new global::System.ArgumentNullException("เวลาชั่งเข้า");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(เวลาชั่งเข้า));
-            }
-            if ((เวลาชั่งออก == null)) {
-                throw new global::System.ArgumentNullException("เวลาชั่งออก");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(เวลาชั่งออก));
-            }
-            if ((รหัสลูกค้า == null)) {
-                throw new global::System.ArgumentNullException("รหัสลูกค้า");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(รหัสลูกค้า));
-            }
-            if ((ชื่อผู้ชั่ง == null)) {
-                throw new global::System.ArgumentNullException("ชื่อผู้ชั่ง");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(ชื่อผู้ชั่ง));
-            }
-            if ((ชื่อผู้ตัก == null)) {
-                throw new global::System.ArgumentNullException("ชื่อผู้ตัก");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[21].Value = ((string)(ชื่อผู้ตัก));
-            }
-            this.Adapter.InsertCommand.Parameters[22].Value = ((System.DateTime)(วันที่));
-            this.Adapter.InsertCommand.Parameters[23].Value = ((System.DateTime)(วันที่ชั่งเข้า));
-            this.Adapter.InsertCommand.Parameters[24].Value = ((System.DateTime)(วันที่ชั่งออก));
-            this.Adapter.InsertCommand.Parameters[25].Value = ((decimal)(vat));
-            this.Adapter.InsertCommand.Parameters[26].Value = ((decimal)(คิว));
-            if ((รหัสผู้อนุมัติจ่าย == null)) {
-                throw new global::System.ArgumentNullException("รหัสผู้อนุมัติจ่าย");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[27].Value = ((string)(รหัสผู้อนุมัติจ่าย));
-            }
-            if ((ชื่อผู้อนุมัติจ่าย == null)) {
-                throw new global::System.ArgumentNullException("ชื่อผู้อนุมัติจ่าย");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[28].Value = ((string)(ชื่อผู้อนุมัติจ่าย));
-            }
-            if ((ชนิดvat == null)) {
-                throw new global::System.ArgumentNullException("ชนิดvat");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[29].Value = ((string)(ชนิดvat));
-            }
-            this.Adapter.InsertCommand.Parameters[30].Value = ((decimal)(จำนวนเงินสุทธิ));
-            if ((ประเภทหิน == null)) {
-                throw new global::System.ArgumentNullException("ประเภทหิน");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[31].Value = ((string)(ประเภทหิน));
-            }
-            if ((หน้างาน == null)) {
-                throw new global::System.ArgumentNullException("หน้างาน");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[32].Value = ((string)(หน้างาน));
-            }
-            if ((ทีม == null)) {
-                throw new global::System.ArgumentNullException("ทีม");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[33].Value = ((string)(ทีม));
-            }
-            if ((ล้าง == null)) {
-                throw new global::System.ArgumentNullException("ล้าง");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[34].Value = ((string)(ล้าง));
-            }
-            if ((ขนส่ง == null)) {
-                throw new global::System.ArgumentNullException("ขนส่ง");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[35].Value = ((string)(ขนส่ง));
-            }
-            if ((หมายเหตุ == null)) {
-                throw new global::System.ArgumentNullException("หมายเหตุ");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[36].Value = ((string)(หมายเหตุ));
-            }
-            if ((carry_type_name == null)) {
-                throw new global::System.ArgumentNullException("carry_type_name");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[37].Value = ((string)(carry_type_name));
-            }
-            this.Adapter.InsertCommand.Parameters[38].Value = ((decimal)(oil_content));
-            if ((base_weight_station_name == null)) {
-                throw new global::System.ArgumentNullException("base_weight_station_name");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[39].Value = ((string)(base_weight_station_name));
-            }
-            if ((ลักษณะถุง == null)) {
-                throw new global::System.ArgumentNullException("ลักษณะถุง");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[40].Value = ((string)(ลักษณะถุง));
-            }
-            if ((ชนิดปุ๋ย == null)) {
-                throw new global::System.ArgumentNullException("ชนิดปุ๋ย");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[41].Value = ((string)(ชนิดปุ๋ย));
-            }
-            if ((น้ำหนักบรรจุ == null)) {
-                throw new global::System.ArgumentNullException("น้ำหนักบรรจุ");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[42].Value = ((string)(น้ำหนักบรรจุ));
-            }
-            this.Adapter.InsertCommand.Parameters[43].Value = ((decimal)(origin_q));
-            this.Adapter.InsertCommand.Parameters[44].Value = ((decimal)(origin_weight));
-            this.Adapter.InsertCommand.Parameters[45].Value = ((decimal)(ค่าบรรทุก));
-            this.Adapter.InsertCommand.Parameters[46].Value = ((decimal)(จำนวนตัน));
-            this.Adapter.InsertCommand.Parameters[47].Value = ((decimal)(จำนวนกระสอบ));
-            this.Adapter.InsertCommand.Parameters[48].Value = ((decimal)(ค่าขึ้น));
-            this.Adapter.InsertCommand.Parameters[49].Value = ((decimal)(ค่าลง));
-            this.Adapter.InsertCommand.Parameters[50].Value = ((decimal)(ค่าขึ้นรวม));
-            this.Adapter.InsertCommand.Parameters[51].Value = ((decimal)(ค่าลงรวม));
-            this.Adapter.InsertCommand.Parameters[52].Value = ((decimal)(ค่าบรรทุกรวม));
-            if ((is_s == null)) {
-                throw new global::System.ArgumentNullException("is_s");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[53].Value = ((string)(is_s));
-            }
-            if ((site_id == null)) {
-                throw new global::System.ArgumentNullException("site_id");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[54].Value = ((string)(site_id));
-            }
-            if ((stone_type_id == null)) {
-                throw new global::System.ArgumentNullException("stone_type_id");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[55].Value = ((string)(stone_type_id));
-            }
-            if ((mill_id == null)) {
-                throw new global::System.ArgumentNullException("mill_id");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[56].Value = ((string)(mill_id));
-            }
-            if ((car_team_id == null)) {
-                throw new global::System.ArgumentNullException("car_team_id");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[57].Value = ((string)(car_team_id));
-            }
-            if ((รหัสทะเบียนรถ == null)) {
-                throw new global::System.ArgumentNullException("รหัสทะเบียนรถ");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[58].Value = ((string)(รหัสทะเบียนรถ));
-            }
-            if ((รหัสคนขับ == null)) {
-                throw new global::System.ArgumentNullException("รหัสคนขับ");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[59].Value = ((string)(รหัสคนขับ));
-            }
-            if ((line_type == null)) {
-                throw new global::System.ArgumentNullException("line_type");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[60].Value = ((string)(line_type));
-            }
-            if ((is_cancel == null)) {
-                throw new global::System.ArgumentNullException("is_cancel");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[61].Value = ((string)(is_cancel));
-            }
-            if ((exp_bill == null)) {
-                throw new global::System.ArgumentNullException("exp_bill");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[62].Value = ((string)(exp_bill));
-            }
-            if ((exp_change == null)) {
-                throw new global::System.ArgumentNullException("exp_change");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[63].Value = ((string)(exp_change));
-            }
-            if ((exp_remission == null)) {
-                throw new global::System.ArgumentNullException("exp_remission");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[64].Value = ((string)(exp_remission));
-            }
-            if ((exp_note == null)) {
-                throw new global::System.ArgumentNullException("exp_note");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[65].Value = ((string)(exp_note));
-            }
-            if ((exp_type == null)) {
-                throw new global::System.ArgumentNullException("exp_type");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[66].Value = ((string)(exp_type));
-            }
-            if ((bws == null)) {
-                throw new global::System.ArgumentNullException("bws");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[67].Value = ((string)(bws));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string เลขที่เอกสาร, 
-                    string ทะเบียนรถ, 
-                    string จังหวัด, 
-                    string คนขับ, 
-                    string ลูกค้า, 
-                    decimal น้ำหนักรถ, 
-                    decimal น้ำหนักรวม, 
-                    decimal น้ำหนักสินค้า, 
-                    string เลขที่ใบตัก, 
-                    string โรงโม่, 
-                    string ชนิดหิน, 
-                    string จ่ายเงิน, 
-                    string รหัสผู้ชั่ง, 
-                    string รหัสผู้ตัก, 
-                    decimal ราคาตัน, 
-                    decimal จำนวณเงิน, 
-                    string ค่าขนส่ง, 
-                    string เวลาชั่งเข้า, 
-                    string เวลาชั่งออก, 
-                    string รหัสลูกค้า, 
-                    string ชื่อผู้ชั่ง, 
-                    string ชื่อผู้ตัก, 
-                    System.DateTime วันที่, 
-                    System.DateTime วันที่ชั่งเข้า, 
-                    System.DateTime วันที่ชั่งออก, 
-                    decimal vat, 
-                    decimal คิว, 
-                    string รหัสผู้อนุมัติจ่าย, 
-                    string ชื่อผู้อนุมัติจ่าย, 
-                    string ชนิดvat, 
-                    decimal จำนวนเงินสุทธิ, 
-                    string ประเภทหิน, 
-                    string หน้างาน, 
-                    string ทีม, 
-                    string ล้าง, 
-                    string ขนส่ง, 
-                    string หมายเหตุ, 
-                    string carry_type_name, 
-                    decimal oil_content, 
-                    string base_weight_station_name, 
-                    string ลักษณะถุง, 
-                    string ชนิดปุ๋ย, 
-                    string น้ำหนักบรรจุ, 
-                    decimal origin_q, 
-                    decimal origin_weight, 
-                    decimal ค่าบรรทุก, 
-                    decimal จำนวนตัน, 
-                    decimal จำนวนกระสอบ, 
-                    decimal ค่าขึ้น, 
-                    decimal ค่าลง, 
-                    decimal ค่าขึ้นรวม, 
-                    decimal ค่าลงรวม, 
-                    decimal ค่าบรรทุกรวม, 
-                    string is_s, 
-                    string site_id, 
-                    string stone_type_id, 
-                    string mill_id, 
-                    string car_team_id, 
-                    string รหัสทะเบียนรถ, 
-                    string รหัสคนขับ, 
-                    string line_type, 
-                    string is_cancel, 
-                    string exp_bill, 
-                    string exp_change, 
-                    string exp_remission, 
-                    string exp_note, 
-                    string exp_type, 
-                    string bws, 
-                    decimal Original_น้ำหนักรถ, 
-                    decimal Original_น้ำหนักรวม, 
-                    decimal Original_น้ำหนักสินค้า, 
-                    decimal Original_ราคาตัน, 
-                    decimal Original_จำนวณเงิน, 
-                    System.DateTime Original_วันที่, 
-                    System.DateTime Original_วันที่ชั่งเข้า, 
-                    System.DateTime Original_วันที่ชั่งออก, 
-                    decimal Original_vat, 
-                    decimal Original_คิว, 
-                    decimal Original_จำนวนเงินสุทธิ, 
-                    int Original_weight_id, 
-                    decimal Original_oil_content, 
-                    decimal Original_origin_q, 
-                    decimal Original_origin_weight, 
-                    decimal Original_ค่าบรรทุก, 
-                    decimal Original_จำนวนตัน, 
-                    decimal Original_จำนวนกระสอบ, 
-                    decimal Original_ค่าขึ้น, 
-                    decimal Original_ค่าลง, 
-                    decimal Original_ค่าขึ้นรวม, 
-                    decimal Original_ค่าลงรวม, 
-                    decimal Original_ค่าบรรทุกรวม, 
-                    string Original_is_s, 
-                    string Original_is_cancel) {
-            if ((เลขที่เอกสาร == null)) {
-                throw new global::System.ArgumentNullException("เลขที่เอกสาร");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(เลขที่เอกสาร));
-            }
-            if ((ทะเบียนรถ == null)) {
-                throw new global::System.ArgumentNullException("ทะเบียนรถ");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ทะเบียนรถ));
-            }
-            if ((จังหวัด == null)) {
-                throw new global::System.ArgumentNullException("จังหวัด");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(จังหวัด));
-            }
-            if ((คนขับ == null)) {
-                throw new global::System.ArgumentNullException("คนขับ");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(คนขับ));
-            }
-            if ((ลูกค้า == null)) {
-                throw new global::System.ArgumentNullException("ลูกค้า");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(ลูกค้า));
-            }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(น้ำหนักรถ));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(น้ำหนักรวม));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(น้ำหนักสินค้า));
-            if ((เลขที่ใบตัก == null)) {
-                throw new global::System.ArgumentNullException("เลขที่ใบตัก");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(เลขที่ใบตัก));
-            }
-            if ((โรงโม่ == null)) {
-                throw new global::System.ArgumentNullException("โรงโม่");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(โรงโม่));
-            }
-            if ((ชนิดหิน == null)) {
-                throw new global::System.ArgumentNullException("ชนิดหิน");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(ชนิดหิน));
-            }
-            if ((จ่ายเงิน == null)) {
-                throw new global::System.ArgumentNullException("จ่ายเงิน");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(จ่ายเงิน));
-            }
-            if ((รหัสผู้ชั่ง == null)) {
-                throw new global::System.ArgumentNullException("รหัสผู้ชั่ง");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(รหัสผู้ชั่ง));
-            }
-            if ((รหัสผู้ตัก == null)) {
-                throw new global::System.ArgumentNullException("รหัสผู้ตัก");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(รหัสผู้ตัก));
-            }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(ราคาตัน));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(จำนวณเงิน));
-            if ((ค่าขนส่ง == null)) {
-                throw new global::System.ArgumentNullException("ค่าขนส่ง");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(ค่าขนส่ง));
-            }
-            if ((เวลาชั่งเข้า == null)) {
-                throw new global::System.ArgumentNullException("เวลาชั่งเข้า");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(เวลาชั่งเข้า));
-            }
-            if ((เวลาชั่งออก == null)) {
-                throw new global::System.ArgumentNullException("เวลาชั่งออก");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(เวลาชั่งออก));
-            }
-            if ((รหัสลูกค้า == null)) {
-                throw new global::System.ArgumentNullException("รหัสลูกค้า");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(รหัสลูกค้า));
-            }
-            if ((ชื่อผู้ชั่ง == null)) {
-                throw new global::System.ArgumentNullException("ชื่อผู้ชั่ง");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(ชื่อผู้ชั่ง));
-            }
-            if ((ชื่อผู้ตัก == null)) {
-                throw new global::System.ArgumentNullException("ชื่อผู้ตัก");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(ชื่อผู้ตัก));
-            }
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(วันที่));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(วันที่ชั่งเข้า));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((System.DateTime)(วันที่ชั่งออก));
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(vat));
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((decimal)(คิว));
-            if ((รหัสผู้อนุมัติจ่าย == null)) {
-                throw new global::System.ArgumentNullException("รหัสผู้อนุมัติจ่าย");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(รหัสผู้อนุมัติจ่าย));
-            }
-            if ((ชื่อผู้อนุมัติจ่าย == null)) {
-                throw new global::System.ArgumentNullException("ชื่อผู้อนุมัติจ่าย");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(ชื่อผู้อนุมัติจ่าย));
-            }
-            if ((ชนิดvat == null)) {
-                throw new global::System.ArgumentNullException("ชนิดvat");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(ชนิดvat));
-            }
-            this.Adapter.UpdateCommand.Parameters[30].Value = ((decimal)(จำนวนเงินสุทธิ));
-            if ((ประเภทหิน == null)) {
-                throw new global::System.ArgumentNullException("ประเภทหิน");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(ประเภทหิน));
-            }
-            if ((หน้างาน == null)) {
-                throw new global::System.ArgumentNullException("หน้างาน");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(หน้างาน));
-            }
-            if ((ทีม == null)) {
-                throw new global::System.ArgumentNullException("ทีม");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((string)(ทีม));
-            }
-            if ((ล้าง == null)) {
-                throw new global::System.ArgumentNullException("ล้าง");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((string)(ล้าง));
-            }
-            if ((ขนส่ง == null)) {
-                throw new global::System.ArgumentNullException("ขนส่ง");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(ขนส่ง));
-            }
-            if ((หมายเหตุ == null)) {
-                throw new global::System.ArgumentNullException("หมายเหตุ");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((string)(หมายเหตุ));
-            }
-            if ((carry_type_name == null)) {
-                throw new global::System.ArgumentNullException("carry_type_name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((string)(carry_type_name));
-            }
-            this.Adapter.UpdateCommand.Parameters[38].Value = ((decimal)(oil_content));
-            if ((base_weight_station_name == null)) {
-                throw new global::System.ArgumentNullException("base_weight_station_name");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((string)(base_weight_station_name));
-            }
-            if ((ลักษณะถุง == null)) {
-                throw new global::System.ArgumentNullException("ลักษณะถุง");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((string)(ลักษณะถุง));
-            }
-            if ((ชนิดปุ๋ย == null)) {
-                throw new global::System.ArgumentNullException("ชนิดปุ๋ย");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((string)(ชนิดปุ๋ย));
-            }
-            if ((น้ำหนักบรรจุ == null)) {
-                throw new global::System.ArgumentNullException("น้ำหนักบรรจุ");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((string)(น้ำหนักบรรจุ));
-            }
-            this.Adapter.UpdateCommand.Parameters[43].Value = ((decimal)(origin_q));
-            this.Adapter.UpdateCommand.Parameters[44].Value = ((decimal)(origin_weight));
-            this.Adapter.UpdateCommand.Parameters[45].Value = ((decimal)(ค่าบรรทุก));
-            this.Adapter.UpdateCommand.Parameters[46].Value = ((decimal)(จำนวนตัน));
-            this.Adapter.UpdateCommand.Parameters[47].Value = ((decimal)(จำนวนกระสอบ));
-            this.Adapter.UpdateCommand.Parameters[48].Value = ((decimal)(ค่าขึ้น));
-            this.Adapter.UpdateCommand.Parameters[49].Value = ((decimal)(ค่าลง));
-            this.Adapter.UpdateCommand.Parameters[50].Value = ((decimal)(ค่าขึ้นรวม));
-            this.Adapter.UpdateCommand.Parameters[51].Value = ((decimal)(ค่าลงรวม));
-            this.Adapter.UpdateCommand.Parameters[52].Value = ((decimal)(ค่าบรรทุกรวม));
-            if ((is_s == null)) {
-                throw new global::System.ArgumentNullException("is_s");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((string)(is_s));
-            }
-            if ((site_id == null)) {
-                throw new global::System.ArgumentNullException("site_id");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((string)(site_id));
-            }
-            if ((stone_type_id == null)) {
-                throw new global::System.ArgumentNullException("stone_type_id");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((string)(stone_type_id));
-            }
-            if ((mill_id == null)) {
-                throw new global::System.ArgumentNullException("mill_id");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((string)(mill_id));
-            }
-            if ((car_team_id == null)) {
-                throw new global::System.ArgumentNullException("car_team_id");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((string)(car_team_id));
-            }
-            if ((รหัสทะเบียนรถ == null)) {
-                throw new global::System.ArgumentNullException("รหัสทะเบียนรถ");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((string)(รหัสทะเบียนรถ));
-            }
-            if ((รหัสคนขับ == null)) {
-                throw new global::System.ArgumentNullException("รหัสคนขับ");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((string)(รหัสคนขับ));
-            }
-            if ((line_type == null)) {
-                throw new global::System.ArgumentNullException("line_type");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((string)(line_type));
-            }
-            if ((is_cancel == null)) {
-                throw new global::System.ArgumentNullException("is_cancel");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((string)(is_cancel));
-            }
-            if ((exp_bill == null)) {
-                throw new global::System.ArgumentNullException("exp_bill");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((string)(exp_bill));
-            }
-            if ((exp_change == null)) {
-                throw new global::System.ArgumentNullException("exp_change");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((string)(exp_change));
-            }
-            if ((exp_remission == null)) {
-                throw new global::System.ArgumentNullException("exp_remission");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((string)(exp_remission));
-            }
-            if ((exp_note == null)) {
-                throw new global::System.ArgumentNullException("exp_note");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((string)(exp_note));
-            }
-            if ((exp_type == null)) {
-                throw new global::System.ArgumentNullException("exp_type");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((string)(exp_type));
-            }
-            if ((bws == null)) {
-                throw new global::System.ArgumentNullException("bws");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((string)(bws));
-            }
-            this.Adapter.UpdateCommand.Parameters[68].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[69].Value = ((decimal)(Original_น้ำหนักรถ));
-            this.Adapter.UpdateCommand.Parameters[70].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[71].Value = ((decimal)(Original_น้ำหนักรวม));
-            this.Adapter.UpdateCommand.Parameters[72].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[73].Value = ((decimal)(Original_น้ำหนักสินค้า));
-            this.Adapter.UpdateCommand.Parameters[74].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[75].Value = ((decimal)(Original_ราคาตัน));
-            this.Adapter.UpdateCommand.Parameters[76].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[77].Value = ((decimal)(Original_จำนวณเงิน));
-            this.Adapter.UpdateCommand.Parameters[78].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[79].Value = ((System.DateTime)(Original_วันที่));
-            this.Adapter.UpdateCommand.Parameters[80].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[81].Value = ((System.DateTime)(Original_วันที่ชั่งเข้า));
-            this.Adapter.UpdateCommand.Parameters[82].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[83].Value = ((System.DateTime)(Original_วันที่ชั่งออก));
-            this.Adapter.UpdateCommand.Parameters[84].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[85].Value = ((decimal)(Original_vat));
-            this.Adapter.UpdateCommand.Parameters[86].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[87].Value = ((decimal)(Original_คิว));
-            this.Adapter.UpdateCommand.Parameters[88].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[89].Value = ((decimal)(Original_จำนวนเงินสุทธิ));
-            this.Adapter.UpdateCommand.Parameters[90].Value = ((int)(Original_weight_id));
-            this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[92].Value = ((decimal)(Original_oil_content));
-            this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[94].Value = ((decimal)(Original_origin_q));
-            this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[96].Value = ((decimal)(Original_origin_weight));
-            this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[98].Value = ((decimal)(Original_ค่าบรรทุก));
-            this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[100].Value = ((decimal)(Original_จำนวนตัน));
-            this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[102].Value = ((decimal)(Original_จำนวนกระสอบ));
-            this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[104].Value = ((decimal)(Original_ค่าขึ้น));
-            this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[106].Value = ((decimal)(Original_ค่าลง));
-            this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[108].Value = ((decimal)(Original_ค่าขึ้นรวม));
-            this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[110].Value = ((decimal)(Original_ค่าลงรวม));
-            this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[112].Value = ((decimal)(Original_ค่าบรรทุกรวม));
-            if ((Original_is_s == null)) {
-                throw new global::System.ArgumentNullException("Original_is_s");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[114].Value = ((string)(Original_is_s));
-            }
-            if ((Original_is_cancel == null)) {
-                throw new global::System.ArgumentNullException("Original_is_cancel");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[116].Value = ((string)(Original_is_cancel));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
     }
     
     /// <summary>
@@ -5085,8 +3952,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private weightTableAdapter _weightTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -5099,20 +3964,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public weightTableAdapter weightTableAdapter {
-            get {
-                return this._weightTableAdapter;
-            }
-            set {
-                this._weightTableAdapter = value;
             }
         }
         
@@ -5135,10 +3986,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._weightTableAdapter != null) 
-                            && (this._weightTableAdapter.Connection != null))) {
-                    return this._weightTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -5152,9 +3999,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._weightTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -5166,15 +4010,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateUpdatedRows(truckDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._weightTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.weight.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._weightTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -5185,14 +4020,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateInsertedRows(truckDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._weightTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.weight.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._weightTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -5203,14 +4030,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateDeletedRows(truckDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._weightTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.weight.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._weightTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -5250,11 +4069,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._weightTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._weightTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -5287,15 +4101,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._weightTableAdapter != null)) {
-                    revertConnections.Add(this._weightTableAdapter, this._weightTableAdapter.Connection);
-                    this._weightTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(workConnection));
-                    this._weightTableAdapter.Transaction = ((global::System.Data.Odbc.OdbcTransaction)(workTransaction));
-                    if (this._weightTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._weightTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._weightTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -5353,10 +4158,6 @@ namespace SerialPortListener.truckDataSetTableAdapters {
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._weightTableAdapter != null)) {
-                    this._weightTableAdapter.Connection = ((global::System.Data.Odbc.OdbcConnection)(revertConnections[this._weightTableAdapter]));
-                    this._weightTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

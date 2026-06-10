@@ -17,12 +17,12 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="วันที่">
-          <DataField>วันที่</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="เลขที่เอกสาร">
           <DataField>เลขที่เอกสาร</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ทะเบียนรถ">
+          <DataField>ทะเบียนรถ</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="จังหวัด">
@@ -78,28 +78,24 @@
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="จำนวณเงิน">
-          <DataField>จำนวนเงิน</DataField>
+          <DataField>จำนวณเงิน</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="ค่าขนส่ง">
           <DataField>ค่าขนส่ง</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="วันที่ชั่งเข้า">
-          <DataField>วันที่ชั่งเข้า</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="เวลาชั่งเข้า">
           <DataField>เวลาชั่งเข้า</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="วันที่ชั่งออก">
-          <DataField>วันที่ชั่งออก</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="เวลาชั่งออก">
           <DataField>เวลาชั่งออก</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="weight_id">
+          <DataField>weight_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="รหัสลูกค้า">
           <DataField>รหัสลูกค้า</DataField>
@@ -113,13 +109,17 @@
           <DataField>ชื่อผู้ตัก</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ทะเบียนรถ">
-          <DataField>ทะเบียนรถ</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="วันที่">
+          <DataField>วันที่</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="weight_id">
-          <DataField>weight_id</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="วันที่ชั่งเข้า">
+          <DataField>วันที่ชั่งเข้า</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="วันที่ชั่งออก">
+          <DataField>วันที่ชั่งออก</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="vat">
           <DataField>vat</DataField>
@@ -157,50 +157,38 @@
           <DataField>ทีม</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ล้าง">
-          <DataField>ล้าง</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ขนส่ง">
-          <DataField>ขนส่ง</DataField>
+        <Field Name="carry_type_name">
+          <DataField>carry_type_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="หมายเหตุ">
           <DataField>หมายเหตุ</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="carry_type_name">
-          <DataField>carry_type_name</DataField>
+        <Field Name="ขนส่ง">
+          <DataField>ขนส่ง</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ล้าง">
+          <DataField>ล้าง</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="oil_content">
           <DataField>oil_content</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="site_id">
-          <DataField>site_id</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="stone_type_id">
-          <DataField>stone_type_id</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="mill_id">
-          <DataField>mill_id</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="car_team_id">
-          <DataField>car_team_id</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="is_s">
           <DataField>is_s</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="stone_desc">
+          <DataField>stone_desc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>truckDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Nooni\OneDrive\เดสก์ท็อป\SerialPortListener\SerialPortListener\truckDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>weightScoopDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Userpc\Documents\SerialPortListener\SLCBlueSerialPortListener\SerialPortListener\weightScoopDataSet.xsd</rd:SchemaPath>
         <rd:TableName>weight</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -820,27 +808,21 @@
                             <PaddingBottom>1pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>9</ColSpan>
+                        <ColSpan>3</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
+                        <Textbox Name="stone_desc">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!stone_desc.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>16pt</FontSize>
@@ -853,7 +835,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <rd:DefaultName>stone_desc</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -865,8 +847,15 @@
                             <PaddingBottom>1pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <ColSpan>7</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -2934,35 +2923,45 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Group Name="ชนิดหิน">
+                      <Group Name="stone_desc">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!ชนิดหิน.Value</GroupExpression>
+                          <GroupExpression>=Fields!stone_desc.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
                         <SortExpression>
-                          <Value>=Fields!ชนิดหิน.Value</Value>
+                          <Value>=Fields!stone_desc.Value</Value>
                         </SortExpression>
                       </SortExpressions>
                       <TablixMembers>
                         <TablixMember>
-                          <KeepWithGroup>After</KeepWithGroup>
-                        </TablixMember>
-                        <TablixMember>
-                          <Group Name="Details" />
-                        </TablixMember>
-                        <TablixMember>
-                          <KeepWithGroup>Before</KeepWithGroup>
-                        </TablixMember>
-                        <TablixMember>
-                          <KeepWithGroup>Before</KeepWithGroup>
+                          <Group Name="ชนิดหิน">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!ชนิดหิน.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!ชนิดหิน.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                          <TablixMembers>
+                            <TablixMember>
+                              <KeepWithGroup>After</KeepWithGroup>
+                            </TablixMember>
+                            <TablixMember>
+                              <Group Name="Details" />
+                            </TablixMember>
+                            <TablixMember>
+                              <KeepWithGroup>Before</KeepWithGroup>
+                            </TablixMember>
+                            <TablixMember>
+                              <KeepWithGroup>Before</KeepWithGroup>
+                            </TablixMember>
+                          </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>

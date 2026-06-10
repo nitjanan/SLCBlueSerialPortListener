@@ -65,6 +65,7 @@ namespace SerialPortListener
             public String qOrigin;
             public String weightOrigin;
             public String lineType;
+            public String stoneDesc;
 
         }
         public TableFromDB(MainForm parent)
@@ -208,6 +209,7 @@ namespace SerialPortListener
                 data.weightOrigin = tableDataFromDB.CurrentRow.Cells["origin_weight"].Value.ToString();
                 data.qOrigin = tableDataFromDB.CurrentRow.Cells["origin_q"].Value.ToString();
                 data.lineType = tableDataFromDB.CurrentRow.Cells["line_type"].Value.ToString();
+                data.stoneDesc = tableDataFromDB.CurrentRow.Cells["stone_desc"].Value.ToString();
 
 
                 //set Mode Weight

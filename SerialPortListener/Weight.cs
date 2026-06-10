@@ -51,6 +51,8 @@ namespace SerialPortListener
         private static string _datePrintAndCopyNum;
         private static string _timePrint;
 
+        private static string _stoneDesc;
+
         public static string Id
         {
             get
@@ -422,6 +424,14 @@ namespace SerialPortListener
             { return _timePrint; }
             set
             { _timePrint = value; }
+        }
+
+        public static string StoneDesc
+        {
+            get
+            { return _stoneDesc; }
+            set
+            { _stoneDesc = value; }
         }
     }
 }

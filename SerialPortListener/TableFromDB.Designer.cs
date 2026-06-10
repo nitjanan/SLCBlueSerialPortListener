@@ -36,22 +36,40 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbbSearchWeight = new System.Windows.Forms.ComboBox();
             this.tableDataFromDB = new System.Windows.Forms.DataGridView();
+            this.หน้างาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ประเภทหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.origin_q = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.origin_weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.line_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btSearch = new System.Windows.Forms.Button();
+            this.btClose = new System.Windows.Forms.Button();
+            this.btDelete = new System.Windows.Forms.Button();
+            this.btUpdate = new System.Windows.Forms.Button();
+            this.btAdd = new System.Windows.Forms.Button();
+            this.btExport = new System.Windows.Forms.Button();
             this.วันที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.เลขที่เอกสาร = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.หน้างาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ทะเบียนรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.จังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.คนขับ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.น้ำหนักรถ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.น้ำหนักรวม = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.น้ำหนักสินค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.คิว = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.โรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ชนิดหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ประเภทหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ราคาตัน = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.จำนวณเงิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,28 +86,11 @@
             this.ค่าขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weight_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ชนิดvat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ล้าง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ขนส่ง = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.หมายเหตุ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oil_content = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stone_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mill_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.car_team_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.truckDataSet = new SerialPortListener.truckDataSet();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btSearch = new System.Windows.Forms.Button();
-            this.btClose = new System.Windows.Forms.Button();
-            this.btDelete = new System.Windows.Forms.Button();
-            this.btUpdate = new System.Windows.Forms.Button();
-            this.btAdd = new System.Windows.Forms.Button();
             this.truckDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
-            this.btExport = new System.Windows.Forms.Button();
-            this.origin_q = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.origin_weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.line_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stone_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataFromDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).BeginInit();
@@ -218,7 +219,8 @@
             this.car_team_id,
             this.origin_q,
             this.origin_weight,
-            this.line_type});
+            this.line_type,
+            this.stone_desc});
             this.tableDataFromDB.DataSource = this.weightBindingSource;
             this.tableDataFromDB.Location = new System.Drawing.Point(12, 60);
             this.tableDataFromDB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -227,6 +229,234 @@
             this.tableDataFromDB.Size = new System.Drawing.Size(1153, 499);
             this.tableDataFromDB.TabIndex = 15;
             this.tableDataFromDB.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableDataFromDB_CellDoubleClick);
+            // 
+            // หน้างาน
+            // 
+            this.หน้างาน.DataPropertyName = "หน้างาน";
+            this.หน้างาน.FillWeight = 87.5784F;
+            this.หน้างาน.HeaderText = "หน้างาน";
+            this.หน้างาน.Name = "หน้างาน";
+            this.หน้างาน.ReadOnly = true;
+            this.หน้างาน.Width = 81;
+            // 
+            // ทีม
+            // 
+            this.ทีม.DataPropertyName = "ทีม";
+            this.ทีม.FillWeight = 148.1395F;
+            this.ทีม.HeaderText = "ทีม";
+            this.ทีม.Name = "ทีม";
+            this.ทีม.ReadOnly = true;
+            this.ทีม.Width = 51;
+            // 
+            // ประเภทหิน
+            // 
+            this.ประเภทหิน.DataPropertyName = "ประเภทหิน";
+            this.ประเภทหิน.FillWeight = 73.90363F;
+            this.ประเภทหิน.HeaderText = "ประเภทหิน";
+            this.ประเภทหิน.Name = "ประเภทหิน";
+            this.ประเภทหิน.ReadOnly = true;
+            this.ประเภทหิน.Width = 94;
+            // 
+            // ล้าง
+            // 
+            this.ล้าง.DataPropertyName = "ล้าง";
+            this.ล้าง.HeaderText = "ล้าง";
+            this.ล้าง.Name = "ล้าง";
+            this.ล้าง.ReadOnly = true;
+            this.ล้าง.Width = 55;
+            // 
+            // ขนส่ง
+            // 
+            this.ขนส่ง.DataPropertyName = "ขนส่ง";
+            this.ขนส่ง.HeaderText = "ขนส่ง";
+            this.ขนส่ง.Name = "ขนส่ง";
+            this.ขนส่ง.ReadOnly = true;
+            this.ขนส่ง.Width = 66;
+            // 
+            // หมายเหตุ
+            // 
+            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
+            this.หมายเหตุ.HeaderText = "หมายเหตุ";
+            this.หมายเหตุ.Name = "หมายเหตุ";
+            this.หมายเหตุ.ReadOnly = true;
+            this.หมายเหตุ.Width = 88;
+            // 
+            // oil_content
+            // 
+            this.oil_content.DataPropertyName = "oil_content";
+            this.oil_content.HeaderText = "ปริมาณน้ำมัน";
+            this.oil_content.Name = "oil_content";
+            this.oil_content.ReadOnly = true;
+            this.oil_content.Width = 110;
+            // 
+            // site_id
+            // 
+            this.site_id.DataPropertyName = "site_id";
+            this.site_id.HeaderText = "site_id";
+            this.site_id.Name = "site_id";
+            this.site_id.ReadOnly = true;
+            this.site_id.Width = 79;
+            // 
+            // stone_type_id
+            // 
+            this.stone_type_id.DataPropertyName = "stone_type_id";
+            this.stone_type_id.HeaderText = "stone_type_id";
+            this.stone_type_id.Name = "stone_type_id";
+            this.stone_type_id.ReadOnly = true;
+            this.stone_type_id.Width = 136;
+            // 
+            // mill_id
+            // 
+            this.mill_id.DataPropertyName = "mill_id";
+            this.mill_id.HeaderText = "mill_id";
+            this.mill_id.Name = "mill_id";
+            this.mill_id.ReadOnly = true;
+            this.mill_id.Width = 77;
+            // 
+            // car_team_id
+            // 
+            this.car_team_id.DataPropertyName = "car_team_id";
+            this.car_team_id.HeaderText = "car_team_id";
+            this.car_team_id.Name = "car_team_id";
+            this.car_team_id.ReadOnly = true;
+            this.car_team_id.Width = 126;
+            // 
+            // origin_q
+            // 
+            this.origin_q.DataPropertyName = "origin_q";
+            this.origin_q.HeaderText = "origin_q";
+            this.origin_q.Name = "origin_q";
+            this.origin_q.ReadOnly = true;
+            this.origin_q.Width = 92;
+            // 
+            // origin_weight
+            // 
+            this.origin_weight.DataPropertyName = "origin_weight";
+            this.origin_weight.HeaderText = "origin_weight";
+            this.origin_weight.Name = "origin_weight";
+            this.origin_weight.ReadOnly = true;
+            this.origin_weight.Width = 133;
+            // 
+            // line_type
+            // 
+            this.line_type.DataPropertyName = "line_type";
+            this.line_type.HeaderText = "line_type";
+            this.line_type.Name = "line_type";
+            this.line_type.ReadOnly = true;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(414, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 21);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "น้ำหนัก:";
+            // 
+            // btSearch
+            // 
+            this.btSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
+            this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btSearch.Location = new System.Drawing.Point(1077, 10);
+            this.btSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(87, 32);
+            this.btSearch.TabIndex = 13;
+            this.btSearch.Text = "ค้นหา";
+            this.btSearch.UseVisualStyleBackColor = true;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
+            // 
+            // btClose
+            // 
+            this.btClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btClose.BackColor = System.Drawing.Color.Gray;
+            this.btClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btClose.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btClose.Image = global::SerialPortListener.Properties.Resources.exit_24px;
+            this.btClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btClose.Location = new System.Drawing.Point(1081, 577);
+            this.btClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btClose.Name = "btClose";
+            this.btClose.Size = new System.Drawing.Size(90, 39);
+            this.btClose.TabIndex = 8;
+            this.btClose.Text = "ออก";
+            this.btClose.UseVisualStyleBackColor = false;
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
+            // 
+            // btDelete
+            // 
+            this.btDelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btDelete.BackColor = System.Drawing.Color.IndianRed;
+            this.btDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btDelete.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDelete.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btDelete.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
+            this.btDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btDelete.Location = new System.Drawing.Point(252, 577);
+            this.btDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btDelete.Name = "btDelete";
+            this.btDelete.Size = new System.Drawing.Size(90, 39);
+            this.btDelete.TabIndex = 7;
+            this.btDelete.Text = "ลบ";
+            this.btDelete.UseVisualStyleBackColor = false;
+            this.btDelete.Visible = false;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
+            // 
+            // btUpdate
+            // 
+            this.btUpdate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btUpdate.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btUpdate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btUpdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btUpdate.Image = global::SerialPortListener.Properties.Resources.edit_file_24px;
+            this.btUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btUpdate.Location = new System.Drawing.Point(12, 577);
+            this.btUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btUpdate.Name = "btUpdate";
+            this.btUpdate.Size = new System.Drawing.Size(90, 39);
+            this.btUpdate.TabIndex = 6;
+            this.btUpdate.Text = "แก้ไข";
+            this.btUpdate.UseVisualStyleBackColor = false;
+            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
+            // 
+            // btAdd
+            // 
+            this.btAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btAdd.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btAdd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btAdd.Image = global::SerialPortListener.Properties.Resources.add_24px;
+            this.btAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btAdd.Location = new System.Drawing.Point(129, 577);
+            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btAdd.Name = "btAdd";
+            this.btAdd.Size = new System.Drawing.Size(90, 39);
+            this.btAdd.TabIndex = 5;
+            this.btAdd.Text = "เพิ่ม";
+            this.btAdd.UseVisualStyleBackColor = false;
+            this.btAdd.Visible = false;
+            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
+            // 
+            // btExport
+            // 
+            this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
+            this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btExport.Location = new System.Drawing.Point(997, 582);
+            this.btExport.Name = "btExport";
+            this.btExport.Size = new System.Drawing.Size(78, 33);
+            this.btExport.TabIndex = 17;
+            this.btExport.Text = "Export";
+            this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btExport.UseVisualStyleBackColor = true;
+            this.btExport.Click += new System.EventHandler(this.btExport_Click);
             // 
             // วันที่
             // 
@@ -264,15 +494,6 @@
             this.ลูกค้า.ReadOnly = true;
             this.ลูกค้า.Width = 67;
             // 
-            // หน้างาน
-            // 
-            this.หน้างาน.DataPropertyName = "หน้างาน";
-            this.หน้างาน.FillWeight = 87.5784F;
-            this.หน้างาน.HeaderText = "หน้างาน";
-            this.หน้างาน.Name = "หน้างาน";
-            this.หน้างาน.ReadOnly = true;
-            this.หน้างาน.Width = 81;
-            // 
             // ทะเบียนรถ
             // 
             this.ทะเบียนรถ.DataPropertyName = "ทะเบียนรถ";
@@ -299,15 +520,6 @@
             this.คนขับ.Name = "คนขับ";
             this.คนขับ.ReadOnly = true;
             this.คนขับ.Width = 70;
-            // 
-            // ทีม
-            // 
-            this.ทีม.DataPropertyName = "ทีม";
-            this.ทีม.FillWeight = 148.1395F;
-            this.ทีม.HeaderText = "ทีม";
-            this.ทีม.Name = "ทีม";
-            this.ทีม.ReadOnly = true;
-            this.ทีม.Width = 51;
             // 
             // น้ำหนักรถ
             // 
@@ -352,7 +564,7 @@
             this.โรงโม่.HeaderText = "โรงโม่";
             this.โรงโม่.Name = "โรงโม่";
             this.โรงโม่.ReadOnly = true;
-            this.โรงโม่.Width = 64;
+            this.โรงโม่.Width = 66;
             // 
             // ชนิดหิน
             // 
@@ -362,15 +574,6 @@
             this.ชนิดหิน.Name = "ชนิดหิน";
             this.ชนิดหิน.ReadOnly = true;
             this.ชนิดหิน.Width = 79;
-            // 
-            // ประเภทหิน
-            // 
-            this.ประเภทหิน.DataPropertyName = "ประเภทหิน";
-            this.ประเภทหิน.FillWeight = 73.90363F;
-            this.ประเภทหิน.HeaderText = "ประเภทหิน";
-            this.ประเภทหิน.Name = "ประเภทหิน";
-            this.ประเภทหิน.ReadOnly = true;
-            this.ประเภทหิน.Width = 94;
             // 
             // ราคาตัน
             // 
@@ -495,7 +698,7 @@
             this.ค่าขนส่ง.Name = "ค่าขนส่ง";
             this.ค่าขนส่ง.ReadOnly = true;
             this.ค่าขนส่ง.Visible = false;
-            this.ค่าขนส่ง.Width = 82;
+            this.ค่าขนส่ง.Width = 64;
             // 
             // weight_id
             // 
@@ -504,7 +707,7 @@
             this.weight_id.Name = "weight_id";
             this.weight_id.ReadOnly = true;
             this.weight_id.Visible = false;
-            this.weight_id.Width = 106;
+            this.weight_id.Width = 77;
             // 
             // ชนิดvat
             // 
@@ -513,71 +716,7 @@
             this.ชนิดvat.Name = "ชนิดvat";
             this.ชนิดvat.ReadOnly = true;
             this.ชนิดvat.Visible = false;
-            this.ชนิดvat.Width = 86;
-            // 
-            // ล้าง
-            // 
-            this.ล้าง.DataPropertyName = "ล้าง";
-            this.ล้าง.HeaderText = "ล้าง";
-            this.ล้าง.Name = "ล้าง";
-            this.ล้าง.ReadOnly = true;
-            this.ล้าง.Width = 55;
-            // 
-            // ขนส่ง
-            // 
-            this.ขนส่ง.DataPropertyName = "ขนส่ง";
-            this.ขนส่ง.HeaderText = "ขนส่ง";
-            this.ขนส่ง.Name = "ขนส่ง";
-            this.ขนส่ง.ReadOnly = true;
-            this.ขนส่ง.Width = 66;
-            // 
-            // หมายเหตุ
-            // 
-            this.หมายเหตุ.DataPropertyName = "หมายเหตุ";
-            this.หมายเหตุ.HeaderText = "หมายเหตุ";
-            this.หมายเหตุ.Name = "หมายเหตุ";
-            this.หมายเหตุ.ReadOnly = true;
-            this.หมายเหตุ.Width = 88;
-            // 
-            // oil_content
-            // 
-            this.oil_content.DataPropertyName = "oil_content";
-            this.oil_content.HeaderText = "ปริมาณน้ำมัน";
-            this.oil_content.Name = "oil_content";
-            this.oil_content.ReadOnly = true;
-            this.oil_content.Width = 111;
-            // 
-            // site_id
-            // 
-            this.site_id.DataPropertyName = "site_id";
-            this.site_id.HeaderText = "site_id";
-            this.site_id.Name = "site_id";
-            this.site_id.ReadOnly = true;
-            this.site_id.Width = 79;
-            // 
-            // stone_type_id
-            // 
-            this.stone_type_id.DataPropertyName = "stone_type_id";
-            this.stone_type_id.HeaderText = "stone_type_id";
-            this.stone_type_id.Name = "stone_type_id";
-            this.stone_type_id.ReadOnly = true;
-            this.stone_type_id.Width = 136;
-            // 
-            // mill_id
-            // 
-            this.mill_id.DataPropertyName = "mill_id";
-            this.mill_id.HeaderText = "mill_id";
-            this.mill_id.Name = "mill_id";
-            this.mill_id.ReadOnly = true;
-            this.mill_id.Width = 77;
-            // 
-            // car_team_id
-            // 
-            this.car_team_id.DataPropertyName = "car_team_id";
-            this.car_team_id.HeaderText = "car_team_id";
-            this.car_team_id.Name = "car_team_id";
-            this.car_team_id.ReadOnly = true;
-            this.car_team_id.Width = 126;
+            this.ชนิดvat.Width = 69;
             // 
             // weightBindingSource
             // 
@@ -589,107 +728,6 @@
             this.truckDataSet.DataSetName = "truckDataSet";
             this.truckDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(414, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 21);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "น้ำหนัก:";
-            // 
-            // btSearch
-            // 
-            this.btSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSearch.Image = global::SerialPortListener.Properties.Resources.search_32px;
-            this.btSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSearch.Location = new System.Drawing.Point(1077, 10);
-            this.btSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(87, 32);
-            this.btSearch.TabIndex = 13;
-            this.btSearch.Text = "ค้นหา";
-            this.btSearch.UseVisualStyleBackColor = true;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
-            // 
-            // btClose
-            // 
-            this.btClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btClose.BackColor = System.Drawing.Color.Gray;
-            this.btClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btClose.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btClose.Image = global::SerialPortListener.Properties.Resources.exit_24px;
-            this.btClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btClose.Location = new System.Drawing.Point(1081, 577);
-            this.btClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btClose.Name = "btClose";
-            this.btClose.Size = new System.Drawing.Size(90, 39);
-            this.btClose.TabIndex = 8;
-            this.btClose.Text = "ออก";
-            this.btClose.UseVisualStyleBackColor = false;
-            this.btClose.Click += new System.EventHandler(this.btClose_Click);
-            // 
-            // btDelete
-            // 
-            this.btDelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btDelete.BackColor = System.Drawing.Color.IndianRed;
-            this.btDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btDelete.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDelete.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btDelete.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
-            this.btDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelete.Location = new System.Drawing.Point(252, 577);
-            this.btDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btDelete.Name = "btDelete";
-            this.btDelete.Size = new System.Drawing.Size(90, 39);
-            this.btDelete.TabIndex = 7;
-            this.btDelete.Text = "ลบ";
-            this.btDelete.UseVisualStyleBackColor = false;
-            this.btDelete.Visible = false;
-            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
-            // 
-            // btUpdate
-            // 
-            this.btUpdate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btUpdate.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btUpdate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btUpdate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btUpdate.Image = global::SerialPortListener.Properties.Resources.edit_file_24px;
-            this.btUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btUpdate.Location = new System.Drawing.Point(12, 577);
-            this.btUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btUpdate.Name = "btUpdate";
-            this.btUpdate.Size = new System.Drawing.Size(90, 39);
-            this.btUpdate.TabIndex = 6;
-            this.btUpdate.Text = "แก้ไข";
-            this.btUpdate.UseVisualStyleBackColor = false;
-            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
-            // 
-            // btAdd
-            // 
-            this.btAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btAdd.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.btAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btAdd.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAdd.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btAdd.Image = global::SerialPortListener.Properties.Resources.add_24px;
-            this.btAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btAdd.Location = new System.Drawing.Point(129, 577);
-            this.btAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(90, 39);
-            this.btAdd.TabIndex = 5;
-            this.btAdd.Text = "เพิ่ม";
-            this.btAdd.UseVisualStyleBackColor = false;
-            this.btAdd.Visible = false;
-            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-            // 
             // truckDataSetBindingSource
             // 
             this.truckDataSetBindingSource.DataSource = this.truckDataSet;
@@ -699,41 +737,13 @@
             // 
             this.weightTableAdapter.ClearBeforeFill = true;
             // 
-            // btExport
+            // stone_desc
             // 
-            this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
-            this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExport.Location = new System.Drawing.Point(997, 582);
-            this.btExport.Name = "btExport";
-            this.btExport.Size = new System.Drawing.Size(78, 33);
-            this.btExport.TabIndex = 17;
-            this.btExport.Text = "Export";
-            this.btExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btExport.UseVisualStyleBackColor = true;
-            this.btExport.Click += new System.EventHandler(this.btExport_Click);
-            // 
-            // origin_q
-            // 
-            this.origin_q.DataPropertyName = "origin_q";
-            this.origin_q.HeaderText = "origin_q";
-            this.origin_q.Name = "origin_q";
-            this.origin_q.ReadOnly = true;
-            this.origin_q.Width = 92;
-            // 
-            // origin_weight
-            // 
-            this.origin_weight.DataPropertyName = "origin_weight";
-            this.origin_weight.HeaderText = "origin_weight";
-            this.origin_weight.Name = "origin_weight";
-            this.origin_weight.ReadOnly = true;
-            this.origin_weight.Width = 133;
-            // 
-            // line_type
-            // 
-            this.line_type.DataPropertyName = "line_type";
-            this.line_type.HeaderText = "line_type";
-            this.line_type.Name = "line_type";
-            this.line_type.ReadOnly = true;
+            this.stone_desc.DataPropertyName = "stone_desc";
+            this.stone_desc.HeaderText = "stone_desc";
+            this.stone_desc.Name = "stone_desc";
+            this.stone_desc.ReadOnly = true;
+            this.stone_desc.Width = 118;
             // 
             // TableFromDB
             // 
@@ -834,5 +844,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn origin_q;
         private System.Windows.Forms.DataGridViewTextBoxColumn origin_weight;
         private System.Windows.Forms.DataGridViewTextBoxColumn line_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stone_desc;
     }
 }

@@ -178,6 +178,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
+            this.tbStoneDesc = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -638,7 +639,7 @@
             this.rbMill1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill1.Location = new System.Drawing.Point(6, 11);
             this.rbMill1.Name = "rbMill1";
-            this.rbMill1.Size = new System.Drawing.Size(75, 25);
+            this.rbMill1.Size = new System.Drawing.Size(77, 25);
             this.rbMill1.TabIndex = 18;
             this.rbMill1.Text = "โรงโม่ 1";
             this.rbMill1.UseVisualStyleBackColor = false;
@@ -652,7 +653,7 @@
             this.rbMill2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill2.Location = new System.Drawing.Point(91, 11);
             this.rbMill2.Name = "rbMill2";
-            this.rbMill2.Size = new System.Drawing.Size(75, 25);
+            this.rbMill2.Size = new System.Drawing.Size(77, 25);
             this.rbMill2.TabIndex = 19;
             this.rbMill2.Text = "โรงโม่ 2";
             this.rbMill2.UseVisualStyleBackColor = false;
@@ -1177,7 +1178,7 @@
             this.cbbStoneType.IntegralHeight = false;
             this.cbbStoneType.Location = new System.Drawing.Point(370, 225);
             this.cbbStoneType.Name = "cbbStoneType";
-            this.cbbStoneType.Size = new System.Drawing.Size(347, 29);
+            this.cbbStoneType.Size = new System.Drawing.Size(215, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
@@ -1218,7 +1219,7 @@
             this.rbMill3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill3.Location = new System.Drawing.Point(172, 11);
             this.rbMill3.Name = "rbMill3";
-            this.rbMill3.Size = new System.Drawing.Size(75, 25);
+            this.rbMill3.Size = new System.Drawing.Size(77, 25);
             this.rbMill3.TabIndex = 20;
             this.rbMill3.Text = "โรงโม่ 3";
             this.rbMill3.UseVisualStyleBackColor = false;
@@ -1245,7 +1246,7 @@
             this.rbTrans.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTrans.Location = new System.Drawing.Point(128, 11);
             this.rbTrans.Name = "rbTrans";
-            this.rbTrans.Size = new System.Drawing.Size(71, 25);
+            this.rbTrans.Size = new System.Drawing.Size(73, 25);
             this.rbTrans.TabIndex = 14;
             this.rbTrans.Text = "เงินโอน";
             this.rbTrans.UseVisualStyleBackColor = false;
@@ -1811,7 +1812,7 @@
             this.rbWeightIn.ForeColor = System.Drawing.Color.DarkGreen;
             this.rbWeightIn.Location = new System.Drawing.Point(919, 51);
             this.rbWeightIn.Name = "rbWeightIn";
-            this.rbWeightIn.Size = new System.Drawing.Size(95, 36);
+            this.rbWeightIn.Size = new System.Drawing.Size(94, 36);
             this.rbWeightIn.TabIndex = 144;
             this.rbWeightIn.TabStop = true;
             this.rbWeightIn.Text = "ชั่งเข้า";
@@ -2090,11 +2091,20 @@
             this.label46.TabIndex = 149;
             this.label46.Text = "จำนวนเที่ยว";
             // 
+            // tbStoneDesc
+            // 
+            this.tbStoneDesc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbStoneDesc.Location = new System.Drawing.Point(591, 225);
+            this.tbStoneDesc.Name = "tbStoneDesc";
+            this.tbStoneDesc.Size = new System.Drawing.Size(126, 27);
+            this.tbStoneDesc.TabIndex = 150;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
+            this.Controls.Add(this.tbStoneDesc);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label45);
             this.Controls.Add(this.label46);
@@ -2367,6 +2377,7 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.TextBox tbStoneDesc;
     }
 }
 
