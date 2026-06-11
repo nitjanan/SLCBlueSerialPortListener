@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -135,6 +135,13 @@ namespace SerialPortListener
             public string do_doc_no { get; set; }
             public string carry_type_name { get; set; }
             public Boolean is_cancel { get; set; }
+        }
+
+        public class UpdateDeliveryOrderResult
+        {
+            public bool IsSuccess { get; set; }
+            public bool IsValidationError { get; set; }
+            public string ErrorMessage { get; set; }
         }
 
         public MainForm(string username, String firstname)
@@ -1341,11 +1348,41 @@ namespace SerialPortListener
         {
             try
             {
-                // =========================
-                // UPDATE DELIVERY ORDER FROM API BEFORE SAVE
-                // =========================
-                if (tbDoId.Text != "")
+                // ==========================================
+                // 1. UPDATE DELIVERY ORDER FROM API BEFORE SAVE
+                // ==========================================
+                if (!string.IsNullOrEmpty(tbDoId.Text))
                 {
+                    // เรียกใช้ฟังก์ชันอัปเดต และตรวจสอบ HTTP Status หรือผลลัพธ์
+                    var updateResult = await UpdateDeliveryOrderFromApi();
+
+                    if (!updateResult.IsSuccess)
+                    {
+                        if (updateResult.IsValidationError)
+                        {
+                            MessageBox.Show(
+                                "ไม่สามารถอัปเดตข้อมูล Delivery Order ได้เนื่องจากข้อมูลไม่ถูกต้องตามเงื่อนไข (422 Unprocessable Entity) ระบบจะไม่บันทึกข้อมูล",
+                                "Validation Error (422)",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning
+                            );
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                "ไม่สามารถอัปเดตข้อมูล Delivery Order ได้เนื่องจาก: " + updateResult.ErrorMessage + " ระบบจะไม่บันทึกข้อมูล",
+                                "API Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+
+                        return; // ⛔ หยุดทำงานทันที ห้ามไปต่อ
+                    }
+
+                    // ==========================================
+                    // 2. CU WEIGHT DELIVERY FROM API
+                    // ==========================================
                     bool apiSuccess = await CUWeightDeliveryFromApi();
 
                     if (!apiSuccess)
@@ -1357,19 +1394,21 @@ namespace SerialPortListener
                             MessageBoxIcon.Error
                         );
 
-                        return;
+                        return; // ⛔ หยุดทำงาน
                     }
                 }
 
-                // =========================
-                // SAVE
-                // =========================
+                // ==========================================
+                // 3. SAVE (ถ้าผ่านเงื่อนไขด้านบนทั้งหมดแล้ว)
+                // ==========================================
                 await autoSave();
+
+                //MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    ex.ToString(),
+                    ex.Message,
                     "ERROR",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -1438,7 +1477,7 @@ namespace SerialPortListener
                     cbbTransport.Select();
 
                     MessageBox.Show(
-                        "ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง",
+                        "ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง ไม่สามารถบันทึกข้อมูลได้",
                         "แจ้งเตือน",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
@@ -1528,7 +1567,7 @@ namespace SerialPortListener
                     cbbTransport.Select();
 
                     MessageBox.Show(
-                        "ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง",
+                        "ขนส่งเป็นค่าว่าง กรุณาเลือกขนส่ง ไม่สามารถบันทึกข้อมูลได้",
                         "แจ้งเตือน",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
@@ -1975,7 +2014,7 @@ namespace SerialPortListener
                         string result =
                             await apiResponse.Content.ReadAsStringAsync();
 
-                        Console.WriteLine("SUCCESS : " + result);
+                        //Console.WriteLine("SUCCESS : " + result);
 
                         return true;
                     }
@@ -4303,16 +4342,28 @@ namespace SerialPortListener
                 // =============================================
                 // PHASE 2 : UPDATE summary via JWT API
                 // =============================================
-                bool apiSuccess = await UpdateDeliveryOrderFromApi();
+                var apiResult = await UpdateDeliveryOrderFromApi();
 
-                if (!apiSuccess)
+                if (!apiResult.IsSuccess)
                 {
-                    MessageBox.Show(
-                        "ไม่สามารถเชื่อมต่อ API ได้ กรุณาเชื่อมต่อ Internet",
-                        "API Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                    if (apiResult.IsValidationError)
+                    {
+                        MessageBox.Show(
+                            "ไม่สามารถอัปเดตข้อมูล Delivery Order ได้เนื่องจากข้อมูลไม่ถูกต้องตามเงื่อนไข (422 Unprocessable Entity)",
+                            "Validation Error (422)",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "ไม่สามารถเชื่อมต่อ API ได้: " + apiResult.ErrorMessage,
+                            "API Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
                     return;
                 }
 
@@ -4414,7 +4465,6 @@ namespace SerialPortListener
                             OdbcCommand cmd =
                                 (OdbcCommand)dl.sqlConn().CreateCommand();
 
-                            // WHERE NOT EXISTS = ON CONFLICT DO NOTHING
                             cmd.CommandText = @"
                             INSERT INTO delivery_order (
                                 doc_no, delivery_date, delivery_type,
@@ -4424,11 +4474,13 @@ namespace SerialPortListener
                                 product_code, product_name, qty, unit_name,
                                 sale_name, note, status
                             )
-                            SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                            WHERE NOT EXISTS (
-                                SELECT 1 FROM delivery_order WHERE doc_no = ?
-                            )
-                        ";
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            ON CONFLICT (doc_no) DO UPDATE SET
+                                car_company = EXCLUDED.car_company,
+                                car_customer = EXCLUDED.car_customer,
+                                car_company_rem = EXCLUDED.car_company_rem,
+                                car_customer_rem = EXCLUDED.car_customer_rem,
+                                status = EXCLUDED.status;";
 
                             // --- VALUES (เทียบกับ convert_api_to_db() ใน Python) ---
                             cmd.Parameters.AddWithValue("", item.docNo ?? "");
@@ -4451,7 +4503,7 @@ namespace SerialPortListener
                             cmd.Parameters.AddWithValue("", item.status ?? "");
 
                             // param สำหรับ WHERE NOT EXISTS
-                            cmd.Parameters.AddWithValue("", item.docNo ?? "");
+
 
                             cmd.ExecuteNonQuery();
                             totalRecords++;
@@ -4487,7 +4539,7 @@ namespace SerialPortListener
         // ----------------------------------------------------------
         // PHASE 2 : UPDATE summary via JWT API (เดิม)
         // ----------------------------------------------------------
-        private async Task<bool> UpdateDeliveryOrderFromApi()
+        private async Task<UpdateDeliveryOrderResult> UpdateDeliveryOrderFromApi()
         {
             string baseUrl = getBaseApi(1, 1);
             string username = getBaseApi(2, 1);
@@ -4522,16 +4574,12 @@ namespace SerialPortListener
 
                     if (!jwtResponse.IsSuccessStatusCode)
                     {
-                        string jwtError =
-                            await jwtResponse.Content.ReadAsStringAsync();
-
-                        MessageBox.Show(
-                            "JWT ERROR : " + jwtError,
-                            "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                        );
-                        return false;
+                        string jwtError = await jwtResponse.Content.ReadAsStringAsync();
+                        return new UpdateDeliveryOrderResult 
+                        { 
+                            IsSuccess = false, 
+                            ErrorMessage = "JWT Login failed: " + jwtError 
+                        };
                     }
 
                     string jwtResult =
@@ -4556,16 +4604,15 @@ namespace SerialPortListener
 
                     if (!apiResponse.IsSuccessStatusCode)
                     {
-                        string apiError =
-                            await apiResponse.Content.ReadAsStringAsync();
+                        string apiError = await apiResponse.Content.ReadAsStringAsync();
+                        bool is422 = apiResponse.StatusCode == (System.Net.HttpStatusCode)422;
 
-                        MessageBox.Show(
-                            "API ERROR : " + apiError,
-                            "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                        );
-                        return false;
+                        return new UpdateDeliveryOrderResult 
+                        { 
+                            IsSuccess = false, 
+                            IsValidationError = is422,
+                            ErrorMessage = apiError 
+                        };
                     }
 
                     string json =
@@ -4608,20 +4655,17 @@ namespace SerialPortListener
 
                     dl.close();
 
-                    return true;
+                    return new UpdateDeliveryOrderResult { IsSuccess = true };
                 }
             }
             catch (Exception ex)
             {
                 dl.close();
-
-                MessageBox.Show(
-                    ex.ToString(),
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-                return false;
+                return new UpdateDeliveryOrderResult 
+                { 
+                    IsSuccess = false, 
+                    ErrorMessage = ex.Message 
+                };
             }
             finally
             {
