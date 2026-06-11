@@ -5055,6 +5055,7 @@ namespace SerialPortListener
                     IsSuccess = false, 
                     ErrorMessage = ex.Message 
                 };
+
             }
             finally
             {
