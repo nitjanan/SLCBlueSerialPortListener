@@ -281,6 +281,7 @@ namespace SerialPortListener
             tbDoId.Text = "";
             tbDoDocNo.Text = "";
             cbbStoneType.Enabled = true;
+            cbS.Checked = false;
 
             fillStoneCombo();
             fillTransportCombo();
