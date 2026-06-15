@@ -206,7 +206,22 @@ namespace SerialPortListener
                 data.vat = tableDataFromDB.CurrentRow.Cells["vat"].Value.ToString();
                 data.doId = tableDataFromDB.CurrentRow.Cells["do_id"].Value.ToString();
                 data.doDocNo = tableDataFromDB.CurrentRow.Cells["do_doc_no"].Value.ToString();
-                try { data.stone_desc = tableDataFromDB.CurrentRow.Cells["stone_desc"].Value?.ToString() ?? ""; } catch { data.stone_desc = ""; }
+                try
+                {
+                    var rowView = tableDataFromDB.CurrentRow.DataBoundItem as System.Data.DataRowView;
+                    if (rowView != null && rowView.Row.Table.Columns.Contains("stone_desc"))
+                    {
+                        data.stone_desc = rowView.Row["stone_desc"] == DBNull.Value ? "" : rowView.Row["stone_desc"].ToString();
+                    }
+                    else
+                    {
+                        data.stone_desc = "";
+                    }
+                }
+                catch
+                {
+                    data.stone_desc = "";
+                }
 
 
                 //set Mode Weight
