@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -203,8 +203,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -230,8 +233,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
