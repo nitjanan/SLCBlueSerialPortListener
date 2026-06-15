@@ -1,4 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +36,7 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("PDriverName",Weight.DriverName),
                 new Microsoft.Reporting.WinForms.ReportParameter("PCustomerName",Weight.CustomerName),
                 new Microsoft.Reporting.WinForms.ReportParameter("PStoneType",Weight.StoneType),
+                new Microsoft.Reporting.WinForms.ReportParameter("PStoneDesc",Weight.StoneDesc),
                 new Microsoft.Reporting.WinForms.ReportParameter("PCar",Weight.CarLicense),
                 new Microsoft.Reporting.WinForms.ReportParameter("PCity",Weight.CarCity),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateIn",Weight.DateIn),
