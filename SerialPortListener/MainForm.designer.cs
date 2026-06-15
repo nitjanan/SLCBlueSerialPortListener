@@ -1,4 +1,4 @@
-﻿namespace SerialPortListener
+namespace SerialPortListener
 {
     partial class MainForm
     {

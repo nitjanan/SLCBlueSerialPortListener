@@ -1314,13 +1314,38 @@ namespace SerialPortListener
         }
 
 
+        private bool checkHistoricalDateConstraint()
+        {
+            if (Globals.isPermissionEditWeight())
+            {
+                return true;
+            }
+
+            if ((DateTime.Today - dtDate.Value.Date).TotalDays > 1)
+            {
+                MessageBox.Show("ไม่สามารถบันทึกข้อมูลย้อนหลังได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btSave_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
             autoSave();
         }
 
-        private void autoSave()
+        private bool autoSave()
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return false;
+            }
+
             Boolean isPasswordCorrect = true;
             if (tbId.Text == "")
             {
@@ -1328,26 +1353,48 @@ namespace SerialPortListener
 
                 //เช็คค่าว่าง
                 if (tbDocNum.Text == "")
+                {
                     MessageBox.Show("เลขที่การชั่งเป็นค่าว่าง กรุณใส่เลขที่การชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
                 else if (!isPasswordCorrect)
+                {
                     MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
                 //เช็คเลขซ้ำกัน
                 else if (checkDuplicateRunningNumber())
+                {
                     MessageBox.Show("เลขที่การชั่งนี้ใช้ไปแล้ว กรุณาเข้าหน้าต่างใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
                 else if (tbCarLicense.Text == "")
+                {
                     MessageBox.Show("ทะเบียนรถเป็นค่าว่าง กรุณากรอกเลขทะเบียนรถ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
                 else if (checkWeightInZero())
+                {
                     MessageBox.Show("น้ำหนักชั่งเข้าเป็น 0.00 ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
                 else
+                {
                     saveAction();
+                }
             }
             else
             {
                 isPasswordCorrect = checkCancelAction();
                 if (isPasswordCorrect)
+                {
                     updateAction();
+                }
                 else
+                {
                     MessageBox.Show("รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
 
             //showErrorEmtyTextBox(tbWeightOrigin);
@@ -1359,6 +1406,8 @@ namespace SerialPortListener
             }
             //update Time And WeigtTotal
             calTimeAndWeigt();
+
+            return true;
         }
 
         private void saveAction() {
@@ -1730,9 +1779,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
-
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception) {
@@ -1757,9 +1808,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
-
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -1786,9 +1839,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
-
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -2102,6 +2157,11 @@ namespace SerialPortListener
 
         private void btPrintIn_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
+
             //เช็คค่าว่าง
             showErrorWeightInEmty();
 
@@ -2112,11 +2172,11 @@ namespace SerialPortListener
                 //ไม่ต้องทำไร
             }
             else {
-                //save อัตโนมัติ
-                autoSave();
-
-                FPrint f = new FPrint();
-                f.ShowDialog();
+                if (autoSave())
+                {
+                    FPrint f = new FPrint();
+                    f.ShowDialog();
+                }
             }
 
         }
@@ -2811,6 +2871,11 @@ namespace SerialPortListener
 
         private void btPrintOut_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
+
             //เช็คค่าว่าง
             showErrorWeightOutEmty();
 
@@ -2820,18 +2885,24 @@ namespace SerialPortListener
                 //ไม่ต้องทำไร
             }
             else{
-                //save อัตโนมัติ
-                autoSave();
-                HandleSuccessfulPrint();
-                //Print
-                FPrint f = new FPrint();
-                f.ShowDialog();
+                if (autoSave())
+                {
+                    HandleSuccessfulPrint();
+                    //Print
+                    FPrint f = new FPrint();
+                    f.ShowDialog();
+                }
             }
 
         }
 
         private void btPrintAll_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
+
             //เช็คค่าว่าง
             showErrorWeightInEmty();
             showErrorWeightOutEmty();
@@ -2842,12 +2913,13 @@ namespace SerialPortListener
                 //ไม่ต้องทำไร
             }
             else {
-                //save อัตโนมัติ
-                autoSave();
-                HandleSuccessfulPrint();
-                //Print
-                FPrint f = new FPrint();
-                f.ShowDialog();
+                if (autoSave())
+                {
+                    HandleSuccessfulPrint();
+                    //Print
+                    FPrint f = new FPrint();
+                    f.ShowDialog();
+                }
             }
         }
 
@@ -3291,29 +3363,35 @@ namespace SerialPortListener
         {
             if (tbScoopId != null && tbScoopId.Text != "")
             {
-                //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_scoop where รหัสผู้ตัก = '" + tbScoopId.Text + "' and company = '" + Company.Code + "' ";
+                pgCommand.CommandText =
+                    "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
+                    "WHERE UPPER(TRIM(รหัสผู้ตัก)) = '" + tbScoopId.Text.Trim().ToUpper().Replace("'", "''") + "' " +
+                    "AND company = '" + Company.Code + "' " +
+                    "LIMIT 1";
                 try
                 {
                     dl.connect();
                     OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        string rdStr = reader["ชื่อผู้ตัก"].ToString();
-                        tbScoopName.Text = rdStr;
+                        tbScoopId.Text = reader["รหัสผู้ตัก"].ToString().Trim();
+                        tbScoopName.Text = reader["ชื่อผู้ตัก"].ToString().Trim();
                     }
-                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
-                    if (!reader.HasRows)
+                    else
                     {
                         tbScoopId.Text = "";
                         tbScoopName.Text = "";
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    MessageBox.Show("Error: " + ex.Message);
                 }
-                dl.close();
+                finally
+                {
+                    dl.close();
+                }
             }
             else
             {
@@ -3325,29 +3403,35 @@ namespace SerialPortListener
         {
             if (tbScoopName != null && tbScoopName.Text != "")
             {
-                //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_scoop where ชื่อผู้ตัก = '" + tbScoopName.Text + "' and company = '" + Company.Code + "' ";
+                pgCommand.CommandText =
+                    "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
+                    "WHERE UPPER(TRIM(ชื่อผู้ตัก)) = '" + tbScoopName.Text.Trim().ToUpper().Replace("'", "''") + "' " +
+                    "AND company = '" + Company.Code + "' " +
+                    "LIMIT 1";
                 try
                 {
                     dl.connect();
                     OdbcDataReader reader = pgCommand.ExecuteReader();
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        string rdStr = reader["รหัสผู้ตัก"].ToString();
-                        tbScoopId.Text = rdStr;
+                        tbScoopId.Text = reader["รหัสผู้ตัก"].ToString().Trim();
+                        tbScoopName.Text = reader["ชื่อผู้ตัก"].ToString().Trim();
                     }
-                    //sql รีเซตค่าหากหาข้อมูลไม่เจอ
-                    if (!reader.HasRows)
+                    else
                     {
                         tbScoopId.Text = "";
                         tbScoopName.Text = "";
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    MessageBox.Show("Error: " + ex.Message);
                 }
-                dl.close();
+                finally
+                {
+                    dl.close();
+                }
             }
             else
             {
