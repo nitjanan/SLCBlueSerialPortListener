@@ -4677,15 +4677,6 @@ namespace SerialPortListener
                     ErrorMessage = ex.Message 
                 };
 
-                /*
-                MessageBox.Show(
-                    ex.ToString(),
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-                */
-                return false;
             }
             finally
             {
