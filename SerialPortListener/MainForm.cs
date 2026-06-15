@@ -1347,10 +1347,31 @@ namespace SerialPortListener
         }
 
 
+        private bool checkHistoricalDateConstraint()
+        {
+            if (Globals.isPermissionEditWeight())
+            {
+                return true;
+            }
+
+            if ((DateTime.Today - dtDate.Value.Date).TotalDays > 1)
+            {
+                MessageBox.Show("ไม่สามารถบันทึกข้อมูลย้อนหลังได้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
         private async void btSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!checkHistoricalDateConstraint())
+                {
+                    return;
+                }
+
                 // ==========================================
                 // 1. UPDATE DELIVERY ORDER FROM API BEFORE SAVE
                 // ==========================================
@@ -1419,8 +1440,13 @@ namespace SerialPortListener
             }
         }
 
-        private async Task autoSave()
+        private async Task<bool> autoSave()
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return false;
+            }
+
             Boolean isPasswordCorrect = true;
 
             string tmpDoId = tbDoId.Text;
@@ -1445,7 +1471,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // PASSWORD
@@ -1458,7 +1484,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // CHECK DUPLICATE
@@ -1471,7 +1497,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // TRANSPORT EMPTY
@@ -1486,7 +1512,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // CHECK PLAN
@@ -1507,7 +1533,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // =========================
@@ -1526,7 +1552,7 @@ namespace SerialPortListener
                             MessageBoxIcon.Error
                         );
 
-                        return; // ← STOP
+                        return false; // ← STOP
                     }
                 }
 
@@ -1555,6 +1581,7 @@ namespace SerialPortListener
                         );
                     }
                 }
+                return true;
             }
 
             // =========================================================
@@ -1576,7 +1603,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // CHECK PLAN
@@ -1597,7 +1624,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // PASSWORD
@@ -1610,7 +1637,7 @@ namespace SerialPortListener
                         MessageBoxIcon.Warning
                     );
 
-                    return;
+                    return false;
                 }
 
                 // =========================
@@ -1629,7 +1656,7 @@ namespace SerialPortListener
                             MessageBoxIcon.Error
                         );
 
-                        return; // ← STOP
+                        return false; // ← STOP
                     }
                 }
 
@@ -1658,6 +1685,7 @@ namespace SerialPortListener
                         );
                     }
                 }
+                return true;
             }
         }
 
@@ -2422,9 +2450,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
-
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -2450,9 +2480,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
-
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -2479,9 +2511,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
-
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -2810,6 +2844,11 @@ namespace SerialPortListener
 
         private async void btPrintIn_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
+
             //เช็คค่าว่าง
             showErrorWeightInEmty();
 
@@ -2823,10 +2862,11 @@ namespace SerialPortListener
             else
             {
                 //save อัตโนมัติ
-                await autoSave();
-
-                FPrint f = new FPrint();
-                f.ShowDialog();
+                if (await autoSave())
+                {
+                    FPrint f = new FPrint();
+                    f.ShowDialog();
+                }
             }
 
         }
@@ -3501,6 +3541,11 @@ namespace SerialPortListener
 
         private async void btPrintOut_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
+
             //เช็คค่าว่าง
             showErrorWeightOutEmty();
 
@@ -3513,17 +3558,24 @@ namespace SerialPortListener
             else
             {
                 //save อัตโนมัติ
-                await autoSave();
-                HandleSuccessfulPrint();
-                //Print
-                FPrint f = new FPrint();
-                f.ShowDialog();
+                if (await autoSave())
+                {
+                    HandleSuccessfulPrint();
+                    //Print
+                    FPrint f = new FPrint();
+                    f.ShowDialog();
+                }
             }
 
         }
 
         private async void btPrintAll_Click(object sender, EventArgs e)
         {
+            if (!checkHistoricalDateConstraint())
+            {
+                return;
+            }
+
             //เช็คค่าว่าง
             showErrorWeightInEmty();
             showErrorWeightOutEmty();
@@ -3537,11 +3589,13 @@ namespace SerialPortListener
             else
             {
                 //save อัตโนมัติ
-                await autoSave();
-                HandleSuccessfulPrint();
-                //Print
-                FPrint f = new FPrint();
-                f.ShowDialog();
+                if (await autoSave())
+                {
+                    HandleSuccessfulPrint();
+                    //Print
+                    FPrint f = new FPrint();
+                    f.ShowDialog();
+                }
             }
         }
 
@@ -4092,7 +4146,7 @@ namespace SerialPortListener
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText =
                 "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
-                "WHERE รหัสผู้ตัก = '" + tbScoopId.Text + "' " +
+                "WHERE UPPER(TRIM(รหัสผู้ตัก)) = '" + tbScoopId.Text.Trim().ToUpper().Replace("'", "''") + "' " +
                 "AND company = '" + Company.Code + "' " +
                 "LIMIT 1";
             try
@@ -4101,7 +4155,8 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 if (reader.Read())
                 {
-                    tbScoopName.Text = reader["ชื่อผู้ตัก"].ToString();
+                    tbScoopId.Text = reader["รหัสผู้ตัก"].ToString().Trim();
+                    tbScoopName.Text = reader["ชื่อผู้ตัก"].ToString().Trim();
                 }
                 else
                 {
@@ -4137,7 +4192,7 @@ namespace SerialPortListener
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText =
                 "SELECT รหัสผู้ตัก, ชื่อผู้ตัก FROM public.base_scoop " +
-                "WHERE ชื่อผู้ตัก = '" + tbScoopName.Text + "' " +
+                "WHERE UPPER(TRIM(ชื่อผู้ตัก)) = '" + tbScoopName.Text.Trim().ToUpper().Replace("'", "''") + "' " +
                 "AND company = '" + Company.Code + "' " +
                 "LIMIT 1";
             try
@@ -4146,7 +4201,8 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 if (reader.Read())
                 {
-                    tbScoopId.Text = reader["รหัสผู้ตัก"].ToString();
+                    tbScoopId.Text = reader["รหัสผู้ตัก"].ToString().Trim();
+                    tbScoopName.Text = reader["ชื่อผู้ตัก"].ToString().Trim();
                 }
                 else
                 {
