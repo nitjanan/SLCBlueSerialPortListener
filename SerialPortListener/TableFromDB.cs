@@ -209,6 +209,7 @@ namespace SerialPortListener
                 data.vat = tableDataFromDB.CurrentRow.Cells["vat"].Value.ToString();
                 data.doId = tableDataFromDB.CurrentRow.Cells["do_id"].Value.ToString();
                 data.doDocNo = tableDataFromDB.CurrentRow.Cells["do_doc_no"].Value.ToString();
+
                 try
                 {
                     var rowView = tableDataFromDB.CurrentRow.DataBoundItem as System.Data.DataRowView;
