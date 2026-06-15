@@ -65,6 +65,7 @@ namespace SerialPortListener
             public String vat;
             public String doId;
             public String doDocNo;
+
             public String stone_desc;
         }
         public TableFromDB(MainForm parent)
