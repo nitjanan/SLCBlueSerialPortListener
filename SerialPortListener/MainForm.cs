@@ -42,6 +42,7 @@ namespace SerialPortListener
         bool isCheckedCleanNo = false;
         bool isCheckedSelfPick = false;
         bool isCheckedSendTo = false;
+        private string lastLimitExceededError = null;
 
         /*1 search anywhere customer */
         // Bind default keywords
@@ -1559,28 +1560,45 @@ namespace SerialPortListener
                 // =========================
                 // SAVE DATABASE
                 // =========================
-                saveAction();
+                saveActionOnly();
 
                 // =========================
                 // SEND WEIGHT DELIVERY
                 // =========================
+                bool apiFailedWithLimitExceeded = false;
+                bool weightSuccess = true;
                 if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
                 {
                     int newWeightId = Convert.ToInt32(tbId.Text);
+                    lastLimitExceededError = null;
 
-                    bool weightSuccess =
+                    weightSuccess =
                         await prepareWeightDelivery(tmpDoId, tmpOldDoId, newWeightId);
 
-                    if (!weightSuccess)
+                    if (!weightSuccess && lastLimitExceededError != null)
                     {
-                        MessageBox.Show(
-                            "บันทึกข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
-                            "API Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
+                        apiFailedWithLimitExceeded = true;
                     }
                 }
+
+                if (apiFailedWithLimitExceeded)
+                {
+                    int newWeightId = Convert.ToInt32(tbId.Text);
+                    rollbackInsert(newWeightId);
+                    return false;
+                }
+
+                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0" && !weightSuccess)
+                {
+                    MessageBox.Show(
+                        "บันทึกข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
+                        "API Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+
+                disableAfterSave();
                 return true;
             }
 
@@ -1661,30 +1679,45 @@ namespace SerialPortListener
                 }
 
                 // =========================
-                // UPDATE DATABASE
+                // SEND WEIGHT DELIVERY (BEFORE UPDATE)
                 // =========================
-                updateAction();
-
-                // =========================
-                // SEND WEIGHT DELIVERY
-                // =========================
+                bool apiFailedWithLimitExceeded = false;
+                bool weightSuccess = true;
                 if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
                 {
                     int currentWeightId = Convert.ToInt32(tbId.Text);
+                    lastLimitExceededError = null;
 
-                    bool weightSuccess =
+                    weightSuccess =
                         await prepareWeightDelivery(tmpDoId, tmpOldDoId, currentWeightId);
 
-                    if (!weightSuccess)
+                    if (!weightSuccess && lastLimitExceededError != null)
                     {
-                        MessageBox.Show(
-                            "แก้ไขข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
-                            "API Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
+                        apiFailedWithLimitExceeded = true;
                     }
                 }
+
+                if (apiFailedWithLimitExceeded)
+                {
+                    return false;
+                }
+
+                // =========================
+                // UPDATE DATABASE
+                // =========================
+                updateActionOnly();
+
+                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0" && !weightSuccess)
+                {
+                    MessageBox.Show(
+                        "แก้ไขข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
+                        "API Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+
+                disableAfterSave();
                 return true;
             }
         }
@@ -1714,6 +1747,110 @@ namespace SerialPortListener
             {
                 return false;
             }
+        }
+
+        private void saveActionOnly()
+        {
+            Boolean isSuccess = false;
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("INSERT INTO weight (วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, bws, ");
+            sql.Append(" do_id, do_doc_no,");
+            sql.Append(" oil_content, site_id, stone_type_id, mill_id, car_team_id, stone_desc)");
+
+            sql.Append("VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn));
+            sql.Append("','" + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text);
+            sql.Append("','" + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text);
+            sql.Append("','" + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1));
+            sql.Append("','" + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) , (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 )");
+            sql.Append(" , " + CheckText(tbDoId.Text) + " ,'" + tbDoDocNo.Text + "'");
+            sql.Append(" , '" + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "','" + tbStoneDesc.Text + "' )");
+
+            pgCommand.CommandText = sql.ToString();
+
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                isSuccess = runningDocNumberAfterSave();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            dl.close();
+
+            //set WeightId
+            if (isSuccess)
+                setWeightId();
+        }
+
+        private void updateActionOnly()
+        {
+            //sql
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("UPDATE weight SET ทะเบียนรถ = '" + tbCarLicense.Text.TrimEnd() + "' , จังหวัด = '" + tbCarCity.Text + "' , คนขับ = '" + tbDriverName.Text + "', ลูกค้า = '" + tbCustomerName.Text + "' , น้ำหนักรถ = '" + kgToTon(tbWeightIn) + "' , น้ำหนักรวม = '" + kgToTon(tbWeightOut));
+            sql.Append("' , น้ำหนักสินค้า = '" + kgToTon(tbWeightTotal) + "' , เลขที่ใบตัก = '" + tbRefNum.Text + "' , โรงโม่ = '" + cbbMill.Text + "' , ชนิดหิน = '" + cbbStoneType.Text + "' , จ่ายเงิน = '" + getPayRadioValue() + "' , รหัสผู้ชั่ง = '" + tbScaleId.Text);
+            sql.Append("' , รหัสผู้ตัก = '" + tbScoopId.Text + "' , ราคาตัน = '" + numberFormat(tbPricePerTon.Text, 1) + "' , จำนวณเงิน = '" + numberFormat(tbAmount.Text, 1) + "' , ค่าขนส่ง = '" + tbShipCost.Text + "' , วันที่ชั่งเข้า = '" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "' , เวลาชั่งเข้า = '" + dtWeightInTime.Text);
+            sql.Append("' , วันที่ชั่งออก = '" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "' , เวลาชั่งออก = '" + dtWeightOutTime.Text + "'  , รหัสลูกค้า = '" + tbCustomerId.Text + "'  , ชื่อผู้ชั่ง = '" + tbScaleName.Text + "' , ชื่อผู้ตัก = '" + tbScoopName.Text + "' , vat = '" + numberFormat(tbVat.Text, 1));
+            sql.Append("' , รหัสผู้อนุมัติจ่าย = '" + tbApproveId.Text + "' , ชื่อผู้อนุมัติจ่าย = '" + tbApproveName.Text + "' , คิว = '" + numberFormat(tbQ.Text, 1) + "' , ชนิดvat = '" + getVatRadioValue() + "' , จำนวนเงินสุทธิ = '" + numberFormat(tbAmountVat.Text, 1) + "' , ประเภทหิน = '" + cbbStoneColor.Text);
+            sql.Append("' , หน้างาน = '" + cbbSite.Text + "' , ทีม = '" + cbbCarTeam.Text + "' , ล้าง = '" + getCleanRadioValue() + "' , ขนส่ง = '" + cbbTransport.Text + "' , carry_type_name = '" + findcarryTypeByTransport() + "' , หมายเหตุ = '" + tbNote.Text + "' , oil_content = '" + numberFormat(tbOilContent.Text, 1));
+            sql.Append("' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate());
+            sql.Append("' , do_id = " + CheckText(tbDoId.Text) + " , do_doc_no = '" + tbDoDocNo.Text + "'");
+            sql.Append(" , stone_desc = '" + tbStoneDesc.Text + "'");
+            sql.Append(" WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ");
+
+            pgCommand.CommandText = sql.ToString();
+
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                while (reader.Read())
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            dl.close();
+        }
+
+        private void rollbackInsert(int weightId)
+        {
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "DELETE FROM weight WHERE weight_id = " + weightId;
+            try
+            {
+                dl.connect();
+                pgCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Rollback weight record failed: " + ex.Message);
+            }
+            dl.close();
+
+            pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "DELETE FROM weight_log WHERE weight_id = " + weightId;
+            try
+            {
+                dl.connect();
+                pgCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Rollback weight log failed: " + ex.Message);
+            }
+            dl.close();
+
+            tbId.Text = "";
         }
 
         private void saveAction()
@@ -2042,22 +2179,41 @@ namespace SerialPortListener
                     HttpResponseMessage apiResponse =
                         await client.PostAsync(apiUrl, apiContent);
 
+                    string responseContent =
+                        await apiResponse.Content.ReadAsStringAsync();
+
+                    if (responseContent.Contains("car_customer limit exceeded"))
+                    {
+                        lastLimitExceededError = "car_customer";
+                        MessageBox.Show(
+                            "ไม่สามารถบันทึกข้อมูลได้เนื่องจากรถลูกค้าเกินจากที่วาง plan ไว้ กรุณาติดต่อพนักงานขาย",
+                            "แจ้งเตือน",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                        return false;
+                    }
+                    else if (responseContent.Contains("car_company limit exceeded"))
+                    {
+                        lastLimitExceededError = "car_company";
+                        MessageBox.Show(
+                            "ไม่สามารถบันทึกข้อมูลได้เนื่องจากรถบริษัทเกินจากที่วาง plan ไว้ กรุณาติดต่อพนักงานขาย",
+                            "แจ้งเตือน",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                        return false;
+                    }
+
                     if (apiResponse.IsSuccessStatusCode)
                     {
-                        string result =
-                            await apiResponse.Content.ReadAsStringAsync();
-
-                        //Console.WriteLine("SUCCESS : " + result);
-
+                        //Console.WriteLine("SUCCESS : " + responseContent);
                         return true;
                     }
                     else
                     {
-                        string error =
-                            await apiResponse.Content.ReadAsStringAsync();
-
                         MessageBox.Show(
-                            "API ERROR : " + error,
+                            "API ERROR : " + responseContent,
                             "Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error
