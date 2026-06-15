@@ -1087,7 +1087,7 @@ namespace SerialPortListener
             this.cbbStoneType.IntegralHeight = false;
             this.cbbStoneType.Location = new System.Drawing.Point(370, 234);
             this.cbbStoneType.Name = "cbbStoneType";
-            this.cbbStoneType.Size = new System.Drawing.Size(165, 29);
+            this.cbbStoneType.Size = new System.Drawing.Size(215, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
@@ -1096,9 +1096,9 @@ namespace SerialPortListener
             // 
             this.tbStoneDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbStoneDesc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbStoneDesc.Location = new System.Drawing.Point(541, 234);
+            this.tbStoneDesc.Location = new System.Drawing.Point(591, 234);
             this.tbStoneDesc.Name = "tbStoneDesc";
-            this.tbStoneDesc.Size = new System.Drawing.Size(166, 29);
+            this.tbStoneDesc.Size = new System.Drawing.Size(116, 27);
             this.tbStoneDesc.TabIndex = 16;
             // 
             // groupBox1
