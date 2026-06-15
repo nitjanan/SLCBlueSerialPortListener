@@ -96,6 +96,16 @@ namespace SerialPortListener
             public object qty_tot { get; set; }
         }
 
+        public class CancelDeliveryOrder
+        {
+            // --- Fields from BASE_URL (Phase 1 download) ---
+            public string doc_no { get; set; }
+            public string delivery_date { get; set; }
+            public string status { get; set; }
+            public object comp_code { get; set; }
+        }
+
+
         // ============================================================
         // API response wrapper  { "data": [...], ... }
         // ============================================================
@@ -2010,6 +2020,7 @@ namespace SerialPortListener
 
         }
 
+        /* ใช้แบบใหม่แล้ว
         private void prepareUpdateDo(string tmpDoId, string tmpOldDoId)
         {
 
@@ -2025,6 +2036,7 @@ namespace SerialPortListener
                 updateDeliveryOrder(tmpDoId);
             }
         }
+        */
 
 
         private async Task<bool> prepareWeightDelivery(
@@ -2089,6 +2101,7 @@ namespace SerialPortListener
                     string baseUrl = getBaseApi(1, 1);
                     string username = getBaseApi(2, 1);
                     string password = getBaseApi(3, 1);
+                    string com_code = getBaseApi(4, 1);
 
                     string accessToken =
                         await GetJwtToken(client, baseUrl, username, password);
@@ -2111,8 +2124,52 @@ namespace SerialPortListener
                     string apiUrl =
                         $"{baseUrl}/api/uc_weight_delivery/";
 
-                    DateTime deliveryDate =
-                        DateTime.Parse(findValueByDO(do_id, 2));
+                    // =========================
+                    // FETCH DELIVERY ORDER DATA
+                    // =========================
+                    string doc_no = "";
+                    string delivery_date_str = "";
+                    string unitName = "";
+                    int car_company = 0;
+                    int car_customer = 0;
+                    string status = "";
+                    double qty = 0;
+
+                    using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
+                    {
+                        pgCommand.CommandText = "SELECT doc_no, delivery_date, unit_name, car_company, car_customer, status, qty FROM delivery_order where do_id = ?";
+                        pgCommand.Parameters.AddWithValue("?", do_id);
+                        try
+                        {
+                            dl.connect();
+                            using (OdbcDataReader reader = pgCommand.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    doc_no = reader["doc_no"] != DBNull.Value ? reader["doc_no"].ToString() : "";
+                                    delivery_date_str = reader["delivery_date"] != DBNull.Value ? reader["delivery_date"].ToString() : "";
+                                    unitName = reader["unit_name"] != DBNull.Value ? reader["unit_name"].ToString() : "";
+                                    int.TryParse(reader["car_company"] != DBNull.Value ? reader["car_company"].ToString() : "0", out car_company);
+                                    int.TryParse(reader["car_customer"] != DBNull.Value ? reader["car_customer"].ToString() : "0", out car_customer);
+                                    status = reader["status"] != DBNull.Value ? reader["status"].ToString() : "";
+                                    double.TryParse(reader["qty"] != DBNull.Value ? reader["qty"].ToString() : "0", out qty);
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                        }
+                        finally
+                        {
+                            dl.close();
+                        }
+                    }
+
+                    DateTime deliveryDate = DateTime.Now;
+                    if (!string.IsNullOrEmpty(delivery_date_str))
+                    {
+                        DateTime.TryParse(delivery_date_str, out deliveryDate);
+                    }
 
                     bool real_is_cancel = is_cancel || isCancelDO();
 
@@ -2127,12 +2184,12 @@ namespace SerialPortListener
                             deliveryDate.ToString("yyyy-MM-dd"),
 
                         bws = findBWS(),
+                        com_code = com_code,
 
                         do_id =
                             Convert.ToInt32(do_id),
 
-                        do_doc_no =
-                            findValueByDO(do_id, 1),
+                        do_doc_no = doc_no,
 
                         carry_type_name =
                             findcarryTypeByTransport(),
@@ -2143,16 +2200,16 @@ namespace SerialPortListener
                         weight_q =
                             Convert.ToDouble(tbQ.Text),
 
-                        unit_name =
-                            findValueByDO(do_id, 3),
+                        unit_name = unitName,
 
-                        car_company =
-                            Convert.ToInt32(findValueByDO(do_id, 4)),
+                        car_company = car_company,
 
-                        car_customer =
-                            Convert.ToInt32(findValueByDO(do_id, 5)),
+                        car_customer = car_customer,
 
-                        is_cancel = real_is_cancel
+                        is_cancel = real_is_cancel,
+
+                        status = status,
+                        qty = qty
                     };
 
                     string apiJson =
@@ -4603,6 +4660,117 @@ namespace SerialPortListener
                 );
                 */
             }
+            finally
+            {
+                await updateStatusCancelDO();
+            }
+        }
+
+        private async Task updateStatusCancelDO()
+        {
+            string baseUrl = getBaseApi(1, 1);
+            string username = getBaseApi(2, 1);
+            string password = getBaseApi(3, 1);
+            string comp_code = getBaseApi(4, 1);
+            string apiUrl = $"{baseUrl}/api/uc_status_cancel_do/";
+
+            List<CancelDeliveryOrder> cancelOrders = new List<CancelDeliveryOrder>();
+
+            try
+            {
+                dl.connect();
+                using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
+                {
+                    pgCommand.CommandText = @"
+                        SELECT doc_no, delivery_date, status
+                        FROM delivery_order 
+                        WHERE delivery_date = '" + dtDate.Text + "' and status = 'cancel'";
+
+                    using (OdbcDataReader reader = pgCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string formattedDate = "";
+                            if (reader["delivery_date"] != DBNull.Value)
+                            {
+                                var dbVal = reader["delivery_date"];
+                                if (dbVal is DateTime dtVal)
+                                {
+                                    formattedDate = dtVal.ToString("yyyy-MM-dd");
+                                }
+                                else
+                                {
+                                    string rawDate = dbVal.ToString();
+                                    if (DateTime.TryParse(rawDate, out DateTime parsedDate))
+                                    {
+                                        formattedDate = parsedDate.ToString("yyyy-MM-dd");
+                                    }
+                                    else
+                                    {
+                                        formattedDate = rawDate;
+                                    }
+                                }
+                            }
+
+                            var order = new CancelDeliveryOrder
+                            {
+                                doc_no = reader["doc_no"] != DBNull.Value ? reader["doc_no"].ToString() : "",
+                                delivery_date = formattedDate,
+                                status = reader["status"] != DBNull.Value ? reader["status"].ToString() : "",
+                                comp_code = comp_code
+                            };
+                            cancelOrders.Add(order);
+                            string orderJson = JsonConvert.SerializeObject(order);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("DB Error in updateStatusCancelDO: " + ex.ToString());
+                System.Diagnostics.Debug.WriteLine("DB Error in updateStatusCancelDO: " + ex.ToString());
+            }
+            finally
+            {
+                dl.close();
+            }
+
+            if (cancelOrders.Count == 0)
+            {
+                return;
+            }
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(30);
+
+                    string accessToken = await GetJwtToken(client, baseUrl, username, password);
+
+                    if (accessToken == null)
+                        return;
+
+                    client.DefaultRequestHeaders.Authorization =
+                        new AuthenticationHeaderValue("Bearer", accessToken);
+
+                    string apiJson = JsonConvert.SerializeObject(cancelOrders);
+                    var apiContent = new StringContent(apiJson, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage apiResponse = await client.PostAsync(apiUrl, apiContent);
+                    if (!apiResponse.IsSuccessStatusCode)
+                    {
+                        string apiError = await apiResponse.Content.ReadAsStringAsync();
+                        Console.WriteLine("API Response Error: " + apiError);
+                        System.Diagnostics.Debug.WriteLine("API Response Error: " + apiError);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("API Error in updateStatusCancelDO: " + ex.ToString());
+                System.Diagnostics.Debug.WriteLine("API Error in updateStatusCancelDO: " + ex.ToString());
+            }
         }
 
 
@@ -4861,7 +5029,7 @@ namespace SerialPortListener
                             car_company_rem  = ?,
                             car_customer_rem = ?
                         WHERE doc_no = ?
-                    ";
+                        ";
 
                         pgCommand.Parameters.AddWithValue("", item.car_company_tot);
                         pgCommand.Parameters.AddWithValue("", item.car_customer_tot);
