@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,7 @@ namespace SerialPortListener
         private static string _driverName;
         private static string _customerName;
         private static string _stoneType;
+        private static string _stoneDesc;
         private static string _carLicense;
         private static string _carCity;
         private static string _dateIn;
@@ -139,6 +140,14 @@ namespace SerialPortListener
             { return _stoneType; }
             set
             { _stoneType = value; }
+        }
+
+        public static string StoneDesc
+        {
+            get
+            { return _stoneDesc; }
+            set
+            { _stoneDesc = value; }
         }
 
         public static string CarCity

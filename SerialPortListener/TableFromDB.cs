@@ -1,4 +1,4 @@
-﻿using Devart.Data.PostgreSql;
+using Devart.Data.PostgreSql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,7 +65,7 @@ namespace SerialPortListener
             public String doId;
             public String doDocNo;
             public String isS;
-
+            public String stone_desc;
         }
         public TableFromDB(MainForm parent)
         {
@@ -208,7 +208,7 @@ namespace SerialPortListener
                 data.doId = tableDataFromDB.CurrentRow.Cells["do_id"].Value.ToString();
                 data.doDocNo = tableDataFromDB.CurrentRow.Cells["do_doc_no"].Value.ToString();
                 data.isS = tableDataFromDB.CurrentRow.Cells["is_s"].Value.ToString();
-
+                try { data.stone_desc = tableDataFromDB.CurrentRow.Cells["stone_desc"].Value?.ToString() ?? ""; } catch { data.stone_desc = ""; }
 
 
                 //set Mode Weight
