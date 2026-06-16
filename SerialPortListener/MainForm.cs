@@ -4865,10 +4865,6 @@ namespace SerialPortListener
                             )
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                             ON CONFLICT (doc_no) DO UPDATE SET
-                                car_company = EXCLUDED.car_company,
-                                car_customer = EXCLUDED.car_customer,
-                                car_company_rem = EXCLUDED.car_company_rem,
-                                car_customer_rem = EXCLUDED.car_customer_rem,
                                 status = EXCLUDED.status;";
 
                             // --- VALUES (เทียบกับ convert_api_to_db() ใน Python) ---
