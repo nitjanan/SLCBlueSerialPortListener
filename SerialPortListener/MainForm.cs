@@ -102,7 +102,7 @@ namespace SerialPortListener
             public string doc_no { get; set; }
             public string delivery_date { get; set; }
             public string status { get; set; }
-            public object comp_code { get; set; }
+            public string comp_code { get; set; }
         }
 
 
@@ -2106,7 +2106,7 @@ namespace SerialPortListener
                     string baseUrl = getBaseApi(1, 1);
                     string username = getBaseApi(2, 1);
                     string password = getBaseApi(3, 1);
-                    string com_code = getBaseApi(4, 1);
+                    string comp_code = getBaseApi(4, 1);
 
                     string accessToken =
                         await GetJwtToken(client, baseUrl, username, password);
@@ -2189,7 +2189,7 @@ namespace SerialPortListener
                             deliveryDate.ToString("yyyy-MM-dd"),
 
                         bws = findBWS(),
-                        com_code = com_code,
+                        comp_code = comp_code,
 
                         do_id =
                             Convert.ToInt32(do_id),
