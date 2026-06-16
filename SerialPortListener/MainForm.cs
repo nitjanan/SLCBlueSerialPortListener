@@ -1407,7 +1407,7 @@ namespace SerialPortListener
                         else
                         {
                             MessageBox.Show(
-                                "ไม่สามารถอัปเดตข้อมูล Delivery Order ได้เนื่องจาก: " + updateResult.ErrorMessage + " ระบบจะไม่บันทึกข้อมูล",
+                                "ไม่สามารถอัปเดตข้อมูล Delivery Order ได้ ระบบจะไม่บันทึกข้อมูล กรุณาเชื่อมต่อ Internet!!!",
                                 "API Error",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error
@@ -4652,7 +4652,7 @@ namespace SerialPortListener
                     else
                     {
                         MessageBox.Show(
-                            "ไม่สามารถเชื่อมต่อ API ได้: " + apiResult.ErrorMessage,
+                            "ไม่สามารถเชื่อมต่อ API ได้ กรุณาเชื่อมต่อ Internet!!!",
                             "API Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error
