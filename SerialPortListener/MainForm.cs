@@ -201,6 +201,8 @@ namespace SerialPortListener
 
             tbWeigtData.Enter += (s, e) => { tbWeigtData.Parent.Focus(); };
 
+            tbScoopId.KeyDown += tbScoopId_KeyDown;
+            tbScoopName.KeyDown += tbScoopName_KeyDown;
         }
         public void EnableWeightInAndOut()
         {
@@ -2686,7 +2688,7 @@ namespace SerialPortListener
         /* autoComplete Setting */
         private void autoCompleteSettingCompany(TextBox tb, string field, string tableName)
         {
-            tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tb.AutoCompleteMode = AutoCompleteMode.Suggest;
             tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
             AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
 
@@ -4349,15 +4351,8 @@ namespace SerialPortListener
             }
         }
 
-        private void tbScoopId_Leave(object sender, EventArgs e)
+        private void LoadScoopById()
         {
-            Application.Idle += TbScoopId_Idle;
-        }
-
-        private void TbScoopId_Idle(object sender, EventArgs e)
-        {
-            Application.Idle -= TbScoopId_Idle; // fire only once
-
             if (tbScoopId == null || tbScoopId.Text == "")
             {
                 tbScoopName.Text = "";
@@ -4395,15 +4390,8 @@ namespace SerialPortListener
             }
         }
 
-        private void tbScoopName_Leave(object sender, EventArgs e)
+        private void LoadScoopByName()
         {
-            Application.Idle += TbScoopName_Idle;
-        }
-
-        private void TbScoopName_Idle(object sender, EventArgs e)
-        {
-            Application.Idle -= TbScoopName_Idle; // fire only once
-
             if (tbScoopName == null || tbScoopName.Text == "")
             {
                 tbScoopId.Text = "";
@@ -4441,6 +4429,35 @@ namespace SerialPortListener
             }
         }
 
+        private void tbScoopId_Leave(object sender, EventArgs e)
+        {
+            LoadScoopById();
+        }
+
+        private void tbScoopName_Leave(object sender, EventArgs e)
+        {
+            LoadScoopByName();
+        }
+
+        private void tbScoopId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // prevent beep
+                LoadScoopById();
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+
+        private void tbScoopName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // prevent beep
+                LoadScoopByName();
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
 
         private void btRefresh_Click(object sender, EventArgs e)
         {
