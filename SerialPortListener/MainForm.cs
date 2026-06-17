@@ -106,7 +106,7 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
             //แสดงค่าน้ำหนักสายสั้นและสายยาว
-            showTimeAndWeigt();
+            calTimeAndWeigt();
 
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
 
@@ -114,14 +114,14 @@ namespace SerialPortListener
 
         }
 
-        public void showTimeAndWeigt()
+        public void calTimeAndWeigt()
         {
-            showTimeAndWeigtTotal();
-            showTimeAndWeigtTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
-            showTimeAndWeigtTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
+            calTimeAndWeigtTotal();
+            calTimeAndWeigtTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
+            calTimeAndWeigtTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
         }
 
-        public void showTimeAndWeigtTotal()
+        public void calTimeAndWeigtTotal()
         {
             string beginDate = findBaseSettingLine("base_setting_line_date_from");
             string beginTime = findBaseSettingLine("base_setting_line_time_from");
@@ -185,7 +185,7 @@ namespace SerialPortListener
 
         }
 
-        public void showTimeAndWeigtTotalByLineType(string lineType, Label time, Label weightTotal)
+        public void calTimeAndWeigtTotalByLineType(string lineType, Label time, Label weightTotal)
         {
             string beginDate = findBaseSettingLine("base_setting_line_date_from");
             string beginTime = findBaseSettingLine("base_setting_line_time_from");
@@ -1263,7 +1263,7 @@ namespace SerialPortListener
                 showErrorEmtyComboBox(cbbSite);
             }
             //update Time And WeigtTotal
-            showTimeAndWeigt();
+            calTimeAndWeigt();
         }
 
         private void saveAction() {
