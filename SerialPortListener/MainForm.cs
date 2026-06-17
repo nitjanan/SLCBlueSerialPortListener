@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -106,7 +106,7 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
             //แสดงค่าน้ำหนักสายสั้นและสายยาว
-            calTimeAndWeigt();
+            showTimeAndWeigt();
 
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
 
@@ -127,6 +127,8 @@ namespace SerialPortListener
             string beginTime = findBaseSettingLine("base_setting_line_time_from");
             string site_name = findBaseSettingLine("base_site_name");
             double deci_q = 0;
+            string num_time = "";
+            string sum_weight = "";
 
             //sql get weight id
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -140,16 +142,16 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    lbTime.Text = reader["C"].ToString();
+                    num_time = reader["C"].ToString();
 
                     if (reader["Q"].ToString() != "")
                     {
                         deci_q = Convert.ToDouble(reader["Q"].ToString());
-                        lbWeightTotal.Text = deci_q.ToString("#,##0.000");
+                        sum_weight = deci_q.ToString("#,##0.000");
                     }
                     else
                     {
-                        lbWeightTotal.Text = "0.000";
+                        sum_weight = "0.000";
                     }
                 }
 
@@ -159,7 +161,87 @@ namespace SerialPortListener
             }
             dl.close();
 
+            lbTime.Text = num_time;
+            lbWeightTotal.Text = sum_weight;
+
+            saveTimeAndWeigt("num_total", "weight_total", num_time, sum_weight);
+
         }
+
+        public void saveTimeAndWeigt(string colunm_num, string colunm_weight, string value_nam, string value_weight)
+        {
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT base_setting_line_id FROM base_setting_line WHERE base_setting_line_id = 1";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    pgCommand.CommandText = "UPDATE base_setting_line SET " + colunm_num + " = '" + (value_nam ?? "") + "', " + colunm_weight + " = '" + (value_weight ?? "") + "' WHERE base_setting_line_id = 1";
+                }
+                else
+                {
+                    pgCommand.CommandText = "INSERT INTO base_setting_line (base_setting_line_id, " + colunm_num + ", " + colunm_weight + ") VALUES (1, '" + (value_nam ?? "") + "', '" + (value_weight ?? "") + "')";
+                }
+                dl.close();
+
+                dl.connect();
+                OdbcDataReader reader2 = pgCommand.ExecuteReader();
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+        }
+
+        public void showTimeAndWeigt()
+        {
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT num_short, num_long, num_total, weight_short, weight_long, weight_total FROM base_setting_line WHERE base_setting_line_id = 1";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    // num_short -> lbShortTime
+                    string numShortVal = reader["num_short"].ToString();
+                    double numShortDbl;
+                    lbShortTime.Text = double.TryParse(numShortVal, out numShortDbl) ? ((int)numShortDbl).ToString() : "0";
+
+                    // weight_short -> lbShortWeightTotal
+                    string weightShortVal = reader["weight_short"].ToString();
+                    double weightShortDbl;
+                    lbShortWeightTotal.Text = double.TryParse(weightShortVal, out weightShortDbl) ? weightShortDbl.ToString("#,##0.000") : "0.000";
+
+                    // num_long -> lbLongTime
+                    string numLongVal = reader["num_long"].ToString();
+                    double numLongDbl;
+                    lbLongTime.Text = double.TryParse(numLongVal, out numLongDbl) ? ((int)numLongDbl).ToString() : "0";
+
+                    // weight_long -> lbLongWeightTotal
+                    string weightLongVal = reader["weight_long"].ToString();
+                    double weightLongDbl;
+                    lbLongWeightTotal.Text = double.TryParse(weightLongVal, out weightLongDbl) ? weightLongDbl.ToString("#,##0.000") : "0.000";
+
+                    // num_total -> lbTime
+                    string numTotalVal = reader["num_total"].ToString();
+                    double numTotalDbl;
+                    lbTime.Text = double.TryParse(numTotalVal, out numTotalDbl) ? ((int)numTotalDbl).ToString() : "0";
+
+                    // weight_total -> lbWeightTotal
+                    string weightTotalVal = reader["weight_total"].ToString();
+                    double weightTotalDbl;
+                    lbWeightTotal.Text = double.TryParse(weightTotalVal, out weightTotalDbl) ? weightTotalDbl.ToString("#,##0.000") : "0.000";
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+        }
+
         public string findBaseSettingLine(string field)
         {
             string str = "";
@@ -191,6 +273,8 @@ namespace SerialPortListener
             string beginTime = findBaseSettingLine("base_setting_line_time_from");
             string site_name = findBaseSettingLine("base_site_name");
             double deci_q = 0;
+            string num_time = "";
+            string sum_weight = "";
 
             //sql get weight id
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -204,14 +288,14 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    time.Text = reader["C"].ToString();
+                    num_time = reader["C"].ToString();
                     if (reader["Q"].ToString() != "")
                     {
                         deci_q = Convert.ToDouble(reader["Q"].ToString());
-                        weightTotal.Text = deci_q.ToString("#,##0.000");
+                        sum_weight = deci_q.ToString("#,##0.000");
                     }
-                    else { 
-                        weightTotal.Text = "0.000";
+                    else {
+                        sum_weight = "0.000";
                     }
                         
                 }
@@ -221,6 +305,17 @@ namespace SerialPortListener
             }
             dl.close();
 
+            if (lineType == "สายสั้น"){
+                lbShortTime.Text = num_time;
+                lbShortWeightTotal.Text = sum_weight;
+                saveTimeAndWeigt("num_short", "weight_short", num_time, sum_weight);
+            }
+
+            else if (lineType == "สายยาว") {
+                lbLongTime.Text = num_time;
+                lbLongWeightTotal.Text = sum_weight;
+                saveTimeAndWeigt("num_long", "weight_long", num_time, sum_weight);
+            }
         }
 
         public void EnableWeightInAndOut()
