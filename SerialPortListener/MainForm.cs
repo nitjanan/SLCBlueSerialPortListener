@@ -116,6 +116,15 @@ namespace SerialPortListener
             public List<DeliveryOrderApiItem> data { get; set; }
         }
 
+        public class DRFPaginationResponse<T>
+        {
+            public int count { get; set; }
+            public string next { get; set; }
+            public string previous { get; set; }
+            public List<T> results { get; set; }
+            public List<T> data { get; set; }
+        }
+
         // ============================================================
         // camelCase fields from BASE_URL
         // ============================================================
@@ -4959,8 +4968,6 @@ namespace SerialPortListener
 
             string today = DateTime.Now.ToString("yyyy-MM-dd");
             string jwtUrl = $"{baseUrl}/jwt/create/";
-            string summaryUrl =
-                $"{baseUrl}/deliveryorder/summary/api/by/comp/{today}/{compCode}";
 
             try
             {
@@ -5007,61 +5014,91 @@ namespace SerialPortListener
                     client.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", accessToken);
 
-                    // =============================================
-                    // GET SUMMARY API
-                    // =============================================
-                    HttpResponseMessage apiResponse =
-                        await client.GetAsync(summaryUrl);
-
-                    if (!apiResponse.IsSuccessStatusCode)
-                    {
-                        string apiError = await apiResponse.Content.ReadAsStringAsync();
-                        bool is422 = apiResponse.StatusCode == (System.Net.HttpStatusCode)422;
-
-                        return new UpdateDeliveryOrderResult 
-                        { 
-                            IsSuccess = false, 
-                            IsValidationError = is422,
-                            ErrorMessage = apiError 
-                        };
-                    }
-
-                    string json =
-                        await apiResponse.Content.ReadAsStringAsync();
-
-                    List<DeliveryOrder> orders =
-                        JsonConvert.DeserializeObject<List<DeliveryOrder>>(json);
+                    int page = 1;
+                    bool hasMore = true;
 
                     // =============================================
                     // UPDATE local DB
                     // =============================================
                     dl.connect();
 
-                    foreach (DeliveryOrder item in orders)
+                    while (hasMore)
                     {
-                        OdbcCommand pgCommand =
-                            (OdbcCommand)dl.sqlConn().CreateCommand();
+                        string summaryUrl =
+                            $"{baseUrl}/deliveryorder/summary/api/by/comp/?comp_code={compCode}&date={today}&page={page}";
 
-                        pgCommand.CommandText = @"
-                        UPDATE delivery_order
-                        SET
-                            car_company_tot  = ?,
-                            car_customer_tot = ?,
-                            qty_tot          = ?,
-                            car_company_rem  = ?,
-                            car_customer_rem = ?
-                        WHERE doc_no = ?
-                        ";
+                        // =============================================
+                        // GET SUMMARY API
+                        // =============================================
+                        HttpResponseMessage apiResponse =
+                            await client.GetAsync(summaryUrl);
 
-                        pgCommand.Parameters.AddWithValue("", item.car_company_tot);
-                        pgCommand.Parameters.AddWithValue("", item.car_customer_tot);
-                        pgCommand.Parameters.AddWithValue("",
-                            Convert.ToDecimal(item.qty_tot));
-                        pgCommand.Parameters.AddWithValue("", item.car_company_rem);
-                        pgCommand.Parameters.AddWithValue("", item.car_customer_rem);
-                        pgCommand.Parameters.AddWithValue("", item.doc_no);
+                        if (!apiResponse.IsSuccessStatusCode)
+                        {
+                            string apiError = await apiResponse.Content.ReadAsStringAsync();
+                            bool is422 = apiResponse.StatusCode == (System.Net.HttpStatusCode)422;
 
-                        pgCommand.ExecuteNonQuery();
+                            dl.close();
+                            return new UpdateDeliveryOrderResult 
+                            { 
+                                IsSuccess = false, 
+                                IsValidationError = is422,
+                                ErrorMessage = apiError 
+                            };
+                        }
+
+                        string json =
+                            await apiResponse.Content.ReadAsStringAsync();
+
+                        List<DeliveryOrder> orders = null;
+                        string nextUrl = null;
+
+                        if (json.TrimStart().StartsWith("["))
+                        {
+                            orders = JsonConvert.DeserializeObject<List<DeliveryOrder>>(json);
+                            hasMore = false; // Not paginated, single page
+                        }
+                        else
+                        {
+                            var pageObj = JsonConvert.DeserializeObject<DRFPaginationResponse<DeliveryOrder>>(json);
+                            orders = pageObj?.results ?? pageObj?.data;
+                            nextUrl = pageObj?.next;
+                            hasMore = !string.IsNullOrEmpty(nextUrl) && orders != null && orders.Count > 0;
+                        }
+
+                        if (orders == null || orders.Count == 0)
+                        {
+                            break;
+                        }
+
+                        foreach (DeliveryOrder item in orders)
+                        {
+                            OdbcCommand pgCommand =
+                                (OdbcCommand)dl.sqlConn().CreateCommand();
+
+                            pgCommand.CommandText = @"
+                            UPDATE delivery_order
+                            SET
+                                car_company_tot  = ?,
+                                car_customer_tot = ?,
+                                qty_tot          = ?,
+                                car_company_rem  = ?,
+                                car_customer_rem = ?
+                            WHERE doc_no = ?
+                            ";
+
+                            pgCommand.Parameters.AddWithValue("", item.car_company_tot);
+                            pgCommand.Parameters.AddWithValue("", item.car_customer_tot);
+                            pgCommand.Parameters.AddWithValue("",
+                                Convert.ToDecimal(item.qty_tot));
+                            pgCommand.Parameters.AddWithValue("", item.car_company_rem);
+                            pgCommand.Parameters.AddWithValue("", item.car_customer_rem);
+                            pgCommand.Parameters.AddWithValue("", item.doc_no);
+
+                            pgCommand.ExecuteNonQuery();
+                        }
+
+                        page++;
                     }
 
                     dl.close();
@@ -5097,9 +5134,6 @@ namespace SerialPortListener
             string jwtUrl =
                 $"{baseUrl}/jwt/create/";
 
-            string apiUrl =
-                $"{baseUrl}/weightdelivery/summary/api/by/comp/{today}/{compCode}";
-
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -5123,32 +5157,8 @@ namespace SerialPortListener
                             accessToken
                         );
 
-                    // =========================
-                    // GET API
-                    // =========================
-                    HttpResponseMessage apiResponse =
-                        await client.GetAsync(apiUrl);
-
-                    if (!apiResponse.IsSuccessStatusCode)
-                    {
-                        string apiError =
-                            await apiResponse.Content.ReadAsStringAsync();
-
-                        MessageBox.Show(
-                            "API ERROR : " + apiError,
-                            "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                        );
-
-                        return false;
-                    }
-
-                    string json =
-                        await apiResponse.Content.ReadAsStringAsync();
-
-                    List<WeightDelivery> orders =
-                        JsonConvert.DeserializeObject<List<WeightDelivery>>(json);
+                    int page = 1;
+                    bool hasMore = true;
 
                     // =========================
                     // UPDATE DATABASE
@@ -5157,45 +5167,98 @@ namespace SerialPortListener
 
                     try
                     {
-                        foreach (var item in orders)
+                        while (hasMore)
                         {
-                            OdbcCommand pgCommand =
-                                (OdbcCommand)dl.sqlConn().CreateCommand();
+                            string apiUrl =
+                                $"{baseUrl}/weightdelivery/summary/api/by/comp/?comp_code={compCode}&date={today}&page={page}";
 
-                            pgCommand.CommandText = @"
-                        INSERT INTO weight_delivery
-                        (
-                            weight_id,
-                            delivery_date,
-                            bws,
-                            comp_code,
-                            do_doc_no,
-                            carry_type_name,
-                            is_cancel
-                        )
-                        VALUES
-                        (
-                            ?, ?, ?, ?, ?, ?, ?
-                        )
-                        ON CONFLICT (weight_id)
-                        DO UPDATE SET
-                            delivery_date = EXCLUDED.delivery_date,
-                            bws = EXCLUDED.bws,
-                            comp_code = EXCLUDED.comp_code,
-                            do_doc_no = EXCLUDED.do_doc_no,
-                            carry_type_name = EXCLUDED.carry_type_name,
-                            is_cancel = EXCLUDED.is_cancel
-                    ";
+                            // =========================
+                            // GET API
+                            // =========================
+                            HttpResponseMessage apiResponse =
+                                await client.GetAsync(apiUrl);
 
-                            pgCommand.Parameters.AddWithValue("", item.weight_id);
-                            pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
-                            pgCommand.Parameters.AddWithValue("", item.bws);
-                            pgCommand.Parameters.AddWithValue("", item.comp_code);
-                            pgCommand.Parameters.AddWithValue("", item.do_doc_no);
-                            pgCommand.Parameters.AddWithValue("", item.carry_type_name);
-                            pgCommand.Parameters.AddWithValue("", item.is_cancel);
+                            if (!apiResponse.IsSuccessStatusCode)
+                            {
+                                string apiError =
+                                    await apiResponse.Content.ReadAsStringAsync();
 
-                            pgCommand.ExecuteNonQuery();
+                                MessageBox.Show(
+                                    "API ERROR : " + apiError,
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error
+                                );
+
+                                return false;
+                            }
+
+                            string json =
+                                await apiResponse.Content.ReadAsStringAsync();
+
+                            List<WeightDelivery> orders = null;
+                            string nextUrl = null;
+
+                            if (json.TrimStart().StartsWith("["))
+                            {
+                                orders = JsonConvert.DeserializeObject<List<WeightDelivery>>(json);
+                                hasMore = false;
+                            }
+                            else
+                            {
+                                var pageObj = JsonConvert.DeserializeObject<DRFPaginationResponse<WeightDelivery>>(json);
+                                orders = pageObj?.results ?? pageObj?.data;
+                                nextUrl = pageObj?.next;
+                                hasMore = !string.IsNullOrEmpty(nextUrl) && orders != null && orders.Count > 0;
+                            }
+
+                            if (orders == null || orders.Count == 0)
+                            {
+                                break;
+                            }
+
+                            foreach (var item in orders)
+                            {
+                                OdbcCommand pgCommand =
+                                    (OdbcCommand)dl.sqlConn().CreateCommand();
+
+                                pgCommand.CommandText = @"
+                            INSERT INTO weight_delivery
+                            (
+                                weight_id,
+                                delivery_date,
+                                bws,
+                                comp_code,
+                                do_doc_no,
+                                carry_type_name,
+                                is_cancel
+                            )
+                            VALUES
+                            (
+                                ?, ?, ?, ?, ?, ?, ?
+                            )
+                            ON CONFLICT (weight_id)
+                            DO UPDATE SET
+                                delivery_date = EXCLUDED.delivery_date,
+                                bws = EXCLUDED.bws,
+                                comp_code = EXCLUDED.comp_code,
+                                do_doc_no = EXCLUDED.do_doc_no,
+                                carry_type_name = EXCLUDED.carry_type_name,
+                                is_cancel = EXCLUDED.is_cancel
+                        ";
+
+                                pgCommand.Parameters.AddWithValue("", item.weight_id);
+                                pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
+                                pgCommand.Parameters.AddWithValue("", item.bws);
+                                pgCommand.Parameters.AddWithValue("", item.comp_code);
+                                pgCommand.Parameters.AddWithValue("", item.do_doc_no);
+                                pgCommand.Parameters.AddWithValue("", item.carry_type_name);
+                                pgCommand.Parameters.AddWithValue("", item.is_cancel);
+
+                                pgCommand.ExecuteNonQuery();
+                            }
+
+                            page++;
                         }
                     }
                     finally
