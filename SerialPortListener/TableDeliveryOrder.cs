@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +25,8 @@ namespace SerialPortListener
             public String carCustomer;
             public String customerId;
             public String customerName;
+            public String siteId;
+            public String siteName;
             public String stoneTypeId;
             public String stoneTypeName;
             public String qty;
@@ -125,8 +127,9 @@ namespace SerialPortListener
 
                 data_do.carCustomer = dgvDO.CurrentRow.Cells["car_customer"].Value.ToString();
                 data_do.customerId = dgvDO.CurrentRow.Cells["customer_code"].Value.ToString();
-
                 data_do.customerName = dgvDO.CurrentRow.Cells["customer_name"].Value.ToString();
+                data_do.siteId = dgvDO.CurrentRow.Cells["site_id"].Value.ToString();
+                data_do.siteName = dgvDO.CurrentRow.Cells["site_name"].Value.ToString();
                 data_do.stoneTypeId = dgvDO.CurrentRow.Cells["product_code"].Value.ToString();
 
                 data_do.stoneTypeName = dgvDO.CurrentRow.Cells["product_name"].Value.ToString();
