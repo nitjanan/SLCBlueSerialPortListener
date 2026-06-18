@@ -82,6 +82,8 @@ namespace SerialPortListener
             public string customer_code { get; set; }
             public string customer_name { get; set; }
             public string customer_address { get; set; }
+            public string site_id { get; set; }
+            public string site_name { get; set; }
             public string product_code { get; set; }
             public string product_name { get; set; }
             public object qty { get; set; }
@@ -127,6 +129,8 @@ namespace SerialPortListener
             public string customerCode { get; set; }
             public string customerName { get; set; }
             public string customerAddress { get; set; }
+            public string siteId { get; set; }
+            public string siteName { get; set; }
             public string productCode { get; set; }
             public string productName { get; set; }
             public object qty { get; set; }
@@ -294,6 +298,7 @@ namespace SerialPortListener
             tbDoId.Text = "";
             tbDoDocNo.Text = "";
             cbbStoneType.Enabled = true;
+            //cbbSite.Enabled = true;
 
             fillStoneCombo();
             fillTransportCombo();
@@ -574,6 +579,8 @@ namespace SerialPortListener
             if (tbDoId.Text != "")
             {
                 cbbStoneType.Enabled = false;
+                //cbbSite.Enabled = false;
+
             }
 
             //setDataMillToRB(data.mill);
@@ -635,8 +642,10 @@ namespace SerialPortListener
 
             //ดึงหน้างาน
             fillSiteCombo();
+            cbbSite.Text = data_do.siteName;
 
             cbbStoneType.Enabled = false;
+            //cbbSite.Enabled = false;
         }
 
         private string getComboboxSiteUpdate()
@@ -4987,9 +4996,9 @@ namespace SerialPortListener
                                 car_company_rem, car_customer_rem,
                                 customer_code, customer_name, customer_address,
                                 product_code, product_name, qty, unit_name,
-                                sale_name, note, status
+                                sale_name, note, status, site_id, site_name
                             )
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                             ON CONFLICT (doc_no) DO UPDATE SET
                                 status = EXCLUDED.status;";
 
@@ -5012,6 +5021,8 @@ namespace SerialPortListener
                             cmd.Parameters.AddWithValue("", item.saleName ?? "");
                             cmd.Parameters.AddWithValue("", item.note ?? "");
                             cmd.Parameters.AddWithValue("", item.status ?? "");
+                            cmd.Parameters.AddWithValue("", item.siteId ?? "");
+                            cmd.Parameters.AddWithValue("", item.siteName ?? "");
 
                             // param สำหรับ WHERE NOT EXISTS
 
@@ -5019,7 +5030,7 @@ namespace SerialPortListener
                             cmd.ExecuteNonQuery();
                             totalRecords++;
                         }
-
+                                 
                         dl.close();
 
                         page++;
