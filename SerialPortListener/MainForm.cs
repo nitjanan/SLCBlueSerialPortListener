@@ -582,7 +582,6 @@ namespace SerialPortListener
             tbApproveName.Text = data.approveName;
             cbbStoneColor.Text = data.stoneColor;
             cbbTransport.Text = data.transport;
-            cbbSite.Text = data.site;//111111111111
             cbbCarTeam.Text = data.team;//111111111111
             //tbMillName.Text = data.mill;//111111111111
             //tbMillId.Text = data.millId;//111111111111
@@ -610,6 +609,16 @@ namespace SerialPortListener
             setDataCleanToRB(data.clean);
             //ดึงหน้างาน
             fillSiteCombo();
+            cbbSite.Text = data.site;
+            for (int i = 0; i < cbbSite.Items.Count; i++)
+            {
+                var item = cbbSite.Items[i] as ComboboxValue;
+                if (item != null && (item.Name == data.site || item.Id == data.siteId))
+                {
+                    cbbSite.SelectedIndex = i;
+                    break;
+                }
+            }
 
             AfterGetDataFromTable();
 
@@ -664,6 +673,15 @@ namespace SerialPortListener
             //ดึงหน้างาน
             fillSiteCombo();
             cbbSite.Text = data_do.siteName;
+            for (int i = 0; i < cbbSite.Items.Count; i++)
+            {
+                var item = cbbSite.Items[i] as ComboboxValue;
+                if (item != null && (item.Name == data_do.siteName || item.Id == data_do.siteId))
+                {
+                    cbbSite.SelectedIndex = i;
+                    break;
+                }
+            }
 
             cbbStoneType.Enabled = false;
             //cbbSite.Enabled = false;
@@ -671,83 +689,22 @@ namespace SerialPortListener
 
         private string getComboboxSiteUpdate()
         {
-
-            string selectedName = cbbSite.Text;
-            string selectedId = "";
-
-            foreach (ComboboxValue item in cbbSite.Items)
-            {
-
-                if (item.Name == selectedName)
-                {
-                    selectedId = item.Id;
-                    break;
-                }
-            }
-            return selectedId;
+            return getComboboxId(cbbSite);
         }
 
         private string getComboboxStoneTypeUpdate()
         {
-
-            string selectedName = cbbStoneType.Text;
-            string selectedId = "";
-
-            foreach (ComboboxValue item in cbbStoneType.Items)
-            {
-
-                if (item.Name == selectedName)
-                {
-                    selectedId = item.Id;
-                    break;
-                }
-            }
-            return selectedId;
+            return getComboboxId(cbbStoneType);
         }
 
         private string getComboboxMillUpdate()
         {
-
-            string selectedName = cbbMill.Text;
-            string selectedId = "";
-
-            foreach (ComboboxValue item in cbbMill.Items)
-            {
-
-                if (item.Name == selectedName)
-                {
-                    selectedId = item.Id;
-                    break;
-                }
-            }
-            return selectedId;
+            return getComboboxId(cbbMill);
         }
 
         private string getComboboxCarTeamUpdate()
         {
-
-            string selectedName = cbbCarTeam.Text;
-            string selectedId = "";
-
-            if (cbbCarTeam.Items.Count > 1)
-            {
-                foreach (ComboboxValue item in cbbCarTeam.Items)
-                {
-
-                    if (selectedName == "")
-                    {
-                        selectedId = "";
-                        break;
-                    }
-                    else if (item.Name == selectedName)
-                    {
-                        selectedId = item.Id;
-                        break;
-                    }
-                }
-            }
-
-            return selectedId;
+            return getComboboxId(cbbCarTeam);
         }
 
         private string tonTokg(string tonStr)
@@ -2013,12 +1970,143 @@ namespace SerialPortListener
                     ComboboxValue tmpComboboxValue = (ComboboxValue)cbb.SelectedItem;
                     tmp = tmpComboboxValue.Id;
                 }
+                else if (!string.IsNullOrEmpty(cbb.Text))
+                {
+                    foreach (var item in cbb.Items)
+                    {
+                        if (item is ComboboxValue val && val.Name == cbb.Text)
+                        {
+                            tmp = val.Id;
+                            break;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(tmp))
+                    {
+                        if (cbb == cbbSite)
+                        {
+                            tmp = getSiteIdFromDbByName(cbb.Text);
+                        }
+                        else if (cbb == cbbStoneType)
+                        {
+                            tmp = getStoneTypeIdFromDbByName(cbb.Text);
+                        }
+                        else if (cbb == cbbMill)
+                        {
+                            tmp = getMillIdFromDbByName(cbb.Text);
+                        }
+                        else if (cbb == cbbCarTeam)
+                        {
+                            tmp = getCarTeamIdFromDbByName(cbb.Text);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
 
             }
             return tmp;
+        }
+
+        private string getSiteIdFromDbByName(string name)
+        {
+            string id = "";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT base_site_id FROM public.base_site WHERE (weight_type = 1 or weight_type = 3) and base_site_name = ? LIMIT 1 ";
+            pgCommand.Parameters.AddWithValue("", name);
+            try
+            {
+                dl.connect();
+                object val = pgCommand.ExecuteScalar();
+                if (val != null && val != DBNull.Value)
+                {
+                    id = val.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return id;
+        }
+
+        private string getStoneTypeIdFromDbByName(string name)
+        {
+            string id = "";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT รหัสหิน FROM public.base_stone_type WHERE inactive = false and ชื่อหิน = ? LIMIT 1";
+            pgCommand.Parameters.AddWithValue("", name);
+            try
+            {
+                dl.connect();
+                object val = pgCommand.ExecuteScalar();
+                if (val != null && val != DBNull.Value)
+                {
+                    id = val.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return id;
+        }
+
+        private string getMillIdFromDbByName(string name)
+        {
+            string id = "";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT รหัสโรงโม่ FROM public.base_mill WHERE (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = ? LIMIT 1";
+            pgCommand.Parameters.AddWithValue("", name);
+            try
+            {
+                dl.connect();
+                object val = pgCommand.ExecuteScalar();
+                if (val != null && val != DBNull.Value)
+                {
+                    id = val.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return id;
+        }
+
+        private string getCarTeamIdFromDbByName(string name)
+        {
+            string id = "";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT รหัสทีม FROM public.base_car_team WHERE ชื่อทีม = ? LIMIT 1";
+            pgCommand.Parameters.AddWithValue("", name);
+            try
+            {
+                dl.connect();
+                object val = pgCommand.ExecuteScalar();
+                if (val != null && val != DBNull.Value)
+                {
+                    id = val.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return id;
         }
 
         private void disableAfterSave()
