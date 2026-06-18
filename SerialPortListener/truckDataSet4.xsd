@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="truckDataSet4" targetNamespace="http://tempuri.org/truckDataSet4.xsd" xmlns:mstns="http://tempuri.org/truckDataSet4.xsd" xmlns="http://tempuri.org/truckDataSet4.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
@@ -91,7 +91,7 @@
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT do_id, doc_no, delivery_date, delivery_type, car_company, car_customer, customer_code, customer_name, customer_address, product_code, product_name, qty, unit_name, sale_name, note, status, car_company_rem, car_customer_rem, car_company_tot, car_customer_tot, qty_tot, bws FROM "public".delivery_order</CommandText>
+                    <CommandText>SELECT do_id, doc_no, delivery_date, delivery_type, car_company, car_customer, customer_code, customer_name, customer_address, product_code, product_name, qty, unit_name, sale_name, note, status, car_company_rem, car_customer_rem, car_company_tot, car_customer_tot, qty_tot, bws, site_id, site_name FROM "public".delivery_order</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -178,6 +178,8 @@
               <Mapping SourceColumn="car_customer" DataSetColumn="car_customer" />
               <Mapping SourceColumn="customer_code" DataSetColumn="customer_code" />
               <Mapping SourceColumn="customer_name" DataSetColumn="customer_name" />
+              <Mapping SourceColumn="site_id" DataSetColumn="site_id" />
+              <Mapping SourceColumn="site_name" DataSetColumn="site_name" />
               <Mapping SourceColumn="customer_address" DataSetColumn="customer_address" />
               <Mapping SourceColumn="product_code" DataSetColumn="product_code" />
               <Mapping SourceColumn="product_name" DataSetColumn="product_name" />
@@ -214,6 +216,8 @@
               <xs:element name="car_customer" msprop:Generator_ColumnVarNameInTable="columncar_customer" msprop:Generator_ColumnPropNameInRow="car_customer" msprop:Generator_ColumnPropNameInTable="car_customerColumn" msprop:Generator_UserColumnName="car_customer" type="xs:int" minOccurs="0" />
               <xs:element name="customer_code" msprop:Generator_ColumnVarNameInTable="columncustomer_code" msprop:Generator_ColumnPropNameInRow="customer_code" msprop:Generator_ColumnPropNameInTable="customer_codeColumn" msprop:Generator_UserColumnName="customer_code" type="xs:string" minOccurs="0" />
               <xs:element name="customer_name" msprop:Generator_ColumnVarNameInTable="columncustomer_name" msprop:Generator_ColumnPropNameInRow="customer_name" msprop:Generator_ColumnPropNameInTable="customer_nameColumn" msprop:Generator_UserColumnName="customer_name" type="xs:string" minOccurs="0" />
+              <xs:element name="site_id" msprop:Generator_ColumnVarNameInTable="columnsite_id" msprop:Generator_ColumnPropNameInRow="site_id" msprop:Generator_ColumnPropNameInTable="site_idColumn" msprop:Generator_UserColumnName="site_id" type="xs:string" minOccurs="0" />
+              <xs:element name="site_name" msprop:Generator_ColumnVarNameInTable="columnsite_name" msprop:Generator_ColumnPropNameInRow="site_name" msprop:Generator_ColumnPropNameInTable="site_nameColumn" msprop:Generator_UserColumnName="site_name" type="xs:string" minOccurs="0" />
               <xs:element name="customer_address" msprop:Generator_ColumnVarNameInTable="columncustomer_address" msprop:Generator_ColumnPropNameInRow="customer_address" msprop:Generator_ColumnPropNameInTable="customer_addressColumn" msprop:Generator_UserColumnName="customer_address" type="xs:string" minOccurs="0" />
               <xs:element name="product_code" msprop:Generator_ColumnVarNameInTable="columnproduct_code" msprop:Generator_ColumnPropNameInRow="product_code" msprop:Generator_ColumnPropNameInTable="product_codeColumn" msprop:Generator_UserColumnName="product_code" type="xs:string" minOccurs="0" />
               <xs:element name="product_name" msprop:Generator_ColumnVarNameInTable="columnproduct_name" msprop:Generator_ColumnPropNameInRow="product_name" msprop:Generator_ColumnPropNameInTable="product_nameColumn" msprop:Generator_UserColumnName="product_name" type="xs:string" minOccurs="0" />
