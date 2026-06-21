@@ -18,7 +18,7 @@ namespace SerialPortListener.Serial
         int _baudRate = 1200;
         BindingList<int> _baudRateCollection = new BindingList<int>();
         Parity _parity = Parity.None;
-        int _dataBits = 8;
+        int _dataBits = 6;
         int[] _dataBitsCollection = new int[] { 5, 6, 7, 8 };
         StopBits _stopBits = StopBits.One;
 
