@@ -160,16 +160,6 @@ namespace SerialPortListener
             public Boolean is_cancel { get; set; }
         }
 
-        public class WeightDelivery
-        {
-            public int weight_id { get; set; }
-            public string delivery_date { get; set; }
-            public string bws { get; set; }
-            public string comp_code { get; set; }
-            public string do_doc_no { get; set; }
-            public string carry_type_name { get; set; }
-            public Boolean is_cancel { get; set; }
-        }
 
         public class UpdateDeliveryOrderResult
         {
