@@ -1983,7 +1983,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
                 <Top>1.33933in</Top>
-                <Left>0.11258in</Left>
+                <Left>0.10973in</Left>
                 <Height>0.25in</Height>
                 <Width>0.59711in</Width>
                 <ZIndex>62</ZIndex>
@@ -2133,7 +2133,6 @@
                         <Value>=Parameters!PCustomerSend.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
