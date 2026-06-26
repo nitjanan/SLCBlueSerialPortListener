@@ -933,7 +933,6 @@ namespace SerialPortListener
 
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
-
                 if (mc.Count > 0)
                 {
                     if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
