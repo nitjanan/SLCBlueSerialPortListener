@@ -80,7 +80,7 @@ namespace SerialPortListener
             ps.Margins = new System.Drawing.Printing.Margins(46, 46, 60, 30);
             this.reportViewer1.SetPageSettings(ps);
 
-            this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.Normal);
+            this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;
             this.reportViewer1.Clear();
             this.reportViewer1.LocalReport.SetParameters(p);
