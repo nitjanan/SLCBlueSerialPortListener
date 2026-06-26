@@ -27,7 +27,7 @@ namespace SerialPortListener
         {
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
                 new Microsoft.Reporting.WinForms.ReportParameter("PCompanyName",Company.CompanyName),
-                new Microsoft.Reporting.WinForms.ReportParameter("PAddress",Company.Address),
+                new Microsoft.Reporting.WinForms.ReportParameter("PAddress",GetReportAddress()),
                 new Microsoft.Reporting.WinForms.ReportParameter("PTelephone",Company.Telephone),
                 new Microsoft.Reporting.WinForms.ReportParameter("PEmail",Company.Email),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDocNum",Weight.DocNum),
@@ -81,7 +81,7 @@ namespace SerialPortListener
             ps.Margins = new System.Drawing.Printing.Margins(46, 46, 60, 30);
             this.reportViewer1.SetPageSettings(ps);
 
-            this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
+            this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.Normal);
             this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;
             this.reportViewer1.Clear();
             this.reportViewer1.LocalReport.SetParameters(p);
@@ -89,5 +89,44 @@ namespace SerialPortListener
             this.reportViewer1.RefreshReport();
         }
 
+        private string GetReportAddress()
+        {
+            string address = Company.Address;
+            if (!string.IsNullOrEmpty(Weight.DoId) && 
+                Weight.DoId.Trim() != "" && 
+                !Weight.DoId.Equals("NULL", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    dl.connect();
+                    using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
+                    {
+                        pgCommand.CommandText = "SELECT site_id, site_name FROM public.delivery_order WHERE do_id = ?";
+                        pgCommand.Parameters.AddWithValue("do_id", Weight.DoId);
+                        using (OdbcDataReader reader = pgCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string siteId = reader["site_id"].ToString();
+                                string siteName = reader["site_name"].ToString();
+                                if (siteId == "-")
+                                {
+                                    address = siteName;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Fallback to default Company.Address
+                }
+                finally
+                {
+                    dl.close();
+                }
+            }
+            return address;
+        }
     }
 }
