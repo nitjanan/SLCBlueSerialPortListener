@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -138,7 +139,27 @@ namespace SerialPortListener
             public string customerCode { get; set; }
             public string customerName { get; set; }
             public string customerAddress { get; set; }
-            public string siteId { get; set; }
+            private string _siteId;
+
+            [JsonProperty("deliveryCode")]
+            public string siteId
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(_siteId)) return "";
+                    int idx = _siteId.LastIndexOf("___");
+                    if (idx >= 0)
+                    {
+                        return _siteId.Substring(idx + 3);
+                    }
+                    return _siteId;
+                }
+                set
+                {
+                    _siteId = value;
+                }
+            }
+            [JsonProperty("deliveryLocation")]
             public string siteName { get; set; }
             public string productCode { get; set; }
             public string productName { get; set; }
@@ -216,6 +237,23 @@ namespace SerialPortListener
 
             tbScoopId.KeyDown += tbScoopId_KeyDown;
             tbScoopName.KeyDown += tbScoopName_KeyDown;
+
+            // Load DirectPrint setting
+            try
+            {
+                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\SerialPortListener"))
+                {
+                    if (key != null)
+                    {
+                        object val = key.GetValue("DirectPrint");
+                        if (val != null)
+                        {
+                            chkDirectPrint.Checked = Convert.ToBoolean(val);
+                        }
+                    }
+                }
+            }
+            catch {}
         }
         public void EnableWeightInAndOut()
         {
@@ -308,7 +346,7 @@ namespace SerialPortListener
             tbDoDocNo.Text = "";
             cbbStoneType.Enabled = true;
             cbS.Checked = false;
-            //cbbSite.Enabled = true;
+            cbbSite.Enabled = true;
 
             fillStoneCombo();
             fillTransportCombo();
@@ -342,7 +380,7 @@ namespace SerialPortListener
             tbCustomerName.Text = "";
             cbbStoneType.Text = "";
             tbStoneDesc.Text = "";
-
+            cbbSite.Enabled = true;
         }
 
         public void runningDocNumber()
@@ -612,6 +650,11 @@ namespace SerialPortListener
                 }
             }
 
+            if (cbbSite.Text != "" && tbDoDocNo.Text != "")
+            {
+                cbbSite.Enabled = false;
+            }
+
             AfterGetDataFromTable();
 
             //disable after read in
@@ -676,7 +719,10 @@ namespace SerialPortListener
             }
 
             cbbStoneType.Enabled = false;
-            //cbbSite.Enabled = false;
+            if (cbbSite.Text != "" && tbDoDocNo.Text != "")
+            {
+                cbbSite.Enabled = false;
+            }
         }
 
         private string getComboboxSiteUpdate()
@@ -807,6 +853,21 @@ namespace SerialPortListener
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkDirectPrint_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\SerialPortListener"))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("DirectPrint", chkDirectPrint.Checked);
+                    }
+                }
+            }
+            catch {}
         }
 
         private void UserInitialization()
@@ -3193,8 +3254,15 @@ namespace SerialPortListener
                 //save อัตโนมัติ
                 if (await autoSave())
                 {
-                    FPrint f = new FPrint();
-                    f.ShowDialog();
+                    if (chkDirectPrint.Checked)
+                    {
+                        DirectPrintReportMain();
+                    }
+                    else
+                    {
+                        FPrint f = new FPrint();
+                        f.ShowDialog();
+                    }
                 }
             }
 
@@ -3236,6 +3304,7 @@ namespace SerialPortListener
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
+            Weight.DoId = tbDoId.Text;
 
 
             if (mode.Equals(3))
@@ -3892,8 +3961,15 @@ namespace SerialPortListener
                 {
                     HandleSuccessfulPrint();
                     //Print
-                    FPrint f = new FPrint();
-                    f.ShowDialog();
+                    if (chkDirectPrint.Checked)
+                    {
+                        DirectPrintReportMain();
+                    }
+                    else
+                    {
+                        FPrint f = new FPrint();
+                        f.ShowDialog();
+                    }
                 }
             }
 
@@ -3923,8 +3999,15 @@ namespace SerialPortListener
                 {
                     HandleSuccessfulPrint();
                     //Print
-                    FPrint f = new FPrint();
-                    f.ShowDialog();
+                    if (chkDirectPrint.Checked)
+                    {
+                        DirectPrintReportMain();
+                    }
+                    else
+                    {
+                        FPrint f = new FPrint();
+                        f.ShowDialog();
+                    }
                 }
             }
         }
@@ -3953,6 +4036,113 @@ namespace SerialPortListener
                 MessageBox.Show(ex.ToString());
             }
             dl.close();
+        }
+
+        private void DirectPrintReportMain()
+        {
+            try
+            {
+                using (LocalReport report = new LocalReport())
+                {
+                    report.ReportEmbeddedResource = "SerialPortListener.ReportMain.rdlc";
+
+                    Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
+                        new Microsoft.Reporting.WinForms.ReportParameter("PCompanyName",Company.CompanyName),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PAddress",GetReportAddress()),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PTelephone",Company.Telephone),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PEmail",Company.Email),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PDocNum",Weight.DocNum),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PMill",Weight.Mill),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PDate",Weight.Date),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PDriverName",Weight.DriverName),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PCustomerName",Weight.CustomerName),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PStoneType",Weight.StoneType),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PStoneDesc",Weight.StoneDesc),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PCar",Weight.CarLicense),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PCity",Weight.CarCity),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PDateIn",Weight.DateIn),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PDateOut",Weight.DateOut),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PTimeIn",Weight.TimeIn),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PTimeOut",Weight.TimeOut),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PWeightIn",Weight.WeightIn),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PWeightOut",Weight.WeightOut),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PWeightTotal",Weight.WeightTotal),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PPrice",Weight.Price),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PAmount",Weight.Amount),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PVat",Weight.Vat),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PAmountVat",Weight.AmountVat),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PQ",Weight.Q),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PPay",Weight.Pay),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PVatType",Weight.VatType),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PCustomerAddress",Weight.CustomerAddress),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PCustomerSend",Weight.Site),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PTeam",Weight.Team),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PStoneColor",Weight.StoneColor),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PApproveName",Weight.ApproveName),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PClean",Weight.Clean),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PTransport",Weight.Transport),
+                        new Microsoft.Reporting.WinForms.ReportParameter("POilContent",Weight.OilContent),
+                        new Microsoft.Reporting.WinForms.ReportParameter("TTelephone",Company.TTelephone),
+                        new Microsoft.Reporting.WinForms.ReportParameter("TEmail",Company.TEmail),
+                        new Microsoft.Reporting.WinForms.ReportParameter("TDocName",Company.TDocName),
+                        new Microsoft.Reporting.WinForms.ReportParameter("TLogo",Company.TLogo),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PDatePrintAndCopyNum",Weight.DatePrintAndCopyNum),
+                    };
+
+                    report.SetParameters(p);
+
+                    using (ReportPrintHelper printer = new ReportPrintHelper())
+                    {
+                        // 8.27 x 11.69 inches is A4, margins in inches: Left=0.46, Right=0.46, Top=0.60, Bottom=0.30
+                        printer.Export(report, 8.27, 11.69, 0.46, 0.46, 0.60, 0.30);
+                        printer.Print();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("เกิดข้อผิดพลาดในการพิมพ์: " + ex.Message, "ข้อผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string GetReportAddress()
+        {
+            string address = Company.Address;
+            if (!string.IsNullOrEmpty(Weight.DoId) && 
+                Weight.DoId.Trim() != "" && 
+                !Weight.DoId.Equals("NULL", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    dl.connect();
+                    using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
+                    {
+                        pgCommand.CommandText = "SELECT site_id, site_name FROM public.delivery_order WHERE do_id = ?";
+                        pgCommand.Parameters.AddWithValue("do_id", Weight.DoId);
+                        using (OdbcDataReader reader = pgCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string siteId = reader["site_id"].ToString();
+                                string siteName = reader["site_name"].ToString();
+                                if (siteId == "-")
+                                {
+                                    address = siteName;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Fallback to default Company.Address
+                }
+                finally
+                {
+                    dl.close();
+                }
+            }
+            return address;
         }
 
 
@@ -4721,6 +4911,10 @@ namespace SerialPortListener
                         cbbSite.Text = "";
                         MessageBox.Show("ไม่มีข้อมูลปลายทางนี้ในระบบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                    else if (tbDoDocNo.Text != "")
+                    {
+                        cbbSite.Enabled = false;
+                    }
                 }
                 catch (Exception)
                 {
@@ -5019,8 +5213,55 @@ namespace SerialPortListener
                             cmd.Parameters.AddWithValue("", item.unitName ?? "");
                             cmd.Parameters.AddWithValue("", item.saleName ?? "");
                             cmd.Parameters.AddWithValue("", item.note ?? "");
+                            // Resolve site_id from base_site if not found
+                            string resolvedSiteId = item.siteId ?? "";
+                            if (!string.IsNullOrEmpty(resolvedSiteId))
+                            {
+                                using (OdbcCommand checkCmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                                {
+                                    checkCmd.CommandText = "SELECT COUNT(*) FROM public.base_site WHERE base_site_id = ?";
+                                    checkCmd.Parameters.AddWithValue("", resolvedSiteId);
+                                    int count = 0;
+                                    try
+                                    {
+                                        count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                                    }
+                                    catch {}
+
+                                    if (count == 0)
+                                    {
+                                        if (!string.IsNullOrEmpty(item.siteName))
+                                        {
+                                            using (OdbcCommand findCmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                                            {
+                                                findCmd.CommandText = "SELECT base_site_id FROM public.base_site WHERE base_site_name = ? LIMIT 1";
+                                                findCmd.Parameters.AddWithValue("", item.siteName.Trim());
+                                                object val = findCmd.ExecuteScalar();
+                                                if (val != null && val != DBNull.Value)
+                                                {
+                                                    resolvedSiteId = val.ToString();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(item.siteName))
+                            {
+                                using (OdbcCommand findCmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                                {
+                                    findCmd.CommandText = "SELECT base_site_id FROM public.base_site WHERE base_site_name = ? LIMIT 1";
+                                    findCmd.Parameters.AddWithValue("", item.siteName.Trim());
+                                    object val = findCmd.ExecuteScalar();
+                                    if (val != null && val != DBNull.Value)
+                                    {
+                                        resolvedSiteId = val.ToString();
+                                    }
+                                }
+                            }
+
                             cmd.Parameters.AddWithValue("", item.status ?? "");
-                            cmd.Parameters.AddWithValue("", item.siteId ?? "");
+                            cmd.Parameters.AddWithValue("", resolvedSiteId);
                             cmd.Parameters.AddWithValue("", item.siteName ?? "");
 
                             // param สำหรับ WHERE NOT EXISTS
