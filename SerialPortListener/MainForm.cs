@@ -200,7 +200,7 @@ namespace SerialPortListener
 
             getSettingDefault();
 
-            _spManager.StartListening();
+            // _spManager.StartListening();
         }
 
         public void getSettingDefault()
@@ -895,6 +895,7 @@ namespace SerialPortListener
         {
             //Serial Port
             _spManager = new SerialPortManager();
+            ucHelp.SetSerialPortManager(_spManager);
             SerialSettings mySerialSettings = _spManager.CurrentSerialSettings;
             serialSettingsBindingSource.DataSource = mySerialSettings;
             /*
