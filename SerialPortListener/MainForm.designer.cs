@@ -194,7 +194,7 @@ namespace SerialPortListener
             this.chkDirectPrint.ForeColor = System.Drawing.Color.White;
             this.chkDirectPrint.Location = new System.Drawing.Point(54, 10);
             this.chkDirectPrint.Name = "chkDirectPrint";
-            this.chkDirectPrint.Size = new System.Drawing.Size(135, 42);
+            this.chkDirectPrint.Size = new System.Drawing.Size(77, 23);
             this.chkDirectPrint.TabIndex = 999;
             this.chkDirectPrint.Text = "พิมพ์เร็ว";
             this.chkDirectPrint.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@ namespace SerialPortListener
             this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightIn.Location = new System.Drawing.Point(438, 33);
             this.tbWeightIn.Name = "tbWeightIn";
-            this.tbWeightIn.Size = new System.Drawing.Size(150, 47);
+            this.tbWeightIn.Size = new System.Drawing.Size(150, 27);
             this.tbWeightIn.TabIndex = 32;
             this.tbWeightIn.Text = "0.00";
             this.tbWeightIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -266,7 +266,7 @@ namespace SerialPortListener
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(1055, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 44);
+            this.label3.Size = new System.Drawing.Size(43, 23);
             this.label3.TabIndex = 33;
             this.label3.Text = "วันที่";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -279,7 +279,7 @@ namespace SerialPortListener
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDate.Location = new System.Drawing.Point(1105, 42);
             this.dtDate.Name = "dtDate";
-            this.dtDate.Size = new System.Drawing.Size(94, 39);
+            this.dtDate.Size = new System.Drawing.Size(94, 23);
             this.dtDate.TabIndex = 7;
             // 
             // panel3
@@ -305,7 +305,7 @@ namespace SerialPortListener
             this.lbCompanyCode.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lbCompanyCode.Location = new System.Drawing.Point(55, 119);
             this.lbCompanyCode.Name = "lbCompanyCode";
-            this.lbCompanyCode.Size = new System.Drawing.Size(149, 56);
+            this.lbCompanyCode.Size = new System.Drawing.Size(73, 28);
             this.lbCompanyCode.TabIndex = 107;
             this.lbCompanyCode.Text = "code";
             // 
@@ -334,7 +334,7 @@ namespace SerialPortListener
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Location = new System.Drawing.Point(34, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(247, 79);
+            this.label1.Size = new System.Drawing.Size(124, 39);
             this.label1.TabIndex = 5;
             this.label1.Text = "Weight";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -418,7 +418,7 @@ namespace SerialPortListener
             this.tbDocNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDocNum.Location = new System.Drawing.Point(813, 121);
             this.tbDocNum.Name = "tbDocNum";
-            this.tbDocNum.Size = new System.Drawing.Size(315, 47);
+            this.tbDocNum.Size = new System.Drawing.Size(315, 27);
             this.tbDocNum.TabIndex = 11;
             this.tbDocNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbDocNum.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
@@ -431,7 +431,7 @@ namespace SerialPortListener
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(723, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 39);
+            this.label2.Size = new System.Drawing.Size(81, 21);
             this.label2.TabIndex = 24;
             this.label2.Text = "เลขที่การชั่ง";
             // 
@@ -443,7 +443,7 @@ namespace SerialPortListener
             this.dtWeightInDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtWeightInDate.Location = new System.Drawing.Point(150, 33);
             this.dtWeightInDate.Name = "dtWeightInDate";
-            this.dtWeightInDate.Size = new System.Drawing.Size(138, 47);
+            this.dtWeightInDate.Size = new System.Drawing.Size(138, 27);
             this.dtWeightInDate.TabIndex = 30;
             // 
             // dtWeightOutDate
@@ -454,7 +454,7 @@ namespace SerialPortListener
             this.dtWeightOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtWeightOutDate.Location = new System.Drawing.Point(150, 72);
             this.dtWeightOutDate.Name = "dtWeightOutDate";
-            this.dtWeightOutDate.Size = new System.Drawing.Size(138, 47);
+            this.dtWeightOutDate.Size = new System.Drawing.Size(138, 27);
             this.dtWeightOutDate.TabIndex = 34;
             // 
             // tbWeightOut
@@ -464,7 +464,7 @@ namespace SerialPortListener
             this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightOut.Location = new System.Drawing.Point(438, 70);
             this.tbWeightOut.Name = "tbWeightOut";
-            this.tbWeightOut.Size = new System.Drawing.Size(150, 47);
+            this.tbWeightOut.Size = new System.Drawing.Size(150, 27);
             this.tbWeightOut.TabIndex = 36;
             this.tbWeightOut.Text = "0.00";
             this.tbWeightOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -494,7 +494,7 @@ namespace SerialPortListener
             this.dtWeightInTime.Location = new System.Drawing.Point(302, 33);
             this.dtWeightInTime.Name = "dtWeightInTime";
             this.dtWeightInTime.ShowUpDown = true;
-            this.dtWeightInTime.Size = new System.Drawing.Size(105, 47);
+            this.dtWeightInTime.Size = new System.Drawing.Size(105, 27);
             this.dtWeightInTime.TabIndex = 31;
             // 
             // dtWeightOutTime
@@ -506,7 +506,7 @@ namespace SerialPortListener
             this.dtWeightOutTime.Location = new System.Drawing.Point(302, 72);
             this.dtWeightOutTime.Name = "dtWeightOutTime";
             this.dtWeightOutTime.ShowUpDown = true;
-            this.dtWeightOutTime.Size = new System.Drawing.Size(105, 47);
+            this.dtWeightOutTime.Size = new System.Drawing.Size(105, 27);
             this.dtWeightOutTime.TabIndex = 35;
             // 
             // tbRefNum
@@ -514,7 +514,7 @@ namespace SerialPortListener
             this.tbRefNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRefNum.Location = new System.Drawing.Point(1139, 355);
             this.tbRefNum.Name = "tbRefNum";
-            this.tbRefNum.Size = new System.Drawing.Size(59, 47);
+            this.tbRefNum.Size = new System.Drawing.Size(59, 27);
             this.tbRefNum.TabIndex = 35;
             this.tbRefNum.Visible = false;
             // 
@@ -526,7 +526,7 @@ namespace SerialPortListener
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(289, 123);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 39);
+            this.label5.Size = new System.Drawing.Size(44, 21);
             this.label5.TabIndex = 36;
             this.label5.Text = "ลูกค้า";
             // 
@@ -538,7 +538,7 @@ namespace SerialPortListener
             this.tbCustomerId.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCustomerId.Location = new System.Drawing.Point(370, 98);
             this.tbCustomerId.Name = "tbCustomerId";
-            this.tbCustomerId.Size = new System.Drawing.Size(74, 37);
+            this.tbCustomerId.Size = new System.Drawing.Size(74, 22);
             this.tbCustomerId.TabIndex = 8;
             this.tbCustomerId.Visible = false;
             this.tbCustomerId.TextChanged += new System.EventHandler(this.tbCustomerId_TextChanged);
@@ -552,7 +552,7 @@ namespace SerialPortListener
             this.tbCustomerName.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCustomerName.Location = new System.Drawing.Point(450, 98);
             this.tbCustomerName.Name = "tbCustomerName";
-            this.tbCustomerName.Size = new System.Drawing.Size(257, 37);
+            this.tbCustomerName.Size = new System.Drawing.Size(257, 22);
             this.tbCustomerName.TabIndex = 9;
             this.tbCustomerName.Visible = false;
             this.tbCustomerName.TextChanged += new System.EventHandler(this.tbCustomerName_TextChanged);
@@ -579,7 +579,7 @@ namespace SerialPortListener
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(287, 236);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 39);
+            this.label6.Size = new System.Drawing.Size(58, 21);
             this.label6.TabIndex = 40;
             this.label6.Text = "ชนิดหิน";
             // 
@@ -590,7 +590,7 @@ namespace SerialPortListener
             this.rbCash.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCash.Location = new System.Drawing.Point(31, 11);
             this.rbCash.Name = "rbCash";
-            this.rbCash.Size = new System.Drawing.Size(104, 43);
+            this.rbCash.Size = new System.Drawing.Size(66, 25);
             this.rbCash.TabIndex = 13;
             this.rbCash.Text = "เงินสด";
             this.rbCash.UseVisualStyleBackColor = false;
@@ -604,7 +604,7 @@ namespace SerialPortListener
             this.rbCredit.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCredit.Location = new System.Drawing.Point(242, 11);
             this.rbCredit.Name = "rbCredit";
-            this.rbCredit.Size = new System.Drawing.Size(110, 43);
+            this.rbCredit.Size = new System.Drawing.Size(70, 25);
             this.rbCredit.TabIndex = 15;
             this.rbCredit.Text = "เงินเชื่อ";
             this.rbCredit.UseVisualStyleBackColor = false;
@@ -618,7 +618,7 @@ namespace SerialPortListener
             this.rbVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbVat.Location = new System.Drawing.Point(891, 64);
             this.rbVat.Name = "rbVat";
-            this.rbVat.Size = new System.Drawing.Size(103, 43);
+            this.rbVat.Size = new System.Drawing.Size(57, 25);
             this.rbVat.TabIndex = 44;
             this.rbVat.Text = "Vat";
             this.rbVat.UseVisualStyleBackColor = false;
@@ -631,7 +631,7 @@ namespace SerialPortListener
             this.rbMill1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill1.Location = new System.Drawing.Point(6, 11);
             this.rbMill1.Name = "rbMill1";
-            this.rbMill1.Size = new System.Drawing.Size(120, 43);
+            this.rbMill1.Size = new System.Drawing.Size(77, 25);
             this.rbMill1.TabIndex = 18;
             this.rbMill1.Text = "โรงโม่ 1";
             this.rbMill1.UseVisualStyleBackColor = false;
@@ -645,7 +645,7 @@ namespace SerialPortListener
             this.rbMill2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill2.Location = new System.Drawing.Point(91, 11);
             this.rbMill2.Name = "rbMill2";
-            this.rbMill2.Size = new System.Drawing.Size(120, 43);
+            this.rbMill2.Size = new System.Drawing.Size(77, 25);
             this.rbMill2.TabIndex = 19;
             this.rbMill2.Text = "โรงโม่ 2";
             this.rbMill2.UseVisualStyleBackColor = false;
@@ -659,7 +659,7 @@ namespace SerialPortListener
             this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(604, 38);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 39);
+            this.label7.Size = new System.Drawing.Size(31, 21);
             this.label7.TabIndex = 47;
             this.label7.Text = "กก.";
             // 
@@ -670,7 +670,7 @@ namespace SerialPortListener
             this.label8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(604, 76);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 39);
+            this.label8.Size = new System.Drawing.Size(31, 21);
             this.label8.TabIndex = 48;
             this.label8.Text = "กก.";
             // 
@@ -681,7 +681,7 @@ namespace SerialPortListener
             this.tbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightTotal.Location = new System.Drawing.Point(438, 109);
             this.tbWeightTotal.Name = "tbWeightTotal";
-            this.tbWeightTotal.Size = new System.Drawing.Size(150, 47);
+            this.tbWeightTotal.Size = new System.Drawing.Size(150, 27);
             this.tbWeightTotal.TabIndex = 38;
             this.tbWeightTotal.Text = "0.00";
             this.tbWeightTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -696,7 +696,7 @@ namespace SerialPortListener
             this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(723, 164);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 39);
+            this.label9.Size = new System.Drawing.Size(71, 21);
             this.label9.TabIndex = 50;
             this.label9.Text = "ทะเบียนรถ";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -709,7 +709,7 @@ namespace SerialPortListener
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(723, 205);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 39);
+            this.label10.Size = new System.Drawing.Size(39, 21);
             this.label10.TabIndex = 53;
             this.label10.Text = "ผู้ขับ";
             // 
@@ -719,7 +719,7 @@ namespace SerialPortListener
             this.tbDriverName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDriverName.Location = new System.Drawing.Point(813, 199);
             this.tbDriverName.Name = "tbDriverName";
-            this.tbDriverName.Size = new System.Drawing.Size(96, 47);
+            this.tbDriverName.Size = new System.Drawing.Size(96, 27);
             this.tbDriverName.TabIndex = 21;
             // 
             // tbPricePerTon
@@ -728,7 +728,7 @@ namespace SerialPortListener
             this.tbPricePerTon.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPricePerTon.Location = new System.Drawing.Point(604, 526);
             this.tbPricePerTon.Name = "tbPricePerTon";
-            this.tbPricePerTon.Size = new System.Drawing.Size(130, 47);
+            this.tbPricePerTon.Size = new System.Drawing.Size(130, 27);
             this.tbPricePerTon.TabIndex = 40;
             this.tbPricePerTon.Text = "0.00";
             this.tbPricePerTon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -741,7 +741,7 @@ namespace SerialPortListener
             this.tbAmountVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbAmountVat.Location = new System.Drawing.Point(905, 568);
             this.tbAmountVat.Name = "tbAmountVat";
-            this.tbAmountVat.Size = new System.Drawing.Size(132, 47);
+            this.tbAmountVat.Size = new System.Drawing.Size(132, 27);
             this.tbAmountVat.TabIndex = 45;
             this.tbAmountVat.Text = "0.00";
             this.tbAmountVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -752,7 +752,7 @@ namespace SerialPortListener
             this.tbShipCost.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbShipCost.Location = new System.Drawing.Point(1139, 153);
             this.tbShipCost.Name = "tbShipCost";
-            this.tbShipCost.Size = new System.Drawing.Size(59, 47);
+            this.tbShipCost.Size = new System.Drawing.Size(59, 27);
             this.tbShipCost.TabIndex = 57;
             this.tbShipCost.Text = "0.00";
             this.tbShipCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -766,7 +766,7 @@ namespace SerialPortListener
             this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(528, 526);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 39);
+            this.label11.Size = new System.Drawing.Size(65, 21);
             this.label11.TabIndex = 58;
             this.label11.Text = "ราคา/ตัน";
             // 
@@ -778,7 +778,7 @@ namespace SerialPortListener
             this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(806, 529);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(108, 39);
+            this.label14.Size = new System.Drawing.Size(72, 21);
             this.label14.TabIndex = 61;
             this.label14.Text = "จำนวนเงิน";
             this.label14.Click += new System.EventHandler(this.label14_Click);
@@ -790,7 +790,7 @@ namespace SerialPortListener
             this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(57, 38);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(115, 39);
+            this.label12.Size = new System.Drawing.Size(76, 21);
             this.label12.TabIndex = 64;
             this.label12.Text = "น้ำหนักเข้า";
             // 
@@ -801,7 +801,7 @@ namespace SerialPortListener
             this.label15.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(57, 77);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(124, 39);
+            this.label15.Size = new System.Drawing.Size(80, 21);
             this.label15.TabIndex = 65;
             this.label15.Text = "น้ำหนักออก";
             // 
@@ -812,7 +812,7 @@ namespace SerialPortListener
             this.label16.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(604, 114);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 39);
+            this.label16.Size = new System.Drawing.Size(31, 21);
             this.label16.TabIndex = 66;
             this.label16.Text = "กก.";
             // 
@@ -823,7 +823,7 @@ namespace SerialPortListener
             this.label17.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(285, 114);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(123, 39);
+            this.label17.Size = new System.Drawing.Size(81, 21);
             this.label17.TabIndex = 67;
             this.label17.Text = "น้ำหนักสุทธิ";
             // 
@@ -835,7 +835,7 @@ namespace SerialPortListener
             this.label18.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(722, 318);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(54, 39);
+            this.label18.Size = new System.Drawing.Size(36, 21);
             this.label18.TabIndex = 70;
             this.label18.Text = "ผู้ชั่ง";
             // 
@@ -847,7 +847,7 @@ namespace SerialPortListener
             this.label19.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(725, 239);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(59, 39);
+            this.label19.Size = new System.Drawing.Size(38, 21);
             this.label19.TabIndex = 73;
             this.label19.Text = "ผู้ตัก";
             // 
@@ -858,7 +858,7 @@ namespace SerialPortListener
             this.tbScaleId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleId.Location = new System.Drawing.Point(813, 312);
             this.tbScaleId.Name = "tbScaleId";
-            this.tbScaleId.Size = new System.Drawing.Size(66, 47);
+            this.tbScaleId.Size = new System.Drawing.Size(66, 27);
             this.tbScaleId.TabIndex = 26;
             this.tbScaleId.TextChanged += new System.EventHandler(this.tbScaleId_TextChanged);
             // 
@@ -869,7 +869,7 @@ namespace SerialPortListener
             this.tbScoopName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScoopName.Location = new System.Drawing.Point(885, 235);
             this.tbScoopName.Name = "tbScoopName";
-            this.tbScoopName.Size = new System.Drawing.Size(243, 47);
+            this.tbScoopName.Size = new System.Drawing.Size(243, 27);
             this.tbScoopName.TabIndex = 25;
             this.tbScoopName.Leave += new System.EventHandler(this.tbScoopName_Leave);
             // 
@@ -881,7 +881,7 @@ namespace SerialPortListener
             this.tbCarLicense.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarLicense.Location = new System.Drawing.Point(813, 161);
             this.tbCarLicense.Name = "tbCarLicense";
-            this.tbCarLicense.Size = new System.Drawing.Size(243, 47);
+            this.tbCarLicense.Size = new System.Drawing.Size(243, 27);
             this.tbCarLicense.TabIndex = 16;
             this.tbCarLicense.Tag = "";
             this.tbCarLicense.TextChanged += new System.EventHandler(this.tbCarLicense_TextChanged);
@@ -894,7 +894,7 @@ namespace SerialPortListener
             this.tbCarCity.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarCity.Location = new System.Drawing.Point(1062, 161);
             this.tbCarCity.Name = "tbCarCity";
-            this.tbCarCity.Size = new System.Drawing.Size(67, 47);
+            this.tbCarCity.Size = new System.Drawing.Size(67, 27);
             this.tbCarCity.TabIndex = 17;
             // 
             // tbScaleName
@@ -904,7 +904,7 @@ namespace SerialPortListener
             this.tbScaleName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleName.Location = new System.Drawing.Point(885, 312);
             this.tbScaleName.Name = "tbScaleName";
-            this.tbScaleName.Size = new System.Drawing.Size(241, 47);
+            this.tbScaleName.Size = new System.Drawing.Size(241, 27);
             this.tbScaleName.TabIndex = 27;
             this.tbScaleName.TextChanged += new System.EventHandler(this.tbScaleName_TextChanged);
             // 
@@ -915,7 +915,7 @@ namespace SerialPortListener
             this.tbScoopId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScoopId.Location = new System.Drawing.Point(812, 235);
             this.tbScoopId.Name = "tbScoopId";
-            this.tbScoopId.Size = new System.Drawing.Size(67, 47);
+            this.tbScoopId.Size = new System.Drawing.Size(67, 27);
             this.tbScoopId.TabIndex = 24;
             this.tbScoopId.Leave += new System.EventHandler(this.tbScoopId_Leave);
             // 
@@ -926,7 +926,7 @@ namespace SerialPortListener
             this.label21.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(203, 7);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(49, 30);
+            this.label21.Size = new System.Drawing.Size(27, 17);
             this.label21.TabIndex = 85;
             this.label21.Text = "วันที่";
             // 
@@ -937,7 +937,7 @@ namespace SerialPortListener
             this.label22.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(320, 7);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(51, 30);
+            this.label22.Size = new System.Drawing.Size(27, 17);
             this.label22.TabIndex = 86;
             this.label22.Text = "เวลา";
             // 
@@ -948,7 +948,7 @@ namespace SerialPortListener
             this.label23.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(488, 7);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(75, 30);
+            this.label23.Size = new System.Drawing.Size(41, 17);
             this.label23.TabIndex = 87;
             this.label23.Text = "น้ำหนัก";
             // 
@@ -960,7 +960,7 @@ namespace SerialPortListener
             this.label24.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(740, 529);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(56, 39);
+            this.label24.Size = new System.Drawing.Size(35, 21);
             this.label24.TabIndex = 88;
             this.label24.Text = "บาท";
             // 
@@ -972,7 +972,7 @@ namespace SerialPortListener
             this.label25.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(1043, 526);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(56, 39);
+            this.label25.Size = new System.Drawing.Size(35, 21);
             this.label25.TabIndex = 89;
             this.label25.Text = "บาท";
             // 
@@ -1012,7 +1012,7 @@ namespace SerialPortListener
             this.label28.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.Location = new System.Drawing.Point(753, 114);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(42, 39);
+            this.label28.Size = new System.Drawing.Size(26, 21);
             this.label28.TabIndex = 89;
             this.label28.Text = "คิว";
             // 
@@ -1024,7 +1024,7 @@ namespace SerialPortListener
             this.tbQ.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbQ.Location = new System.Drawing.Point(651, 109);
             this.tbQ.Name = "tbQ";
-            this.tbQ.Size = new System.Drawing.Size(96, 47);
+            this.tbQ.Size = new System.Drawing.Size(96, 27);
             this.tbQ.TabIndex = 39;
             this.tbQ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbQ.Leave += new System.EventHandler(this.tbQ_Leave);
@@ -1047,7 +1047,7 @@ namespace SerialPortListener
             this.rbbNonVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbbNonVat.Location = new System.Drawing.Point(15, 10);
             this.rbbNonVat.Name = "rbbNonVat";
-            this.rbbNonVat.Size = new System.Drawing.Size(121, 43);
+            this.rbbNonVat.Size = new System.Drawing.Size(77, 25);
             this.rbbNonVat.TabIndex = 42;
             this.rbbNonVat.Text = "รวมภาษี";
             this.rbbNonVat.UseVisualStyleBackColor = false;
@@ -1060,7 +1060,7 @@ namespace SerialPortListener
             this.rbbVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbbVat.Location = new System.Drawing.Point(117, 10);
             this.rbbVat.Name = "rbbVat";
-            this.rbbVat.Size = new System.Drawing.Size(144, 43);
+            this.rbbVat.Size = new System.Drawing.Size(92, 25);
             this.rbbVat.TabIndex = 43;
             this.rbbVat.Text = "ไม่รวมภาษี";
             this.rbbVat.UseVisualStyleBackColor = false;
@@ -1074,7 +1074,7 @@ namespace SerialPortListener
             this.label20.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(289, 280);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(79, 39);
+            this.label20.Size = new System.Drawing.Size(51, 21);
             this.label20.TabIndex = 93;
             this.label20.Text = "ต้นทาง";
             // 
@@ -1086,7 +1086,7 @@ namespace SerialPortListener
             this.label27.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(289, 201);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(53, 39);
+            this.label27.Size = new System.Drawing.Size(33, 21);
             this.label27.TabIndex = 94;
             this.label27.Text = "จ่าย";
             // 
@@ -1102,7 +1102,7 @@ namespace SerialPortListener
             this.cbbStoneType.IntegralHeight = false;
             this.cbbStoneType.Location = new System.Drawing.Point(370, 234);
             this.cbbStoneType.Name = "cbbStoneType";
-            this.cbbStoneType.Size = new System.Drawing.Size(215, 47);
+            this.cbbStoneType.Size = new System.Drawing.Size(215, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
@@ -1113,7 +1113,7 @@ namespace SerialPortListener
             this.tbStoneDesc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbStoneDesc.Location = new System.Drawing.Point(591, 234);
             this.tbStoneDesc.Name = "tbStoneDesc";
-            this.tbStoneDesc.Size = new System.Drawing.Size(116, 47);
+            this.tbStoneDesc.Size = new System.Drawing.Size(116, 27);
             this.tbStoneDesc.TabIndex = 16;
             // 
             // groupBox1
@@ -1138,7 +1138,7 @@ namespace SerialPortListener
             this.rbMillNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMillNo.Location = new System.Drawing.Point(257, 11);
             this.rbMillNo.Name = "rbMillNo";
-            this.rbMillNo.Size = new System.Drawing.Size(84, 43);
+            this.rbMillNo.Size = new System.Drawing.Size(52, 25);
             this.rbMillNo.TabIndex = 21;
             this.rbMillNo.Text = "ไม่มี";
             this.rbMillNo.UseVisualStyleBackColor = false;
@@ -1152,7 +1152,7 @@ namespace SerialPortListener
             this.rbMill3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill3.Location = new System.Drawing.Point(172, 11);
             this.rbMill3.Name = "rbMill3";
-            this.rbMill3.Size = new System.Drawing.Size(120, 43);
+            this.rbMill3.Size = new System.Drawing.Size(77, 25);
             this.rbMill3.TabIndex = 20;
             this.rbMill3.Text = "โรงโม่ 3";
             this.rbMill3.UseVisualStyleBackColor = false;
@@ -1179,7 +1179,7 @@ namespace SerialPortListener
             this.rbTrans.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTrans.Location = new System.Drawing.Point(136, 11);
             this.rbTrans.Name = "rbTrans";
-            this.rbTrans.Size = new System.Drawing.Size(114, 43);
+            this.rbTrans.Size = new System.Drawing.Size(73, 25);
             this.rbTrans.TabIndex = 14;
             this.rbTrans.Text = "เงินโอน";
             this.rbTrans.UseVisualStyleBackColor = false;
@@ -1190,7 +1190,7 @@ namespace SerialPortListener
             // 
             this.tbId.Location = new System.Drawing.Point(1139, 124);
             this.tbId.Name = "tbId";
-            this.tbId.Size = new System.Drawing.Size(57, 39);
+            this.tbId.Size = new System.Drawing.Size(57, 23);
             this.tbId.TabIndex = 98;
             this.tbId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbId.Visible = false;
@@ -1201,7 +1201,7 @@ namespace SerialPortListener
             this.tbAmount.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbAmount.Location = new System.Drawing.Point(905, 523);
             this.tbAmount.Name = "tbAmount";
-            this.tbAmount.Size = new System.Drawing.Size(132, 47);
+            this.tbAmount.Size = new System.Drawing.Size(132, 27);
             this.tbAmount.TabIndex = 41;
             this.tbAmount.Text = "0.00";
             this.tbAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1215,7 +1215,7 @@ namespace SerialPortListener
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(1069, 611);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 39);
+            this.label4.Size = new System.Drawing.Size(79, 21);
             this.label4.TabIndex = 100;
             this.label4.Text = "ผู้อนุมัติจ่าย";
             this.label4.Visible = false;
@@ -1226,7 +1226,7 @@ namespace SerialPortListener
             this.tbApproveId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbApproveId.Location = new System.Drawing.Point(1157, 605);
             this.tbApproveId.Name = "tbApproveId";
-            this.tbApproveId.Size = new System.Drawing.Size(10, 47);
+            this.tbApproveId.Size = new System.Drawing.Size(10, 27);
             this.tbApproveId.TabIndex = 28;
             this.tbApproveId.Visible = false;
             this.tbApproveId.TextChanged += new System.EventHandler(this.tbApproveId_TextChanged);
@@ -1237,7 +1237,7 @@ namespace SerialPortListener
             this.tbApproveName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbApproveName.Location = new System.Drawing.Point(1173, 605);
             this.tbApproveName.Name = "tbApproveName";
-            this.tbApproveName.Size = new System.Drawing.Size(10, 47);
+            this.tbApproveName.Size = new System.Drawing.Size(10, 27);
             this.tbApproveName.TabIndex = 29;
             this.tbApproveName.Visible = false;
             this.tbApproveName.TextChanged += new System.EventHandler(this.tbApproveName_TextChanged);
@@ -1248,7 +1248,7 @@ namespace SerialPortListener
             this.tbVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbVat.Location = new System.Drawing.Point(604, 568);
             this.tbVat.Name = "tbVat";
-            this.tbVat.Size = new System.Drawing.Size(130, 47);
+            this.tbVat.Size = new System.Drawing.Size(130, 27);
             this.tbVat.TabIndex = 44;
             this.tbVat.Text = "0.00";
             this.tbVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1262,7 +1262,7 @@ namespace SerialPortListener
             this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(804, 571);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(147, 39);
+            this.label13.Size = new System.Drawing.Size(98, 21);
             this.label13.TabIndex = 104;
             this.label13.Text = "จำนวนเงินสุทธิ";
             // 
@@ -1274,7 +1274,7 @@ namespace SerialPortListener
             this.label26.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(528, 571);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(120, 39);
+            this.label26.Size = new System.Drawing.Size(63, 21);
             this.label26.TabIndex = 105;
             this.label26.Text = "vat 7%";
             this.label26.Click += new System.EventHandler(this.label26_Click);
@@ -1287,7 +1287,7 @@ namespace SerialPortListener
             this.label29.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(1046, 571);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(56, 39);
+            this.label29.Size = new System.Drawing.Size(35, 21);
             this.label29.TabIndex = 106;
             this.label29.Text = "บาท";
             // 
@@ -1299,7 +1299,7 @@ namespace SerialPortListener
             this.label30.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(740, 571);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(56, 39);
+            this.label30.Size = new System.Drawing.Size(35, 21);
             this.label30.TabIndex = 107;
             this.label30.Text = "บาท";
             // 
@@ -1311,7 +1311,7 @@ namespace SerialPortListener
             this.label31.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.Location = new System.Drawing.Point(289, 164);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(102, 39);
+            this.label31.Size = new System.Drawing.Size(65, 21);
             this.label31.TabIndex = 109;
             this.label31.Text = "ปลายทาง";
             // 
@@ -1323,7 +1323,7 @@ namespace SerialPortListener
             this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.Location = new System.Drawing.Point(289, 317);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(111, 39);
+            this.label32.Size = new System.Drawing.Size(73, 21);
             this.label32.TabIndex = 111;
             this.label32.Text = "ประเภทหิน";
             // 
@@ -1338,7 +1338,7 @@ namespace SerialPortListener
             "หินดำ"});
             this.cbbStoneColor.Location = new System.Drawing.Point(370, 312);
             this.cbbStoneColor.Name = "cbbStoneColor";
-            this.cbbStoneColor.Size = new System.Drawing.Size(88, 47);
+            this.cbbStoneColor.Size = new System.Drawing.Size(88, 29);
             this.cbbStoneColor.TabIndex = 23;
             // 
             // label33
@@ -1349,7 +1349,7 @@ namespace SerialPortListener
             this.label33.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.Location = new System.Drawing.Point(915, 202);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(44, 39);
+            this.label33.Size = new System.Drawing.Size(28, 21);
             this.label33.TabIndex = 113;
             this.label33.Text = "ทีม";
             // 
@@ -1359,7 +1359,7 @@ namespace SerialPortListener
             this.tbCarTeam.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarTeam.Location = new System.Drawing.Point(1139, 391);
             this.tbCarTeam.Name = "tbCarTeam";
-            this.tbCarTeam.Size = new System.Drawing.Size(57, 47);
+            this.tbCarTeam.Size = new System.Drawing.Size(57, 27);
             this.tbCarTeam.TabIndex = 22;
             this.tbCarTeam.Visible = false;
             this.tbCarTeam.Click += new System.EventHandler(this.tbCarTeam_Click);
@@ -1380,7 +1380,7 @@ namespace SerialPortListener
             this.tbWeigtData.Location = new System.Drawing.Point(14, -5);
             this.tbWeigtData.Name = "tbWeigtData";
             this.tbWeigtData.ReadOnly = true;
-            this.tbWeigtData.Size = new System.Drawing.Size(95, 86);
+            this.tbWeigtData.Size = new System.Drawing.Size(95, 47);
             this.tbWeigtData.TabIndex = 117;
             this.tbWeigtData.TabStop = false;
             this.tbWeigtData.Text = "0";
@@ -1405,7 +1405,7 @@ namespace SerialPortListener
             this.label34.ForeColor = System.Drawing.Color.DarkBlue;
             this.label34.Location = new System.Drawing.Point(805, 60);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(80, 58);
+            this.label34.Size = new System.Drawing.Size(44, 30);
             this.label34.TabIndex = 119;
             this.label34.Text = "กก.";
             // 
@@ -1417,7 +1417,7 @@ namespace SerialPortListener
             this.label35.ForeColor = System.Drawing.Color.DarkBlue;
             this.label35.Location = new System.Drawing.Point(572, 60);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(138, 58);
+            this.label35.Size = new System.Drawing.Size(75, 30);
             this.label35.TabIndex = 120;
             this.label35.Text = "น้ำหนัก";
             // 
@@ -1439,7 +1439,7 @@ namespace SerialPortListener
             this.rbCleanNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCleanNo.Location = new System.Drawing.Point(185, 10);
             this.rbCleanNo.Name = "rbCleanNo";
-            this.rbCleanNo.Size = new System.Drawing.Size(84, 43);
+            this.rbCleanNo.Size = new System.Drawing.Size(52, 25);
             this.rbCleanNo.TabIndex = 2;
             this.rbCleanNo.TabStop = true;
             this.rbCleanNo.Text = "ไม่มี";
@@ -1453,7 +1453,7 @@ namespace SerialPortListener
             this.rbCleanWater.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCleanWater.Location = new System.Drawing.Point(93, 10);
             this.rbCleanWater.Name = "rbCleanWater";
-            this.rbCleanWater.Size = new System.Drawing.Size(129, 43);
+            this.rbCleanWater.Size = new System.Drawing.Size(82, 25);
             this.rbCleanWater.TabIndex = 1;
             this.rbCleanWater.TabStop = true;
             this.rbCleanWater.Text = "สเปรย์น้ำ";
@@ -1468,7 +1468,7 @@ namespace SerialPortListener
             this.rbCleanStone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbCleanStone.Location = new System.Drawing.Point(7, 10);
             this.rbCleanStone.Name = "rbCleanStone";
-            this.rbCleanStone.Size = new System.Drawing.Size(109, 43);
+            this.rbCleanStone.Size = new System.Drawing.Size(69, 25);
             this.rbCleanStone.TabIndex = 0;
             this.rbCleanStone.TabStop = true;
             this.rbCleanStone.Text = "ล้างหิน";
@@ -1483,7 +1483,7 @@ namespace SerialPortListener
             this.cbbTransport.FormattingEnabled = true;
             this.cbbTransport.Location = new System.Drawing.Point(612, 161);
             this.cbbTransport.Name = "cbbTransport";
-            this.cbbTransport.Size = new System.Drawing.Size(95, 47);
+            this.cbbTransport.Size = new System.Drawing.Size(95, 29);
             this.cbbTransport.TabIndex = 125;
             // 
             // cbbMill
@@ -1504,7 +1504,7 @@ namespace SerialPortListener
             "Sandvik"});
             this.cbbMill.Location = new System.Drawing.Point(370, 272);
             this.cbbMill.Name = "cbbMill";
-            this.cbbMill.Size = new System.Drawing.Size(337, 47);
+            this.cbbMill.Size = new System.Drawing.Size(337, 29);
             this.cbbMill.TabIndex = 126;
             this.cbbMill.Leave += new System.EventHandler(this.cbbMill_Leave);
             // 
@@ -1516,7 +1516,7 @@ namespace SerialPortListener
             this.cbbCustomerName.IntegralHeight = false;
             this.cbbCustomerName.Location = new System.Drawing.Point(370, 121);
             this.cbbCustomerName.Name = "cbbCustomerName";
-            this.cbbCustomerName.Size = new System.Drawing.Size(301, 45);
+            this.cbbCustomerName.Size = new System.Drawing.Size(301, 28);
             this.cbbCustomerName.TabIndex = 127;
             this.cbbCustomerName.SelectedIndexChanged += new System.EventHandler(this.cbbCustomerName_SelectedIndexChanged);
             this.cbbCustomerName.TextUpdate += new System.EventHandler(this.cbbCustomerName_TextUpdate);
@@ -1530,7 +1530,7 @@ namespace SerialPortListener
             this.label36.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.Location = new System.Drawing.Point(723, 276);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(102, 39);
+            this.label36.Size = new System.Drawing.Size(65, 21);
             this.label36.TabIndex = 128;
             this.label36.Text = "หมายเหตุ";
             // 
@@ -1542,7 +1542,7 @@ namespace SerialPortListener
             this.tbNote.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNote.Location = new System.Drawing.Point(813, 272);
             this.tbNote.Name = "tbNote";
-            this.tbNote.Size = new System.Drawing.Size(313, 47);
+            this.tbNote.Size = new System.Drawing.Size(313, 27);
             this.tbNote.TabIndex = 129;
             this.tbNote.Tag = "";
             // 
@@ -1556,7 +1556,7 @@ namespace SerialPortListener
             this.cbbSite.IntegralHeight = false;
             this.cbbSite.Location = new System.Drawing.Point(370, 161);
             this.cbbSite.Name = "cbbSite";
-            this.cbbSite.Size = new System.Drawing.Size(236, 47);
+            this.cbbSite.Size = new System.Drawing.Size(236, 29);
             this.cbbSite.TabIndex = 130;
             this.cbbSite.Leave += new System.EventHandler(this.cbbSite_Leave);
             // 
@@ -1570,7 +1570,7 @@ namespace SerialPortListener
             this.tbOilContent.ForeColor = System.Drawing.SystemColors.WindowText;
             this.tbOilContent.Location = new System.Drawing.Point(335, 523);
             this.tbOilContent.Name = "tbOilContent";
-            this.tbOilContent.Size = new System.Drawing.Size(132, 47);
+            this.tbOilContent.Size = new System.Drawing.Size(132, 27);
             this.tbOilContent.TabIndex = 131;
             this.tbOilContent.Tag = "";
             this.tbOilContent.Text = "0.00";
@@ -1586,7 +1586,7 @@ namespace SerialPortListener
             this.label37.ForeColor = System.Drawing.Color.Red;
             this.label37.Location = new System.Drawing.Point(289, 526);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(69, 39);
+            this.label37.Size = new System.Drawing.Size(46, 21);
             this.label37.TabIndex = 132;
             this.label37.Text = "น้ำมัน";
             // 
@@ -1599,7 +1599,7 @@ namespace SerialPortListener
             this.label38.ForeColor = System.Drawing.Color.Red;
             this.label38.Location = new System.Drawing.Point(473, 526);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(54, 39);
+            this.label38.Size = new System.Drawing.Size(35, 21);
             this.label38.TabIndex = 133;
             this.label38.Text = "ลิตร";
             // 
@@ -1608,7 +1608,7 @@ namespace SerialPortListener
             this.cbbCarTeam.FormattingEnabled = true;
             this.cbbCarTeam.Location = new System.Drawing.Point(949, 201);
             this.cbbCarTeam.Name = "cbbCarTeam";
-            this.cbbCarTeam.Size = new System.Drawing.Size(177, 40);
+            this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
             // 
             // tbMillId
@@ -1618,7 +1618,7 @@ namespace SerialPortListener
             this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMillId.Location = new System.Drawing.Point(1157, 557);
             this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 47);
+            this.tbMillId.Size = new System.Drawing.Size(10, 27);
             this.tbMillId.TabIndex = 140;
             this.tbMillId.Visible = false;
             this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
@@ -1630,7 +1630,7 @@ namespace SerialPortListener
             this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMillName.Location = new System.Drawing.Point(1173, 557);
             this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 47);
+            this.tbMillName.Size = new System.Drawing.Size(10, 27);
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
@@ -1658,7 +1658,7 @@ namespace SerialPortListener
             // 
             // ucHelp
             // 
-            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
+            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
             this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucHelp.Location = new System.Drawing.Point(0, 0);
             this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
@@ -1789,7 +1789,7 @@ namespace SerialPortListener
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
             this.tbDoId.Name = "tbDoId";
-            this.tbDoId.Size = new System.Drawing.Size(57, 39);
+            this.tbDoId.Size = new System.Drawing.Size(57, 23);
             this.tbDoId.TabIndex = 143;
             this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbDoId.Visible = false;
@@ -1802,7 +1802,7 @@ namespace SerialPortListener
             this.tbDoDocNo.Location = new System.Drawing.Point(1024, 92);
             this.tbDoDocNo.Name = "tbDoDocNo";
             this.tbDoDocNo.ReadOnly = true;
-            this.tbDoDocNo.Size = new System.Drawing.Size(105, 39);
+            this.tbDoDocNo.Size = new System.Drawing.Size(105, 23);
             this.tbDoDocNo.TabIndex = 144;
             this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1815,7 +1815,7 @@ namespace SerialPortListener
             this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label39.Location = new System.Drawing.Point(922, 94);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(145, 39);
+            this.label39.Size = new System.Drawing.Size(96, 21);
             this.label39.TabIndex = 145;
             this.label39.Text = "เลขที่ใบส่งของ";
             // 
@@ -1823,7 +1823,7 @@ namespace SerialPortListener
             // 
             this.tbOldDoId.Location = new System.Drawing.Point(1134, 68);
             this.tbOldDoId.Name = "tbOldDoId";
-            this.tbOldDoId.Size = new System.Drawing.Size(57, 39);
+            this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
             this.tbOldDoId.TabIndex = 146;
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbOldDoId.Visible = false;
