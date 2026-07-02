@@ -96,7 +96,7 @@ namespace SerialPortListener
                 }
                 else
                 {
-                    cboBaud.SelectedItem = 1200;
+                    cboBaud.SelectedItem = 2400;
                 }
 
                 cboParity.SelectedItem = settings.Parity;
@@ -107,7 +107,7 @@ namespace SerialPortListener
                 }
                 else
                 {
-                    cboDataBits.SelectedItem = 8;
+                    cboDataBits.SelectedItem = 7;
                 }
 
                 cboStopBits.SelectedItem = settings.StopBits;
@@ -116,9 +116,9 @@ namespace SerialPortListener
             {
                 // Fallbacks if no manager is set yet
                 if (cboPort.Items.Count > 0) cboPort.SelectedIndex = 0;
-                cboBaud.SelectedItem = 1200;
+                cboBaud.SelectedItem = 2400;
                 cboParity.SelectedItem = Parity.None;
-                cboDataBits.SelectedItem = 8;
+                cboDataBits.SelectedItem = 7;
                 cboStopBits.SelectedItem = StopBits.One;
             }
 
