@@ -158,8 +158,6 @@ namespace SerialPortListener
             this.btSave = new System.Windows.Forms.Button();
             this.ucTruck = new SerialPortListener.ucTruck();
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tbMillId = new System.Windows.Forms.TextBox();
-            this.tbMillName = new System.Windows.Forms.TextBox();
             this.btPrintVRock = new System.Windows.Forms.Button();
             this.tbDoId = new System.Windows.Forms.TextBox();
             this.tbDoDocNo = new System.Windows.Forms.TextBox();

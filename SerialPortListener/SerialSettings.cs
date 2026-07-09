@@ -12,13 +12,14 @@ namespace SerialPortListener.Serial
     /// </summary>
     public class SerialSettings : INotifyPropertyChanged
     {
+         //เข้า , ออก(แม่), ล่าง
         public event PropertyChangedEventHandler PropertyChanged;
-        string _portName = "COM32";//COM1
+        string _portName = "COM22";//COM2, COM3, COM1
         string[] _portNameCollection;
-        int _baudRate = 2400;//1200 , 2400
+        int _baudRate = 1200;//1200, 1200, 1200
         BindingList<int> _baudRateCollection = new BindingList<int>();
         Parity _parity = Parity.None;
-        int _dataBits =  7;//8, 7
+        int _dataBits =  7;//7, 7, 8
         int[] _dataBitsCollection = new int[] { 5, 6, 7, 8 };
         StopBits _stopBits = StopBits.One;
 
