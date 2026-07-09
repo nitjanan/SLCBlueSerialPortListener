@@ -1484,7 +1484,6 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="ชนิดหิน">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -1514,6 +1513,7 @@
                             <PaddingBottom>0.25pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2224,7 +2224,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dailyDataSet</DataSetName>
-            <Top>0cm</Top>
             <Left>0.00882cm</Left>
             <Height>1.83812cm</Height>
             <Width>19.99536cm</Width>
