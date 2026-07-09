@@ -61,6 +61,10 @@
           <DataField>ชนิดหิน</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="stone_desc">
+          <DataField>stone_desc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="จ่ายเงิน">
           <DataField>จ่ายเงิน</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2547,11 +2551,15 @@
                     <TablixMember>
                       <Group Name="ชนิดหิน">
                         <GroupExpressions>
+                          <GroupExpression>=Fields!stone_desc.Value</GroupExpression>
                           <GroupExpression>=Fields!ชนิดหิน.Value</GroupExpression>
                           <GroupExpression>=Fields!โรงโม่.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!stone_desc.Value</Value>
+                        </SortExpression>
                         <SortExpression>
                           <Value>=Fields!ชนิดหิน.Value</Value>
                         </SortExpression>
@@ -2566,7 +2574,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=Fields!ชนิดหิน.Value</Value>
+                                    <Value>=Fields!ชนิดหิน.Value &amp; " " &amp; Fields!stone_desc.Value</Value>
                                     <Style>
                                       <FontFamily>Angsana New</FontFamily>
                                       <FontSize>14pt</FontSize>

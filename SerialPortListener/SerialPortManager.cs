@@ -58,6 +58,7 @@ namespace SerialPortListener.Serial
 
         void _currentSerialSettings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            /*
             // if serial port is changed, a new baud query is issued
             /*
             if (e.PropertyName.Equals("PortName"))

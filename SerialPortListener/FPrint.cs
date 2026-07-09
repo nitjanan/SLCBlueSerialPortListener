@@ -1,4 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +27,7 @@ namespace SerialPortListener
         {
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
                 new Microsoft.Reporting.WinForms.ReportParameter("PCompanyName",Company.CompanyName),
-                new Microsoft.Reporting.WinForms.ReportParameter("PAddress",Company.Address),
+                new Microsoft.Reporting.WinForms.ReportParameter("PAddress",GetReportAddress()),
                 new Microsoft.Reporting.WinForms.ReportParameter("PTelephone",Company.Telephone),
                 new Microsoft.Reporting.WinForms.ReportParameter("PEmail",Company.Email),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDocNum",Weight.DocNum),
@@ -36,6 +36,7 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("PDriverName",Weight.DriverName),
                 new Microsoft.Reporting.WinForms.ReportParameter("PCustomerName",Weight.CustomerName),
                 new Microsoft.Reporting.WinForms.ReportParameter("PStoneType",Weight.StoneType),
+                new Microsoft.Reporting.WinForms.ReportParameter("PStoneDesc",Weight.StoneDesc),
                 new Microsoft.Reporting.WinForms.ReportParameter("PCar",Weight.CarLicense),
                 new Microsoft.Reporting.WinForms.ReportParameter("PCity",Weight.CarCity),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateIn",Weight.DateIn),
@@ -87,5 +88,44 @@ namespace SerialPortListener
             this.reportViewer1.RefreshReport();
         }
 
+        private string GetReportAddress()
+        {
+            string address = Company.Address;
+            if (!string.IsNullOrEmpty(Weight.DoId) && 
+                Weight.DoId.Trim() != "" && 
+                !Weight.DoId.Equals("NULL", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    dl.connect();
+                    using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
+                    {
+                        pgCommand.CommandText = "SELECT site_id, site_name FROM public.delivery_order WHERE do_id = ?";
+                        pgCommand.Parameters.AddWithValue("do_id", Weight.DoId);
+                        using (OdbcDataReader reader = pgCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string siteId = reader["site_id"].ToString();
+                                string siteName = reader["site_name"].ToString();
+                                if (siteId == "-")
+                                {
+                                    address = siteName;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Fallback to default Company.Address
+                }
+                finally
+                {
+                    dl.close();
+                }
+            }
+            return address;
+        }
     }
 }

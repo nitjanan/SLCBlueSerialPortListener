@@ -1,4 +1,4 @@
-﻿namespace SerialPortListener
+namespace SerialPortListener
 {
     partial class MainForm
     {
@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbData = new System.Windows.Forms.TextBox();
+            this.chkDirectPrint = new System.Windows.Forms.CheckBox();
             this.tbWeightIn = new System.Windows.Forms.TextBox();
             this.btReadIn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -103,6 +104,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.cbbStoneType = new System.Windows.Forms.ComboBox();
+            this.tbStoneDesc = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbMillNo = new System.Windows.Forms.RadioButton();
             this.rbMill3 = new System.Windows.Forms.RadioButton();
@@ -142,10 +144,13 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.cbbCarTeam = new System.Windows.Forms.ComboBox();
+            this.tbMillId = new System.Windows.Forms.TextBox();
+            this.tbMillName = new System.Windows.Forms.TextBox();
             this.ucSetting = new SerialPortListener.ucSetting();
             this.ucReport = new SerialPortListener.ucReport();
             this.ucHelp = new SerialPortListener.ucHelp();
             this.ucBackup = new SerialPortListener.ucBackup();
+            this.btLoadDO = new System.Windows.Forms.Button();
             this.btRefresh = new System.Windows.Forms.Button();
             this.btPrintAll = new System.Windows.Forms.Button();
             this.btPrintOut = new System.Windows.Forms.Button();
@@ -156,6 +161,10 @@
             this.tbMillId = new System.Windows.Forms.TextBox();
             this.tbMillName = new System.Windows.Forms.TextBox();
             this.btPrintVRock = new System.Windows.Forms.Button();
+            this.tbDoId = new System.Windows.Forms.TextBox();
+            this.tbDoDocNo = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.tbOldDoId = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -180,6 +189,19 @@
             this.tbData.Size = new System.Drawing.Size(57, 56);
             this.tbData.TabIndex = 13;
             this.tbData.Visible = false;
+            // 
+            // chkDirectPrint
+            // 
+            this.chkDirectPrint.AutoSize = true;
+            this.chkDirectPrint.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDirectPrint.ForeColor = System.Drawing.Color.White;
+            this.chkDirectPrint.Location = new System.Drawing.Point(54, 10);
+            this.chkDirectPrint.Name = "chkDirectPrint";
+            this.chkDirectPrint.Size = new System.Drawing.Size(77, 23);
+            this.chkDirectPrint.TabIndex = 999;
+            this.chkDirectPrint.Text = "พิมพ์เร็ว";
+            this.chkDirectPrint.UseVisualStyleBackColor = true;
+            this.chkDirectPrint.CheckedChanged += new System.EventHandler(this.chkDirectPrint_CheckedChanged);
             // 
             // tbWeightIn
             // 
@@ -221,6 +243,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkOrange;
+            this.panel2.Controls.Add(this.chkDirectPrint);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -257,7 +280,7 @@
             this.dtDate.CustomFormat = "dd-MM-yyyy";
             this.dtDate.Enabled = false;
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDate.Location = new System.Drawing.Point(1104, 42);
+            this.dtDate.Location = new System.Drawing.Point(1105, 42);
             this.dtDate.Name = "dtDate";
             this.dtDate.Size = new System.Drawing.Size(94, 23);
             this.dtDate.TabIndex = 7;
@@ -542,12 +565,13 @@
             // 
             this.btLoadCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btLoadCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLoadCustomer.Location = new System.Drawing.Point(677, 122);
+            this.btLoadCustomer.Location = new System.Drawing.Point(855, 63);
             this.btLoadCustomer.Name = "btLoadCustomer";
             this.btLoadCustomer.Size = new System.Drawing.Size(30, 27);
             this.btLoadCustomer.TabIndex = 10;
             this.btLoadCustomer.Text = "...";
             this.btLoadCustomer.UseVisualStyleBackColor = true;
+            this.btLoadCustomer.Visible = false;
             this.btLoadCustomer.Click += new System.EventHandler(this.btLoadCustomer_Click);
             // 
             // label6
@@ -595,7 +619,7 @@
             this.rbVat.AutoSize = true;
             this.rbVat.BackColor = System.Drawing.Color.MintCream;
             this.rbVat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbVat.Location = new System.Drawing.Point(1141, 93);
+            this.rbVat.Location = new System.Drawing.Point(891, 64);
             this.rbVat.Name = "rbVat";
             this.rbVat.Size = new System.Drawing.Size(57, 25);
             this.rbVat.TabIndex = 44;
@@ -610,7 +634,7 @@
             this.rbMill1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill1.Location = new System.Drawing.Point(6, 11);
             this.rbMill1.Name = "rbMill1";
-            this.rbMill1.Size = new System.Drawing.Size(75, 25);
+            this.rbMill1.Size = new System.Drawing.Size(77, 25);
             this.rbMill1.TabIndex = 18;
             this.rbMill1.Text = "โรงโม่ 1";
             this.rbMill1.UseVisualStyleBackColor = false;
@@ -624,7 +648,7 @@
             this.rbMill2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill2.Location = new System.Drawing.Point(91, 11);
             this.rbMill2.Name = "rbMill2";
-            this.rbMill2.Size = new System.Drawing.Size(75, 25);
+            this.rbMill2.Size = new System.Drawing.Size(77, 25);
             this.rbMill2.TabIndex = 19;
             this.rbMill2.Text = "โรงโม่ 2";
             this.rbMill2.UseVisualStyleBackColor = false;
@@ -833,6 +857,7 @@
             // tbScaleId
             // 
             this.tbScaleId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleId.Enabled = false;
             this.tbScaleId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleId.Location = new System.Drawing.Point(813, 312);
             this.tbScaleId.Name = "tbScaleId";
@@ -878,6 +903,7 @@
             // tbScaleName
             // 
             this.tbScaleName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbScaleName.Enabled = false;
             this.tbScaleName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbScaleName.Location = new System.Drawing.Point(885, 312);
             this.tbScaleName.Name = "tbScaleName";
@@ -1079,11 +1105,20 @@
             this.cbbStoneType.IntegralHeight = false;
             this.cbbStoneType.Location = new System.Drawing.Point(370, 234);
             this.cbbStoneType.Name = "cbbStoneType";
-            this.cbbStoneType.Size = new System.Drawing.Size(337, 29);
+            this.cbbStoneType.Size = new System.Drawing.Size(215, 29);
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
-            // 
+            //
+            // tbStoneDesc
+            //
+            this.tbStoneDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbStoneDesc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbStoneDesc.Location = new System.Drawing.Point(591, 234);
+            this.tbStoneDesc.Name = "tbStoneDesc";
+            this.tbStoneDesc.Size = new System.Drawing.Size(116, 27);
+            this.tbStoneDesc.TabIndex = 16;
+            //
             // groupBox1
             // 
             this.groupBox1.AccessibleName = "โรงโม่";
@@ -1120,7 +1155,7 @@
             this.rbMill3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbMill3.Location = new System.Drawing.Point(172, 11);
             this.rbMill3.Name = "rbMill3";
-            this.rbMill3.Size = new System.Drawing.Size(75, 25);
+            this.rbMill3.Size = new System.Drawing.Size(77, 25);
             this.rbMill3.TabIndex = 20;
             this.rbMill3.Text = "โรงโม่ 3";
             this.rbMill3.UseVisualStyleBackColor = false;
@@ -1147,7 +1182,7 @@
             this.rbTrans.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbTrans.Location = new System.Drawing.Point(136, 11);
             this.rbTrans.Name = "rbTrans";
-            this.rbTrans.Size = new System.Drawing.Size(71, 25);
+            this.rbTrans.Size = new System.Drawing.Size(73, 25);
             this.rbTrans.TabIndex = 14;
             this.rbTrans.Text = "เงินโอน";
             this.rbTrans.UseVisualStyleBackColor = false;
@@ -1578,6 +1613,30 @@
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
             // 
+            // tbMillId
+            // 
+            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
+            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
+            this.tbMillId.Name = "tbMillId";
+            this.tbMillId.Size = new System.Drawing.Size(10, 27);
+            this.tbMillId.TabIndex = 140;
+            this.tbMillId.Visible = false;
+            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
+            // 
+            // tbMillName
+            // 
+            this.tbMillName.AccessibleName = "ผู้ตัก";
+            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
+            this.tbMillName.Name = "tbMillName";
+            this.tbMillName.Size = new System.Drawing.Size(10, 27);
+            this.tbMillName.TabIndex = 141;
+            this.tbMillName.Visible = false;
+            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            // 
             // ucSetting
             // 
             this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
@@ -1601,7 +1660,7 @@
             // 
             // ucHelp
             // 
-            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
+            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
             this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucHelp.Location = new System.Drawing.Point(0, 0);
             this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
@@ -1620,6 +1679,18 @@
             this.ucBackup.Name = "ucBackup";
             this.ucBackup.Size = new System.Drawing.Size(1208, 686);
             this.ucBackup.TabIndex = 108;
+            // 
+            // btLoadDO
+            // 
+            this.btLoadDO.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btLoadDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLoadDO.Image = global::SerialPortListener.Properties.Resources.booking;
+            this.btLoadDO.Location = new System.Drawing.Point(677, 121);
+            this.btLoadDO.Name = "btLoadDO";
+            this.btLoadDO.Size = new System.Drawing.Size(30, 27);
+            this.btLoadDO.TabIndex = 142;
+            this.btLoadDO.UseVisualStyleBackColor = true;
+            this.btLoadDO.Click += new System.EventHandler(this.btLoadDO_Click);
             // 
             // btRefresh
             // 
@@ -1716,29 +1787,48 @@
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
-            // tbMillId
+            // tbDoId
             // 
-            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
-            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
-            this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 27);
-            this.tbMillId.TabIndex = 140;
-            this.tbMillId.Visible = false;
-            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
+            this.tbDoId.Location = new System.Drawing.Point(1071, 69);
+            this.tbDoId.Name = "tbDoId";
+            this.tbDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbDoId.TabIndex = 143;
+            this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDoId.Visible = false;
             // 
-            // tbMillName
+            // tbDoDocNo
             // 
-            this.tbMillName.AccessibleName = "ผู้ตัก";
-            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
-            this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 27);
-            this.tbMillName.TabIndex = 141;
-            this.tbMillName.Visible = false;
-            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            this.tbDoDocNo.BackColor = System.Drawing.SystemColors.Window;
+            this.tbDoDocNo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDoDocNo.ForeColor = System.Drawing.Color.MediumBlue;
+            this.tbDoDocNo.Location = new System.Drawing.Point(1024, 92);
+            this.tbDoDocNo.Name = "tbDoDocNo";
+            this.tbDoDocNo.ReadOnly = true;
+            this.tbDoDocNo.Size = new System.Drawing.Size(105, 23);
+            this.tbDoDocNo.TabIndex = 144;
+            this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label39
+            // 
+            this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.MintCream;
+            this.label39.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label39.Location = new System.Drawing.Point(922, 94);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(96, 21);
+            this.label39.TabIndex = 145;
+            this.label39.Text = "เลขที่ใบส่งของ";
+            // 
+            // tbOldDoId
+            // 
+            this.tbOldDoId.Location = new System.Drawing.Point(1134, 68);
+            this.tbOldDoId.Name = "tbOldDoId";
+            this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbOldDoId.TabIndex = 146;
+            this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbOldDoId.Visible = false;
             // 
             // btPrintVRock
             // 
@@ -1763,6 +1853,11 @@
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
             this.Controls.Add(this.btPrintVRock);
+            this.Controls.Add(this.tbOldDoId);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.tbDoDocNo);
+            this.Controls.Add(this.tbDoId);
+            this.Controls.Add(this.btLoadDO);
             this.Controls.Add(this.tbMillId);
             this.Controls.Add(this.tbMillName);
             this.Controls.Add(this.btRefresh);
@@ -1803,6 +1898,7 @@
             this.Controls.Add(this.tbId);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tbStoneDesc);
             this.Controls.Add(this.cbbStoneType);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.panel4);
@@ -1853,6 +1949,7 @@
             this.Text = "Weight";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -1949,6 +2046,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbbStoneType;
+        private System.Windows.Forms.TextBox tbStoneDesc;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tbId;
@@ -2002,6 +2100,12 @@
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
         private System.Windows.Forms.Button btPrintVRock;
+        private System.Windows.Forms.Button btLoadDO;
+        private System.Windows.Forms.TextBox tbDoId;
+        private System.Windows.Forms.TextBox tbDoDocNo;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox tbOldDoId;
+        private System.Windows.Forms.CheckBox chkDirectPrint;
     }
 }
 
