@@ -912,7 +912,6 @@ namespace SerialPortListener
                 tbData.ScrollToCaret();
 
 
-                /*
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
@@ -945,11 +944,11 @@ namespace SerialPortListener
                 {
 
                 }
-                */
 
 
-                
-                // JOB ขาเข้า และ  New ล่างสุด 13-08-2025
+
+                /*
+                // JOB ขาเข้า และ  New ล่างสุด 13-08-2025 และ ผลิต
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
@@ -977,7 +976,7 @@ namespace SerialPortListener
                 {
 
                 }
-                
+                */
                 
                 
 
@@ -1304,6 +1303,7 @@ namespace SerialPortListener
                     isDuplicate = true;
                     //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
             }
             catch (Exception)
             {
