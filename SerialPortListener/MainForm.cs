@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -884,7 +884,10 @@ namespace SerialPortListener
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _spManager.Dispose();
+            if (_spManager != null)
+            {
+                _spManager.Dispose();
+            }
         }
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
