@@ -478,6 +478,12 @@
         "Entry"
         {
         "MsmKey" = "8:_7BBB63E2051EAB94CF9BB80F8D02BC0C"
+        "OwnerKey" = "8:_D46F09B14594E028861DC41BA2738051"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7BBB63E2051EAB94CF9BB80F8D02BC0C"
         "OwnerKey" = "8:_E474060AC413A86EA21A6A0D405A559C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -569,6 +575,12 @@
         {
         "MsmKey" = "8:_81EF1F4478ABAC343923F1FD8BE0F9F8"
         "OwnerKey" = "8:_A56C83E2AFAA1EDFF55A7B55543906B9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_831E23E4D8AF4F53B8AB33DE022330C0"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4177,6 +4189,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_831E23E4D8AF4F53B8AB33DE022330C0"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Pictures\\iconNew.ico"
+            "TargetName" = "8:iconNew.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_83BD69802908D0C8DA88A69ADE13B629"
             {
             "AssemblyRegister" = "3:1"
@@ -6186,8 +6218,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupM_DOExp"
-        "ProductCode" = "8:{6AD47644-2ACE-445E-8CCA-C025E665FDF4}"
-        "PackageCode" = "8:{DD263A53-A451-497C-9D16-BFAE16C8B00D}"
+        "ProductCode" = "8:{8C136853-B5E1-431C-A76A-43E70FC2BB26}"
+        "PackageCode" = "8:{684685DC-2DFD-491B-9F1B-1CBF63B64A58}"
         "UpgradeCode" = "8:{BFF0DD2B-C5E6-45EB-9BDD-58E31A490621}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -6318,7 +6350,7 @@
             "Target" = "8:_65DA39BC407B455491E56632DB1E8E19"
             "Folder" = "8:_A843A48FDD1E4C35ADFF31CB77B262EA"
             "WorkingFolder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
-            "Icon" = "8:"
+            "Icon" = "8:_831E23E4D8AF4F53B8AB33DE022330C0"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FC93DEC80E0B4372B9B79FC91A6FDA20"
@@ -6332,7 +6364,7 @@
             "Target" = "8:_65DA39BC407B455491E56632DB1E8E19"
             "Folder" = "8:_B5A2C4FDE858480AAA894F006E59EB05"
             "WorkingFolder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
-            "Icon" = "8:"
+            "Icon" = "8:_831E23E4D8AF4F53B8AB33DE022330C0"
             "Feature" = "8:"
             }
         }
