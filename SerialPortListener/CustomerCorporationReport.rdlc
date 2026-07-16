@@ -61,6 +61,10 @@
           <DataField>ชนิดหิน</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="stone_desc">
+          <DataField>stone_desc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="จ่ายเงิน">
           <DataField>จ่ายเงิน</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -216,7 +220,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.81208cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.41772cm</Width>
@@ -231,10 +235,10 @@
                   <Width>2.58476cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.91855cm</Width>
+                  <Width>2.52708cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.93083cm</Width>
+                  <Width>2.01021cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.71979cm</Width>
@@ -286,6 +290,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -680,14 +685,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ลูกค้า">
+                        <Textbox Name="Textbox42">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ลูกค้า.Value</Value>
+                                  <Value>=Fields!ลูกค้า.Value &amp; "   " &amp; Fields!หน้างาน.Value &amp; "   " &amp; Fields!ชนิดหิน.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>16pt</FontSize>
@@ -698,7 +703,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ลูกค้า</rd:DefaultName>
+                          <rd:DefaultName>Textbox42</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -923,7 +928,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ชนิดหิน.Value</Value>
+                                  <Value>=Fields!ชนิดหิน.Value &amp; " " &amp; Fields!stone_desc.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>14pt</FontSize>
@@ -1835,38 +1840,64 @@
                   <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="ลูกค้า">
+                  <Group Name="ชนิดหิน">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!ลูกค้า.Value</GroupExpression>
+                      <GroupExpression>=Fields!ชนิดหิน.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ลูกค้า.Value</Value>
+                      <Value>=Fields!ชนิดหิน.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Group Name="Details" />
-                    </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>Before</KeepWithGroup>
+                      <Group Name="หน้างาน">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!หน้างาน.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!หน้างาน.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixMembers>
+                        <TablixMember>
+                          <Group Name="ลูกค้า">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!ลูกค้า.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!ลูกค้า.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                          <TablixMembers>
+                            <TablixMember>
+                              <KeepWithGroup>After</KeepWithGroup>
+                            </TablixMember>
+                            <TablixMember>
+                              <Group Name="Details" />
+                            </TablixMember>
+                            <TablixMember>
+                              <KeepWithGroup>Before</KeepWithGroup>
+                            </TablixMember>
+                          </TablixMembers>
+                        </TablixMember>
+                      </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
-                <TablixMember>
-                  <KeepWithGroup>Before</KeepWithGroup>
-                </TablixMember>
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CorpDataSet</DataSetName>
             <Top>0.03528cm</Top>
             <Left>0.00001cm</Left>
             <Height>3cm</Height>
-            <Width>19.94957cm</Width>
+            <Width>19.94956cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1877,7 +1908,7 @@
         <Height>1.19499in</Height>
         <Style />
       </Body>
-      <Width>7.85417in</Width>
+      <Width>7.85416in</Width>
       <Page>
         <PageHeader>
           <Height>1.82562cm</Height>

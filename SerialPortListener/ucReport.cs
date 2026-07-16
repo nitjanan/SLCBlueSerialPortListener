@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -79,6 +79,7 @@ namespace SerialPortListener
             fillTableCombo(cbbCarTeam, "base_car_team", "ชื่อทีม");
             fillTableCombo(cbbCarryTeam, "base_car_team", "ชื่อทีม");
             fillTableCombo(cbbProductStoneType, "base_stone_type", "ชื่อหิน");
+            fillTableCombo(cbbCorpStone, "base_stone_type", "ชื่อหิน");
 
             /* autoComplete ลูกค้า */
             autoCompleteSetting(tbbCustomerId, "รหัสลูกค้า", "base_customer");
@@ -105,6 +106,9 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCorpName, listOriginalCorpReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCName, listOriginalCCReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbProductName, listOriginalProductReport);
+
+            this.cbbCorpName.SelectedIndexChanged += new System.EventHandler(this.cbbCorpName_SelectedIndexChanged);
+            fillCorpSiteCombo();
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
         }
@@ -195,8 +199,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -222,8 +229,11 @@ namespace SerialPortListener
                 OdbcDataReader reader = pgCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    string rdStr = reader[field].ToString();
-                    coll.Add(rdStr);
+                    string rdStr = reader[field].ToString().Trim();
+                    if (!string.IsNullOrEmpty(rdStr))
+                    {
+                        coll.Add(rdStr);
+                    }
                 }
             }
             catch (Exception)
@@ -289,6 +299,7 @@ namespace SerialPortListener
 
         private void ucReport_Load(object sender, EventArgs e)
         {
+            
             //this.weightTableAdapter.Fill(this.truckDataSet.weight);
             //this.weightBindingSource.Filter = string.Format("วันที่ = '" + tbdateTo.Text + "' AND ( NOT น้ำหนักรวม = 0.00 OR  รหัสลูกค้า = '999' ) ");
             setDataWeightToDTGV();
@@ -304,6 +315,10 @@ namespace SerialPortListener
             else if (tcReport.SelectedTab == tabPage8)
             {
                 fillMillCombo(cbMill);
+            }
+            else if (tcReport.SelectedTab == tabPage13)
+            {
+                fillCorpSiteCombo();
             }
         }
 
@@ -1258,6 +1273,10 @@ namespace SerialPortListener
             string sql = "select * from weight where วันที่ BETWEEN '" + dtFromCorp.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCorp.Value.ToString("yyyy-MM-dd") + "' ";
             if (tbCorpId.Text != "")
                 sql += " AND รหัสลูกค้า = '" + tbCorpId.Text + "' ";
+            if (cbbCorpSite.Text != "" && cbbCorpSite.Text != "ทั้งหมด")
+                sql += " AND หน้างาน = '" + cbbCorpSite.Text + "' ";
+            if (cbbCorpStone.Text != "" && cbbCorpStone.Text != "ทั้งหมด")
+                sql += " AND ชนิดหิน = '" + cbbCorpStone.Text + "' ";
             sql += " ORDER BY วันที่ ";
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
@@ -1328,14 +1347,67 @@ namespace SerialPortListener
             fp.ShowDialog();
         }
 
+        private void fillCorpSiteCombo()
+        {
+            cbbCorpSite.Items.Clear();
+            cbbCorpSite.Items.Add("ทั้งหมด");
+            cbbCorpSite.SelectedIndex = 0;
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            string query = "SELECT DISTINCT หน้างาน FROM public.weight WHERE หน้างาน IS NOT NULL AND หน้างาน <> ''";
+            if (!string.IsNullOrEmpty(tbCorpId.Text))
+            {
+                query += " AND รหัสลูกค้า = '" + tbCorpId.Text + "'";
+            }
+            query += " ORDER BY หน้างาน";
+            pgCommand.CommandText = query;
+
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string site = reader["หน้างาน"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(site))
+                    {
+                        cbbCorpSite.Items.Add(site);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+        }
+
+        private void cbbCorpName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbbCorpName.SelectedItem != null)
+                {
+                    string selected = cbbCorpName.SelectedItem.ToString();
+                    tbCorpId.Text = selected.Substring(0, selected.IndexOf(" : "));
+                }
+            }
+            catch (Exception)
+            {
+                tbCorpId.Text = "";
+            }
+            fillCorpSiteCombo();
+        }
+
         private void tbCorpId_Leave(object sender, EventArgs e)
         {
             setCustomerIdToTextbox(tbCorpId, tbCorpName);
+            fillCorpSiteCombo();
         }
 
         private void tbCorpName_Leave(object sender, EventArgs e)
         {
             setCustomerNameToTextbox(tbCorpId, tbCorpName);
+            fillCorpSiteCombo();
         }
 
         private void tbCCId_Leave(object sender, EventArgs e)
@@ -1394,6 +1466,7 @@ namespace SerialPortListener
                 tbCorpId.Text = "";
                 cbbCorpName.Text = "";
             }
+            fillCorpSiteCombo();
         }
 
         private void cbbCorpName_TextUpdate(object sender, EventArgs e)

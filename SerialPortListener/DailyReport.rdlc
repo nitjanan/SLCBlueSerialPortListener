@@ -68,6 +68,10 @@
           <DataField>ชนิดหิน</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="stone_desc">
+          <DataField>stone_desc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="จ่ายเงิน">
           <DataField>จ่ายเงิน</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -691,7 +695,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dailyDataSet</DataSetName>
-            <Top>2.64382cm</Top>
+            <Top>2.53799cm</Top>
+            <Left>0.00882cm</Left>
             <Height>1.2cm</Height>
             <Width>20.02839cm</Width>
             <Style>
@@ -1470,7 +1475,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ชนิดหิน.Value</Value>
+                                  <Value>=Fields!ชนิดหิน.Value &amp; " " &amp; Fields!stone_desc.Value</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>14pt</FontSize>
@@ -1494,6 +1499,7 @@
                             <PaddingBottom>0.25pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2090,7 +2096,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dailyDataSet</DataSetName>
-            <Top>0.05035cm</Top>
+            <Left>0.00882cm</Left>
             <Height>1.83812cm</Height>
             <Width>20.02839cm</Width>
             <ZIndex>1</ZIndex>
@@ -2101,10 +2107,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.51331in</Height>
+        <Height>1.47165in</Height>
         <Style />
       </Body>
-      <Width>7.88519in</Width>
+      <Width>7.87566in</Width>
       <Page>
         <PageHeader>
           <Height>1.82562cm</Height>
@@ -2187,9 +2193,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Left>18.47536cm</Left>
+              <Left>18.48418cm</Left>
               <Height>0.6cm</Height>
-              <Width>1.55303cm</Width>
+              <Width>1.52cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2221,7 +2227,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Height>0.6cm</Height>
-              <Width>18.47536cm</Width>
+              <Width>18.48418cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
