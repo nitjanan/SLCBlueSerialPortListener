@@ -1023,10 +1023,10 @@ namespace SerialPortListener
                 tbCarCity.Enabled = true;
 
                 tbCarCity.Enabled = true;
-                dtWeightInDate.Enabled = true;
-                dtWeightInTime.Enabled = true;
-                dtWeightOutDate.Enabled = true;
-                dtWeightOutTime.Enabled = true;
+                dtWeightInDate.Enabled = false;
+                dtWeightInTime.Enabled = false;
+                dtWeightOutDate.Enabled = false;
+                dtWeightOutTime.Enabled = false;
             }
             else if (mode.Equals(1))// weight in
             {
