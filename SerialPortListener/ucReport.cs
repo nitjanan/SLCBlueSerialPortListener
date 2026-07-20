@@ -51,6 +51,11 @@ namespace SerialPortListener
         // save new keywords
         List<string> listNewProductReport = new List<string>();
 
+        // Bind default keywords
+        List<string> listOriginalDOReport = new List<string>();
+        // save new keywords
+        List<string> listNewDOReport = new List<string>();
+
         public ucReport()
         {
             dl = new Datalayer();
@@ -106,6 +111,7 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCorpName, listOriginalCorpReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCName, listOriginalCCReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbProductName, listOriginalProductReport);
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbDOCutomerName, listOriginalDOReport);
 
             this.cbbCorpName.SelectedIndexChanged += new System.EventHandler(this.cbbCorpName_SelectedIndexChanged);
             fillCorpSiteCombo();
@@ -1554,6 +1560,24 @@ namespace SerialPortListener
         private void cbbProductName_TextUpdate(object sender, EventArgs e)
         {
             setSearchAnywhereToCombobox(cbbProductName, listOriginalProductReport, listNewProductReport);
+        }
+
+        private void cbbDOCutomerName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbDOCutomerId.Text = cbbDOCutomerName.Text.Substring(0, cbbDOCutomerName.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbDOCutomerId.Text = "";
+                cbbDOCutomerName.Text = "";
+            }
+        }
+
+        private void cbbDOCutomerName_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbDOCutomerName, listOriginalDOReport, listNewDOReport);
         }
     }  
 }
