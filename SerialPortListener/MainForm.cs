@@ -174,11 +174,15 @@ namespace SerialPortListener
         public class WeightDelivery
         {
             public int weight_id { get; set; }
+            public string weight_doc_id { get; set; }
             public string delivery_date { get; set; }
             public string bws { get; set; }
             public string comp_code { get; set; }
             public string do_doc_no { get; set; }
             public string carry_type_name { get; set; }
+            public decimal weight_ton { get; set; }
+            public decimal weight_q { get; set; }
+            public string unit_name { get; set; }
             public Boolean is_cancel { get; set; }
         }
 
@@ -2360,6 +2364,8 @@ namespace SerialPortListener
                     var apiData = new
                     {
                         weight_id = weightId,
+
+                        weight_doc_id  = tbDocNum.Text,
 
                         delivery_date =
                             deliveryDate.ToString("yyyy-MM-dd"),
@@ -5560,33 +5566,47 @@ namespace SerialPortListener
                             INSERT INTO weight_delivery
                             (
                                 weight_id,
+                                weight_doc_id,
                                 delivery_date,
                                 bws,
                                 comp_code,
                                 do_doc_no,
                                 carry_type_name,
+                                weight_ton,
+                                weight_q,
+                                unit_name,
                                 is_cancel
                             )
                             VALUES
                             (
-                                ?, ?, ?, ?, ?, ?, ?
+                                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                             )
                             ON CONFLICT (weight_id)
                             DO UPDATE SET
+                                weight_doc_id = EXCLUDED.weight_doc_id,
                                 delivery_date = EXCLUDED.delivery_date,
                                 bws = EXCLUDED.bws,
                                 comp_code = EXCLUDED.comp_code,
                                 do_doc_no = EXCLUDED.do_doc_no,
                                 carry_type_name = EXCLUDED.carry_type_name,
+                                weight_ton = EXCLUDED.weight_ton,
+                                weight_q = EXCLUDED.weight_q,
+                                unit_name = EXCLUDED.unit_name,
                                 is_cancel = EXCLUDED.is_cancel
                         ";
 
                                 pgCommand.Parameters.AddWithValue("", item.weight_id);
+                                pgCommand.Parameters.AddWithValue("", item.weight_doc_id);
                                 pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
                                 pgCommand.Parameters.AddWithValue("", item.bws);
                                 pgCommand.Parameters.AddWithValue("", item.comp_code);
                                 pgCommand.Parameters.AddWithValue("", item.do_doc_no);
                                 pgCommand.Parameters.AddWithValue("", item.carry_type_name);
+
+                                pgCommand.Parameters.AddWithValue("", item.weight_ton);
+                                pgCommand.Parameters.AddWithValue("", item.weight_q);
+                                pgCommand.Parameters.AddWithValue("", item.unit_name);
+
                                 pgCommand.Parameters.AddWithValue("", item.is_cancel);
 
                                 pgCommand.ExecuteNonQuery();
