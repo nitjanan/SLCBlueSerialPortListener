@@ -898,7 +898,6 @@ namespace SerialPortListener
                 this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
                 return;
             }
-
             int maxTextLength = 1000; // maximum text length in text box
             if (tbData.TextLength > maxTextLength)
                 tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
