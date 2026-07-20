@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.SqlServer.Types.170.1000.7\build\net472\Microsoft.SqlServer.Types.props" Condition="Exists('..\packages\Microsoft.SqlServer.Types.170.1000.7\build\net472\Microsoft.SqlServer.Types.props')" />
   <PropertyGroup>
@@ -367,6 +367,12 @@
     <Compile Include="FPrintVRock.Designer.cs">
       <DependentUpon>FPrintVRock.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintWeightDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintWeightDelivery.Designer.cs">
+      <DependentUpon>FPrintWeightDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -541,6 +547,9 @@
     <EmbeddedResource Include="FPrintVRock.resx">
       <DependentUpon>FPrintVRock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintWeightDelivery.resx">
+      <DependentUpon>FPrintWeightDelivery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InvoiceReport.rdlc" />
     <EmbeddedResource Include="JointCarReport.rdlc" />
     <EmbeddedResource Include="Login.resx">
@@ -592,6 +601,7 @@
     <EmbeddedResource Include="ucTruck.resx">
       <DependentUpon>ucTruck.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WeightDeliveryReport.rdlc" />
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="baseApproveDataSet.xsc">
