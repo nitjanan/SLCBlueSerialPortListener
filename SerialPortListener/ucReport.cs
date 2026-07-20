@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -36,6 +36,11 @@ namespace SerialPortListener
         // save new keywords
         List<string> listNewInvoiceReport = new List<string>();
 
+        // Bind default keywords
+        List<string> listOriginalDOReport = new List<string>();
+        // save new keywords
+        List<string> listNewDOReport = new List<string>();
+
         public ucReport()
         {
             dl = new Datalayer();
@@ -56,6 +61,7 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCustomerName, listOriginalCustomerReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbDOCutomerName, listOriginalDOReport);
 
         }
 
@@ -872,6 +878,24 @@ namespace SerialPortListener
                 tbInvoiceCutomerId.Text = "";
                 cbbInvoiceCutomerName.Text = "";
             }
+        }
+
+        private void cbbDOCutomerName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbDOCutomerId.Text = cbbDOCutomerName.Text.Substring(0, cbbDOCutomerName.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbDOCutomerId.Text = "";
+                cbbDOCutomerName.Text = "";
+            }
+        }
+
+        private void cbbDOCutomerName_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbDOCutomerName, listOriginalDOReport, listNewDOReport);
         }
     }  
 }
