@@ -679,8 +679,9 @@ namespace SerialPortListener
             dl.connect();
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT dord.doc_no AS do_no, dord.customer_name, dord.product_name, dord.customer_address AS site_address, dord.site_name AS site_name, ");
-            sql.Append("wd.weight_doc_id, wd.delivery_date, wd.carry_type_name, wd.weight_ton, wd.weight_q, wd.unit_name, wd.bws ");
+            sql.Append("wd.weight_doc_id, wd.delivery_date, wd.carry_type_name, wd.weight_ton, wd.weight_q, wd.unit_name, wd.bws, w.stone_desc ");
             sql.Append("FROM weight_delivery wd INNER JOIN delivery_order dord ON wd.do_doc_no = dord.doc_no ");
+            sql.Append("LEFT JOIN weight w ON wd.weight_id = w.weight_id ");
             sql.Append("WHERE wd.delivery_date BETWEEN ? AND ? ");
             sql.Append("AND (wd.is_cancel = false OR wd.is_cancel IS NULL) ");
             if (tbDOCutomerId.Text != "")
