@@ -898,7 +898,6 @@ namespace SerialPortListener
                 this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
                 return;
             }
-
             int maxTextLength = 1000; // maximum text length in text box
             if (tbData.TextLength > maxTextLength)
                 tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
@@ -918,11 +917,11 @@ namespace SerialPortListener
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
                 */
                 /* เครื่องพี่รุ่ง */
-                
+
                 string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("kg"));
                 string remainingText = newString.Substring(newString.LastIndexOf("G") + 3);
                 MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-               
+
 
                 if (mc.Count > 0)
                 {
