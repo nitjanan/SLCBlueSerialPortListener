@@ -918,7 +918,7 @@ namespace SerialPortListener
                 tbData.AppendText(str);
                 tbData.ScrollToCaret();
 
-
+                /*
                 try
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
@@ -951,10 +951,10 @@ namespace SerialPortListener
                 {
 
                 }
+                */
 
 
-
-                /*
+                
                 // JOB ขาเข้า และ  New ล่างสุด 13-08-2025 และ ผลิต
                 try
                 {
@@ -983,7 +983,7 @@ namespace SerialPortListener
                 {
 
                 }
-                */
+                
                 
                 
 
