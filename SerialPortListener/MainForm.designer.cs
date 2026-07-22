@@ -184,7 +184,7 @@ namespace SerialPortListener
             this.tbData.Multiline = true;
             this.tbData.Name = "tbData";
             this.tbData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbData.Size = new System.Drawing.Size(57, 56);
+            this.tbData.Size = new System.Drawing.Size(57, 133);
             this.tbData.TabIndex = 13;
             this.tbData.Visible = false;
             // 
@@ -1107,16 +1107,16 @@ namespace SerialPortListener
             this.cbbStoneType.TabIndex = 15;
             this.cbbStoneType.SelectedIndexChanged += new System.EventHandler(this.cbbStoneType_SelectedIndexChanged);
             this.cbbStoneType.Leave += new System.EventHandler(this.cbbStoneType_Leave);
-            //
+            // 
             // tbStoneDesc
-            //
+            // 
             this.tbStoneDesc.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbStoneDesc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbStoneDesc.Location = new System.Drawing.Point(591, 234);
             this.tbStoneDesc.Name = "tbStoneDesc";
             this.tbStoneDesc.Size = new System.Drawing.Size(116, 27);
             this.tbStoneDesc.TabIndex = 16;
-            //
+            // 
             // groupBox1
             // 
             this.groupBox1.AccessibleName = "โรงโม่";
@@ -1785,6 +1785,23 @@ namespace SerialPortListener
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
+            // btPrintVRock
+            // 
+            this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btPrintVRock.BackColor = System.Drawing.Color.Gold;
+            this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintVRock.Location = new System.Drawing.Point(949, 623);
+            this.btPrintVRock.Name = "btPrintVRock";
+            this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
+            this.btPrintVRock.TabIndex = 142;
+            this.btPrintVRock.Text = "วี ร็อค";
+            this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintVRock.UseVisualStyleBackColor = false;
+            this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
+            // 
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
@@ -1827,23 +1844,6 @@ namespace SerialPortListener
             this.tbOldDoId.TabIndex = 146;
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbOldDoId.Visible = false;
-            // 
-            // btPrintVRock
-            // 
-            this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintVRock.BackColor = System.Drawing.Color.Gold;
-            this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(949, 623);
-            this.btPrintVRock.Name = "btPrintVRock";
-            this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
-            this.btPrintVRock.TabIndex = 142;
-            this.btPrintVRock.Text = "วี ร็อค";
-            this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintVRock.UseVisualStyleBackColor = false;
-            this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
             // 
             // MainForm
             // 

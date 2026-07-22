@@ -29,6 +29,7 @@ namespace SerialPortListener
         SerialPortManager _spManager;
         Datalayer dl;
         DatalayerNew dln;
+        TableFromDB _tableFromDB;
         String strCalQ = "1.00";
         AutoCompleteStringCollection collCarTeam = new AutoCompleteStringCollection();
         bool isCheckedCash = false;
@@ -208,6 +209,23 @@ namespace SerialPortListener
         }
 
         public void getSettingDefault()
+        {
+            // Open one connection up front and keep it open for the whole batch of
+            // autocomplete lookups below; each helper still calls dl.connect()/dl.close()
+            // internally but those become cheap no-ops while this outer connection is open,
+            // instead of each doing its own round-trip open/close to the DB server.
+            dl.connect();
+            try
+            {
+                getSettingDefaultCore();
+            }
+            finally
+            {
+                dl.close();
+            }
+        }
+
+        private void getSettingDefaultCore()
         {
             lbCompanyCode.Text = Company.Code;
 
@@ -923,7 +941,7 @@ namespace SerialPortListener
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
                     //JOB ขาออก (เครื่องแม่)
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
+                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
                     string remainingText = newString.Substring(newString.LastIndexOf("q"));
 
                     MatchCollection mc = Regex.Matches(remainingText, @"\d+");
@@ -955,6 +973,7 @@ namespace SerialPortListener
 
 
                 
+                
                 // JOB ขาเข้า และ  New ล่างสุด 13-08-2025 และ ผลิต
                 try
                 {
@@ -983,7 +1002,7 @@ namespace SerialPortListener
                 {
 
                 }
-                
+
                 
                 
 
@@ -1137,8 +1156,18 @@ namespace SerialPortListener
             ucSetting.Hide();
             ucBackup.Hide();
 
-            TableFromDB mf = new TableFromDB(this);
-            mf.ShowDialog();
+            // Reuse a single TableFromDB instance instead of constructing (and running
+            // InitializeComponent + a fresh DB connection for) a brand new one on every
+            // click; just refresh its grid data before showing it again.
+            if (_tableFromDB == null || _tableFromDB.IsDisposed)
+            {
+                _tableFromDB = new TableFromDB(this);
+            }
+            else
+            {
+                _tableFromDB.RefreshData();
+            }
+            _tableFromDB.ShowDialog();
         }
 
         private void btMenu2_Click(object sender, EventArgs e)
