@@ -1761,29 +1761,22 @@ namespace SerialPortListener
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
-            // tbMillId
+            // btPrintVRock
             // 
-            this.tbMillId.AccessibleName = "รหัสผู้ตัก";
-            this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
-            this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 27);
-            this.tbMillId.TabIndex = 140;
-            this.tbMillId.Visible = false;
-            this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
-            // 
-            // tbMillName
-            // 
-            this.tbMillName.AccessibleName = "ผู้ตัก";
-            this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
-            this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 27);
-            this.tbMillName.TabIndex = 141;
-            this.tbMillName.Visible = false;
-            this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
+            this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btPrintVRock.BackColor = System.Drawing.Color.Gold;
+            this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintVRock.Location = new System.Drawing.Point(949, 623);
+            this.btPrintVRock.Name = "btPrintVRock";
+            this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
+            this.btPrintVRock.TabIndex = 142;
+            this.btPrintVRock.Text = "วี ร็อค";
+            this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintVRock.UseVisualStyleBackColor = false;
+            this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
             // 
             // tbDoId
             // 
