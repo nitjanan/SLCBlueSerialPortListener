@@ -264,6 +264,11 @@ namespace SerialPortListener
             setSearchDateFromTo();
         }
 
+        public void RefreshData()
+        {
+            setSearchDateFromTo();
+        }
+
         private void setSearchDateFromTo()
         {
             /*
