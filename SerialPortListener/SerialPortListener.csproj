@@ -273,17 +273,35 @@
     <Compile Include="FPrint.Designer.cs">
       <DependentUpon>FPrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintCarryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCarryReport.Designer.cs">
+      <DependentUpon>FPrintCarryReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintCarTeamReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FPrintCarTeamReport.Designer.cs">
       <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintCCReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCCReport.Designer.cs">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintCleanReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FPrintCleanReport.Designer.cs">
       <DependentUpon>FPrintCleanReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCorpReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCorpReport.Designer.cs">
+      <DependentUpon>FPrintCorpReport.cs</DependentUpon>
     </Compile>
     <Compile Include="FPrintCustomerReport.cs">
       <SubType>Form</SubType>
@@ -315,6 +333,12 @@
     <Compile Include="FPrintMillReport.Designer.cs">
       <DependentUpon>FPrintMillReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintProduct.Designer.cs">
+      <DependentUpon>FPrintProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintScoopReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +368,12 @@
     </Compile>
     <Compile Include="FPrintTransportReport.Designer.cs">
       <DependentUpon>FPrintTransportReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintVRock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintVRock.Designer.cs">
+      <DependentUpon>FPrintVRock.cs</DependentUpon>
     </Compile>
     <Compile Include="FPrintWeightDelivery.cs">
       <SubType>Form</SubType>
@@ -461,8 +491,11 @@
       <DependentUpon>weightScoopDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WeightTempReport.cs" />
+    <EmbeddedResource Include="CarryReport.rdlc" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
     <EmbeddedResource Include="CleanReport.rdlc" />
+    <EmbeddedResource Include="CustomerCompanyReport.rdlc" />
+    <EmbeddedResource Include="CustomerCorporationReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
     <EmbeddedResource Include="DailyReport.rdlc" />
     <EmbeddedResource Include="FCancelPassword.resx">
@@ -471,11 +504,20 @@
     <EmbeddedResource Include="FPrint.resx">
       <DependentUpon>FPrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCarryReport.resx">
+      <DependentUpon>FPrintCarryReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FPrintCarTeamReport.resx">
       <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCCReport.resx">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FPrintCleanReport.resx">
       <DependentUpon>FPrintCleanReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCorpReport.resx">
+      <DependentUpon>FPrintCorpReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintCustomerReport.resx">
       <DependentUpon>FPrintCustomerReport.cs</DependentUpon>
@@ -492,6 +534,9 @@
     <EmbeddedResource Include="FPrintMillReport.resx">
       <DependentUpon>FPrintMillReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintProduct.resx">
+      <DependentUpon>FPrintProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FPrintScoopReport.resx">
       <DependentUpon>FPrintScoopReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -506,6 +551,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintTransportReport.resx">
       <DependentUpon>FPrintTransportReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintVRock.resx">
+      <DependentUpon>FPrintVRock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintWeightDelivery.resx">
       <DependentUpon>FPrintWeightDelivery.cs</DependentUpon>
@@ -529,7 +577,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ProductReport.rdlc" />
     <EmbeddedResource Include="ReportMain.rdlc" />
+    <EmbeddedResource Include="ReportMainVRock.rdlc" />
     <EmbeddedResource Include="ScoopReport.rdlc" />
     <EmbeddedResource Include="SiteReport.rdlc" />
     <EmbeddedResource Include="StoneTypeReport.rdlc" />
@@ -877,6 +927,8 @@
     <None Include="Resources\refresh_64px.png" />
     <None Include="Resources\refresh_48px.png" />
     <None Include="Resources\refresh_32px.png" />
+    <None Include="Resources\billing_machine_32px.png" />
+    <None Include="Resources\receipt_32px.png" />
     <None Include="Resources\data_backup_32px.png" />
     <None Include="Resources\microsoft_excel_32px.png" />
     <None Include="Resources\logo_silachai -2.PNG" />

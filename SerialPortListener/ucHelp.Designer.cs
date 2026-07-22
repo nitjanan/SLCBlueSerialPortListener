@@ -35,6 +35,7 @@ namespace SerialPortListener
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPort = new System.Windows.Forms.Label();
@@ -50,6 +51,7 @@ namespace SerialPortListener
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.tbRx = new System.Windows.Forms.TextBox();
+            this.timerRx = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -217,7 +219,12 @@ namespace SerialPortListener
             this.tbRx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbRx.Size = new System.Drawing.Size(205, 250);
             this.tbRx.TabIndex = 14;
-            // 
+            //
+            // timerRx
+            //
+            this.timerRx.Interval = 200;
+            this.timerRx.Tick += new System.EventHandler(this.timerRx_Tick);
+            //
             // ucHelp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,5 +269,6 @@ namespace SerialPortListener
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.TextBox tbRx;
+        private System.Windows.Forms.Timer timerRx;
     }
 }
