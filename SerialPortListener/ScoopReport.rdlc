@@ -3294,7 +3294,7 @@
                       <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>

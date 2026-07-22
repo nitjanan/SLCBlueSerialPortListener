@@ -1930,14 +1930,6 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
-                "Items"
-                {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
-                    {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
-                    }
-                }
             }
         }
     }
@@ -6217,20 +6209,20 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:SetupM_DOExp"
-        "ProductCode" = "8:{8C136853-B5E1-431C-A76A-43E70FC2BB26}"
-        "PackageCode" = "8:{684685DC-2DFD-491B-9F1B-1CBF63B64A58}"
+        "ProductName" = "8:SetupM"
+        "ProductCode" = "8:{EF3B11E4-6FB0-45B1-9982-4B0C1A9D2D0A}"
+        "PackageCode" = "8:{3321B1CC-7819-40CF-987C-D558377BFDDB}"
         "UpgradeCode" = "8:{BFF0DD2B-C5E6-45EB-9BDD-58E31A490621}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:62.0.0"
+        "ProductVersion" = "8:32.0.0"
         "Manufacturer" = "8:Userpc"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:SetupM_DOExp"
+        "Title" = "8:SetupM"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Userpc"
         "Keywords" = "8:"

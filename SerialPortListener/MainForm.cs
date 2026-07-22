@@ -29,7 +29,6 @@ namespace SerialPortListener
         SerialPortManager _spManager;
         Datalayer dl;
         DatalayerNew dln;
-        TableFromDB _tableFromDB;
         String strCalQ = "1.00";
         AutoCompleteStringCollection collCarTeam = new AutoCompleteStringCollection();
         bool isCheckedCash = false;
@@ -210,28 +209,7 @@ namespace SerialPortListener
 
         public void getSettingDefault()
         {
-            // Open one connection up front and keep it open for the whole batch of
-            // autocomplete lookups below; each helper still calls dl.connect()/dl.close()
-            // internally but those become cheap no-ops while this outer connection is open,
-            // instead of each doing its own round-trip open/close to the DB server.
-            dl.connect();
-            try
-            {
-                getSettingDefaultCore();
-            }
-            finally
-            {
-                dl.close();
-            }
-        }
-
-        private void getSettingDefaultCore()
-        {
             lbCompanyCode.Text = Company.Code;
-
-            if (Globals.isPermissionAutoWeight()) //สิทธิ user รายการซื้อให้ set น้ำหนักเป็น 100 auto
-                tbWeigtData.Text = "100";
-
             /* autoComplete ผู้ตัก */
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
@@ -351,8 +329,8 @@ namespace SerialPortListener
             dtDate.Text = DateTime.Now.ToShortDateString();
             dtWeightInDate.Text = DateTime.Now.ToShortDateString();
             dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
-            dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
+            dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
+            dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
@@ -446,7 +424,7 @@ namespace SerialPortListener
         private void generateNewSeqNumber()
         {
             string todayYear = DateTime.Now.ToString("yyyy");
-            string runningNumber = "0000000000";
+            string runningNumber = "000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO public.seq_doc_num (run_number, run_year) " +
                     "VALUES ('" + runningNumber + "', '" + todayYear + "') ";
@@ -927,99 +905,55 @@ namespace SerialPortListener
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
-            if (Globals.isPermissionAutoWeight()) //สิทธิ user รายการซื้อให้ set น้ำหนักเป็น 100 auto
+            if (this.InvokeRequired)
             {
-                tbWeigtData.Text = "100";
+                // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
+                this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
+                return;
             }
-            else {
 
-                if (this.InvokeRequired)
-                {
-                    // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
-                    this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
-                    return;
-                }
+            int maxTextLength = 1000; // maximum text length in text box
+            if (tbData.TextLength > maxTextLength)
+                tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
 
-                int maxTextLength = 50; // maximum text length in text box
-                if (tbData.TextLength > maxTextLength)
-                    tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
+            // This application is connected to a GPS sending ASCCI characters, so data is converted to text
+            string str = Encoding.ASCII.GetString(e.Data);
+            tbData.AppendText(str);
+            tbData.ScrollToCaret();
 
-                // This application is connected to a GPS sending ASCCI characters, so data is converted to text
-                string str = Encoding.ASCII.GetString(e.Data);
-                tbData.AppendText(str);
-                tbData.ScrollToCaret();
-
+            try
+            {
+                //แสดงเลขน้ำหนักที่กำลังวิ่ง
+                /* เครื่องพี่จ๋า */
                 /*
-                try
-                {
-                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                    //JOB ขาออก (เครื่องแม่)
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
-                    string remainingText = newString.Substring(newString.LastIndexOf("q"));
-
-                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-                    if (mc.Count > 0)
-                    {
-                        if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
-                        {
-                            string tmp = mc[0].Value;
-                            tbWeigtData.Text = tmp.Remove(tmp.Length - 1);
-                        }
-                        else if (Int32.Parse(mc[0].Value) < 10)
-                        {
-                            tbWeigtData.Text = "0";
-                        }
-                        else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                        {
-                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        }
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-
-                }
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
+                string remainingText = newString.Substring(newString.LastIndexOf("\r"));
+                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
                 */
+                /* เครื่องพี่รุ่ง */
 
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("kg"));
+                string remainingText = newString.Substring(newString.LastIndexOf("G") + 3);
+                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
 
-                
-                
-                // JOB ขาเข้า และ  New ล่างสุด 13-08-2025 และ ผลิต
-                try
+                if (mc.Count > 0)
                 {
-                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                    string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
-
-                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-
-                    if (mc.Count > 0)
+                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
-                        if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                        {
-                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                                //tbWeigtData.ForeColor = Color.LightCoral;
-                        }
-                        else
-                        {
-                            tbWeigtData.ForeColor = Color.LightGreen;
-                        }
-
+                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                        //tbWeigtData.ForeColor = Color.LightCoral;
+                    }
+                    else
+                    {
+                        tbWeigtData.ForeColor = Color.LightGreen;
                     }
                 }
-                catch (Exception ex)
-                {
-
-                }
-
-                
-                
+            }
+            catch (Exception ex)
+            {
 
             }
+
 
         }
 
@@ -1049,7 +983,6 @@ namespace SerialPortListener
                 */
 
                 tbWeightIn.Text = numberFormat(tbWeigtData.Text, 2);
-                dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
 
                 calculateWeight();
                 _spManager.StartListening();
@@ -1171,18 +1104,8 @@ namespace SerialPortListener
             ucSetting.Hide();
             ucBackup.Hide();
 
-            // Reuse a single TableFromDB instance instead of constructing (and running
-            // InitializeComponent + a fresh DB connection for) a brand new one on every
-            // click; just refresh its grid data before showing it again.
-            if (_tableFromDB == null || _tableFromDB.IsDisposed)
-            {
-                _tableFromDB = new TableFromDB(this);
-            }
-            else
-            {
-                _tableFromDB.RefreshData();
-            }
-            _tableFromDB.ShowDialog();
+            TableFromDB mf = new TableFromDB(this);
+            mf.ShowDialog();
         }
 
         private void btMenu2_Click(object sender, EventArgs e)
@@ -1292,7 +1215,6 @@ namespace SerialPortListener
                 tbWeightOut.Text = Regex.Match(substring, @"\d+").Value;
                 */
                 tbWeightOut.Text = numberFormat(tbWeigtData.Text, 2);
-                dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
 
                 calculateWeight();
                 _spManager.StartListening();
@@ -1354,7 +1276,6 @@ namespace SerialPortListener
                     isDuplicate = true;
                     //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception)
             {
@@ -1869,45 +1790,6 @@ namespace SerialPortListener
                 disableAfterSave();
                 return true;
             }
-        }
-
-        public void runningDocNumberDuplicate()
-        {
-            Boolean IsnewYear = false;
-            string todayYear = DateTime.Now.ToString("yyyy");
-
-            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public.seq_doc_num where run_year = '" + todayYear + "' ";
-            try
-            {
-                dl.connect();
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                if (reader.Read())
-                {
-                    int rdNum = Convert.ToInt32(reader["run_number"].ToString());
-                    int diff = Convert.ToInt32(tbDocNum.Text) - rdNum;
-                    if (diff == 1)
-                        rdNum = rdNum + 2;
-                    else
-                        rdNum++;
-
-                    int lengthRdNum = reader["run_number"].ToString().Length;
-                    string format = "D" + lengthRdNum.ToString();
-                    tbDocNum.Text = rdNum.ToString(format);
-                }
-                else
-                {
-                    IsnewYear = true;
-                }
-            }
-            catch (Exception)
-            {
-            }
-            dl.close();
-
-            if (IsnewYear)
-                generateNewSeqNumber();
-
         }
 
         // =========================
@@ -3408,7 +3290,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = "J" + tbDocNum.Text;
+            Weight.DocNum = tbDocNum.Text;
             Weight.Mill = strNotEmty(cbbMill.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -3439,7 +3321,6 @@ namespace SerialPortListener
             Weight.Transport = strNotEmty(cbbTransport.Text);
             Weight.OilContent = zeroNotEmty(tbOilContent.Text);
             Weight.Id = tbId.Text;
-            Weight.Note = strNotEmty(tbNote.Text);
             Weight.DoId = tbDoId.Text;
 
 
@@ -3490,21 +3371,8 @@ namespace SerialPortListener
                 Company.TDocName = "เลขที่การชั่ง";
                 Company.TLogo = "(Sandvik)";
                 Weight.DatePrintAndCopyNum = " ";
-                Weight.Note = " ";
 
             }
-            else if (mode.Equals(4))
-            {
-                Weight.WeightIn = decimalToInt(tbWeightIn.Text);
-                Weight.WeightOut = decimalToInt(tbWeightOut.Text);
-                Weight.WeightTotal = decimalToInt(tbWeightTotal.Text);
-                Weight.CustomerId = strNotEmty(tbCustomerId.Text);
-                Weight.StoneTypeId = getStoneTypeId();
-                Weight.DocNum = tbDocNum.Text;
-                Weight.Price = decimalToInt(tbPricePerTon.Text);
-                Weight.AmountVat = decimalToInt(tbAmountVat.Text);
-            }
-
 
         }
 
@@ -3524,13 +3392,6 @@ namespace SerialPortListener
         {
             return str == "0.00" || str == "0" ? " " : str + " (L)";
         }
-
-        private string decimalToInt(string str)
-        {
-            int nt = Convert.ToInt32(Convert.ToDecimal(str));
-            return nt.ToString("#,##0");
-        }
-
 
         private string getPrintFromDB(string database, string field, string fieldCondition, string condition)
         {
@@ -3862,7 +3723,6 @@ namespace SerialPortListener
             tbCarTeam.AutoCompleteCustomSource = collCarTeam;
         }
 
-        //timer old Tick 21-05-2024
         private void timerWeight_Tick(object sender, EventArgs e)
         {
             tbWeigtData.Text = tbWeigtData.Text;
@@ -3872,7 +3732,6 @@ namespace SerialPortListener
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
-                /*
                 using (var form = new FCancelPassword())
                 {
                     var result = form.ShowDialog();
@@ -3881,7 +3740,6 @@ namespace SerialPortListener
                         string password = form.ReturnPassword;
                         if (password == "pdg]bd=yj'")
                         {
-                */
                             tbWeightIn.Text = "0.00";
                             tbWeightOut.Text = "0.00";
                             tbWeightTotal.Text = "0.00";
@@ -3894,7 +3752,6 @@ namespace SerialPortListener
                             tbDoDocNo.Text = "";
                             tbOldDoId.Text = "";
                             return true;
-                /*
                         }
                         else
                         {
@@ -3906,7 +3763,6 @@ namespace SerialPortListener
                         return false;
                     }
                 }
-                */
             }
             return true;
         }
@@ -4402,7 +4258,7 @@ namespace SerialPortListener
             showErrorEmtyComboBox(cbbStoneType);
             showErrorEmtyComboBox(cbbTransport);
             showErrorEmtyTextBox(tbCarLicense);
-            //showErrorEmtyTextBox(tbCarCity);
+            showErrorEmtyTextBox(tbCarCity);
             showErrorEmtyTextBox(tbWeightIn);
         }
 
@@ -5003,48 +4859,6 @@ namespace SerialPortListener
             {
                 tbMillId.Text = "";
             }
-        }
-
-        private void btPrintVRock_Click(object sender, EventArgs e)
-        {
-            //ปริ้น
-            preparePrint(4);
-            if (checkDuplicateRunningNumber() && tbId.Text == "")
-            {
-                //ไม่ต้องทำไร
-            }
-            else
-            {
-                FPrintVRock f = new FPrintVRock();
-                f.ShowDialog();
-            }
-
-            //save อัตโนมัติ
-            autoSave();
-
-        }
-
-        private string getStoneTypeId()
-        {
-            string stoneTypeId = " ";
-            //sql
-            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT รหัสหิน FROM public.base_stone_type  where ชื่อหิน = '" + cbbStoneType.Text + "' ";
-            try
-            {
-                dl.connect();
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                while (reader.Read())
-                {
-                    stoneTypeId = reader["รหัสหิน"].ToString();
-                }
-            }
-            catch (Exception)
-            {
-            }
-            dl.close();
-
-            return stoneTypeId;
         }
 
         private void cbbStoneType_Leave(object sender, EventArgs e)
@@ -5716,7 +5530,6 @@ namespace SerialPortListener
                         {
                             string apiUrl =
                                 $"{baseUrl}/weightdelivery/summary/api/by/comp/?comp_code={compCode}&date={today}&page={page}";
-
                             // =========================
                             // GET API
                             // =========================

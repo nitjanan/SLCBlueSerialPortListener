@@ -27,10 +27,6 @@ namespace SerialPortListener
 
         private SerialPortManager _spManager;
 
-        private readonly object _rxLock = new object();
-        private StringBuilder _rxBuffer = new StringBuilder();
-        private const int MaxRxTextLength = 2000;
-
         public ucHelp()
         {
             InitializeComponent();
@@ -157,7 +153,6 @@ namespace SerialPortListener
                 }
 
                 _spManager.StartListening();
-                timerRx.Start();
 
                 btnStart.Enabled = false;
                 btnStop.Enabled = true;
@@ -183,7 +178,6 @@ namespace SerialPortListener
             try
             {
                 _spManager.StopListening();
-                timerRx.Stop();
 
                 btnStart.Enabled = true;
                 btnStop.Enabled = false;
@@ -201,46 +195,24 @@ namespace SerialPortListener
             }
         }
 
-        // Runs on the SerialPort's background thread. Only buffers data - no UI access here,
-        // so a burst of fast-arriving data can't flood the UI thread's Invoke queue.
         private void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), sender, e);
+                return;
+            }
+
             try
             {
                 string str = Encoding.ASCII.GetString(e.Data);
-                lock (_rxLock)
-                {
-                    _rxBuffer.Append(str);
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        // Runs on the UI thread on a fixed interval, draining whatever arrived since the last
-        // tick in one go, instead of once per DataReceived event.
-        private void timerRx_Tick(object sender, EventArgs e)
-        {
-            string pending;
-            lock (_rxLock)
-            {
-                if (_rxBuffer.Length == 0)
-                    return;
-                pending = _rxBuffer.ToString();
-                _rxBuffer.Clear();
-            }
-
-            try
-            {
-                tbRx.AppendText(pending);
-                if (tbRx.TextLength > MaxRxTextLength)
-                    tbRx.Text = tbRx.Text.Remove(0, tbRx.TextLength - MaxRxTextLength);
+                tbRx.AppendText(str);
                 tbRx.SelectionStart = tbRx.Text.Length;
                 tbRx.ScrollToCaret();
             }
             catch (Exception)
             {
+                // Ignore background thread update errors during close
             }
         }
     }

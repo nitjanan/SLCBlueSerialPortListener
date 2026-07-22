@@ -627,7 +627,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>WeightDeliveryDataSet</DataSetName>
-            <Left>0.00003cm</Left>
+            <Left>0.00002cm</Left>
             <Height>2.5cm</Height>
             <Width>19.9231cm</Width>
             <Style />
@@ -636,10 +636,10 @@
         <Height>2.5cm</Height>
         <Style />
       </Body>
-      <Width>7.84376in</Width>
+      <Width>7.84375in</Width>
       <Page>
         <PageHeader>
-          <Height>3.5027cm</Height>
+          <Height>3.42333cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -650,10 +650,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -662,7 +662,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>0.00002cm</Left>
+              <Left>0.00001cm</Left>
               <Height>0.6cm</Height>
               <Width>7.35568cm</Width>
               <Style>
@@ -694,7 +694,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrWeightDocId</rd:DefaultName>
-              <Top>1.74215cm</Top>
+              <Top>2.03319cm</Top>
+              <Left>0.00002cm</Left>
               <Height>0.6cm</Height>
               <Width>2.14701cm</Width>
               <ZIndex>1</ZIndex>
@@ -734,7 +735,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>0.00002cm</Left>
+              <Left>0.00001cm</Left>
               <Height>0.6cm</Height>
               <Width>7.35568cm</Width>
               <ZIndex>2</ZIndex>
@@ -770,7 +771,7 @@
               </Paragraphs>
               <rd:DefaultName>PDateFrom</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>7.3557cm</Left>
+              <Left>7.35569cm</Left>
               <Height>0.6cm</Height>
               <Width>4.97937cm</Width>
               <ZIndex>3</ZIndex>
@@ -814,7 +815,7 @@
               </Paragraphs>
               <rd:DefaultName>PDateTo</rd:DefaultName>
               <Top>0.6cm</Top>
-              <Left>12.33507cm</Left>
+              <Left>12.33506cm</Left>
               <Height>0.6cm</Height>
               <Width>7.58804cm</Width>
               <ZIndex>4</ZIndex>
@@ -848,7 +849,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox123</rd:DefaultName>
-              <Left>12.33507cm</Left>
+              <Left>12.33506cm</Left>
               <Height>0.6cm</Height>
               <Width>7.58804cm</Width>
               <ZIndex>5</ZIndex>
@@ -881,8 +882,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrDeliveryDate</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>2.14701cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>2.14703cm</Left>
               <Height>0.6cm</Height>
               <Width>2.14701cm</Width>
               <ZIndex>6</ZIndex>
@@ -921,8 +922,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrCustomerName</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>4.29402cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>4.29404cm</Left>
               <Height>0.6cm</Height>
               <Width>3.1234cm</Width>
               <ZIndex>7</ZIndex>
@@ -961,8 +962,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrProductName</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>7.41742cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>7.41744cm</Left>
               <Height>0.6cm</Height>
               <Width>2.77062cm</Width>
               <ZIndex>8</ZIndex>
@@ -1001,8 +1002,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrCarryTypeName</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>10.18804cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>10.18806cm</Left>
               <Height>0.6cm</Height>
               <Width>2.14701cm</Width>
               <ZIndex>9</ZIndex>
@@ -1043,8 +1044,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrWeightTon</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>12.33506cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>12.33508cm</Left>
               <Height>0.6cm</Height>
               <Width>2.04701cm</Width>
               <ZIndex>10</ZIndex>
@@ -1085,8 +1086,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrWeightQ</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>14.38208cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>14.3821cm</Left>
               <Height>0.6cm</Height>
               <Width>2.04701cm</Width>
               <ZIndex>11</ZIndex>
@@ -1125,8 +1126,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrUnitName</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>16.42908cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>16.4291cm</Left>
               <Height>0.6cm</Height>
               <Width>1.74701cm</Width>
               <ZIndex>12</ZIndex>
@@ -1165,8 +1166,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>HdrBws</rd:DefaultName>
-              <Top>1.74215cm</Top>
-              <Left>18.1761cm</Left>
+              <Top>2.03319cm</Top>
+              <Left>18.17612cm</Left>
               <Height>0.6cm</Height>
               <Width>1.74701cm</Width>
               <ZIndex>13</ZIndex>
