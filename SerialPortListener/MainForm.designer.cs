@@ -158,7 +158,6 @@ namespace SerialPortListener
             this.btSave = new System.Windows.Forms.Button();
             this.ucTruck = new SerialPortListener.ucTruck();
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btPrintVRock = new System.Windows.Forms.Button();
             this.tbDoId = new System.Windows.Forms.TextBox();
             this.tbDoDocNo = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -180,11 +179,11 @@ namespace SerialPortListener
             this.tbData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbData.Location = new System.Drawing.Point(1139, 205);
+            this.tbData.Location = new System.Drawing.Point(1139, 184);
             this.tbData.Multiline = true;
             this.tbData.Name = "tbData";
             this.tbData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbData.Size = new System.Drawing.Size(57, 133);
+            this.tbData.Size = new System.Drawing.Size(59, 151);
             this.tbData.TabIndex = 13;
             this.tbData.Visible = false;
             // 
@@ -489,7 +488,7 @@ namespace SerialPortListener
             // dtWeightInTime
             // 
             this.dtWeightInTime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dtWeightInTime.CustomFormat = "HH:mm:ss";
+            this.dtWeightInTime.CustomFormat = "HH:mm";
             this.dtWeightInTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightInTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightInTime.Location = new System.Drawing.Point(302, 33);
@@ -501,7 +500,7 @@ namespace SerialPortListener
             // dtWeightOutTime
             // 
             this.dtWeightOutTime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dtWeightOutTime.CustomFormat = "HH:mm:ss";
+            this.dtWeightOutTime.CustomFormat = "HH:mm";
             this.dtWeightOutTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtWeightOutTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtWeightOutTime.Location = new System.Drawing.Point(302, 72);
@@ -1368,6 +1367,7 @@ namespace SerialPortListener
             // timerWeight
             // 
             this.timerWeight.Interval = 1000;
+            this.timerWeight.Tick += new System.EventHandler(this.timerWeight_Tick);
             // 
             // tbWeigtData
             // 
@@ -1709,7 +1709,7 @@ namespace SerialPortListener
             this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintAll.Location = new System.Drawing.Point(803, 623);
+            this.btPrintAll.Location = new System.Drawing.Point(899, 622);
             this.btPrintAll.Name = "btPrintAll";
             this.btPrintAll.Size = new System.Drawing.Size(105, 40);
             this.btPrintAll.TabIndex = 123;
@@ -1726,7 +1726,7 @@ namespace SerialPortListener
             this.btPrintOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintOut.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintOut.Location = new System.Drawing.Point(658, 623);
+            this.btPrintOut.Location = new System.Drawing.Point(754, 622);
             this.btPrintOut.Name = "btPrintOut";
             this.btPrintOut.Size = new System.Drawing.Size(105, 40);
             this.btPrintOut.TabIndex = 122;
@@ -1743,7 +1743,7 @@ namespace SerialPortListener
             this.btPrintIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintIn.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintIn.Location = new System.Drawing.Point(508, 623);
+            this.btPrintIn.Location = new System.Drawing.Point(604, 622);
             this.btPrintIn.Name = "btPrintIn";
             this.btPrintIn.Size = new System.Drawing.Size(105, 40);
             this.btPrintIn.TabIndex = 47;
@@ -1759,7 +1759,7 @@ namespace SerialPortListener
             this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px;
             this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSave.Location = new System.Drawing.Point(342, 623);
+            this.btSave.Location = new System.Drawing.Point(438, 622);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 40);
             this.btSave.TabIndex = 46;
@@ -1784,23 +1784,6 @@ namespace SerialPortListener
             // serialSettingsBindingSource
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
-            // btPrintVRock
-            // 
-            this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btPrintVRock.BackColor = System.Drawing.Color.Gold;
-            this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
-            this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(949, 623);
-            this.btPrintVRock.Name = "btPrintVRock";
-            this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
-            this.btPrintVRock.TabIndex = 142;
-            this.btPrintVRock.Text = "วี ร็อค";
-            this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btPrintVRock.UseVisualStyleBackColor = false;
-            this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
             // 
             // tbDoId
             // 
@@ -1850,7 +1833,6 @@ namespace SerialPortListener
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
-            this.Controls.Add(this.btPrintVRock);
             this.Controls.Add(this.tbOldDoId);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.tbDoDocNo);
@@ -2097,7 +2079,6 @@ namespace SerialPortListener
         private System.Windows.Forms.Button btRefresh;
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
-        private System.Windows.Forms.Button btPrintVRock;
         private System.Windows.Forms.Button btLoadDO;
         private System.Windows.Forms.TextBox tbDoId;
         private System.Windows.Forms.TextBox tbDoDocNo;

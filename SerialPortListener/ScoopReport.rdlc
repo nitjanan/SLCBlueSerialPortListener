@@ -3291,10 +3291,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>บริษัท เจ.โอ.บี.คอนสตรัคชั่น จำกัด</Value>
+                      <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด (1169)</Value>
                       <Style>
                         <FontFamily>Angsana New</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>

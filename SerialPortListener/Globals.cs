@@ -135,13 +135,5 @@ namespace SerialPortListener
                 return false;
         }
 
-        public static Boolean isPermissionAutoWeight()
-        {
-            if (Globals.Permission == Utils.hashPassword("auto_weight"))
-                return true;
-            else
-                return false;
-        }
-
     }
 }

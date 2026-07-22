@@ -600,7 +600,7 @@
                         <Value>=Parameters!PDocNum.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
+                          <FontSize>14pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -611,10 +611,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>0.46608in</Top>
-                <Left>5.8265in</Left>
-                <Height>0.25in</Height>
-                <Width>1.35629in</Width>
+                <Top>0.41718in</Top>
+                <Left>4.18204in</Left>
+                <Height>0.34056in</Height>
+                <Width>0.94864in</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
@@ -723,6 +723,7 @@
                 </Style>
               </Textbox>
               <Textbox Name="PMill">
+                <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
@@ -2879,10 +2880,7 @@
                 <Left>9.16899cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.5cm</Width>
-                <ZIndex>87</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
+                <ZIndex>88</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
