@@ -1765,7 +1765,7 @@ namespace SerialPortListener
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
             // tbMillId
-            // 
+            //
             this.tbMillId.AccessibleName = "รหัสผู้ตัก";
             this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1775,9 +1775,9 @@ namespace SerialPortListener
             this.tbMillId.TabIndex = 140;
             this.tbMillId.Visible = false;
             this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
-            // 
+            //
             // tbMillName
-            // 
+            //
             this.tbMillName.AccessibleName = "ผู้ตัก";
             this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1787,7 +1787,7 @@ namespace SerialPortListener
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
-            // 
+            //
             // btPrintVRock
             // 
             this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -1805,6 +1805,7 @@ namespace SerialPortListener
             this.btPrintVRock.UseVisualStyleBackColor = false;
             this.btPrintVRock.Visible = false;
             this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
+            //
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
