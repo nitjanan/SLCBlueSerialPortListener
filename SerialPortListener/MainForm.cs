@@ -4988,24 +4988,6 @@ namespace SerialPortListener
             }
         }
 
-        private void btPrintVRock_Click(object sender, EventArgs e)
-        {
-            //ปริ้น
-            preparePrint(4);
-            if (checkDuplicateRunningNumber() && tbId.Text == "")
-            {
-                //ไม่ต้องทำไร
-            }
-            else
-            {
-                FPrintVRock f = new FPrintVRock();
-                f.ShowDialog();
-            }
-
-            //save อัตโนมัติ
-            autoSave();
-
-        }
 
         private string getStoneTypeId()
         {

@@ -373,6 +373,7 @@
             this.btPrintVRock.Text = "วี ร็อค";
             this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintVRock.UseVisualStyleBackColor = false;
+            this.btPrintVRock.Visible = false;
             this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
             // 
             // cbbLineType
