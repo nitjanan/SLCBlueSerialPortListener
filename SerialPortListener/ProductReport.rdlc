@@ -2000,14 +2000,10 @@
                 <TablixMember>
                   <Group Name="ชนิดหิน">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!stone_desc.Value</GroupExpression>
                       <GroupExpression>=Fields!ชนิดหิน.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!stone_desc.Value</Value>
-                    </SortExpression>
                     <SortExpression>
                       <Value>=Fields!ชนิดหิน.Value</Value>
                     </SortExpression>

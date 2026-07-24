@@ -923,6 +923,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="ชนิดหิน">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
