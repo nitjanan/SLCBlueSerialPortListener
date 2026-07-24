@@ -228,10 +228,6 @@ namespace SerialPortListener
         private void getSettingDefaultCore()
         {
             lbCompanyCode.Text = Company.Code;
-
-            if (Globals.isPermissionAutoWeight()) //สิทธิ user รายการซื้อให้ set น้ำหนักเป็น 100 auto
-                tbWeigtData.Text = "100";
-
             /* autoComplete ผู้ตัก */
             autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
             autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
@@ -351,8 +347,8 @@ namespace SerialPortListener
             dtDate.Text = DateTime.Now.ToShortDateString();
             dtWeightInDate.Text = DateTime.Now.ToShortDateString();
             dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
-            dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
-            dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
+            dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
+            dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
@@ -445,7 +441,7 @@ namespace SerialPortListener
         private void generateNewSeqNumber()
         {
             string todayYear = DateTime.Now.ToString("yyyy");
-            string runningNumber = "0000000000";
+            string runningNumber = "000000";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "INSERT INTO public.seq_doc_num (run_number, run_year) " +
                     "VALUES ('" + runningNumber + "', '" + todayYear + "') ";
@@ -914,99 +910,56 @@ namespace SerialPortListener
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
-            if (Globals.isPermissionAutoWeight()) //สิทธิ user รายการซื้อให้ set น้ำหนักเป็น 100 auto
+            if (this.InvokeRequired)
             {
-                tbWeigtData.Text = "100";
+                // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
+                this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
+                return;
             }
-            else {
 
-                if (this.InvokeRequired)
-                {
-                    // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
-                    this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
-                    return;
-                }
+            int maxTextLength = 1000; // maximum text length in text box
+            if (tbData.TextLength > maxTextLength)
+                tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
 
-                int maxTextLength = 50; // maximum text length in text box
-                if (tbData.TextLength > maxTextLength)
-                    tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
+            // This application is connected to a GPS sending ASCCI characters, so data is converted to text
+            string str = Encoding.ASCII.GetString(e.Data);
+            tbData.AppendText(str);
+            tbData.ScrollToCaret();
 
-                // This application is connected to a GPS sending ASCCI characters, so data is converted to text
-                string str = Encoding.ASCII.GetString(e.Data);
-                tbData.AppendText(str);
-                tbData.ScrollToCaret();
-
+            try
+            {
+                //แสดงเลขน้ำหนักที่กำลังวิ่ง
+                /* เครื่องพี่จ๋า */
+                
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
+                string remainingText = newString.Substring(newString.LastIndexOf("\r"));
+                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
+                
+                /* เครื่องพี่รุ่ง */
                 /*
-                try
-                {
-                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                    //JOB ขาออก (เครื่องแม่)
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
-                    string remainingText = newString.Substring(newString.LastIndexOf("q"));
-
-                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-                    if (mc.Count > 0)
-                    {
-                        if (Int32.Parse(mc[0].Value) % 10 != 0 || Int32.Parse(mc[0].Value) > 100000)
-                        {
-                            string tmp = mc[0].Value;
-                            tbWeigtData.Text = tmp.Remove(tmp.Length - 1);
-                        }
-                        else if (Int32.Parse(mc[0].Value) < 10)
-                        {
-                            tbWeigtData.Text = "0";
-                        }
-                        else if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                        {
-                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        }
-
-                    }
-
-                }
-                catch (Exception ex)
-                {
-
-                }
+                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("kg"));
+                string remainingText = newString.Substring(newString.LastIndexOf("G") + 3);
+                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
                 */
 
-
-                
-                
-                // JOB ขาเข้า และ  New ล่างสุด 13-08-2025 และ ผลิต
-                try
+                if (mc.Count > 0)
                 {
-                    //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                    string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
-
-                    MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-
-                    if (mc.Count > 0)
+                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
                     {
-                        if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                        {
-                            tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                                //tbWeigtData.ForeColor = Color.LightCoral;
-                        }
-                        else
-                        {
-                            tbWeigtData.ForeColor = Color.LightGreen;
-                        }
-
+                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                        //tbWeigtData.ForeColor = Color.LightCoral;
+                    }
+                    else
+                    {
+                        tbWeigtData.ForeColor = Color.LightGreen;
                     }
                 }
-                catch (Exception ex)
-                {
-
-                }
-
-                
-                
+            }
+            catch (Exception ex)
+            {
 
             }
+
 
         }
 
@@ -1036,7 +989,6 @@ namespace SerialPortListener
                 */
 
                 tbWeightIn.Text = numberFormat(tbWeigtData.Text, 2);
-                dtWeightInTime.Text = DateTime.Now.ToLongTimeString();
 
                 calculateWeight();
                 _spManager.StartListening();
@@ -1277,7 +1229,6 @@ namespace SerialPortListener
                 tbWeightOut.Text = Regex.Match(substring, @"\d+").Value;
                 */
                 tbWeightOut.Text = numberFormat(tbWeigtData.Text, 2);
-                dtWeightOutTime.Text = DateTime.Now.ToLongTimeString();
 
                 calculateWeight();
                 _spManager.StartListening();
@@ -1339,7 +1290,6 @@ namespace SerialPortListener
                     isDuplicate = true;
                     //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception)
             {
@@ -3393,7 +3343,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = "J" + tbDocNum.Text;
+            Weight.DocNum = tbDocNum.Text;
             Weight.Mill = strNotEmty(cbbMill.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);
@@ -3856,7 +3806,6 @@ namespace SerialPortListener
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
-                /*
                 using (var form = new FCancelPassword())
                 {
                     var result = form.ShowDialog();
@@ -3865,7 +3814,6 @@ namespace SerialPortListener
                         string password = form.ReturnPassword;
                         if (password == "pdg]bd=yj'")
                         {
-                */
                             tbWeightIn.Text = "0.00";
                             tbWeightOut.Text = "0.00";
                             tbWeightTotal.Text = "0.00";
@@ -3878,7 +3826,6 @@ namespace SerialPortListener
                             tbDoDocNo.Text = "";
                             tbOldDoId.Text = "";
                             return true;
-                /*
                         }
                         else
                         {
@@ -3890,7 +3837,6 @@ namespace SerialPortListener
                         return false;
                     }
                 }
-                */
             }
             return true;
         }
@@ -4385,7 +4331,7 @@ namespace SerialPortListener
             showErrorEmtyComboBox(cbbStoneType);
             showErrorEmtyComboBox(cbbTransport);
             showErrorEmtyTextBox(tbCarLicense);
-            //showErrorEmtyTextBox(tbCarCity);
+            showErrorEmtyTextBox(tbCarCity);
             showErrorEmtyTextBox(tbWeightIn);
         }
 
@@ -5805,6 +5751,7 @@ namespace SerialPortListener
                 return false;
             }
         }
+
 
     }
 
