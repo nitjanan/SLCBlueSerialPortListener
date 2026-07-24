@@ -1774,7 +1774,7 @@ namespace SerialPortListener
             // serialSettingsBindingSource
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
+            //
             // tbMillId
             // 
             this.tbMillId.AccessibleName = "รหัสผู้ตัก";
@@ -1798,7 +1798,7 @@ namespace SerialPortListener
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
-            // 
+            //
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
