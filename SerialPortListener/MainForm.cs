@@ -941,7 +941,7 @@ namespace SerialPortListener
                 {
                     //แสดงเลขน้ำหนักที่กำลังวิ่ง
                     //JOB ขาออก (เครื่องแม่)
-                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
+                    string newString = tbData.Text.Remove(tbData.Text.LastIndexOf(""));
                     string remainingText = newString.Substring(newString.LastIndexOf("q"));
 
                     MatchCollection mc = Regex.Matches(remainingText, @"\d+");
@@ -972,8 +972,6 @@ namespace SerialPortListener
                 */
 
 
-                
-                
                 // JOB ขาเข้า และ  New ล่างสุด 13-08-2025 และ ผลิต
                 try
                 {
@@ -1002,10 +1000,7 @@ namespace SerialPortListener
                 {
 
                 }
-
                 
-                
-
             }
 
         }
