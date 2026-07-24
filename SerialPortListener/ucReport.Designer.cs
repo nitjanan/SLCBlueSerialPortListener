@@ -1829,5 +1829,15 @@
         private System.Windows.Forms.ComboBox cbbCarTeamNameByTeam;
         private System.Windows.Forms.ComboBox cbbCustomerName;
         private System.Windows.Forms.ComboBox cbbInvoiceCutomerName;
+        private System.Windows.Forms.TabPage tabPage17;
+        private System.Windows.Forms.ComboBox cbbDOCutomerName;
+        private System.Windows.Forms.TextBox tbDOCutomerId;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TextBox tbDOCutomerName;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.DateTimePicker dtToDO;
+        private System.Windows.Forms.DateTimePicker dtFromDO;
+        private System.Windows.Forms.Button btPrintDO;
     }
 }
