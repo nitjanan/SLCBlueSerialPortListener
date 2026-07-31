@@ -1760,7 +1760,7 @@ namespace SerialPortListener
             // serialSettingsBindingSource
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            //
+            // 
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
