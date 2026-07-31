@@ -127,6 +127,8 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Device" />
@@ -230,6 +232,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cleanDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AppUpdateService.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="customerDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
