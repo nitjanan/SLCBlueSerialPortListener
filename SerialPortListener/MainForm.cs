@@ -205,7 +205,96 @@ namespace SerialPortListener
 
             getSettingDefault();
 
+            SetupCheckUpdateButton();
+
             // _spManager.StartListening();
+        }
+
+        // ปุ่มเช็คอัพเดทโปรแกรม เพิ่มแบบ dynamic ไม่แตะ Designer.cs
+        private Button btnCheckUpdate;
+
+        private void SetupCheckUpdateButton()
+        {
+            btnCheckUpdate = new Button
+            {
+                Text = "ตรวจสอบอัพเดท",
+                AutoSize = true,
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                Location = new System.Drawing.Point(this.ClientSize.Width - 100, 5)
+            };
+            btnCheckUpdate.Click += BtnCheckUpdate_Click;
+            this.Controls.Add(btnCheckUpdate);
+            btnCheckUpdate.BringToFront();
+        }
+
+        private async void BtnCheckUpdate_Click(object sender, EventArgs e)
+        {
+            btnCheckUpdate.Enabled = false;
+            try
+            {
+                string baseUrl = getBaseApi(1, 1);
+                string apiUsername = getBaseApi(2, 1);
+                string apiPassword = getBaseApi(3, 1);
+
+                using (HttpClient client = new HttpClient())
+                {
+                    string accessToken = await GetJwtToken(client, baseUrl, apiUsername, apiPassword);
+                    if (accessToken == null)
+                    {
+                        MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้", "เช็คอัพเดท",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    AppReleaseInfo release = await AppUpdateService.GetLatestReleaseAsync(client, baseUrl, accessToken);
+                    Version currentVersion = AppUpdateService.CurrentVersion;
+
+                    if (release == null || !AppUpdateService.IsNewerVersion(release.version, currentVersion))
+                    {
+                        MessageBox.Show($"คุณใช้เวอร์ชันล่าสุดแล้ว ({currentVersion})", "เช็คอัพเดท",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    string message = $"พบเวอร์ชันใหม่ {release.version}\r\n\r\n{release.release_notes}\r\n\r\nต้องการดาวน์โหลดและติดตั้งตอนนี้หรือไม่?";
+                    DialogResult confirm = MessageBox.Show(message, "พบอัพเดทใหม่",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (confirm != DialogResult.Yes)
+                        return;
+
+                    string installerPath = await AppUpdateService.DownloadInstallerAsync(client, release, baseUrl);
+
+                    bool sqlApplied = false;
+                    if (!string.IsNullOrEmpty(release.sql_script_url))
+                    {
+                        dl.connect();
+                        try
+                        {
+                            sqlApplied = await AppUpdateService.DownloadAndRunSqlScriptAsync(client, release, baseUrl, dl.sqlConn());
+                        }
+                        finally
+                        {
+                            dl.close();
+                        }
+                    }
+
+                    await AppUpdateService.LogUpdateAsync(
+                        client, baseUrl, accessToken, Environment.MachineName,
+                        currentVersion.ToString(), release.version, true, findBWS(), sqlApplied);
+
+                    AppUpdateService.RunInstallerAndExit(installerPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("เกิดข้อผิดพลาดระหว่างเช็ค/ติดตั้งอัพเดท: " + ex.Message, "เช็คอัพเดท",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnCheckUpdate.Enabled = true;
+            }
         }
 
         public void getSettingDefault()
