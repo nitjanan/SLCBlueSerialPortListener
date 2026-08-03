@@ -322,9 +322,8 @@ namespace SerialPortListener
             this.btMenu5.Size = new System.Drawing.Size(171, 41);
             this.btMenu5.TabIndex = 106;
             this.btMenu5.TabStop = false;
-            this.btMenu5.Text = "backup";
+            this.btMenu5.Text = "GUI";
             this.btMenu5.UseVisualStyleBackColor = false;
-            this.btMenu5.Visible = false;
             this.btMenu5.Click += new System.EventHandler(this.btMenu5_Click);
             // 
             // label1
