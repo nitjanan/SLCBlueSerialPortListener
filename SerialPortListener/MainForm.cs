@@ -205,31 +205,30 @@ namespace SerialPortListener
 
             getSettingDefault();
 
-            SetupCheckUpdateButton();
+            ucBackup.CheckUpdateRequested += BtnCheckUpdate_Click;
 
             // _spManager.StartListening();
         }
 
-        // ปุ่มเช็คอัพเดทโปรแกรม เพิ่มแบบ dynamic ไม่แตะ Designer.cs
-        private Button btnCheckUpdate;
-
-        private void SetupCheckUpdateButton()
-        {
-            btnCheckUpdate = new Button
-            {
-                Text = "ตรวจสอบอัพเดท",
-                AutoSize = true,
-                Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                Location = new System.Drawing.Point(this.ClientSize.Width - 100, 5)
-            };
-            btnCheckUpdate.Click += BtnCheckUpdate_Click;
-            this.Controls.Add(btnCheckUpdate);
-            btnCheckUpdate.BringToFront();
-        }
-
+        // ปุ่ม "ตรวจสอบอัพเดท" อยู่ที่ ucBackup ; MainForm รับ event มาทำงานเพราะ logic ต้องใช้ dl, findBWS(), GetJwtToken()
         private async void BtnCheckUpdate_Click(object sender, EventArgs e)
         {
-            btnCheckUpdate.Enabled = false;
+            ucBackup.CheckUpdateButtonEnabled = false;
+            try
+            {
+                await CheckForUpdateAsync(silent: false);
+            }
+            finally
+            {
+                ucBackup.CheckUpdateButtonEnabled = true;
+            }
+        }
+
+        // silent = true: เรียกตอนเปิดโปรแกรม — ถ้าต่อ Server ไม่ได้หรือเป็นเวอร์ชันล่าสุดอยู่แล้วจะไม่ขึ้น MessageBox กวนใจ
+        // silent = false: เรียกจากปุ่ม "ตรวจสอบอัพเดท" — แจ้งผลทุกกรณี
+        // ทุก exception ถูกดักไว้ในนี้ทั้งหมด เพื่อไม่ให้ปัญหาการเช็คอัพเดทกระทบการเปิดฟอร์มหลักของโปรแกรม
+        private async Task CheckForUpdateAsync(bool silent)
+        {
             try
             {
                 string baseUrl = getBaseApi(1, 1);
@@ -4873,23 +4872,33 @@ namespace SerialPortListener
             }
         }
 
-        private void btRefresh_Click(object sender, EventArgs e)
+        private async void btRefresh_Click(object sender, EventArgs e)
         {
-            /* autoComplete ผู้ตัก */
-            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
-            autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
+            btRefresh.Enabled = false;
+            try
+            {
+                await ucBackup.DownloadSettingAsync(this);
 
-            /* autoComplete โรงโม่ */
-            //autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
-            //autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
+                /* autoComplete ผู้ตัก */
+                autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+                autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
-            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
+                /* autoComplete โรงโม่ */
+                //autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
+                //autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
 
-            Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
+                setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
-            fillStoneCombo();
-            fillTransportCombo();
-            fillMillCombo();
+                Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
+
+                fillStoneCombo();
+                fillTransportCombo();
+                fillMillCombo();
+            }
+            finally
+            {
+                btRefresh.Enabled = true;
+            }
         }
 
         private void tbMillId_Leave(object sender, EventArgs e)
