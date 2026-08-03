@@ -418,6 +418,9 @@
     <Compile Include="ucBackup.Designer.cs">
       <DependentUpon>ucBackup.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDownloadProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ucHelp.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -865,6 +868,7 @@
     <None Include="Resources\logo_silachai2.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\download.png" />
     <None Include="Resources\booking.png" />
     <None Include="Resources\do1.png" />
     <None Include="Resources\do.png" />
