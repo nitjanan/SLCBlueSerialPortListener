@@ -29,131 +29,126 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btBackup = new System.Windows.Forms.Button();
-            this.btBrowBackup = new System.Windows.Forms.Button();
-            this.tbLocalBackup = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btDLSetting = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btRestore = new System.Windows.Forms.Button();
-            this.tbLocalRestore = new System.Windows.Forms.TextBox();
-            this.btBrowRestore = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btDLWeight = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbdateULWeight = new System.Windows.Forms.DateTimePicker();
+            this.btULWeight = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnCheckUpdate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btBackup);
-            this.groupBox1.Controls.Add(this.btBrowBackup);
-            this.groupBox1.Controls.Add(this.tbLocalBackup);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(74, 33);
+            this.groupBox1.Controls.Add(this.btDLSetting);
+            this.groupBox1.Location = new System.Drawing.Point(82, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(830, 194);
+            this.groupBox1.Size = new System.Drawing.Size(830, 115);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Backup Database";
+            this.groupBox1.Text = "ดาว์นโหลดการตั้งค่า";
             // 
-            // btBackup
+            // btDLSetting
             // 
-            this.btBackup.Enabled = false;
-            this.btBackup.Location = new System.Drawing.Point(657, 116);
-            this.btBackup.Name = "btBackup";
-            this.btBackup.Size = new System.Drawing.Size(84, 27);
-            this.btBackup.TabIndex = 3;
-            this.btBackup.Text = "Backup";
-            this.btBackup.UseVisualStyleBackColor = true;
-            this.btBackup.Click += new System.EventHandler(this.btBackup_Click);
-            // 
-            // btBrowBackup
-            // 
-            this.btBrowBackup.Location = new System.Drawing.Point(657, 72);
-            this.btBrowBackup.Name = "btBrowBackup";
-            this.btBrowBackup.Size = new System.Drawing.Size(84, 27);
-            this.btBrowBackup.TabIndex = 2;
-            this.btBrowBackup.Text = "Browse";
-            this.btBrowBackup.UseVisualStyleBackColor = true;
-            this.btBrowBackup.Click += new System.EventHandler(this.btBrowBackup_Click);
-            // 
-            // tbLocalBackup
-            // 
-            this.tbLocalBackup.Location = new System.Drawing.Point(186, 72);
-            this.tbLocalBackup.Name = "tbLocalBackup";
-            this.tbLocalBackup.Size = new System.Drawing.Size(452, 27);
-            this.tbLocalBackup.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(90, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Location";
+            this.btDLSetting.Location = new System.Drawing.Point(332, 51);
+            this.btDLSetting.Name = "btDLSetting";
+            this.btDLSetting.Size = new System.Drawing.Size(159, 27);
+            this.btDLSetting.TabIndex = 3;
+            this.btDLSetting.Text = "Downloade";
+            this.btDLSetting.UseVisualStyleBackColor = true;
+            this.btDLSetting.Click += new System.EventHandler(this.btDLSetting_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btRestore);
-            this.groupBox2.Controls.Add(this.tbLocalRestore);
-            this.groupBox2.Controls.Add(this.btBrowRestore);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(74, 244);
+            this.groupBox2.Controls.Add(this.btDLWeight);
+            this.groupBox2.Location = new System.Drawing.Point(82, 183);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(830, 194);
+            this.groupBox2.Size = new System.Drawing.Size(830, 115);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Restore Database";
+            this.groupBox2.Text = "ดาว์นโหลดรายการชั่งที่แก้ไข";
             // 
-            // btRestore
+            // btDLWeight
             // 
-            this.btRestore.Enabled = false;
-            this.btRestore.Location = new System.Drawing.Point(657, 115);
-            this.btRestore.Name = "btRestore";
-            this.btRestore.Size = new System.Drawing.Size(84, 27);
-            this.btRestore.TabIndex = 7;
-            this.btRestore.Text = "Restore";
-            this.btRestore.UseVisualStyleBackColor = true;
+            this.btDLWeight.Location = new System.Drawing.Point(332, 51);
+            this.btDLWeight.Name = "btDLWeight";
+            this.btDLWeight.Size = new System.Drawing.Size(159, 27);
+            this.btDLWeight.TabIndex = 3;
+            this.btDLWeight.Text = "Downloade";
+            this.btDLWeight.UseVisualStyleBackColor = true;
+            this.btDLWeight.Click += new System.EventHandler(this.btDLWeight_Click);
             // 
-            // tbLocalRestore
+            // groupBox3
             // 
-            this.tbLocalRestore.Location = new System.Drawing.Point(186, 71);
-            this.tbLocalRestore.Name = "tbLocalRestore";
-            this.tbLocalRestore.Size = new System.Drawing.Size(452, 27);
-            this.tbLocalRestore.TabIndex = 5;
+            this.groupBox3.Controls.Add(this.tbdateULWeight);
+            this.groupBox3.Controls.Add(this.btULWeight);
+            this.groupBox3.Location = new System.Drawing.Point(82, 331);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(830, 115);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Upload to WebApp";
             // 
-            // btBrowRestore
+            // tbdateULWeight
             // 
-            this.btBrowRestore.Location = new System.Drawing.Point(657, 71);
-            this.btBrowRestore.Name = "btBrowRestore";
-            this.btBrowRestore.Size = new System.Drawing.Size(84, 27);
-            this.btBrowRestore.TabIndex = 6;
-            this.btBrowRestore.Text = "Browse";
-            this.btBrowRestore.UseVisualStyleBackColor = true;
+            this.tbdateULWeight.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.tbdateULWeight.Location = new System.Drawing.Point(230, 40);
+            this.tbdateULWeight.Name = "tbdateULWeight";
+            this.tbdateULWeight.Size = new System.Drawing.Size(304, 27);
+            this.tbdateULWeight.TabIndex = 8;
             // 
-            // label2
+            // btULWeight
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(90, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 21);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Location";
+            this.btULWeight.Enabled = false;
+            this.btULWeight.Location = new System.Drawing.Point(540, 40);
+            this.btULWeight.Name = "btULWeight";
+            this.btULWeight.Size = new System.Drawing.Size(126, 27);
+            this.btULWeight.TabIndex = 3;
+            this.btULWeight.Text = "Upload";
+            this.btULWeight.UseVisualStyleBackColor = true;
+            this.btULWeight.Click += new System.EventHandler(this.btULWeight_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnCheckUpdate);
+            this.groupBox4.Location = new System.Drawing.Point(82, 452);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(830, 115);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "ตรวจสอบอัพเดทโปรแกรม";
+            // 
+            // btnCheckUpdate
+            // 
+            this.btnCheckUpdate.Location = new System.Drawing.Point(332, 47);
+            this.btnCheckUpdate.Name = "btnCheckUpdate";
+            this.btnCheckUpdate.Size = new System.Drawing.Size(159, 27);
+            this.btnCheckUpdate.TabIndex = 3;
+            this.btnCheckUpdate.Text = "ตรวจสอบอัพเดท";
+            this.btnCheckUpdate.UseVisualStyleBackColor = true;
+            this.btnCheckUpdate.Click += new System.EventHandler(this.btnCheckUpdate_Click);
             // 
             // ucBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ucBackup";
-            this.Size = new System.Drawing.Size(965, 514);
+            this.Size = new System.Drawing.Size(965, 620);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -161,14 +156,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btDLSetting;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btBackup;
-        private System.Windows.Forms.Button btBrowBackup;
-        private System.Windows.Forms.TextBox tbLocalBackup;
-        private System.Windows.Forms.Button btRestore;
-        private System.Windows.Forms.TextBox tbLocalRestore;
-        private System.Windows.Forms.Button btBrowRestore;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btDLWeight;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btULWeight;
+        private System.Windows.Forms.DateTimePicker tbdateULWeight;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnCheckUpdate;
     }
 }
