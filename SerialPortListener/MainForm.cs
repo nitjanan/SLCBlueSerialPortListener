@@ -207,6 +207,10 @@ namespace SerialPortListener
 
             SetupCheckUpdateButton();
 
+            // เช็คอัพเดทแบบเงียบตอนเปิดโปรแกรม — ถ้าเชื่อมต่อ Server ไม่ได้ต้องไม่ทำให้ฟอร์มเปิดไม่ขึ้น
+            // ใช้ BeginInvoke ให้รันหลังจากฟอร์มแสดงผลเสร็จแล้ว และไม่ await ใน constructor (fire-and-forget)
+            this.Load += async (s, e) => await CheckForUpdateAsync(silent: true);
+
             // _spManager.StartListening();
         }
 
@@ -232,17 +236,42 @@ namespace SerialPortListener
             btnCheckUpdate.Enabled = false;
             try
             {
+                await CheckForUpdateAsync(silent: false);
+            }
+            finally
+            {
+                btnCheckUpdate.Enabled = true;
+            }
+        }
+
+        // silent = true: เรียกตอนเปิดโปรแกรม — ถ้าต่อ Server ไม่ได้หรือเป็นเวอร์ชันล่าสุดอยู่แล้วจะไม่ขึ้น MessageBox กวนใจ
+        // silent = false: เรียกจากปุ่ม "ตรวจสอบอัพเดท" — แจ้งผลทุกกรณี
+        // ทุก exception ถูกดักไว้ในนี้ทั้งหมด เพื่อไม่ให้ปัญหาการเช็คอัพเดทกระทบการเปิดฟอร์มหลักของโปรแกรม
+        private async Task CheckForUpdateAsync(bool silent)
+        {
+            try
+            {
                 string baseUrl = getBaseApi(1, 1);
                 string apiUsername = getBaseApi(2, 1);
                 string apiPassword = getBaseApi(3, 1);
 
-                using (HttpClient client = new HttpClient())
+                using (HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) })
                 {
-                    string accessToken = await GetJwtToken(client, baseUrl, apiUsername, apiPassword);
+                    string accessToken;
+                    try
+                    {
+                        accessToken = await GetJwtToken(client, baseUrl, apiUsername, apiPassword);
+                    }
+                    catch (Exception)
+                    {
+                        accessToken = null;
+                    }
+
                     if (accessToken == null)
                     {
-                        MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้", "เช็คอัพเดท",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (!silent)
+                            MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้", "เช็คอัพเดท",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -251,8 +280,9 @@ namespace SerialPortListener
 
                     if (release == null || !AppUpdateService.IsNewerVersion(release.version, currentVersion))
                     {
-                        MessageBox.Show($"คุณใช้เวอร์ชันล่าสุดแล้ว ({currentVersion})", "เช็คอัพเดท",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (!silent)
+                            MessageBox.Show($"คุณใช้เวอร์ชันล่าสุดแล้ว ({currentVersion})", "เช็คอัพเดท",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
 
@@ -288,12 +318,9 @@ namespace SerialPortListener
             }
             catch (Exception ex)
             {
-                MessageBox.Show("เกิดข้อผิดพลาดระหว่างเช็ค/ติดตั้งอัพเดท: " + ex.Message, "เช็คอัพเดท",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                btnCheckUpdate.Enabled = true;
+                if (!silent)
+                    MessageBox.Show("เกิดข้อผิดพลาดระหว่างเช็ค/ติดตั้งอัพเดท: " + ex.Message, "เช็คอัพเดท",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
