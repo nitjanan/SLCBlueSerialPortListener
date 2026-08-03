@@ -163,6 +163,7 @@ namespace SerialPortListener
             this.tbDoDocNo = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.tbOldDoId = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -241,6 +242,7 @@ namespace SerialPortListener
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panel2.Controls.Add(this.label40);
             this.panel2.Controls.Add(this.chkDirectPrint);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1410,7 +1412,7 @@ namespace SerialPortListener
             // 
             // ucHelp
             // 
-            this.ucHelp.BackColor = System.Drawing.Color.Honeydew;
+            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
             this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucHelp.Location = new System.Drawing.Point(0, 0);
             this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
@@ -1663,7 +1665,7 @@ namespace SerialPortListener
             this.cbS.ForeColor = System.Drawing.Color.Brown;
             this.cbS.Location = new System.Drawing.Point(870, 52);
             this.cbS.Name = "cbS";
-            this.cbS.Size = new System.Drawing.Size(103, 87);
+            this.cbS.Size = new System.Drawing.Size(55, 45);
             this.cbS.TabIndex = 140;
             this.cbS.Text = "S";
             this.cbS.UseVisualStyleBackColor = true;
@@ -1774,7 +1776,7 @@ namespace SerialPortListener
             // serialSettingsBindingSource
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            //
+            // 
             // tbMillId
             // 
             this.tbMillId.AccessibleName = "รหัสผู้ตัก";
@@ -1782,7 +1784,7 @@ namespace SerialPortListener
             this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMillId.Location = new System.Drawing.Point(1157, 557);
             this.tbMillId.Name = "tbMillId";
-            this.tbMillId.Size = new System.Drawing.Size(10, 47);
+            this.tbMillId.Size = new System.Drawing.Size(10, 27);
             this.tbMillId.TabIndex = 140;
             this.tbMillId.Visible = false;
             this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
@@ -1794,11 +1796,11 @@ namespace SerialPortListener
             this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMillName.Location = new System.Drawing.Point(1173, 557);
             this.tbMillName.Name = "tbMillName";
-            this.tbMillName.Size = new System.Drawing.Size(10, 47);
+            this.tbMillName.Size = new System.Drawing.Size(10, 27);
             this.tbMillName.TabIndex = 141;
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
-            //
+            // 
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
@@ -1841,6 +1843,17 @@ namespace SerialPortListener
             this.tbOldDoId.TabIndex = 146;
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbOldDoId.Visible = false;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Century Gothic", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label40.Location = new System.Drawing.Point(183, 3);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(124, 39);
+            this.label40.TabIndex = 1000;
+            this.label40.Text = "Weight";
             // 
             // MainForm
             // 
@@ -2103,6 +2116,7 @@ namespace SerialPortListener
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox tbOldDoId;
         private System.Windows.Forms.CheckBox chkDirectPrint;
+        private System.Windows.Forms.Label label40;
     }
 }
 
