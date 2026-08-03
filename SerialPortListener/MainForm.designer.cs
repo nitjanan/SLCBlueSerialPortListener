@@ -318,7 +318,7 @@ namespace SerialPortListener
             this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btMenu5.Image = global::SerialPortListener.Properties.Resources.data_backup_32px;
             this.btMenu5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu5.Location = new System.Drawing.Point(9, 387);
+            this.btMenu5.Location = new System.Drawing.Point(9, 293);
             this.btMenu5.Name = "btMenu5";
             this.btMenu5.Size = new System.Drawing.Size(171, 41);
             this.btMenu5.TabIndex = 106;
@@ -364,7 +364,7 @@ namespace SerialPortListener
             this.btMenu3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btMenu3.Image = global::SerialPortListener.Properties.Resources.icons8_settings_32px;
             this.btMenu3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu3.Location = new System.Drawing.Point(9, 293);
+            this.btMenu3.Location = new System.Drawing.Point(9, 388);
             this.btMenu3.Name = "btMenu3";
             this.btMenu3.Size = new System.Drawing.Size(171, 41);
             this.btMenu3.TabIndex = 103;
@@ -1646,6 +1646,7 @@ namespace SerialPortListener
             // ucBackup
             // 
             this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
+            this.ucBackup.CheckUpdateButtonEnabled = true;
             this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucBackup.Location = new System.Drawing.Point(0, 0);
@@ -1670,7 +1671,7 @@ namespace SerialPortListener
             // 
             this.btRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btRefresh.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRefresh.Image = global::SerialPortListener.Properties.Resources.refresh_32px;
+            this.btRefresh.Image = global::SerialPortListener.Properties.Resources.download;
             this.btRefresh.Location = new System.Drawing.Point(475, 54);
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.Size = new System.Drawing.Size(44, 44);
