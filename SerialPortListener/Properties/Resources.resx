@@ -139,9 +139,6 @@
   <data name="save_32px_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_32px_pink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="save_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="data_backup_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\data_backup_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -154,6 +151,9 @@
   <data name="user_male_32px_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_male_32px_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="user_male_32px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_male_32px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="add_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -165,6 +165,9 @@
   </data>
   <data name="refresh_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="booking" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\booking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="microsoft_excel_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\microsoft_excel_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,8 +190,8 @@
   <data name="icons8_truck_32px_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_truck_32px_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="print_32px_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print_32px_pink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="search_32px_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_32px_pink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exit_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,8 +217,8 @@
   <data name="icons8_ftp_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_ftp_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user_male_32px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_male_32px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="print_32px_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\print_32px_pink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="do1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\do1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,8 +238,8 @@
   <data name="help_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\help_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_32px_pink" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_32px_pink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="save_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit_file_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit_file_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,7 +250,7 @@
   <data name="icons8_settings_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_settings_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="booking" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\booking.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
