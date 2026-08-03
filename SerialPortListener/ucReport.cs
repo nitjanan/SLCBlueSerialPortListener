@@ -1252,6 +1252,7 @@ namespace SerialPortListener
             Weight.OilContent = zeroNotEmty(dgvDailyReport.CurrentRow.Cells["oil_content"].Value.ToString());
             Weight.Note = strNotEmty(dgvDailyReport.CurrentRow.Cells["หมายเหตุ"].Value.ToString());
             Weight.Id = strNotEmty(dgvDailyReport.CurrentRow.Cells["weight_id"].Value.ToString());
+            Weight.StoneDesc = strNotEmty(((DataRowView)dgvDailyReport.CurrentRow.DataBoundItem)["stone_desc"].ToString());
 
             Company.TLogo = "(Sandvik)";
             Company.TTelephone = "โทร";
