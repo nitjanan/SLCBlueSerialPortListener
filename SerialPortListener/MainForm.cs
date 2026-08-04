@@ -292,7 +292,7 @@ namespace SerialPortListener
             }
             finally
             {
-                btnCheckUpdate.Enabled = true;
+                ucBackup.CheckUpdateButtonEnabled = true;
             }
         }
 

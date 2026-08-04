@@ -876,6 +876,7 @@
     <None Include="Resources\logo_silachai2.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\database-configuration.png" />
     <None Include="Resources\download.png" />
     <None Include="Resources\booking.png" />
     <None Include="Resources\do1.png" />
