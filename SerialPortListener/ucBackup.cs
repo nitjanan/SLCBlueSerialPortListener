@@ -290,19 +290,31 @@ namespace SerialPortListener
             cmd.ExecuteNonQuery();
         }
 
-        // API ส่ง v_stamp มาเป็น "d/M/yyyy H:mm:ss" (เช่น "31/05/2024 11:14:31")
-        // ถ้าส่ง string ตรงๆ ให้ Postgres มันจะตีความตาม DateStyle (ปกติ MDY) ทำให้วันที่ผิดเพี้ยน/error
-        // out of range เมื่อวันที่ > 12 จึงต้อง parse เป็น DateTime ในฝั่ง C# ก่อนส่งเป็น parameter
+        // API ส่ง v_stamp มาเป็น ISO 8601 เช่น "2025-02-25T09:47:21.984276" (ไม่ใช่ dd/mm หรือ mm/dd)
+        // ต้อง parse เป็น DateTime ในฝั่ง C# ก่อนส่งเป็น parameter เสมอ ห้ามส่ง string ดิบให้ Postgres
+        // เพราะ Postgres จะตีความตาม DateStyle ของตัวเอง (ปกติ MDY) ทำให้วันที่ผิดเพี้ยน/error out of range
+        private static readonly string[] VStampFormats =
+        {
+            "yyyy-MM-ddTHH:mm:ss.ffffff",
+            "yyyy-MM-ddTHH:mm:ss.fff",
+            "yyyy-MM-ddTHH:mm:ss",
+            "yyyy-MM-dd HH:mm:ss.ffffff",
+            "yyyy-MM-dd HH:mm:ss",
+        };
+
         private static object ParseVStamp(JObject d)
         {
             string raw = (string)d["v_stamp"];
             if (string.IsNullOrEmpty(raw))
                 return DBNull.Value;
 
-            if (DateTime.TryParseExact(raw, "d/M/yyyy H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dt))
+            if (DateTime.TryParseExact(raw, VStampFormats, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out DateTime dt))
                 return dt;
 
-            if (DateTime.TryParse(raw, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
+            // สำรอง: รูปแบบ ISO 8601 อื่น ๆ ที่ไม่ตรง pattern ด้านบนเป๊ะ ๆ (เช่น มี timezone offset)
+            if (DateTime.TryParse(raw, CultureInfo.InvariantCulture,
+                DateTimeStyles.RoundtripKind, out dt))
                 return dt;
 
             return raw;
