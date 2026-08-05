@@ -36,12 +36,17 @@ namespace SerialPortListener
             this.btReadIn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label40 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbCompanyCode = new System.Windows.Forms.Label();
+            this.btMenu5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btMenu4 = new System.Windows.Forms.Button();
+            this.btMenu3 = new System.Windows.Forms.Button();
+            this.btMenu2 = new System.Windows.Forms.Button();
+            this.btMenu1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tbDocNum = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -152,12 +157,6 @@ namespace SerialPortListener
             this.btPrintOut = new System.Windows.Forms.Button();
             this.btPrintIn = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
-            this.btMenu5 = new System.Windows.Forms.Button();
-            this.btMenu4 = new System.Windows.Forms.Button();
-            this.btMenu3 = new System.Windows.Forms.Button();
-            this.btMenu2 = new System.Windows.Forms.Button();
-            this.btMenu1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ucTruck = new SerialPortListener.ucTruck();
             this.ucSetting = new SerialPortListener.ucSetting();
             this.ucReport = new SerialPortListener.ucReport();
@@ -165,6 +164,7 @@ namespace SerialPortListener
             this.ucBackup = new SerialPortListener.ucBackup();
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -172,7 +172,6 @@ namespace SerialPortListener
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -242,7 +241,6 @@ namespace SerialPortListener
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.panel2.Controls.Add(this.label40);
             this.panel2.Controls.Add(this.chkDirectPrint);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -251,16 +249,14 @@ namespace SerialPortListener
             this.panel2.Size = new System.Drawing.Size(1208, 39);
             this.panel2.TabIndex = 17;
             // 
-            // label40
+            // pictureBox1
             // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Century Gothic", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label40.Location = new System.Drawing.Point(183, 3);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(124, 39);
-            this.label40.TabIndex = 1000;
-            this.label40.Text = "Weight";
+            this.pictureBox1.Image = global::SerialPortListener.Properties.Resources.scales_32px;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 38);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -314,6 +310,23 @@ namespace SerialPortListener
             this.lbCompanyCode.TabIndex = 107;
             this.lbCompanyCode.Text = "code";
             // 
+            // btMenu5
+            // 
+            this.btMenu5.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMenu5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMenu5.Image = global::SerialPortListener.Properties.Resources.database_configuration;
+            this.btMenu5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMenu5.Location = new System.Drawing.Point(9, 293);
+            this.btMenu5.Name = "btMenu5";
+            this.btMenu5.Size = new System.Drawing.Size(171, 41);
+            this.btMenu5.TabIndex = 106;
+            this.btMenu5.TabStop = false;
+            this.btMenu5.Text = "GUI";
+            this.btMenu5.UseVisualStyleBackColor = false;
+            this.btMenu5.Click += new System.EventHandler(this.btMenu5_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -325,6 +338,78 @@ namespace SerialPortListener
             this.label1.TabIndex = 5;
             this.label1.Text = "Weight";
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // btMenu4
+            // 
+            this.btMenu4.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMenu4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btMenu4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMenu4.Image = global::SerialPortListener.Properties.Resources.help_32px;
+            this.btMenu4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMenu4.Location = new System.Drawing.Point(9, 340);
+            this.btMenu4.Name = "btMenu4";
+            this.btMenu4.Size = new System.Drawing.Size(171, 41);
+            this.btMenu4.TabIndex = 104;
+            this.btMenu4.TabStop = false;
+            this.btMenu4.Text = "เกี่ยวกับ";
+            this.btMenu4.UseVisualStyleBackColor = false;
+            this.btMenu4.Click += new System.EventHandler(this.btMenu4_Click);
+            // 
+            // btMenu3
+            // 
+            this.btMenu3.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMenu3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btMenu3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMenu3.Image = global::SerialPortListener.Properties.Resources.settings_32px;
+            this.btMenu3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMenu3.Location = new System.Drawing.Point(9, 388);
+            this.btMenu3.Name = "btMenu3";
+            this.btMenu3.Size = new System.Drawing.Size(171, 41);
+            this.btMenu3.TabIndex = 103;
+            this.btMenu3.TabStop = false;
+            this.btMenu3.Text = "ตั้งค่า";
+            this.btMenu3.UseVisualStyleBackColor = false;
+            this.btMenu3.Click += new System.EventHandler(this.btMenu3_Click);
+            // 
+            // btMenu2
+            // 
+            this.btMenu2.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMenu2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btMenu2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMenu2.Image = global::SerialPortListener.Properties.Resources.ftp_32px;
+            this.btMenu2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMenu2.Location = new System.Drawing.Point(9, 246);
+            this.btMenu2.Name = "btMenu2";
+            this.btMenu2.Size = new System.Drawing.Size(171, 41);
+            this.btMenu2.TabIndex = 102;
+            this.btMenu2.TabStop = false;
+            this.btMenu2.Text = "รายงาน";
+            this.btMenu2.UseVisualStyleBackColor = false;
+            this.btMenu2.Click += new System.EventHandler(this.btMenu2_Click);
+            // 
+            // btMenu1
+            // 
+            this.btMenu1.BackColor = System.Drawing.Color.LightPink;
+            this.btMenu1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMenu1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btMenu1.FlatAppearance.BorderSize = 0;
+            this.btMenu1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btMenu1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btMenu1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btMenu1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMenu1.Image = global::SerialPortListener.Properties.Resources.truck_32px;
+            this.btMenu1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btMenu1.Location = new System.Drawing.Point(9, 199);
+            this.btMenu1.Name = "btMenu1";
+            this.btMenu1.Size = new System.Drawing.Size(171, 41);
+            this.btMenu1.TabIndex = 101;
+            this.btMenu1.TabStop = false;
+            this.btMenu1.Text = "บันทึกการชั่ง";
+            this.btMenu1.UseVisualStyleBackColor = false;
+            this.btMenu1.Click += new System.EventHandler(this.btMenu1_Click);
             // 
             // tbDocNum
             // 
@@ -1696,104 +1781,6 @@ namespace SerialPortListener
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
-            // btMenu5
-            // 
-            this.btMenu5.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu5.Image = global::SerialPortListener.Properties.Resources.database_configuration;
-            this.btMenu5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu5.Location = new System.Drawing.Point(9, 293);
-            this.btMenu5.Name = "btMenu5";
-            this.btMenu5.Size = new System.Drawing.Size(171, 41);
-            this.btMenu5.TabIndex = 106;
-            this.btMenu5.TabStop = false;
-            this.btMenu5.Text = "GUI";
-            this.btMenu5.UseVisualStyleBackColor = false;
-            this.btMenu5.Click += new System.EventHandler(this.btMenu5_Click);
-            // 
-            // btMenu4
-            // 
-            this.btMenu4.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu4.Image = global::SerialPortListener.Properties.Resources.help_32px;
-            this.btMenu4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu4.Location = new System.Drawing.Point(9, 340);
-            this.btMenu4.Name = "btMenu4";
-            this.btMenu4.Size = new System.Drawing.Size(171, 41);
-            this.btMenu4.TabIndex = 104;
-            this.btMenu4.TabStop = false;
-            this.btMenu4.Text = "เกี่ยวกับ";
-            this.btMenu4.UseVisualStyleBackColor = false;
-            this.btMenu4.Click += new System.EventHandler(this.btMenu4_Click);
-            // 
-            // btMenu3
-            // 
-            this.btMenu3.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu3.Image = global::SerialPortListener.Properties.Resources.settings_32px;
-            this.btMenu3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu3.Location = new System.Drawing.Point(9, 388);
-            this.btMenu3.Name = "btMenu3";
-            this.btMenu3.Size = new System.Drawing.Size(171, 41);
-            this.btMenu3.TabIndex = 103;
-            this.btMenu3.TabStop = false;
-            this.btMenu3.Text = "ตั้งค่า";
-            this.btMenu3.UseVisualStyleBackColor = false;
-            this.btMenu3.Click += new System.EventHandler(this.btMenu3_Click);
-            // 
-            // btMenu2
-            // 
-            this.btMenu2.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu2.Image = global::SerialPortListener.Properties.Resources.ftp_32px;
-            this.btMenu2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu2.Location = new System.Drawing.Point(9, 246);
-            this.btMenu2.Name = "btMenu2";
-            this.btMenu2.Size = new System.Drawing.Size(171, 41);
-            this.btMenu2.TabIndex = 102;
-            this.btMenu2.TabStop = false;
-            this.btMenu2.Text = "รายงาน";
-            this.btMenu2.UseVisualStyleBackColor = false;
-            this.btMenu2.Click += new System.EventHandler(this.btMenu2_Click);
-            // 
-            // btMenu1
-            // 
-            this.btMenu1.BackColor = System.Drawing.Color.LightPink;
-            this.btMenu1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMenu1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btMenu1.FlatAppearance.BorderSize = 0;
-            this.btMenu1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btMenu1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btMenu1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btMenu1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu1.Image = global::SerialPortListener.Properties.Resources.truck_32px;
-            this.btMenu1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu1.Location = new System.Drawing.Point(9, 199);
-            this.btMenu1.Name = "btMenu1";
-            this.btMenu1.Size = new System.Drawing.Size(171, 41);
-            this.btMenu1.TabIndex = 101;
-            this.btMenu1.TabStop = false;
-            this.btMenu1.Text = "บันทึกการชั่ง";
-            this.btMenu1.UseVisualStyleBackColor = false;
-            this.btMenu1.Click += new System.EventHandler(this.btMenu1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SerialPortListener.Properties.Resources.scales_32px;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 38);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // ucTruck
             // 
             this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
@@ -1958,6 +1945,7 @@ namespace SerialPortListener
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -1972,7 +1960,6 @@ namespace SerialPortListener
             this.panel5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -2116,7 +2103,6 @@ namespace SerialPortListener
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox tbOldDoId;
         private System.Windows.Forms.CheckBox chkDirectPrint;
-        private System.Windows.Forms.Label label40;
     }
 }
 
