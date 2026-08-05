@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Devart.Data.PostgreSql;
 using System.Data.Odbc;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
@@ -29,6 +30,31 @@ namespace SerialPortListener
             if (isConnected)
                 dl.close();
             btULWeight.Enabled = isConnected;
+
+            LoadBackupConfig();
+            InitAutoBackupTimer();
+        }
+
+        // ตอน constructor ทำงาน (สร้าง ucBackup เป็นลูกของ MainForm) ยังไม่ผ่าน Login
+        // Globals.Permission จึงยังไม่ถูกตั้งค่า เช็คสิทธิ์ใหม่ทุกครั้งที่แสดงหน้านี้แทน
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (Visible)
+                ApplyBackupConfigPermission();
+        }
+
+        // เฉพาะ user ที่มีสิทธิ์ add_setting เท่านั้นที่แก้ไข/บันทึกการตั้งค่า backup ได้ user อื่นดูได้อย่างเดียว
+        private void ApplyBackupConfigPermission()
+        {
+            bool canEdit = Globals.isPermissionAddSetting();
+
+            tbPgDumpPath.ReadOnly = !canEdit;
+            tbBackupDir.ReadOnly = !canEdit;
+            btnBrowsePgDump.Enabled = canEdit;
+            btnBrowseBackupDir.Enabled = canEdit;
+            btnSaveBackupConfig.Enabled = canEdit;
+            chkAutoBackup.Enabled = canEdit;
         }
 
         // ปุ่ม "ตรวจสอบอัพเดท" ถูกย้ายมาไว้ที่ ucBackup แต่ logic การเช็ค/ติดตั้งอัพเดทยังอยู่ที่ MainForm
@@ -1128,6 +1154,349 @@ namespace SerialPortListener
         }
 
         // เทียบกับ processs_delivery_order() ใน AU_weight_to_local.py
+        // ตั้งค่าตรงกับ backupSql_m.bat ใน C:\Users\Userpc\Documents\backupSqlNew\script\ แต่รันผ่าน pg_dump.exe โดยตรงจาก C# แทนการเรียก .bat
+        // พารามิเตอร์การเชื่อมต่อ (host/port/database/user/password) อ่านจาก ODBC DSN "PostgreSQLM" เดียวกับที่ Datalayer ใช้ แทนการฝังค่าตายตัว
+        private const string OdbcDsnName = "PostgreSQLM";
+        private const string DefaultPgDumpPath = @"C:\Program Files\PostgreSQL\9.5\bin\pg_dump.exe";
+        private const string DefaultBackupDir = @"D:\backupSqlNew";
+        private static readonly string BackupConfigPath =
+            System.IO.Path.Combine(Application.StartupPath, "configs_backup.txt");
+
+        // โหลดค่า PgDumpPath / BackupDir / AutoBackupEnabled จาก configs_backup.txt (key=value ต่อบรรทัด) ถ้าไม่มีไฟล์ใช้ค่า default
+        private void LoadBackupConfig()
+        {
+            string pgDumpPath = DefaultPgDumpPath;
+            string backupDir = DefaultBackupDir;
+            bool autoBackupEnabled = true;
+
+            if (System.IO.File.Exists(BackupConfigPath))
+            {
+                foreach (string line in System.IO.File.ReadAllLines(BackupConfigPath))
+                {
+                    int idx = line.IndexOf('=');
+                    if (idx <= 0)
+                        continue;
+
+                    string key = line.Substring(0, idx).Trim();
+                    string value = line.Substring(idx + 1).Trim();
+
+                    if (key == "PgDumpPath")
+                        pgDumpPath = value;
+                    else if (key == "BackupDir")
+                        backupDir = value;
+                    else if (key == "AutoBackupEnabled")
+                        bool.TryParse(value, out autoBackupEnabled);
+                }
+            }
+
+            tbPgDumpPath.Text = pgDumpPath;
+            tbBackupDir.Text = backupDir;
+            chkAutoBackup.Checked = autoBackupEnabled;
+        }
+
+        private void SaveBackupConfig()
+        {
+            string[] lines =
+            {
+                "PgDumpPath=" + tbPgDumpPath.Text.Trim(),
+                "BackupDir=" + tbBackupDir.Text.Trim(),
+                "AutoBackupEnabled=" + chkAutoBackup.Checked,
+            };
+            System.IO.File.WriteAllLines(BackupConfigPath, lines);
+        }
+
+        private void btnBrowsePgDump_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "pg_dump.exe|pg_dump.exe|Executable files (*.exe)|*.exe|All files (*.*)|*.*";
+                dlg.FileName = "pg_dump.exe";
+                if (System.IO.File.Exists(tbPgDumpPath.Text))
+                    dlg.InitialDirectory = System.IO.Path.GetDirectoryName(tbPgDumpPath.Text);
+
+                if (dlg.ShowDialog(FindForm()) == DialogResult.OK)
+                    tbPgDumpPath.Text = dlg.FileName;
+            }
+        }
+
+        private void btnBrowseBackupDir_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new FolderBrowserDialog())
+            {
+                if (System.IO.Directory.Exists(tbBackupDir.Text))
+                    dlg.SelectedPath = tbBackupDir.Text;
+
+                if (dlg.ShowDialog(FindForm()) == DialogResult.OK)
+                    tbBackupDir.Text = dlg.SelectedPath;
+            }
+        }
+
+        private void btnSaveBackupConfig_Click(object sender, EventArgs e)
+        {
+            if (!Globals.isPermissionAddSetting())
+            {
+                MessageBox.Show("คุณไม่มีสิทธิ์บันทึกการตั้งค่านี้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbPgDumpPath.Text) || string.IsNullOrWhiteSpace(tbBackupDir.Text))
+            {
+                MessageBox.Show("กรุณาระบุ pg_dump.exe และ Backup Folder", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                SaveBackupConfig();
+                MessageBox.Show("บันทึกการตั้งค่าสำเร็จ", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("บันทึกการตั้งค่าไม่สำเร็จ: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // เทียบกับค่าที่ psqlODBC เก็บใน HKCU/HKLM\Software\ODBC\ODBC.INI\<DSN>
+        private class PgDsnInfo
+        {
+            public string Host;
+            public string Port;
+            public string Database;
+            public string Username;
+            public string Password;
+        }
+
+        private static PgDsnInfo GetPgDsnInfo(string dsnName)
+        {
+            string[] roots =
+            {
+                $@"SOFTWARE\ODBC\ODBC.INI\{dsnName}",
+                $@"SOFTWARE\WOW6432Node\ODBC\ODBC.INI\{dsnName}",
+            };
+
+            foreach (var hive in new[] { Microsoft.Win32.Registry.CurrentUser, Microsoft.Win32.Registry.LocalMachine })
+            {
+                foreach (var subKey in roots)
+                {
+                    using (var key = hive.OpenSubKey(subKey))
+                    {
+                        if (key == null)
+                            continue;
+
+                        return new PgDsnInfo
+                        {
+                            Host = key.GetValue("Servername")?.ToString(),
+                            Port = key.GetValue("Port")?.ToString(),
+                            Database = key.GetValue("Database")?.ToString(),
+                            Username = key.GetValue("Username")?.ToString() ?? key.GetValue("UID")?.ToString(),
+                            Password = key.GetValue("Password")?.ToString(),
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private async void btnBackup_Click(object sender, EventArgs e)
+        {
+            await DoBackupAsync(isAuto: false);
+        }
+
+        // ตารางเวลา backup อัตโนมัติ: ทุก 2 ชั่วโมง เริ่ม 09:00 สิ้นสุด 17:00
+        private static readonly int[] AutoBackupHours = { 9, 11, 13, 15, 17 };
+        private System.Windows.Forms.Timer autoBackupTimer;
+        private string lastAutoBackupKey = "";
+
+        private void InitAutoBackupTimer()
+        {
+            autoBackupTimer = new System.Windows.Forms.Timer { Interval = 60000 };
+            autoBackupTimer.Tick += AutoBackupTimer_Tick;
+            autoBackupTimer.Start();
+
+            this.Disposed += (s, e) =>
+            {
+                autoBackupTimer.Stop();
+                autoBackupTimer.Dispose();
+            };
+        }
+
+        private async void AutoBackupTimer_Tick(object sender, EventArgs e)
+        {
+            if (!chkAutoBackup.Checked)
+                return;
+
+            DateTime now = DateTime.Now;
+            if (now.Minute != 0 || !AutoBackupHours.Contains(now.Hour))
+                return;
+
+            string key = now.ToString("yyyyMMdd_HH");
+            if (key == lastAutoBackupKey)
+                return;
+            lastAutoBackupKey = key;
+
+            if (!btnBackup.Enabled)
+                return; // มีการ backup ทำงานอยู่แล้ว (ผู้ใช้กดเอง หรือรอบก่อนหน้ายังไม่เสร็จ)
+
+            await DoBackupAsync(isAuto: true);
+        }
+
+        private static readonly string AutoBackupLogPath =
+            System.IO.Path.Combine(Application.StartupPath, "backup_auto.log");
+
+        // auto backup ไม่มีหน้าต่างให้เห็น เขียน log ลงไฟล์แทนไว้ตรวจสอบย้อนหลัง
+        private static void LogToFile(string message)
+        {
+            try
+            {
+                System.IO.File.AppendAllText(AutoBackupLogPath, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\r\n");
+            }
+            catch (Exception)
+            {
+                // ไม่ทำให้ auto backup ล้มเหลวเพียงเพราะเขียน log ไม่ได้
+            }
+        }
+
+        // ใช้ร่วมกันทั้งกดปุ่ม backup เองและ auto backup ตามตารางเวลา
+        // isAuto = true จะทำงานเบื้องหลังทั้งหมด ไม่เปิดหน้าต่างและไม่เด้ง MessageBox ให้เห็น (log ลงไฟล์แทน)
+        private async Task DoBackupAsync(bool isAuto)
+        {
+            btnBackup.Enabled = false;
+
+            frmDownloadProgress progress = null;
+            Action<string> log;
+            if (isAuto)
+            {
+                log = LogToFile;
+            }
+            else
+            {
+                progress = new frmDownloadProgress();
+                progress.Show(FindForm());
+                log = progress.Log;
+            }
+
+            try
+            {
+                string pgDumpPath = tbPgDumpPath.Text.Trim();
+                string backupDir = tbBackupDir.Text.Trim();
+
+                if (string.IsNullOrEmpty(pgDumpPath) || !System.IO.File.Exists(pgDumpPath))
+                {
+                    log($"ไม่พบไฟล์ {pgDumpPath}");
+                    if (!isAuto)
+                        MessageBox.Show($"ไม่พบไฟล์ {pgDumpPath}", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(backupDir))
+                {
+                    log("กรุณาระบุ Backup Folder");
+                    if (!isAuto)
+                        MessageBox.Show("กรุณาระบุ Backup Folder", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                PgDsnInfo dsn = GetPgDsnInfo(OdbcDsnName);
+                if (dsn == null || string.IsNullOrEmpty(dsn.Host) || string.IsNullOrEmpty(dsn.Database))
+                {
+                    log($"ไม่พบการตั้งค่า ODBC DSN \"{OdbcDsnName}\"");
+                    if (!isAuto)
+                        MessageBox.Show($"ไม่พบการตั้งค่า ODBC DSN \"{OdbcDsnName}\"", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!System.IO.Directory.Exists(backupDir))
+                    System.IO.Directory.CreateDirectory(backupDir);
+
+                string dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string backupFile = System.IO.Path.Combine(backupDir, $"{dsn.Database}_{dateTime}.backup");
+
+                log("===========================================");
+                log(isAuto ? "Auto Backup" : "Manual Backup");
+                log($"Backup Database : {dsn.Database}");
+                log($"Output File     : {backupFile}");
+                log("===========================================");
+
+                int exitCode = await RunPgDumpAsync(pgDumpPath, dsn, backupFile, log);
+
+                if (exitCode == 0)
+                {
+                    log("===== Backup Success =====");
+                    log(backupFile);
+                    lbLastAutoBackup.Text = $"Backup ล่าสุด: {DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) สำเร็จ";
+                    if (!isAuto)
+                        MessageBox.Show("สำรองข้อมูลสำเร็จ\r\n" + backupFile, "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    log($"XXXXX Backup Failed (exit code {exitCode}) XXXXX");
+                    lbLastAutoBackup.Text = $"Backup ล่าสุด: {DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) ไม่สำเร็จ";
+                    if (!isAuto)
+                        MessageBox.Show($"สำรองข้อมูลไม่สำเร็จ (exit code {exitCode})", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                log("Error: " + ex.Message);
+                lbLastAutoBackup.Text = $"Backup ล่าสุด: {DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) เกิดข้อผิดพลาด";
+                if (!isAuto)
+                    MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (progress != null)
+                {
+                    progress.AllowClose();
+                    progress.Close();
+                }
+                btnBackup.Enabled = true;
+            }
+        }
+
+        // เทียบกับคำสั่ง pg_dump ใน backupSql_m.bat: -h -p -U -F c -b -v -f <file> <database>
+        private Task<int> RunPgDumpAsync(string pgDumpPath, PgDsnInfo dsn, string backupFile, Action<string> log)
+        {
+            var tcs = new TaskCompletionSource<int>();
+
+            string port = string.IsNullOrEmpty(dsn.Port) ? "5432" : dsn.Port;
+
+            var psi = new ProcessStartInfo
+            {
+                FileName = pgDumpPath,
+                Arguments = $"-h {dsn.Host} -p {port} -U {dsn.Username} -F c -b -v -f \"{backupFile}\" {dsn.Database}",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true,
+            };
+            psi.EnvironmentVariables["PGPASSWORD"] = dsn.Password ?? "";
+
+            var process = new Process { StartInfo = psi, EnableRaisingEvents = true };
+
+            process.OutputDataReceived += (s, ev) =>
+            {
+                if (!string.IsNullOrEmpty(ev.Data))
+                    log(ev.Data);
+            };
+            process.ErrorDataReceived += (s, ev) =>
+            {
+                if (!string.IsNullOrEmpty(ev.Data))
+                    log(ev.Data);
+            };
+            process.Exited += (s, ev) =>
+            {
+                tcs.TrySetResult(process.ExitCode);
+                process.Dispose();
+            };
+
+            process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            return tcs.Task;
+        }
+
         private void ProcessDeliveryOrderUpdate(JObject d)
         {
             OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand();
