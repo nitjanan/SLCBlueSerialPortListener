@@ -46,6 +46,11 @@ namespace SerialPortListener
 
         public void Log(string message)
         {
+            if (tbLog.InvokeRequired)
+            {
+                tbLog.Invoke((Action)(() => Log(message)));
+                return;
+            }
             tbLog.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}\r\n");
         }
 
