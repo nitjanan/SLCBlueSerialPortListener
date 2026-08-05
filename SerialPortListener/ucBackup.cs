@@ -1177,8 +1177,8 @@ namespace SerialPortListener
 
         // เทียบกับ processs_delivery_order() ใน AU_weight_to_local.py
         // ตั้งค่าตรงกับ backupSql_m.bat ใน C:\Users\Userpc\Documents\backupSqlNew\script\ แต่รันผ่าน pg_dump.exe โดยตรงจาก C# แทนการเรียก .bat
-        // พารามิเตอร์การเชื่อมต่อ (host/port/database/user/password) อ่านจาก ODBC DSN "PostgreSQLM" เดียวกับที่ Datalayer ใช้ แทนการฝังค่าตายตัว
-        private const string OdbcDsnName = "PostgreSQLM";
+        // พารามิเตอร์การเชื่อมต่อ (host/port/database/user/password) อ่านจาก ODBC DSN "PostgreSQLS" เดียวกับที่ Datalayer ใช้ แทนการฝังค่าตายตัว
+        private const string OdbcDsnName = "PostgreSQLS";
         private const string DefaultPgDumpPath = @"C:\Program Files\PostgreSQL\9.5\bin\pg_dump.exe";
         private const string DefaultBackupDir = @"D:\backupSqlNew";
         private static readonly string BackupConfigPath =
