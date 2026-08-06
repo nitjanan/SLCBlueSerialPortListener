@@ -74,8 +74,6 @@ namespace SerialPortListener
 
         // ตารางที่ต้องดาวน์โหลด : (num, table_name, url_segment, pk_field ในแต่ละ JSON record สำหรับใช้ log)
         // เทียบกับ get_json_url() ใน auto_setting_sell.py ; URL รูปแบบ {baseUrl}/{segment}/api/vStamp/{time}/
-        // หมายเหตุ: main() ใน auto_setting_sell.py วนแค่ range(1, 10) คือ num 1-9 เท่านั้น
-        // เพราะฐานข้อมูลนี้ไม่มีตาราง base_driver (10) และ base_car_registration (11)
         private static readonly (int Num, string TableName, string UrlSegment, string PkField)[] SettingTables =
         {
             (1, "base_job_type", "baseJobType", "base_job_type_id"),
@@ -87,6 +85,8 @@ namespace SerialPortListener
             (7, "base_car_team", "baseCarTeam", "รหัสทีม"),
             (8, "base_car", "baseCar", "รหัสรถร่วม"),
             (9, "base_scoop", "baseScoop", "รหัสผู้ตัก"),
+            (10, "base_driver", "baseDriver", "รหัสผู้ขับ"),
+            (11, "base_car_registration", "baseCarRegistration", "รหัสทะเบียนรถ"),
             (12, "users", "userScale", "scale_id"),
         };
 
