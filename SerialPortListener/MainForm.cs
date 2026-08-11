@@ -207,6 +207,8 @@ namespace SerialPortListener
 
             ucBackup.CheckUpdateRequested += BtnCheckUpdate_Click;
 
+            this.Load += async (s, e) => await CheckForUpdateAsync(silent: true);
+
             // _spManager.StartListening();
         }
 
