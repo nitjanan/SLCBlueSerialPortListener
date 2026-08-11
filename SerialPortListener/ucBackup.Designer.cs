@@ -48,6 +48,10 @@
             this.chkAutoBackup = new System.Windows.Forms.CheckBox();
             this.lbLastAutoBackup = new System.Windows.Forms.Label();
             this.btnBackup = new System.Windows.Forms.Button();
+            this.lbAutoBackupTime = new System.Windows.Forms.Label();
+            this.dtpAutoBackupStart = new System.Windows.Forms.DateTimePicker();
+            this.lbAutoBackupTimeTo = new System.Windows.Forms.Label();
+            this.dtpAutoBackupEnd = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -157,9 +161,13 @@
             this.groupBox5.Controls.Add(this.chkAutoBackup);
             this.groupBox5.Controls.Add(this.lbLastAutoBackup);
             this.groupBox5.Controls.Add(this.btnBackup);
+            this.groupBox5.Controls.Add(this.lbAutoBackupTime);
+            this.groupBox5.Controls.Add(this.dtpAutoBackupStart);
+            this.groupBox5.Controls.Add(this.lbAutoBackupTimeTo);
+            this.groupBox5.Controls.Add(this.dtpAutoBackupEnd);
             this.groupBox5.Location = new System.Drawing.Point(74, 427);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(830, 200);
+            this.groupBox5.Size = new System.Drawing.Size(830, 196);
             this.groupBox5.TabIndex = 15;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Setting Backup";
@@ -218,9 +226,9 @@
             // 
             // btnSaveBackupConfig
             // 
-            this.btnSaveBackupConfig.Location = new System.Drawing.Point(284, 118);
+            this.btnSaveBackupConfig.Location = new System.Drawing.Point(545, 117);
             this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
-            this.btnSaveBackupConfig.Size = new System.Drawing.Size(159, 27);
+            this.btnSaveBackupConfig.Size = new System.Drawing.Size(125, 27);
             this.btnSaveBackupConfig.TabIndex = 6;
             this.btnSaveBackupConfig.Text = "Save Config";
             this.btnSaveBackupConfig.UseVisualStyleBackColor = true;
@@ -231,7 +239,7 @@
             this.chkAutoBackup.AutoSize = true;
             this.chkAutoBackup.Checked = true;
             this.chkAutoBackup.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoBackup.Location = new System.Drawing.Point(526, 155);
+            this.chkAutoBackup.Location = new System.Drawing.Point(525, 157);
             this.chkAutoBackup.Name = "chkAutoBackup";
             this.chkAutoBackup.Size = new System.Drawing.Size(299, 25);
             this.chkAutoBackup.TabIndex = 7;
@@ -242,7 +250,7 @@
             // lbLastAutoBackup
             // 
             this.lbLastAutoBackup.AutoSize = true;
-            this.lbLastAutoBackup.Location = new System.Drawing.Point(33, 156);
+            this.lbLastAutoBackup.Location = new System.Drawing.Point(33, 157);
             this.lbLastAutoBackup.Name = "lbLastAutoBackup";
             this.lbLastAutoBackup.Size = new System.Drawing.Size(120, 21);
             this.lbLastAutoBackup.TabIndex = 8;
@@ -250,13 +258,49 @@
             // 
             // btnBackup
             // 
-            this.btnBackup.Location = new System.Drawing.Point(449, 118);
+            this.btnBackup.Location = new System.Drawing.Point(676, 117);
             this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(159, 27);
+            this.btnBackup.Size = new System.Drawing.Size(90, 27);
             this.btnBackup.TabIndex = 3;
             this.btnBackup.Text = "backup";
             this.btnBackup.UseVisualStyleBackColor = true;
             this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
+            // 
+            // lbAutoBackupTime
+            // 
+            this.lbAutoBackupTime.AutoSize = true;
+            this.lbAutoBackupTime.Location = new System.Drawing.Point(33, 120);
+            this.lbAutoBackupTime.Name = "lbAutoBackupTime";
+            this.lbAutoBackupTime.Size = new System.Drawing.Size(236, 21);
+            this.lbAutoBackupTime.TabIndex = 9;
+            this.lbAutoBackupTime.Text = "เวลา Auto Backup (เริ่ม - สิ้นสุด) :";
+            // 
+            // dtpAutoBackupStart
+            // 
+            this.dtpAutoBackupStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpAutoBackupStart.Location = new System.Drawing.Point(280, 117);
+            this.dtpAutoBackupStart.Name = "dtpAutoBackupStart";
+            this.dtpAutoBackupStart.ShowUpDown = true;
+            this.dtpAutoBackupStart.Size = new System.Drawing.Size(110, 27);
+            this.dtpAutoBackupStart.TabIndex = 10;
+            // 
+            // lbAutoBackupTimeTo
+            // 
+            this.lbAutoBackupTimeTo.AutoSize = true;
+            this.lbAutoBackupTimeTo.Location = new System.Drawing.Point(400, 120);
+            this.lbAutoBackupTimeTo.Name = "lbAutoBackupTimeTo";
+            this.lbAutoBackupTimeTo.Size = new System.Drawing.Size(15, 21);
+            this.lbAutoBackupTimeTo.TabIndex = 11;
+            this.lbAutoBackupTimeTo.Text = "-";
+            // 
+            // dtpAutoBackupEnd
+            // 
+            this.dtpAutoBackupEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpAutoBackupEnd.Location = new System.Drawing.Point(421, 117);
+            this.dtpAutoBackupEnd.Name = "dtpAutoBackupEnd";
+            this.dtpAutoBackupEnd.ShowUpDown = true;
+            this.dtpAutoBackupEnd.Size = new System.Drawing.Size(110, 27);
+            this.dtpAutoBackupEnd.TabIndex = 12;
             // 
             // ucBackup
             // 
@@ -270,7 +314,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ucBackup";
-            this.Size = new System.Drawing.Size(965, 685);
+            this.Size = new System.Drawing.Size(965, 725);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -303,5 +347,9 @@
         private System.Windows.Forms.CheckBox chkAutoBackup;
         private System.Windows.Forms.Label lbLastAutoBackup;
         private System.Windows.Forms.Button btnBackup;
+        private System.Windows.Forms.Label lbAutoBackupTime;
+        private System.Windows.Forms.DateTimePicker dtpAutoBackupStart;
+        private System.Windows.Forms.Label lbAutoBackupTimeTo;
+        private System.Windows.Forms.DateTimePicker dtpAutoBackupEnd;
     }
 }
