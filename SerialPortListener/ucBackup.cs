@@ -55,6 +55,8 @@ namespace SerialPortListener
             btnBrowseBackupDir.Enabled = canEdit;
             btnSaveBackupConfig.Enabled = canEdit;
             chkAutoBackup.Enabled = canEdit;
+            dtpAutoBackupStart.Enabled = canEdit;
+            dtpAutoBackupEnd.Enabled = canEdit;
         }
 
         // ปุ่ม "ตรวจสอบอัพเดท" ถูกย้ายมาไว้ที่ ucBackup แต่ logic การเช็ค/ติดตั้งอัพเดทยังอยู่ที่ MainForm
@@ -1181,8 +1183,11 @@ namespace SerialPortListener
         private const string OdbcDsnName = "PostgreSQLM";
         private const string DefaultPgDumpPath = @"C:\Program Files\PostgreSQL\9.5\bin\pg_dump.exe";
         private const string DefaultBackupDir = @"D:\backupSqlNew";
+        // Program Files (ที่ติดตั้งโปรแกรม) เขียนไฟล์ไม่ได้ถ้าไม่ใช่ admin จึงเก็บ config/log ไว้ใน AppData ของผู้ใช้แทน
+        private static readonly string AppDataDir =
+            System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SLCBlueSerialPortListener");
         private static readonly string BackupConfigPath =
-            System.IO.Path.Combine(Application.StartupPath, "configs_backup.txt");
+            System.IO.Path.Combine(AppDataDir, "configs_backup.txt");
 
         // โหลดค่า PgDumpPath / BackupDir / AutoBackupEnabled จาก configs_backup.txt (key=value ต่อบรรทัด) ถ้าไม่มีไฟล์ใช้ค่า default
         private void LoadBackupConfig()
@@ -1190,6 +1195,8 @@ namespace SerialPortListener
             string pgDumpPath = DefaultPgDumpPath;
             string backupDir = DefaultBackupDir;
             bool autoBackupEnabled = true;
+            int startHour = DefaultAutoBackupStartHour;
+            int endHour = DefaultAutoBackupEndHour;
 
             if (System.IO.File.Exists(BackupConfigPath))
             {
@@ -1208,12 +1215,23 @@ namespace SerialPortListener
                         backupDir = value;
                     else if (key == "AutoBackupEnabled")
                         bool.TryParse(value, out autoBackupEnabled);
+                    else if (key == "AutoBackupStartHour")
+                        int.TryParse(value, out startHour);
+                    else if (key == "AutoBackupEndHour")
+                        int.TryParse(value, out endHour);
                 }
             }
 
             tbPgDumpPath.Text = pgDumpPath;
             tbBackupDir.Text = backupDir;
             chkAutoBackup.Checked = autoBackupEnabled;
+            dtpAutoBackupStart.Value = DateTime.Today.AddHours(Clamp(startHour, 0, 23));
+            dtpAutoBackupEnd.Value = DateTime.Today.AddHours(Clamp(endHour, 0, 23));
+        }
+
+        private static int Clamp(int value, int min, int max)
+        {
+            return value < min ? min : (value > max ? max : value);
         }
 
         private void SaveBackupConfig()
@@ -1223,7 +1241,11 @@ namespace SerialPortListener
                 "PgDumpPath=" + tbPgDumpPath.Text.Trim(),
                 "BackupDir=" + tbBackupDir.Text.Trim(),
                 "AutoBackupEnabled=" + chkAutoBackup.Checked,
+                "AutoBackupStartHour=" + dtpAutoBackupStart.Value.Hour,
+                "AutoBackupEndHour=" + dtpAutoBackupEnd.Value.Hour,
             };
+            if (!System.IO.Directory.Exists(AppDataDir))
+                System.IO.Directory.CreateDirectory(AppDataDir);
             System.IO.File.WriteAllLines(BackupConfigPath, lines);
         }
 
@@ -1264,6 +1286,12 @@ namespace SerialPortListener
             if (string.IsNullOrWhiteSpace(tbPgDumpPath.Text) || string.IsNullOrWhiteSpace(tbBackupDir.Text))
             {
                 MessageBox.Show("กรุณาระบุ pg_dump.exe และ Backup Folder", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dtpAutoBackupStart.Value.TimeOfDay >= dtpAutoBackupEnd.Value.TimeOfDay)
+            {
+                MessageBox.Show("เวลาเริ่ม Auto Backup ต้องน้อยกว่าเวลาสิ้นสุด", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -1325,8 +1353,18 @@ namespace SerialPortListener
             await DoBackupAsync(isAuto: false);
         }
 
-        // ตารางเวลา backup อัตโนมัติ: ทุก 2 ชั่วโมง เริ่ม 09:00 สิ้นสุด 17:00
-        private static readonly int[] AutoBackupHours = { 9, 11, 13, 15, 17 };
+        // ตารางเวลา backup อัตโนมัติ: ทุก 2 ชั่วโมง เริ่ม/สิ้นสุดตามค่าที่ผู้มีสิทธิ์ isPermissionAddSetting ตั้งไว้ (ค่า default 09:00 - 17:00)
+        private const int DefaultAutoBackupStartHour = 9;
+        private const int DefaultAutoBackupEndHour = 17;
+
+        private IEnumerable<int> GetAutoBackupHours()
+        {
+            int startHour = dtpAutoBackupStart.Value.Hour;
+            int endHour = dtpAutoBackupEnd.Value.Hour;
+            for (int hour = startHour; hour <= endHour; hour += 2)
+                yield return hour;
+        }
+
         private System.Windows.Forms.Timer autoBackupTimer;
         private string lastAutoBackupKey = "";
 
@@ -1349,7 +1387,7 @@ namespace SerialPortListener
                 return;
 
             DateTime now = DateTime.Now;
-            if (now.Minute != 0 || !AutoBackupHours.Contains(now.Hour))
+            if (now.Minute != 0 || !GetAutoBackupHours().Contains(now.Hour))
                 return;
 
             string key = now.ToString("yyyyMMdd_HH");
@@ -1364,13 +1402,15 @@ namespace SerialPortListener
         }
 
         private static readonly string AutoBackupLogPath =
-            System.IO.Path.Combine(Application.StartupPath, "backup_auto.log");
+            System.IO.Path.Combine(AppDataDir, "backup_auto.log");
 
         // auto backup ไม่มีหน้าต่างให้เห็น เขียน log ลงไฟล์แทนไว้ตรวจสอบย้อนหลัง
         private static void LogToFile(string message)
         {
             try
             {
+                if (!System.IO.Directory.Exists(AppDataDir))
+                    System.IO.Directory.CreateDirectory(AppDataDir);
                 System.IO.File.AppendAllText(AutoBackupLogPath, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\r\n");
             }
             catch (Exception)
