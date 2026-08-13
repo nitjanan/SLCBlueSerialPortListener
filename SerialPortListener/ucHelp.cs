@@ -32,8 +32,8 @@ namespace SerialPortListener
         private const int MaxRxTextLength = 2000;
 
         // Program Files (ที่ติดตั้งโปรแกรม) เขียนไฟล์ไม่ได้ถ้าไม่ใช่ admin จึงเก็บ config ไว้ใน AppData ของผู้ใช้แทน
-        private static readonly string AppDataDir =
-            System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SLCBlueSerialPortListener");
+        // AppDataDir is per-build (see Utils.AppDataDir) so Blue and Pink never share the same config file.
+        private static readonly string AppDataDir = Utils.AppDataDir;
         private static readonly string PortConfigPath =
             System.IO.Path.Combine(AppDataDir, "config_port.txt");
 
