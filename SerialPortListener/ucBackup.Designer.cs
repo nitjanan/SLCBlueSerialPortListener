@@ -226,6 +226,7 @@
             // 
             // btnSaveBackupConfig
             // 
+            this.btnSaveBackupConfig.ForeColor = System.Drawing.Color.Green;
             this.btnSaveBackupConfig.Location = new System.Drawing.Point(545, 117);
             this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
             this.btnSaveBackupConfig.Size = new System.Drawing.Size(125, 27);
