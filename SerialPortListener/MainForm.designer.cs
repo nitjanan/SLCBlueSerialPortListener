@@ -1785,6 +1785,23 @@ namespace SerialPortListener
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
+            // btPrintVRock
+            //
+            this.btPrintVRock.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btPrintVRock.BackColor = System.Drawing.Color.Gold;
+            this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintVRock.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintVRock.Location = new System.Drawing.Point(943, 623);
+            this.btPrintVRock.Name = "btPrintVRock";
+            this.btPrintVRock.Size = new System.Drawing.Size(105, 40);
+            this.btPrintVRock.TabIndex = 0;
+            this.btPrintVRock.Text = "วี ร็อค";
+            this.btPrintVRock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintVRock.UseVisualStyleBackColor = false;
+            this.btPrintVRock.Click += new System.EventHandler(this.btPrintVRock_Click);
+            //
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);

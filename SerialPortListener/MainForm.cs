@@ -5105,21 +5105,27 @@ namespace SerialPortListener
 
         private void btPrintVRock_Click(object sender, EventArgs e)
         {
-            //ปริ้น
-            preparePrint(4);
-            if (checkDuplicateRunningNumber() && tbId.Text == "")
+            try
             {
-                //ไม่ต้องทำไร
+                //ปริ้น
+                preparePrint(4);
+                if (checkDuplicateRunningNumber() && tbId.Text == "")
+                {
+                    //ไม่ต้องทำไร
+                }
+                else
+                {
+                    FPrintVRock f = new FPrintVRock();
+                    f.ShowDialog();
+                }
+
+                //save อัตโนมัติ
+                autoSave();
             }
-            else
+            catch (Exception ex)
             {
-                FPrintVRock f = new FPrintVRock();
-                f.ShowDialog();
+                MessageBox.Show("ไม่สามารถพิมพ์ได้: " + ex.Message, "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            //save อัตโนมัติ
-            autoSave();
-
         }
 
         private string getStoneTypeId()
