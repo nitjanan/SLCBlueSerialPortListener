@@ -375,12 +375,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5E9DEA6ADFAECFBD765267458F9FEA4A"
-        "OwnerKey" = "8:_F6385F3D133D01429E1374247438F167"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_602551C218AFFE3D50CC20143BA3DD8A"
         "OwnerKey" = "8:_CDFC256D905842CB926C6D62F1C21DDC"
         "MsmSig" = "8:_UNDEFINED"
@@ -6267,15 +6261,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupS_DOExp"
-        "ProductCode" = "8:{656FB5BD-1511-47D7-A591-4177D365CFDD}"
-        "PackageCode" = "8:{AD5CD69F-9F06-4DA8-BE52-DCAEDA857A20}"
+        "ProductCode" = "8:{5B7BD379-4B26-4016-8D44-4646E5661CBB}"
+        "PackageCode" = "8:{BA297440-F137-4509-8CDC-C88A23986C48}"
         "UpgradeCode" = "8:{4D79D03A-7A0B-4663-BC41-AEADA9A5008A}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:61.0.1"
+        "ProductVersion" = "8:61.0.0"
         "Manufacturer" = "8:Userpc"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
