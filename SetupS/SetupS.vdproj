@@ -352,6 +352,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5E9DEA6ADFAECFBD765267458F9FEA4A"
+        "OwnerKey" = "8:_F6385F3D133D01429E1374247438F167"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5E9DEA6ADFAECFBD765267458F9FEA4A"
         "OwnerKey" = "8:_F7F22750FFE9965A6308A6E360B93F91"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -371,12 +377,6 @@
         {
         "MsmKey" = "8:_5E9DEA6ADFAECFBD765267458F9FEA4A"
         "OwnerKey" = "8:_2501B71026E482FB6D208D2F9187E9EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5E9DEA6ADFAECFBD765267458F9FEA4A"
-        "OwnerKey" = "8:_F6385F3D133D01429E1374247438F167"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -6267,8 +6267,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupS_DOExp"
-        "ProductCode" = "8:{656FB5BD-1511-47D7-A591-4177D365CFDD}"
-        "PackageCode" = "8:{AD5CD69F-9F06-4DA8-BE52-DCAEDA857A20}"
+        "ProductCode" = "8:{B72DEFBE-9ACB-4644-898E-BE4F8DB7F82F}"
+        "PackageCode" = "8:{0056FC64-ED7E-49B3-9EF1-38E1C519382D}"
         "UpgradeCode" = "8:{4D79D03A-7A0B-4663-BC41-AEADA9A5008A}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
