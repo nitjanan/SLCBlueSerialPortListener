@@ -6267,8 +6267,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupM_DOExp"
-        "ProductCode" = "8:{30D2FD5E-3C06-44F4-AC66-504049DFEAAD}"
-        "PackageCode" = "8:{1D1D1F41-95C6-41D4-91A6-57266DF414C4}"
+        "ProductCode" = "8:{8EDD9FD1-A5DD-48DE-8D03-E6720DBA1353}"
+        "PackageCode" = "8:{DFF4DAFA-D83A-47E7-A84F-D182D05D1C13}"
         "UpgradeCode" = "8:{BFF0DD2B-C5E6-45EB-9BDD-58E31A490621}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
