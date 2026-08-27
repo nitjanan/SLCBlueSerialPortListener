@@ -3168,7 +3168,7 @@
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>10</NumberOfRows>
+      <NumberOfRows>11</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -3369,6 +3369,11 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>9</RowIndex>
           <ParameterName>PStoneDesc</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>PScoopName</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
