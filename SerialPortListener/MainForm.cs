@@ -3435,7 +3435,7 @@ namespace SerialPortListener
             Company.TTelephone = "โทร";
             Company.TEmail = "E-mail";
             Weight.Date = dtDate.Text;
-            Weight.DocNum = "Y" + tbDocNum.Text;
+            Weight.DocNum = "L" + tbDocNum.Text;
             Weight.Mill = strNotEmty(cbbMill.Text);
             Weight.DriverName = strNotEmty(tbDriverName.Text);
             Weight.CustomerName = strNotEmty(tbCustomerName.Text);

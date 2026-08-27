@@ -1137,7 +1137,7 @@ namespace SerialPortListener
 
         private void preparePrint(int mode)
         {
-            Weight.DocNum = "Y" + dgvDailyReport.CurrentRow.Cells["เลขที่เอกสาร"].Value.ToString();
+            Weight.DocNum = "L" + dgvDailyReport.CurrentRow.Cells["เลขที่เอกสาร"].Value.ToString();
             Weight.Amount = numberFormat(dgvDailyReport.CurrentRow.Cells["จำนวนเงิน"].Value.ToString(), 2);
             Weight.CarCity = strNotEmty(dgvDailyReport.CurrentRow.Cells["จังหวัด"].Value.ToString());
             Weight.CarLicense = strNotEmty(dgvDailyReport.CurrentRow.Cells["ทะเบียนรถ"].Value.ToString());
@@ -1170,6 +1170,8 @@ namespace SerialPortListener
             Weight.Id = strNotEmty(dgvDailyReport.CurrentRow.Cells["weight_id"].Value.ToString());
             Weight.ScoopName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชื่อผู้ตัก"].Value.ToString());
 
+            DataRowView currentRowView = dgvDailyReport.CurrentRow.DataBoundItem as DataRowView;
+            Weight.StoneDesc = currentRowView != null ? strNotEmty(currentRowView["stone_desc"].ToString()) : "";
 
             if (mode.Equals(3))
             {
