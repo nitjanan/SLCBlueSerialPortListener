@@ -1761,6 +1761,22 @@ namespace SerialPortListener
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
             // 
+            // tbMillId
+            // 
+            this.tbMillId.Location = new System.Drawing.Point(1091, 526);
+            this.tbMillId.Name = "tbMillId";
+            this.tbMillId.Size = new System.Drawing.Size(10, 23);
+            this.tbMillId.TabIndex = 147;
+            this.tbMillId.Visible = false;
+            // 
+            // tbMillName
+            // 
+            this.tbMillName.Location = new System.Drawing.Point(1107, 526);
+            this.tbMillName.Name = "tbMillName";
+            this.tbMillName.Size = new System.Drawing.Size(10, 23);
+            this.tbMillName.TabIndex = 148;
+            this.tbMillName.Visible = false;
+            // 
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
