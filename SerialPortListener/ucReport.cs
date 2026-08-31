@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -36,6 +36,11 @@ namespace SerialPortListener
         // save new keywords
         List<string> listNewInvoiceReport = new List<string>();
 
+        // Bind default keywords
+        List<string> listOriginalDOReport = new List<string>();
+        // save new keywords
+        List<string> listNewDOReport = new List<string>();
+
         public ucReport()
         {
             dl = new Datalayer();
@@ -56,6 +61,7 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCustomerName, listOriginalCustomerReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbInvoiceCutomerName, listOriginalInvoiceReport);
+            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbDOCutomerName, listOriginalDOReport);
 
         }
 
@@ -673,6 +679,52 @@ namespace SerialPortListener
             fp.ShowDialog();
         }
 
+        private void btPrintDO_Click(object sender, EventArgs e)
+        {
+            //sql
+            dl.connect();
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT dord.doc_no AS do_no, dord.customer_name, dord.product_name, dord.customer_address AS site_address, dord.site_name AS site_name, ");
+            sql.Append("wd.weight_doc_id, wd.delivery_date, wd.carry_type_name, wd.weight_ton, wd.weight_q, wd.unit_name, wd.bws, w.stone_desc ");
+            sql.Append("FROM weight_delivery wd INNER JOIN delivery_order dord ON wd.do_doc_no = dord.doc_no ");
+            sql.Append("LEFT JOIN weight w ON wd.weight_id = w.weight_id ");
+            sql.Append("WHERE wd.delivery_date BETWEEN ? AND ? ");
+            sql.Append("AND (wd.is_cancel = false OR wd.is_cancel IS NULL) ");
+            if (tbDOCutomerId.Text != "")
+                sql.Append("AND dord.customer_code = ? ");
+            sql.Append("ORDER BY dord.doc_no, wd.weight_doc_id");
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = sql.ToString();
+            pgCommand.Parameters.AddWithValue("", dtFromDO.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtToDO.Value.ToString("yyyy-MM-dd"));
+            if (tbDOCutomerId.Text != "")
+                pgCommand.Parameters.AddWithValue("", tbDOCutomerId.Text);
+
+            DataTable dt = new DataTable();
+            try
+            {
+                OdbcDataAdapter cmd = new OdbcDataAdapter(pgCommand);
+                cmd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                dl.close();
+                return;
+            }
+            dl.close();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromDO.Text;
+            WeightTempReport.DateTo = dtToDO.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("WeightDeliveryDataSet", dt);
+            FPrintWeightDelivery fp = new FPrintWeightDelivery(rds);
+            fp.ShowDialog();
+        }
+
         private void tbInvoiceCutomerId_TextChanged(object sender, EventArgs e)
         {
             setCustomerIdToTextbox(tbInvoiceCutomerId, tbInvoiceCutomerName);
@@ -826,6 +878,24 @@ namespace SerialPortListener
                 tbInvoiceCutomerId.Text = "";
                 cbbInvoiceCutomerName.Text = "";
             }
+        }
+
+        private void cbbDOCutomerName_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                tbDOCutomerId.Text = cbbDOCutomerName.Text.Substring(0, cbbDOCutomerName.Text.IndexOf(" : "));
+            }
+            catch (Exception)
+            {
+                tbDOCutomerId.Text = "";
+                cbbDOCutomerName.Text = "";
+            }
+        }
+
+        private void cbbDOCutomerName_TextUpdate(object sender, EventArgs e)
+        {
+            setSearchAnywhereToCombobox(cbbDOCutomerName, listOriginalDOReport, listNewDOReport);
         }
     }  
 }

@@ -232,13 +232,19 @@
         "Entry"
         {
         "MsmKey" = "8:_480C028123D8EE96710DC2D43736D9F4"
-        "OwnerKey" = "8:_5571E45E77FC9D043B2CE77194F26757"
+        "OwnerKey" = "8:_65DA39BC407B455491E56632DB1E8E19"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_480C028123D8EE96710DC2D43736D9F4"
         "OwnerKey" = "8:_FBEA141D9D69C9549291180DF3B86ADB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_480C028123D8EE96710DC2D43736D9F4"
+        "OwnerKey" = "8:_5571E45E77FC9D043B2CE77194F26757"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -328,6 +334,12 @@
         "Entry"
         {
         "MsmKey" = "8:_6273039EB3B1A6628C3F4F0FD04B82DB"
+        "OwnerKey" = "8:_65DA39BC407B455491E56632DB1E8E19"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_62B065D0D902053F9A5E6610A58F1FED"
         "OwnerKey" = "8:_65DA39BC407B455491E56632DB1E8E19"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -575,6 +587,12 @@
         {
         "MsmKey" = "8:_81EF1F4478ABAC343923F1FD8BE0F9F8"
         "OwnerKey" = "8:_A56C83E2AFAA1EDFF55A7B55543906B9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_831E23E4D8AF4F53B8AB33DE022330C0"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1072,6 +1090,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_805480939CAA65172014DF79850323CF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_480C028123D8EE96710DC2D43736D9F4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_39AC1D1F2BC2684467539DF4A363E29C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1133,6 +1163,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BDA7E4C59F7CA7554CA6478FBECE648A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_62B065D0D902053F9A5E6610A58F1FED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1763,18 +1799,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8848179EEC66EB130BB91CD91F0FFC3C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_480C028123D8EE96710DC2D43736D9F4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_805480939CAA65172014DF79850323CF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3349,6 +3373,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_62B065D0D902053F9A5E6610A58F1FED"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_62B065D0D902053F9A5E6610A58F1FED"
+                    {
+                    "Name" = "8:System.IO.Compression.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_62FAAC1ADF257C34E4C54F8601992FDD"
             {
             "AssemblyRegister" = "3:1"
@@ -4173,6 +4228,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_831E23E4D8AF4F53B8AB33DE022330C0"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Pictures\\iconNew.ico"
+            "TargetName" = "8:iconNew.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_83BD69802908D0C8DA88A69ADE13B629"
@@ -6183,16 +6258,16 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:SetupM"
-        "ProductCode" = "8:{EF3B11E4-6FB0-45B1-9982-4B0C1A9D2D0A}"
-        "PackageCode" = "8:{3321B1CC-7819-40CF-987C-D558377BFDDB}"
+        "ProductName" = "8:SetupM_DOExp"
+        "ProductCode" = "8:{B9512893-9C75-4D11-AA8B-661CD54B8983}"
+        "PackageCode" = "8:{0D7DD433-C891-41E2-8591-0094EC270D58}"
         "UpgradeCode" = "8:{BFF0DD2B-C5E6-45EB-9BDD-58E31A490621}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:32.0.0"
+        "ProductVersion" = "8:62.0.4"
         "Manufacturer" = "8:Userpc"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -6316,7 +6391,7 @@
             "Target" = "8:_65DA39BC407B455491E56632DB1E8E19"
             "Folder" = "8:_A843A48FDD1E4C35ADFF31CB77B262EA"
             "WorkingFolder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
-            "Icon" = "8:"
+            "Icon" = "8:_831E23E4D8AF4F53B8AB33DE022330C0"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FC93DEC80E0B4372B9B79FC91A6FDA20"
@@ -6330,7 +6405,7 @@
             "Target" = "8:_65DA39BC407B455491E56632DB1E8E19"
             "Folder" = "8:_B5A2C4FDE858480AAA894F006E59EB05"
             "WorkingFolder" = "8:_15475A54967C49BA9C5C8FBC622AE771"
-            "Icon" = "8:"
+            "Icon" = "8:_831E23E4D8AF4F53B8AB33DE022330C0"
             "Feature" = "8:"
             }
         }

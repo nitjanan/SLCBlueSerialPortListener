@@ -118,7 +118,10 @@ namespace SerialPortListener.Serial
         /// </summary>
         public void StopListening()
         {
-            _serialPort.Close();
+            if (_serialPort != null)
+            {
+                _serialPort.Close();
+            }
         }
 
 
@@ -147,7 +150,10 @@ namespace SerialPortListener.Serial
         {
             if (disposing)
             {
-                _serialPort.DataReceived -= new SerialDataReceivedEventHandler(_serialPort_DataReceived);
+                if (_serialPort != null)
+                {
+                    _serialPort.DataReceived -= new SerialDataReceivedEventHandler(_serialPort_DataReceived);
+                }
             }
             // Releasing serial port (and other unmanaged objects)
             if (_serialPort != null)

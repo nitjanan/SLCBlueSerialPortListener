@@ -29,6 +29,7 @@ namespace SerialPortListener
         SerialPortManager _spManager;
         Datalayer dl;
         DatalayerNew dln;
+        TableFromDB _tableFromDB;
         String strCalQ = "1.00";
         AutoCompleteStringCollection collCarTeam = new AutoCompleteStringCollection();
         bool isCheckedCash = false;
@@ -174,11 +175,15 @@ namespace SerialPortListener
         public class WeightDelivery
         {
             public int weight_id { get; set; }
+            public string weight_doc_id { get; set; }
             public string delivery_date { get; set; }
             public string bws { get; set; }
             public string comp_code { get; set; }
             public string do_doc_no { get; set; }
             public string carry_type_name { get; set; }
+            public decimal weight_ton { get; set; }
+            public decimal weight_q { get; set; }
+            public string unit_name { get; set; }
             public Boolean is_cancel { get; set; }
         }
 
@@ -200,10 +205,126 @@ namespace SerialPortListener
 
             getSettingDefault();
 
+            ucBackup.CheckUpdateRequested += BtnCheckUpdate_Click;
+
+            this.Load += async (s, e) => await CheckForUpdateAsync(silent: true);
+
             // _spManager.StartListening();
         }
 
+        // ปุ่ม "ตรวจสอบอัพเดท" อยู่ที่ ucBackup ; MainForm รับ event มาทำงานเพราะ logic ต้องใช้ dl, findBWS(), GetJwtToken()
+        private async void BtnCheckUpdate_Click(object sender, EventArgs e)
+        {
+            ucBackup.CheckUpdateButtonEnabled = false;
+            try
+            {
+                await CheckForUpdateAsync(silent: false);
+            }
+            finally
+            {
+                ucBackup.CheckUpdateButtonEnabled = true;
+            }
+        }
+
+        // silent = true: เรียกตอนเปิดโปรแกรม — ถ้าต่อ Server ไม่ได้หรือเป็นเวอร์ชันล่าสุดอยู่แล้วจะไม่ขึ้น MessageBox กวนใจ
+        // silent = false: เรียกจากปุ่ม "ตรวจสอบอัพเดท" — แจ้งผลทุกกรณี
+        // ทุก exception ถูกดักไว้ในนี้ทั้งหมด เพื่อไม่ให้ปัญหาการเช็คอัพเดทกระทบการเปิดฟอร์มหลักของโปรแกรม
+        private async Task CheckForUpdateAsync(bool silent)
+        {
+            try
+            {
+                string baseUrl = getBaseApi(1, 1);
+                string apiUsername = getBaseApi(2, 1);
+                string apiPassword = getBaseApi(3, 1);
+
+                using (HttpClient client = new HttpClient())
+                {
+                    string accessToken = await GetJwtToken(client, baseUrl, apiUsername, apiPassword);
+                    if (accessToken == null)
+                    {
+                        if (!silent)
+                        {
+                            MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้", "เช็คอัพเดท",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        return;
+                    }
+
+                    AppReleaseInfo release = await AppUpdateService.GetLatestReleaseAsync(client, baseUrl, accessToken);
+                    Version currentVersion = AppUpdateService.CurrentVersion;
+
+                    if (release == null || !AppUpdateService.IsNewerVersion(release.version, currentVersion))
+                    {
+                        if (!silent)
+                        {
+                            MessageBox.Show($"คุณใช้เวอร์ชันล่าสุดแล้ว ({currentVersion})", "เช็คอัพเดท",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        return;
+                    }
+
+                    string message = $"พบเวอร์ชันใหม่ {release.version}\r\n\r\n{release.release_notes}\r\n\r\nต้องการดาวน์โหลดและติดตั้งตอนนี้หรือไม่?";
+                    DialogResult confirm = MessageBox.Show(message, "พบอัพเดทใหม่",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (confirm != DialogResult.Yes)
+                        return;
+
+                    string installerPath = await AppUpdateService.DownloadInstallerAsync(client, release, baseUrl);
+
+                    bool sqlApplied = false;
+                    if (!string.IsNullOrEmpty(release.sql_script_url))
+                    {
+                        dl.connect();
+                        try
+                        {
+                            sqlApplied = await AppUpdateService.DownloadAndRunSqlScriptAsync(client, release, baseUrl, dl.sqlConn());
+                        }
+                        finally
+                        {
+                            dl.close();
+                        }
+                    }
+
+                    await AppUpdateService.LogUpdateAsync(
+                        client, baseUrl, accessToken, Environment.MachineName,
+                        currentVersion.ToString(), release.version, true, findBWS(), sqlApplied);
+
+                    AppUpdateService.RunInstallerAndExit(installerPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (!silent)
+                {
+                    MessageBox.Show("เกิดข้อผิดพลาดระหว่างเช็ค/ติดตั้งอัพเดท: " + ex.Message, "เช็คอัพเดท",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            finally
+            {
+                ucBackup.CheckUpdateButtonEnabled = true;
+            }
+        }
+
         public void getSettingDefault()
+        {
+            // Open one connection up front and keep it open for the whole batch of
+            // autocomplete lookups below; each helper still calls dl.connect()/dl.close()
+            // internally but those become cheap no-ops while this outer connection is open,
+            // instead of each doing its own round-trip open/close to the DB server.
+            dl.connect();
+            try
+            {
+                getSettingDefaultCore();
+            }
+            finally
+            {
+                dl.close();
+            }
+        }
+
+        private void getSettingDefaultCore()
         {
             lbCompanyCode.Text = Company.Code;
             /* autoComplete ผู้ตัก */
@@ -914,7 +1035,10 @@ namespace SerialPortListener
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _spManager.Dispose();
+            if (_spManager != null)
+            {
+                _spManager.Dispose();
+            }
         }
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
@@ -925,7 +1049,6 @@ namespace SerialPortListener
                 this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
                 return;
             }
-
             int maxTextLength = 1000; // maximum text length in text box
             if (tbData.TextLength > maxTextLength)
                 tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
@@ -1115,8 +1238,18 @@ namespace SerialPortListener
             ucSetting.Hide();
             ucBackup.Hide();
 
-            TableFromDB mf = new TableFromDB(this);
-            mf.ShowDialog();
+            // Reuse a single TableFromDB instance instead of constructing (and running
+            // InitializeComponent + a fresh DB connection for) a brand new one on every
+            // click; just refresh its grid data before showing it again.
+            if (_tableFromDB == null || _tableFromDB.IsDisposed)
+            {
+                _tableFromDB = new TableFromDB(this);
+            }
+            else
+            {
+                _tableFromDB.RefreshData();
+            }
+            _tableFromDB.ShowDialog();
         }
 
         private void btMenu2_Click(object sender, EventArgs e)
@@ -2391,6 +2524,8 @@ namespace SerialPortListener
                     var apiData = new
                     {
                         weight_id = weightId,
+
+                        weight_doc_id  = tbDocNum.Text,
 
                         delivery_date =
                             deliveryDate.ToString("yyyy-MM-dd"),
@@ -4788,23 +4923,33 @@ namespace SerialPortListener
             }
         }
 
-        private void btRefresh_Click(object sender, EventArgs e)
+        private async void btRefresh_Click(object sender, EventArgs e)
         {
-            /* autoComplete ผู้ตัก */
-            autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
-            autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
+            btRefresh.Enabled = false;
+            try
+            {
+                await ucBackup.DownloadSettingAsync(this);
 
-            /* autoComplete โรงโม่ */
-            //autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
-            //autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
+                /* autoComplete ผู้ตัก */
+                autoCompleteSettingCompany(tbScoopId, "รหัสผู้ตัก", "base_scoop");
+                autoCompleteSettingCompany(tbScoopName, "ชื่อผู้ตัก", "base_scoop");
 
-            setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
+                /* autoComplete โรงโม่ */
+                //autoCompleteSettingWeightType(tbMillId, "รหัสโรงโม่", "base_mill");
+                //autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
 
-            Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
+                setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
-            fillStoneCombo();
-            fillTransportCombo();
-            fillMillCombo();
+                Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
+
+                fillStoneCombo();
+                fillTransportCombo();
+                fillMillCombo();
+            }
+            finally
+            {
+                btRefresh.Enabled = true;
+            }
         }
 
         private void tbMillId_Leave(object sender, EventArgs e)
@@ -5598,33 +5743,47 @@ namespace SerialPortListener
                             INSERT INTO weight_delivery
                             (
                                 weight_id,
+                                weight_doc_id,
                                 delivery_date,
                                 bws,
                                 comp_code,
                                 do_doc_no,
                                 carry_type_name,
+                                weight_ton,
+                                weight_q,
+                                unit_name,
                                 is_cancel
                             )
                             VALUES
                             (
-                                ?, ?, ?, ?, ?, ?, ?
+                                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                             )
                             ON CONFLICT (weight_id)
                             DO UPDATE SET
+                                weight_doc_id = EXCLUDED.weight_doc_id,
                                 delivery_date = EXCLUDED.delivery_date,
                                 bws = EXCLUDED.bws,
                                 comp_code = EXCLUDED.comp_code,
                                 do_doc_no = EXCLUDED.do_doc_no,
                                 carry_type_name = EXCLUDED.carry_type_name,
+                                weight_ton = EXCLUDED.weight_ton,
+                                weight_q = EXCLUDED.weight_q,
+                                unit_name = EXCLUDED.unit_name,
                                 is_cancel = EXCLUDED.is_cancel
                         ";
 
                                 pgCommand.Parameters.AddWithValue("", item.weight_id);
+                                pgCommand.Parameters.AddWithValue("", item.weight_doc_id);
                                 pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
                                 pgCommand.Parameters.AddWithValue("", item.bws);
                                 pgCommand.Parameters.AddWithValue("", item.comp_code);
                                 pgCommand.Parameters.AddWithValue("", item.do_doc_no);
                                 pgCommand.Parameters.AddWithValue("", item.carry_type_name);
+
+                                pgCommand.Parameters.AddWithValue("", item.weight_ton);
+                                pgCommand.Parameters.AddWithValue("", item.weight_q);
+                                pgCommand.Parameters.AddWithValue("", item.unit_name);
+
                                 pgCommand.Parameters.AddWithValue("", item.is_cancel);
 
                                 pgCommand.ExecuteNonQuery();

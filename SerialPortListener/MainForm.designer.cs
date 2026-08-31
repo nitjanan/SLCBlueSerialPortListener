@@ -144,12 +144,13 @@ namespace SerialPortListener
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.cbbCarTeam = new System.Windows.Forms.ComboBox();
+            this.cbS = new System.Windows.Forms.CheckBox();
             this.tbMillId = new System.Windows.Forms.TextBox();
             this.tbMillName = new System.Windows.Forms.TextBox();
-            this.ucSetting = new SerialPortListener.ucSetting();
-            this.ucReport = new SerialPortListener.ucReport();
-            this.ucHelp = new SerialPortListener.ucHelp();
-            this.ucBackup = new SerialPortListener.ucBackup();
+            this.tbDoId = new System.Windows.Forms.TextBox();
+            this.tbDoDocNo = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.tbOldDoId = new System.Windows.Forms.TextBox();
             this.btLoadDO = new System.Windows.Forms.Button();
             this.btRefresh = new System.Windows.Forms.Button();
             this.btPrintAll = new System.Windows.Forms.Button();
@@ -157,12 +158,11 @@ namespace SerialPortListener
             this.btPrintIn = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
             this.ucTruck = new SerialPortListener.ucTruck();
+            this.ucSetting = new SerialPortListener.ucSetting();
+            this.ucReport = new SerialPortListener.ucReport();
+            this.ucHelp = new SerialPortListener.ucHelp();
+            this.ucBackup = new SerialPortListener.ucBackup();
             this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tbDoId = new System.Windows.Forms.TextBox();
-            this.tbDoDocNo = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.tbOldDoId = new System.Windows.Forms.TextBox();
-            this.cbS = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -316,16 +316,15 @@ namespace SerialPortListener
             this.btMenu5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btMenu5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btMenu5.Image = global::SerialPortListener.Properties.Resources.data_backup_32px;
+            this.btMenu5.Image = global::SerialPortListener.Properties.Resources.database_configuration;
             this.btMenu5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu5.Location = new System.Drawing.Point(9, 387);
+            this.btMenu5.Location = new System.Drawing.Point(9, 293);
             this.btMenu5.Name = "btMenu5";
             this.btMenu5.Size = new System.Drawing.Size(171, 41);
             this.btMenu5.TabIndex = 106;
             this.btMenu5.TabStop = false;
-            this.btMenu5.Text = "backup";
+            this.btMenu5.Text = "GUI";
             this.btMenu5.UseVisualStyleBackColor = false;
-            this.btMenu5.Visible = false;
             this.btMenu5.Click += new System.EventHandler(this.btMenu5_Click);
             // 
             // label1
@@ -365,7 +364,7 @@ namespace SerialPortListener
             this.btMenu3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btMenu3.Image = global::SerialPortListener.Properties.Resources.settings_32px;
             this.btMenu3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btMenu3.Location = new System.Drawing.Point(9, 293);
+            this.btMenu3.Location = new System.Drawing.Point(9, 388);
             this.btMenu3.Name = "btMenu3";
             this.btMenu3.Size = new System.Drawing.Size(171, 41);
             this.btMenu3.TabIndex = 103;
@@ -1611,16 +1610,29 @@ namespace SerialPortListener
             this.cbbCarTeam.Name = "cbbCarTeam";
             this.cbbCarTeam.Size = new System.Drawing.Size(177, 25);
             this.cbbCarTeam.TabIndex = 138;
-            // 
+            //
+            // cbS
+            //
+            this.cbS.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbS.AutoSize = true;
+            this.cbS.Font = new System.Drawing.Font("Century Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbS.ForeColor = System.Drawing.Color.Brown;
+            this.cbS.Location = new System.Drawing.Point(870, 52);
+            this.cbS.Name = "cbS";
+            this.cbS.Size = new System.Drawing.Size(55, 45);
+            this.cbS.TabIndex = 140;
+            this.cbS.Text = "S";
+            this.cbS.UseVisualStyleBackColor = true;
+            //
             // tbMillId
             // 
             this.tbMillId.AccessibleName = "รหัสผู้ตัก";
             this.tbMillId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbMillId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillId.Location = new System.Drawing.Point(1157, 565);
+            this.tbMillId.Location = new System.Drawing.Point(1157, 557);
             this.tbMillId.Name = "tbMillId";
             this.tbMillId.Size = new System.Drawing.Size(10, 27);
-            this.tbMillId.TabIndex = 142;
+            this.tbMillId.TabIndex = 140;
             this.tbMillId.Visible = false;
             this.tbMillId.Leave += new System.EventHandler(this.tbMillId_Leave);
             // 
@@ -1629,55 +1641,55 @@ namespace SerialPortListener
             this.tbMillName.AccessibleName = "ผู้ตัก";
             this.tbMillName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbMillName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMillName.Location = new System.Drawing.Point(1173, 564);
+            this.tbMillName.Location = new System.Drawing.Point(1173, 557);
             this.tbMillName.Name = "tbMillName";
             this.tbMillName.Size = new System.Drawing.Size(10, 27);
-            this.tbMillName.TabIndex = 143;
+            this.tbMillName.TabIndex = 141;
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
             // 
-            // ucSetting
+            // tbDoId
             // 
-            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSetting.Location = new System.Drawing.Point(0, 0);
-            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSetting.Name = "ucSetting";
-            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
-            this.ucSetting.TabIndex = 21;
+            this.tbDoId.Location = new System.Drawing.Point(1071, 69);
+            this.tbDoId.Name = "tbDoId";
+            this.tbDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbDoId.TabIndex = 143;
+            this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbDoId.Visible = false;
             // 
-            // ucReport
+            // tbDoDocNo
             // 
-            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
-            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReport.Location = new System.Drawing.Point(0, 0);
-            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
-            this.ucReport.Name = "ucReport";
-            this.ucReport.Size = new System.Drawing.Size(1208, 686);
-            this.ucReport.TabIndex = 20;
-            this.ucReport.Visible = false;
+            this.tbDoDocNo.BackColor = System.Drawing.SystemColors.Window;
+            this.tbDoDocNo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDoDocNo.ForeColor = System.Drawing.Color.MediumBlue;
+            this.tbDoDocNo.Location = new System.Drawing.Point(1024, 92);
+            this.tbDoDocNo.Name = "tbDoDocNo";
+            this.tbDoDocNo.ReadOnly = true;
+            this.tbDoDocNo.Size = new System.Drawing.Size(105, 23);
+            this.tbDoDocNo.TabIndex = 144;
+            this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // ucHelp
+            // label39
             // 
-            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
-            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucHelp.Location = new System.Drawing.Point(0, 0);
-            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.ucHelp.Name = "ucHelp";
-            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
-            this.ucHelp.TabIndex = 19;
-            this.ucHelp.Visible = false;
+            this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.MintCream;
+            this.label39.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label39.Location = new System.Drawing.Point(922, 94);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(96, 21);
+            this.label39.TabIndex = 145;
+            this.label39.Text = "เลขที่ใบส่งของ";
             // 
-            // ucBackup
+            // tbOldDoId
             // 
-            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
-            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucBackup.Location = new System.Drawing.Point(0, 0);
-            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
-            this.ucBackup.Name = "ucBackup";
-            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
-            this.ucBackup.TabIndex = 108;
+            this.tbOldDoId.Location = new System.Drawing.Point(1134, 68);
+            this.tbOldDoId.Name = "tbOldDoId";
+            this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
+            this.tbOldDoId.TabIndex = 146;
+            this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbOldDoId.Visible = false;
             // 
             // btLoadDO
             // 
@@ -1695,7 +1707,7 @@ namespace SerialPortListener
             // 
             this.btRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btRefresh.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRefresh.Image = global::SerialPortListener.Properties.Resources.refresh_32px;
+            this.btRefresh.Image = global::SerialPortListener.Properties.Resources.download;
             this.btRefresh.Location = new System.Drawing.Point(475, 54);
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.Size = new System.Drawing.Size(44, 44);
@@ -1783,51 +1795,56 @@ namespace SerialPortListener
             this.ucTruck.TabIndex = 22;
             // 
             // serialSettingsBindingSource
+            //
+            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
+            //
+            // ucSetting
+            //
+            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSetting.Location = new System.Drawing.Point(0, 0);
+            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.ucSetting.Name = "ucSetting";
+            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
+            this.ucSetting.TabIndex = 21;
+            //
+            // ucReport
+            //
+            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
+            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucReport.Location = new System.Drawing.Point(0, 0);
+            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
+            this.ucReport.Name = "ucReport";
+            this.ucReport.Size = new System.Drawing.Size(1208, 686);
+            this.ucReport.TabIndex = 20;
+            this.ucReport.Visible = false;
+            // 
+            // ucHelp
+            // 
+            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
+            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucHelp.Location = new System.Drawing.Point(0, 0);
+            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
+            this.ucHelp.Name = "ucHelp";
+            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
+            this.ucHelp.TabIndex = 19;
+            this.ucHelp.Visible = false;
+            // 
+            // ucBackup
+            // 
+            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
+            this.ucBackup.CheckUpdateButtonEnabled = true;
+            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucBackup.Location = new System.Drawing.Point(0, 0);
+            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
+            this.ucBackup.Name = "ucBackup";
+            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
+            this.ucBackup.TabIndex = 108;
+            // 
+            // serialSettingsBindingSource
             // 
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
-            // tbDoId
-            // 
-            this.tbDoId.Location = new System.Drawing.Point(1071, 69);
-            this.tbDoId.Name = "tbDoId";
-            this.tbDoId.Size = new System.Drawing.Size(57, 23);
-            this.tbDoId.TabIndex = 143;
-            this.tbDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbDoId.Visible = false;
-            // 
-            // tbDoDocNo
-            // 
-            this.tbDoDocNo.BackColor = System.Drawing.SystemColors.Window;
-            this.tbDoDocNo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDoDocNo.ForeColor = System.Drawing.Color.MediumBlue;
-            this.tbDoDocNo.Location = new System.Drawing.Point(1024, 92);
-            this.tbDoDocNo.Name = "tbDoDocNo";
-            this.tbDoDocNo.ReadOnly = true;
-            this.tbDoDocNo.Size = new System.Drawing.Size(105, 23);
-            this.tbDoDocNo.TabIndex = 144;
-            this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label39
-            // 
-            this.label39.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.Color.MintCream;
-            this.label39.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label39.Location = new System.Drawing.Point(922, 94);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(96, 21);
-            this.label39.TabIndex = 145;
-            this.label39.Text = "เลขที่ใบส่งของ";
-            // 
-            // tbOldDoId
-            // 
-            this.tbOldDoId.Location = new System.Drawing.Point(1134, 68);
-            this.tbOldDoId.Name = "tbOldDoId";
-            this.tbOldDoId.Size = new System.Drawing.Size(57, 23);
-            this.tbOldDoId.TabIndex = 146;
-            this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbOldDoId.Visible = false;
             // 
             // cbS
             // 
