@@ -1060,35 +1060,95 @@ namespace SerialPortListener
 
             try
             {
-                //แสดงเลขน้ำหนักที่กำลังวิ่ง
+                //แสดงเลขน้ำหนักที่กำลังวิ่ง (อ่านค่าน้ำหนักหลัง *0 จากบรรทัดล่าสุด)
+                string weight = GetLatestWeight(tbData.Text);
 
-
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
-
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-
-                if (mc.Count > 0)
+                if (weight != null)
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    if (String.Compare(tbWeigtData.Text, weight) != 0)
                     {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        //tbWeigtData.ForeColor = Color.LightCoral;
+                        tbWeigtData.Text = weight;
+                        tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
                     {
                         tbWeigtData.ForeColor = Color.LightGreen;
                     }
-
                 }
             }
-            catch (Exception ex)
+            catch (FormatException)
             {
-
+                // ข้อมูลไม่ถูกต้อง - ไม่ปรับค่าน้ำหนัก
+            }
+            catch (ArgumentException)
+            {
+                // ข้อมูลไม่ถูกต้อง - ไม่ปรับค่าน้ำหนัก
             }
 
 
+        }
+
+        /// <summary>
+        /// อ่านค่าน้ำหนักจากบรรทัดสมบูรณ์ล่าสุดของข้อมูลที่รับจากตาชั่ง
+        /// รูปแบบข้อมูล: "7*0 000000000000" โดยค่าน้ำหนักคือตัวเลขที่อยู่หลัง "*0"
+        /// ตัดเลข 0 นำหน้าออก และคืนค่า "0" เมื่อค่าเป็นศูนย์ทั้งหมด
+        /// คืนค่า null เมื่อไม่พบบรรทัดที่ใช้งานได้
+        /// </summary>
+        private string GetLatestWeight(string data)
+        {
+            if (string.IsNullOrEmpty(data))
+                return null;
+
+            const int WeightFieldLength = 12;   // ความกว้างฟิลด์น้ำหนักที่ตาชั่งส่งมา
+            const int WeightDecimalPlaces = 6;  // จำนวนหลักทศนิยมที่ implied อยู่ในฟิลด์
+
+            // แยกเป็นบรรทัด
+            string[] lines = data.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+
+            // ถ้าข้อมูลไม่ได้จบด้วยตัวขึ้นบรรทัดใหม่ บรรทัดสุดท้ายถือว่ายังไม่สมบูรณ์
+            int lastIndex = lines.Length - 1;
+            if (!(data.EndsWith("\n") || data.EndsWith("\r")))
+                lastIndex--;
+
+            const string marker = "*0";
+
+            for (int i = lastIndex; i >= 0; i--)
+            {
+                string line = lines[i];
+                if (string.IsNullOrEmpty(line))
+                    continue;
+
+                int markerPos = line.LastIndexOf(marker, StringComparison.Ordinal);
+                if (markerPos < 0)
+                    continue;
+
+                int pos = markerPos + marker.Length;
+
+                // ข้ามช่องว่างหลัง *0
+                while (pos < line.Length && char.IsWhiteSpace(line[pos]))
+                    pos++;
+
+                // เก็บเฉพาะตัวเลขที่ต่อเนื่องกัน
+                int start = pos;
+                while (pos < line.Length && char.IsDigit(line[pos]))
+                    pos++;
+
+                if (pos == start)
+                    continue; // ไม่มีตัวเลขหลัง *0 - บรรทัดผิดรูปแบบ ลองบรรทัดก่อนหน้า
+
+                string digits = line.Substring(start, pos - start);
+
+                // รับเฉพาะฟิลด์ที่ครบความกว้าง (กันบรรทัดที่รับมาไม่ครบ เช่นได้ "70000")
+                if (digits.Length != WeightFieldLength)
+                    continue;
+
+                // 6 หลักท้ายเป็นทศนิยม (implied decimal) น้ำหนักเป็นจำนวนเต็ม จึงตัดทิ้ง
+                string integerPart = digits.Substring(0, digits.Length - WeightDecimalPlaces);
+                string trimmed = integerPart.TrimStart('0');
+                return trimmed.Length == 0 ? "0" : trimmed;
+            }
+
+            return null;
         }
 
         // Handles the "Start Listening"-buttom click event
