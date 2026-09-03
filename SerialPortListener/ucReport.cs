@@ -1138,7 +1138,7 @@ namespace SerialPortListener
             Weight.Date = dgvDailyReport.CurrentRow.Cells["วันที่"].Value.ToString();
             Weight.DriverName = strNotEmty(dgvDailyReport.CurrentRow.Cells["คนขับ"].Value.ToString());
             Weight.Mill = strNotEmty(dgvDailyReport.CurrentRow.Cells["โรงโม่"].Value.ToString());
-            Weight.Pay = dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value.ToString();
+            Weight.Pay = strNotEmty(Convert.ToString(dgvDailyReport.CurrentRow.Cells["จ่ายเงิน"].Value));
             Weight.Price = numberFormat(dgvDailyReport.CurrentRow.Cells["ราคาตัน"].Value.ToString(), 2);
             Weight.StoneType = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชนิดหิน"].Value.ToString());
             Weight.WeightIn = dgvDailyReport.CurrentRow.Cells["น้ำหนักรถ"].Value.ToString();
@@ -1161,6 +1161,15 @@ namespace SerialPortListener
             Weight.ScoopName = strNotEmty(dgvDailyReport.CurrentRow.Cells["ชื่อผู้ตัก"].Value.ToString());
             Weight.OilContent = numberFormat(dgvDailyReport.CurrentRow.Cells["oil_content"].Value.ToString(), 2);
             Weight.Id = strNotEmty(dgvDailyReport.CurrentRow.Cells["weight_id"].Value.ToString());
+
+            try
+            {
+                Weight.StoneDesc = strNotEmty(Convert.ToString(dgvDailyReport.CurrentRow.Cells["stone_desc"].Value));
+            }
+            catch
+            {
+                Weight.StoneDesc = " ";
+            }
 
 
             if (mode.Equals(3))

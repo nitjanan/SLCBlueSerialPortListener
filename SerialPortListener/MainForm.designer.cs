@@ -1709,7 +1709,7 @@ namespace SerialPortListener
             this.btPrintAll.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintAll.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintAll.Location = new System.Drawing.Point(803, 623);
+            this.btPrintAll.Location = new System.Drawing.Point(797, 623);
             this.btPrintAll.Name = "btPrintAll";
             this.btPrintAll.Size = new System.Drawing.Size(105, 40);
             this.btPrintAll.TabIndex = 123;
@@ -1726,13 +1726,14 @@ namespace SerialPortListener
             this.btPrintOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintOut.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintOut.Location = new System.Drawing.Point(658, 623);
+            this.btPrintOut.Location = new System.Drawing.Point(370, 623);
             this.btPrintOut.Name = "btPrintOut";
             this.btPrintOut.Size = new System.Drawing.Size(105, 40);
             this.btPrintOut.TabIndex = 122;
             this.btPrintOut.Text = "พิมพ์ออก";
             this.btPrintOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintOut.UseVisualStyleBackColor = false;
+            this.btPrintOut.Visible = false;
             this.btPrintOut.Click += new System.EventHandler(this.btPrintOut_Click);
             // 
             // btPrintIn
@@ -1743,13 +1744,14 @@ namespace SerialPortListener
             this.btPrintIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintIn.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintIn.Location = new System.Drawing.Point(508, 623);
+            this.btPrintIn.Location = new System.Drawing.Point(231, 623);
             this.btPrintIn.Name = "btPrintIn";
             this.btPrintIn.Size = new System.Drawing.Size(105, 40);
             this.btPrintIn.TabIndex = 47;
             this.btPrintIn.Text = "พิมพ์เข้า";
             this.btPrintIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintIn.UseVisualStyleBackColor = false;
+            this.btPrintIn.Visible = false;
             this.btPrintIn.Click += new System.EventHandler(this.btPrintIn_Click);
             // 
             // btSave
@@ -1759,7 +1761,7 @@ namespace SerialPortListener
             this.btSave.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSave.Image = global::SerialPortListener.Properties.Resources.save_32px;
             this.btSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSave.Location = new System.Drawing.Point(342, 623);
+            this.btSave.Location = new System.Drawing.Point(612, 623);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(105, 40);
             this.btSave.TabIndex = 46;

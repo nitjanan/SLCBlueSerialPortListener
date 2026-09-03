@@ -68,6 +68,16 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("TLogo",Company.TLogo),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDatePrintAndCopyNum",Weight.DatePrintAndCopyNum),
             };
+            // A null value makes the RDLC engine report "parameter is missing a value".
+            // Guarantee every parameter carries a non-null string.
+            foreach (var rp in p)
+            {
+                if (rp.Values.Count == 0 || rp.Values[0] == null)
+                {
+                    rp.Values.Clear();
+                    rp.Values.Add("");
+                }
+            }
             //this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             //ps.Landscape = false;

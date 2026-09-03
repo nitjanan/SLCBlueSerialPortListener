@@ -204,24 +204,12 @@ namespace SerialPortListener
                 data.millId = tableDataFromDB.CurrentRow.Cells["mill_id"].Value.ToString();
                 data.carTeamId = tableDataFromDB.CurrentRow.Cells["car_team_id"].Value.ToString();
                 data.vat = tableDataFromDB.CurrentRow.Cells["vat"].Value.ToString();
-                data.doId = tableDataFromDB.CurrentRow.Cells["do_id"].Value.ToString();
-                data.doDocNo = tableDataFromDB.CurrentRow.Cells["do_doc_no"].Value.ToString();
-                try
-                {
-                    var rowView = tableDataFromDB.CurrentRow.DataBoundItem as System.Data.DataRowView;
-                    if (rowView != null && rowView.Row.Table.Columns.Contains("stone_desc"))
-                    {
-                        data.stone_desc = rowView.Row["stone_desc"] == DBNull.Value ? "" : rowView.Row["stone_desc"].ToString();
-                    }
-                    else
-                    {
-                        data.stone_desc = "";
-                    }
-                }
-                catch
-                {
-                    data.stone_desc = "";
-                }
+                // do_id / do_doc_no / stone_desc may be absent as grid columns (no designer column)
+                // or absent in the DB result set, so read them defensively from the bound row.
+                var rowView = tableDataFromDB.CurrentRow.DataBoundItem as System.Data.DataRowView;
+                data.doId = GetBoundValue(rowView, "do_id");
+                data.doDocNo = GetBoundValue(rowView, "do_doc_no");
+                data.stone_desc = GetBoundValue(rowView, "stone_desc");
 
 
                 //set Mode Weight
@@ -239,6 +227,22 @@ namespace SerialPortListener
             else {
                 MessageBox.Show("ไม่พบข้อมูลที่ต้องการแก้ไข", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private static string GetBoundValue(System.Data.DataRowView rowView, string columnName)
+        {
+            try
+            {
+                if (rowView != null && rowView.Row.Table.Columns.Contains(columnName))
+                {
+                    object v = rowView.Row[columnName];
+                    return v == null || v == DBNull.Value ? "" : v.ToString();
+                }
+            }
+            catch
+            {
+            }
+            return "";
         }
 
         private void btUpdate_Click(object sender, EventArgs e)

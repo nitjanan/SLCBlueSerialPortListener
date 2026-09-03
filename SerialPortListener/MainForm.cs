@@ -3505,6 +3505,7 @@ namespace SerialPortListener
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
             Weight.StoneType = strNotEmty(cbbStoneType.Text);
             Weight.StoneDesc = strNotEmty(tbStoneDesc.Text);
+            Weight.ScoopName = strNotEmty(tbScoopName.Text);
             Weight.CarLicense = strNotEmty(tbCarLicense.Text);
             Weight.CarCity = strNotEmty(tbCarCity.Text);
             Weight.DateIn = strNotEmty(dtWeightInDate.Text);
