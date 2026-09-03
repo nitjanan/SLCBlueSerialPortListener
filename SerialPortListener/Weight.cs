@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +16,7 @@ namespace SerialPortListener
         private static string _customerId;
         private static string _customerName;
         private static string _stoneType;
+        private static string _stoneDesc;
         private static string _carLicense;
         private static string _carCity;
         private static string _dateIn;
@@ -47,6 +48,7 @@ namespace SerialPortListener
         private static string _carTeamId;
         private static string _scaleId;
         private static string _scoopName;
+        private static string _doId;
 
         private static string _datePrint;
         private static string _datePrintAndCopyNum;
@@ -153,6 +155,14 @@ namespace SerialPortListener
             { return _stoneType; }
             set
             { _stoneType = value; }
+        }
+
+        public static string StoneDesc
+        {
+            get
+            { return _stoneDesc; }
+            set
+            { _stoneDesc = value; }
         }
 
         public static string CarCity
@@ -403,6 +413,14 @@ namespace SerialPortListener
             { return _scaleId; }
             set
             { _scaleId = value; }
+        }
+
+        public static string DoId
+        {
+            get
+            { return _doId; }
+            set
+            { _doId = value; }
         }
 
         public static string DatePrint
