@@ -565,7 +565,27 @@
     <EmbeddedResource Include="ucTruck.resx">
       <DependentUpon>ucTruck.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCCReport.resx">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCarryReport.resx">
+      <DependentUpon>FPrintCarryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCorpReport.resx">
+      <DependentUpon>FPrintCorpReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintProduct.resx">
+      <DependentUpon>FPrintProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintVRock.resx">
+      <DependentUpon>FPrintVRock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WeightDeliveryReport.rdlc" />
+    <EmbeddedResource Include="CarryReport.rdlc" />
+    <EmbeddedResource Include="CustomerCompanyReport.rdlc" />
+    <EmbeddedResource Include="CustomerCorporationReport.rdlc" />
+    <EmbeddedResource Include="ProductReport.rdlc" />
+    <EmbeddedResource Include="ReportMainVRock.rdlc" />
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="baseApproveDataSet.xsc">
@@ -754,6 +774,36 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="FPrintCCReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCCReport.Designer.cs">
+      <DependentUpon>FPrintCCReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCarryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCarryReport.Designer.cs">
+      <DependentUpon>FPrintCarryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCorpReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCorpReport.Designer.cs">
+      <DependentUpon>FPrintCorpReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintProduct.Designer.cs">
+      <DependentUpon>FPrintProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintVRock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintVRock.Designer.cs">
+      <DependentUpon>FPrintVRock.cs</DependentUpon>
+    </Compile>
     <None Include="truckDataSet.xsc">
       <DependentUpon>truckDataSet.xsd</DependentUpon>
     </None>
@@ -913,6 +963,8 @@
     <None Include="Resources\search_32px_pink.png" />
     <None Include="Resources\search_32px_pinkL.png" />
     <None Include="Resources\search_24px_pink.png" />
+    <None Include="Resources\billing_machine_32px.png" />
+    <None Include="Resources\receipt_32px.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
