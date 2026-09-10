@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,20 +56,22 @@ namespace SerialPortListener
         //
         // สแกน ReportMain.rdlc ทั้ง 247 branch พบไฟล์ที่ต่างกัน 28 เวอร์ชัน
         // แต่เมื่อจัดกลุ่มตามสิ่งที่มีผลจริง (ขนาดกระดาษ + ชุดพารามิเตอร์ + รหัสแบบฟอร์ม + ตราสัญลักษณ์)
-        // เหลือ 11 แบบ ซึ่งครอบคลุมทุก branch ที่มีไฟล์นี้
+        // เหลือ 11 แบบ จากนั้นถอดออก 4 แบบตามที่ผู้ใช้กำหนด และเพิ่มของ Blue_Uni_Auto_update เข้ามา
+        // ปัจจุบันเหลือ 8 แบบให้เลือก
+        //
+        // เลขเทมเพลตคงเดิมเสมอ ไม่เรียงใหม่แม้จะมีการเอาบางแบบออก
+        // เพราะค่าที่บันทึกไว้ใน config ของแต่ละหน่วยงานอ้างอิงเลขนี้
+        // เลข 1, 7, 10, 11 เคยถูกใช้แล้วและถูกถอดออก จะไม่นำกลับมาใช้ซ้ำ
         //
         //  #   ที่มา (branch ตัวแทน)              ต่างจากชุดพื้นฐานตรงไหน
-        //  1   Blue_Master_01/09/2026            +PStoneDesc          (ของเดิมสายนี้ = ค่าเริ่มต้น)
         //  2   KT_Blue_11/03/25(_CCom)           +PScoopName, ตรา KT
-        //  3   Blue_T1_11/03/25 / Blue_DO        ชุดพื้นฐาน 39 ตัว
+        //  3   Blue_T1_11/03/25 / Blue_DO        ชุดพื้นฐาน 39 ตัว  (ค่าเริ่มต้น - ใช้มากที่สุด 129 branch)
         //  4   CTM_Blue_11/03/25                 +Tiso, ไม่มีรหัสแบบฟอร์ม
         //  5   39_Blue_new_11/03/25              39 ตัว, FM-PD-03 (Sandvik)
         //  6   NSM_Blue_11/03/25 / TYM           +PScoopName, FM-PD-03 (Sandvik)
-        //  7   Blue_add_lc_Uni_30/04/24          +Plc
         //  8   NSM_Blue_Auto_update_01/08/2026   +PScoopName +PStoneDesc
         //  9   FT_ST_SURAT_STP_2025 / KRABI      +PNote +PStoneDesc
-        // 10   master                            38 ตัว ไม่มี PDatePrintAndCopyNum (เก่าที่สุด)
-        // 11   SURAT_STP_2025                    +PNote
+        // 12   Blue_Uni_Auto_update_01/08/2026   +PStoneDesc
         //
         // ขอบกระดาษของแบบ A4 ใช้ค่าเดิมที่โปรแกรมใช้อยู่ (0.46/0.46/0.60/0.30 นิ้ว)
         // ซึ่งเป็นค่าที่ปรับไว้กับเครื่องพิมพ์จริง ไม่ใช่ค่าใน .rdlc - คงไว้เพื่อไม่ให้งานพิมพ์เดิมเปลี่ยน
@@ -77,22 +79,21 @@ namespace SerialPortListener
         private const double A4W = 8.27, A4H = 11.69;
         private const double SlipW = 8.00, SlipH = 5.50;
 
+        // ชื่อที่แสดงมีรหัสหน่วยงานกำกับ เพื่อให้เลือกได้ถูกโดยไม่ต้องเปิดดูไฟล์
+        // (T1, T4, Uni, JOB ฯลฯ คือรหัสหน่วยงาน ไม่ใช่เลขเทมเพลต)
         private static readonly TemplateInfo[] Templates =
         {
-            new TemplateInfo( 1, "Template 1 - A4 มาตรฐาน",              "SerialPortListener.ReportMain_Template1.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo( 2, "Template 2 - ใบสลิป KT",               "SerialPortListener.ReportMain_Template2.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
-            new TemplateInfo( 3, "Template 3 - A4 แบบเดิม",              "SerialPortListener.ReportMain_Template3.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo( 4, "Template 4 - A4 พร้อมตรา ISO",         "SerialPortListener.ReportMain_Template4.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo( 5, "Template 5 - A4 (Sandvik)",            "SerialPortListener.ReportMain_Template5.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo( 6, "Template 6 - ใบสลิป (Sandvik)",        "SerialPortListener.ReportMain_Template6.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
-            new TemplateInfo( 7, "Template 7 - A4 มีช่อง LC",            "SerialPortListener.ReportMain_Template7.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo( 8, "Template 8 - ใบสลิป มีชนิดหินละเอียด", "SerialPortListener.ReportMain_Template8.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
-            new TemplateInfo( 9, "Template 9 - ใบสลิป มีหมายเหตุ (STP)", "SerialPortListener.ReportMain_Template9.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
-            new TemplateInfo(10, "Template 10 - A4 รุ่นเก่า",            "SerialPortListener.ReportMain_Template10.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo(11, "Template 11 - ใบสลิป มีหมายเหตุ",      "SerialPortListener.ReportMain_Template11.rdlc", SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 3, "Template 3 - T1 / T4 / Uni / JOB / DO (A4)",        "SerialPortListener.ReportMain_Template3.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo(12, "Template 12 - Uni / T1 / T4 / JOB อัปเดตอัตโนมัติ (A4)", "SerialPortListener.ReportMain_Template12.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 5, "Template 5 - 39 / SRD (A4 Sandvik)",                "SerialPortListener.ReportMain_Template5.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 4, "Template 4 - CTM (A4 + ตรา ISO)",                   "SerialPortListener.ReportMain_Template4.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 2, "Template 2 - KT (ใบสลิป)",                          "SerialPortListener.ReportMain_Template2.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 6, "Template 6 - NSM / TYM / KRD (ใบสลิป Sandvik)",     "SerialPortListener.ReportMain_Template6.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 8, "Template 8 - NSM / TYM อัปเดตอัตโนมัติ (ใบสลิป)",   "SerialPortListener.ReportMain_Template8.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 9, "Template 9 - SURAT / KRABI (ใบสลิป STP)",           "SerialPortListener.ReportMain_Template9.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
         };
 
-        public const int DefaultTemplate = 1;
+        public const int DefaultTemplate = 3;   // แบบที่ใช้มากที่สุด (129 branch)
 
         // เก็บ config ไว้ใน AppData เหมือน config_port.txt และ configs_backup.txt
         // เพราะโฟลเดอร์ที่ติดตั้งโปรแกรมเขียนไฟล์ไม่ได้ถ้าไม่ใช่ admin
@@ -125,7 +126,7 @@ namespace SerialPortListener
 
         /// <summary>
         /// อ่านหมายเลขเทมเพลตที่เลือกไว้ ถ้าไฟล์หาย ค่าหาย ค่าเสีย หรืออยู่นอกช่วง
-        /// จะคืนค่าเริ่มต้น (Template 1) เสมอ ไม่โยน exception
+        /// จะคืนค่าเริ่มต้น (Template 3) เสมอ ไม่โยน exception
         /// </summary>
         public static int GetSelectedTemplateNumber()
         {
