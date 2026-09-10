@@ -246,15 +246,21 @@ namespace SerialPortListener
                 parameters.Select(p => p.Name), StringComparer.OrdinalIgnoreCase);
 
             List<Microsoft.Reporting.WinForms.ReportParameter> result =
-                parameters.Where(p => known.Contains(p.Name)).ToList();
+                new List<Microsoft.Reporting.WinForms.ReportParameter>();
 
-            // ใช้ช่องว่างหนึ่งตัว ไม่ใช่สตริงว่าง เพราะพารามิเตอร์ในรายงานเหล่านี้ตั้ง
-            // AllowBlank = False ไว้ ค่าว่างจะถูกนับว่า "ยังไม่ได้ระบุค่า" แล้ว render ไม่ผ่าน
-            // (เป็นวิธีเดียวกับ strNotEmty ในโค้ดเดิมที่คืนค่า " " แทนสตริงว่าง)
+            foreach (Microsoft.Reporting.WinForms.ReportParameter p in parameters)
+            {
+                if (!known.Contains(p.Name))
+                    continue;   // รายงานนี้ไม่รู้จัก - ส่งไปจะเกิด exception
+
+                result.Add(Normalize(p.Name, p.Values));
+            }
+
+            // เติมตัวที่รายงานประกาศไว้แต่ผู้เรียกไม่ได้ส่งมาเลย
             foreach (string name in declared)
             {
                 if (!supplied.Contains(name))
-                    result.Add(new Microsoft.Reporting.WinForms.ReportParameter(name, " "));
+                    result.Add(new Microsoft.Reporting.WinForms.ReportParameter(name, BlankValue));
             }
 
             return result.ToArray();
@@ -300,6 +306,32 @@ namespace SerialPortListener
             }
 
             return DefaultMainCompanies;
+        }
+
+        // พารามิเตอร์ในใบชั่งทุกแบบตั้ง AllowBlank = False ไว้
+        // ค่า null หรือสตริงว่างจะถูกนับว่า "ยังไม่ได้ระบุค่า" และ render ไม่ผ่าน
+        // จึงต้องแทนด้วยช่องว่างหนึ่งตัว เหมือนที่ strNotEmty ในโค้ดเดิมทำ
+        private const string BlankValue = " ";
+
+        /// <summary>
+        /// คืนพารามิเตอร์ที่ค่าใช้งานได้เสมอ ถ้าค่าเดิมเป็น null หรือว่าง จะแทนด้วยช่องว่าง
+        /// จุดนี้สำคัญ เพราะค่าอย่าง Weight.ScoopName เป็น null เมื่อพิมพ์จากหน้าจอหลัก
+        /// (มีการกำหนดค่าเฉพาะตอนพิมพ์จากหน้ารายงาน) และ Company.Tiso ว่างถ้าไม่ได้ตั้งไว้
+        /// </summary>
+        private static Microsoft.Reporting.WinForms.ReportParameter Normalize(
+            string name, System.Collections.Specialized.StringCollection values)
+        {
+            if (values == null || values.Count == 0)
+                return new Microsoft.Reporting.WinForms.ReportParameter(name, BlankValue);
+
+            string[] cleaned = new string[values.Count];
+            for (int i = 0; i < values.Count; i++)
+            {
+                string v = values[i];
+                cleaned[i] = string.IsNullOrEmpty(v) || v.Trim().Length == 0 ? BlankValue : v;
+            }
+
+            return new Microsoft.Reporting.WinForms.ReportParameter(name, cleaned);
         }
 
         private static bool IsValid(int templateNumber)

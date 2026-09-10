@@ -153,7 +153,7 @@ namespace SerialPortListener
 
         // เลขที่แบบฟอร์มตามระบบคุณภาพ ใช้กับใบชั่ง Template 4 (อ้างอิงจาก branch CTM_Blue_11/03/25)
         // ค่าเริ่มต้นเป็นค่าว่าง หน่วยงานที่ไม่ได้ใช้จะไม่มีอะไรพิมพ์ออกมา
-        private static string _Tiso = "";
+        private static string _Tiso = " ";   // AllowBlank=False ในรายงาน ค่าว่างจะถูกนับว่ายังไม่ได้ระบุค่า
 
         public static string Tiso
         {
