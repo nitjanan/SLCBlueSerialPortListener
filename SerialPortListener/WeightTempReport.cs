@@ -34,5 +34,21 @@ namespace SerialPortListener
                 _dateTo = value;
             }
         }
+
+        // หัวกระดาษรายงาน - ผู้ใช้เลือกจาก cbbMainComp บนหน้าจอหลัก
+        // อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
+        private static string _mainComp;
+
+        public static string MainComp
+        {
+            get
+            {
+                return _mainComp;
+            }
+            set
+            {
+                _mainComp = value;
+            }
+        }
     }
 }

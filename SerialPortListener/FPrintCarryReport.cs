@@ -22,6 +22,7 @@ namespace SerialPortListener
         private void FPrintCarryReport_Load(object sender, EventArgs e)
         {
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
+                new Microsoft.Reporting.WinForms.ReportParameter("PMainComp",WeightTempReport.MainComp), //set หัวกระดาษรายงาน
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateFrom",WeightTempReport.DateFrom),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateTo",WeightTempReport.DateTo),
             };

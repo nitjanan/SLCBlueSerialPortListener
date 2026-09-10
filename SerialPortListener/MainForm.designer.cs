@@ -1,4 +1,4 @@
-namespace SerialPortListener
+﻿namespace SerialPortListener
 {
     partial class MainForm
     {
@@ -36,6 +36,7 @@ namespace SerialPortListener
             this.btReadIn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbbMainComp = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
@@ -241,12 +242,24 @@ namespace SerialPortListener
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkOrange;
             this.panel2.Controls.Add(this.chkDirectPrint);
+            this.panel2.Controls.Add(this.cbbMainComp);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1208, 39);
             this.panel2.TabIndex = 17;
+            // 
+            // cbbMainComp
+            // 
+            // หัวกระดาษรายงาน - อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
+            this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbMainComp.FormattingEnabled = true;
+            this.cbbMainComp.Location = new System.Drawing.Point(184, 4);
+            this.cbbMainComp.Name = "cbbMainComp";
+            this.cbbMainComp.Size = new System.Drawing.Size(260, 30);
+            this.cbbMainComp.TabIndex = 108;
+            this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -2085,6 +2098,7 @@ namespace SerialPortListener
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox tbOldDoId;
         private System.Windows.Forms.CheckBox chkDirectPrint;
+        private System.Windows.Forms.ComboBox cbbMainComp;
     }
 }
 

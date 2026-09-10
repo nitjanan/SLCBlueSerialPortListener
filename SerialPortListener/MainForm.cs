@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -362,6 +362,14 @@ namespace SerialPortListener
             //autoCompleteSettingWeightType(tbMillName, "ชื่อโรงโม่", "base_mill");
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
+
+            // set หัวกระดาษรายงาน - อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
+            // รายชื่อบริษัทอ่านจาก config_reportmain.txt เพื่อให้แต่ละหน่วยงานตั้งเองได้
+            cbbMainComp.Items.Clear();
+            cbbMainComp.Items.AddRange(ReportMainTemplate.GetMainCompanies());
+            if (cbbMainComp.Items.Count > 0)
+                cbbMainComp.SelectedIndex = 0;
+            WeightTempReport.MainComp = cbbMainComp.Text;
 
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
 
@@ -4182,7 +4190,9 @@ namespace SerialPortListener
             {
                 using (LocalReport report = new LocalReport())
                 {
-                    report.ReportEmbeddedResource = "SerialPortListener.ReportMain.rdlc";
+                    // เลือก .rdlc ตามเทมเพลตที่ตั้งไว้ (config_reportmain.txt) ผ่านตัวกลางเดียวกับ FPrint
+                    ReportMainTemplate.TemplateInfo tpl = ReportMainTemplate.GetSelectedTemplate();
+                    report.ReportEmbeddedResource = ReportMainTemplate.GetReportMainResourceName();
 
                     Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
                         new Microsoft.Reporting.WinForms.ReportParameter("PCompanyName",Company.CompanyName),
@@ -4227,12 +4237,15 @@ namespace SerialPortListener
                         new Microsoft.Reporting.WinForms.ReportParameter("PDatePrintAndCopyNum",Weight.DatePrintAndCopyNum),
                     };
 
-                    report.SetParameters(p);
+                    // เทมเพลตแต่ละแบบมีพารามิเตอร์ไม่เท่ากัน ต้องคัดก่อนส่ง
+                    report.SetParameters(ReportMainTemplate.FilterParameters(report, p));
 
                     using (ReportPrintHelper printer = new ReportPrintHelper())
                     {
-                        // 8.27 x 11.69 inches is A4, margins in inches: Left=0.46, Right=0.46, Top=0.60, Bottom=0.30
-                        printer.Export(report, 8.27, 11.69, 0.46, 0.46, 0.60, 0.30);
+                        // ขนาดกระดาษและขอบมาจากเทมเพลตที่เลือก - แบบ A4 ยังได้ค่าเดิม 8.27x11.69 / 0.46,0.46,0.60,0.30
+                        printer.Export(report, tpl.PageWidthInches, tpl.PageHeightInches,
+                                       tpl.MarginLeftInches, tpl.MarginRightInches,
+                                       tpl.MarginTopInches, tpl.MarginBottomInches);
                         printer.Print();
                     }
                 }
@@ -5783,6 +5796,12 @@ namespace SerialPortListener
 
                 return false;
             }
+        }
+
+        // set หัวกระดาษรายงาน - อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
+        private void cbbMainComp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WeightTempReport.MainComp = cbbMainComp.Text;
         }
 
 

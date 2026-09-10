@@ -1,4 +1,4 @@
-using Microsoft.Reporting.WinForms;
+﻿using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,13 +77,34 @@ namespace SerialPortListener
               กระดาษต่อเนื่อง */
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.Standard9x11;
 
-            ps.Margins = new System.Drawing.Printing.Margins(46, 46, 60, 30);
+            // ขนาดกระดาษและขอบมาจากเทมเพลตที่เลือก (หน่วยของ Margins คือ 1/100 นิ้ว)
+            // แบบ A4 ยังได้ค่าเดิม 46,46,60,30 เหมือนก่อนมีระบบเทมเพลต
+            ReportMainTemplate.TemplateInfo tpl = ReportMainTemplate.GetSelectedTemplate();
+            ps.Margins = new System.Drawing.Printing.Margins(
+                (int)Math.Round(tpl.MarginLeftInches * 100),
+                (int)Math.Round(tpl.MarginRightInches * 100),
+                (int)Math.Round(tpl.MarginTopInches * 100),
+                (int)Math.Round(tpl.MarginBottomInches * 100));
+            ps.PaperSize = new System.Drawing.Printing.PaperSize(
+                "ReportMainTemplate" + tpl.Number,
+                (int)Math.Round(tpl.PageWidthInches * 100),
+                (int)Math.Round(tpl.PageHeightInches * 100));
             this.reportViewer1.SetPageSettings(ps);
 
             this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;
             this.reportViewer1.Clear();
-            this.reportViewer1.LocalReport.SetParameters(p);
+
+            // เลือกไฟล์ .rdlc ตามเทมเพลตที่ตั้งไว้ในหน้าตั้งค่า (config_reportmain.txt)
+            // ต้องกำหนดก่อน SetParameters เพราะการเปลี่ยน ReportEmbeddedResource จะล้างพารามิเตอร์เดิมทิ้ง
+            this.reportViewer1.LocalReport.ReportEmbeddedResource =
+                ReportMainTemplate.GetReportMainResourceName();
+
+            // เทมเพลตแต่ละแบบประกาศพารามิเตอร์ไม่เท่ากัน (เช่น PScoopName มีเฉพาะใบสลิป
+            // ส่วน PStoneDesc มีเฉพาะแบบมาตรฐาน) ถ้าส่งตัวที่รายงานไม่รู้จักเข้าไปจะเกิด exception
+            this.reportViewer1.LocalReport.SetParameters(
+                ReportMainTemplate.FilterParameters(this.reportViewer1.LocalReport, p));
+
             this.reportViewer1.LocalReport.DisplayName = "ใบชั่งน้ำหนักสินค้า";
             this.reportViewer1.RefreshReport();
         }

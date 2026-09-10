@@ -459,6 +459,7 @@
       <DependentUpon>weightScoopDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WeightTempReport.cs" />
+    <Compile Include="ReportMainTemplate.cs" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
     <EmbeddedResource Include="CleanReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
@@ -578,6 +579,10 @@
     <EmbeddedResource Include="CustomerCorporationReport.rdlc" />
     <EmbeddedResource Include="ProductReport.rdlc" />
     <EmbeddedResource Include="ReportMainVRock.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template1.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template2.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template3.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template4.rdlc" />
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="baseApproveDataSet.xsc">

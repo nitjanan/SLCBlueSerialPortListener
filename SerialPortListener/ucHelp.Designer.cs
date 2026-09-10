@@ -1,4 +1,4 @@
-namespace SerialPortListener
+﻿namespace SerialPortListener
 {
     partial class ucHelp
     {
@@ -49,6 +49,9 @@ namespace SerialPortListener
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSavePort = new System.Windows.Forms.Button();
+            this.lblReportTemplate = new System.Windows.Forms.Label();
+            this.cboReportTemplate = new System.Windows.Forms.ComboBox();
+            this.btnSaveReportTemplate = new System.Windows.Forms.Button();
             this.tbRx = new System.Windows.Forms.TextBox();
             this.timerRx = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -195,6 +198,40 @@ namespace SerialPortListener
             this.btnSavePort.UseVisualStyleBackColor = false;
             this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
             // 
+            // lblReportTemplate
+            // 
+            this.lblReportTemplate.AutoSize = true;
+            this.lblReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportTemplate.Location = new System.Drawing.Point(37, 350);
+            this.lblReportTemplate.Name = "lblReportTemplate";
+            this.lblReportTemplate.Size = new System.Drawing.Size(88, 22);
+            this.lblReportTemplate.TabIndex = 16;
+            this.lblReportTemplate.Text = "แบบใบชั่ง";
+            // 
+            // cboReportTemplate
+            // 
+            this.cboReportTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboReportTemplate.FormattingEnabled = true;
+            this.cboReportTemplate.Location = new System.Drawing.Point(131, 347);
+            this.cboReportTemplate.Name = "cboReportTemplate";
+            this.cboReportTemplate.Size = new System.Drawing.Size(260, 29);
+            this.cboReportTemplate.TabIndex = 17;
+            // 
+            // btnSaveReportTemplate
+            // 
+            this.btnSaveReportTemplate.BackColor = System.Drawing.Color.White;
+            this.btnSaveReportTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveReportTemplate.ForeColor = System.Drawing.Color.Green;
+            this.btnSaveReportTemplate.Location = new System.Drawing.Point(131, 385);
+            this.btnSaveReportTemplate.Name = "btnSaveReportTemplate";
+            this.btnSaveReportTemplate.Size = new System.Drawing.Size(260, 30);
+            this.btnSaveReportTemplate.TabIndex = 18;
+            this.btnSaveReportTemplate.Text = "บันทึกแบบใบชั่ง";
+            this.btnSaveReportTemplate.UseVisualStyleBackColor = false;
+            this.btnSaveReportTemplate.Click += new System.EventHandler(this.btnSaveReportTemplate_Click);
+            // 
             // tbRx
             // 
             this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -220,6 +257,9 @@ namespace SerialPortListener
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSaveReportTemplate);
+            this.Controls.Add(this.cboReportTemplate);
+            this.Controls.Add(this.lblReportTemplate);
             this.Controls.Add(this.tbRx);
             this.Controls.Add(this.btnSavePort);
             this.Controls.Add(this.btnStop);
@@ -256,6 +296,9 @@ namespace SerialPortListener
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnSavePort;
+        private System.Windows.Forms.Label lblReportTemplate;
+        private System.Windows.Forms.ComboBox cboReportTemplate;
+        private System.Windows.Forms.Button btnSaveReportTemplate;
         private System.Windows.Forms.TextBox tbRx;
         private System.Windows.Forms.Timer timerRx;
     }
