@@ -4234,6 +4234,8 @@ namespace SerialPortListener
                         new Microsoft.Reporting.WinForms.ReportParameter("TEmail",Company.TEmail),
                         new Microsoft.Reporting.WinForms.ReportParameter("TDocName",Company.TDocName),
                         new Microsoft.Reporting.WinForms.ReportParameter("TLogo",Company.TLogo),
+                        new Microsoft.Reporting.WinForms.ReportParameter("PScoopName",Weight.ScoopName), //Template 2 ใช้
+                        new Microsoft.Reporting.WinForms.ReportParameter("Tiso",Company.Tiso), //Template 4 ใช้
                         new Microsoft.Reporting.WinForms.ReportParameter("PDatePrintAndCopyNum",Weight.DatePrintAndCopyNum),
                     };
 

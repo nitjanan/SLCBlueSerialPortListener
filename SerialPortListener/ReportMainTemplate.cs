@@ -211,23 +211,29 @@ namespace SerialPortListener
         }
 
         /// <summary>
-        /// คัดเฉพาะพารามิเตอร์ที่รายงานนั้นประกาศไว้จริง
-        /// เทมเพลตแต่ละแบบมีพารามิเตอร์ไม่เท่ากัน (39 หรือ 40 ตัว และคนละชื่อ)
-        /// ถ้าส่งตัวที่รายงานไม่รู้จักเข้าไป ReportViewer จะโยน exception ทันที
+        /// ปรับรายการพารามิเตอร์ให้ตรงกับที่รายงานประกาศไว้จริง ทำสองอย่าง
+        ///   1. ตัดตัวที่รายงานไม่รู้จักออก  - ถ้าส่งไป ReportViewer จะโยน exception
+        ///   2. เติมตัวที่รายงานประกาศไว้แต่ผู้เรียกไม่ได้ส่งมา ด้วยค่าว่าง
+        ///      - ถ้าไม่เติม จะได้ error "The 'X' parameter is missing a value"
+        ///
+        /// ข้อ 2 จำเป็นเพราะเทมเพลตมาจากคนละ branch และประกาศพารามิเตอร์ไม่เหมือนกัน
+        /// เช่น Template 2 ต้องใช้ PScoopName ส่วน Template 4 ต้องใช้ Tiso
+        /// ผู้เรียกควรส่งค่าจริงมาให้ครบ ส่วนการเติมค่าว่างนี้เป็นตาข่ายกันพลาด
+        /// เพื่อให้การเพิ่มเทมเพลตใหม่ในอนาคตไม่ทำให้พิมพ์ไม่ได้
         /// </summary>
         public static Microsoft.Reporting.WinForms.ReportParameter[] FilterParameters(
             Microsoft.Reporting.WinForms.LocalReport report,
             Microsoft.Reporting.WinForms.ReportParameter[] parameters)
         {
-            if (report == null || parameters == null)
-                return parameters ?? new Microsoft.Reporting.WinForms.ReportParameter[0];
+            if (parameters == null)
+                parameters = new Microsoft.Reporting.WinForms.ReportParameter[0];
+            if (report == null)
+                return parameters;
 
-            HashSet<string> known;
+            List<string> declared;
             try
             {
-                known = new HashSet<string>(
-                    report.GetParameters().Select(p => p.Name),
-                    StringComparer.OrdinalIgnoreCase);
+                declared = report.GetParameters().Select(p => p.Name).ToList();
             }
             catch (Exception)
             {
@@ -235,7 +241,23 @@ namespace SerialPortListener
                 return parameters;
             }
 
-            return parameters.Where(p => known.Contains(p.Name)).ToArray();
+            HashSet<string> known = new HashSet<string>(declared, StringComparer.OrdinalIgnoreCase);
+            HashSet<string> supplied = new HashSet<string>(
+                parameters.Select(p => p.Name), StringComparer.OrdinalIgnoreCase);
+
+            List<Microsoft.Reporting.WinForms.ReportParameter> result =
+                parameters.Where(p => known.Contains(p.Name)).ToList();
+
+            // ใช้ช่องว่างหนึ่งตัว ไม่ใช่สตริงว่าง เพราะพารามิเตอร์ในรายงานเหล่านี้ตั้ง
+            // AllowBlank = False ไว้ ค่าว่างจะถูกนับว่า "ยังไม่ได้ระบุค่า" แล้ว render ไม่ผ่าน
+            // (เป็นวิธีเดียวกับ strNotEmty ในโค้ดเดิมที่คืนค่า " " แทนสตริงว่าง)
+            foreach (string name in declared)
+            {
+                if (!supplied.Contains(name))
+                    result.Add(new Microsoft.Reporting.WinForms.ReportParameter(name, " "));
+            }
+
+            return result.ToArray();
         }
 
         /// <summary>
