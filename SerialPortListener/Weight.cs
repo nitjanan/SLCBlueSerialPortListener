@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +51,8 @@ namespace SerialPortListener
         private static string _datePrint;
         private static string _datePrintAndCopyNum;
         private static string _timePrint;
+        private static string _customerId;
+        private static string _scoopName;
 
         public static string Id
         {
@@ -432,5 +434,21 @@ namespace SerialPortListener
             set
             { _timePrint = value; }
         }
+        public static string CustomerId
+        {
+            get
+            { return _customerId; }
+            set
+            { _customerId = value; }
+        }
+
+        public static string ScoopName
+        {
+            get
+            { return _scoopName; }
+            set
+            { _scoopName = value; }
+        }
+
     }
 }
