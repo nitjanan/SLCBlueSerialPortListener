@@ -52,24 +52,44 @@ namespace SerialPortListener
             }
         }
 
-        // เทมเพลตทั้งหมดที่มีหลักฐานจริงใน branch - ห้ามเพิ่มแบบที่ไม่มีที่มา
-        // Template 1 = ของเดิมของ Master (A4 แนวตั้ง, มี PStoneDesc) จึงเป็นค่าเริ่มต้น
-        // Template 2 = ใบสลิป 8x5.5 นิ้ว จาก KT_Blue_11/03/25_CCom (มี PScoopName)
-        // Template 3 = A4 มาตรฐาน จาก Blue_T1_11/03/25 (39 พารามิเตอร์)
-        // Template 4 = A4 พร้อมตรา ISO จาก CTM_Blue_11/03/25 (มี Tiso)
+        // เทมเพลตทั้งหมดมาจาก ReportMain.rdlc ที่มีอยู่จริงใน branch - ห้ามเพิ่มแบบที่ไม่มีที่มา
+        //
+        // สแกน ReportMain.rdlc ทั้ง 247 branch พบไฟล์ที่ต่างกัน 28 เวอร์ชัน
+        // แต่เมื่อจัดกลุ่มตามสิ่งที่มีผลจริง (ขนาดกระดาษ + ชุดพารามิเตอร์ + รหัสแบบฟอร์ม + ตราสัญลักษณ์)
+        // เหลือ 11 แบบ ซึ่งครอบคลุมทุก branch ที่มีไฟล์นี้
+        //
+        //  #   ที่มา (branch ตัวแทน)              ต่างจากชุดพื้นฐานตรงไหน
+        //  1   Blue_Master_01/09/2026            +PStoneDesc          (ของเดิมสายนี้ = ค่าเริ่มต้น)
+        //  2   KT_Blue_11/03/25(_CCom)           +PScoopName, ตรา KT
+        //  3   Blue_T1_11/03/25 / Blue_DO        ชุดพื้นฐาน 39 ตัว
+        //  4   CTM_Blue_11/03/25                 +Tiso, ไม่มีรหัสแบบฟอร์ม
+        //  5   39_Blue_new_11/03/25              39 ตัว, FM-PD-03 (Sandvik)
+        //  6   NSM_Blue_11/03/25 / TYM           +PScoopName, FM-PD-03 (Sandvik)
+        //  7   Blue_add_lc_Uni_30/04/24          +Plc
+        //  8   NSM_Blue_Auto_update_01/08/2026   +PScoopName +PStoneDesc
+        //  9   FT_ST_SURAT_STP_2025 / KRABI      +PNote +PStoneDesc
+        // 10   master                            38 ตัว ไม่มี PDatePrintAndCopyNum (เก่าที่สุด)
+        // 11   SURAT_STP_2025                    +PNote
+        //
         // ขอบกระดาษของแบบ A4 ใช้ค่าเดิมที่โปรแกรมใช้อยู่ (0.46/0.46/0.60/0.30 นิ้ว)
         // ซึ่งเป็นค่าที่ปรับไว้กับเครื่องพิมพ์จริง ไม่ใช่ค่าใน .rdlc - คงไว้เพื่อไม่ให้งานพิมพ์เดิมเปลี่ยน
         // ส่วนใบสลิปใช้ขอบ 0.2 นิ้วตามที่ระบุใน .rdlc ของมันเอง
+        private const double A4W = 8.27, A4H = 11.69;
+        private const double SlipW = 8.00, SlipH = 5.50;
+
         private static readonly TemplateInfo[] Templates =
         {
-            new TemplateInfo(1, "Template 1 - มาตรฐาน (A4)",        "SerialPortListener.ReportMain_Template1.rdlc",
-                             8.27, 11.69, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo(2, "Template 2 - ใบสลิป (8x5.5 นิ้ว)", "SerialPortListener.ReportMain_Template2.rdlc",
-                             8.00,  5.50, 0.20, 0.20, 0.20, 0.20),
-            new TemplateInfo(3, "Template 3 - A4 แบบเดิม",          "SerialPortListener.ReportMain_Template3.rdlc",
-                             8.27, 11.69, 0.46, 0.46, 0.60, 0.30),
-            new TemplateInfo(4, "Template 4 - A4 พร้อมตรา ISO",     "SerialPortListener.ReportMain_Template4.rdlc",
-                             8.27, 11.69, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 1, "Template 1 - A4 มาตรฐาน",              "SerialPortListener.ReportMain_Template1.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 2, "Template 2 - ใบสลิป KT",               "SerialPortListener.ReportMain_Template2.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 3, "Template 3 - A4 แบบเดิม",              "SerialPortListener.ReportMain_Template3.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 4, "Template 4 - A4 พร้อมตรา ISO",         "SerialPortListener.ReportMain_Template4.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 5, "Template 5 - A4 (Sandvik)",            "SerialPortListener.ReportMain_Template5.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 6, "Template 6 - ใบสลิป (Sandvik)",        "SerialPortListener.ReportMain_Template6.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 7, "Template 7 - A4 มีช่อง LC",            "SerialPortListener.ReportMain_Template7.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo( 8, "Template 8 - ใบสลิป มีชนิดหินละเอียด", "SerialPortListener.ReportMain_Template8.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo( 9, "Template 9 - ใบสลิป มีหมายเหตุ (STP)", "SerialPortListener.ReportMain_Template9.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo(10, "Template 10 - A4 รุ่นเก่า",            "SerialPortListener.ReportMain_Template10.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            new TemplateInfo(11, "Template 11 - ใบสลิป มีหมายเหตุ",      "SerialPortListener.ReportMain_Template11.rdlc", SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
         };
 
         public const int DefaultTemplate = 1;

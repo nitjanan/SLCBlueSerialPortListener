@@ -450,5 +450,16 @@ namespace SerialPortListener
             { _scoopName = value; }
         }
 
+        // เลขที่ LC ใช้กับใบชั่ง Template 7 (อ้างอิงจาก branch Blue_add_lc_Uni_30/04/24)
+        private static string _lc;
+
+        public static string LC
+        {
+            get
+            { return _lc; }
+            set
+            { _lc = value; }
+        }
+
     }
 }

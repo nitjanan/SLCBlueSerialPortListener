@@ -1,4 +1,4 @@
-# ตัวอย่างไฟล์ตั้งค่าแบบใบชั่ง (ReportMain)
+﻿# ตัวอย่างไฟล์ตั้งค่าแบบใบชั่ง (ReportMain)
 #
 # ไฟล์จริงที่โปรแกรมใช้อยู่ที่
 #   %APPDATA%\SLC<ชื่อโปรแกรม>\config_reportmain.txt
@@ -10,11 +10,20 @@
 # ถ้าไฟล์หาย / ไม่มีคีย์ Template / ค่าไม่ใช่ตัวเลข / ค่าอยู่นอกช่วง 1-4
 # โปรแกรมจะถอยไปใช้ Template 1 โดยอัตโนมัติ ไม่แจ้ง error และยังพิมพ์ได้ตามปกติ
 
-# แบบใบชั่งที่ใช้ (1-4)
-#   1 = มาตรฐาน (A4)            -> ReportMain_Template1.rdlc   [ของเดิมของ Master - ค่าเริ่มต้น]
-#   2 = ใบสลิป (8x5.5 นิ้ว)      -> ReportMain_Template2.rdlc   [จาก KT_Blue_11/03/25_CCom]
-#   3 = A4 แบบเดิม              -> ReportMain_Template3.rdlc   [จาก Blue_T1_11/03/25]
-#   4 = A4 พร้อมตรา ISO         -> ReportMain_Template4.rdlc   [จาก CTM_Blue_11/03/25]
+# แบบใบชั่งที่ใช้ (1-11)
+# ครอบคลุม ReportMain.rdlc ทุกเวอร์ชันที่มีอยู่จริงใน repository (247 branch)
+#
+#   1  = A4 มาตรฐาน               -> ReportMain_Template1.rdlc   [Blue_Master_01/09/2026] ค่าเริ่มต้น
+#   2  = ใบสลิป KT                -> ReportMain_Template2.rdlc   [KT_Blue_11/03/25(_CCom)]
+#   3  = A4 แบบเดิม               -> ReportMain_Template3.rdlc   [Blue_T1_11/03/25, Blue_DO_19/02/26]
+#   4  = A4 พร้อมตรา ISO          -> ReportMain_Template4.rdlc   [CTM_Blue_11/03/25]
+#   5  = A4 (Sandvik)             -> ReportMain_Template5.rdlc   [39_Blue_new_11/03/25]
+#   6  = ใบสลิป (Sandvik)         -> ReportMain_Template6.rdlc   [NSM_Blue_11/03/25, TYM_Blue_new_11/03/25]
+#   7  = A4 มีช่อง LC             -> ReportMain_Template7.rdlc   [Blue_add_lc_Uni_30/04/24]
+#   8  = ใบสลิป มีชนิดหินละเอียด  -> ReportMain_Template8.rdlc   [NSM_Blue_Auto_update_01/08/2026]
+#   9  = ใบสลิป มีหมายเหตุ (STP)  -> ReportMain_Template9.rdlc   [FT_ST_SURAT_STP_2025, KRABI_STP_2026]
+#  10  = A4 รุ่นเก่า              -> ReportMain_Template10.rdlc  [master]
+#  11  = ใบสลิป มีหมายเหตุ        -> ReportMain_Template11.rdlc  [SURAT_STP_2025]
 Template=1
 
 # รายชื่อบริษัทบนหัวกระดาษ ที่จะแสดงในช่องเลือกด้านบนของหน้าจอหลัก (cbbMainComp)

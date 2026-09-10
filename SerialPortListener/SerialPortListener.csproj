@@ -583,6 +583,13 @@
     <EmbeddedResource Include="ReportMain_Template2.rdlc" />
     <EmbeddedResource Include="ReportMain_Template3.rdlc" />
     <EmbeddedResource Include="ReportMain_Template4.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template5.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template6.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template7.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template8.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template9.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template10.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template11.rdlc" />
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="baseApproveDataSet.xsc">
