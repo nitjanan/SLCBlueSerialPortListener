@@ -121,6 +121,14 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbDOCutomerName, listOriginalDOReport);
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
+        
+            // หัวกระดาษรายงาน - ย้ายมาจาก MainForm (อ้างอิงจาก KT_Blue_11/03/25_CCom)
+            // รายชื่อบริษัทอ่านจาก config_reportmain.txt เพื่อให้แต่ละหน่วยงานตั้งเองได้
+            cbbMainComp.Items.Clear();
+            cbbMainComp.Items.AddRange(ReportMainTemplate.GetMainCompanies());
+            if (cbbMainComp.Items.Count > 0)
+                cbbMainComp.SelectedIndex = 0;
+            WeightTempReport.MainComp = cbbMainComp.Text;
         }
 
         /*3 search anywhere customer */
@@ -1642,6 +1650,12 @@ namespace SerialPortListener
         {
             setSearchAnywhereToCombobox(cbbDOCutomerName, listOriginalDOReport, listNewDOReport);
         }
+        // หัวกระดาษรายงาน - ย้ายมาจาก MainForm
+        private void cbbMainComp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WeightTempReport.MainComp = cbbMainComp.Text;
+        }
+
 
     }  
 }

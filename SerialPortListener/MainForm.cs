@@ -363,14 +363,6 @@ namespace SerialPortListener
 
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer");
 
-            // set หัวกระดาษรายงาน - อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
-            // รายชื่อบริษัทอ่านจาก config_reportmain.txt เพื่อให้แต่ละหน่วยงานตั้งเองได้
-            cbbMainComp.Items.Clear();
-            cbbMainComp.Items.AddRange(ReportMainTemplate.GetMainCompanies());
-            if (cbbMainComp.Items.Count > 0)
-                cbbMainComp.SelectedIndex = 0;
-            WeightTempReport.MainComp = cbbMainComp.Text;
-
             Weight.CustomerAddress = getPrintFromDB("base_customer", "ที่อยู่", "รหัสลูกค้า", tbCustomerId.Text);
 
             tbWeigtData.Enter += (s, e) => { tbWeigtData.Parent.Focus(); };
@@ -5802,11 +5794,6 @@ namespace SerialPortListener
             }
         }
 
-        // set หัวกระดาษรายงาน - อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
-        private void cbbMainComp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            WeightTempReport.MainComp = cbbMainComp.Text;
-        }
 
 
     }

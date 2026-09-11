@@ -36,7 +36,6 @@
             this.btReadIn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cbbMainComp = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
@@ -248,16 +247,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1208, 39);
             this.panel2.TabIndex = 17;
-            // 
-            // cbbMainComp
-            // 
-            this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbMainComp.FormattingEnabled = true;
-            this.cbbMainComp.Location = new System.Drawing.Point(814, 3);
-            this.cbbMainComp.Name = "cbbMainComp";
-            this.cbbMainComp.Size = new System.Drawing.Size(391, 30);
-            this.cbbMainComp.TabIndex = 108;
-            this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -1845,7 +1834,6 @@
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
             this.Controls.Add(this.tbOldDoId);
-            this.Controls.Add(this.cbbMainComp);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.tbDoDocNo);
             this.Controls.Add(this.tbDoId);
@@ -2098,7 +2086,6 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox tbOldDoId;
         private System.Windows.Forms.CheckBox chkDirectPrint;
-        private System.Windows.Forms.ComboBox cbbMainComp;
     }
 }
 

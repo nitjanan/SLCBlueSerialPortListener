@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tcReport = new System.Windows.Forms.TabControl();
+            this.lblMainComp = new System.Windows.Forms.Label();
+            this.cbbMainComp = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cbbWeightTotal = new System.Windows.Forms.ComboBox();
             this.label57 = new System.Windows.Forms.Label();
@@ -280,6 +282,27 @@
             this.tabPage17.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lblMainComp
+            // 
+            this.lblMainComp.AutoSize = true;
+            this.lblMainComp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMainComp.Location = new System.Drawing.Point(6, 12);
+            this.lblMainComp.Name = "lblMainComp";
+            this.lblMainComp.Size = new System.Drawing.Size(140, 19);
+            this.lblMainComp.TabIndex = 0;
+            this.lblMainComp.Text = "หัวกระดาษรายงาน :";
+            // 
+            // cbbMainComp
+            // 
+            // หัวกระดาษรายงาน - ย้ายมาจาก MainForm เพราะมีผลเฉพาะรายงานในหน้านี้
+            this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbMainComp.FormattingEnabled = true;
+            this.cbbMainComp.Location = new System.Drawing.Point(156, 8);
+            this.cbbMainComp.Name = "cbbMainComp";
+            this.cbbMainComp.Size = new System.Drawing.Size(420, 27);
+            this.cbbMainComp.TabIndex = 1;
+            this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
+            // 
             // tcReport
             // 
             this.tcReport.Controls.Add(this.tabPage1);
@@ -300,7 +323,7 @@
             this.tcReport.Controls.Add(this.tabPage12);
             this.tcReport.Controls.Add(this.tabPage17);
             this.tcReport.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcReport.Location = new System.Drawing.Point(3, 3);
+            this.tcReport.Location = new System.Drawing.Point(3, 44);
             this.tcReport.Name = "tcReport";
             this.tcReport.SelectedIndex = 0;
             this.tcReport.Size = new System.Drawing.Size(763, 490);
@@ -2639,9 +2662,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblMainComp);
+            this.Controls.Add(this.cbbMainComp);
             this.Controls.Add(this.tcReport);
             this.Name = "ucReport";
-            this.Size = new System.Drawing.Size(769, 499);
+            this.Size = new System.Drawing.Size(769, 540);
             this.Load += new System.EventHandler(this.ucReport_Load);
             this.tcReport.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -2915,5 +2940,7 @@
         private System.Windows.Forms.DateTimePicker dtToDO;
         private System.Windows.Forms.DateTimePicker dtFromDO;
         private System.Windows.Forms.Button btPrintDO;
+        private System.Windows.Forms.Label lblMainComp;
+        private System.Windows.Forms.ComboBox cbbMainComp;
     }
 }
