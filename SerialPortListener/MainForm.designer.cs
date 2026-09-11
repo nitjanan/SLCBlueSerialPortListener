@@ -252,7 +252,6 @@
             // 
             // cbbMainComp
             // 
-            // หัวกระดาษรายงาน - อ้างอิงการทำงานจาก branch KT_Blue_11/03/25_CCom
             this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbMainComp.FormattingEnabled = true;
             this.cbbMainComp.Location = new System.Drawing.Point(184, 4);
@@ -1939,7 +1938,8 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Weight";
+            this.Text = "                                                                                 " +
+    "                                                      ";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

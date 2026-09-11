@@ -202,9 +202,9 @@
             // 
             this.lblReportTemplate.AutoSize = true;
             this.lblReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportTemplate.Location = new System.Drawing.Point(37, 350);
+            this.lblReportTemplate.Location = new System.Drawing.Point(3, 347);
             this.lblReportTemplate.Name = "lblReportTemplate";
-            this.lblReportTemplate.Size = new System.Drawing.Size(88, 22);
+            this.lblReportTemplate.Size = new System.Drawing.Size(67, 22);
             this.lblReportTemplate.TabIndex = 16;
             this.lblReportTemplate.Text = "แบบใบชั่ง";
             // 
@@ -213,9 +213,9 @@
             this.cboReportTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboReportTemplate.FormattingEnabled = true;
-            this.cboReportTemplate.Location = new System.Drawing.Point(131, 347);
+            this.cboReportTemplate.Location = new System.Drawing.Point(66, 347);
             this.cboReportTemplate.Name = "cboReportTemplate";
-            this.cboReportTemplate.Size = new System.Drawing.Size(260, 29);
+            this.cboReportTemplate.Size = new System.Drawing.Size(260, 30);
             this.cboReportTemplate.TabIndex = 17;
             // 
             // btnSaveReportTemplate
@@ -224,7 +224,7 @@
             this.btnSaveReportTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveReportTemplate.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveReportTemplate.Location = new System.Drawing.Point(131, 385);
+            this.btnSaveReportTemplate.Location = new System.Drawing.Point(66, 385);
             this.btnSaveReportTemplate.Name = "btnSaveReportTemplate";
             this.btnSaveReportTemplate.Size = new System.Drawing.Size(260, 30);
             this.btnSaveReportTemplate.TabIndex = 18;
