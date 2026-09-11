@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tcReport = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbbWeightTotal = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
             this.cbbMill = new System.Windows.Forms.ComboBox();
             this.label46 = new System.Windows.Forms.Label();
             this.btPrintBil = new System.Windows.Forms.Button();
@@ -242,9 +244,6 @@
             this.dtToTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.btPrintTransportByTeam = new System.Windows.Forms.Button();
-            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
-            this.label57 = new System.Windows.Forms.Label();
-            this.cbbWeightTotal = new System.Windows.Forms.ComboBox();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.cbbDOCutomerName = new System.Windows.Forms.ComboBox();
             this.tbDOCutomerId = new System.Windows.Forms.TextBox();
@@ -255,6 +254,7 @@
             this.dtToDO = new System.Windows.Forms.DateTimePicker();
             this.dtFromDO = new System.Windows.Forms.DateTimePicker();
             this.btPrintDO = new System.Windows.Forms.Button();
+            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
@@ -277,8 +277,8 @@
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            this.SuspendLayout();
             this.tabPage17.SuspendLayout();
+            this.SuspendLayout();
             // 
             // tcReport
             // 
@@ -355,6 +355,34 @@
             this.tabPage1.Size = new System.Drawing.Size(755, 460);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "รายงานการชั่งสินค้าประจำวัน";
+            // 
+            // cbbWeightTotal
+            // 
+            this.cbbWeightTotal.DropDownHeight = 300;
+            this.cbbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbWeightTotal.FormattingEnabled = true;
+            this.cbbWeightTotal.IntegralHeight = false;
+            this.cbbWeightTotal.Items.AddRange(new object[] {
+            "ทั้งหมด",
+            "< 35",
+            ">= 35",
+            "< 37",
+            ">= 37",
+            "< 50",
+            ">= 50"});
+            this.cbbWeightTotal.Location = new System.Drawing.Point(600, 61);
+            this.cbbWeightTotal.Name = "cbbWeightTotal";
+            this.cbbWeightTotal.Size = new System.Drawing.Size(99, 29);
+            this.cbbWeightTotal.TabIndex = 83;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(550, 65);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(58, 20);
+            this.label57.TabIndex = 82;
+            this.label57.Text = "นน.สุทธิ:";
             // 
             // cbbMill
             // 
@@ -2155,7 +2183,7 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(160, 94);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(44, 21);
+            this.label16.Size = new System.Drawing.Size(46, 21);
             this.label16.TabIndex = 17;
             this.label16.Text = "โรงโม่";
             // 
@@ -2490,85 +2518,6 @@
             this.btPrintTransportByTeam.UseVisualStyleBackColor = true;
             this.btPrintTransportByTeam.Click += new System.EventHandler(this.btPrintTransportByTeam_Click);
             // 
-            // weightTableAdapter
-            // 
-            this.weightTableAdapter.ClearBeforeFill = true;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(550, 65);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(58, 20);
-            this.label57.TabIndex = 82;
-            this.label57.Text = "นน.สุทธิ:";
-            // 
-            // cbbWeightTotal
-            // 
-            this.cbbWeightTotal.DropDownHeight = 300;
-            this.cbbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbWeightTotal.FormattingEnabled = true;
-            this.cbbWeightTotal.IntegralHeight = false;
-            this.cbbWeightTotal.Items.AddRange(new object[] {
-            "ทั้งหมด",
-            "< 35",
-            ">= 35",
-            "< 37",
-            ">= 37",
-            "< 50",
-            ">= 50"});
-            this.cbbWeightTotal.Location = new System.Drawing.Point(600, 61);
-            this.cbbWeightTotal.Name = "cbbWeightTotal";
-            this.cbbWeightTotal.Size = new System.Drawing.Size(99, 29);
-            this.cbbWeightTotal.TabIndex = 83;
-            // 
-            // ucReport
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tcReport);
-            this.Name = "ucReport";
-            this.Size = new System.Drawing.Size(769, 499);
-            this.Load += new System.EventHandler(this.ucReport_Load);
-            this.tcReport.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).EndInit();
-            this.tabPage13.ResumeLayout(false);
-            this.tabPage13.PerformLayout();
-            this.tabPage14.ResumeLayout(false);
-            this.tabPage14.PerformLayout();
-            this.tabPage15.ResumeLayout(false);
-            this.tabPage15.PerformLayout();
-            this.tabPage16.ResumeLayout(false);
-            this.tabPage16.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.tabPage8.ResumeLayout(false);
-            this.tabPage8.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage12.PerformLayout();
-            // 
             // tabPage17
             // 
             this.tabPage17.BackColor = System.Drawing.Color.LightCyan;
@@ -2681,6 +2630,57 @@
             this.btPrintDO.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintDO.UseVisualStyleBackColor = true;
             this.btPrintDO.Click += new System.EventHandler(this.btPrintDO_Click);
+            // 
+            // weightTableAdapter
+            // 
+            this.weightTableAdapter.ClearBeforeFill = true;
+            // 
+            // ucReport
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tcReport);
+            this.Name = "ucReport";
+            this.Size = new System.Drawing.Size(769, 499);
+            this.Load += new System.EventHandler(this.ucReport_Load);
+            this.tcReport.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).EndInit();
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage14.PerformLayout();
+            this.tabPage15.ResumeLayout(false);
+            this.tabPage15.PerformLayout();
+            this.tabPage16.ResumeLayout(false);
+            this.tabPage16.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage12.PerformLayout();
             this.tabPage17.ResumeLayout(false);
             this.tabPage17.PerformLayout();
             this.ResumeLayout(false);

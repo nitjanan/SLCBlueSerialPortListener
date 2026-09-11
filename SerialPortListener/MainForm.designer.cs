@@ -147,22 +147,22 @@
             this.cbbCarTeam = new System.Windows.Forms.ComboBox();
             this.tbMillId = new System.Windows.Forms.TextBox();
             this.tbMillName = new System.Windows.Forms.TextBox();
-            this.ucSetting = new SerialPortListener.ucSetting();
-            this.ucReport = new SerialPortListener.ucReport();
-            this.ucHelp = new SerialPortListener.ucHelp();
-            this.ucBackup = new SerialPortListener.ucBackup();
             this.btLoadDO = new System.Windows.Forms.Button();
             this.btRefresh = new System.Windows.Forms.Button();
             this.btPrintAll = new System.Windows.Forms.Button();
             this.btPrintOut = new System.Windows.Forms.Button();
             this.btPrintIn = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
-            this.ucTruck = new SerialPortListener.ucTruck();
-            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbDoId = new System.Windows.Forms.TextBox();
             this.tbDoDocNo = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.tbOldDoId = new System.Windows.Forms.TextBox();
+            this.ucTruck = new SerialPortListener.ucTruck();
+            this.ucSetting = new SerialPortListener.ucSetting();
+            this.ucReport = new SerialPortListener.ucReport();
+            this.ucHelp = new SerialPortListener.ucHelp();
+            this.ucBackup = new SerialPortListener.ucBackup();
+            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -242,7 +242,6 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkOrange;
             this.panel2.Controls.Add(this.chkDirectPrint);
-            this.panel2.Controls.Add(this.cbbMainComp);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -254,9 +253,9 @@
             // 
             this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbMainComp.FormattingEnabled = true;
-            this.cbbMainComp.Location = new System.Drawing.Point(184, 4);
+            this.cbbMainComp.Location = new System.Drawing.Point(814, 3);
             this.cbbMainComp.Name = "cbbMainComp";
-            this.cbbMainComp.Size = new System.Drawing.Size(260, 30);
+            this.cbbMainComp.Size = new System.Drawing.Size(391, 30);
             this.cbbMainComp.TabIndex = 108;
             this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
             // 
@@ -1646,50 +1645,6 @@
             this.tbMillName.Visible = false;
             this.tbMillName.Leave += new System.EventHandler(this.tbMillName_Leave);
             // 
-            // ucSetting
-            // 
-            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSetting.Location = new System.Drawing.Point(0, 0);
-            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSetting.Name = "ucSetting";
-            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
-            this.ucSetting.TabIndex = 21;
-            // 
-            // ucReport
-            // 
-            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
-            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReport.Location = new System.Drawing.Point(0, 0);
-            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
-            this.ucReport.Name = "ucReport";
-            this.ucReport.Size = new System.Drawing.Size(1208, 686);
-            this.ucReport.TabIndex = 20;
-            this.ucReport.Visible = false;
-            // 
-            // ucHelp
-            // 
-            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
-            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucHelp.Location = new System.Drawing.Point(0, 0);
-            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.ucHelp.Name = "ucHelp";
-            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
-            this.ucHelp.TabIndex = 19;
-            this.ucHelp.Visible = false;
-            // 
-            // ucBackup
-            // 
-            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
-            this.ucBackup.CheckUpdateButtonEnabled = true;
-            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucBackup.Location = new System.Drawing.Point(0, 0);
-            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
-            this.ucBackup.Name = "ucBackup";
-            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
-            this.ucBackup.TabIndex = 108;
-            // 
             // btLoadDO
             // 
             this.btLoadDO.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1780,23 +1735,6 @@
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
-            // ucTruck
-            // 
-            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
-            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
-            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTruck.Location = new System.Drawing.Point(0, 0);
-            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
-            this.ucTruck.Name = "ucTruck";
-            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
-            this.ucTruck.TabIndex = 22;
-            // 
-            // serialSettingsBindingSource
-            // 
-            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
             // tbDoId
             // 
             this.tbDoId.Location = new System.Drawing.Point(1071, 69);
@@ -1840,12 +1778,74 @@
             this.tbOldDoId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbOldDoId.Visible = false;
             // 
+            // ucTruck
+            // 
+            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
+            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
+            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucTruck.Location = new System.Drawing.Point(0, 0);
+            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
+            this.ucTruck.Name = "ucTruck";
+            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
+            this.ucTruck.TabIndex = 22;
+            // 
+            // ucSetting
+            // 
+            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSetting.Location = new System.Drawing.Point(0, 0);
+            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.ucSetting.Name = "ucSetting";
+            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
+            this.ucSetting.TabIndex = 21;
+            // 
+            // ucReport
+            // 
+            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
+            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucReport.Location = new System.Drawing.Point(0, 0);
+            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
+            this.ucReport.Name = "ucReport";
+            this.ucReport.Size = new System.Drawing.Size(1208, 686);
+            this.ucReport.TabIndex = 20;
+            this.ucReport.Visible = false;
+            // 
+            // ucHelp
+            // 
+            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
+            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucHelp.Location = new System.Drawing.Point(0, 0);
+            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
+            this.ucHelp.Name = "ucHelp";
+            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
+            this.ucHelp.TabIndex = 19;
+            this.ucHelp.Visible = false;
+            // 
+            // ucBackup
+            // 
+            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
+            this.ucBackup.CheckUpdateButtonEnabled = true;
+            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucBackup.Location = new System.Drawing.Point(0, 0);
+            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
+            this.ucBackup.Name = "ucBackup";
+            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
+            this.ucBackup.TabIndex = 108;
+            // 
+            // serialSettingsBindingSource
+            // 
+            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 686);
             this.Controls.Add(this.tbOldDoId);
+            this.Controls.Add(this.cbbMainComp);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.tbDoDocNo);
             this.Controls.Add(this.tbDoId);
