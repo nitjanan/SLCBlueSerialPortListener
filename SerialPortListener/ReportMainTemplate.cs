@@ -56,10 +56,18 @@ namespace SerialPortListener
         //
         // สแกน ReportMain.rdlc ทั้ง 247 branch พบไฟล์ที่ต่างกัน 28 เวอร์ชัน
         // เมื่อจัดกลุ่มตาม "สิ่งที่พิมพ์ออกมาจริง" (ขนาดกระดาษ + ชุดพารามิเตอร์ + กล่องข้อความที่ไม่ถูกซ่อน)
-        // ได้ 24 แบบที่ต่างกันจริง ชุดที่เลือกมาทำเป็นเทมเพลตครอบคลุม 187 จาก 247 branch (76%)
+        // ได้ 24 แบบที่ต่างกันจริง ชุดที่เลือกมาทำเป็นเทมเพลตครอบคลุม 195 จาก 247 branch (79%)
         //
-        // หมายเหตุสำคัญ: ข้อความ (Sandvik) และรหัสแบบฟอร์ม FM-... ถูกตั้ง Hidden = true
-        // ทุกจุดทุก branch จึงไม่เคยพิมพ์ออกมา ห้ามใช้สองอย่างนี้เป็นเกณฑ์แยกเทมเพลต
+        // หมายเหตุสำคัญเรื่องคำว่า (Sandvik):
+        // ข้อความนี้ไม่ได้อยู่ในไฟล์รายงาน แต่โค้ดส่งเข้าไปตอนรันผ่านพารามิเตอร์ TLogo
+        // (preparePrint ตั้ง Company.TLogo = "(Sandvik)" สำหรับโหมด 1 และ 3 ส่วนโหมด 2 ตั้งเป็นช่องว่าง)
+        // ไฟล์รายงานมีแค่ =Parameters!TLogo.Value จึงค้นด้วยการหาคำว่า Sandvik ในไฟล์ .rdlc ไม่เจอ
+        //
+        // จากทั้ง 247 branch มีเพียง 10 branch (3 เวอร์ชัน) ที่ช่อง TLogo ไม่ถูกซ่อน จึงพิมพ์คำนี้ออกมาจริง
+        // ทั้งหมดอยู่ในตระกูล Uni: Blue_Uni_11/03/25, Blue_add_lc_Uni_30/04/24, UNI_version
+        // อีก 187 branch ซ่อนช่องนี้ไว้ และอีก 50 branch ไม่มีช่องนี้เลย
+        //
+        // ส่วนรหัสแบบฟอร์ม FM-... นั้นถูก Hidden = true ทุกจุดทุก branch จริง จึงไม่เคยพิมพ์ออกมา
         //
         // เลขเทมเพลตคงเดิมเสมอ ไม่เรียงใหม่แม้จะมีการเอาบางแบบออก
         // เพราะค่าที่บันทึกไว้ใน config ของแต่ละหน่วยงานอ้างอิงเลขนี้
@@ -75,6 +83,7 @@ namespace SerialPortListener
         //  2   KT_Blue_11/03/25                    4   (KT - มีตรา KT ที่แสดงผลจริง)
         //  6   NSM_Blue_11/03/25                   6   (NSM)
         //  9   FT_ST_SURAT_STP_2025                5   (SURAT, KRABI - มีช่องหมายเหตุ)
+        // 13   Blue_Uni_11/03/25                   8   (Uni - ช่อง TLogo ไม่ถูกซ่อน จึงพิมพ์คำว่า (Sandvik) ออกมา)
         //
         // ขอบกระดาษของแบบ A4 ใช้ค่าเดิมที่โปรแกรมใช้อยู่ (0.46/0.46/0.60/0.30 นิ้ว)
         // ซึ่งเป็นค่าที่ปรับไว้กับเครื่องพิมพ์จริง ไม่ใช่ค่าใน .rdlc - คงไว้เพื่อไม่ให้งานพิมพ์เดิมเปลี่ยน
@@ -99,6 +108,7 @@ namespace SerialPortListener
             new TemplateInfo( 2, "Template 2 - KT (ใบสลิป มีตรา KT)",                 "SerialPortListener.ReportMain_Template2.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo( 6, "Template 6 - NSM (ใบสลิป)",                         "SerialPortListener.ReportMain_Template6.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo( 9, "Template 9 - SURAT / KRABI (ใบสลิป มีหมายเหตุ)",    "SerialPortListener.ReportMain_Template9.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
+            new TemplateInfo(13, "Template 13 - Uni (A4 + ตรา Sandvik)",              "SerialPortListener.ReportMain_Template13.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
         };
 
         public const int DefaultTemplate = 3;   // แบบที่ใช้มากที่สุด (110 branch)
