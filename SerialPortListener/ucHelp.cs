@@ -55,8 +55,6 @@ namespace SerialPortListener
         {
             this.BackColor = Color.FromArgb(193, 216, 240);
 
-            LoadReportTemplateSetting();
-
             // Populate Ports
             cboPort.Items.Clear();
             string[] ports = SerialPort.GetPortNames();
@@ -324,56 +322,8 @@ namespace SerialPortListener
             }
         }
 
-        // เติมรายการแบบใบชั่งลงคอมโบ แล้วเลือกค่าที่บันทึกไว้ใน config_reportmain.txt
-        // ถ้าไฟล์หายหรือค่าใช้ไม่ได้ ReportMainTemplate จะคืนค่าเริ่มต้น (Template 1) ให้เอง
-        private void LoadReportTemplateSetting()
-        {
-            cboReportTemplate.Items.Clear();
-            cboReportTemplate.Items.AddRange(ReportMainTemplate.All);
 
-            int current = ReportMainTemplate.GetSelectedTemplateNumber();
-            for (int i = 0; i < cboReportTemplate.Items.Count; i++)
-            {
-                ReportMainTemplate.TemplateInfo item =
-                    cboReportTemplate.Items[i] as ReportMainTemplate.TemplateInfo;
-                if (item != null && item.Number == current)
-                {
-                    cboReportTemplate.SelectedIndex = i;
-                    return;
-                }
-            }
 
-            if (cboReportTemplate.Items.Count > 0)
-                cboReportTemplate.SelectedIndex = 0;
-        }
 
-        private void btnSaveReportTemplate_Click(object sender, EventArgs e)
-        {
-            // ใช้สิทธิ์ชุดเดียวกับการบันทึกตั้งค่าอื่นในหน้านี้
-            if (!Globals.isPermissionAddSetting())
-            {
-                MessageBox.Show("คุณไม่มีสิทธิ์บันทึกการตั้งค่านี้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            ReportMainTemplate.TemplateInfo selected =
-                cboReportTemplate.SelectedItem as ReportMainTemplate.TemplateInfo;
-            if (selected == null)
-            {
-                MessageBox.Show("กรุณาเลือกแบบใบชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (ReportMainTemplate.SaveSelectedTemplate(selected.Number))
-            {
-                MessageBox.Show("บันทึกแบบใบชั่งสำเร็จ: " + selected.DisplayName, "แบบใบชั่ง",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("บันทึกแบบใบชั่งไม่สำเร็จ กรุณาตรวจสอบสิทธิ์การเขียนไฟล์" + Environment.NewLine
-                    + ReportMainTemplate.ConfigFilePath, "แบบใบชั่ง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
     }
 }
