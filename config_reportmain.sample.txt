@@ -11,18 +11,20 @@
 # โปรแกรมจะถอยไปใช้ Template 1 โดยอัตโนมัติ ไม่แจ้ง error และยังพิมพ์ได้ตามปกติ
 
 # แบบใบชั่งที่ใช้
-# T1, T4, Uni, NSM, JOB ฯลฯ ในชื่อคือรหัสหน่วยงาน ไม่ใช่เลขเทมเพลต
+# T1, T4, Uni, NSM, CTM ฯลฯ ในชื่อคือรหัสหน่วยงาน ไม่ใช่เลขเทมเพลต
 #
-#   3  = T1 / T4 / Uni / JOB / DO (A4)              -> ReportMain_Template3.rdlc    [Blue_T1_11/03/25, Blue_DO]  ** ค่าเริ่มต้น **
-#  12  = Uni / T1 / T4 / JOB อัปเดตอัตโนมัติ (A4)   -> ReportMain_Template12.rdlc   [Blue_Uni_Auto_update_01/08/2026]
-#   5  = 39 / SRD (A4 Sandvik)                      -> ReportMain_Template5.rdlc    [39_Blue_new_11/03/25]
-#   4  = CTM (A4 + ตรา ISO)                         -> ReportMain_Template4.rdlc    [CTM_Blue_11/03/25]
-#   2  = KT (ใบสลิป)                                -> ReportMain_Template2.rdlc    [KT_Blue_11/03/25(_CCom)]
-#   6  = NSM / TYM / KRD (ใบสลิป Sandvik)           -> ReportMain_Template6.rdlc    [NSM_Blue_11/03/25, TYM_Blue_new]
-#   8  = NSM / TYM อัปเดตอัตโนมัติ (ใบสลิป)         -> ReportMain_Template8.rdlc    [NSM_Blue_Auto_update_01/08/2026]
-#   9  = SURAT / KRABI (ใบสลิป STP)                 -> ReportMain_Template9.rdlc    [FT_ST_SURAT_STP_2025, KRABI_STP_2026]
+#   3  = T1 / T4 / Uni / DO (A4)                 -> ReportMain_Template3.rdlc    [Blue_DO_19/02/26]  ** ค่าเริ่มต้น 110 branch **
+#  12  = Uni / T1 / T4 อัปเดตอัตโนมัติ (A4)      -> ReportMain_Template12.rdlc   [Blue_Uni_Auto_update_01/08/2026]  46 branch
+#   5  = 39 / SRD (A4)                           -> ReportMain_Template5.rdlc    [39_Blue_new_11/03/25]  12 branch
+#   4  = CTM (A4 + ช่องรหัสเอกสาร)               -> ReportMain_Template4.rdlc    [CTM_Blue_11/03/25]  4 branch
+#   2  = KT (ใบสลิป มีตรา KT)                    -> ReportMain_Template2.rdlc    [KT_Blue_11/03/25]  4 branch
+#   6  = NSM (ใบสลิป)                            -> ReportMain_Template6.rdlc    [NSM_Blue_11/03/25]  6 branch
+#   9  = SURAT / KRABI (ใบสลิป มีหมายเหตุ)       -> ReportMain_Template9.rdlc    [FT_ST_SURAT_STP_2025]  5 branch
 #
-# เลข 1, 7, 10, 11 เคยมีแต่ถูกถอดออกแล้ว ถ้าตั้งค่าเป็นเลขเหล่านี้ โปรแกรมจะใช้ Template 3 แทน
+# เลข 1, 7, 8, 10, 11 เคยมีแต่ถูกถอดออกแล้ว ถ้าตั้งค่าเป็นเลขเหล่านี้ โปรแกรมจะใช้ Template 3 แทน
+#
+# หมายเหตุ: ข้อความ (Sandvik) และรหัสแบบฟอร์ม FM-... ถูกตั้ง Hidden ไว้ในไฟล์รายงานทุก branch
+# จึงไม่เคยพิมพ์ออกมา ไม่มีเทมเพลตใดแสดงข้อความเหล่านี้
 Template=3
 
 # รายชื่อบริษัทบนหัวกระดาษ ที่จะแสดงในช่องเลือกด้านบนของหน้าจอหลัก (cbbMainComp)
