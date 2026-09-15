@@ -2075,6 +2075,9 @@ namespace SerialPortListener
             public string Password;
         }
 
+        private void cboReportTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

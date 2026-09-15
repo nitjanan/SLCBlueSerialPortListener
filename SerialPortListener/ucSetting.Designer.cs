@@ -473,6 +473,7 @@
             this.cboReportTemplate.Name = "cboReportTemplate";
             this.cboReportTemplate.Size = new System.Drawing.Size(420, 30);
             this.cboReportTemplate.TabIndex = 17;
+            this.cboReportTemplate.SelectedIndexChanged += new System.EventHandler(this.cboReportTemplate_SelectedIndexChanged);
             // 
             // btnSaveReportTemplate
             // 
