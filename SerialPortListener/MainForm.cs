@@ -74,6 +74,7 @@ namespace SerialPortListener
 
             getSettingDefault();
 
+            clearSerialBuffer();
             _spManager.StartListening();
         }
 
@@ -902,6 +903,7 @@ namespace SerialPortListener
             */
 
             _spManager.NewSerialDataRecieved += new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved);
+            startWeightDisplayTimer();
             this.FormClosing += new FormClosingEventHandler(MainForm_FormClosing);
 
         }
@@ -909,35 +911,88 @@ namespace SerialPortListener
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            stopWeightDisplayTimer();
             _spManager.Dispose();
+        }
+
+        // ---------- รับข้อมูลจากเครื่องชั่ง ----------
+        // เดิมทุก event ของ serial port จะ BeginInvoke ไปทำงานบน UI thread (AppendText + ScrollToCaret)
+        // เมื่อเครื่องส่งถี่ คิวจะค้างเรื่อยๆ ทำให้ตัวเลขช้ากว่าของจริงหลายวินาที
+        // จึงเปลี่ยนเป็น: เก็บข้อมูลลง buffer + ถอดค่าน้ำหนักบน thread ของ serial ทันที
+        // แล้วให้ timer วาดหน้าจอทุก 100 ms โดยใช้ค่าล่าสุดเท่านั้น คิวจึงไม่สะสม
+        private const int rxBufferMaxLength = 500;
+        private readonly StringBuilder _rxBuffer = new StringBuilder(rxBufferMaxLength * 2);
+        private readonly object _rxLock = new object();
+        private volatile string _pendingWeight;
+        private volatile bool _rxDirty;
+        private System.Windows.Forms.Timer _uiRefreshTimer;
+
+        private void startWeightDisplayTimer()
+        {
+            if (_uiRefreshTimer != null)
+                return;
+
+            _uiRefreshTimer = new System.Windows.Forms.Timer();
+            _uiRefreshTimer.Interval = 100;
+            _uiRefreshTimer.Tick += new EventHandler(weightDisplayTimer_Tick);
+            _uiRefreshTimer.Start();
+        }
+
+        private void stopWeightDisplayTimer()
+        {
+            if (_uiRefreshTimer == null)
+                return;
+
+            _uiRefreshTimer.Stop();
+            _uiRefreshTimer.Tick -= new EventHandler(weightDisplayTimer_Tick);
+            _uiRefreshTimer.Dispose();
+            _uiRefreshTimer = null;
         }
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
-            if (this.InvokeRequired)
+            // ทำงานบน thread ของ serial port ห้ามแตะ control ใดๆ ในเมธอดนี้
+            try
             {
-                // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
-                this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
-                return;
+                string str = Encoding.ASCII.GetString(e.Data);
+                string weight;
+
+                lock (_rxLock)
+                {
+                    _rxBuffer.Append(str);
+                    if (_rxBuffer.Length > rxBufferMaxLength)
+                        _rxBuffer.Remove(0, _rxBuffer.Length - rxBufferMaxLength);
+
+                    weight = getWeightFromRawData(_rxBuffer.ToString());
+                }
+
+                if (weight != null)
+                    _pendingWeight = weight;
+
+                _rxDirty = true;
             }
+            catch (Exception)
+            {
+            }
+        }
 
-            int maxTextLength = 500; // maximum text length in text box
-            if (tbData.TextLength > maxTextLength)
-                tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
+        private void weightDisplayTimer_Tick(object sender, EventArgs e)
+        {
+            if (!_rxDirty)
+                return;
 
-            // This application is connected to a GPS sending ASCCI characters, so data is converted to text
-            string str = Encoding.ASCII.GetString(e.Data);
-            tbData.AppendText(str);
-            tbData.ScrollToCaret();
+            _rxDirty = false;
+
+            string raw;
+            lock (_rxLock)
+            {
+                raw = _rxBuffer.ToString();
+            }
 
             try
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                /* เครื่องพี่จ๋า */
-                // 1 เฟรม = "(" + ตัวสถานะ 1 ตัว + น้ำหนัก + ค่าที่สอง เช่น
-                //   "(8     40     0" , "(0     50     0" , "(:  11570     0"
-                // อ่านเฉพาะเฟรมสุดท้ายที่ส่งมาครบ และข้ามตัวสถานะ (8 / 0 / : ) เสมอ
-                string weight = getWeightFromRawData(tbData.Text);
+                string weight = _pendingWeight;
 
                 if (weight != null)
                 {
@@ -951,13 +1006,30 @@ namespace SerialPortListener
                         tbWeigtData.ForeColor = Color.LightGreen;
                     }
                 }
+
+                //ช่องข้อมูลดิบ อัพเดตแค่รอบละครั้ง และข้ามถ้าเคอร์เซอร์กำลังอยู่ในช่อง
+                if (!tbData.Focused && !String.Equals(tbData.Text, raw))
+                {
+                    tbData.Text = raw;
+                    tbData.SelectionStart = tbData.TextLength;
+                    tbData.ScrollToCaret();
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
             }
+        }
 
-
+        /// <summary>
+        /// ล้าง buffer ข้อมูลดิบที่ค้างอยู่ (ใช้ตอนเริ่ม/หยุดอ่านค่า)
+        /// </summary>
+        private void clearSerialBuffer()
+        {
+            lock (_rxLock)
+            {
+                _rxBuffer.Length = 0;
+            }
+            _rxDirty = true;
         }
 
         // เฟรมน้ำหนัก: "(" + ตัวสถานะ 1 ตัว + น้ำหนัก + ช่องว่าง + ค่าที่สอง + จบด้วย CR/LF
@@ -990,6 +1062,7 @@ namespace SerialPortListener
         // Handles the "Start Listening"-buttom click event
         private void btnStart_Click(object sender, EventArgs e)
         {
+            clearSerialBuffer();
             _spManager.StartListening();
         }
 
@@ -1015,6 +1088,7 @@ namespace SerialPortListener
                 tbWeightIn.Text = numberFormat(tbWeigtData.Text, 2);
 
                 calculateWeight();
+                clearSerialBuffer();
                 _spManager.StartListening();
 
                 //disable after read in
@@ -1272,6 +1346,7 @@ namespace SerialPortListener
                 tbWeightOut.Text = numberFormat(tbWeigtData.Text, 2);
 
                 calculateWeight();
+                clearSerialBuffer();
                 _spManager.StartListening();
 
                 //disable after read out

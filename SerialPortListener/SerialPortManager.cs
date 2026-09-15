@@ -70,10 +70,16 @@ namespace SerialPortListener.Serial
         void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             int dataLength = _serialPort.BytesToRead;
+            if (dataLength <= 0)
+                return;
+
             byte[] data = new byte[dataLength];
             int nbrDataRead = _serialPort.Read(data, 0, dataLength);
             if (nbrDataRead == 0)
                 return;
+
+            if (nbrDataRead != dataLength)
+                Array.Resize(ref data, nbrDataRead);
             
             // Send data to whom ever interested
             if (NewSerialDataRecieved != null)
@@ -103,9 +109,12 @@ namespace SerialPortListener.Serial
 
             // Subscribe to event and open serial port for data
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(_serialPort_DataReceived);
+            _serialPort.ReceivedBytesThreshold = 1;   // แจ้ง event ทันทีที่มีข้อมูลเข้ามา
+            _serialPort.ReadTimeout = 500;
             try
             {
                 _serialPort.Open();
+                _serialPort.DiscardInBuffer();        // ทิ้งข้อมูลเก่าที่ค้างในคิวของ OS กันอ่านค่าย้อนหลัง
             }
             catch (Exception ex) { 
             
@@ -118,7 +127,8 @@ namespace SerialPortListener.Serial
         /// </summary>
         public void StopListening()
         {
-            _serialPort.Close();
+            if (_serialPort != null && _serialPort.IsOpen)
+                _serialPort.Close();
         }
 
 
