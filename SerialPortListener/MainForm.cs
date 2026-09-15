@@ -934,20 +934,16 @@ namespace SerialPortListener
             {
                 //แสดงเลขน้ำหนักที่กำลังวิ่ง
                 /* เครื่องพี่จ๋า */
+                // 1 เฟรม = "(" + ตัวสถานะ 1 ตัว + น้ำหนัก + ค่าที่สอง เช่น
+                //   "(8     40     0" , "(0     50     0" , "(:  11570     0"
+                // อ่านเฉพาะเฟรมสุดท้ายที่ส่งมาครบ และข้ามตัวสถานะ (8 / 0 / : ) เสมอ
+                string weight = getWeightFromRawData(tbData.Text);
 
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("\r"));
-                string remainingText = newString.Substring(newString.LastIndexOf("(") + 3);
-
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-
-                /* เครื่องพี่รุ่ง */
-                //MatchCollection mc = Regex.Matches(str, @"\d+");
-
-                if (mc.Count > 0)
+                if (weight != null)
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
+                    if (String.Compare(tbWeigtData.Text, weight) != 0)
                     {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
+                        tbWeigtData.Text = weight;
                         //tbWeigtData.ForeColor = Color.LightCoral;
                     }
                     else
@@ -962,6 +958,33 @@ namespace SerialPortListener
             }
 
 
+        }
+
+        // เฟรมน้ำหนัก: "(" + ตัวสถานะ 1 ตัว + น้ำหนัก + ช่องว่าง + ค่าที่สอง + จบด้วย CR/LF
+        private static readonly Regex weightFrameRegex =
+            new Regex(@"\((?<status>[^\r\n])[ \t]*(?<weight>[-+]?\d+)[ \t]+(?<extra>[-+]?\d+)[ \t]*[\r\n]",
+                      RegexOptions.Compiled);
+
+        /// <summary>
+        /// ดึงน้ำหนักจากเฟรมสุดท้ายที่สมบูรณ์, คืน null ถ้ายังไม่มีเฟรมที่สมบูรณ์
+        /// </summary>
+        private string getWeightFromRawData(string rawData)
+        {
+            if (string.IsNullOrEmpty(rawData))
+                return null;
+
+            MatchCollection frames = weightFrameRegex.Matches(rawData);
+            if (frames.Count == 0)
+                return null;
+
+            string weight = frames[frames.Count - 1].Groups["weight"].Value;
+
+            bool isNegative = weight.StartsWith("-");
+            string digits = weight.TrimStart('+', '-').TrimStart('0');
+            if (digits.Length == 0)
+                digits = "0";
+
+            return (isNegative && digits != "0") ? "-" + digits : digits;
         }
 
         // Handles the "Start Listening"-buttom click event
