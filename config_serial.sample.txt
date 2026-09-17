@@ -1,0 +1,26 @@
+﻿# ตั้งค่ารูปแบบการอ่านค่าน้ำหนักจากพอร์ตอนุกรม
+# วางไฟล์นี้ชื่อ config_serial.txt ไว้ในโฟลเดอร์ข้อมูลของโปรแกรม
+# หรือจะตั้งจากหน้าจอ ucHelp ก็ได้ (โปรแกรมจะเขียนไฟล์นี้ให้เอง)
+#
+# Handler = คีย์ของวิธีอ่าน ค่าเริ่มต้นคือ KG_CR ซึ่งเป็นพฤติกรรมเดิมของ Master_Blue_1
+# ถ้าใส่คีย์ที่ไม่รู้จัก โปรแกรมจะถอยไปใช้ KG_CR โดยอัตโนมัติ
+#
+# คีย์ที่ใช้ได้ (คีย์ = คำอธิบาย [branch ต้นทาง]) :
+#   KG_CR            1. KG + CR (มาตรฐาน)  [Blue_Master / Master_Blue_1]
+#   RAW              2. อ่านตรงจากข้อมูลดิบ (ไม่มีตัวคั่น)  [39_Blue_new_11/03/25]
+#   KG_LOWER_CR      3. kg + CR (ตัวพิมพ์เล็ก)  [Blue_Uni_11/03/25]
+#   KG_LOWER_G3      4. kg + G (เครื่องพี่รุ่ง)  [Blue_DO_11/03/25]
+#   CR_PAREN3        5. CR + วงเล็บเปิด  [Blue_T4_11/03/25]
+#   CR_PAREN3_AUTO   6. CR + วงเล็บเปิด + น้ำหนักอัตโนมัติ  [Blue_T1_clean_11/03/25]
+#   CR_P             7. CR + p  [Blue_T4_15_11 / M3&Blue_match / JOB_Blue]
+#   CR_PQ_VALIDATED  8. CR + p/q พร้อมตรวจค่าผิดปกติ  [39_Blue_new_fix_invoid_11/03/25]
+#   KN_CR            9. KN + CR  [KT_Blue_11/03/25]
+#   NSM              10. NSM (ST,GS, + ,Kg)  [NSM_Blue_11/03/25]
+#   NSM_AUTO         11. NSM + น้ำหนักอัตโนมัติ + ตัดเมื่อไม่มีข้อมูล  [NSM_Blue_Auto_update_01/08/2026]
+#   ETB_P            12. ETB + p  [FT_ST_SURAT_STP_2025]
+#   ETB_Q_AUTO       13. ETB + q + น้ำหนักอัตโนมัติ  [JOB_Blue_Auto_update_01/08/2026]
+#   STX_SIGNED       14. STX + CR (รองรับน้ำหนักติดลบ)  [SRD_Blue_11/03/25]
+#   KRABI_FRAME      15. อ่านทีละบรรทัดแบบมีสถานะ (กระบี่)  [KRABI_STP_2026]
+#   TYM_MARKER       16. อ่านฟิลด์ความกว้างคงที่หลัง *0 (TYM)  [TYM_Blue_Auto_update_01/08/2026]
+
+Handler=KG_CR

@@ -40,6 +40,8 @@ namespace SerialPortListener
         public ucHelp()
         {
             InitializeComponent();
+        
+            LoadSerialHandlerSetting();
         }
 
         public void SetSerialPortManager(SerialPortManager spManager)
@@ -321,6 +323,51 @@ namespace SerialPortListener
             {
             }
         }
+        // ---- รูปแบบการอ่านค่าจากตาชั่ง ----
+        // แต่ละสาขาใช้ตาชั่งคนละรุ่น จึงให้เลือกวิธีอ่านได้จากหน้านี้
+        // รายการทั้งหมดและตัวแยกค่าอยู่ที่ SerialDataHandler
+        private void LoadSerialHandlerSetting()
+        {
+            cboSerialHandler.Items.Clear();
+            foreach (SerialDataHandler.HandlerInfo h in SerialDataHandler.Handlers)
+                cboSerialHandler.Items.Add(h.DisplayName);
+
+            string key = SerialDataHandler.GetSelectedKey();
+            for (int i = 0; i < SerialDataHandler.Handlers.Length; i++)
+            {
+                if (SerialDataHandler.Handlers[i].Key == key)
+                {
+                    cboSerialHandler.SelectedIndex = i;
+                    break;
+                }
+            }
+            if (cboSerialHandler.SelectedIndex < 0 && cboSerialHandler.Items.Count > 0)
+                cboSerialHandler.SelectedIndex = 0;
+        }
+
+        private void btnSaveSerialHandler_Click(object sender, EventArgs e)
+        {
+            int i = cboSerialHandler.SelectedIndex;
+            if (i < 0 || i >= SerialDataHandler.Handlers.Length)
+                return;
+
+            SerialDataHandler.HandlerInfo h = SerialDataHandler.Handlers[i];
+            if (!SerialDataHandler.SaveSelectedHandler(h.Key))
+            {
+                MessageBox.Show("บันทึกรูปแบบตาชั่งไม่สำเร็จ", "ผิดพลาด",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // ให้หน้าชั่งเปลี่ยนไปใช้วิธีใหม่ทันที ไม่ต้องปิดเปิดโปรแกรม
+            MainForm mf = this.FindForm() as MainForm;
+            if (mf != null)
+                mf.ReloadSerialHandler();
+
+            MessageBox.Show("บันทึกรูปแบบตาชั่งแล้ว : " + h.DisplayName, "บันทึกแล้ว",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
 
 
 

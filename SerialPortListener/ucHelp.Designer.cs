@@ -50,6 +50,9 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSavePort = new System.Windows.Forms.Button();
             this.tbRx = new System.Windows.Forms.TextBox();
+            this.lblSerialHandler = new System.Windows.Forms.Label();
+            this.cboSerialHandler = new System.Windows.Forms.ComboBox();
+            this.btnSaveSerialHandler = new System.Windows.Forms.Button();
             this.timerRx = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -195,6 +198,41 @@
             this.btnSavePort.UseVisualStyleBackColor = false;
             this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
             // 
+            // lblSerialHandler
+            // 
+            this.lblSerialHandler.AutoSize = true;
+            this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSerialHandler.Location = new System.Drawing.Point(37, 350);
+            this.lblSerialHandler.Name = "lblSerialHandler";
+            this.lblSerialHandler.Size = new System.Drawing.Size(120, 22);
+            this.lblSerialHandler.TabIndex = 16;
+            this.lblSerialHandler.Text = "รูปแบบตาชั่ง";
+            // 
+            // cboSerialHandler
+            // 
+            // เลือกวิธีอ่านค่าน้ำหนักให้ตรงกับรุ่นตาชั่งของสาขา (ดู SerialDataHandler)
+            this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSerialHandler.FormattingEnabled = true;
+            this.cboSerialHandler.Location = new System.Drawing.Point(37, 378);
+            this.cboSerialHandler.Name = "cboSerialHandler";
+            this.cboSerialHandler.Size = new System.Drawing.Size(274, 29);
+            this.cboSerialHandler.TabIndex = 17;
+            // 
+            // btnSaveSerialHandler
+            // 
+            this.btnSaveSerialHandler.BackColor = System.Drawing.Color.White;
+            this.btnSaveSerialHandler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSerialHandler.ForeColor = System.Drawing.Color.Green;
+            this.btnSaveSerialHandler.Location = new System.Drawing.Point(77, 415);
+            this.btnSaveSerialHandler.Name = "btnSaveSerialHandler";
+            this.btnSaveSerialHandler.Size = new System.Drawing.Size(234, 30);
+            this.btnSaveSerialHandler.TabIndex = 18;
+            this.btnSaveSerialHandler.Text = "บันทึกรูปแบบตาชั่ง";
+            this.btnSaveSerialHandler.UseVisualStyleBackColor = false;
+            this.btnSaveSerialHandler.Click += new System.EventHandler(this.btnSaveSerialHandler_Click);
+            // 
             // tbRx
             // 
             this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -220,6 +258,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblSerialHandler);
+            this.Controls.Add(this.cboSerialHandler);
+            this.Controls.Add(this.btnSaveSerialHandler);
             this.Controls.Add(this.tbRx);
             this.Controls.Add(this.btnSavePort);
             this.Controls.Add(this.btnStop);
@@ -258,5 +299,8 @@
         private System.Windows.Forms.Button btnSavePort;
         private System.Windows.Forms.TextBox tbRx;
         private System.Windows.Forms.Timer timerRx;
+        private System.Windows.Forms.Label lblSerialHandler;
+        private System.Windows.Forms.ComboBox cboSerialHandler;
+        private System.Windows.Forms.Button btnSaveSerialHandler;
     }
 }

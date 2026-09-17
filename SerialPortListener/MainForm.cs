@@ -1004,6 +1004,8 @@ namespace SerialPortListener
             stopBitsComboBox.DataSource = Enum.GetValues(typeof(System.IO.Ports.StopBits));
             */
 
+            // อ่านวิธีอ่านค่าที่ตั้งไว้ก่อนเริ่มรับข้อมูล
+            ReloadSerialHandler();
             _spManager.NewSerialDataRecieved += new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved);
             this.FormClosing += new FormClosingEventHandler(MainForm_FormClosing);
 
@@ -1012,65 +1014,164 @@ namespace SerialPortListener
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (_serialRxTimer != null)
+                _serialRxTimer.Dispose();
+            if (_serialNoDataTimer != null)
+                _serialNoDataTimer.Dispose();
             if (_spManager != null)
             {
                 _spManager.Dispose();
             }
         }
 
+        // ---- การอ่านค่าจากพอร์ตอนุกรม ----
+        // แต่ละสาขาใช้ตาชั่งคนละรุ่น รูปแบบข้อมูลจึงต่างกัน
+        // ตัวจัดการนี้จึงไม่ฝังรูปแบบใดรูปแบบหนึ่งไว้ แต่ไปถามวิธีที่ผู้ใช้เลือกไว้ที่หน้า ucHelp
+        // ตัวแยกค่าอยู่ที่ SerialDataHandler ทั้งหมด (ดู SerialDataHandler.Handlers)
+        private SerialDataHandler.HandlerInfo _serialHandler;
+        private readonly System.Text.StringBuilder _serialRxBuffer = new System.Text.StringBuilder();
+        private readonly object _serialRxLock = new object();
+        private System.Windows.Forms.Timer _serialRxTimer;   // ใช้เฉพาะวิธีที่รับแบบบัฟเฟอร์
+        private System.Windows.Forms.Timer _serialNoDataTimer;
+
+        /// <summary>อ่านวิธีที่เลือกไว้ใหม่ และตั้งตัวจับเวลาที่วิธีนั้นต้องใช้</summary>
+        public void ReloadSerialHandler()
+        {
+            _serialHandler = SerialDataHandler.GetSelectedHandler();
+
+            if (_serialNoDataTimer == null)
+            {
+                _serialNoDataTimer = new System.Windows.Forms.Timer();
+                _serialNoDataTimer.Interval = 1500;   // ไม่มีข้อมูลเข้าเกิน 1.5 วินาที ถือว่าขาดการติดต่อ
+                _serialNoDataTimer.Tick += delegate
+                {
+                    tbWeigtData.Text = "Error";
+                    tbWeigtData.ForeColor = Color.DarkRed;
+                    _serialNoDataTimer.Stop();
+                };
+            }
+            if (!_serialHandler.NoDataTimeout)
+                _serialNoDataTimer.Stop();
+
+            if (_serialRxTimer == null)
+            {
+                _serialRxTimer = new System.Windows.Forms.Timer();
+                _serialRxTimer.Interval = 200;
+                _serialRxTimer.Tick += serialRxTimer_Tick;
+            }
+            // วิธีแบบบัฟเฟอร์จะไม่แตะหน้าจอตอนรับข้อมูล แต่ให้ timer มาระบายทีเดียว ลดการกระตุก
+            _serialRxTimer.Enabled = _serialHandler.Buffered;
+        }
+
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
         {
+            if (_serialHandler == null)
+                ReloadSerialHandler();
+            SerialDataHandler.HandlerInfo h = _serialHandler;
+
+            // สิทธิ auto_weight ไม่ต้องอ่านพอร์ตเลย ตั้งค่าคงที่แล้วจบ
+            if (h.AutoWeight && Globals.isPermissionAutoWeight())
+            {
+                if (this.InvokeRequired)
+                {
+                    this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
+                    return;
+                }
+                tbWeigtData.Text = "100";
+                return;
+            }
+
+            string str = Encoding.ASCII.GetString(e.Data);
+
+            if (h.Buffered)
+            {
+                // รับจากเธรดพอร์ต ห้ามแตะคอนโทรลตรงนี้ เก็บใส่บัฟเฟอร์อย่างเดียว
+                lock (_serialRxLock)
+                {
+                    _serialRxBuffer.Append(str);
+                    if (_serialRxBuffer.Length > h.MaxTextLength * 4)
+                        _serialRxBuffer.Remove(0, _serialRxBuffer.Length - h.MaxTextLength * 4);
+                }
+                return;
+            }
+
             if (this.InvokeRequired)
             {
-                // Using this.Invoke causes deadlock when closing serial port, and BeginInvoke is good practice anyway.
+                // ใช้ this.Invoke แล้วจะค้างตอนปิดพอร์ต จึงต้องเป็น BeginInvoke
                 this.BeginInvoke(new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved), new object[] { sender, e });
                 return;
             }
-            int maxTextLength = 1000; // maximum text length in text box
-            if (tbData.TextLength > maxTextLength)
-                tbData.Text = tbData.Text.Remove(0, tbData.TextLength - maxTextLength);
 
-            // This application is connected to a GPS sending ASCCI characters, so data is converted to text
-            string str = Encoding.ASCII.GetString(e.Data);
+            if (tbData.TextLength > h.MaxTextLength)
+                tbData.Text = tbData.Text.Remove(0, tbData.TextLength - h.MaxTextLength);
             tbData.AppendText(str);
             tbData.ScrollToCaret();
 
+            applySerialWeight(h, str);
+        }
+
+        // ระบายข้อมูลที่สะสมไว้ทีเดียวบนเธรด UI สำหรับวิธีที่รับแบบบัฟเฟอร์
+        private void serialRxTimer_Tick(object sender, EventArgs e)
+        {
+            string pending;
+            lock (_serialRxLock)
+            {
+                if (_serialRxBuffer.Length == 0)
+                    return;
+                pending = _serialRxBuffer.ToString();
+                _serialRxBuffer.Clear();
+            }
+
+            SerialDataHandler.HandlerInfo h = _serialHandler;
             try
             {
-                //แสดงเลขน้ำหนักที่กำลังวิ่ง
-                /* เครื่องพี่จ๋า */
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("KG"));
-                string remainingText = newString.Substring(newString.LastIndexOf("\r"));
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                
-                /* เครื่องพี่รุ่ง */
-                /*
-                string newString = tbData.Text.Remove(tbData.Text.LastIndexOf("kg"));
-                string remainingText = newString.Substring(newString.LastIndexOf("G") + 3);
-                MatchCollection mc = Regex.Matches(remainingText, @"\d+");
-                */
+                if (tbData.TextLength > h.MaxTextLength)
+                    tbData.Text = tbData.Text.Remove(0, tbData.TextLength - h.MaxTextLength);
+                tbData.AppendText(pending);
+                tbData.ScrollToCaret();
+            }
+            catch (Exception)
+            {
+            }
 
-                if (mc.Count > 0)
+            applySerialWeight(h, pending);
+        }
+
+        /// <summary>เอาผลการแยกค่าไปแสดงที่ช่องน้ำหนัก ส่วนนี้เหมือนกันทุกวิธี</summary>
+        private void applySerialWeight(SerialDataHandler.HandlerInfo h, string chunk)
+        {
+            SerialDataHandler.ParseResult r = SerialDataHandler.Parse(h, tbData.Text, chunk);
+
+            if (r.HasValue)
+            {
+                if (String.Compare(tbWeigtData.Text, r.Text) != 0)
                 {
-                    if (String.Compare(tbWeigtData.Text, mc[0].Value) != 0)
-                    {
-                        tbWeigtData.Text = mc[0].Value.TrimStart('0').PadLeft(1, '0');
-                        //tbWeigtData.ForeColor = Color.LightCoral;
-                    }
-                    else
-                    {
-                        tbWeigtData.ForeColor = Color.LightGreen;
-                    }
+                    tbWeigtData.Text = r.Text;
+                    if (h.Mode == SerialDataHandler.ParseMode.RawChunk)
+                        tbWeigtData.ForeColor = Color.LightCoral;
+                    else if (r.IsNegative)
+                        tbWeigtData.ForeColor = Color.LightCoral;
+                }
+                else
+                {
+                    tbWeigtData.ForeColor = Color.LightGreen;
+                }
+
+                if (h.NoDataTimeout)
+                {
+                    // มีข้อมูลเข้าแล้ว เริ่มนับเวลาขาดการติดต่อใหม่
+                    _serialNoDataTimer.Stop();
+                    _serialNoDataTimer.Start();
                 }
             }
-            catch (Exception ex)
+            else if (r.IsError)
             {
-
+                tbWeigtData.Text = "Error";
+                tbWeigtData.ForeColor = Color.DarkRed;
             }
-
-
-
+            // อ่านไม่ได้และวิธีนี้ไม่ได้กำหนดให้แจ้ง Error แปลว่าข้อมูลยังมาไม่ครบ ให้คงค่าเดิมไว้
         }
+
 
         // Handles the "Start Listening"-buttom click event
         private void btnStart_Click(object sender, EventArgs e)

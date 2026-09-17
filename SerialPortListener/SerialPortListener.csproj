@@ -460,6 +460,7 @@
     </Compile>
     <Compile Include="WeightTempReport.cs" />
     <Compile Include="ReportMainTemplate.cs" />
+    <Compile Include="SerialDataHandler.cs" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
     <EmbeddedResource Include="CleanReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
