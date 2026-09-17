@@ -69,7 +69,7 @@
             this.gbPort.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPort.Location = new System.Drawing.Point(12, 12);
             this.gbPort.Name = "gbPort";
-            this.gbPort.Size = new System.Drawing.Size(384, 396);
+            this.gbPort.Size = new System.Drawing.Size(320, 396);
             this.gbPort.TabIndex = 0;
             this.gbPort.TabStop = false;
             this.gbPort.Text = "ตั้งค่าพอร์ต";
@@ -77,9 +77,9 @@
             // gbScale
             // 
             this.gbScale.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbScale.Location = new System.Drawing.Point(408, 12);
+            this.gbScale.Location = new System.Drawing.Point(344, 12);
             this.gbScale.Name = "gbScale";
-            this.gbScale.Size = new System.Drawing.Size(408, 236);
+            this.gbScale.Size = new System.Drawing.Size(340, 236);
             this.gbScale.TabIndex = 1;
             this.gbScale.TabStop = false;
             this.gbScale.Text = "รูปแบบตาชั่ง";
@@ -87,9 +87,9 @@
             // gbRaw
             // 
             this.gbRaw.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRaw.Location = new System.Drawing.Point(408, 258);
+            this.gbRaw.Location = new System.Drawing.Point(344, 258);
             this.gbRaw.Name = "gbRaw";
-            this.gbRaw.Size = new System.Drawing.Size(408, 150);
+            this.gbRaw.Size = new System.Drawing.Size(340, 150);
             this.gbRaw.TabIndex = 2;
             this.gbRaw.TabStop = false;
             this.gbRaw.Text = "ข้อมูลดิบจากพอร์ต";
@@ -98,7 +98,7 @@
             // 
             this.lblPort.AutoSize = true;
             this.lblPort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPort.Location = new System.Drawing.Point(18, 35);
+            this.lblPort.Location = new System.Drawing.Point(16, 35);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(46, 22);
             this.lblPort.TabIndex = 2;
@@ -109,16 +109,16 @@
             this.cboPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPort.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(150, 32);
+            this.cboPort.Location = new System.Drawing.Point(110, 32);
             this.cboPort.Name = "cboPort";
-            this.cboPort.Size = new System.Drawing.Size(216, 29);
+            this.cboPort.Size = new System.Drawing.Size(194, 29);
             this.cboPort.TabIndex = 3;
             // 
             // lblBaud
             // 
             this.lblBaud.AutoSize = true;
             this.lblBaud.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBaud.Location = new System.Drawing.Point(18, 75);
+            this.lblBaud.Location = new System.Drawing.Point(16, 75);
             this.lblBaud.Name = "lblBaud";
             this.lblBaud.Size = new System.Drawing.Size(59, 22);
             this.lblBaud.TabIndex = 4;
@@ -129,16 +129,16 @@
             this.cboBaud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBaud.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBaud.FormattingEnabled = true;
-            this.cboBaud.Location = new System.Drawing.Point(150, 72);
+            this.cboBaud.Location = new System.Drawing.Point(110, 72);
             this.cboBaud.Name = "cboBaud";
-            this.cboBaud.Size = new System.Drawing.Size(216, 29);
+            this.cboBaud.Size = new System.Drawing.Size(194, 29);
             this.cboBaud.TabIndex = 5;
             // 
             // lblParity
             // 
             this.lblParity.AutoSize = true;
             this.lblParity.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblParity.Location = new System.Drawing.Point(18, 115);
+            this.lblParity.Location = new System.Drawing.Point(16, 115);
             this.lblParity.Name = "lblParity";
             this.lblParity.Size = new System.Drawing.Size(61, 22);
             this.lblParity.TabIndex = 6;
@@ -149,16 +149,16 @@
             this.cboParity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboParity.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboParity.FormattingEnabled = true;
-            this.cboParity.Location = new System.Drawing.Point(150, 112);
+            this.cboParity.Location = new System.Drawing.Point(110, 112);
             this.cboParity.Name = "cboParity";
-            this.cboParity.Size = new System.Drawing.Size(216, 29);
+            this.cboParity.Size = new System.Drawing.Size(194, 29);
             this.cboParity.TabIndex = 7;
             // 
             // lblDataBits
             // 
             this.lblDataBits.AutoSize = true;
             this.lblDataBits.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataBits.Location = new System.Drawing.Point(18, 155);
+            this.lblDataBits.Location = new System.Drawing.Point(16, 155);
             this.lblDataBits.Name = "lblDataBits";
             this.lblDataBits.Size = new System.Drawing.Size(85, 22);
             this.lblDataBits.TabIndex = 8;
@@ -169,16 +169,16 @@
             this.cboDataBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDataBits.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDataBits.FormattingEnabled = true;
-            this.cboDataBits.Location = new System.Drawing.Point(150, 152);
+            this.cboDataBits.Location = new System.Drawing.Point(110, 152);
             this.cboDataBits.Name = "cboDataBits";
-            this.cboDataBits.Size = new System.Drawing.Size(216, 29);
+            this.cboDataBits.Size = new System.Drawing.Size(194, 29);
             this.cboDataBits.TabIndex = 9;
             // 
             // lblStopBits
             // 
             this.lblStopBits.AutoSize = true;
             this.lblStopBits.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStopBits.Location = new System.Drawing.Point(18, 195);
+            this.lblStopBits.Location = new System.Drawing.Point(16, 195);
             this.lblStopBits.Name = "lblStopBits";
             this.lblStopBits.Size = new System.Drawing.Size(79, 22);
             this.lblStopBits.TabIndex = 10;
@@ -189,9 +189,9 @@
             this.cboStopBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStopBits.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStopBits.FormattingEnabled = true;
-            this.cboStopBits.Location = new System.Drawing.Point(150, 192);
+            this.cboStopBits.Location = new System.Drawing.Point(110, 192);
             this.cboStopBits.Name = "cboStopBits";
-            this.cboStopBits.Size = new System.Drawing.Size(216, 29);
+            this.cboStopBits.Size = new System.Drawing.Size(194, 29);
             this.cboStopBits.TabIndex = 11;
             // 
             // btnStart
@@ -200,9 +200,9 @@
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnStart.Location = new System.Drawing.Point(18, 268);
+            this.btnStart.Location = new System.Drawing.Point(16, 268);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(168, 40);
+            this.btnStart.Size = new System.Drawing.Size(142, 40);
             this.btnStart.TabIndex = 12;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -214,9 +214,9 @@
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnStop.Location = new System.Drawing.Point(198, 268);
+            this.btnStop.Location = new System.Drawing.Point(162, 268);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(168, 40);
+            this.btnStop.Size = new System.Drawing.Size(142, 40);
             this.btnStop.TabIndex = 13;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = false;
@@ -228,9 +228,9 @@
             this.btnSavePort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSavePort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSavePort.ForeColor = System.Drawing.Color.Green;
-            this.btnSavePort.Location = new System.Drawing.Point(18, 320);
+            this.btnSavePort.Location = new System.Drawing.Point(16, 320);
             this.btnSavePort.Name = "btnSavePort";
-            this.btnSavePort.Size = new System.Drawing.Size(348, 36);
+            this.btnSavePort.Size = new System.Drawing.Size(288, 36);
             this.btnSavePort.TabIndex = 15;
             this.btnSavePort.Text = "save config ";
             this.btnSavePort.UseVisualStyleBackColor = false;
@@ -242,19 +242,19 @@
             this.tbRx.BackColor = System.Drawing.Color.White;
             this.tbRx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbRx.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbRx.Location = new System.Drawing.Point(18, 30);
+            this.tbRx.Location = new System.Drawing.Point(16, 30);
             this.tbRx.Multiline = true;
             this.tbRx.Name = "tbRx";
             this.tbRx.ReadOnly = true;
             this.tbRx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbRx.Size = new System.Drawing.Size(372, 112);
+            this.tbRx.Size = new System.Drawing.Size(308, 112);
             this.tbRx.TabIndex = 14;
             // 
             // lblSerialHandler
             // 
             this.lblSerialHandler.AutoSize = true;
             this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerialHandler.Location = new System.Drawing.Point(18, 30);
+            this.lblSerialHandler.Location = new System.Drawing.Point(16, 30);
             this.lblSerialHandler.Name = "lblSerialHandler";
             this.lblSerialHandler.Size = new System.Drawing.Size(84, 22);
             this.lblSerialHandler.TabIndex = 16;
@@ -265,9 +265,9 @@
             this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSerialHandler.FormattingEnabled = true;
-            this.cboSerialHandler.Location = new System.Drawing.Point(18, 62);
+            this.cboSerialHandler.Location = new System.Drawing.Point(16, 62);
             this.cboSerialHandler.Name = "cboSerialHandler";
-            this.cboSerialHandler.Size = new System.Drawing.Size(372, 29);
+            this.cboSerialHandler.Size = new System.Drawing.Size(308, 29);
             this.cboSerialHandler.TabIndex = 17;
             this.cboSerialHandler.SelectedIndexChanged += new System.EventHandler(this.cboSerialHandler_SelectedIndexChanged);
             // 
@@ -277,7 +277,7 @@
             this.btnSaveSerialHandler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveSerialHandler.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveSerialHandler.Location = new System.Drawing.Point(240, 98);
+            this.btnSaveSerialHandler.Location = new System.Drawing.Point(174, 98);
             this.btnSaveSerialHandler.Name = "btnSaveSerialHandler";
             this.btnSaveSerialHandler.Size = new System.Drawing.Size(150, 34);
             this.btnSaveSerialHandler.TabIndex = 18;
@@ -289,7 +289,7 @@
             // 
             this.lblWeightPreview.AutoSize = true;
             this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeightPreview.Location = new System.Drawing.Point(18, 142);
+            this.lblWeightPreview.Location = new System.Drawing.Point(16, 142);
             this.lblWeightPreview.Name = "lblWeightPreview";
             this.lblWeightPreview.Size = new System.Drawing.Size(104, 22);
             this.lblWeightPreview.TabIndex = 19;
@@ -300,10 +300,10 @@
             this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
             this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbWeightPreview.Location = new System.Drawing.Point(18, 174);
+            this.tbWeightPreview.Location = new System.Drawing.Point(16, 174);
             this.tbWeightPreview.Name = "tbWeightPreview";
             this.tbWeightPreview.ReadOnly = true;
-            this.tbWeightPreview.Size = new System.Drawing.Size(372, 48);
+            this.tbWeightPreview.Size = new System.Drawing.Size(308, 41);
             this.tbWeightPreview.TabIndex = 20;
             this.tbWeightPreview.TabStop = false;
             this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
