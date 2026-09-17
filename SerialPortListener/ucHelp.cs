@@ -167,6 +167,9 @@ namespace SerialPortListener
             cboPort.Enabled = canEdit && btnStop.Enabled == false;
             btnSavePort.Visible = canEdit;
             btnSavePort.Enabled = canEdit;
+
+            // กล่องรูปแบบตาชั่งเป็นการตั้งค่าระดับเครื่อง ให้เห็นเฉพาะผู้ที่มีสิทธิ add_setting
+            gbScale.Visible = canEdit;
         }
 
         // อ่านค่า COM port ที่บันทึกไว้จาก config_port.txt (บรรทัดเดียว เช่น "COM4") ถ้าไม่มีไฟล์หรืออ่านไม่ได้คืนค่า null
