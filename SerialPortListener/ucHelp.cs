@@ -134,6 +134,9 @@ namespace SerialPortListener
                 cboStopBits.SelectedItem = StopBits.One;
             }
 
+            // config_serial.txt เก็บพารามิเตอร์สายสัญญาณที่บันทึกไว้ ให้ใช้แทนค่าเริ่มต้นข้างบน
+            ApplySavedPortSettings();
+
             // config_port.txt เก็บพอร์ตที่บันทึกไว้ล่าสุด ถ้ามีไฟล์นี้ให้ใช้แทนค่าจาก _spManager
             string savedPort = LoadSavedPort();
             if (!string.IsNullOrEmpty(savedPort) && ports.Contains(savedPort))
@@ -202,6 +205,15 @@ namespace SerialPortListener
                 if (!System.IO.Directory.Exists(AppDataDir))
                     System.IO.Directory.CreateDirectory(AppDataDir);
                 System.IO.File.WriteAllLines(PortConfigPath, new[] { cboPort.SelectedItem.ToString() });
+
+                // Baud/Parity/DataBits/StopBits เก็บรวมไว้ที่ config_serial.txt
+                if (!SaveCurrentPortSettings())
+                {
+                    MessageBox.Show("บันทึกพารามิเตอร์สายสัญญาณไม่สำเร็จ", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 MessageBox.Show("บันทึกการตั้งค่าสำเร็จ", "Port", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -361,6 +373,9 @@ namespace SerialPortListener
                 return;
             }
 
+            // บันทึกพารามิเตอร์สายสัญญาณไปพร้อมกัน ทั้งสองปุ่มจึงเก็บครบเหมือนกัน
+            SaveCurrentPortSettings();
+
             // ให้หน้าชั่งเปลี่ยนไปใช้วิธีใหม่ทันที ไม่ต้องปิดเปิดโปรแกรม
             MainForm mf = this.FindForm() as MainForm;
             if (mf != null)
@@ -415,6 +430,50 @@ namespace SerialPortListener
             // คำนวณใหม่จากข้อมูลที่ค้างอยู่ในหน้าจอ จะได้เห็นผลทันทีโดยไม่ต้องรอข้อมูลก้อนถัดไป
             UpdateWeightPreview(string.Empty);
         }
+        // ---- พารามิเตอร์สายสัญญาณ (Baud / Parity / DataBits / StopBits) ----
+        // เก็บรวมไว้ที่ config_serial.txt ไฟล์เดียวกับรูปแบบตาชั่ง
+        // ส่วนชื่อพอร์ตยังอยู่ที่ config_port.txt ตามเดิม
+
+        /// <summary>เอาค่าที่บันทึกไว้มาใส่คอมโบ และดันเข้า _spManager ให้ใช้ได้ทันที</summary>
+        private void ApplySavedPortSettings()
+        {
+            SerialDataHandler.PortSettings ps = SerialDataHandler.GetPortSettings();
+
+            if (cboBaud.Items.Contains(ps.BaudRate))
+                cboBaud.SelectedItem = ps.BaudRate;
+            if (cboParity.Items.Contains(ps.Parity))
+                cboParity.SelectedItem = ps.Parity;
+            if (cboDataBits.Items.Contains(ps.DataBits))
+                cboDataBits.SelectedItem = ps.DataBits;
+            if (cboStopBits.Items.Contains(ps.StopBits))
+                cboStopBits.SelectedItem = ps.StopBits;
+
+            // MainForm อาจเริ่มรับข้อมูลเองโดยไม่ผ่านปุ่ม start จึงต้องตั้งค่าให้ด้วย
+            if (_spManager != null && _spManager.CurrentSerialSettings != null)
+            {
+                SerialSettings settings = _spManager.CurrentSerialSettings;
+                settings.BaudRate = ps.BaudRate;
+                settings.Parity = ps.Parity;
+                settings.DataBits = ps.DataBits;
+                settings.StopBits = ps.StopBits;
+            }
+        }
+
+        /// <summary>เก็บค่าที่เลือกอยู่ในคอมโบลง config_serial.txt</summary>
+        private bool SaveCurrentPortSettings()
+        {
+            SerialDataHandler.PortSettings ps = new SerialDataHandler.PortSettings();
+            if (cboBaud.SelectedItem != null)
+                ps.BaudRate = (int)cboBaud.SelectedItem;
+            if (cboParity.SelectedItem != null)
+                ps.Parity = (Parity)cboParity.SelectedItem;
+            if (cboDataBits.SelectedItem != null)
+                ps.DataBits = (int)cboDataBits.SelectedItem;
+            if (cboStopBits.SelectedItem != null)
+                ps.StopBits = (StopBits)cboStopBits.SelectedItem;
+            return SerialDataHandler.SavePortSettings(ps);
+        }
+
 
 
 

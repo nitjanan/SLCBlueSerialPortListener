@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Ports;
 using System.Text.RegularExpressions;
 
 namespace SerialPortListener
@@ -143,69 +144,66 @@ namespace SerialPortListener
             return null;
         }
 
-        /// <summary>อ่านคีย์ที่เลือกไว้จากไฟล์ตั้งค่า ถ้าไม่มีหรืออ่านไม่ได้ให้ใช้ค่าเริ่มต้น</summary>
-        public static string GetSelectedKey()
+        // ---- อ่าน/เขียนไฟล์ตั้งค่า config_serial.txt ----
+        // ไฟล์เดียวเก็บทั้งวิธีอ่านค่าและพารามิเตอร์ของสายสัญญาณ ในรูปแบบ key=value
+        // บรรทัดที่ไม่รู้จักจะถูกคงไว้เสมอ เผื่อมีคนเพิ่มค่าอื่นไว้เอง
+
+        /// <summary>อ่านทั้งไฟล์เป็นคู่ key/value ถ้าไม่มีไฟล์หรืออ่านไม่ได้จะคืนรายการว่าง</summary>
+        private static Dictionary<string, string> ReadConfig()
         {
+            Dictionary<string, string> d =
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             try
             {
                 if (File.Exists(ConfigPath))
                 {
                     foreach (string line in File.ReadAllLines(ConfigPath))
                     {
-                        string s = line.Trim();
-                        if (s.Length == 0 || s.StartsWith("#"))
+                        string t = line.Trim();
+                        if (t.Length == 0 || t.StartsWith("#"))
                             continue;
-                        int eq = s.IndexOf('=');
+                        int eq = t.IndexOf('=');
                         if (eq <= 0)
                             continue;
-                        if (s.Substring(0, eq).Trim().Equals("Handler", StringComparison.OrdinalIgnoreCase))
-                        {
-                            HandlerInfo h = Find(s.Substring(eq + 1).Trim());
-                            if (h != null)
-                                return h.Key;
-                        }
+                        d[t.Substring(0, eq).Trim()] = t.Substring(eq + 1).Trim();
                     }
                 }
             }
             catch (Exception)
             {
-                // อ่านไฟล์ไม่ได้ ให้ถอยไปใช้ค่าเริ่มต้น ไม่ต้องทำให้โปรแกรมล้ม
+                // อ่านไม่ได้ให้ถือว่ายังไม่เคยตั้งค่า ไม่ต้องทำให้โปรแกรมล้ม
             }
-            return DefaultKey;
+            return d;
         }
 
-        public static HandlerInfo GetSelectedHandler()
+        /// <summary>เขียนค่าที่ส่งมาลงไฟล์ โดยคงบรรทัดอื่นและคอมเมนต์เดิมไว้</summary>
+        private static bool WriteConfig(Dictionary<string, string> values)
         {
-            return Find(GetSelectedKey()) ?? Find(DefaultKey);
-        }
-
-        /// <summary>บันทึกคีย์ที่เลือก โดยคงบรรทัดอื่นในไฟล์ไว้เหมือนเดิม</summary>
-        public static bool SaveSelectedHandler(string key)
-        {
-            if (Find(key) == null)
-                return false;
             try
             {
                 List<string> lines = new List<string>();
                 if (File.Exists(ConfigPath))
                     lines.AddRange(File.ReadAllLines(ConfigPath));
 
-                bool replaced = false;
-                for (int i = 0; i < lines.Count; i++)
+                foreach (KeyValuePair<string, string> kv in values)
                 {
-                    string s = lines[i].Trim();
-                    if (s.Length == 0 || s.StartsWith("#"))
-                        continue;
-                    int eq = s.IndexOf('=');
-                    if (eq > 0 && s.Substring(0, eq).Trim().Equals("Handler", StringComparison.OrdinalIgnoreCase))
+                    bool replaced = false;
+                    for (int i = 0; i < lines.Count; i++)
                     {
-                        lines[i] = "Handler=" + key;
-                        replaced = true;
-                        break;
+                        string t = lines[i].Trim();
+                        if (t.Length == 0 || t.StartsWith("#"))
+                            continue;
+                        int eq = t.IndexOf('=');
+                        if (eq > 0 && t.Substring(0, eq).Trim().Equals(kv.Key, StringComparison.OrdinalIgnoreCase))
+                        {
+                            lines[i] = kv.Key + "=" + kv.Value;
+                            replaced = true;
+                            break;
+                        }
                     }
+                    if (!replaced)
+                        lines.Add(kv.Key + "=" + kv.Value);
                 }
-                if (!replaced)
-                    lines.Add("Handler=" + key);
 
                 if (!Directory.Exists(Utils.AppDataDir))
                     Directory.CreateDirectory(Utils.AppDataDir);
@@ -216,6 +214,85 @@ namespace SerialPortListener
             {
                 return false;
             }
+        }
+
+        /// <summary>อ่านคีย์วิธีอ่านที่เลือกไว้ ถ้าไม่มีหรือไม่รู้จักให้ใช้ค่าเริ่มต้น</summary>
+        public static string GetSelectedKey()
+        {
+            string v;
+            if (ReadConfig().TryGetValue("Handler", out v))
+            {
+                HandlerInfo h = Find(v);
+                if (h != null)
+                    return h.Key;
+            }
+            return DefaultKey;
+        }
+
+        public static HandlerInfo GetSelectedHandler()
+        {
+            return Find(GetSelectedKey()) ?? Find(DefaultKey);
+        }
+
+        public static bool SaveSelectedHandler(string key)
+        {
+            if (Find(key) == null)
+                return false;
+            Dictionary<string, string> d = new Dictionary<string, string>();
+            d["Handler"] = key;
+            return WriteConfig(d);
+        }
+
+        // ---- พารามิเตอร์ของสายสัญญาณ ----
+        // ค่าเริ่มต้นตรงกับที่โปรแกรมเคยใช้มาก่อนมีไฟล์ตั้งค่า จะได้ไม่เปลี่ยนพฤติกรรมเดิม
+
+        /// <summary>พารามิเตอร์พอร์ตที่บันทึกไว้ (ไม่รวมชื่อพอร์ต ซึ่งอยู่ที่ config_port.txt)</summary>
+        public class PortSettings
+        {
+            public int BaudRate = 2400;
+            public Parity Parity = Parity.None;
+            public int DataBits = 7;
+            public StopBits StopBits = StopBits.One;
+        }
+
+        public static PortSettings GetPortSettings()
+        {
+            PortSettings ps = new PortSettings();
+            Dictionary<string, string> d = ReadConfig();
+            string v;
+
+            int baud;
+            if (d.TryGetValue("BaudRate", out v) && int.TryParse(v, out baud) && baud > 0)
+                ps.BaudRate = baud;
+
+            if (d.TryGetValue("Parity", out v))
+            {
+                try { ps.Parity = (Parity)Enum.Parse(typeof(Parity), v, true); }
+                catch (Exception) { }
+            }
+
+            int bits;
+            if (d.TryGetValue("DataBits", out v) && int.TryParse(v, out bits) && bits >= 5 && bits <= 8)
+                ps.DataBits = bits;
+
+            if (d.TryGetValue("StopBits", out v))
+            {
+                try { ps.StopBits = (StopBits)Enum.Parse(typeof(StopBits), v, true); }
+                catch (Exception) { }
+            }
+            return ps;
+        }
+
+        public static bool SavePortSettings(PortSettings ps)
+        {
+            if (ps == null)
+                return false;
+            Dictionary<string, string> d = new Dictionary<string, string>();
+            d["BaudRate"] = ps.BaudRate.ToString();
+            d["Parity"] = ps.Parity.ToString();
+            d["DataBits"] = ps.DataBits.ToString();
+            d["StopBits"] = ps.StopBits.ToString();
+            return WriteConfig(d);
         }
 
         /// <summary>ผลลัพธ์จากการพยายามแยกค่าน้ำหนัก</summary>

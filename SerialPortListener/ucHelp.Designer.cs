@@ -200,30 +200,6 @@
             this.btnSavePort.UseVisualStyleBackColor = false;
             this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
             // 
-            // lblWeightPreview
-            // 
-            this.lblWeightPreview.AutoSize = true;
-            this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeightPreview.Location = new System.Drawing.Point(326, 82);
-            this.lblWeightPreview.Name = "lblWeightPreview";
-            this.lblWeightPreview.Size = new System.Drawing.Size(160, 22);
-            this.lblWeightPreview.TabIndex = 19;
-            this.lblWeightPreview.Text = "น้ำหนักที่อ่านได้";
-            // 
-            // tbWeightPreview
-            // 
-            // ช่องแสดงผลอย่างเดียว ไว้ดูว่ารูปแบบที่เลือกตัดค่าถูกต้องหรือไม่ ก่อนกดบันทึก
-            this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
-            this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbWeightPreview.Location = new System.Drawing.Point(326, 113);
-            this.tbWeightPreview.Name = "tbWeightPreview";
-            this.tbWeightPreview.ReadOnly = true;
-            this.tbWeightPreview.Size = new System.Drawing.Size(205, 39);
-            this.tbWeightPreview.TabIndex = 20;
-            this.tbWeightPreview.TabStop = false;
-            this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // tbRx
             // 
             this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -237,7 +213,7 @@
             this.tbRx.Name = "tbRx";
             this.tbRx.ReadOnly = true;
             this.tbRx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbRx.Size = new System.Drawing.Size(205, 205);
+            this.tbRx.Size = new System.Drawing.Size(205, 176);
             this.tbRx.TabIndex = 14;
             // 
             // lblSerialHandler
@@ -274,6 +250,29 @@
             this.btnSaveSerialHandler.Text = "บันทึก";
             this.btnSaveSerialHandler.UseVisualStyleBackColor = false;
             this.btnSaveSerialHandler.Click += new System.EventHandler(this.btnSaveSerialHandler_Click);
+            // 
+            // lblWeightPreview
+            // 
+            this.lblWeightPreview.AutoSize = true;
+            this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightPreview.Location = new System.Drawing.Point(326, 82);
+            this.lblWeightPreview.Name = "lblWeightPreview";
+            this.lblWeightPreview.Size = new System.Drawing.Size(104, 22);
+            this.lblWeightPreview.TabIndex = 19;
+            this.lblWeightPreview.Text = "น้ำหนักที่อ่านได้";
+            // 
+            // tbWeightPreview
+            // 
+            this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
+            this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
+            this.tbWeightPreview.Location = new System.Drawing.Point(326, 113);
+            this.tbWeightPreview.Name = "tbWeightPreview";
+            this.tbWeightPreview.ReadOnly = true;
+            this.tbWeightPreview.Size = new System.Drawing.Size(205, 41);
+            this.tbWeightPreview.TabIndex = 20;
+            this.tbWeightPreview.TabStop = false;
+            this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // timerRx
             // 
