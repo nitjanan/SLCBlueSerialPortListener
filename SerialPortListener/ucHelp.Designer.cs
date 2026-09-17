@@ -53,6 +53,8 @@
             this.lblSerialHandler = new System.Windows.Forms.Label();
             this.cboSerialHandler = new System.Windows.Forms.ComboBox();
             this.btnSaveSerialHandler = new System.Windows.Forms.Button();
+            this.lblWeightPreview = new System.Windows.Forms.Label();
+            this.tbWeightPreview = new System.Windows.Forms.TextBox();
             this.timerRx = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -198,40 +200,29 @@
             this.btnSavePort.UseVisualStyleBackColor = false;
             this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
             // 
-            // lblSerialHandler
+            // lblWeightPreview
             // 
-            this.lblSerialHandler.AutoSize = true;
-            this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerialHandler.Location = new System.Drawing.Point(12, 13);
-            this.lblSerialHandler.Name = "lblSerialHandler";
-            this.lblSerialHandler.Size = new System.Drawing.Size(120, 22);
-            this.lblSerialHandler.TabIndex = 16;
-            this.lblSerialHandler.Text = "รูปแบบตาชั่ง";
+            this.lblWeightPreview.AutoSize = true;
+            this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightPreview.Location = new System.Drawing.Point(326, 300);
+            this.lblWeightPreview.Name = "lblWeightPreview";
+            this.lblWeightPreview.Size = new System.Drawing.Size(160, 22);
+            this.lblWeightPreview.TabIndex = 19;
+            this.lblWeightPreview.Text = "น้ำหนักที่อ่านได้";
             // 
-            // cboSerialHandler
+            // tbWeightPreview
             // 
-            // เลือกวิธีอ่านค่าน้ำหนักให้ตรงกับรุ่นตาชั่งของสาขา (ดู SerialDataHandler)
-            this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSerialHandler.FormattingEnabled = true;
-            this.cboSerialHandler.Location = new System.Drawing.Point(140, 9);
-            this.cboSerialHandler.Name = "cboSerialHandler";
-            this.cboSerialHandler.Size = new System.Drawing.Size(360, 29);
-            this.cboSerialHandler.TabIndex = 17;
-            // 
-            // btnSaveSerialHandler
-            // 
-            this.btnSaveSerialHandler.BackColor = System.Drawing.Color.White;
-            this.btnSaveSerialHandler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveSerialHandler.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveSerialHandler.Location = new System.Drawing.Point(512, 9);
-            this.btnSaveSerialHandler.Name = "btnSaveSerialHandler";
-            this.btnSaveSerialHandler.Size = new System.Drawing.Size(150, 30);
-            this.btnSaveSerialHandler.TabIndex = 18;
-            this.btnSaveSerialHandler.Text = "บันทึก";
-            this.btnSaveSerialHandler.UseVisualStyleBackColor = false;
-            this.btnSaveSerialHandler.Click += new System.EventHandler(this.btnSaveSerialHandler_Click);
+            // ช่องแสดงผลอย่างเดียว ไว้ดูว่ารูปแบบที่เลือกตัดค่าถูกต้องหรือไม่ ก่อนกดบันทึก
+            this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
+            this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
+            this.tbWeightPreview.Location = new System.Drawing.Point(326, 325);
+            this.tbWeightPreview.Name = "tbWeightPreview";
+            this.tbWeightPreview.ReadOnly = true;
+            this.tbWeightPreview.Size = new System.Drawing.Size(205, 39);
+            this.tbWeightPreview.TabIndex = 20;
+            this.tbWeightPreview.TabStop = false;
+            this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbRx
             // 
@@ -249,6 +240,41 @@
             this.tbRx.Size = new System.Drawing.Size(205, 205);
             this.tbRx.TabIndex = 14;
             // 
+            // lblSerialHandler
+            // 
+            this.lblSerialHandler.AutoSize = true;
+            this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSerialHandler.Location = new System.Drawing.Point(12, 13);
+            this.lblSerialHandler.Name = "lblSerialHandler";
+            this.lblSerialHandler.Size = new System.Drawing.Size(84, 22);
+            this.lblSerialHandler.TabIndex = 16;
+            this.lblSerialHandler.Text = "รูปแบบตาชั่ง";
+            // 
+            // cboSerialHandler
+            // 
+            this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSerialHandler.FormattingEnabled = true;
+            this.cboSerialHandler.Location = new System.Drawing.Point(131, 9);
+            this.cboSerialHandler.Name = "cboSerialHandler";
+            this.cboSerialHandler.Size = new System.Drawing.Size(393, 29);
+            this.cboSerialHandler.TabIndex = 17;
+            this.cboSerialHandler.SelectedIndexChanged += new System.EventHandler(this.cboSerialHandler_SelectedIndexChanged);
+            // 
+            // btnSaveSerialHandler
+            // 
+            this.btnSaveSerialHandler.BackColor = System.Drawing.Color.White;
+            this.btnSaveSerialHandler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSerialHandler.ForeColor = System.Drawing.Color.Green;
+            this.btnSaveSerialHandler.Location = new System.Drawing.Point(530, 9);
+            this.btnSaveSerialHandler.Name = "btnSaveSerialHandler";
+            this.btnSaveSerialHandler.Size = new System.Drawing.Size(150, 30);
+            this.btnSaveSerialHandler.TabIndex = 18;
+            this.btnSaveSerialHandler.Text = "บันทึก";
+            this.btnSaveSerialHandler.UseVisualStyleBackColor = false;
+            this.btnSaveSerialHandler.Click += new System.EventHandler(this.btnSaveSerialHandler_Click);
+            // 
             // timerRx
             // 
             this.timerRx.Interval = 200;
@@ -258,6 +284,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblWeightPreview);
+            this.Controls.Add(this.tbWeightPreview);
             this.Controls.Add(this.lblSerialHandler);
             this.Controls.Add(this.cboSerialHandler);
             this.Controls.Add(this.btnSaveSerialHandler);
@@ -302,5 +330,7 @@
         private System.Windows.Forms.Label lblSerialHandler;
         private System.Windows.Forms.ComboBox cboSerialHandler;
         private System.Windows.Forms.Button btnSaveSerialHandler;
+        private System.Windows.Forms.Label lblWeightPreview;
+        private System.Windows.Forms.TextBox tbWeightPreview;
     }
 }

@@ -322,6 +322,8 @@ namespace SerialPortListener
             catch (Exception)
             {
             }
+
+            UpdateWeightPreview(pending);
         }
         // ---- รูปแบบการอ่านค่าจากตาชั่ง ----
         // แต่ละสาขาใช้ตาชั่งคนละรุ่น จึงให้เลือกวิธีอ่านได้จากหน้านี้
@@ -367,6 +369,53 @@ namespace SerialPortListener
             MessageBox.Show("บันทึกรูปแบบตาชั่งแล้ว : " + h.DisplayName, "บันทึกแล้ว",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        // ---- ช่องแสดงตัวอย่างน้ำหนัก ----
+        // ใช้รูปแบบที่ "กำลังเลือกอยู่ในคอมโบ" ไม่ใช่ที่บันทึกไว้
+        // ผู้ใช้จึงลองเปลี่ยนดูได้ว่ารูปแบบไหนตัดค่าถูกต้อง แล้วค่อยกดบันทึก
+        private SerialDataHandler.HandlerInfo GetPreviewHandler()
+        {
+            int i = cboSerialHandler.SelectedIndex;
+            if (i >= 0 && i < SerialDataHandler.Handlers.Length)
+                return SerialDataHandler.Handlers[i];
+            return SerialDataHandler.GetSelectedHandler();
+        }
+
+        /// <summary>แยกค่าจากข้อมูลที่รับมาแล้วแสดงในช่องตัวอย่าง</summary>
+        private void UpdateWeightPreview(string chunk)
+        {
+            try
+            {
+                SerialDataHandler.HandlerInfo h = GetPreviewHandler();
+                SerialDataHandler.ParseResult r = SerialDataHandler.Parse(h, tbRx.Text, chunk);
+
+                if (r.HasValue)
+                {
+                    tbWeightPreview.Text = r.Text;
+                    tbWeightPreview.ForeColor = r.IsNegative ? Color.Orange : Color.LightGreen;
+                }
+                else if (r.IsError)
+                {
+                    tbWeightPreview.Text = "Error";
+                    tbWeightPreview.ForeColor = Color.OrangeRed;
+                }
+                else
+                {
+                    // ยังตัดค่าไม่ได้ อาจเป็นเพราะเลือกรูปแบบไม่ตรงกับตาชั่ง หรือข้อมูลยังมาไม่ครบ
+                    tbWeightPreview.Text = "- - -";
+                    tbWeightPreview.ForeColor = Color.Gray;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void cboSerialHandler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // คำนวณใหม่จากข้อมูลที่ค้างอยู่ในหน้าจอ จะได้เห็นผลทันทีโดยไม่ต้องรอข้อมูลก้อนถัดไป
+            UpdateWeightPreview(string.Empty);
+        }
+
 
 
 
