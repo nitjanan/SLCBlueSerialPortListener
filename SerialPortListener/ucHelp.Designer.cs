@@ -204,7 +204,7 @@
             // 
             this.lblWeightPreview.AutoSize = true;
             this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeightPreview.Location = new System.Drawing.Point(326, 300);
+            this.lblWeightPreview.Location = new System.Drawing.Point(326, 82);
             this.lblWeightPreview.Name = "lblWeightPreview";
             this.lblWeightPreview.Size = new System.Drawing.Size(160, 22);
             this.lblWeightPreview.TabIndex = 19;
@@ -216,7 +216,7 @@
             this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
             this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbWeightPreview.Location = new System.Drawing.Point(326, 325);
+            this.tbWeightPreview.Location = new System.Drawing.Point(326, 113);
             this.tbWeightPreview.Name = "tbWeightPreview";
             this.tbWeightPreview.ReadOnly = true;
             this.tbWeightPreview.Size = new System.Drawing.Size(205, 39);
@@ -232,7 +232,7 @@
             this.tbRx.BackColor = System.Drawing.Color.White;
             this.tbRx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbRx.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbRx.Location = new System.Drawing.Point(326, 86);
+            this.tbRx.Location = new System.Drawing.Point(326, 160);
             this.tbRx.Multiline = true;
             this.tbRx.Name = "tbRx";
             this.tbRx.ReadOnly = true;
