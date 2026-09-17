@@ -77,7 +77,7 @@
             // gbScale
             // 
             this.gbScale.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbScale.Location = new System.Drawing.Point(344, 12);
+            this.gbScale.Location = new System.Drawing.Point(344, 172);
             this.gbScale.Name = "gbScale";
             this.gbScale.Size = new System.Drawing.Size(340, 236);
             this.gbScale.TabIndex = 1;
@@ -87,7 +87,7 @@
             // gbRaw
             // 
             this.gbRaw.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRaw.Location = new System.Drawing.Point(344, 258);
+            this.gbRaw.Location = new System.Drawing.Point(344, 12);
             this.gbRaw.Name = "gbRaw";
             this.gbRaw.Size = new System.Drawing.Size(340, 150);
             this.gbRaw.TabIndex = 2;
