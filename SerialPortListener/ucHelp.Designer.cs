@@ -315,8 +315,12 @@
             // 
             // ucHelp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            // MainForm ยัดฟอนต์ Century Gothic 9.75 ลงมา ถ้าเปิดสเกลตามฟอนต์
+            // คอนโทรลทั้งหน้าจะถูกขยาย 1.33 เท่าจนล้นจอเครื่องที่ความละเอียดต่ำ
+            // ปิดสเกลไว้ ขนาดที่เห็นตอนออกแบบจึงเป็นขนาดจริงตอนรัน
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            // กันไว้อีกชั้น ถ้าหน้าต่างเล็กกว่าเนื้อหาจะยังเลื่อนดูได้ ไม่ใช่หายไปเฉย ๆ
+            this.AutoScroll = true;
             this.gbPort.Controls.Add(this.lblPort);
             this.gbPort.Controls.Add(this.cboPort);
             this.gbPort.Controls.Add(this.lblBaud);
