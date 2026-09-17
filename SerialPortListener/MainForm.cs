@@ -74,8 +74,7 @@ namespace SerialPortListener
 
             getSettingDefault();
 
-            clearSerialBuffer();
-            _spManager.StartListening();
+            startSerialListening();
         }
 
         public void getSettingDefault()
@@ -926,6 +925,51 @@ namespace SerialPortListener
         private volatile string _pendingWeight;
         private volatile bool _rxDirty;
         private System.Windows.Forms.Timer _uiRefreshTimer;
+        private volatile int _lastDataTick;          // เวลาที่ได้ข้อมูลจากเครื่องชั่งครั้งล่าสุด
+        private int _lastPortRestartTick;
+        private bool _serialShouldListen;            // ตั้งใจให้พอร์ตเปิดอยู่หรือไม่
+        private const int serialWatchdogMs = 3000;   // ไม่มีข้อมูลเกินเท่านี้ = พอร์ตมีปัญหา ให้เปิดใหม่
+
+        /// <summary>
+        /// watchdog: ถ้าควรได้ข้อมูลแต่เงียบไปเกิน 3 วินาที แปลว่าพอร์ตหลุด/เปิดไม่สำเร็จ ให้เปิดใหม่เอง
+        /// กันอาการตัวเลขค้างอยู่ค่าเดิม (เช่น ค้างที่ 0) จนกว่าจะปิดโปรแกรม
+        /// </summary>
+        private void checkSerialPortAlive()
+        {
+            if (!_serialShouldListen)
+                return;
+
+            int now = Environment.TickCount;
+            if (unchecked(now - _lastDataTick) < serialWatchdogMs)
+                return;
+
+            // เพิ่งลองเปิดไป รอก่อนอย่างน้อย 1 รอบ watchdog ค่อยลองใหม่
+            if (unchecked(now - _lastPortRestartTick) < serialWatchdogMs)
+                return;
+
+            _lastPortRestartTick = now;
+            _lastDataTick = now;
+            clearSerialBuffer();
+            _spManager.StartListening();
+        }
+
+        /// <summary>
+        /// สั่งเปิดพอร์ต และจำไว้ว่าต้องการรับข้อมูลอยู่ (ให้ watchdog ดูแลต่อ)
+        /// </summary>
+        private void startSerialListening()
+        {
+            _serialShouldListen = true;
+            _lastDataTick = Environment.TickCount;
+            _lastPortRestartTick = Environment.TickCount;
+            clearSerialBuffer();
+            _spManager.StartListening();
+        }
+
+        private void stopSerialListening()
+        {
+            _serialShouldListen = false;
+            _spManager.StopListening();
+        }
 
         private void startWeightDisplayTimer()
         {
@@ -969,6 +1013,7 @@ namespace SerialPortListener
                 if (weight != null)
                     _pendingWeight = weight;
 
+                _lastDataTick = Environment.TickCount;
                 _rxDirty = true;
             }
             catch (Exception)
@@ -978,6 +1023,8 @@ namespace SerialPortListener
 
         private void weightDisplayTimer_Tick(object sender, EventArgs e)
         {
+            checkSerialPortAlive();
+
             if (!_rxDirty)
                 return;
 
@@ -1032,25 +1079,44 @@ namespace SerialPortListener
             _rxDirty = true;
         }
 
-        // เฟรมน้ำหนัก: "(" + ตัวสถานะ 1 ตัว + น้ำหนัก + ช่องว่าง + ค่าที่สอง + จบด้วย CR/LF
+        // เฟรมน้ำหนัก 1 บรรทัด = "(" + ตัวสถานะ 1 ตัว + น้ำหนัก + ช่องว่าง + ค่าที่สอง
+        // บังคับให้ตรงทั้งบรรทัด (^...$) กันการอ่านข้ามบรรทัดจนได้ค่าผิดๆ เช่น 0
         private static readonly Regex weightFrameRegex =
-            new Regex(@"\((?<status>[^\r\n])[ \t]*(?<weight>[-+]?\d+)[ \t]+(?<extra>[-+]?\d+)[ \t]*[\r\n]",
-                      RegexOptions.Compiled);
+            new Regex(@"^\((?<status>[^\r\n])[ \t]*(?<weight>[-+]?\d+)[ \t]+(?<extra>[-+]?\d+)[ \t]*$", RegexOptions.Compiled);
+
+        private static readonly char[] lineBreakChars = new char[] { '\r', '\n' };
 
         /// <summary>
-        /// ดึงน้ำหนักจากเฟรมสุดท้ายที่สมบูรณ์, คืน null ถ้ายังไม่มีเฟรมที่สมบูรณ์
+        /// ดึงน้ำหนักจากบรรทัดสุดท้ายที่ส่งมาครบ (มี CR/LF ปิดท้ายแล้ว)
+        /// ถ้าบรรทัดสุดท้ายเพี้ยน (ข้อมูลขาด/ซ้อนกัน) จะถอยไปใช้บรรทัดก่อนหน้าแทน
+        /// คืน null ถ้าไม่พบบรรทัดที่สมบูรณ์เลย (ผู้เรียกจะคงค่าเดิมไว้)
         /// </summary>
         private string getWeightFromRawData(string rawData)
         {
             if (string.IsNullOrEmpty(rawData))
                 return null;
 
-            MatchCollection frames = weightFrameRegex.Matches(rawData);
-            if (frames.Count == 0)
-                return null;
+            int end = rawData.LastIndexOfAny(lineBreakChars);
 
-            string weight = frames[frames.Count - 1].Groups["weight"].Value;
+            while (end > 0)
+            {
+                int start = rawData.LastIndexOfAny(lineBreakChars, end - 1) + 1;
+                Match m = weightFrameRegex.Match(rawData.Substring(start, end - start));
 
+                if (m.Success)
+                    return formatWeight(m.Groups["weight"].Value);
+
+                end = (start > 0) ? start - 1 : -1;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// ตัดเลข 0 นำหน้าออก โดยยังคงเครื่องหมายลบไว้
+        /// </summary>
+        private static string formatWeight(string weight)
+        {
             bool isNegative = weight.StartsWith("-");
             string digits = weight.TrimStart('+', '-').TrimStart('0');
             if (digits.Length == 0)
@@ -1062,21 +1128,21 @@ namespace SerialPortListener
         // Handles the "Start Listening"-buttom click event
         private void btnStart_Click(object sender, EventArgs e)
         {
-            clearSerialBuffer();
-            _spManager.StartListening();
+            startSerialListening();
         }
 
         // Handles the "Stop Listening"-buttom click event
         private void btnStop_Click(object sender, EventArgs e)
         {
-            _spManager.StopListening();
+            stopSerialListening();
         }
 
         private void btRead_Click(object sender, EventArgs e)
         {
             try
             {
-                _spManager.StopListening();
+                // ไม่ต้องปิด/เปิดพอร์ตตอนอ่านค่า เพราะค่าล่าสุดอยู่ใน tbWeigtData แล้ว
+                // (การปิด-เปิดซ้ำๆ ทำให้บางครั้งเปิดพอร์ตไม่สำเร็จ แล้วค่าค้างที่ 0 ถาวร)
 
                 /*
                 int length = tbData.Text.Length;
@@ -1088,8 +1154,6 @@ namespace SerialPortListener
                 tbWeightIn.Text = numberFormat(tbWeigtData.Text, 2);
 
                 calculateWeight();
-                clearSerialBuffer();
-                _spManager.StartListening();
 
                 //disable after read in
                 if (!Globals.isPermissionTop())
@@ -1336,7 +1400,8 @@ namespace SerialPortListener
         private void btReadOut_Click(object sender, EventArgs e)
         {
             try {
-                _spManager.StopListening();
+                // ไม่ต้องปิด/เปิดพอร์ตตอนอ่านค่า เพราะค่าล่าสุดอยู่ใน tbWeigtData แล้ว
+                // (การปิด-เปิดซ้ำๆ ทำให้บางครั้งเปิดพอร์ตไม่สำเร็จ แล้วค่าค้างที่ 0 ถาวร)
 
                 /*
                 int length = tbData.Text.Length;
@@ -1346,8 +1411,6 @@ namespace SerialPortListener
                 tbWeightOut.Text = numberFormat(tbWeigtData.Text, 2);
 
                 calculateWeight();
-                clearSerialBuffer();
-                _spManager.StartListening();
 
                 //disable after read out
                 if (!Globals.isPermissionTop())

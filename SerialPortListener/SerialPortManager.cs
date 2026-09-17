@@ -69,21 +69,29 @@ namespace SerialPortListener.Serial
         
         void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            int dataLength = _serialPort.BytesToRead;
-            if (dataLength <= 0)
-                return;
+            try
+            {
+                int dataLength = _serialPort.BytesToRead;
+                if (dataLength <= 0)
+                    return;
 
-            byte[] data = new byte[dataLength];
-            int nbrDataRead = _serialPort.Read(data, 0, dataLength);
-            if (nbrDataRead == 0)
-                return;
+                byte[] data = new byte[dataLength];
+                int nbrDataRead = _serialPort.Read(data, 0, dataLength);
+                if (nbrDataRead == 0)
+                    return;
 
-            if (nbrDataRead != dataLength)
-                Array.Resize(ref data, nbrDataRead);
+                if (nbrDataRead != dataLength)
+                    Array.Resize(ref data, nbrDataRead);
             
-            // Send data to whom ever interested
-            if (NewSerialDataRecieved != null)
-                NewSerialDataRecieved(this, new SerialDataEventArgs(data));
+                // Send data to whom ever interested
+                if (NewSerialDataRecieved != null)
+                    NewSerialDataRecieved(this, new SerialDataEventArgs(data));
+            }
+            catch (Exception)
+            {
+                // ห้ามโยน exception ออกจาก thread ของ serial port เพราะจะทำให้โปรแกรมปิด และหยุดรับข้อมูลถาวร
+                // ถ้าอ่านพลาด watchdog ฝั่ง MainForm จะสั่งเปิดพอร์ตใหม่เอง
+            }
         }
 
         #endregion
@@ -91,13 +99,33 @@ namespace SerialPortListener.Serial
         #region Methods
 
         /// <summary>
+        /// พอร์ตเปิดอยู่และกำลังรับข้อมูลอยู่หรือไม่
+        /// </summary>
+        public bool IsListening
+        {
+            get { return _serialPort != null && _serialPort.IsOpen; }
+        }
+
+        /// <summary>
         /// Connects to a serial port defined through the current settings
         /// </summary>
         public void StartListening()
         {
-            // Closing serial port if it is open
-            if (_serialPort != null && _serialPort.IsOpen)
-                    _serialPort.Close();
+            // ปิดและคืน resource ของพอร์ตเดิมให้หมด ก่อนเปิดใหม่
+            if (_serialPort != null)
+            {
+                try
+                {
+                    _serialPort.DataReceived -= new SerialDataReceivedEventHandler(_serialPort_DataReceived);
+                    if (_serialPort.IsOpen)
+                        _serialPort.Close();
+                    _serialPort.Dispose();
+                }
+                catch (Exception)
+                {
+                }
+                _serialPort = null;
+            }
 
             // Setting serial port settings
             _serialPort = new SerialPort(
@@ -116,8 +144,9 @@ namespace SerialPortListener.Serial
                 _serialPort.Open();
                 _serialPort.DiscardInBuffer();        // ทิ้งข้อมูลเก่าที่ค้างในคิวของ OS กันอ่านค่าย้อนหลัง
             }
-            catch (Exception ex) { 
-            
+            catch (Exception)
+            {
+                // เปิดพอร์ตไม่สำเร็จ (เช่น พอร์ตยังไม่ถูกคืนจากครั้งที่แล้ว) ให้ watchdog ลองใหม่ภายหลัง
             }
 
         }
@@ -155,7 +184,7 @@ namespace SerialPortListener.Serial
         // Part of basic design pattern for implementing Dispose
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _serialPort != null)
             {
                 _serialPort.DataReceived -= new SerialDataReceivedEventHandler(_serialPort_DataReceived);
             }
