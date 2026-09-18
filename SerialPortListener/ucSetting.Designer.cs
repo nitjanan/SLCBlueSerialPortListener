@@ -317,34 +317,39 @@
             this.groupBox5.Controls.Add(this.lbAutoBackupTimeTo);
             this.groupBox5.Controls.Add(this.dtpAutoBackupEnd);
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(12, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(729, 196);
+            this.groupBox5.Size = new System.Drawing.Size(729, 186);
             this.groupBox5.TabIndex = 15;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Setting Backup";
             // 
             // lbPgDumpPath
             // 
-            this.lbPgDumpPath.AutoSize = true;
-            this.lbPgDumpPath.Location = new System.Drawing.Point(20, 38);
+            this.lbPgDumpPath.AutoSize = false;
+            this.lbPgDumpPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbPgDumpPath.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPgDumpPath.Location = new System.Drawing.Point(20, 37);
             this.lbPgDumpPath.Name = "lbPgDumpPath";
-            this.lbPgDumpPath.Size = new System.Drawing.Size(106, 17);
+            this.lbPgDumpPath.Size = new System.Drawing.Size(150, 24);
             this.lbPgDumpPath.TabIndex = 0;
             this.lbPgDumpPath.Text = "pg_dump.exe :";
             // 
             // tbPgDumpPath
             // 
             this.tbPgDumpPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPgDumpPath.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPgDumpPath.Location = new System.Drawing.Point(180, 34);
             this.tbPgDumpPath.Name = "tbPgDumpPath";
-            this.tbPgDumpPath.Size = new System.Drawing.Size(409, 23);
+            this.tbPgDumpPath.Size = new System.Drawing.Size(409, 27);
             this.tbPgDumpPath.TabIndex = 1;
             // 
             // btnBrowsePgDump
             // 
             this.btnBrowsePgDump.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowsePgDump.Location = new System.Drawing.Point(599, 32);
+            this.btnBrowsePgDump.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowsePgDump.Location = new System.Drawing.Point(599, 33);
             this.btnBrowsePgDump.Name = "btnBrowsePgDump";
             this.btnBrowsePgDump.Size = new System.Drawing.Size(110, 30);
             this.btnBrowsePgDump.TabIndex = 2;
@@ -354,25 +359,29 @@
             // 
             // lbBackupDir
             // 
-            this.lbBackupDir.AutoSize = true;
-            this.lbBackupDir.Location = new System.Drawing.Point(20, 78);
+            this.lbBackupDir.AutoSize = false;
+            this.lbBackupDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbBackupDir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBackupDir.Location = new System.Drawing.Point(20, 75);
             this.lbBackupDir.Name = "lbBackupDir";
-            this.lbBackupDir.Size = new System.Drawing.Size(107, 17);
+            this.lbBackupDir.Size = new System.Drawing.Size(150, 24);
             this.lbBackupDir.TabIndex = 3;
             this.lbBackupDir.Text = "Backup Folder :";
             // 
             // tbBackupDir
             // 
             this.tbBackupDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBackupDir.Location = new System.Drawing.Point(180, 74);
+            this.tbBackupDir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBackupDir.Location = new System.Drawing.Point(180, 72);
             this.tbBackupDir.Name = "tbBackupDir";
-            this.tbBackupDir.Size = new System.Drawing.Size(409, 23);
+            this.tbBackupDir.Size = new System.Drawing.Size(409, 27);
             this.tbBackupDir.TabIndex = 4;
             // 
             // btnBrowseBackupDir
             // 
             this.btnBrowseBackupDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseBackupDir.Location = new System.Drawing.Point(599, 72);
+            this.btnBrowseBackupDir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowseBackupDir.Location = new System.Drawing.Point(599, 71);
             this.btnBrowseBackupDir.Name = "btnBrowseBackupDir";
             this.btnBrowseBackupDir.Size = new System.Drawing.Size(110, 30);
             this.btnBrowseBackupDir.TabIndex = 5;
@@ -384,7 +393,8 @@
             // 
             this.btnSaveBackupConfig.ForeColor = System.Drawing.Color.Green;
             this.btnSaveBackupConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveBackupConfig.Location = new System.Drawing.Point(479, 112);
+            this.btnSaveBackupConfig.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveBackupConfig.Location = new System.Drawing.Point(479, 148);
             this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
             this.btnSaveBackupConfig.Size = new System.Drawing.Size(110, 30);
             this.btnSaveBackupConfig.TabIndex = 6;
@@ -398,9 +408,10 @@
             this.chkAutoBackup.Checked = true;
             this.chkAutoBackup.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAutoBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkAutoBackup.Location = new System.Drawing.Point(460, 158);
+            this.chkAutoBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAutoBackup.Location = new System.Drawing.Point(496, 111);
             this.chkAutoBackup.Name = "chkAutoBackup";
-            this.chkAutoBackup.Size = new System.Drawing.Size(249, 21);
+            this.chkAutoBackup.Size = new System.Drawing.Size(213, 25);
             this.chkAutoBackup.TabIndex = 7;
             this.chkAutoBackup.Text = "Auto Backup ทุก 2 ชม. (09:00 - 17:00)";
             this.chkAutoBackup.UseVisualStyleBackColor = true;
@@ -408,17 +419,20 @@
             // 
             // lbLastAutoBackup
             // 
-            this.lbLastAutoBackup.AutoSize = true;
-            this.lbLastAutoBackup.Location = new System.Drawing.Point(20, 160);
+            this.lbLastAutoBackup.AutoSize = false;
+            this.lbLastAutoBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbLastAutoBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLastAutoBackup.Location = new System.Drawing.Point(20, 151);
             this.lbLastAutoBackup.Name = "lbLastAutoBackup";
-            this.lbLastAutoBackup.Size = new System.Drawing.Size(99, 17);
+            this.lbLastAutoBackup.Size = new System.Drawing.Size(300, 24);
             this.lbLastAutoBackup.TabIndex = 8;
             this.lbLastAutoBackup.Text = "Backup ล่าสุด: -";
             // 
             // btnBackup
             // 
             this.btnBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackup.Location = new System.Drawing.Point(599, 112);
+            this.btnBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackup.Location = new System.Drawing.Point(599, 148);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(110, 30);
             this.btnBackup.TabIndex = 3;
@@ -428,38 +442,43 @@
             // 
             // lbAutoBackupTime
             // 
-            this.lbAutoBackupTime.AutoSize = true;
-            this.lbAutoBackupTime.Location = new System.Drawing.Point(20, 118);
+            this.lbAutoBackupTime.AutoSize = false;
+            this.lbAutoBackupTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbAutoBackupTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAutoBackupTime.Location = new System.Drawing.Point(20, 113);
             this.lbAutoBackupTime.Name = "lbAutoBackupTime";
-            this.lbAutoBackupTime.Size = new System.Drawing.Size(194, 17);
+            this.lbAutoBackupTime.Size = new System.Drawing.Size(150, 24);
             this.lbAutoBackupTime.TabIndex = 9;
             this.lbAutoBackupTime.Text = "เวลา Auto Backup (เริ่ม - สิ้นสุด) :";
             // 
             // dtpAutoBackupStart
             // 
             this.dtpAutoBackupStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpAutoBackupStart.Location = new System.Drawing.Point(233, 114);
+            this.dtpAutoBackupStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpAutoBackupStart.Location = new System.Drawing.Point(180, 110);
             this.dtpAutoBackupStart.Name = "dtpAutoBackupStart";
             this.dtpAutoBackupStart.ShowUpDown = true;
-            this.dtpAutoBackupStart.Size = new System.Drawing.Size(110, 23);
+            this.dtpAutoBackupStart.Size = new System.Drawing.Size(140, 27);
             this.dtpAutoBackupStart.TabIndex = 10;
             // 
             // lbAutoBackupTimeTo
             // 
             this.lbAutoBackupTimeTo.AutoSize = true;
-            this.lbAutoBackupTimeTo.Location = new System.Drawing.Point(353, 118);
+            this.lbAutoBackupTimeTo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAutoBackupTimeTo.Location = new System.Drawing.Point(326, 113);
             this.lbAutoBackupTimeTo.Name = "lbAutoBackupTimeTo";
-            this.lbAutoBackupTimeTo.Size = new System.Drawing.Size(12, 17);
+            this.lbAutoBackupTimeTo.Size = new System.Drawing.Size(14, 24);
             this.lbAutoBackupTimeTo.TabIndex = 11;
             this.lbAutoBackupTimeTo.Text = "-";
             // 
             // dtpAutoBackupEnd
             // 
             this.dtpAutoBackupEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpAutoBackupEnd.Location = new System.Drawing.Point(374, 114);
+            this.dtpAutoBackupEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpAutoBackupEnd.Location = new System.Drawing.Point(344, 110);
             this.dtpAutoBackupEnd.Name = "dtpAutoBackupEnd";
             this.dtpAutoBackupEnd.ShowUpDown = true;
-            this.dtpAutoBackupEnd.Size = new System.Drawing.Size(110, 23);
+            this.dtpAutoBackupEnd.Size = new System.Drawing.Size(140, 27);
             this.dtpAutoBackupEnd.TabIndex = 12;
             // 
             // gbReportTemplate
@@ -469,7 +488,7 @@
             this.gbReportTemplate.Controls.Add(this.btnSaveReportTemplate);
             this.gbReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbReportTemplate.Location = new System.Drawing.Point(12, 220);
+            this.gbReportTemplate.Location = new System.Drawing.Point(12, 210);
             this.gbReportTemplate.Name = "gbReportTemplate";
             this.gbReportTemplate.Size = new System.Drawing.Size(729, 76);
             this.gbReportTemplate.TabIndex = 1;
@@ -478,23 +497,24 @@
             // 
             // lblReportTemplate
             // 
-            this.lblReportTemplate.AutoSize = true;
-            this.lblReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportTemplate.Location = new System.Drawing.Point(20, 38);
+            this.lblReportTemplate.AutoSize = false;
+            this.lblReportTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportTemplate.Location = new System.Drawing.Point(20, 33);
             this.lblReportTemplate.Name = "lblReportTemplate";
-            this.lblReportTemplate.Size = new System.Drawing.Size(67, 22);
+            this.lblReportTemplate.Size = new System.Drawing.Size(150, 24);
             this.lblReportTemplate.TabIndex = 16;
             this.lblReportTemplate.Text = "แบบใบชั่ง";
             // 
             // cboReportTemplate
             // 
             this.cboReportTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboReportTemplate.FormattingEnabled = true;
             this.cboReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboReportTemplate.Location = new System.Drawing.Point(180, 34);
+            this.cboReportTemplate.Location = new System.Drawing.Point(180, 30);
             this.cboReportTemplate.Name = "cboReportTemplate";
-            this.cboReportTemplate.Size = new System.Drawing.Size(369, 30);
+            this.cboReportTemplate.Size = new System.Drawing.Size(369, 27);
             this.cboReportTemplate.TabIndex = 17;
             this.cboReportTemplate.SelectedIndexChanged += new System.EventHandler(this.cboReportTemplate_SelectedIndexChanged);
             // 
@@ -502,10 +522,10 @@
             // 
             this.btnSaveReportTemplate.BackColor = System.Drawing.Color.White;
             this.btnSaveReportTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveReportTemplate.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveReportTemplate.ForeColor = System.Drawing.Color.Green;
             this.btnSaveReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveReportTemplate.Location = new System.Drawing.Point(559, 34);
+            this.btnSaveReportTemplate.Location = new System.Drawing.Point(559, 29);
             this.btnSaveReportTemplate.Name = "btnSaveReportTemplate";
             this.btnSaveReportTemplate.Size = new System.Drawing.Size(150, 30);
             this.btnSaveReportTemplate.TabIndex = 18;
@@ -526,32 +546,33 @@
             this.gbBillHeader.Controls.Add(this.tbBhTelephone);
             this.gbBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbBillHeader.Location = new System.Drawing.Point(12, 308);
+            this.gbBillHeader.Location = new System.Drawing.Point(12, 298);
             this.gbBillHeader.Name = "gbBillHeader";
-            this.gbBillHeader.Size = new System.Drawing.Size(729, 150);
+            this.gbBillHeader.Size = new System.Drawing.Size(729, 158);
             this.gbBillHeader.TabIndex = 2;
             this.gbBillHeader.TabStop = false;
             this.gbBillHeader.Text = "แบบหัวกระดาษบิล (ReportMain)";
             // 
             // lblBillHeader
             // 
-            this.lblBillHeader.AutoSize = true;
-            this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBillHeader.Location = new System.Drawing.Point(20, 30);
+            this.lblBillHeader.AutoSize = false;
+            this.lblBillHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillHeader.Location = new System.Drawing.Point(20, 29);
             this.lblBillHeader.Name = "lblBillHeader";
-            this.lblBillHeader.Size = new System.Drawing.Size(120, 22);
+            this.lblBillHeader.Size = new System.Drawing.Size(150, 24);
             this.lblBillHeader.TabIndex = 19;
             this.lblBillHeader.Text = "แบบหัวกระดาษ";
             // 
             // cboBillHeader
             // 
             this.cboBillHeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBillHeader.FormattingEnabled = true;
             this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.cboBillHeader.Location = new System.Drawing.Point(180, 26);
             this.cboBillHeader.Name = "cboBillHeader";
-            this.cboBillHeader.Size = new System.Drawing.Size(369, 30);
+            this.cboBillHeader.Size = new System.Drawing.Size(369, 27);
             this.cboBillHeader.TabIndex = 20;
             this.cboBillHeader.SelectedIndexChanged += new System.EventHandler(this.cboBillHeader_SelectedIndexChanged);
             // 
@@ -559,10 +580,10 @@
             // 
             this.btnSaveBillHeader.BackColor = System.Drawing.Color.White;
             this.btnSaveBillHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveBillHeader.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveBillHeader.ForeColor = System.Drawing.Color.Green;
             this.btnSaveBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveBillHeader.Location = new System.Drawing.Point(559, 26);
+            this.btnSaveBillHeader.Location = new System.Drawing.Point(559, 25);
             this.btnSaveBillHeader.Name = "btnSaveBillHeader";
             this.btnSaveBillHeader.Size = new System.Drawing.Size(150, 30);
             this.btnSaveBillHeader.TabIndex = 21;
@@ -572,11 +593,12 @@
             // 
             // lblBhCompany
             // 
-            this.lblBhCompany.AutoSize = true;
+            this.lblBhCompany.AutoSize = false;
+            this.lblBhCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhCompany.Location = new System.Drawing.Point(20, 62);
+            this.lblBhCompany.Location = new System.Drawing.Point(20, 65);
             this.lblBhCompany.Name = "lblBhCompany";
-            this.lblBhCompany.Size = new System.Drawing.Size(110, 24);
+            this.lblBhCompany.Size = new System.Drawing.Size(150, 24);
             this.lblBhCompany.TabIndex = 22;
             this.lblBhCompany.Text = "ชื่อบริษัท";
             // 
@@ -584,18 +606,19 @@
             // 
             this.tbBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBhCompany.Location = new System.Drawing.Point(180, 60);
+            this.tbBhCompany.Location = new System.Drawing.Point(180, 62);
             this.tbBhCompany.Name = "tbBhCompany";
             this.tbBhCompany.Size = new System.Drawing.Size(529, 27);
             this.tbBhCompany.TabIndex = 23;
             // 
             // lblBhAddress
             // 
-            this.lblBhAddress.AutoSize = true;
+            this.lblBhAddress.AutoSize = false;
+            this.lblBhAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhAddress.Location = new System.Drawing.Point(20, 92);
+            this.lblBhAddress.Location = new System.Drawing.Point(20, 97);
             this.lblBhAddress.Name = "lblBhAddress";
-            this.lblBhAddress.Size = new System.Drawing.Size(110, 24);
+            this.lblBhAddress.Size = new System.Drawing.Size(150, 24);
             this.lblBhAddress.TabIndex = 24;
             this.lblBhAddress.Text = "ที่อยู่";
             // 
@@ -603,18 +626,19 @@
             // 
             this.tbBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBhAddress.Location = new System.Drawing.Point(180, 90);
+            this.tbBhAddress.Location = new System.Drawing.Point(180, 94);
             this.tbBhAddress.Name = "tbBhAddress";
             this.tbBhAddress.Size = new System.Drawing.Size(529, 27);
             this.tbBhAddress.TabIndex = 25;
             // 
             // lblBhTelephone
             // 
-            this.lblBhTelephone.AutoSize = true;
+            this.lblBhTelephone.AutoSize = false;
+            this.lblBhTelephone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhTelephone.Location = new System.Drawing.Point(20, 122);
+            this.lblBhTelephone.Location = new System.Drawing.Point(20, 129);
             this.lblBhTelephone.Name = "lblBhTelephone";
-            this.lblBhTelephone.Size = new System.Drawing.Size(110, 24);
+            this.lblBhTelephone.Size = new System.Drawing.Size(150, 24);
             this.lblBhTelephone.TabIndex = 26;
             this.lblBhTelephone.Text = "โทรศัพท์";
             // 
@@ -622,7 +646,7 @@
             // 
             this.tbBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBhTelephone.Location = new System.Drawing.Point(180, 120);
+            this.tbBhTelephone.Location = new System.Drawing.Point(180, 126);
             this.tbBhTelephone.Name = "tbBhTelephone";
             this.tbBhTelephone.Size = new System.Drawing.Size(529, 27);
             this.tbBhTelephone.TabIndex = 27;
