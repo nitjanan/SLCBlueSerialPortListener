@@ -307,6 +307,15 @@ namespace SerialPortListener
                 if (!known.Contains(p.Name))
                     continue;   // รายงานนี้ไม่รู้จัก - ส่งไปจะเกิด exception
 
+                // แบบหัวกระดาษบิลที่ผู้ใช้เลือกไว้ มีสิทธิ์แทนค่าชื่อบริษัท/ที่อยู่/โทรศัพท์
+                // ทำที่นี่จุดเดียว ทั้งหน้าพรีวิวและการพิมพ์ตรงจึงได้หัวกระดาษเดียวกันเสมอ
+                string billOverride = BillHeader.GetOverride(p.Name);
+                if (billOverride != null)
+                {
+                    result.Add(new Microsoft.Reporting.WinForms.ReportParameter(p.Name, billOverride));
+                    continue;
+                }
+
                 result.Add(Normalize(p.Name, p.Values));
             }
 

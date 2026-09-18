@@ -47,6 +47,11 @@
             this.lbAutoBackupTimeTo = new System.Windows.Forms.Label();
             this.dtpAutoBackupEnd = new System.Windows.Forms.DateTimePicker();
             this.gbReportTemplate = new System.Windows.Forms.GroupBox();
+            this.gbBillHeader = new System.Windows.Forms.GroupBox();
+            this.lblBillHeader = new System.Windows.Forms.Label();
+            this.cboBillHeader = new System.Windows.Forms.ComboBox();
+            this.btnSaveBillHeader = new System.Windows.Forms.Button();
+            this.lblBillHeaderPreview = new System.Windows.Forms.Label();
             this.lblReportTemplate = new System.Windows.Forms.Label();
             this.cboReportTemplate = new System.Windows.Forms.ComboBox();
             this.btnSaveReportTemplate = new System.Windows.Forms.Button();
@@ -203,6 +208,7 @@
             this.tabPage13.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.gbReportTemplate.SuspendLayout();
+            this.gbBillHeader.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).BeginInit();
@@ -280,6 +286,7 @@
             // 
             this.tabPage13.Controls.Add(this.groupBox5);
             this.tabPage13.Controls.Add(this.gbReportTemplate);
+            this.tabPage13.Controls.Add(this.gbBillHeader);
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Size = new System.Drawing.Size(753, 460);
@@ -488,6 +495,67 @@
             this.btnSaveReportTemplate.Text = "บันทึกแบบใบชั่ง";
             this.btnSaveReportTemplate.UseVisualStyleBackColor = false;
             this.btnSaveReportTemplate.Click += new System.EventHandler(this.btnSaveReportTemplate_Click);
+            // 
+            // gbBillHeader
+            // 
+            this.gbBillHeader.Controls.Add(this.lblBillHeader);
+            this.gbBillHeader.Controls.Add(this.cboBillHeader);
+            this.gbBillHeader.Controls.Add(this.btnSaveBillHeader);
+            this.gbBillHeader.Controls.Add(this.lblBillHeaderPreview);
+            this.gbBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbBillHeader.Location = new System.Drawing.Point(12, 332);
+            this.gbBillHeader.Name = "gbBillHeader";
+            this.gbBillHeader.Size = new System.Drawing.Size(729, 120);
+            this.gbBillHeader.TabIndex = 2;
+            this.gbBillHeader.TabStop = false;
+            this.gbBillHeader.Text = "แบบหัวกระดาษบิล (ReportMain)";
+            // 
+            // lblBillHeader
+            // 
+            this.lblBillHeader.AutoSize = true;
+            this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillHeader.Location = new System.Drawing.Point(16, 38);
+            this.lblBillHeader.Name = "lblBillHeader";
+            this.lblBillHeader.Size = new System.Drawing.Size(120, 22);
+            this.lblBillHeader.TabIndex = 19;
+            this.lblBillHeader.Text = "แบบหัวกระดาษ";
+            // 
+            // cboBillHeader
+            // 
+            this.cboBillHeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBillHeader.FormattingEnabled = true;
+            this.cboBillHeader.Location = new System.Drawing.Point(170, 34);
+            this.cboBillHeader.Name = "cboBillHeader";
+            this.cboBillHeader.Size = new System.Drawing.Size(370, 30);
+            this.cboBillHeader.TabIndex = 20;
+            this.cboBillHeader.SelectedIndexChanged += new System.EventHandler(this.cboBillHeader_SelectedIndexChanged);
+            // 
+            // btnSaveBillHeader
+            // 
+            this.btnSaveBillHeader.BackColor = System.Drawing.Color.White;
+            this.btnSaveBillHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveBillHeader.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveBillHeader.ForeColor = System.Drawing.Color.Green;
+            this.btnSaveBillHeader.Location = new System.Drawing.Point(546, 34);
+            this.btnSaveBillHeader.Name = "btnSaveBillHeader";
+            this.btnSaveBillHeader.Size = new System.Drawing.Size(154, 30);
+            this.btnSaveBillHeader.TabIndex = 21;
+            this.btnSaveBillHeader.Text = "บันทึกหัวกระดาษ";
+            this.btnSaveBillHeader.UseVisualStyleBackColor = false;
+            this.btnSaveBillHeader.Click += new System.EventHandler(this.btnSaveBillHeader_Click);
+            // 
+            // lblBillHeaderPreview
+            // 
+            // แสดงค่าที่จะถูกพิมพ์จริงของแบบที่เลือกอยู่ จะได้ตรวจก่อนบันทึก
+            this.lblBillHeaderPreview.AutoSize = false;
+            this.lblBillHeaderPreview.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillHeaderPreview.ForeColor = System.Drawing.Color.DimGray;
+            this.lblBillHeaderPreview.Location = new System.Drawing.Point(16, 72);
+            this.lblBillHeaderPreview.Name = "lblBillHeaderPreview";
+            this.lblBillHeaderPreview.Size = new System.Drawing.Size(684, 40);
+            this.lblBillHeaderPreview.TabIndex = 22;
+            this.lblBillHeaderPreview.Text = "";
             // 
             // tabPage1
             // 
@@ -1982,6 +2050,8 @@
             this.tabPage13.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.gbBillHeader.ResumeLayout(false);
+            this.gbBillHeader.PerformLayout();
             this.gbReportTemplate.ResumeLayout(false);
             this.gbReportTemplate.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -2217,5 +2287,10 @@
         private System.Windows.Forms.Label lblReportTemplate;
         private System.Windows.Forms.ComboBox cboReportTemplate;
         private System.Windows.Forms.Button btnSaveReportTemplate;
+        private System.Windows.Forms.GroupBox gbBillHeader;
+        private System.Windows.Forms.Label lblBillHeader;
+        private System.Windows.Forms.ComboBox cboBillHeader;
+        private System.Windows.Forms.Button btnSaveBillHeader;
+        private System.Windows.Forms.Label lblBillHeaderPreview;
     }
 }

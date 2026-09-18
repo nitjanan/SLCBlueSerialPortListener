@@ -100,6 +100,7 @@ namespace SerialPortListener
             LoadBackupConfig();
             InitAutoBackupTimer();
             LoadReportTemplateSetting();
+            LoadBillHeaderSetting();
         }
 
         private void ucSetting_Load(object sender, EventArgs e)
@@ -2079,5 +2080,84 @@ namespace SerialPortListener
         {
 
         }
+        // ---- แบบหัวกระดาษบิล ----
+        // ปกติชื่อบริษัท/ที่อยู่/โทร ดึงจากตาราง Company
+        // ชุดที่ตั้งไว้ใน config_billheader.txt จะแทนที่เฉพาะฟิลด์ที่กรอกไว้ ที่เหลือใช้ของเดิม
+        private void LoadBillHeaderSetting()
+        {
+            cboBillHeader.Items.Clear();
+            BillHeader.HeaderInfo[] headers = BillHeader.GetHeaders();
+            foreach (BillHeader.HeaderInfo h in headers)
+                cboBillHeader.Items.Add(h.Name);
+
+            int selected = BillHeader.GetSelectedNumber();
+            for (int i = 0; i < headers.Length; i++)
+            {
+                if (headers[i].Number == selected)
+                {
+                    cboBillHeader.SelectedIndex = i;
+                    break;
+                }
+            }
+            if (cboBillHeader.SelectedIndex < 0 && cboBillHeader.Items.Count > 0)
+                cboBillHeader.SelectedIndex = 0;
+
+            UpdateBillHeaderPreview();
+        }
+
+        /// <summary>ชุดที่กำลังเลือกอยู่ในคอมโบ (ยังไม่ได้บันทึก)</summary>
+        private BillHeader.HeaderInfo GetSelectedBillHeader()
+        {
+            BillHeader.HeaderInfo[] headers = BillHeader.GetHeaders();
+            int i = cboBillHeader.SelectedIndex;
+            if (i >= 0 && i < headers.Length)
+                return headers[i];
+            return BillHeader.DatabaseHeader;
+        }
+
+        /// <summary>แสดงค่าที่จะถูกพิมพ์จริง เพื่อให้ตรวจได้ก่อนบันทึก</summary>
+        private void UpdateBillHeaderPreview()
+        {
+            BillHeader.HeaderInfo h = GetSelectedBillHeader();
+            if (h == null || h.UsesDatabase)
+            {
+                lblBillHeaderPreview.Text =
+                    "ใช้ชื่อบริษัท ที่อยู่ และเบอร์โทร ตามที่บันทึกไว้ในฐานข้อมูล"
+                    + Environment.NewLine
+                    + "ตั้งชุดเพิ่มได้ที่ " + BillHeader.ConfigFilePath;
+                return;
+            }
+
+            // ฟิลด์ที่เว้นว่างไว้ในไฟล์ แปลว่าไม่แทนที่ ให้ใช้ของเดิมจากฐานข้อมูล
+            string dash = "(ใช้ค่าจากฐานข้อมูล)";
+            lblBillHeaderPreview.Text =
+                "ชื่อบริษัท : " + (string.IsNullOrEmpty(h.CompanyName) ? dash : h.CompanyName)
+                + Environment.NewLine
+                + "ที่อยู่ : " + (string.IsNullOrEmpty(h.Address) ? dash : h.Address)
+                + "    โทร : " + (string.IsNullOrEmpty(h.Telephone) ? dash : h.Telephone);
+        }
+
+        private void cboBillHeader_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBillHeaderPreview();
+        }
+
+        private void btnSaveBillHeader_Click(object sender, EventArgs e)
+        {
+            BillHeader.HeaderInfo h = GetSelectedBillHeader();
+            if (h == null)
+                return;
+
+            if (!BillHeader.SaveSelectedNumber(h.Number))
+            {
+                MessageBox.Show("บันทึกแบบหัวกระดาษบิลไม่สำเร็จ", "ผิดพลาด",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("บันทึกแบบหัวกระดาษบิลแล้ว : " + h.Name, "บันทึกแล้ว",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }

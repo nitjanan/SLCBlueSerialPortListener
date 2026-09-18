@@ -459,6 +459,7 @@
       <DependentUpon>weightScoopDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WeightTempReport.cs" />
+    <Compile Include="BillHeader.cs" />
     <Compile Include="ReportMainTemplate.cs" />
     <Compile Include="SerialDataHandler.cs" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
