@@ -1886,14 +1886,14 @@ namespace SerialPortListener
                 {
                     log("===== Backup Success =====");
                     log(backupFile);
-                    lbLastAutoBackup.Text = $"Backup ล่าสุด: {DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) สำเร็จ";
+                    lbLastAutoBackup.Text = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) สำเร็จ";
                     if (!isAuto)
                         MessageBox.Show("สำรองข้อมูลสำเร็จ\r\n" + backupFile, "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     log($"XXXXX Backup Failed (exit code {exitCode}) XXXXX");
-                    lbLastAutoBackup.Text = $"Backup ล่าสุด: {DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) ไม่สำเร็จ";
+                    lbLastAutoBackup.Text = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) ไม่สำเร็จ";
                     if (!isAuto)
                         MessageBox.Show($"สำรองข้อมูลไม่สำเร็จ (exit code {exitCode})", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -1901,7 +1901,7 @@ namespace SerialPortListener
             catch (Exception ex)
             {
                 log("Error: " + ex.Message);
-                lbLastAutoBackup.Text = $"Backup ล่าสุด: {DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) เกิดข้อผิดพลาด";
+                lbLastAutoBackup.Text = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) เกิดข้อผิดพลาด";
                 if (!isAuto)
                     MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

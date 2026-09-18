@@ -40,6 +40,7 @@
             this.btnBrowseBackupDir = new System.Windows.Forms.Button();
             this.btnSaveBackupConfig = new System.Windows.Forms.Button();
             this.chkAutoBackup = new System.Windows.Forms.CheckBox();
+            this.lbLastAutoBackupTitle = new System.Windows.Forms.Label();
             this.lbLastAutoBackup = new System.Windows.Forms.Label();
             this.btnBackup = new System.Windows.Forms.Button();
             this.lbAutoBackupTime = new System.Windows.Forms.Label();
@@ -310,6 +311,7 @@
             this.groupBox5.Controls.Add(this.btnBrowseBackupDir);
             this.groupBox5.Controls.Add(this.btnSaveBackupConfig);
             this.groupBox5.Controls.Add(this.chkAutoBackup);
+            this.groupBox5.Controls.Add(this.lbLastAutoBackupTitle);
             this.groupBox5.Controls.Add(this.lbLastAutoBackup);
             this.groupBox5.Controls.Add(this.btnBackup);
             this.groupBox5.Controls.Add(this.lbAutoBackupTime);
@@ -417,16 +419,27 @@
             this.chkAutoBackup.UseVisualStyleBackColor = true;
             this.chkAutoBackup.Visible = false;
             // 
+            // lbLastAutoBackupTitle
+            // 
+            this.lbLastAutoBackupTitle.AutoSize = false;
+            this.lbLastAutoBackupTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbLastAutoBackupTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLastAutoBackupTitle.Location = new System.Drawing.Point(20, 151);
+            this.lbLastAutoBackupTitle.Name = "lbLastAutoBackupTitle";
+            this.lbLastAutoBackupTitle.Size = new System.Drawing.Size(150, 24);
+            this.lbLastAutoBackupTitle.TabIndex = 7;
+            this.lbLastAutoBackupTitle.Text = "Backup ล่าสุด :";
+            // 
             // lbLastAutoBackup
             // 
             this.lbLastAutoBackup.AutoSize = false;
             this.lbLastAutoBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbLastAutoBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLastAutoBackup.Location = new System.Drawing.Point(20, 151);
+            this.lbLastAutoBackup.Location = new System.Drawing.Point(180, 151);
             this.lbLastAutoBackup.Name = "lbLastAutoBackup";
-            this.lbLastAutoBackup.Size = new System.Drawing.Size(300, 24);
+            this.lbLastAutoBackup.Size = new System.Drawing.Size(279, 24);
             this.lbLastAutoBackup.TabIndex = 8;
-            this.lbLastAutoBackup.Text = "Backup ล่าสุด: -";
+            this.lbLastAutoBackup.Text = "-";
             // 
             // btnBackup
             // 
@@ -2410,6 +2423,7 @@
         private System.Windows.Forms.Button btnBrowseBackupDir;
         private System.Windows.Forms.Button btnSaveBackupConfig;
         private System.Windows.Forms.CheckBox chkAutoBackup;
+        private System.Windows.Forms.Label lbLastAutoBackupTitle;
         private System.Windows.Forms.Label lbLastAutoBackup;
         private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Label lbAutoBackupTime;
