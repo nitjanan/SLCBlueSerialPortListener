@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -21,16 +21,55 @@ namespace SerialPortListener
             public string Address;        // -> PAddress
             public string Telephone;      // -> PTelephone
 
-            /// <summary>ชุดที่ไม่ได้ตั้งค่าอะไรเลย แปลว่าให้ใช้ค่าเดิมจากฐานข้อมูล</summary>
+            /// <summary>ชุดปริยาย ไม่แทนที่อะไรเลย ใช้ค่าจากฐานข้อมูลทุกฟิลด์</summary>
             public bool UsesDatabase
             {
-                get { return Number <= 0; }
+                get { return Number == 0; }
+            }
+
+            /// <summary>ชุดที่ผู้ใช้พิมพ์ข้อความเอง</summary>
+            public bool IsCustom
+            {
+                get { return Number == CustomNumber; }
             }
         }
 
         /// <summary>ชุดปริยาย ไม่แทนที่อะไร พฤติกรรมเหมือนก่อนมีฟีเจอร์นี้</summary>
         public static readonly HeaderInfo DatabaseHeader =
             new HeaderInfo { Number = 0, Name = "ใช้ค่าจากฐานข้อมูล (ค่าเริ่มต้น)" };
+
+        /// <summary>หมายเลขของชุดที่ผู้ใช้พิมพ์ข้อความเอง เก็บในไฟล์เป็น Header=custom</summary>
+        public const int CustomNumber = -1;
+
+        private const string CustomPrefix = "Custom.";
+
+        /// <summary>ชุดที่ผู้ใช้พิมพ์เอง อ่านจากคีย์ Custom.* ในไฟล์</summary>
+        public static HeaderInfo GetCustomHeader()
+        {
+            Dictionary<string, string> d = ReadConfig();
+            string comp, addr, tel;
+            d.TryGetValue(CustomPrefix + "CompanyName", out comp);
+            d.TryGetValue(CustomPrefix + "Address", out addr);
+            d.TryGetValue(CustomPrefix + "Telephone", out tel);
+            return new HeaderInfo
+            {
+                Number = CustomNumber,
+                Name = "กรอกเอง",
+                CompanyName = comp,
+                Address = addr,
+                Telephone = tel
+            };
+        }
+
+        /// <summary>บันทึกข้อความที่ผู้ใช้พิมพ์เอง ช่องที่เว้นว่างจะใช้ค่าจากฐานข้อมูลเฉพาะช่องนั้น</summary>
+        public static bool SaveCustomHeader(string companyName, string address, string telephone)
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+            d[CustomPrefix + "CompanyName"] = (companyName ?? string.Empty).Trim();
+            d[CustomPrefix + "Address"] = (address ?? string.Empty).Trim();
+            d[CustomPrefix + "Telephone"] = (telephone ?? string.Empty).Trim();
+            return WriteConfig(d);
+        }
 
         private static readonly string ConfigPath =
             Path.Combine(Utils.AppDataDir, "config_billheader.txt");
@@ -68,6 +107,46 @@ namespace SerialPortListener
             return d;
         }
 
+        /// <summary>เขียนค่าที่ส่งมาลงไฟล์ โดยคงบรรทัดอื่นและคอมเมนต์เดิมไว้</summary>
+        private static bool WriteConfig(Dictionary<string, string> values)
+        {
+            try
+            {
+                List<string> lines = new List<string>();
+                if (File.Exists(ConfigPath))
+                    lines.AddRange(File.ReadAllLines(ConfigPath));
+
+                foreach (KeyValuePair<string, string> kv in values)
+                {
+                    bool replaced = false;
+                    for (int i = 0; i < lines.Count; i++)
+                    {
+                        string t = lines[i].Trim();
+                        if (t.Length == 0 || t.StartsWith("#"))
+                            continue;
+                        int eq = t.IndexOf('=');
+                        if (eq > 0 && t.Substring(0, eq).Trim().Equals(kv.Key, StringComparison.OrdinalIgnoreCase))
+                        {
+                            lines[i] = kv.Key + "=" + kv.Value;
+                            replaced = true;
+                            break;
+                        }
+                    }
+                    if (!replaced)
+                        lines.Add(kv.Key + "=" + kv.Value);
+                }
+
+                if (!Directory.Exists(Utils.AppDataDir))
+                    Directory.CreateDirectory(Utils.AppDataDir);
+                File.WriteAllLines(ConfigPath, lines.ToArray());
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// ชุดทั้งหมดที่ตั้งไว้ในไฟล์ ตัวแรกเป็นชุดปริยายเสมอ
         /// ไล่หา HeaderN.* ตั้งแต่ 1 ไปจนกว่าจะไม่เจอ ชุดที่ไม่มีข้อมูลเลยจะถูกข้าม
@@ -100,11 +179,14 @@ namespace SerialPortListener
                     Telephone = tel
                 });
             }
+            list.Add(GetCustomHeader());
             return list.ToArray();
         }
 
         public static HeaderInfo Find(int number)
         {
+            if (number == CustomNumber)
+                return GetCustomHeader();
             if (number <= 0)
                 return DatabaseHeader;
             foreach (HeaderInfo h in GetHeaders())
@@ -117,9 +199,14 @@ namespace SerialPortListener
         public static int GetSelectedNumber()
         {
             string v;
-            int n;
-            if (ReadConfig().TryGetValue("Header", out v) && int.TryParse(v, out n) && Find(n) != null)
-                return n;
+            if (ReadConfig().TryGetValue("Header", out v))
+            {
+                if (string.Equals(v, "custom", StringComparison.OrdinalIgnoreCase))
+                    return CustomNumber;
+                int n;
+                if (int.TryParse(v, out n) && Find(n) != null)
+                    return n;
+            }
             return 0;
         }
 
@@ -148,13 +235,13 @@ namespace SerialPortListener
                     int eq = t.IndexOf('=');
                     if (eq > 0 && t.Substring(0, eq).Trim().Equals("Header", StringComparison.OrdinalIgnoreCase))
                     {
-                        lines[i] = "Header=" + number;
+                        lines[i] = "Header=" + NumberToText(number);
                         replaced = true;
                         break;
                     }
                 }
                 if (!replaced)
-                    lines.Add("Header=" + number);
+                    lines.Add("Header=" + NumberToText(number));
 
                 if (!Directory.Exists(Utils.AppDataDir))
                     Directory.CreateDirectory(Utils.AppDataDir);
@@ -165,6 +252,11 @@ namespace SerialPortListener
             {
                 return false;
             }
+        }
+
+        private static string NumberToText(int number)
+        {
+            return (number == CustomNumber) ? "custom" : number.ToString();
         }
 
         /// <summary>

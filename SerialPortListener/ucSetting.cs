@@ -2102,7 +2102,7 @@ namespace SerialPortListener
             if (cboBillHeader.SelectedIndex < 0 && cboBillHeader.Items.Count > 0)
                 cboBillHeader.SelectedIndex = 0;
 
-            UpdateBillHeaderPreview();
+            UpdateBillHeaderFields();
         }
 
         /// <summary>ชุดที่กำลังเลือกอยู่ในคอมโบ (ยังไม่ได้บันทึก)</summary>
@@ -2115,31 +2115,34 @@ namespace SerialPortListener
             return BillHeader.DatabaseHeader;
         }
 
-        /// <summary>แสดงค่าที่จะถูกพิมพ์จริง เพื่อให้ตรวจได้ก่อนบันทึก</summary>
-        private void UpdateBillHeaderPreview()
+        /// <summary>
+        /// แสดงค่าของแบบที่เลือกอยู่ในช่องกรอก
+        /// เลือก "กรอกเอง" ถึงจะพิมพ์ได้ แบบอื่นแสดงให้ดูอย่างเดียว
+        /// ช่องที่เว้นว่าง = ใช้ค่าจากฐานข้อมูลเฉพาะช่องนั้น
+        /// </summary>
+        private void UpdateBillHeaderFields()
         {
             BillHeader.HeaderInfo h = GetSelectedBillHeader();
-            if (h == null || h.UsesDatabase)
-            {
-                lblBillHeaderPreview.Text =
-                    "ใช้ชื่อบริษัท ที่อยู่ และเบอร์โทร ตามที่บันทึกไว้ในฐานข้อมูล"
-                    + Environment.NewLine
-                    + "ตั้งชุดเพิ่มได้ที่ " + BillHeader.ConfigFilePath;
-                return;
-            }
+            bool editable = (h != null && h.IsCustom);
 
-            // ฟิลด์ที่เว้นว่างไว้ในไฟล์ แปลว่าไม่แทนที่ ให้ใช้ของเดิมจากฐานข้อมูล
-            string dash = "(ใช้ค่าจากฐานข้อมูล)";
-            lblBillHeaderPreview.Text =
-                "ชื่อบริษัท : " + (string.IsNullOrEmpty(h.CompanyName) ? dash : h.CompanyName)
-                + Environment.NewLine
-                + "ที่อยู่ : " + (string.IsNullOrEmpty(h.Address) ? dash : h.Address)
-                + "    โทร : " + (string.IsNullOrEmpty(h.Telephone) ? dash : h.Telephone);
+            tbBhCompany.Text = (h == null || h.UsesDatabase) ? "" : (h.CompanyName ?? "");
+            tbBhAddress.Text = (h == null || h.UsesDatabase) ? "" : (h.Address ?? "");
+            tbBhTelephone.Text = (h == null || h.UsesDatabase) ? "" : (h.Telephone ?? "");
+
+            tbBhCompany.ReadOnly = !editable;
+            tbBhAddress.ReadOnly = !editable;
+            tbBhTelephone.ReadOnly = !editable;
+
+            // สีพื้นบอกว่าแก้ได้หรือไม่ได้ ไม่ใช้ Enabled เพราะจะอ่านข้อความไม่ถนัด
+            Color back = editable ? SystemColors.Window : SystemColors.Control;
+            tbBhCompany.BackColor = back;
+            tbBhAddress.BackColor = back;
+            tbBhTelephone.BackColor = back;
         }
 
         private void cboBillHeader_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateBillHeaderPreview();
+            UpdateBillHeaderFields();
         }
 
         private void btnSaveBillHeader_Click(object sender, EventArgs e)
@@ -2148,6 +2151,15 @@ namespace SerialPortListener
             if (h == null)
                 return;
 
+            // เก็บข้อความที่พิมพ์ก่อน แล้วค่อยบันทึกว่าเลือกแบบไหน
+            if (h.IsCustom &&
+                !BillHeader.SaveCustomHeader(tbBhCompany.Text, tbBhAddress.Text, tbBhTelephone.Text))
+            {
+                MessageBox.Show("บันทึกข้อความหัวกระดาษไม่สำเร็จ", "ผิดพลาด",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (!BillHeader.SaveSelectedNumber(h.Number))
             {
                 MessageBox.Show("บันทึกแบบหัวกระดาษบิลไม่สำเร็จ", "ผิดพลาด",
@@ -2155,6 +2167,7 @@ namespace SerialPortListener
                 return;
             }
 
+            UpdateBillHeaderFields();
             MessageBox.Show("บันทึกแบบหัวกระดาษบิลแล้ว : " + h.Name, "บันทึกแล้ว",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
