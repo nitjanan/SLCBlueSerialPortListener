@@ -291,9 +291,9 @@
             // 
             // tabPage13
             // 
-            this.tabPage13.Controls.Add(this.groupBox5);
             this.tabPage13.Controls.Add(this.gbReportTemplate);
             this.tabPage13.Controls.Add(this.gbBillHeader);
+            this.tabPage13.Controls.Add(this.groupBox5);
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Size = new System.Drawing.Size(753, 460);
@@ -320,7 +320,7 @@
             this.groupBox5.Controls.Add(this.dtpAutoBackupEnd);
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 12);
+            this.groupBox5.Location = new System.Drawing.Point(12, 270);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(729, 186);
             this.groupBox5.TabIndex = 15;
@@ -501,7 +501,7 @@
             this.gbReportTemplate.Controls.Add(this.btnSaveReportTemplate);
             this.gbReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbReportTemplate.Location = new System.Drawing.Point(12, 210);
+            this.gbReportTemplate.Location = new System.Drawing.Point(12, 12);
             this.gbReportTemplate.Name = "gbReportTemplate";
             this.gbReportTemplate.Size = new System.Drawing.Size(729, 76);
             this.gbReportTemplate.TabIndex = 1;
@@ -559,7 +559,7 @@
             this.gbBillHeader.Controls.Add(this.tbBhTelephone);
             this.gbBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbBillHeader.Location = new System.Drawing.Point(12, 298);
+            this.gbBillHeader.Location = new System.Drawing.Point(12, 100);
             this.gbBillHeader.Name = "gbBillHeader";
             this.gbBillHeader.Size = new System.Drawing.Size(729, 158);
             this.gbBillHeader.TabIndex = 2;
