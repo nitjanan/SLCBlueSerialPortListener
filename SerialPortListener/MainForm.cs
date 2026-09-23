@@ -199,6 +199,8 @@ namespace SerialPortListener
             dl = new Datalayer();
             InitializeComponent();
 
+            UpdateReadButtonsVisualState();
+
             UserInitialization();
 
             setDefaultFromDB(username, firstname);
@@ -389,18 +391,18 @@ namespace SerialPortListener
         }
         public void EnableWeightInAndOut()
         {
-            btReadIn.Enabled = true;
-            btReadOut.Enabled = true;
+            SetBtReadInEnabled(true);
+            SetBtReadOutEnabled(true);
         }
 
         public void disableReadWeightIn()
         {
-            btReadIn.Enabled = false;
+            SetBtReadInEnabled(false);
         }
 
         public void disableReadWeightOut()
         {
-            btReadOut.Enabled = false;
+            SetBtReadOutEnabled(false);
         }
 
         public void resetMainForm()
@@ -708,7 +710,7 @@ namespace SerialPortListener
             {
                 dtWeightOutDate.Text = DateTime.Now.ToShortDateString();
                 dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
-                btReadOut.Enabled = true;
+                SetBtReadOutEnabled(true);
 
                 if (!checkEmptyTB(tbCarLicense))
                 {
@@ -1018,6 +1020,8 @@ namespace SerialPortListener
                 _serialRxTimer.Dispose();
             if (_serialNoDataTimer != null)
                 _serialNoDataTimer.Dispose();
+            if (_weightStableTimer != null)
+                _weightStableTimer.Dispose();
             if (_spManager != null)
             {
                 _spManager.Dispose();
@@ -1034,6 +1038,71 @@ namespace SerialPortListener
         private System.Windows.Forms.Timer _serialRxTimer;   // ใช้เฉพาะวิธีที่รับแบบบัฟเฟอร์
         private System.Windows.Forms.Timer _serialNoDataTimer;
 
+        // ต้องรอให้ tbWeigtData นิ่ง (ค่าไม่เปลี่ยน) ครบเวลานี้ก่อน ถึงจะกด btReadIn/btReadOut ได้
+        private const int WeightStableIntervalMs = 5000;
+        private System.Windows.Forms.Timer _weightStableTimer;
+        private bool _weightIsStable = false;
+
+        // ค่า Enabled ที่ตรรกะทางธุรกิจ (นอกเหนือจากความนิ่ง) ต้องการให้ปุ่มเป็น
+        // ปุ่มจะกดได้จริงก็ต่อเมื่อ business enabled = true และน้ำหนักนิ่งแล้วเท่านั้น
+        private bool _btReadInBusinessEnabled = true;
+        private bool _btReadOutBusinessEnabled = true;
+        private string _btReadInOriginalText;
+        private string _btReadOutOriginalText;
+        private Color _btReadInOriginalColor;
+        private Color _btReadOutOriginalColor;
+
+        private void SetBtReadInEnabled(bool enabled)
+        {
+            _btReadInBusinessEnabled = enabled;
+            UpdateReadButtonsVisualState();
+        }
+
+        private void SetBtReadOutEnabled(bool enabled)
+        {
+            _btReadOutBusinessEnabled = enabled;
+            UpdateReadButtonsVisualState();
+        }
+
+        /// <summary>ปรับ Enabled/ข้อความ/สีของ btReadIn, btReadOut ตามตรรกะทางธุรกิจ + ความนิ่งของน้ำหนัก</summary>
+        private void UpdateReadButtonsVisualState()
+        {
+            if (_btReadInOriginalText == null)
+            {
+                _btReadInOriginalText = btReadIn.Text;
+                _btReadOutOriginalText = btReadOut.Text;
+                _btReadInOriginalColor = btReadIn.BackColor;
+                _btReadOutOriginalColor = btReadOut.BackColor;
+            }
+
+            bool waitingForStable = !_weightIsStable;
+
+            btReadIn.Enabled = _btReadInBusinessEnabled && _weightIsStable;
+            btReadOut.Enabled = _btReadOutBusinessEnabled && _weightIsStable;
+
+            if (_btReadInBusinessEnabled && waitingForStable)
+            {
+                btReadIn.Text = "รอน้ำหนักนิ่ง...";
+                btReadIn.BackColor = Color.LightGray;
+            }
+            else
+            {
+                btReadIn.Text = _btReadInOriginalText;
+                btReadIn.BackColor = _btReadInOriginalColor;
+            }
+
+            if (_btReadOutBusinessEnabled && waitingForStable)
+            {
+                btReadOut.Text = "รอน้ำหนักนิ่ง...";
+                btReadOut.BackColor = Color.LightGray;
+            }
+            else
+            {
+                btReadOut.Text = _btReadOutOriginalText;
+                btReadOut.BackColor = _btReadOutOriginalColor;
+            }
+        }
+
         /// <summary>อ่านวิธีที่เลือกไว้ใหม่ และตั้งตัวจับเวลาที่วิธีนั้นต้องใช้</summary>
         public void ReloadSerialHandler()
         {
@@ -1048,6 +1117,10 @@ namespace SerialPortListener
                     tbWeigtData.Text = "Error";
                     tbWeigtData.ForeColor = Color.DarkRed;
                     _serialNoDataTimer.Stop();
+                    _weightIsStable = false;
+                    if (_weightStableTimer != null)
+                        _weightStableTimer.Stop();
+                    UpdateReadButtonsVisualState();
                 };
             }
             if (!_serialHandler.NoDataTimeout)
@@ -1061,6 +1134,18 @@ namespace SerialPortListener
             }
             // วิธีแบบบัฟเฟอร์จะไม่แตะหน้าจอตอนรับข้อมูล แต่ให้ timer มาระบายทีเดียว ลดการกระตุก
             _serialRxTimer.Enabled = _serialHandler.Buffered;
+
+            if (_weightStableTimer == null)
+            {
+                _weightStableTimer = new System.Windows.Forms.Timer();
+                _weightStableTimer.Interval = WeightStableIntervalMs;
+                _weightStableTimer.Tick += delegate
+                {
+                    _weightIsStable = true;
+                    _weightStableTimer.Stop();
+                    UpdateReadButtonsVisualState();
+                };
+            }
         }
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)
@@ -1151,6 +1236,15 @@ namespace SerialPortListener
                         tbWeigtData.ForeColor = Color.LightCoral;
                     else if (r.IsNegative)
                         tbWeigtData.ForeColor = Color.LightCoral;
+
+                    // ค่าเปลี่ยน ถือว่ายังไม่นิ่ง เริ่มนับเวลาความนิ่งใหม่
+                    _weightIsStable = false;
+                    if (_weightStableTimer != null)
+                    {
+                        _weightStableTimer.Stop();
+                        _weightStableTimer.Start();
+                    }
+                    UpdateReadButtonsVisualState();
                 }
                 else
                 {
@@ -1168,6 +1262,10 @@ namespace SerialPortListener
             {
                 tbWeigtData.Text = "Error";
                 tbWeigtData.ForeColor = Color.DarkRed;
+                _weightIsStable = false;
+                if (_weightStableTimer != null)
+                    _weightStableTimer.Stop();
+                UpdateReadButtonsVisualState();
             }
             // อ่านไม่ได้และวิธีนี้ไม่ได้กำหนดให้แจ้ง Error แปลว่าข้อมูลยังมาไม่ครบ ให้คงค่าเดิมไว้
         }
@@ -1187,6 +1285,8 @@ namespace SerialPortListener
 
         private void btRead_Click(object sender, EventArgs e)
         {
+            if (!_weightIsStable)
+                return;
             try
             {
                 _spManager.StopListening();
@@ -1429,6 +1529,8 @@ namespace SerialPortListener
 
         private void btReadOut_Click(object sender, EventArgs e)
         {
+            if (!_weightIsStable)
+                return;
             try
             {
                 _spManager.StopListening();
