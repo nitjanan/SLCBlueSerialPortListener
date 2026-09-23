@@ -34,7 +34,7 @@
             this.gbReportTemplate = new System.Windows.Forms.GroupBox();
             this.lblReportTemplate = new System.Windows.Forms.Label();
             this.cboReportTemplate = new System.Windows.Forms.ComboBox();
-            this.gbBillHeader = new System.Windows.Forms.GroupBox();
+            this.btPreviewBill = new System.Windows.Forms.Button();
             this.lblBillHeader = new System.Windows.Forms.Label();
             this.cboBillHeader = new System.Windows.Forms.ComboBox();
             this.lblBhCompany = new System.Windows.Forms.Label();
@@ -211,7 +211,6 @@
             this.tcSetting.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.gbReportTemplate.SuspendLayout();
-            this.gbBillHeader.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScale)).BeginInit();
@@ -290,7 +289,6 @@
             // tabPage13
             // 
             this.tabPage13.Controls.Add(this.gbReportTemplate);
-            this.tabPage13.Controls.Add(this.gbBillHeader);
             this.tabPage13.Controls.Add(this.btnSaveBackupConfig);
             this.tabPage13.Controls.Add(this.groupBox5);
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
@@ -306,13 +304,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbReportTemplate.Controls.Add(this.lblReportTemplate);
             this.gbReportTemplate.Controls.Add(this.cboReportTemplate);
+            this.gbReportTemplate.Controls.Add(this.btPreviewBill);
+            this.gbReportTemplate.Controls.Add(this.lblBillHeader);
+            this.gbReportTemplate.Controls.Add(this.cboBillHeader);
+            this.gbReportTemplate.Controls.Add(this.lblBhCompany);
+            this.gbReportTemplate.Controls.Add(this.tbBhCompany);
+            this.gbReportTemplate.Controls.Add(this.lblBhAddress);
+            this.gbReportTemplate.Controls.Add(this.tbBhAddress);
+            this.gbReportTemplate.Controls.Add(this.lblBhTelephone);
+            this.gbReportTemplate.Controls.Add(this.tbBhTelephone);
             this.gbReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbReportTemplate.Location = new System.Drawing.Point(12, 8);
             this.gbReportTemplate.Name = "gbReportTemplate";
-            this.gbReportTemplate.Size = new System.Drawing.Size(737, 68);
+            this.gbReportTemplate.Size = new System.Drawing.Size(737, 210);
             this.gbReportTemplate.TabIndex = 1;
             this.gbReportTemplate.TabStop = false;
-            this.gbReportTemplate.Text = "แบบใบชั่ง (ReportMain)";
+            this.gbReportTemplate.Text = "แบบบิลใบชั่ง (ReportMain)";
             // 
             // lblReportTemplate
             // 
@@ -333,113 +340,107 @@
             this.cboReportTemplate.FormattingEnabled = true;
             this.cboReportTemplate.Location = new System.Drawing.Point(180, 28);
             this.cboReportTemplate.Name = "cboReportTemplate";
-            this.cboReportTemplate.Size = new System.Drawing.Size(537, 29);
+            this.cboReportTemplate.Size = new System.Drawing.Size(390, 29);
             this.cboReportTemplate.TabIndex = 17;
             this.cboReportTemplate.SelectedIndexChanged += new System.EventHandler(this.cboReportTemplate_SelectedIndexChanged);
-            // 
-            // gbBillHeader
-            // 
-            this.gbBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbBillHeader.Controls.Add(this.lblBillHeader);
-            this.gbBillHeader.Controls.Add(this.cboBillHeader);
-            this.gbBillHeader.Controls.Add(this.lblBhCompany);
-            this.gbBillHeader.Controls.Add(this.tbBhCompany);
-            this.gbBillHeader.Controls.Add(this.lblBhAddress);
-            this.gbBillHeader.Controls.Add(this.tbBhAddress);
-            this.gbBillHeader.Controls.Add(this.lblBhTelephone);
-            this.gbBillHeader.Controls.Add(this.tbBhTelephone);
-            this.gbBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbBillHeader.Location = new System.Drawing.Point(12, 84);
-            this.gbBillHeader.Name = "gbBillHeader";
-            this.gbBillHeader.Size = new System.Drawing.Size(737, 156);
-            this.gbBillHeader.TabIndex = 2;
-            this.gbBillHeader.TabStop = false;
-            this.gbBillHeader.Text = "แบบหัวกระดาษบิล (ReportMain)";
-            // 
+            //
+            // btPreviewBill
+            //
+            this.btPreviewBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btPreviewBill.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btPreviewBill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPreviewBill.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviewBill.Location = new System.Drawing.Point(580, 27);
+            this.btPreviewBill.Name = "btPreviewBill";
+            this.btPreviewBill.Size = new System.Drawing.Size(137, 31);
+            this.btPreviewBill.TabIndex = 18;
+            this.btPreviewBill.Text = "ดูตัวอย่างใบชั่ง";
+            this.btPreviewBill.UseVisualStyleBackColor = false;
+            this.btPreviewBill.Click += new System.EventHandler(this.btPreviewBill_Click);
+            //
             // lblBillHeader
-            // 
+            //
             this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBillHeader.Location = new System.Drawing.Point(20, 29);
+            this.lblBillHeader.Location = new System.Drawing.Point(20, 67);
             this.lblBillHeader.Name = "lblBillHeader";
             this.lblBillHeader.Size = new System.Drawing.Size(150, 24);
             this.lblBillHeader.TabIndex = 19;
             this.lblBillHeader.Text = "แบบหัวกระดาษ";
             this.lblBillHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // cboBillHeader
-            // 
-            this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboBillHeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBillHeader.FormattingEnabled = true;
-            this.cboBillHeader.Location = new System.Drawing.Point(180, 26);
+            this.cboBillHeader.Location = new System.Drawing.Point(180, 64);
             this.cboBillHeader.Name = "cboBillHeader";
             this.cboBillHeader.Size = new System.Drawing.Size(537, 29);
             this.cboBillHeader.TabIndex = 20;
             this.cboBillHeader.SelectedIndexChanged += new System.EventHandler(this.cboBillHeader_SelectedIndexChanged);
-            // 
+            //
             // lblBhCompany
-            // 
+            //
             this.lblBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhCompany.Location = new System.Drawing.Point(20, 61);
+            this.lblBhCompany.Location = new System.Drawing.Point(20, 99);
             this.lblBhCompany.Name = "lblBhCompany";
             this.lblBhCompany.Size = new System.Drawing.Size(150, 24);
             this.lblBhCompany.TabIndex = 22;
             this.lblBhCompany.Text = "ชื่อบริษัท";
             this.lblBhCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // tbBhCompany
-            // 
-            this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBhCompany.Location = new System.Drawing.Point(180, 58);
+            this.tbBhCompany.Location = new System.Drawing.Point(180, 96);
             this.tbBhCompany.Name = "tbBhCompany";
             this.tbBhCompany.Size = new System.Drawing.Size(537, 27);
             this.tbBhCompany.TabIndex = 23;
-            // 
+            //
             // lblBhAddress
-            // 
+            //
             this.lblBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhAddress.Location = new System.Drawing.Point(20, 93);
+            this.lblBhAddress.Location = new System.Drawing.Point(20, 131);
             this.lblBhAddress.Name = "lblBhAddress";
             this.lblBhAddress.Size = new System.Drawing.Size(150, 24);
             this.lblBhAddress.TabIndex = 24;
             this.lblBhAddress.Text = "ที่อยู่";
             this.lblBhAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // tbBhAddress
-            // 
-            this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBhAddress.Location = new System.Drawing.Point(180, 90);
+            this.tbBhAddress.Location = new System.Drawing.Point(180, 128);
             this.tbBhAddress.Name = "tbBhAddress";
             this.tbBhAddress.Size = new System.Drawing.Size(537, 27);
             this.tbBhAddress.TabIndex = 25;
-            // 
+            //
             // lblBhTelephone
-            // 
+            //
             this.lblBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhTelephone.Location = new System.Drawing.Point(20, 125);
+            this.lblBhTelephone.Location = new System.Drawing.Point(20, 163);
             this.lblBhTelephone.Name = "lblBhTelephone";
             this.lblBhTelephone.Size = new System.Drawing.Size(150, 24);
             this.lblBhTelephone.TabIndex = 26;
             this.lblBhTelephone.Text = "โทรศัพท์";
             this.lblBhTelephone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // tbBhTelephone
-            // 
-            this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBhTelephone.Location = new System.Drawing.Point(180, 122);
+            this.tbBhTelephone.Location = new System.Drawing.Point(180, 160);
             this.tbBhTelephone.Name = "tbBhTelephone";
             this.tbBhTelephone.Size = new System.Drawing.Size(537, 27);
             this.tbBhTelephone.TabIndex = 27;
-            // 
+            //
             // btnSaveBackupConfig
             // 
             this.btnSaveBackupConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -448,7 +449,7 @@
             this.btnSaveBackupConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveBackupConfig.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveBackupConfig.ForeColor = System.Drawing.Color.White;
-            this.btnSaveBackupConfig.Location = new System.Drawing.Point(20, 424);
+            this.btnSaveBackupConfig.Location = new System.Drawing.Point(20, 402);
             this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
             this.btnSaveBackupConfig.Size = new System.Drawing.Size(729, 32);
             this.btnSaveBackupConfig.TabIndex = 6;
@@ -475,7 +476,7 @@
             this.groupBox5.Controls.Add(this.lbAutoBackupTimeTo);
             this.groupBox5.Controls.Add(this.dtpAutoBackupEnd);
             this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 248);
+            this.groupBox5.Location = new System.Drawing.Point(12, 226);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(737, 168);
             this.groupBox5.TabIndex = 15;
@@ -2191,8 +2192,7 @@
             this.tcSetting.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
             this.gbReportTemplate.ResumeLayout(false);
-            this.gbBillHeader.ResumeLayout(false);
-            this.gbBillHeader.PerformLayout();
+            this.gbReportTemplate.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -2428,7 +2428,7 @@
         private System.Windows.Forms.DateTimePicker dtpAutoBackupEnd;
         private System.Windows.Forms.Label lblReportTemplate;
         private System.Windows.Forms.ComboBox cboReportTemplate;
-        private System.Windows.Forms.GroupBox gbBillHeader;
+        private System.Windows.Forms.Button btPreviewBill;
         private System.Windows.Forms.Label lblBillHeader;
         private System.Windows.Forms.ComboBox cboBillHeader;
         private System.Windows.Forms.Label lblBhCompany;

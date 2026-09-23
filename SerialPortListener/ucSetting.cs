@@ -2085,6 +2085,107 @@ namespace SerialPortListener
         {
 
         }
+
+        // เปิดหน้าตัวอย่างใบชั่ง (FPrint) โดยใช้แบบที่เลือกอยู่ในคอมโบตอนนี้ (ยังไม่ต้องกด "บันทึก")
+        // และข้อมูลตัวอย่าง เพราะหน้านี้ไม่มีรายการชั่งจริงให้อ้างอิง
+        // ระหว่างพรีวิวจะสลับ config_reportmain.txt ไปใช้แบบที่เลือกชั่วคราว แล้วคืนค่าเดิมกลับหลังปิดหน้าต่าง
+        private void btPreviewBill_Click(object sender, EventArgs e)
+        {
+            ReportMainTemplate.TemplateInfo selected =
+                cboReportTemplate.SelectedItem as ReportMainTemplate.TemplateInfo;
+            if (selected == null)
+            {
+                MessageBox.Show("กรุณาเลือกแบบใบชั่งก่อน", "ดูตัวอย่างใบชั่ง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int originalTemplate = ReportMainTemplate.GetSelectedTemplateNumber();
+            bool templateSwapped = false;
+
+            // หัวกระดาษก็ต้องสลับไปใช้ชุดที่เลือกอยู่ตอนนี้เหมือนกัน (ยังไม่ต้องกด "บันทึก")
+            BillHeader.HeaderInfo selectedHeader = GetSelectedBillHeader();
+            int originalHeaderNumber = BillHeader.GetSelectedNumber();
+            BillHeader.HeaderInfo originalCustomHeader = BillHeader.GetCustomHeader();
+            bool headerSwapped = false;
+            bool customTextSwapped = false;
+
+            try
+            {
+                if (selected.Number != originalTemplate)
+                    templateSwapped = ReportMainTemplate.SaveSelectedTemplate(selected.Number);
+
+                // ชุด "กรอกเอง" ต้องเอาข้อความในช่องตอนนี้ไปใช้ด้วย เผื่อยังไม่ได้บันทึก
+                if (selectedHeader != null && selectedHeader.IsCustom)
+                    customTextSwapped = BillHeader.SaveCustomHeader(tbBhCompany.Text, tbBhAddress.Text, tbBhTelephone.Text);
+
+                if (selectedHeader != null && selectedHeader.Number != originalHeaderNumber)
+                    headerSwapped = BillHeader.SaveSelectedNumber(selectedHeader.Number);
+
+                FillSampleWeightForPreview();
+
+                FPrint f = new FPrint();
+                f.ShowDialog();
+            }
+            finally
+            {
+                if (templateSwapped)
+                    ReportMainTemplate.SaveSelectedTemplate(originalTemplate);
+                if (headerSwapped)
+                    BillHeader.SaveSelectedNumber(originalHeaderNumber);
+                if (customTextSwapped)
+                    BillHeader.SaveCustomHeader(originalCustomHeader.CompanyName, originalCustomHeader.Address, originalCustomHeader.Telephone);
+            }
+        }
+
+        // ข้อมูลตัวอย่างไว้โชว์บนพรีวิว ไม่ใช่ข้อมูลชั่งจริง
+        private void FillSampleWeightForPreview()
+        {
+            Company.TTelephone = "โทร";
+            Company.TEmail = "E-mail";
+            Company.TDocName = "เลขที่การชั่ง";
+            Company.TLogo = "(Sandvik)";
+
+            Weight.Id = "";
+            Weight.DoId = "";
+            Weight.Date = DateTime.Now.ToShortDateString();
+            Weight.DocNum = "PREVIEW-0001";
+            Weight.Mill = "ตัวอย่างโรงโม่";
+            Weight.DriverName = "นายตัวอย่าง ใจดี";
+            Weight.CustomerName = "ลูกค้าตัวอย่าง จำกัด";
+            Weight.CustomerAddress = "ที่อยู่ตัวอย่าง";
+            Weight.StoneType = "หินตัวอย่าง";
+            Weight.StoneDesc = "3/4\"";
+            Weight.StoneColor = "เทา";
+            Weight.CarLicense = "กก-1234";
+            Weight.CarCity = "สุราษฎร์ธานี";
+            Weight.DateIn = Weight.Date;
+            Weight.TimeIn = "08:00";
+            Weight.DateOut = Weight.Date;
+            Weight.TimeOut = "08:30";
+            Weight.WeightIn = "10.00";
+            Weight.WeightOut = "30.00";
+            Weight.WeightTotal = "20.00";
+            Weight.Price = "150.00";
+            Weight.Amount = "3000.00";
+            Weight.Vat = "210.00";
+            Weight.AmountVat = "3210.00";
+            Weight.Q = "1.00";
+            Weight.Team = "ทีมตัวอย่าง";
+            Weight.Site = "หน้างานตัวอย่าง";
+            Weight.ApproveName = "ผู้อนุมัติตัวอย่าง";
+            Weight.Pay = "เงินสด";
+            Weight.VatType = "vat";
+            Weight.Clean = "-";
+            Weight.Transport = "-";
+            Weight.OilContent = "0";
+            Weight.ScoopName = "ผู้ตักตัวอย่าง";
+            Weight.LC = "-";
+            Weight.Note = "ตัวอย่างใบชั่ง (Preview)";
+            Weight.DatePrint = DateTime.Now.ToString("yyyy-MM-dd");
+            Weight.DatePrintAndCopyNum = DateTime.Now.ToString("dd/MM") + "#1";
+            Weight.TimePrint = DateTime.Now.ToString("HH:mm:ss");
+        }
+
         // ---- แบบหัวกระดาษบิล ----
         // ปกติชื่อบริษัท/ที่อยู่/โทร ดึงจากตาราง Company
         // ชุดที่ตั้งไว้ใน config_billheader.txt จะแทนที่เฉพาะฟิลด์ที่กรอกไว้ ที่เหลือใช้ของเดิม
