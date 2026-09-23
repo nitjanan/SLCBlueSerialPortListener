@@ -1770,7 +1770,22 @@ namespace SerialPortListener
             try
             {
                 SaveBackupConfig();
-                MessageBox.Show("บันทึกการตั้งค่าสำเร็จ", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // ปุ่มเดียวเก็บให้ครบทั้งแท็บ: แบบใบชั่งและหัวกระดาษบิลบันทึกต่อจาก Backup
+                string savedTemplate = SaveReportTemplateSetting();
+                if (savedTemplate == null)
+                    return;
+
+                string savedBillHeader = SaveBillHeaderSetting();
+                if (savedBillHeader == null)
+                    return;
+
+                string done = "บันทึกการตั้งค่าสำเร็จ";
+                if (savedTemplate.Length > 0)
+                    done += Environment.NewLine + "แบบใบชั่ง : " + savedTemplate;
+                if (savedBillHeader.Length > 0)
+                    done += Environment.NewLine + "หัวกระดาษบิล : " + savedBillHeader;
+                MessageBox.Show(done, "Setting", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -2029,33 +2044,23 @@ namespace SerialPortListener
             if (cboReportTemplate.Items.Count > 0)
                 cboReportTemplate.SelectedIndex = 0;
         }
-        private void btnSaveReportTemplate_Click(object sender, EventArgs e)
+        // บันทึกแบบใบชั่งที่เลือกอยู่
+        // คืนชื่อแบบที่บันทึก, คืน "" เมื่อไม่ได้เลือกไว้, คืน null เมื่อบันทึกไม่สำเร็จ (แจ้งเตือนแล้ว)
+        private string SaveReportTemplateSetting()
         {
-            // ใช้สิทธิ์ชุดเดียวกับการบันทึกตั้งค่าอื่นในหน้านี้
-            if (!Globals.isPermissionAddSetting())
-            {
-                MessageBox.Show("คุณไม่มีสิทธิ์บันทึกการตั้งค่านี้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             ReportMainTemplate.TemplateInfo selected =
                 cboReportTemplate.SelectedItem as ReportMainTemplate.TemplateInfo;
             if (selected == null)
-            {
-                MessageBox.Show("กรุณาเลือกแบบใบชั่ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                return "";
 
-            if (ReportMainTemplate.SaveSelectedTemplate(selected.Number))
-            {
-                MessageBox.Show("บันทึกแบบใบชั่งสำเร็จ: " + selected.DisplayName, "แบบใบชั่ง",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
+            if (!ReportMainTemplate.SaveSelectedTemplate(selected.Number))
             {
                 MessageBox.Show("บันทึกแบบใบชั่งไม่สำเร็จ กรุณาตรวจสอบสิทธิ์การเขียนไฟล์" + Environment.NewLine
                     + ReportMainTemplate.ConfigFilePath, "แบบใบชั่ง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
             }
+
+            return selected.DisplayName;
         }
         // ตอน constructor ทำงานยังไม่ผ่าน Login จึงเช็คสิทธิ์ใหม่ทุกครั้งที่แสดงหน้านี้
         protected override void OnVisibleChanged(EventArgs e)
@@ -2145,11 +2150,13 @@ namespace SerialPortListener
             UpdateBillHeaderFields();
         }
 
-        private void btnSaveBillHeader_Click(object sender, EventArgs e)
+        // บันทึกแบบหัวกระดาษบิลที่เลือกอยู่ (รวมข้อความที่พิมพ์เอง)
+        // คืนชื่อแบบที่บันทึก, คืน "" เมื่อไม่ได้เลือกไว้, คืน null เมื่อบันทึกไม่สำเร็จ (แจ้งเตือนแล้ว)
+        private string SaveBillHeaderSetting()
         {
             BillHeader.HeaderInfo h = GetSelectedBillHeader();
             if (h == null)
-                return;
+                return "";
 
             // เก็บข้อความที่พิมพ์ก่อน แล้วค่อยบันทึกว่าเลือกแบบไหน
             if (h.IsCustom &&
@@ -2157,19 +2164,18 @@ namespace SerialPortListener
             {
                 MessageBox.Show("บันทึกข้อความหัวกระดาษไม่สำเร็จ", "ผิดพลาด",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
 
             if (!BillHeader.SaveSelectedNumber(h.Number))
             {
                 MessageBox.Show("บันทึกแบบหัวกระดาษบิลไม่สำเร็จ", "ผิดพลาด",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
 
             UpdateBillHeaderFields();
-            MessageBox.Show("บันทึกแบบหัวกระดาษบิลแล้ว : " + h.Name, "บันทึกแล้ว",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return h.Name;
         }
 
     }

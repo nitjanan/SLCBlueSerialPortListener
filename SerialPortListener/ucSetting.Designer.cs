@@ -31,6 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.tcSetting = new System.Windows.Forms.TabControl();
             this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.gbReportTemplate = new System.Windows.Forms.GroupBox();
+            this.lblReportTemplate = new System.Windows.Forms.Label();
+            this.cboReportTemplate = new System.Windows.Forms.ComboBox();
+            this.gbBillHeader = new System.Windows.Forms.GroupBox();
+            this.lblBillHeader = new System.Windows.Forms.Label();
+            this.cboBillHeader = new System.Windows.Forms.ComboBox();
+            this.lblBhCompany = new System.Windows.Forms.Label();
+            this.tbBhCompany = new System.Windows.Forms.TextBox();
+            this.lblBhAddress = new System.Windows.Forms.Label();
+            this.tbBhAddress = new System.Windows.Forms.TextBox();
+            this.lblBhTelephone = new System.Windows.Forms.Label();
+            this.tbBhTelephone = new System.Windows.Forms.TextBox();
+            this.btnSaveBackupConfig = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lbPgDumpPath = new System.Windows.Forms.Label();
             this.tbPgDumpPath = new System.Windows.Forms.TextBox();
@@ -38,7 +51,6 @@
             this.lbBackupDir = new System.Windows.Forms.Label();
             this.tbBackupDir = new System.Windows.Forms.TextBox();
             this.btnBrowseBackupDir = new System.Windows.Forms.Button();
-            this.btnSaveBackupConfig = new System.Windows.Forms.Button();
             this.chkAutoBackup = new System.Windows.Forms.CheckBox();
             this.lbLastAutoBackupTitle = new System.Windows.Forms.Label();
             this.lbLastAutoBackup = new System.Windows.Forms.Label();
@@ -47,20 +59,6 @@
             this.dtpAutoBackupStart = new System.Windows.Forms.DateTimePicker();
             this.lbAutoBackupTimeTo = new System.Windows.Forms.Label();
             this.dtpAutoBackupEnd = new System.Windows.Forms.DateTimePicker();
-            this.gbReportTemplate = new System.Windows.Forms.GroupBox();
-            this.gbBillHeader = new System.Windows.Forms.GroupBox();
-            this.lblBillHeader = new System.Windows.Forms.Label();
-            this.cboBillHeader = new System.Windows.Forms.ComboBox();
-            this.btnSaveBillHeader = new System.Windows.Forms.Button();
-            this.lblBhCompany = new System.Windows.Forms.Label();
-            this.tbBhCompany = new System.Windows.Forms.TextBox();
-            this.lblBhAddress = new System.Windows.Forms.Label();
-            this.tbBhAddress = new System.Windows.Forms.TextBox();
-            this.lblBhTelephone = new System.Windows.Forms.Label();
-            this.tbBhTelephone = new System.Windows.Forms.TextBox();
-            this.lblReportTemplate = new System.Windows.Forms.Label();
-            this.cboReportTemplate = new System.Windows.Forms.ComboBox();
-            this.btnSaveReportTemplate = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btDelScale = new System.Windows.Forms.Button();
             this.btSaveScale = new System.Windows.Forms.Button();
@@ -212,9 +210,9 @@
             this.base_job_typeTableAdapter = new SerialPortListener.truckDataSet3TableAdapters.base_job_typeTableAdapter();
             this.tcSetting.SuspendLayout();
             this.tabPage13.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.gbReportTemplate.SuspendLayout();
             this.gbBillHeader.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).BeginInit();
@@ -280,12 +278,12 @@
             this.tcSetting.Controls.Add(this.tabPage10);
             this.tcSetting.Controls.Add(this.tabPage11);
             this.tcSetting.Controls.Add(this.tabPage12);
-            this.tcSetting.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcSetting.Location = new System.Drawing.Point(3, 3);
+            this.tcSetting.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcSetting.Location = new System.Drawing.Point(0, 0);
             this.tcSetting.Name = "tcSetting";
             this.tcSetting.SelectedIndex = 0;
-            this.tcSetting.Size = new System.Drawing.Size(761, 490);
+            this.tcSetting.Size = new System.Drawing.Size(769, 496);
             this.tcSetting.TabIndex = 0;
             this.tcSetting.SelectedIndexChanged += new System.EventHandler(this.tcSetting_SelectedIndexChanged);
             // 
@@ -293,23 +291,181 @@
             // 
             this.tabPage13.Controls.Add(this.gbReportTemplate);
             this.tabPage13.Controls.Add(this.gbBillHeader);
+            this.tabPage13.Controls.Add(this.btnSaveBackupConfig);
             this.tabPage13.Controls.Add(this.groupBox5);
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(753, 460);
+            this.tabPage13.Size = new System.Drawing.Size(761, 466);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "Setting";
             this.tabPage13.UseVisualStyleBackColor = true;
             // 
+            // gbReportTemplate
+            // 
+            this.gbReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbReportTemplate.Controls.Add(this.lblReportTemplate);
+            this.gbReportTemplate.Controls.Add(this.cboReportTemplate);
+            this.gbReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbReportTemplate.Location = new System.Drawing.Point(12, 8);
+            this.gbReportTemplate.Name = "gbReportTemplate";
+            this.gbReportTemplate.Size = new System.Drawing.Size(737, 68);
+            this.gbReportTemplate.TabIndex = 1;
+            this.gbReportTemplate.TabStop = false;
+            this.gbReportTemplate.Text = "แบบใบชั่ง (ReportMain)";
+            // 
+            // lblReportTemplate
+            // 
+            this.lblReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReportTemplate.Location = new System.Drawing.Point(20, 31);
+            this.lblReportTemplate.Name = "lblReportTemplate";
+            this.lblReportTemplate.Size = new System.Drawing.Size(150, 24);
+            this.lblReportTemplate.TabIndex = 16;
+            this.lblReportTemplate.Text = "แบบใบชั่ง";
+            this.lblReportTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cboReportTemplate
+            // 
+            this.cboReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboReportTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboReportTemplate.FormattingEnabled = true;
+            this.cboReportTemplate.Location = new System.Drawing.Point(180, 28);
+            this.cboReportTemplate.Name = "cboReportTemplate";
+            this.cboReportTemplate.Size = new System.Drawing.Size(537, 29);
+            this.cboReportTemplate.TabIndex = 17;
+            this.cboReportTemplate.SelectedIndexChanged += new System.EventHandler(this.cboReportTemplate_SelectedIndexChanged);
+            // 
+            // gbBillHeader
+            // 
+            this.gbBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbBillHeader.Controls.Add(this.lblBillHeader);
+            this.gbBillHeader.Controls.Add(this.cboBillHeader);
+            this.gbBillHeader.Controls.Add(this.lblBhCompany);
+            this.gbBillHeader.Controls.Add(this.tbBhCompany);
+            this.gbBillHeader.Controls.Add(this.lblBhAddress);
+            this.gbBillHeader.Controls.Add(this.tbBhAddress);
+            this.gbBillHeader.Controls.Add(this.lblBhTelephone);
+            this.gbBillHeader.Controls.Add(this.tbBhTelephone);
+            this.gbBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbBillHeader.Location = new System.Drawing.Point(12, 84);
+            this.gbBillHeader.Name = "gbBillHeader";
+            this.gbBillHeader.Size = new System.Drawing.Size(737, 156);
+            this.gbBillHeader.TabIndex = 2;
+            this.gbBillHeader.TabStop = false;
+            this.gbBillHeader.Text = "แบบหัวกระดาษบิล (ReportMain)";
+            // 
+            // lblBillHeader
+            // 
+            this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillHeader.Location = new System.Drawing.Point(20, 29);
+            this.lblBillHeader.Name = "lblBillHeader";
+            this.lblBillHeader.Size = new System.Drawing.Size(150, 24);
+            this.lblBillHeader.TabIndex = 19;
+            this.lblBillHeader.Text = "แบบหัวกระดาษ";
+            this.lblBillHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cboBillHeader
+            // 
+            this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboBillHeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBillHeader.FormattingEnabled = true;
+            this.cboBillHeader.Location = new System.Drawing.Point(180, 26);
+            this.cboBillHeader.Name = "cboBillHeader";
+            this.cboBillHeader.Size = new System.Drawing.Size(537, 29);
+            this.cboBillHeader.TabIndex = 20;
+            this.cboBillHeader.SelectedIndexChanged += new System.EventHandler(this.cboBillHeader_SelectedIndexChanged);
+            // 
+            // lblBhCompany
+            // 
+            this.lblBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBhCompany.Location = new System.Drawing.Point(20, 61);
+            this.lblBhCompany.Name = "lblBhCompany";
+            this.lblBhCompany.Size = new System.Drawing.Size(150, 24);
+            this.lblBhCompany.TabIndex = 22;
+            this.lblBhCompany.Text = "ชื่อบริษัท";
+            this.lblBhCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbBhCompany
+            // 
+            this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBhCompany.Location = new System.Drawing.Point(180, 58);
+            this.tbBhCompany.Name = "tbBhCompany";
+            this.tbBhCompany.Size = new System.Drawing.Size(537, 27);
+            this.tbBhCompany.TabIndex = 23;
+            // 
+            // lblBhAddress
+            // 
+            this.lblBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBhAddress.Location = new System.Drawing.Point(20, 93);
+            this.lblBhAddress.Name = "lblBhAddress";
+            this.lblBhAddress.Size = new System.Drawing.Size(150, 24);
+            this.lblBhAddress.TabIndex = 24;
+            this.lblBhAddress.Text = "ที่อยู่";
+            this.lblBhAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbBhAddress
+            // 
+            this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBhAddress.Location = new System.Drawing.Point(180, 90);
+            this.tbBhAddress.Name = "tbBhAddress";
+            this.tbBhAddress.Size = new System.Drawing.Size(537, 27);
+            this.tbBhAddress.TabIndex = 25;
+            // 
+            // lblBhTelephone
+            // 
+            this.lblBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBhTelephone.Location = new System.Drawing.Point(20, 125);
+            this.lblBhTelephone.Name = "lblBhTelephone";
+            this.lblBhTelephone.Size = new System.Drawing.Size(150, 24);
+            this.lblBhTelephone.TabIndex = 26;
+            this.lblBhTelephone.Text = "โทรศัพท์";
+            this.lblBhTelephone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbBhTelephone
+            // 
+            this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBhTelephone.Location = new System.Drawing.Point(180, 122);
+            this.tbBhTelephone.Name = "tbBhTelephone";
+            this.tbBhTelephone.Size = new System.Drawing.Size(537, 27);
+            this.tbBhTelephone.TabIndex = 27;
+            // 
+            // btnSaveBackupConfig
+            // 
+            this.btnSaveBackupConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveBackupConfig.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnSaveBackupConfig.FlatAppearance.BorderSize = 0;
+            this.btnSaveBackupConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveBackupConfig.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveBackupConfig.ForeColor = System.Drawing.Color.White;
+            this.btnSaveBackupConfig.Location = new System.Drawing.Point(20, 424);
+            this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
+            this.btnSaveBackupConfig.Size = new System.Drawing.Size(729, 32);
+            this.btnSaveBackupConfig.TabIndex = 6;
+            this.btnSaveBackupConfig.Text = "บันทึกการตั้งค่า";
+            this.btnSaveBackupConfig.UseVisualStyleBackColor = false;
+            this.btnSaveBackupConfig.Click += new System.EventHandler(this.btnSaveBackupConfig_Click);
+            // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.lbPgDumpPath);
             this.groupBox5.Controls.Add(this.tbPgDumpPath);
             this.groupBox5.Controls.Add(this.btnBrowsePgDump);
             this.groupBox5.Controls.Add(this.lbBackupDir);
             this.groupBox5.Controls.Add(this.tbBackupDir);
             this.groupBox5.Controls.Add(this.btnBrowseBackupDir);
-            this.groupBox5.Controls.Add(this.btnSaveBackupConfig);
             this.groupBox5.Controls.Add(this.chkAutoBackup);
             this.groupBox5.Controls.Add(this.lbLastAutoBackupTitle);
             this.groupBox5.Controls.Add(this.lbLastAutoBackup);
@@ -318,40 +474,39 @@
             this.groupBox5.Controls.Add(this.dtpAutoBackupStart);
             this.groupBox5.Controls.Add(this.lbAutoBackupTimeTo);
             this.groupBox5.Controls.Add(this.dtpAutoBackupEnd);
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 270);
+            this.groupBox5.Location = new System.Drawing.Point(12, 248);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(729, 186);
+            this.groupBox5.Size = new System.Drawing.Size(737, 168);
             this.groupBox5.TabIndex = 15;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Setting Backup";
             // 
             // lbPgDumpPath
             // 
-            this.lbPgDumpPath.AutoSize = false;
-            this.lbPgDumpPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbPgDumpPath.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPgDumpPath.Location = new System.Drawing.Point(20, 37);
             this.lbPgDumpPath.Name = "lbPgDumpPath";
             this.lbPgDumpPath.Size = new System.Drawing.Size(150, 24);
             this.lbPgDumpPath.TabIndex = 0;
             this.lbPgDumpPath.Text = "pg_dump.exe :";
+            this.lbPgDumpPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbPgDumpPath
             // 
-            this.tbPgDumpPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPgDumpPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPgDumpPath.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPgDumpPath.Location = new System.Drawing.Point(180, 34);
             this.tbPgDumpPath.Name = "tbPgDumpPath";
-            this.tbPgDumpPath.Size = new System.Drawing.Size(409, 27);
+            this.tbPgDumpPath.Size = new System.Drawing.Size(417, 27);
             this.tbPgDumpPath.TabIndex = 1;
             // 
             // btnBrowsePgDump
             // 
             this.btnBrowsePgDump.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowsePgDump.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowsePgDump.Location = new System.Drawing.Point(599, 33);
+            this.btnBrowsePgDump.Location = new System.Drawing.Point(607, 33);
             this.btnBrowsePgDump.Name = "btnBrowsePgDump";
             this.btnBrowsePgDump.Size = new System.Drawing.Size(110, 30);
             this.btnBrowsePgDump.TabIndex = 2;
@@ -361,29 +516,29 @@
             // 
             // lbBackupDir
             // 
-            this.lbBackupDir.AutoSize = false;
-            this.lbBackupDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbBackupDir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBackupDir.Location = new System.Drawing.Point(20, 75);
+            this.lbBackupDir.Location = new System.Drawing.Point(20, 69);
             this.lbBackupDir.Name = "lbBackupDir";
             this.lbBackupDir.Size = new System.Drawing.Size(150, 24);
             this.lbBackupDir.TabIndex = 3;
             this.lbBackupDir.Text = "Backup Folder :";
+            this.lbBackupDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbBackupDir
             // 
-            this.tbBackupDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbBackupDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBackupDir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBackupDir.Location = new System.Drawing.Point(180, 72);
+            this.tbBackupDir.Location = new System.Drawing.Point(180, 66);
             this.tbBackupDir.Name = "tbBackupDir";
-            this.tbBackupDir.Size = new System.Drawing.Size(409, 27);
+            this.tbBackupDir.Size = new System.Drawing.Size(417, 27);
             this.tbBackupDir.TabIndex = 4;
             // 
             // btnBrowseBackupDir
             // 
             this.btnBrowseBackupDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowseBackupDir.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseBackupDir.Location = new System.Drawing.Point(599, 71);
+            this.btnBrowseBackupDir.Location = new System.Drawing.Point(607, 65);
             this.btnBrowseBackupDir.Name = "btnBrowseBackupDir";
             this.btnBrowseBackupDir.Size = new System.Drawing.Size(110, 30);
             this.btnBrowseBackupDir.TabIndex = 5;
@@ -391,29 +546,16 @@
             this.btnBrowseBackupDir.UseVisualStyleBackColor = true;
             this.btnBrowseBackupDir.Click += new System.EventHandler(this.btnBrowseBackupDir_Click);
             // 
-            // btnSaveBackupConfig
-            // 
-            this.btnSaveBackupConfig.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveBackupConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveBackupConfig.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveBackupConfig.Location = new System.Drawing.Point(479, 148);
-            this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
-            this.btnSaveBackupConfig.Size = new System.Drawing.Size(110, 30);
-            this.btnSaveBackupConfig.TabIndex = 6;
-            this.btnSaveBackupConfig.Text = "Save Config";
-            this.btnSaveBackupConfig.UseVisualStyleBackColor = true;
-            this.btnSaveBackupConfig.Click += new System.EventHandler(this.btnSaveBackupConfig_Click);
-            // 
             // chkAutoBackup
             // 
+            this.chkAutoBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkAutoBackup.AutoSize = true;
             this.chkAutoBackup.Checked = true;
             this.chkAutoBackup.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkAutoBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAutoBackup.Location = new System.Drawing.Point(496, 111);
+            this.chkAutoBackup.Location = new System.Drawing.Point(418, 99);
             this.chkAutoBackup.Name = "chkAutoBackup";
-            this.chkAutoBackup.Size = new System.Drawing.Size(213, 25);
+            this.chkAutoBackup.Size = new System.Drawing.Size(299, 25);
             this.chkAutoBackup.TabIndex = 7;
             this.chkAutoBackup.Text = "Auto Backup ทุก 2 ชม. (09:00 - 17:00)";
             this.chkAutoBackup.UseVisualStyleBackColor = true;
@@ -421,54 +563,55 @@
             // 
             // lbLastAutoBackupTitle
             // 
-            this.lbLastAutoBackupTitle.AutoSize = false;
-            this.lbLastAutoBackupTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbLastAutoBackupTitle.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLastAutoBackupTitle.Location = new System.Drawing.Point(20, 151);
+            this.lbLastAutoBackupTitle.Location = new System.Drawing.Point(20, 133);
             this.lbLastAutoBackupTitle.Name = "lbLastAutoBackupTitle";
             this.lbLastAutoBackupTitle.Size = new System.Drawing.Size(150, 24);
             this.lbLastAutoBackupTitle.TabIndex = 7;
             this.lbLastAutoBackupTitle.Text = "Backup ล่าสุด :";
+            this.lbLastAutoBackupTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbLastAutoBackup
             // 
-            this.lbLastAutoBackup.AutoSize = false;
-            this.lbLastAutoBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbLastAutoBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLastAutoBackup.Location = new System.Drawing.Point(180, 151);
+            this.lbLastAutoBackup.Location = new System.Drawing.Point(180, 133);
             this.lbLastAutoBackup.Name = "lbLastAutoBackup";
             this.lbLastAutoBackup.Size = new System.Drawing.Size(279, 24);
             this.lbLastAutoBackup.TabIndex = 8;
             this.lbLastAutoBackup.Text = "-";
+            this.lbLastAutoBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnBackup
             // 
             this.btnBackup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackup.Location = new System.Drawing.Point(599, 148);
+            this.btnBackup.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnBackup.FlatAppearance.BorderSize = 0;
+            this.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackup.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackup.ForeColor = System.Drawing.Color.White;
+            this.btnBackup.Location = new System.Drawing.Point(607, 128);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(110, 30);
             this.btnBackup.TabIndex = 3;
             this.btnBackup.Text = "backup";
-            this.btnBackup.UseVisualStyleBackColor = true;
+            this.btnBackup.UseVisualStyleBackColor = false;
             this.btnBackup.Click += new System.EventHandler(this.btnBackup_Click);
             // 
             // lbAutoBackupTime
             // 
-            this.lbAutoBackupTime.AutoSize = false;
-            this.lbAutoBackupTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbAutoBackupTime.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAutoBackupTime.Location = new System.Drawing.Point(20, 113);
+            this.lbAutoBackupTime.Location = new System.Drawing.Point(20, 101);
             this.lbAutoBackupTime.Name = "lbAutoBackupTime";
             this.lbAutoBackupTime.Size = new System.Drawing.Size(150, 24);
             this.lbAutoBackupTime.TabIndex = 9;
             this.lbAutoBackupTime.Text = "เวลา Auto Backup (เริ่ม - สิ้นสุด) :";
+            this.lbAutoBackupTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dtpAutoBackupStart
             // 
-            this.dtpAutoBackupStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpAutoBackupStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpAutoBackupStart.Location = new System.Drawing.Point(180, 110);
+            this.dtpAutoBackupStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpAutoBackupStart.Location = new System.Drawing.Point(180, 98);
             this.dtpAutoBackupStart.Name = "dtpAutoBackupStart";
             this.dtpAutoBackupStart.ShowUpDown = true;
             this.dtpAutoBackupStart.Size = new System.Drawing.Size(140, 27);
@@ -478,191 +621,21 @@
             // 
             this.lbAutoBackupTimeTo.AutoSize = true;
             this.lbAutoBackupTimeTo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAutoBackupTimeTo.Location = new System.Drawing.Point(326, 113);
+            this.lbAutoBackupTimeTo.Location = new System.Drawing.Point(326, 101);
             this.lbAutoBackupTimeTo.Name = "lbAutoBackupTimeTo";
-            this.lbAutoBackupTimeTo.Size = new System.Drawing.Size(14, 24);
+            this.lbAutoBackupTimeTo.Size = new System.Drawing.Size(15, 21);
             this.lbAutoBackupTimeTo.TabIndex = 11;
             this.lbAutoBackupTimeTo.Text = "-";
             // 
             // dtpAutoBackupEnd
             // 
-            this.dtpAutoBackupEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpAutoBackupEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpAutoBackupEnd.Location = new System.Drawing.Point(344, 110);
+            this.dtpAutoBackupEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpAutoBackupEnd.Location = new System.Drawing.Point(344, 98);
             this.dtpAutoBackupEnd.Name = "dtpAutoBackupEnd";
             this.dtpAutoBackupEnd.ShowUpDown = true;
             this.dtpAutoBackupEnd.Size = new System.Drawing.Size(140, 27);
             this.dtpAutoBackupEnd.TabIndex = 12;
-            // 
-            // gbReportTemplate
-            // 
-            this.gbReportTemplate.Controls.Add(this.lblReportTemplate);
-            this.gbReportTemplate.Controls.Add(this.cboReportTemplate);
-            this.gbReportTemplate.Controls.Add(this.btnSaveReportTemplate);
-            this.gbReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbReportTemplate.Location = new System.Drawing.Point(12, 12);
-            this.gbReportTemplate.Name = "gbReportTemplate";
-            this.gbReportTemplate.Size = new System.Drawing.Size(729, 76);
-            this.gbReportTemplate.TabIndex = 1;
-            this.gbReportTemplate.TabStop = false;
-            this.gbReportTemplate.Text = "แบบใบชั่ง (ReportMain)";
-            // 
-            // lblReportTemplate
-            // 
-            this.lblReportTemplate.AutoSize = false;
-            this.lblReportTemplate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportTemplate.Location = new System.Drawing.Point(20, 33);
-            this.lblReportTemplate.Name = "lblReportTemplate";
-            this.lblReportTemplate.Size = new System.Drawing.Size(150, 24);
-            this.lblReportTemplate.TabIndex = 16;
-            this.lblReportTemplate.Text = "แบบใบชั่ง";
-            // 
-            // cboReportTemplate
-            // 
-            this.cboReportTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboReportTemplate.FormattingEnabled = true;
-            this.cboReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboReportTemplate.Location = new System.Drawing.Point(180, 30);
-            this.cboReportTemplate.Name = "cboReportTemplate";
-            this.cboReportTemplate.Size = new System.Drawing.Size(369, 27);
-            this.cboReportTemplate.TabIndex = 17;
-            this.cboReportTemplate.SelectedIndexChanged += new System.EventHandler(this.cboReportTemplate_SelectedIndexChanged);
-            // 
-            // btnSaveReportTemplate
-            // 
-            this.btnSaveReportTemplate.BackColor = System.Drawing.Color.White;
-            this.btnSaveReportTemplate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveReportTemplate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveReportTemplate.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveReportTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveReportTemplate.Location = new System.Drawing.Point(559, 29);
-            this.btnSaveReportTemplate.Name = "btnSaveReportTemplate";
-            this.btnSaveReportTemplate.Size = new System.Drawing.Size(150, 30);
-            this.btnSaveReportTemplate.TabIndex = 18;
-            this.btnSaveReportTemplate.Text = "บันทึกแบบใบชั่ง";
-            this.btnSaveReportTemplate.UseVisualStyleBackColor = false;
-            this.btnSaveReportTemplate.Click += new System.EventHandler(this.btnSaveReportTemplate_Click);
-            // 
-            // gbBillHeader
-            // 
-            this.gbBillHeader.Controls.Add(this.lblBillHeader);
-            this.gbBillHeader.Controls.Add(this.cboBillHeader);
-            this.gbBillHeader.Controls.Add(this.btnSaveBillHeader);
-            this.gbBillHeader.Controls.Add(this.lblBhCompany);
-            this.gbBillHeader.Controls.Add(this.tbBhCompany);
-            this.gbBillHeader.Controls.Add(this.lblBhAddress);
-            this.gbBillHeader.Controls.Add(this.tbBhAddress);
-            this.gbBillHeader.Controls.Add(this.lblBhTelephone);
-            this.gbBillHeader.Controls.Add(this.tbBhTelephone);
-            this.gbBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbBillHeader.Location = new System.Drawing.Point(12, 100);
-            this.gbBillHeader.Name = "gbBillHeader";
-            this.gbBillHeader.Size = new System.Drawing.Size(729, 158);
-            this.gbBillHeader.TabIndex = 2;
-            this.gbBillHeader.TabStop = false;
-            this.gbBillHeader.Text = "แบบหัวกระดาษบิล (ReportMain)";
-            // 
-            // lblBillHeader
-            // 
-            this.lblBillHeader.AutoSize = false;
-            this.lblBillHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBillHeader.Location = new System.Drawing.Point(20, 29);
-            this.lblBillHeader.Name = "lblBillHeader";
-            this.lblBillHeader.Size = new System.Drawing.Size(150, 24);
-            this.lblBillHeader.TabIndex = 19;
-            this.lblBillHeader.Text = "แบบหัวกระดาษ";
-            // 
-            // cboBillHeader
-            // 
-            this.cboBillHeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboBillHeader.FormattingEnabled = true;
-            this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboBillHeader.Location = new System.Drawing.Point(180, 26);
-            this.cboBillHeader.Name = "cboBillHeader";
-            this.cboBillHeader.Size = new System.Drawing.Size(369, 27);
-            this.cboBillHeader.TabIndex = 20;
-            this.cboBillHeader.SelectedIndexChanged += new System.EventHandler(this.cboBillHeader_SelectedIndexChanged);
-            // 
-            // btnSaveBillHeader
-            // 
-            this.btnSaveBillHeader.BackColor = System.Drawing.Color.White;
-            this.btnSaveBillHeader.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveBillHeader.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveBillHeader.Location = new System.Drawing.Point(559, 25);
-            this.btnSaveBillHeader.Name = "btnSaveBillHeader";
-            this.btnSaveBillHeader.Size = new System.Drawing.Size(150, 30);
-            this.btnSaveBillHeader.TabIndex = 21;
-            this.btnSaveBillHeader.Text = "บันทึกหัวกระดาษ";
-            this.btnSaveBillHeader.UseVisualStyleBackColor = false;
-            this.btnSaveBillHeader.Click += new System.EventHandler(this.btnSaveBillHeader_Click);
-            // 
-            // lblBhCompany
-            // 
-            this.lblBhCompany.AutoSize = false;
-            this.lblBhCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhCompany.Location = new System.Drawing.Point(20, 65);
-            this.lblBhCompany.Name = "lblBhCompany";
-            this.lblBhCompany.Size = new System.Drawing.Size(150, 24);
-            this.lblBhCompany.TabIndex = 22;
-            this.lblBhCompany.Text = "ชื่อบริษัท";
-            // 
-            // tbBhCompany
-            // 
-            this.tbBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBhCompany.Location = new System.Drawing.Point(180, 62);
-            this.tbBhCompany.Name = "tbBhCompany";
-            this.tbBhCompany.Size = new System.Drawing.Size(529, 27);
-            this.tbBhCompany.TabIndex = 23;
-            // 
-            // lblBhAddress
-            // 
-            this.lblBhAddress.AutoSize = false;
-            this.lblBhAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhAddress.Location = new System.Drawing.Point(20, 97);
-            this.lblBhAddress.Name = "lblBhAddress";
-            this.lblBhAddress.Size = new System.Drawing.Size(150, 24);
-            this.lblBhAddress.TabIndex = 24;
-            this.lblBhAddress.Text = "ที่อยู่";
-            // 
-            // tbBhAddress
-            // 
-            this.tbBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBhAddress.Location = new System.Drawing.Point(180, 94);
-            this.tbBhAddress.Name = "tbBhAddress";
-            this.tbBhAddress.Size = new System.Drawing.Size(529, 27);
-            this.tbBhAddress.TabIndex = 25;
-            // 
-            // lblBhTelephone
-            // 
-            this.lblBhTelephone.AutoSize = false;
-            this.lblBhTelephone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBhTelephone.Location = new System.Drawing.Point(20, 129);
-            this.lblBhTelephone.Name = "lblBhTelephone";
-            this.lblBhTelephone.Size = new System.Drawing.Size(150, 24);
-            this.lblBhTelephone.TabIndex = 26;
-            this.lblBhTelephone.Text = "โทรศัพท์";
-            // 
-            // tbBhTelephone
-            // 
-            this.tbBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbBhTelephone.Location = new System.Drawing.Point(180, 126);
-            this.tbBhTelephone.Name = "tbBhTelephone";
-            this.tbBhTelephone.Size = new System.Drawing.Size(529, 27);
-            this.tbBhTelephone.TabIndex = 27;
             // 
             // tabPage1
             // 
@@ -680,13 +653,13 @@
             // 
             // btDelScale
             // 
+            this.btDelScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelScale.BackColor = System.Drawing.Color.IndianRed;
             this.btDelScale.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelScale.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelScale.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelScale.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelScale.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelScale.Location = new System.Drawing.Point(629, 418);
             this.btDelScale.Name = "btDelScale";
             this.btDelScale.Size = new System.Drawing.Size(46, 30);
@@ -698,13 +671,13 @@
             // 
             // btSaveScale
             // 
+            this.btSaveScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveScale.BackColor = System.Drawing.Color.MediumPurple;
             this.btSaveScale.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveScale.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveScale.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveScale.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveScale.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveScale.Location = new System.Drawing.Point(681, 418);
             this.btSaveScale.Name = "btSaveScale";
             this.btSaveScale.Size = new System.Drawing.Size(60, 30);
@@ -716,13 +689,15 @@
             // 
             // dgvScale
             // 
+            this.dgvScale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvScale.AutoGenerateColumns = false;
             this.dgvScale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.รหัสพนักงาน,
             this.ชื่อพนักงาน});
             this.dgvScale.DataSource = this.basescaleBindingSource;
-            this.dgvScale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvScale.Location = new System.Drawing.Point(12, 21);
             this.dgvScale.Name = "dgvScale";
             this.dgvScale.Size = new System.Drawing.Size(729, 385);
@@ -769,13 +744,13 @@
             // 
             // btDelStoneType
             // 
+            this.btDelStoneType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelStoneType.BackColor = System.Drawing.Color.IndianRed;
             this.btDelStoneType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelStoneType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelStoneType.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelStoneType.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelStoneType.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelStoneType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelStoneType.Location = new System.Drawing.Point(629, 418);
             this.btDelStoneType.Name = "btDelStoneType";
             this.btDelStoneType.Size = new System.Drawing.Size(46, 30);
@@ -787,13 +762,13 @@
             // 
             // btSaveStoneType
             // 
+            this.btSaveStoneType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveStoneType.BackColor = System.Drawing.Color.DodgerBlue;
             this.btSaveStoneType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveStoneType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveStoneType.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveStoneType.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveStoneType.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveStoneType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveStoneType.Location = new System.Drawing.Point(681, 418);
             this.btSaveStoneType.Name = "btSaveStoneType";
             this.btSaveStoneType.Size = new System.Drawing.Size(60, 30);
@@ -805,6 +780,9 @@
             // 
             // dgvStoneType
             // 
+            this.dgvStoneType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvStoneType.AutoGenerateColumns = false;
             this.dgvStoneType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStoneType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -812,7 +790,6 @@
             this.ชื่อหิน,
             this.ค่าคำนวณคิว});
             this.dgvStoneType.DataSource = this.basestonetypeBindingSource;
-            this.dgvStoneType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvStoneType.Location = new System.Drawing.Point(12, 21);
             this.dgvStoneType.Name = "dgvStoneType";
             this.dgvStoneType.ShowRowErrors = false;
@@ -866,13 +843,13 @@
             // 
             // btDelScoop
             // 
+            this.btDelScoop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelScoop.BackColor = System.Drawing.Color.IndianRed;
             this.btDelScoop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelScoop.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelScoop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelScoop.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelScoop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelScoop.Location = new System.Drawing.Point(629, 418);
             this.btDelScoop.Name = "btDelScoop";
             this.btDelScoop.Size = new System.Drawing.Size(46, 30);
@@ -884,13 +861,13 @@
             // 
             // btSaveScoop
             // 
+            this.btSaveScoop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveScoop.BackColor = System.Drawing.Color.DarkTurquoise;
             this.btSaveScoop.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveScoop.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveScoop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveScoop.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveScoop.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveScoop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveScoop.Location = new System.Drawing.Point(681, 418);
             this.btSaveScoop.Name = "btSaveScoop";
             this.btSaveScoop.Size = new System.Drawing.Size(60, 30);
@@ -902,13 +879,15 @@
             // 
             // dgvScoop
             // 
+            this.dgvScoop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvScoop.AutoGenerateColumns = false;
             this.dgvScoop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScoop.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.รหัสผู้ตัก,
             this.ชื่อผู้ตัก});
             this.dgvScoop.DataSource = this.basescoopBindingSource;
-            this.dgvScoop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvScoop.Location = new System.Drawing.Point(12, 22);
             this.dgvScoop.Name = "dgvScoop";
             this.dgvScoop.ShowRowErrors = false;
@@ -955,13 +934,13 @@
             // 
             // btDelApprove
             // 
+            this.btDelApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelApprove.BackColor = System.Drawing.Color.IndianRed;
             this.btDelApprove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelApprove.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelApprove.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelApprove.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelApprove.Location = new System.Drawing.Point(629, 418);
             this.btDelApprove.Name = "btDelApprove";
             this.btDelApprove.Size = new System.Drawing.Size(46, 30);
@@ -973,13 +952,13 @@
             // 
             // btSaveApprove
             // 
+            this.btSaveApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveApprove.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btSaveApprove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveApprove.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveApprove.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveApprove.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveApprove.Location = new System.Drawing.Point(681, 418);
             this.btSaveApprove.Name = "btSaveApprove";
             this.btSaveApprove.Size = new System.Drawing.Size(60, 30);
@@ -991,13 +970,15 @@
             // 
             // dgvApprove
             // 
+            this.dgvApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvApprove.AutoGenerateColumns = false;
             this.dgvApprove.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvApprove.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.รหัสผู้อนุมัติจ่าย,
             this.ชื่อผู้อนุมัติจ่าย});
             this.dgvApprove.DataSource = this.baseapproveBindingSource;
-            this.dgvApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvApprove.Location = new System.Drawing.Point(12, 22);
             this.dgvApprove.Name = "dgvApprove";
             this.dgvApprove.ShowRowErrors = false;
@@ -1099,13 +1080,13 @@
             // 
             // btClearCustomer
             // 
+            this.btClearCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btClearCustomer.BackColor = System.Drawing.Color.DimGray;
             this.btClearCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btClearCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btClearCustomer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btClearCustomer.Image = global::SerialPortListener.Properties.Resources.erase_24px;
             this.btClearCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btClearCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btClearCustomer.Location = new System.Drawing.Point(532, 11);
             this.btClearCustomer.Name = "btClearCustomer";
             this.btClearCustomer.Size = new System.Drawing.Size(60, 30);
@@ -1167,13 +1148,13 @@
             // 
             // btDelCustomer
             // 
+            this.btDelCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCustomer.BackColor = System.Drawing.Color.IndianRed;
             this.btDelCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelCustomer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelCustomer.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCustomer.Location = new System.Drawing.Point(695, 11);
             this.btDelCustomer.Name = "btDelCustomer";
             this.btDelCustomer.Size = new System.Drawing.Size(46, 30);
@@ -1185,13 +1166,13 @@
             // 
             // btSaveCustomer
             // 
+            this.btSaveCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCustomer.BackColor = System.Drawing.Color.Goldenrod;
             this.btSaveCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveCustomer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveCustomer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveCustomer.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCustomer.Location = new System.Drawing.Point(613, 11);
             this.btSaveCustomer.Name = "btSaveCustomer";
             this.btSaveCustomer.Size = new System.Drawing.Size(60, 30);
@@ -1203,6 +1184,9 @@
             // 
             // dgvCustomer
             // 
+            this.dgvCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomer.AutoGenerateColumns = false;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1211,7 +1195,6 @@
             this.ที่อยู่,
             this.ส่งที่});
             this.dgvCustomer.DataSource = this.basecustomerBindingSource;
-            this.dgvCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomer.Location = new System.Drawing.Point(12, 78);
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.ReadOnly = true;
@@ -1279,13 +1262,13 @@
             // 
             // btDelCity
             // 
+            this.btDelCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCity.BackColor = System.Drawing.Color.IndianRed;
             this.btDelCity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelCity.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelCity.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelCity.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelCity.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCity.Location = new System.Drawing.Point(629, 418);
             this.btDelCity.Name = "btDelCity";
             this.btDelCity.Size = new System.Drawing.Size(46, 30);
@@ -1297,13 +1280,13 @@
             // 
             // btSaveCity
             // 
+            this.btSaveCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCity.BackColor = System.Drawing.Color.LightCoral;
             this.btSaveCity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveCity.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveCity.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveCity.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveCity.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCity.Location = new System.Drawing.Point(681, 418);
             this.btSaveCity.Name = "btSaveCity";
             this.btSaveCity.Size = new System.Drawing.Size(60, 30);
@@ -1315,13 +1298,15 @@
             // 
             // dgvCarCity
             // 
+            this.dgvCarCity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCarCity.AutoGenerateColumns = false;
             this.dgvCarCity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarCity.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.รหัสจังหวัด,
             this.ชื่อจังหวัด});
             this.dgvCarCity.DataSource = this.basecarcityBindingSource;
-            this.dgvCarCity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCarCity.Location = new System.Drawing.Point(12, 22);
             this.dgvCarCity.Name = "dgvCarCity";
             this.dgvCarCity.ShowRowErrors = false;
@@ -1404,10 +1389,10 @@
             // 
             // btSaveUsers
             // 
+            this.btSaveUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveUsers.BackColor = System.Drawing.Color.Chocolate;
             this.btSaveUsers.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveUsers.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btSaveUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveUsers.Location = new System.Drawing.Point(681, 418);
             this.btSaveUsers.Name = "btSaveUsers";
             this.btSaveUsers.Size = new System.Drawing.Size(60, 30);
@@ -1418,6 +1403,9 @@
             // 
             // dgvUsers
             // 
+            this.dgvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUsers.AutoGenerateColumns = false;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1428,7 +1416,6 @@
             this.password,
             this.permission});
             this.dgvUsers.DataSource = this.usersBindingSource;
-            this.dgvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUsers.Location = new System.Drawing.Point(12, 22);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ShowRowErrors = false;
@@ -1503,13 +1490,13 @@
             // 
             // btDelCarTeam
             // 
+            this.btDelCarTeam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCarTeam.BackColor = System.Drawing.Color.IndianRed;
             this.btDelCarTeam.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelCarTeam.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelCarTeam.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelCarTeam.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelCarTeam.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelCarTeam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCarTeam.Location = new System.Drawing.Point(629, 418);
             this.btDelCarTeam.Name = "btDelCarTeam";
             this.btDelCarTeam.Size = new System.Drawing.Size(46, 30);
@@ -1521,13 +1508,13 @@
             // 
             // btSaveCarTeam
             // 
+            this.btSaveCarTeam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCarTeam.BackColor = System.Drawing.Color.CadetBlue;
             this.btSaveCarTeam.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveCarTeam.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveCarTeam.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveCarTeam.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveCarTeam.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveCarTeam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCarTeam.Location = new System.Drawing.Point(681, 418);
             this.btSaveCarTeam.Name = "btSaveCarTeam";
             this.btSaveCarTeam.Size = new System.Drawing.Size(60, 30);
@@ -1539,13 +1526,15 @@
             // 
             // dgvTeamCar
             // 
+            this.dgvTeamCar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTeamCar.AutoGenerateColumns = false;
             this.dgvTeamCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTeamCar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.รหัสทีม,
             this.ชื่อทีม});
             this.dgvTeamCar.DataSource = this.basecarteamBindingSource;
-            this.dgvTeamCar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTeamCar.Location = new System.Drawing.Point(12, 24);
             this.dgvTeamCar.Name = "dgvTeamCar";
             this.dgvTeamCar.ShowRowErrors = false;
@@ -1600,13 +1589,13 @@
             // 
             // btClearCar
             // 
+            this.btClearCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btClearCar.BackColor = System.Drawing.Color.DimGray;
             this.btClearCar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btClearCar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btClearCar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btClearCar.Image = global::SerialPortListener.Properties.Resources.erase_24px;
             this.btClearCar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btClearCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btClearCar.Location = new System.Drawing.Point(576, 59);
             this.btClearCar.Name = "btClearCar";
             this.btClearCar.Size = new System.Drawing.Size(47, 30);
@@ -1685,6 +1674,9 @@
             // 
             // dgvCar
             // 
+            this.dgvCar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCar.AutoGenerateColumns = false;
             this.dgvCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1692,7 +1684,6 @@
             this.ชื่อรถร่วม,
             this.รหัสทีมFrk});
             this.dgvCar.DataSource = this.basecarBindingSource;
-            this.dgvCar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCar.Location = new System.Drawing.Point(12, 95);
             this.dgvCar.Name = "dgvCar";
             this.dgvCar.ReadOnly = true;
@@ -1737,13 +1728,13 @@
             // 
             // btDelCar
             // 
+            this.btDelCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCar.BackColor = System.Drawing.Color.IndianRed;
             this.btDelCar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelCar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelCar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelCar.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelCar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelCar.Location = new System.Drawing.Point(695, 59);
             this.btDelCar.Name = "btDelCar";
             this.btDelCar.Size = new System.Drawing.Size(46, 30);
@@ -1755,13 +1746,13 @@
             // 
             // btSaveCar
             // 
+            this.btSaveCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCar.BackColor = System.Drawing.Color.Olive;
             this.btSaveCar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveCar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveCar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveCar.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveCar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveCar.Location = new System.Drawing.Point(629, 59);
             this.btSaveCar.Name = "btSaveCar";
             this.btSaveCar.Size = new System.Drawing.Size(60, 30);
@@ -1786,13 +1777,13 @@
             // 
             // btDelMill
             // 
+            this.btDelMill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelMill.BackColor = System.Drawing.Color.IndianRed;
             this.btDelMill.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelMill.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelMill.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelMill.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelMill.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelMill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelMill.Location = new System.Drawing.Point(629, 418);
             this.btDelMill.Name = "btDelMill";
             this.btDelMill.Size = new System.Drawing.Size(46, 30);
@@ -1804,13 +1795,13 @@
             // 
             // btSaveMill
             // 
+            this.btSaveMill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveMill.BackColor = System.Drawing.Color.MediumAquamarine;
             this.btSaveMill.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveMill.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveMill.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveMill.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveMill.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveMill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveMill.Location = new System.Drawing.Point(681, 418);
             this.btSaveMill.Name = "btSaveMill";
             this.btSaveMill.Size = new System.Drawing.Size(60, 30);
@@ -1822,13 +1813,15 @@
             // 
             // dgvMill
             // 
+            this.dgvMill.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMill.AutoGenerateColumns = false;
             this.dgvMill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.รหัสโรงโม่,
             this.ชื่อโรงโม่});
             this.dgvMill.DataSource = this.basemillBindingSource;
-            this.dgvMill.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMill.Location = new System.Drawing.Point(12, 17);
             this.dgvMill.Name = "dgvMill";
             this.dgvMill.ShowRowErrors = false;
@@ -1882,13 +1875,13 @@
             // 
             // btClearSite
             // 
+            this.btClearSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btClearSite.BackColor = System.Drawing.Color.DimGray;
             this.btClearSite.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btClearSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btClearSite.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btClearSite.Image = global::SerialPortListener.Properties.Resources.erase_24px;
             this.btClearSite.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btClearSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btClearSite.Location = new System.Drawing.Point(576, 59);
             this.btClearSite.Name = "btClearSite";
             this.btClearSite.Size = new System.Drawing.Size(47, 30);
@@ -1962,6 +1955,9 @@
             // 
             // dgvSite
             // 
+            this.dgvSite.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSite.AutoGenerateColumns = false;
             this.dgvSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSite.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1969,7 +1965,6 @@
             this.base_site_name,
             this.base_customer_id});
             this.dgvSite.DataSource = this.basesiteBindingSource;
-            this.dgvSite.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSite.Location = new System.Drawing.Point(12, 95);
             this.dgvSite.Name = "dgvSite";
             this.dgvSite.ReadOnly = true;
@@ -2013,13 +2008,13 @@
             // 
             // btDelSite
             // 
+            this.btDelSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelSite.BackColor = System.Drawing.Color.IndianRed;
             this.btDelSite.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelSite.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelSite.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelSite.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelSite.Location = new System.Drawing.Point(695, 59);
             this.btDelSite.Name = "btDelSite";
             this.btDelSite.Size = new System.Drawing.Size(46, 30);
@@ -2031,13 +2026,13 @@
             // 
             // btSaveSite
             // 
+            this.btSaveSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveSite.BackColor = System.Drawing.Color.SlateBlue;
             this.btSaveSite.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveSite.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveSite.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveSite.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveSite.Location = new System.Drawing.Point(629, 59);
             this.btSaveSite.Name = "btSaveSite";
             this.btSaveSite.Size = new System.Drawing.Size(60, 30);
@@ -2062,13 +2057,13 @@
             // 
             // btDelJobType
             // 
+            this.btDelJobType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelJobType.BackColor = System.Drawing.Color.IndianRed;
             this.btDelJobType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btDelJobType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDelJobType.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btDelJobType.Image = global::SerialPortListener.Properties.Resources.delete_bin_24px;
             this.btDelJobType.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btDelJobType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btDelJobType.Location = new System.Drawing.Point(629, 418);
             this.btDelJobType.Name = "btDelJobType";
             this.btDelJobType.Size = new System.Drawing.Size(46, 30);
@@ -2080,13 +2075,13 @@
             // 
             // btSaveJobType
             // 
+            this.btSaveJobType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveJobType.BackColor = System.Drawing.Color.PaleVioletRed;
             this.btSaveJobType.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSaveJobType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveJobType.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btSaveJobType.Image = global::SerialPortListener.Properties.Resources.save_24px;
             this.btSaveJobType.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btSaveJobType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btSaveJobType.Location = new System.Drawing.Point(681, 418);
             this.btSaveJobType.Name = "btSaveJobType";
             this.btSaveJobType.Size = new System.Drawing.Size(60, 30);
@@ -2098,13 +2093,15 @@
             // 
             // dgvJobType
             // 
+            this.dgvJobType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvJobType.AutoGenerateColumns = false;
             this.dgvJobType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJobType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.base_job_type_id,
             this.base_job_type_name});
             this.dgvJobType.DataSource = this.basejobtypeBindingSource;
-            this.dgvJobType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvJobType.Location = new System.Drawing.Point(12, 16);
             this.dgvJobType.Name = "dgvJobType";
             this.dgvJobType.ShowRowErrors = false;
@@ -2193,12 +2190,11 @@
             this.Load += new System.EventHandler(this.ucSetting_Load);
             this.tcSetting.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.gbReportTemplate.ResumeLayout(false);
             this.gbBillHeader.ResumeLayout(false);
             this.gbBillHeader.PerformLayout();
-            this.gbReportTemplate.ResumeLayout(false);
-            this.gbReportTemplate.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).EndInit();
@@ -2432,11 +2428,9 @@
         private System.Windows.Forms.DateTimePicker dtpAutoBackupEnd;
         private System.Windows.Forms.Label lblReportTemplate;
         private System.Windows.Forms.ComboBox cboReportTemplate;
-        private System.Windows.Forms.Button btnSaveReportTemplate;
         private System.Windows.Forms.GroupBox gbBillHeader;
         private System.Windows.Forms.Label lblBillHeader;
         private System.Windows.Forms.ComboBox cboBillHeader;
-        private System.Windows.Forms.Button btnSaveBillHeader;
         private System.Windows.Forms.Label lblBhCompany;
         private System.Windows.Forms.TextBox tbBhCompany;
         private System.Windows.Forms.Label lblBhAddress;

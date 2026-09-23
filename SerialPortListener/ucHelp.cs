@@ -217,12 +217,43 @@ namespace SerialPortListener
                     return;
                 }
 
-                MessageBox.Show("บันทึกการตั้งค่าสำเร็จ", "Port", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // ปุ่มเดียวเก็บให้ครบ: รูปแบบตาชั่งบันทึกต่อท้ายพอร์ตในครั้งเดียวกัน
+                string savedHandler = SaveSelectedScaleHandler();
+                if (savedHandler == null)
+                {
+                    MessageBox.Show("บันทึกรูปแบบตาชั่งไม่สำเร็จ", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string done = "บันทึกการตั้งค่าสำเร็จ";
+                if (savedHandler.Length > 0)
+                    done += Environment.NewLine + "รูปแบบตาชั่ง : " + savedHandler;
+                MessageBox.Show(done, "Port", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("บันทึกการตั้งค่าไม่สำเร็จ: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // บันทึกรูปแบบตาชั่งที่เลือกอยู่ แล้วให้หน้าชั่งใช้วิธีใหม่ทันทีโดยไม่ต้องปิดเปิดโปรแกรม
+        // คืนชื่อรูปแบบที่บันทึก, คืน "" เมื่อไม่มีอะไรให้บันทึก, คืน null เมื่อบันทึกไม่สำเร็จ
+        private string SaveSelectedScaleHandler()
+        {
+            int i = cboSerialHandler.SelectedIndex;
+            if (i < 0 || i >= SerialDataHandler.Handlers.Length)
+                return "";
+
+            SerialDataHandler.HandlerInfo h = SerialDataHandler.Handlers[i];
+            if (!SerialDataHandler.SaveSelectedHandler(h.Key))
+                return null;
+
+            MainForm mf = this.FindForm() as MainForm;
+            if (mf != null)
+                mf.ReloadSerialHandler();
+
+            return h.DisplayName;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -362,31 +393,6 @@ namespace SerialPortListener
                 cboSerialHandler.SelectedIndex = 0;
         }
 
-        private void btnSaveSerialHandler_Click(object sender, EventArgs e)
-        {
-            int i = cboSerialHandler.SelectedIndex;
-            if (i < 0 || i >= SerialDataHandler.Handlers.Length)
-                return;
-
-            SerialDataHandler.HandlerInfo h = SerialDataHandler.Handlers[i];
-            if (!SerialDataHandler.SaveSelectedHandler(h.Key))
-            {
-                MessageBox.Show("บันทึกรูปแบบตาชั่งไม่สำเร็จ", "ผิดพลาด",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // บันทึกพารามิเตอร์สายสัญญาณไปพร้อมกัน ทั้งสองปุ่มจึงเก็บครบเหมือนกัน
-            SaveCurrentPortSettings();
-
-            // ให้หน้าชั่งเปลี่ยนไปใช้วิธีใหม่ทันที ไม่ต้องปิดเปิดโปรแกรม
-            MainForm mf = this.FindForm() as MainForm;
-            if (mf != null)
-                mf.ReloadSerialHandler();
-
-            MessageBox.Show("บันทึกรูปแบบตาชั่งแล้ว : " + h.DisplayName, "บันทึกแล้ว",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
         // ---- ช่องแสดงตัวอย่างน้ำหนัก ----
         // ใช้รูปแบบที่ "กำลังเลือกอยู่ในคอมโบ" ไม่ใช่ที่บันทึกไว้
         // ผู้ใช้จึงลองเปลี่ยนดูได้ว่ารูปแบบไหนตัดค่าถูกต้อง แล้วค่อยกดบันทึก

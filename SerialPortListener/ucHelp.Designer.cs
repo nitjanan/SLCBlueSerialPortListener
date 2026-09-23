@@ -37,8 +37,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbPort = new System.Windows.Forms.GroupBox();
-            this.gbScale = new System.Windows.Forms.GroupBox();
-            this.gbRaw = new System.Windows.Forms.GroupBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.cboPort = new System.Windows.Forms.ComboBox();
             this.lblBaud = new System.Windows.Forms.Label();
@@ -51,13 +49,14 @@
             this.cboStopBits = new System.Windows.Forms.ComboBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.btnSavePort = new System.Windows.Forms.Button();
-            this.tbRx = new System.Windows.Forms.TextBox();
+            this.gbScale = new System.Windows.Forms.GroupBox();
             this.lblSerialHandler = new System.Windows.Forms.Label();
             this.cboSerialHandler = new System.Windows.Forms.ComboBox();
-            this.btnSaveSerialHandler = new System.Windows.Forms.Button();
             this.lblWeightPreview = new System.Windows.Forms.Label();
             this.tbWeightPreview = new System.Windows.Forms.TextBox();
+            this.gbRaw = new System.Windows.Forms.GroupBox();
+            this.tbRx = new System.Windows.Forms.TextBox();
+            this.btnSavePort = new System.Windows.Forms.Button();
             this.timerRx = new System.Windows.Forms.Timer(this.components);
             this.gbPort.SuspendLayout();
             this.gbScale.SuspendLayout();
@@ -66,40 +65,27 @@
             // 
             // gbPort
             // 
+            this.gbPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbPort.Controls.Add(this.lblPort);
+            this.gbPort.Controls.Add(this.cboPort);
+            this.gbPort.Controls.Add(this.lblBaud);
+            this.gbPort.Controls.Add(this.cboBaud);
+            this.gbPort.Controls.Add(this.lblParity);
+            this.gbPort.Controls.Add(this.cboParity);
+            this.gbPort.Controls.Add(this.lblDataBits);
+            this.gbPort.Controls.Add(this.cboDataBits);
+            this.gbPort.Controls.Add(this.lblStopBits);
+            this.gbPort.Controls.Add(this.cboStopBits);
+            this.gbPort.Controls.Add(this.btnStart);
+            this.gbPort.Controls.Add(this.btnStop);
             this.gbPort.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPort.Location = new System.Drawing.Point(16, 16);
-            this.gbPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.gbPort.Location = new System.Drawing.Point(16, 149);
             this.gbPort.Name = "gbPort";
-            this.gbPort.Size = new System.Drawing.Size(420, 440);
+            this.gbPort.Size = new System.Drawing.Size(420, 424);
             this.gbPort.TabIndex = 0;
             this.gbPort.TabStop = false;
             this.gbPort.Text = "ตั้งค่าพอร์ต";
-            // 
-            // gbScale
-            // 
-            this.gbScale.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbScale.Location = new System.Drawing.Point(16, 472);
-            this.gbScale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbScale.Name = "gbScale";
-            this.gbScale.Size = new System.Drawing.Size(1176, 200);
-            this.gbScale.TabIndex = 1;
-            this.gbScale.TabStop = false;
-            this.gbScale.Text = "รูปแบบตาชั่ง";
-            // 
-            // gbRaw
-            // 
-            this.gbRaw.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRaw.Location = new System.Drawing.Point(452, 16);
-            this.gbRaw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbRaw.Name = "gbRaw";
-            this.gbRaw.Size = new System.Drawing.Size(740, 440);
-            this.gbRaw.TabIndex = 2;
-            this.gbRaw.TabStop = false;
-            this.gbRaw.Text = "ข้อมูลดิบจากพอร์ต";
             // 
             // lblPort
             // 
@@ -107,7 +93,7 @@
             this.lblPort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPort.Location = new System.Drawing.Point(16, 35);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(100, 22);
+            this.lblPort.Size = new System.Drawing.Size(46, 22);
             this.lblPort.TabIndex = 2;
             this.lblPort.Text = "Port";
             // 
@@ -127,7 +113,7 @@
             this.lblBaud.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBaud.Location = new System.Drawing.Point(16, 75);
             this.lblBaud.Name = "lblBaud";
-            this.lblBaud.Size = new System.Drawing.Size(100, 22);
+            this.lblBaud.Size = new System.Drawing.Size(59, 22);
             this.lblBaud.TabIndex = 4;
             this.lblBaud.Text = "Baud";
             // 
@@ -147,7 +133,7 @@
             this.lblParity.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblParity.Location = new System.Drawing.Point(16, 115);
             this.lblParity.Name = "lblParity";
-            this.lblParity.Size = new System.Drawing.Size(100, 22);
+            this.lblParity.Size = new System.Drawing.Size(61, 22);
             this.lblParity.TabIndex = 6;
             this.lblParity.Text = "Parity";
             // 
@@ -167,7 +153,7 @@
             this.lblDataBits.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataBits.Location = new System.Drawing.Point(16, 155);
             this.lblDataBits.Name = "lblDataBits";
-            this.lblDataBits.Size = new System.Drawing.Size(100, 22);
+            this.lblDataBits.Size = new System.Drawing.Size(85, 22);
             this.lblDataBits.TabIndex = 8;
             this.lblDataBits.Text = "DataBits";
             // 
@@ -187,7 +173,7 @@
             this.lblStopBits.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStopBits.Location = new System.Drawing.Point(16, 195);
             this.lblStopBits.Name = "lblStopBits";
-            this.lblStopBits.Size = new System.Drawing.Size(100, 22);
+            this.lblStopBits.Size = new System.Drawing.Size(79, 22);
             this.lblStopBits.TabIndex = 10;
             this.lblStopBits.Text = "StopBits";
             // 
@@ -207,7 +193,7 @@
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnStart.Location = new System.Drawing.Point(16, 300);
+            this.btnStart.Location = new System.Drawing.Point(16, 290);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(190, 46);
             this.btnStart.TabIndex = 12;
@@ -221,7 +207,7 @@
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnStop.Location = new System.Drawing.Point(214, 300);
+            this.btnStop.Location = new System.Drawing.Point(214, 290);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(190, 46);
             this.btnStop.TabIndex = 13;
@@ -229,24 +215,84 @@
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // btnSavePort
+            // gbScale
             // 
-            this.btnSavePort.BackColor = System.Drawing.Color.White;
-            this.btnSavePort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSavePort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSavePort.ForeColor = System.Drawing.Color.Green;
-            this.btnSavePort.Location = new System.Drawing.Point(16, 364);
-            this.btnSavePort.Name = "btnSavePort";
-            this.btnSavePort.Size = new System.Drawing.Size(388, 46);
-            this.btnSavePort.TabIndex = 15;
-            this.btnSavePort.Text = "save config ";
-            this.btnSavePort.UseVisualStyleBackColor = false;
-            this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
+            this.gbScale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbScale.Controls.Add(this.lblSerialHandler);
+            this.gbScale.Controls.Add(this.cboSerialHandler);
+            this.gbScale.Controls.Add(this.lblWeightPreview);
+            this.gbScale.Controls.Add(this.tbWeightPreview);
+            this.gbScale.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbScale.Location = new System.Drawing.Point(16, 16);
+            this.gbScale.Name = "gbScale";
+            this.gbScale.Size = new System.Drawing.Size(1176, 127);
+            this.gbScale.TabIndex = 1;
+            this.gbScale.TabStop = false;
+            this.gbScale.Text = "รูปแบบตาชั่ง";
+            // 
+            // lblSerialHandler
+            // 
+            this.lblSerialHandler.AutoSize = true;
+            this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSerialHandler.Location = new System.Drawing.Point(16, 36);
+            this.lblSerialHandler.Name = "lblSerialHandler";
+            this.lblSerialHandler.Size = new System.Drawing.Size(84, 22);
+            this.lblSerialHandler.TabIndex = 16;
+            this.lblSerialHandler.Text = "รูปแบบตาชั่ง";
+            // 
+            // cboSerialHandler
+            // 
+            this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSerialHandler.FormattingEnabled = true;
+            this.cboSerialHandler.Location = new System.Drawing.Point(176, 32);
+            this.cboSerialHandler.Name = "cboSerialHandler";
+            this.cboSerialHandler.Size = new System.Drawing.Size(420, 29);
+            this.cboSerialHandler.TabIndex = 17;
+            this.cboSerialHandler.SelectedIndexChanged += new System.EventHandler(this.cboSerialHandler_SelectedIndexChanged);
+            // 
+            // lblWeightPreview
+            // 
+            this.lblWeightPreview.AutoSize = true;
+            this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightPreview.Location = new System.Drawing.Point(16, 75);
+            this.lblWeightPreview.Name = "lblWeightPreview";
+            this.lblWeightPreview.Size = new System.Drawing.Size(104, 22);
+            this.lblWeightPreview.TabIndex = 19;
+            this.lblWeightPreview.Text = "น้ำหนักที่อ่านได้";
+            // 
+            // tbWeightPreview
+            // 
+            this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
+            this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
+            this.tbWeightPreview.Location = new System.Drawing.Point(176, 67);
+            this.tbWeightPreview.Name = "tbWeightPreview";
+            this.tbWeightPreview.ReadOnly = true;
+            this.tbWeightPreview.Size = new System.Drawing.Size(420, 47);
+            this.tbWeightPreview.TabIndex = 20;
+            this.tbWeightPreview.TabStop = false;
+            this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // gbRaw
+            // 
+            this.gbRaw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbRaw.Controls.Add(this.tbRx);
+            this.gbRaw.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbRaw.Location = new System.Drawing.Point(452, 149);
+            this.gbRaw.Name = "gbRaw";
+            this.gbRaw.Size = new System.Drawing.Size(740, 424);
+            this.gbRaw.TabIndex = 2;
+            this.gbRaw.TabStop = false;
+            this.gbRaw.Text = "ข้อมูลดิบจากพอร์ต";
             // 
             // tbRx
             // 
-            this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRx.BackColor = System.Drawing.Color.White;
             this.tbRx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -256,66 +302,25 @@
             this.tbRx.Name = "tbRx";
             this.tbRx.ReadOnly = true;
             this.tbRx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbRx.Size = new System.Drawing.Size(708, 392);
+            this.tbRx.Size = new System.Drawing.Size(708, 376);
             this.tbRx.TabIndex = 14;
             // 
-            // lblSerialHandler
+            // btnSavePort
             // 
-            this.lblSerialHandler.AutoSize = true;
-            this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerialHandler.Location = new System.Drawing.Point(16, 40);
-            this.lblSerialHandler.Name = "lblSerialHandler";
-            this.lblSerialHandler.Size = new System.Drawing.Size(150, 22);
-            this.lblSerialHandler.TabIndex = 16;
-            this.lblSerialHandler.Text = "รูปแบบตาชั่ง";
-            // 
-            // cboSerialHandler
-            // 
-            this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSerialHandler.FormattingEnabled = true;
-            this.cboSerialHandler.Location = new System.Drawing.Point(176, 36);
-            this.cboSerialHandler.Name = "cboSerialHandler";
-            this.cboSerialHandler.Size = new System.Drawing.Size(420, 30);
-            this.cboSerialHandler.TabIndex = 17;
-            this.cboSerialHandler.SelectedIndexChanged += new System.EventHandler(this.cboSerialHandler_SelectedIndexChanged);
-            // 
-            // btnSaveSerialHandler
-            // 
-            this.btnSaveSerialHandler.BackColor = System.Drawing.Color.White;
-            this.btnSaveSerialHandler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveSerialHandler.ForeColor = System.Drawing.Color.Green;
-            this.btnSaveSerialHandler.Location = new System.Drawing.Point(616, 36);
-            this.btnSaveSerialHandler.Name = "btnSaveSerialHandler";
-            this.btnSaveSerialHandler.Size = new System.Drawing.Size(160, 36);
-            this.btnSaveSerialHandler.TabIndex = 18;
-            this.btnSaveSerialHandler.Text = "บันทึก";
-            this.btnSaveSerialHandler.UseVisualStyleBackColor = false;
-            this.btnSaveSerialHandler.Click += new System.EventHandler(this.btnSaveSerialHandler_Click);
-            // 
-            // lblWeightPreview
-            // 
-            this.lblWeightPreview.AutoSize = true;
-            this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWeightPreview.Location = new System.Drawing.Point(16, 104);
-            this.lblWeightPreview.Name = "lblWeightPreview";
-            this.lblWeightPreview.Size = new System.Drawing.Size(150, 22);
-            this.lblWeightPreview.TabIndex = 19;
-            this.lblWeightPreview.Text = "น้ำหนักที่อ่านได้";
-            // 
-            // tbWeightPreview
-            // 
-            this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
-            this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
-            this.tbWeightPreview.Location = new System.Drawing.Point(176, 96);
-            this.tbWeightPreview.Name = "tbWeightPreview";
-            this.tbWeightPreview.ReadOnly = true;
-            this.tbWeightPreview.Size = new System.Drawing.Size(420, 50);
-            this.tbWeightPreview.TabIndex = 20;
-            this.tbWeightPreview.TabStop = false;
-            this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnSavePort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSavePort.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnSavePort.FlatAppearance.BorderSize = 0;
+            this.btnSavePort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSavePort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSavePort.ForeColor = System.Drawing.Color.White;
+            this.btnSavePort.UseVisualStyleBackColor = false;
+            this.btnSavePort.Location = new System.Drawing.Point(16, 593);
+            this.btnSavePort.Name = "btnSavePort";
+            this.btnSavePort.Size = new System.Drawing.Size(1176, 44);
+            this.btnSavePort.TabIndex = 15;
+            this.btnSavePort.Text = "บันทึกการตั้งค่า";
+            this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
             // 
             // timerRx
             // 
@@ -324,31 +329,9 @@
             // 
             // ucHelp
             // 
-            // MainForm ยัดฟอนต์ Century Gothic 9.75 ลงมา ถ้าเปิดสเกลตามฟอนต์
-            // คอนโทรลทั้งหน้าจะถูกขยาย 1.33 เท่าจนล้นจอเครื่องที่ความละเอียดต่ำ
-            // ปิดสเกลไว้ ขนาดที่เห็นตอนออกแบบจึงเป็นขนาดจริงตอนรัน
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            // กันไว้อีกชั้น ถ้าหน้าต่างเล็กกว่าเนื้อหาจะยังเลื่อนดูได้ ไม่ใช่หายไปเฉย ๆ
             this.AutoScroll = true;
-            this.gbPort.Controls.Add(this.lblPort);
-            this.gbPort.Controls.Add(this.cboPort);
-            this.gbPort.Controls.Add(this.lblBaud);
-            this.gbPort.Controls.Add(this.cboBaud);
-            this.gbPort.Controls.Add(this.lblParity);
-            this.gbPort.Controls.Add(this.cboParity);
-            this.gbPort.Controls.Add(this.lblDataBits);
-            this.gbPort.Controls.Add(this.cboDataBits);
-            this.gbPort.Controls.Add(this.lblStopBits);
-            this.gbPort.Controls.Add(this.cboStopBits);
-            this.gbPort.Controls.Add(this.btnStart);
-            this.gbPort.Controls.Add(this.btnStop);
-            this.gbPort.Controls.Add(this.btnSavePort);
-            this.gbScale.Controls.Add(this.lblSerialHandler);
-            this.gbScale.Controls.Add(this.cboSerialHandler);
-            this.gbScale.Controls.Add(this.btnSaveSerialHandler);
-            this.gbScale.Controls.Add(this.lblWeightPreview);
-            this.gbScale.Controls.Add(this.tbWeightPreview);
-            this.gbRaw.Controls.Add(this.tbRx);
+            this.Controls.Add(this.btnSavePort);
             this.Controls.Add(this.gbPort);
             this.Controls.Add(this.gbScale);
             this.Controls.Add(this.gbRaw);
@@ -362,7 +345,6 @@
             this.gbRaw.ResumeLayout(false);
             this.gbRaw.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -384,7 +366,6 @@
         private System.Windows.Forms.Timer timerRx;
         private System.Windows.Forms.Label lblSerialHandler;
         private System.Windows.Forms.ComboBox cboSerialHandler;
-        private System.Windows.Forms.Button btnSaveSerialHandler;
         private System.Windows.Forms.Label lblWeightPreview;
         private System.Windows.Forms.TextBox tbWeightPreview;
         private System.Windows.Forms.GroupBox gbPort;
