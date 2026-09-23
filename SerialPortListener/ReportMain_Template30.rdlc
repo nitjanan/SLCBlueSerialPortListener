@@ -600,21 +600,20 @@
                         <Value>=Parameters!PDocNum.Value</Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>14pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
+                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>PDocNum</rd:DefaultName>
-                <Top>0.41718in</Top>
-                <Left>4.18204in</Left>
-                <Height>0.34056in</Height>
-                <Width>0.94864in</Width>
+                <Top>0.46608in</Top>
+                <Left>4.45435in</Left>
+                <Height>0.25in</Height>
+                <Width>0.73189in</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
@@ -711,7 +710,7 @@
                 <Left>3.65207in</Left>
                 <Height>0.25in</Height>
                 <Width>0.3in</Width>
-                <ZIndex>91</ZIndex>
+                <ZIndex>90</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2744,9 +2743,6 @@
                 <Height>0.25in</Height>
                 <Width>0.84586in</Width>
                 <ZIndex>83</ZIndex>
-                <Visibility>
-                  <Hidden>true</Hidden>
-                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2960,40 +2956,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="PVatType2">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!PDatePrintAndCopyNum.Value</Value>
-                        <Style>
-                          <FontFamily>Yu Gothic UI Semilight</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>PVatType</rd:DefaultName>
-                <Top>4.31035in</Top>
-                <Left>2.92926in</Left>
-                <Height>0.25in</Height>
-                <Width>0.65281in</Width>
-                <ZIndex>90</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Height>11.8425cm</Height>
@@ -3179,10 +3141,6 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="TLogo">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="PDatePrintAndCopyNum">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -3382,13 +3340,8 @@
           <RowIndex>9</RowIndex>
           <ParameterName>TLogo</ParameterName>
         </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>9</RowIndex>
-          <ParameterName>PDatePrintAndCopyNum</ParameterName>
-        </CellDefinition>
               <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>9</RowIndex>
           <ParameterName>PStoneDesc</ParameterName>
         </CellDefinition>

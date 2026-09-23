@@ -690,6 +690,38 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
+              <Textbox Name="PStoneDesc">
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!PStoneDesc.Value</Value>
+                        <Style>
+                          <FontFamily>Leelawadee UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>PStoneDesc</rd:DefaultName>
+                <Top>1.61711in</Top>
+                <Left>3.65207in</Left>
+                <Height>0.25in</Height>
+                <Width>0.3in</Width>
+                <ZIndex>91</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
               <Textbox Name="PMill">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -3019,6 +3051,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+        <ReportParameter Name="PStoneDesc">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
     <ReportParameter Name="PMill">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
@@ -3348,7 +3384,12 @@
           <RowIndex>9</RowIndex>
           <ParameterName>PDatePrintAndCopyNum</ParameterName>
         </CellDefinition>
-      </CellDefinitions>
+              <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>PStoneDesc</ParameterName>
+        </CellDefinition>
+</CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>

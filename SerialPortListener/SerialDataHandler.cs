@@ -26,7 +26,9 @@ namespace SerialPortListener
             /// <summary>อ่านบรรทัดสมบูรณ์บรรทัดสุดท้ายด้วย regex เต็มรูปแบบ ถอยไปบรรทัดก่อนหน้าถ้าเพี้ยน</summary>
             LineFrame,
             /// <summary>หา marker ในบรรทัด แล้วอ่านฟิลด์ตัวเลขความกว้างคงที่ที่มีทศนิยมแฝง</summary>
-            LineMarker
+            LineMarker,
+            /// <summary>หาจุดเริ่มจาก q ตัวสุดท้าย ค่าที่ไม่ลงตัว 10/เกินพิสัยตัดหลักท้ายทิ้งแทนการปัดทิ้งทั้งค่า</summary>
+            JobQTruncate
         }
 
         /// <summary>นิยามของวิธีอ่านหนึ่งแบบ</summary>
@@ -61,68 +63,81 @@ namespace SerialPortListener
         /// <summary>รายการวิธีอ่านทั้งหมดที่รวบรวมมาจากทุก branch</summary>
         public static readonly HandlerInfo[] Handlers = new HandlerInfo[]
         {
-            new HandlerInfo { Key = "KG_CR", DisplayName = "1. KG + CR (มาตรฐาน)",
+            new HandlerInfo { Key = "KG_CR", DisplayName = "1. KG + CR (มาตรฐาน) [Master]",
                 SourceBranch = "Blue_Master / Master_Blue_1", Mode = ParseMode.Delimited,
                 Terminator = "KG", Start = "\r" },
 
-            new HandlerInfo { Key = "RAW", DisplayName = "2. อ่านตรงจากข้อมูลดิบ (ไม่มีตัวคั่น)",
+            new HandlerInfo { Key = "RAW", DisplayName = "2. อ่านตรงจากข้อมูลดิบ (ไม่มีตัวคั่น) [39]",
                 SourceBranch = "39_Blue_new_11/03/25", Mode = ParseMode.RawChunk,
                 TrimLeadingZeros = false },
 
-            new HandlerInfo { Key = "KG_LOWER_CR", DisplayName = "3. kg + CR (ตัวพิมพ์เล็ก)",
-                SourceBranch = "Blue_Uni_11/03/25", Mode = ParseMode.Delimited,
-                Terminator = "kg", Start = "\r" },
+            new HandlerInfo { Key = "KG_LOWER_CR", DisplayName = "3. kg + CR (ตัวพิมพ์เล็ก) [Uni, CTM]",
+                SourceBranch = "Blue_Uni_11/03/25, Blue_Uni_Auto_update_01/08/2026, CTM_Blue_11/03/25, CTM_Pink_11/03/25, Pink_Uni_11/03/25, Pink_Uni_Auto_update_01/08/2026",
+                Mode = ParseMode.Delimited, Terminator = "kg", Start = "\r" },
 
-            new HandlerInfo { Key = "KG_LOWER_G3", DisplayName = "4. kg + G (เครื่องพี่รุ่ง)",
-                SourceBranch = "Blue_DO_11/03/25", Mode = ParseMode.Delimited,
+            new HandlerInfo { Key = "KG_LOWER_G3", DisplayName = "4. kg + G (เครื่องพี่รุ่ง) [T1]",
+                SourceBranch = "Blue_T1_11/03/25, Pink_T1_11/03/25", Mode = ParseMode.Delimited,
                 Terminator = "kg", Start = "G", StartOffset = 3 },
 
-            new HandlerInfo { Key = "CR_PAREN3", DisplayName = "5. CR + วงเล็บเปิด",
-                SourceBranch = "Blue_T4_11/03/25", Mode = ParseMode.Delimited,
-                Terminator = "\r", Start = "(", StartOffset = 3 },
+            new HandlerInfo { Key = "CR_PAREN3", DisplayName = "5. CR + วงเล็บเปิด [39, T4, TYM_new]",
+                SourceBranch = "39_Blue_new_11/03/25, 39_Pink_New_11/03/25, Blue_T4_Auto_update_01/08/2026, Pink_T4_11/03/25, Pink_T4_Auto_update_01/08/2026, TYM_Blue_new_11/03/25",
+                Mode = ParseMode.Delimited, Terminator = "\r", Start = "(", StartOffset = 3 },
 
-            new HandlerInfo { Key = "CR_PAREN3_AUTO", DisplayName = "6. CR + วงเล็บเปิด + น้ำหนักอัตโนมัติ",
-                SourceBranch = "Blue_T1_clean_11/03/25", Mode = ParseMode.Delimited,
+            new HandlerInfo { Key = "CR_PAREN3_AUTO", DisplayName = "6. CR + วงเล็บเปิด + น้ำหนักอัตโนมัติ [T1_clean]",
+                SourceBranch = "Blue_T1_clean", Mode = ParseMode.Delimited,
                 Terminator = "\r", Start = "(", StartOffset = 3, AutoWeight = true },
 
-            new HandlerInfo { Key = "CR_P", DisplayName = "7. CR + p",
-                SourceBranch = "Blue_T4_15_11 / M3&Blue_match / JOB_Blue", Mode = ParseMode.Delimited,
+            new HandlerInfo { Key = "CR_P", DisplayName = "7. CR + p [T4_15_11, M3]",
+                SourceBranch = "Blue_T4_15_11 / M3&Blue_match", Mode = ParseMode.Delimited,
                 Terminator = "\r", Start = "p" },
 
-            new HandlerInfo { Key = "CR_PQ_VALIDATED", DisplayName = "8. CR + p/q พร้อมตรวจค่าผิดปกติ",
-                SourceBranch = "39_Blue_new_fix_invoid_11/03/25", Mode = ParseMode.ValidatedPQ,
+            new HandlerInfo { Key = "CR_PQ_VALIDATED", DisplayName = "8. CR + p/q พร้อมตรวจค่าผิดปกติ [39_fix_invoid]",
+                SourceBranch = "39_Blue_new_fix_invoid", Mode = ParseMode.ValidatedPQ,
                 Terminator = "\r", TrimLeadingZeros = false },
 
-            new HandlerInfo { Key = "KN_CR", DisplayName = "9. KN + CR",
+            new HandlerInfo { Key = "KN_CR", DisplayName = "9. KN + CR [KT]",
                 SourceBranch = "KT_Blue_11/03/25", Mode = ParseMode.Delimited,
                 Terminator = "KN", Start = "\r" },
 
-            new HandlerInfo { Key = "NSM", DisplayName = "10. NSM (ST,GS, + ,Kg)",
+            new HandlerInfo { Key = "NSM", DisplayName = "10. NSM (ST,GS, + ,Kg) [NSM]",
                 SourceBranch = "NSM_Blue_11/03/25", Mode = ParseMode.Delimited,
                 Terminator = ",Kg", Start = "ST,GS,", MaxTextLength = 50, ErrorOnNoMatch = true },
 
-            new HandlerInfo { Key = "NSM_AUTO", DisplayName = "11. NSM + น้ำหนักอัตโนมัติ + ตัดเมื่อไม่มีข้อมูล",
-                SourceBranch = "NSM_Blue_Auto_update_01/08/2026", Mode = ParseMode.Delimited,
+            new HandlerInfo { Key = "NSM_AUTO", DisplayName = "11. NSM + น้ำหนักอัตโนมัติ + ตัดเมื่อไม่มีข้อมูล [NSM, OLD_NSM]",
+                SourceBranch = "NSM_Blue_Auto_update_01/08/2026, OLD_NSM_Blue_Auto_update_01/08/2026", Mode = ParseMode.Delimited,
                 Terminator = ",Kg", Start = "ST,GS,", MaxTextLength = 50, ErrorOnNoMatch = true,
                 NoDataTimeout = true, AutoWeight = true },
 
-            new HandlerInfo { Key = "ETB_P", DisplayName = "12. ETB + p",
+            new HandlerInfo { Key = "NSM_TIMEOUT_NO_AUTO", DisplayName = "12. NSM + ตัดเมื่อไม่มีข้อมูล (ไม่มีน้ำหนักอัตโนมัติ) [NSM_New]",
+                SourceBranch = "NSM_Blue_New_11/03/25", Mode = ParseMode.Delimited,
+                Terminator = ",Kg", Start = "ST,GS,", MaxTextLength = 50, ErrorOnNoMatch = true,
+                NoDataTimeout = true },
+
+            new HandlerInfo { Key = "ETB_P", DisplayName = "13. ETB + p [SURAT]",
                 SourceBranch = "FT_ST_SURAT_STP_2025", Mode = ParseMode.Delimited,
                 Terminator = "\x17", Start = "p" },
 
-            new HandlerInfo { Key = "ETB_Q_AUTO", DisplayName = "13. ETB + q + น้ำหนักอัตโนมัติ",
-                SourceBranch = "JOB_Blue_Auto_update_01/08/2026", Mode = ParseMode.Delimited,
-                Terminator = "\x17", Start = "q", AutoWeight = true },
+            // ของเดิม (ETB_Q_AUTO) เข้าใจผิดว่าใช้ ETB (\x17) แต่โค้ดจริงใน JOB_Blue_Auto_update_01/08/2026 ไม่มี \x17 เลย
+            // เป็นการหา q ตัวสุดท้ายแล้วอ่านทั้งก้อนข้อความ ค่าที่ไม่ลงตัว 10/เกินพิสัยตัดหลักท้ายทิ้งแทนการปัดทิ้งทั้งค่า (ดู ParseJobQ)
+            new HandlerInfo { Key = "JOB_Q_TRUNCATE", DisplayName = "14. JOB ขาออก: q + ตัดหลักท้ายเมื่อค่าผิดปกติ [JOB]",
+                SourceBranch = "JOB_Blue_Auto_update_01/08/2026", Mode = ParseMode.JobQTruncate },
 
-            new HandlerInfo { Key = "STX_SIGNED", DisplayName = "14. STX + CR (รองรับน้ำหนักติดลบ)",
-                SourceBranch = "SRD_Blue_11/03/25", Mode = ParseMode.Delimited,
-                Terminator = "\r", Start = "\x02", Pattern = @"-?\d+", TrimLeadingZeros = false },
+            // "JOB ขาเข้า" - แบบ CR+วงเล็บเปิดเดิมของ JOB, ถูกคอมเมนต์ปิดใน JOB_Blue_Auto_update_01/08/2026 แล้วสลับไปใช้ JOB_Q_TRUNCATE แทน แต่ยังคงไว้เป็นตัวเลือก
+            new HandlerInfo { Key = "CR_PAREN3_JOB", DisplayName = "15. JOB ขาเข้า: CR + วงเล็บเปิด [JOB (comment ปิด)]",
+                SourceBranch = "JOB_Blue_11/03/25 (คอมเมนต์ปิดใน JOB_Blue_Auto_update_01/08/2026)", Mode = ParseMode.Delimited,
+                Terminator = "\r", Start = "(", StartOffset = 3 },
 
-            new HandlerInfo { Key = "KRABI_FRAME", DisplayName = "15. อ่านทีละบรรทัดแบบมีสถานะ (กระบี่)",
+            // ของเดิมอ้างว่ามี STX (\x02) แต่โค้ดจริงใน SRD_Blue_11/03/25 ไม่มี Start marker เลย
+            // (LastIndexOf("") คืนตำแหน่งท้ายสตริงเสมอ ทำให้ไม่ได้ตัดหน้าอะไรจริง คงพฤติกรรมเดิมไว้ตามต้นทาง)
+            new HandlerInfo { Key = "STX_SIGNED", DisplayName = "16. CR (รองรับน้ำหนักติดลบ) [SRD]",
+                SourceBranch = "SRD_Blue_11/03/25, SRD_Pink_11/03/25", Mode = ParseMode.Delimited,
+                Terminator = "\r", Pattern = @"-?\d+", TrimLeadingZeros = false },
+
+            new HandlerInfo { Key = "KRABI_FRAME", DisplayName = "17. อ่านทีละบรรทัดแบบมีสถานะ (กระบี่) [KRABI]",
                 SourceBranch = "KRABI_STP_2026", Mode = ParseMode.LineFrame, Buffered = true,
                 FrameRegex = @"^\((?<status>[^\r\n])[ \t]*(?<weight>[-+]?\d+)[ \t]+(?<extra>[-+]?\d+)[ \t]*$" },
 
-            new HandlerInfo { Key = "TYM_MARKER", DisplayName = "16. อ่านฟิลด์ความกว้างคงที่หลัง *0 (TYM)",
+            new HandlerInfo { Key = "TYM_MARKER", DisplayName = "18. อ่านฟิลด์ความกว้างคงที่หลัง *0 (TYM) [TYM]",
                 SourceBranch = "TYM_Blue_Auto_update_01/08/2026", Mode = ParseMode.LineMarker,
                 Buffered = true, Marker = "*0", FieldLength = 12, DecimalPlaces = 6 }
         };
@@ -331,6 +346,9 @@ namespace SerialPortListener
                     case ParseMode.LineMarker:
                         return ParseLineMarker(h, accumulated);
 
+                    case ParseMode.JobQTruncate:
+                        return ParseJobQ(h, accumulated);
+
                     default:
                         return ParseDelimited(h, accumulated);
                 }
@@ -459,6 +477,40 @@ namespace SerialPortListener
                 }
                 end = (start > 0) ? start - 1 : -1;
             }
+            return r;
+        }
+
+        // JOB_Blue_Auto_update_01/08/2026 (ขาออก): หา q ตัวสุดท้ายในทั้งก้อนข้อความ
+        // ค่าที่ไม่ลงตัว 10 หรือเกินพิสัยถือว่าเพี้ยน แต่ตัดหลักท้ายทิ้งแล้วใช้ต่อแทนการปัดทิ้งทั้งค่า (ต่างจาก ValidatedPQ)
+        private static ParseResult ParseJobQ(HandlerInfo h, string text)
+        {
+            ParseResult r = new ParseResult();
+            if (string.IsNullOrEmpty(text))
+                return r;
+
+            int qp = text.LastIndexOf('q');
+            if (qp < 0)
+                return r;
+            string window = text.Substring(qp);
+
+            MatchCollection mc = Regex.Matches(window, h.Pattern);
+            if (mc.Count == 0)
+                return r;
+
+            int value;
+            if (!int.TryParse(mc[0].Value, out value))
+                return r;
+
+            string v = mc[0].Value;
+            if (value % 10 != 0 || value > 100000)
+                v = v.Length > 1 ? v.Remove(v.Length - 1) : v;
+            else if (value < 10)
+                v = "0";
+            else
+                v = v.TrimStart('0').PadLeft(1, '0');
+
+            r.Text = v;
+            r.HasValue = true;
             return r;
         }
 
