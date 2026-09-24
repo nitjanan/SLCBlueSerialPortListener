@@ -261,6 +261,7 @@
             // 
             // tcSetting
             // 
+            this.tcSetting.Controls.Add(this.tabPage13);
             this.tcSetting.Controls.Add(this.tabPage1);
             this.tcSetting.Controls.Add(this.tabPage2);
             this.tcSetting.Controls.Add(this.tabPage3);
@@ -273,7 +274,6 @@
             this.tcSetting.Controls.Add(this.tabPage10);
             this.tcSetting.Controls.Add(this.tabPage11);
             this.tcSetting.Controls.Add(this.tabPage12);
-            this.tcSetting.Controls.Add(this.tabPage13);
             this.tcSetting.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcSetting.Location = new System.Drawing.Point(3, 3);
             this.tcSetting.Name = "tcSetting";
