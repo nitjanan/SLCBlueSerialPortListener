@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -92,6 +95,12 @@ namespace SerialPortListener
             InitializeComponent();
             //set ค่าให้ช่อง combobox ลูกค้า
             setautoComplete(cbbCustomerSiteName, "รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", listOriginalCustomerNameSetting);
+        
+            // ส่วนตั้งค่าที่ย้ายมาจาก ucBackup / ucHelp
+            LoadBackupConfig();
+            InitAutoBackupTimer();
+            LoadReportTemplateSetting();
+            LoadBillHeaderSetting();
         }
 
         private void ucSetting_Load(object sender, EventArgs e)
@@ -1628,5 +1637,647 @@ namespace SerialPortListener
             tbFirst.Text = "";
         }
         /* end clearThreeTextbox */
+
+        // ---- ย้ายมาจาก ucBackup และ ucHelp : ส่วนตั้งค่าทั้งหมดมารวมที่แท็บ Setting ----
+        private const string DefaultPgDumpPath = @"C:\Program Files\PostgreSQL\9.5\bin\pg_dump.exe";
+        private const string DefaultBackupDir = @"D:\backupSqlNew";
+        // ตารางเวลา backup อัตโนมัติ: ทุก 2 ชั่วโมง เริ่ม/สิ้นสุดตามค่าที่ผู้มีสิทธิ์ isPermissionAddSetting ตั้งไว้ (ค่า default 09:00 - 17:00)
+        private const int DefaultAutoBackupStartHour = 9;
+        private const int DefaultAutoBackupEndHour = 17;
+        // เทียบกับ processs_delivery_order() ใน AU_weight_to_local.py
+        // ตั้งค่าตรงกับ backupSql_m.bat ใน C:\Users\Userpc\Documents\backupSqlNew\script\ แต่รันผ่าน pg_dump.exe โดยตรงจาก C# แทนการเรียก .bat
+        // พารามิเตอร์การเชื่อมต่อ (host/port/database/user/password) อ่านจาก ODBC DSN "PostgreSQLS" เดียวกับที่ Datalayer ใช้ แทนการฝังค่าตายตัว
+        private const string OdbcDsnName = "PostgreSQLS";
+        // Program Files (ที่ติดตั้งโปรแกรม) เขียนไฟล์ไม่ได้ถ้าไม่ใช่ admin จึงเก็บ config/log ไว้ใน AppData ของผู้ใช้แทน
+        // AppDataDir is per-build (see Utils.AppDataDir) so Blue and Pink never share the same config file.
+        private static readonly string AppDataDir = Utils.AppDataDir;
+        private static readonly string BackupConfigPath =
+            System.IO.Path.Combine(AppDataDir, "configs_backup.txt");
+        private System.Windows.Forms.Timer autoBackupTimer;
+        private string lastAutoBackupKey = "";
+
+        // เฉพาะ user ที่มีสิทธิ์ add_setting เท่านั้นที่แก้ไข/บันทึกการตั้งค่า backup ได้ user อื่นดูได้อย่างเดียว
+        private void ApplyBackupConfigPermission()
+        {
+            bool canEdit = Globals.isPermissionAddSetting();
+
+            tbPgDumpPath.ReadOnly = !canEdit;
+            tbBackupDir.ReadOnly = !canEdit;
+            btnBrowsePgDump.Enabled = canEdit;
+            btnBrowseBackupDir.Enabled = canEdit;
+            btnSaveBackupConfig.Enabled = canEdit;
+            chkAutoBackup.Enabled = canEdit;
+            dtpAutoBackupStart.Enabled = canEdit;
+            dtpAutoBackupEnd.Enabled = canEdit;
+        }
+        // โหลดค่า PgDumpPath / BackupDir / AutoBackupEnabled จาก configs_backup.txt (key=value ต่อบรรทัด) ถ้าไม่มีไฟล์ใช้ค่า default
+        private void LoadBackupConfig()
+        {
+            string pgDumpPath = DefaultPgDumpPath;
+            string backupDir = DefaultBackupDir;
+            bool autoBackupEnabled = true;
+            int startHour = DefaultAutoBackupStartHour;
+            int endHour = DefaultAutoBackupEndHour;
+
+            if (System.IO.File.Exists(BackupConfigPath))
+            {
+                foreach (string line in System.IO.File.ReadAllLines(BackupConfigPath))
+                {
+                    int idx = line.IndexOf('=');
+                    if (idx <= 0)
+                        continue;
+
+                    string key = line.Substring(0, idx).Trim();
+                    string value = line.Substring(idx + 1).Trim();
+
+                    if (key == "PgDumpPath")
+                        pgDumpPath = value;
+                    else if (key == "BackupDir")
+                        backupDir = value;
+                    else if (key == "AutoBackupEnabled")
+                        bool.TryParse(value, out autoBackupEnabled);
+                    else if (key == "AutoBackupStartHour")
+                        int.TryParse(value, out startHour);
+                    else if (key == "AutoBackupEndHour")
+                        int.TryParse(value, out endHour);
+                }
+            }
+
+            tbPgDumpPath.Text = pgDumpPath;
+            tbBackupDir.Text = backupDir;
+            chkAutoBackup.Checked = autoBackupEnabled;
+            dtpAutoBackupStart.Value = DateTime.Today.AddHours(Clamp(startHour, 0, 23));
+            dtpAutoBackupEnd.Value = DateTime.Today.AddHours(Clamp(endHour, 0, 23));
+        }
+        private void SaveBackupConfig()
+        {
+            string[] lines =
+            {
+                "PgDumpPath=" + tbPgDumpPath.Text.Trim(),
+                "BackupDir=" + tbBackupDir.Text.Trim(),
+                "AutoBackupEnabled=" + chkAutoBackup.Checked,
+                "AutoBackupStartHour=" + dtpAutoBackupStart.Value.Hour,
+                "AutoBackupEndHour=" + dtpAutoBackupEnd.Value.Hour,
+            };
+            if (!System.IO.Directory.Exists(AppDataDir))
+                System.IO.Directory.CreateDirectory(AppDataDir);
+            System.IO.File.WriteAllLines(BackupConfigPath, lines);
+        }
+        private void btnBrowsePgDump_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new OpenFileDialog())
+            {
+                dlg.Filter = "pg_dump.exe|pg_dump.exe|Executable files (*.exe)|*.exe|All files (*.*)|*.*";
+                dlg.FileName = "pg_dump.exe";
+                if (System.IO.File.Exists(tbPgDumpPath.Text))
+                    dlg.InitialDirectory = System.IO.Path.GetDirectoryName(tbPgDumpPath.Text);
+
+                if (dlg.ShowDialog(FindForm()) == DialogResult.OK)
+                    tbPgDumpPath.Text = dlg.FileName;
+            }
+        }
+        private void btnBrowseBackupDir_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new FolderBrowserDialog())
+            {
+                if (System.IO.Directory.Exists(tbBackupDir.Text))
+                    dlg.SelectedPath = tbBackupDir.Text;
+
+                if (dlg.ShowDialog(FindForm()) == DialogResult.OK)
+                    tbBackupDir.Text = dlg.SelectedPath;
+            }
+        }
+        private void btnSaveBackupConfig_Click(object sender, EventArgs e)
+        {
+            if (!Globals.isPermissionAddSetting())
+            {
+                MessageBox.Show("คุณไม่มีสิทธิ์บันทึกการตั้งค่านี้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(tbPgDumpPath.Text) || string.IsNullOrWhiteSpace(tbBackupDir.Text))
+            {
+                MessageBox.Show("กรุณาระบุ pg_dump.exe และ Backup Folder", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dtpAutoBackupStart.Value.TimeOfDay >= dtpAutoBackupEnd.Value.TimeOfDay)
+            {
+                MessageBox.Show("เวลาเริ่ม Auto Backup ต้องน้อยกว่าเวลาสิ้นสุด", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                SaveBackupConfig();
+
+                // ปุ่มเดียวเก็บให้ครบทั้งแท็บ: แบบใบชั่งและหัวกระดาษบิลบันทึกต่อจาก Backup
+                string savedTemplate = SaveReportTemplateSetting();
+                if (savedTemplate == null)
+                    return;
+
+                string savedBillHeader = SaveBillHeaderSetting();
+                if (savedBillHeader == null)
+                    return;
+
+                string done = "บันทึกการตั้งค่าสำเร็จ";
+                if (savedTemplate.Length > 0)
+                    done += Environment.NewLine + "แบบใบชั่ง : " + savedTemplate;
+                if (savedBillHeader.Length > 0)
+                    done += Environment.NewLine + "หัวกระดาษบิล : " + savedBillHeader;
+                MessageBox.Show(done, "Setting", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("บันทึกการตั้งค่าไม่สำเร็จ: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private IEnumerable<int> GetAutoBackupHours()
+        {
+            int startHour = dtpAutoBackupStart.Value.Hour;
+            int endHour = dtpAutoBackupEnd.Value.Hour;
+            for (int hour = startHour; hour <= endHour; hour += 2)
+                yield return hour;
+        }
+        private void InitAutoBackupTimer()
+        {
+            autoBackupTimer = new System.Windows.Forms.Timer { Interval = 60000 };
+            autoBackupTimer.Tick += AutoBackupTimer_Tick;
+            autoBackupTimer.Start();
+
+            this.Disposed += (s, e) =>
+            {
+                autoBackupTimer.Stop();
+                autoBackupTimer.Dispose();
+            };
+        }
+        private async void AutoBackupTimer_Tick(object sender, EventArgs e)
+        {
+            if (!chkAutoBackup.Checked)
+                return;
+
+            DateTime now = DateTime.Now;
+            if (now.Minute != 0 || !GetAutoBackupHours().Contains(now.Hour))
+                return;
+
+            string key = now.ToString("yyyyMMdd_HH");
+            if (key == lastAutoBackupKey)
+                return;
+            lastAutoBackupKey = key;
+
+            if (!btnBackup.Enabled)
+                return; // มีการ backup ทำงานอยู่แล้ว (ผู้ใช้กดเอง หรือรอบก่อนหน้ายังไม่เสร็จ)
+
+            await DoBackupAsync(isAuto: true);
+        }
+        private async void btnBackup_Click(object sender, EventArgs e)
+        {
+            await DoBackupAsync(isAuto: false);
+        }
+        // ใช้ร่วมกันทั้งกดปุ่ม backup เองและ auto backup ตามตารางเวลา
+        // isAuto = true จะทำงานเบื้องหลังทั้งหมด ไม่เปิดหน้าต่างและไม่เด้ง MessageBox ให้เห็น (log ลงไฟล์แทน)
+        private async Task DoBackupAsync(bool isAuto)
+        {
+            btnBackup.Enabled = false;
+
+            frmDownloadProgress progress = null;
+            Action<string> log;
+            if (isAuto)
+            {
+                log = LogToFile;
+            }
+            else
+            {
+                progress = new frmDownloadProgress();
+                progress.Show(FindForm());
+                log = progress.Log;
+            }
+
+            try
+            {
+                string pgDumpPath = tbPgDumpPath.Text.Trim();
+                string backupDir = tbBackupDir.Text.Trim();
+
+                if (string.IsNullOrEmpty(pgDumpPath) || !System.IO.File.Exists(pgDumpPath))
+                {
+                    log($"ไม่พบไฟล์ {pgDumpPath}");
+                    if (!isAuto)
+                        MessageBox.Show($"ไม่พบไฟล์ {pgDumpPath}", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(backupDir))
+                {
+                    log("กรุณาระบุ Backup Folder");
+                    if (!isAuto)
+                        MessageBox.Show("กรุณาระบุ Backup Folder", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                PgDsnInfo dsn = GetPgDsnInfo(OdbcDsnName);
+                if (dsn == null || string.IsNullOrEmpty(dsn.Host) || string.IsNullOrEmpty(dsn.Database))
+                {
+                    log($"ไม่พบการตั้งค่า ODBC DSN \"{OdbcDsnName}\"");
+                    if (!isAuto)
+                        MessageBox.Show($"ไม่พบการตั้งค่า ODBC DSN \"{OdbcDsnName}\"", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!System.IO.Directory.Exists(backupDir))
+                    System.IO.Directory.CreateDirectory(backupDir);
+
+                string dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string backupFile = System.IO.Path.Combine(backupDir, $"{dsn.Database}_{dateTime}.backup");
+
+                log("===========================================");
+                log(isAuto ? "Auto Backup" : "Manual Backup");
+                log($"Backup Database : {dsn.Database}");
+                log($"Output File     : {backupFile}");
+                log("===========================================");
+
+                int exitCode = await RunPgDumpAsync(pgDumpPath, dsn, backupFile, log);
+
+                if (exitCode == 0)
+                {
+                    log("===== Backup Success =====");
+                    log(backupFile);
+                    lbLastAutoBackup.Text = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) สำเร็จ";
+                    if (!isAuto)
+                        MessageBox.Show("สำรองข้อมูลสำเร็จ\r\n" + backupFile, "Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    log($"XXXXX Backup Failed (exit code {exitCode}) XXXXX");
+                    lbLastAutoBackup.Text = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) ไม่สำเร็จ";
+                    if (!isAuto)
+                        MessageBox.Show($"สำรองข้อมูลไม่สำเร็จ (exit code {exitCode})", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                log("Error: " + ex.Message);
+                lbLastAutoBackup.Text = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ({(isAuto ? "อัตโนมัติ" : "manual")}) เกิดข้อผิดพลาด";
+                if (!isAuto)
+                    MessageBox.Show("เกิดข้อผิดพลาด: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (progress != null)
+                {
+                    progress.AllowClose();
+                    progress.Close();
+                }
+                btnBackup.Enabled = true;
+            }
+        }
+        // เทียบกับคำสั่ง pg_dump ใน backupSql_m.bat: -h -p -U -F c -b -v -f <file> <database>
+        private Task<int> RunPgDumpAsync(string pgDumpPath, PgDsnInfo dsn, string backupFile, Action<string> log)
+        {
+            var tcs = new TaskCompletionSource<int>();
+
+            string port = string.IsNullOrEmpty(dsn.Port) ? "5432" : dsn.Port;
+
+            var psi = new ProcessStartInfo
+            {
+                FileName = pgDumpPath,
+                Arguments = $"-h {dsn.Host} -p {port} -U {dsn.Username} -F c -b -v -f \"{backupFile}\" {dsn.Database}",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true,
+            };
+            psi.EnvironmentVariables["PGPASSWORD"] = dsn.Password ?? "";
+
+            var process = new Process { StartInfo = psi, EnableRaisingEvents = true };
+
+            process.OutputDataReceived += (s, ev) =>
+            {
+                if (!string.IsNullOrEmpty(ev.Data))
+                    log(ev.Data);
+            };
+            process.ErrorDataReceived += (s, ev) =>
+            {
+                if (!string.IsNullOrEmpty(ev.Data))
+                    log(ev.Data);
+            };
+            process.Exited += (s, ev) =>
+            {
+                tcs.TrySetResult(process.ExitCode);
+                process.Dispose();
+            };
+
+            process.Start();
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            return tcs.Task;
+        }
+        private static PgDsnInfo GetPgDsnInfo(string dsnName)
+        {
+            string[] roots =
+            {
+                $@"SOFTWARE\ODBC\ODBC.INI\{dsnName}",
+                $@"SOFTWARE\WOW6432Node\ODBC\ODBC.INI\{dsnName}",
+            };
+
+            foreach (var hive in new[] { Microsoft.Win32.Registry.CurrentUser, Microsoft.Win32.Registry.LocalMachine })
+            {
+                foreach (var subKey in roots)
+                {
+                    using (var key = hive.OpenSubKey(subKey))
+                    {
+                        if (key == null)
+                            continue;
+
+                        return new PgDsnInfo
+                        {
+                            Host = key.GetValue("Servername")?.ToString(),
+                            Port = key.GetValue("Port")?.ToString(),
+                            Database = key.GetValue("Database")?.ToString(),
+                            Username = key.GetValue("Username")?.ToString() ?? key.GetValue("UID")?.ToString(),
+                            Password = key.GetValue("Password")?.ToString(),
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+        // auto backup ไม่มีหน้าต่างให้เห็น เขียน log ลงไฟล์แทนไว้ตรวจสอบย้อนหลัง
+        private static void LogToFile(string message)
+        {
+            try
+            {
+                if (!System.IO.Directory.Exists(AppDataDir))
+                    System.IO.Directory.CreateDirectory(AppDataDir);
+                System.IO.File.AppendAllText(AutoBackupLogPath, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\r\n");
+            }
+            catch (Exception)
+            {
+                // ไม่ทำให้ auto backup ล้มเหลวเพียงเพราะเขียน log ไม่ได้
+            }
+        }
+        private static int Clamp(int value, int min, int max)
+        {
+            return value < min ? min : (value > max ? max : value);
+        }
+
+        // เติมรายการแบบใบชั่งลงคอมโบ แล้วเลือกค่าที่บันทึกไว้ใน config_reportmain.txt
+        // ถ้าไฟล์หายหรือค่าใช้ไม่ได้ ReportMainTemplate จะคืนค่าเริ่มต้น (Template 1) ให้เอง
+        private void LoadReportTemplateSetting()
+        {
+            cboReportTemplate.Items.Clear();
+            cboReportTemplate.Items.AddRange(ReportMainTemplate.All);
+
+            int current = ReportMainTemplate.GetSelectedTemplateNumber();
+            for (int i = 0; i < cboReportTemplate.Items.Count; i++)
+            {
+                ReportMainTemplate.TemplateInfo item =
+                    cboReportTemplate.Items[i] as ReportMainTemplate.TemplateInfo;
+                if (item != null && item.Number == current)
+                {
+                    cboReportTemplate.SelectedIndex = i;
+                    return;
+                }
+            }
+
+            if (cboReportTemplate.Items.Count > 0)
+                cboReportTemplate.SelectedIndex = 0;
+        }
+        // บันทึกแบบใบชั่งที่เลือกอยู่
+        // คืนชื่อแบบที่บันทึก, คืน "" เมื่อไม่ได้เลือกไว้, คืน null เมื่อบันทึกไม่สำเร็จ (แจ้งเตือนแล้ว)
+        private string SaveReportTemplateSetting()
+        {
+            ReportMainTemplate.TemplateInfo selected =
+                cboReportTemplate.SelectedItem as ReportMainTemplate.TemplateInfo;
+            if (selected == null)
+                return "";
+
+            if (!ReportMainTemplate.SaveSelectedTemplate(selected.Number))
+            {
+                MessageBox.Show("บันทึกแบบใบชั่งไม่สำเร็จ กรุณาตรวจสอบสิทธิ์การเขียนไฟล์" + Environment.NewLine
+                    + ReportMainTemplate.ConfigFilePath, "แบบใบชั่ง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+            return selected.DisplayName;
+        }
+        // ตอน constructor ทำงานยังไม่ผ่าน Login จึงเช็คสิทธิ์ใหม่ทุกครั้งที่แสดงหน้านี้
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (Visible)
+                ApplyBackupConfigPermission();
+        }
+        private static readonly string AutoBackupLogPath =
+            System.IO.Path.Combine(AppDataDir, "backup_auto.log");
+
+        private class PgDsnInfo
+        {
+            public string Host;
+            public string Port;
+            public string Database;
+            public string Username;
+            public string Password;
+        }
+
+        private void cboReportTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        // เปิดหน้าตัวอย่างใบชั่ง (FPrint) โดยใช้แบบที่เลือกอยู่ในคอมโบตอนนี้ (ยังไม่ต้องกด "บันทึก")
+        // และข้อมูลตัวอย่าง เพราะหน้านี้ไม่มีรายการชั่งจริงให้อ้างอิง
+        // ระหว่างพรีวิวจะสลับ config_reportmain.txt ไปใช้แบบที่เลือกชั่วคราว แล้วคืนค่าเดิมกลับหลังปิดหน้าต่าง
+        private void btPreviewBill_Click(object sender, EventArgs e)
+        {
+            ReportMainTemplate.TemplateInfo selected =
+                cboReportTemplate.SelectedItem as ReportMainTemplate.TemplateInfo;
+            if (selected == null)
+            {
+                MessageBox.Show("กรุณาเลือกแบบใบชั่งก่อน", "ดูตัวอย่างใบชั่ง", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int originalTemplate = ReportMainTemplate.GetSelectedTemplateNumber();
+            bool templateSwapped = false;
+
+            // หัวกระดาษก็ต้องสลับไปใช้ชุดที่เลือกอยู่ตอนนี้เหมือนกัน (ยังไม่ต้องกด "บันทึก")
+            BillHeader.HeaderInfo selectedHeader = GetSelectedBillHeader();
+            int originalHeaderNumber = BillHeader.GetSelectedNumber();
+            BillHeader.HeaderInfo originalCustomHeader = BillHeader.GetCustomHeader();
+            bool headerSwapped = false;
+            bool customTextSwapped = false;
+
+            try
+            {
+                if (selected.Number != originalTemplate)
+                    templateSwapped = ReportMainTemplate.SaveSelectedTemplate(selected.Number);
+
+                // ชุด "กรอกเอง" ต้องเอาข้อความในช่องตอนนี้ไปใช้ด้วย เผื่อยังไม่ได้บันทึก
+                if (selectedHeader != null && selectedHeader.IsCustom)
+                    customTextSwapped = BillHeader.SaveCustomHeader(tbBhCompany.Text, tbBhAddress.Text, tbBhTelephone.Text);
+
+                if (selectedHeader != null && selectedHeader.Number != originalHeaderNumber)
+                    headerSwapped = BillHeader.SaveSelectedNumber(selectedHeader.Number);
+
+                FillSampleWeightForPreview();
+
+                FPrint f = new FPrint();
+                f.ShowDialog();
+            }
+            finally
+            {
+                if (templateSwapped)
+                    ReportMainTemplate.SaveSelectedTemplate(originalTemplate);
+                if (headerSwapped)
+                    BillHeader.SaveSelectedNumber(originalHeaderNumber);
+                if (customTextSwapped)
+                    BillHeader.SaveCustomHeader(originalCustomHeader.CompanyName, originalCustomHeader.Address, originalCustomHeader.Telephone);
+            }
+        }
+
+        // ข้อมูลตัวอย่างไว้โชว์บนพรีวิว ไม่ใช่ข้อมูลชั่งจริง
+        private void FillSampleWeightForPreview()
+        {
+            Company.TTelephone = "โทร";
+            Company.TEmail = "E-mail";
+            Company.TDocName = "เลขที่การชั่ง";
+            Company.TLogo = "(Sandvik)";
+
+            Weight.Id = "";
+            Weight.DoId = "";
+            Weight.Date = DateTime.Now.ToShortDateString();
+            Weight.DocNum = "PREVIEW-0001";
+            Weight.Mill = "ตัวอย่างโรงโม่";
+            Weight.DriverName = "นายตัวอย่าง ใจดี";
+            Weight.CustomerName = "ลูกค้าตัวอย่าง จำกัด";
+            Weight.CustomerAddress = "ที่อยู่ตัวอย่าง";
+            Weight.StoneType = "หินตัวอย่าง";
+            Weight.StoneDesc = "3/4\"";
+            Weight.StoneColor = "เทา";
+            Weight.CarLicense = "กก-1234";
+            Weight.CarCity = "สุราษฎร์ธานี";
+            Weight.DateIn = Weight.Date;
+            Weight.TimeIn = "08:00";
+            Weight.DateOut = Weight.Date;
+            Weight.TimeOut = "08:30";
+            Weight.WeightIn = "10.00";
+            Weight.WeightOut = "30.00";
+            Weight.WeightTotal = "20.00";
+            Weight.Price = "150.00";
+            Weight.Amount = "3000.00";
+            Weight.Vat = "210.00";
+            Weight.AmountVat = "3210.00";
+            Weight.Q = "1.00";
+            Weight.Team = "ทีมตัวอย่าง";
+            Weight.Site = "หน้างานตัวอย่าง";
+            Weight.ApproveName = "ผู้อนุมัติตัวอย่าง";
+            Weight.Pay = "เงินสด";
+            Weight.VatType = "vat";
+            Weight.Clean = "-";
+            Weight.Transport = "-";
+            Weight.OilContent = "0";
+            Weight.ScoopName = "ผู้ตักตัวอย่าง";
+            Weight.LC = "-";
+            Weight.Note = "ตัวอย่างใบชั่ง (Preview)";
+            Weight.DatePrint = DateTime.Now.ToString("yyyy-MM-dd");
+            Weight.DatePrintAndCopyNum = DateTime.Now.ToString("dd/MM") + "#1";
+            Weight.TimePrint = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        // ---- แบบหัวกระดาษบิล ----
+        // ปกติชื่อบริษัท/ที่อยู่/โทร ดึงจากตาราง Company
+        // ชุดที่ตั้งไว้ใน config_billheader.txt จะแทนที่เฉพาะฟิลด์ที่กรอกไว้ ที่เหลือใช้ของเดิม
+        private void LoadBillHeaderSetting()
+        {
+            cboBillHeader.Items.Clear();
+            BillHeader.HeaderInfo[] headers = BillHeader.GetHeaders();
+            foreach (BillHeader.HeaderInfo h in headers)
+                cboBillHeader.Items.Add(h.Name);
+
+            int selected = BillHeader.GetSelectedNumber();
+            for (int i = 0; i < headers.Length; i++)
+            {
+                if (headers[i].Number == selected)
+                {
+                    cboBillHeader.SelectedIndex = i;
+                    break;
+                }
+            }
+            if (cboBillHeader.SelectedIndex < 0 && cboBillHeader.Items.Count > 0)
+                cboBillHeader.SelectedIndex = 0;
+
+            UpdateBillHeaderFields();
+        }
+
+        /// <summary>ชุดที่กำลังเลือกอยู่ในคอมโบ (ยังไม่ได้บันทึก)</summary>
+        private BillHeader.HeaderInfo GetSelectedBillHeader()
+        {
+            BillHeader.HeaderInfo[] headers = BillHeader.GetHeaders();
+            int i = cboBillHeader.SelectedIndex;
+            if (i >= 0 && i < headers.Length)
+                return headers[i];
+            return BillHeader.DatabaseHeader;
+        }
+
+        /// <summary>
+        /// แสดงค่าของแบบที่เลือกอยู่ในช่องกรอก
+        /// เลือก "กรอกเอง" ถึงจะพิมพ์ได้ แบบอื่นแสดงให้ดูอย่างเดียว
+        /// ช่องที่เว้นว่าง = ใช้ค่าจากฐานข้อมูลเฉพาะช่องนั้น
+        /// </summary>
+        private void UpdateBillHeaderFields()
+        {
+            BillHeader.HeaderInfo h = GetSelectedBillHeader();
+            bool editable = (h != null && h.IsCustom);
+
+            tbBhCompany.Text = (h == null || h.UsesDatabase) ? "" : (h.CompanyName ?? "");
+            tbBhAddress.Text = (h == null || h.UsesDatabase) ? "" : (h.Address ?? "");
+            tbBhTelephone.Text = (h == null || h.UsesDatabase) ? "" : (h.Telephone ?? "");
+
+            tbBhCompany.ReadOnly = !editable;
+            tbBhAddress.ReadOnly = !editable;
+            tbBhTelephone.ReadOnly = !editable;
+
+            // สีพื้นบอกว่าแก้ได้หรือไม่ได้ ไม่ใช้ Enabled เพราะจะอ่านข้อความไม่ถนัด
+            Color back = editable ? SystemColors.Window : SystemColors.Control;
+            tbBhCompany.BackColor = back;
+            tbBhAddress.BackColor = back;
+            tbBhTelephone.BackColor = back;
+        }
+
+        private void cboBillHeader_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateBillHeaderFields();
+        }
+
+        // บันทึกแบบหัวกระดาษบิลที่เลือกอยู่ (รวมข้อความที่พิมพ์เอง)
+        // คืนชื่อแบบที่บันทึก, คืน "" เมื่อไม่ได้เลือกไว้, คืน null เมื่อบันทึกไม่สำเร็จ (แจ้งเตือนแล้ว)
+        private string SaveBillHeaderSetting()
+        {
+            BillHeader.HeaderInfo h = GetSelectedBillHeader();
+            if (h == null)
+                return "";
+
+            // เก็บข้อความที่พิมพ์ก่อน แล้วค่อยบันทึกว่าเลือกแบบไหน
+            if (h.IsCustom &&
+                !BillHeader.SaveCustomHeader(tbBhCompany.Text, tbBhAddress.Text, tbBhTelephone.Text))
+            {
+                MessageBox.Show("บันทึกข้อความหัวกระดาษไม่สำเร็จ", "ผิดพลาด",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            if (!BillHeader.SaveSelectedNumber(h.Number))
+            {
+                MessageBox.Show("บันทึกแบบหัวกระดาษบิลไม่สำเร็จ", "ผิดพลาด",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            UpdateBillHeaderFields();
+            return h.Name;
+        }
+
     }
 }
