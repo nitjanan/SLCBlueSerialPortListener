@@ -224,7 +224,7 @@ namespace SerialPortListener
             this.btnSavePort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSavePort.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSavePort.ForeColor = System.Drawing.Color.White;
-            this.btnSavePort.Location = new System.Drawing.Point(16, 344);
+            this.btnSavePort.Location = new System.Drawing.Point(16, 580);
             this.btnSavePort.Name = "btnSavePort";
             this.btnSavePort.Size = new System.Drawing.Size(812, 44);
             this.btnSavePort.TabIndex = 15;
@@ -238,9 +238,9 @@ namespace SerialPortListener
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbRawData.Controls.Add(this.tbRx);
             this.gbRawData.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRawData.Location = new System.Drawing.Point(372, 16);
+            this.gbRawData.Location = new System.Drawing.Point(16, 344);
             this.gbRawData.Name = "gbRawData";
-            this.gbRawData.Size = new System.Drawing.Size(456, 312);
+            this.gbRawData.Size = new System.Drawing.Size(812, 220);
             this.gbRawData.TabIndex = 1;
             this.gbRawData.TabStop = false;
             this.gbRawData.Text = "ข้อมูลดิบที่ได้รับ (Rx)";
@@ -258,7 +258,7 @@ namespace SerialPortListener
             this.tbRx.Name = "tbRx";
             this.tbRx.ReadOnly = true;
             this.tbRx.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbRx.Size = new System.Drawing.Size(416, 260);
+            this.tbRx.Size = new System.Drawing.Size(772, 168);
             this.tbRx.TabIndex = 14;
             //
             // gbScale
@@ -270,7 +270,7 @@ namespace SerialPortListener
             this.gbScale.Controls.Add(this.lblWeightPreview);
             this.gbScale.Controls.Add(this.tbWeightPreview);
             this.gbScale.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbScale.Location = new System.Drawing.Point(16, 404);
+            this.gbScale.Location = new System.Drawing.Point(16, 640);
             this.gbScale.Name = "gbScale";
             this.gbScale.Size = new System.Drawing.Size(812, 130);
             this.gbScale.TabIndex = 16;
@@ -340,7 +340,7 @@ namespace SerialPortListener
             this.Controls.Add(this.gbRawData);
             this.Controls.Add(this.gbConnection);
             this.Name = "ucHelp";
-            this.Size = new System.Drawing.Size(844, 550);
+            this.Size = new System.Drawing.Size(844, 786);
             this.Load += new System.EventHandler(this.ucHelp_Load);
             this.gbConnection.ResumeLayout(false);
             this.gbConnection.PerformLayout();
