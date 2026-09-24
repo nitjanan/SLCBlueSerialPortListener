@@ -49,8 +49,14 @@ namespace SerialPortListener
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSavePort = new System.Windows.Forms.Button();
+            this.gbScale = new System.Windows.Forms.GroupBox();
+            this.lblSerialHandler = new System.Windows.Forms.Label();
+            this.cboSerialHandler = new System.Windows.Forms.ComboBox();
+            this.lblWeightPreview = new System.Windows.Forms.Label();
+            this.tbWeightPreview = new System.Windows.Forms.TextBox();
             this.tbRx = new System.Windows.Forms.TextBox();
             this.timerRx = new System.Windows.Forms.Timer(this.components);
+            this.gbScale.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPort
@@ -195,9 +201,70 @@ namespace SerialPortListener
             this.btnSavePort.UseVisualStyleBackColor = false;
             this.btnSavePort.Click += new System.EventHandler(this.btnSavePort_Click);
             // 
+            // 
+            // gbScale
+            // 
+            this.gbScale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbScale.Controls.Add(this.lblSerialHandler);
+            this.gbScale.Controls.Add(this.cboSerialHandler);
+            this.gbScale.Controls.Add(this.lblWeightPreview);
+            this.gbScale.Controls.Add(this.tbWeightPreview);
+            this.gbScale.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbScale.Location = new System.Drawing.Point(16, 336);
+            this.gbScale.Name = "gbScale";
+            this.gbScale.Size = new System.Drawing.Size(812, 130);
+            this.gbScale.TabIndex = 16;
+            this.gbScale.TabStop = false;
+            this.gbScale.Text = "รูปแบบตาชั่ง";
+            // 
+            // lblSerialHandler
+            // 
+            this.lblSerialHandler.AutoSize = true;
+            this.lblSerialHandler.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSerialHandler.Location = new System.Drawing.Point(16, 36);
+            this.lblSerialHandler.Name = "lblSerialHandler";
+            this.lblSerialHandler.Size = new System.Drawing.Size(84, 22);
+            this.lblSerialHandler.TabIndex = 17;
+            this.lblSerialHandler.Text = "รูปแบบตาชั่ง";
+            // 
+            // cboSerialHandler
+            // 
+            this.cboSerialHandler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSerialHandler.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSerialHandler.FormattingEnabled = true;
+            this.cboSerialHandler.Location = new System.Drawing.Point(176, 32);
+            this.cboSerialHandler.Name = "cboSerialHandler";
+            this.cboSerialHandler.Size = new System.Drawing.Size(420, 29);
+            this.cboSerialHandler.TabIndex = 18;
+            this.cboSerialHandler.SelectedIndexChanged += new System.EventHandler(this.cboSerialHandler_SelectedIndexChanged);
+            // 
+            // lblWeightPreview
+            // 
+            this.lblWeightPreview.AutoSize = true;
+            this.lblWeightPreview.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeightPreview.Location = new System.Drawing.Point(16, 75);
+            this.lblWeightPreview.Name = "lblWeightPreview";
+            this.lblWeightPreview.Size = new System.Drawing.Size(104, 22);
+            this.lblWeightPreview.TabIndex = 19;
+            this.lblWeightPreview.Text = "น้ำหนักที่อ่านได้";
+            // 
+            // tbWeightPreview
+            // 
+            this.tbWeightPreview.BackColor = System.Drawing.Color.Black;
+            this.tbWeightPreview.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightPreview.ForeColor = System.Drawing.Color.LightGreen;
+            this.tbWeightPreview.Location = new System.Drawing.Point(176, 67);
+            this.tbWeightPreview.Name = "tbWeightPreview";
+            this.tbWeightPreview.ReadOnly = true;
+            this.tbWeightPreview.Size = new System.Drawing.Size(420, 47);
+            this.tbWeightPreview.TabIndex = 20;
+            this.tbWeightPreview.TabStop = false;
+            this.tbWeightPreview.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // tbRx
             // 
-            this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbRx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRx.BackColor = System.Drawing.Color.White;
@@ -221,6 +288,7 @@ namespace SerialPortListener
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tbRx);
+            this.Controls.Add(this.gbScale);
             this.Controls.Add(this.btnSavePort);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
@@ -235,8 +303,10 @@ namespace SerialPortListener
             this.Controls.Add(this.cboPort);
             this.Controls.Add(this.lblPort);
             this.Name = "ucHelp";
-            this.Size = new System.Drawing.Size(844, 480);
+            this.Size = new System.Drawing.Size(844, 620);
             this.Load += new System.EventHandler(this.ucHelp_Load);
+            this.gbScale.ResumeLayout(false);
+            this.gbScale.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +328,10 @@ namespace SerialPortListener
         private System.Windows.Forms.Button btnSavePort;
         private System.Windows.Forms.TextBox tbRx;
         private System.Windows.Forms.Timer timerRx;
+        private System.Windows.Forms.GroupBox gbScale;
+        private System.Windows.Forms.Label lblSerialHandler;
+        private System.Windows.Forms.ComboBox cboSerialHandler;
+        private System.Windows.Forms.Label lblWeightPreview;
+        private System.Windows.Forms.TextBox tbWeightPreview;
     }
 }

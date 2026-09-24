@@ -1005,6 +1005,7 @@ namespace SerialPortListener
             stopBitsComboBox.DataSource = Enum.GetValues(typeof(System.IO.Ports.StopBits));
             */
 
+            ReloadSerialHandler();
             _spManager.NewSerialDataRecieved += new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved);
             this.FormClosing += new FormClosingEventHandler(MainForm_FormClosing);
 
@@ -1017,6 +1018,19 @@ namespace SerialPortListener
             {
                 _spManager.Dispose();
             }
+        }
+
+        // ---- รูปแบบตาชั่งที่เลือกจากหน้า ucHelp (ดู SerialDataHandler) ----
+        // หมายเหตุ (ขอบเขตงานนี้จำกัดเฉพาะ ucHelp/ucReport/ucSetting/ucBackup):
+        // ยังไม่ได้เชื่อม _serialHandler เข้ากับ _spManager_NewSerialDataRecieved ด้านล่าง
+        // ซึ่งยังใช้ตรรกะแยกค่าเดิมของ Pink ตามปกติ เมธอดนี้จึงมีไว้ให้ ucHelp เรียกได้โดยไม่พัง
+        // และเตรียม field ไว้ล่วงหน้า การเชื่อมสองส่วนนี้เข้าด้วยกันต้องแก้ pipeline การอ่านค่าจริง
+        // ซึ่งเกินขอบเขตที่อนุญาตไว้สำหรับงานนี้ (แก้ MainForm ได้เฉพาะ hook เล็ก ๆ เท่านั้น)
+        private SerialDataHandler.HandlerInfo _serialHandler;
+
+        public void ReloadSerialHandler()
+        {
+            _serialHandler = SerialDataHandler.GetSelectedHandler();
         }
 
         void _spManager_NewSerialDataRecieved(object sender, SerialDataEventArgs e)

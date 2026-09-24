@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -40,6 +40,8 @@ namespace SerialPortListener
         public ucHelp()
         {
             InitializeComponent();
+        
+            LoadSerialHandlerSetting();
         }
 
         public void SetSerialPortManager(SerialPortManager spManager)
@@ -132,6 +134,9 @@ namespace SerialPortListener
                 cboStopBits.SelectedItem = StopBits.One;
             }
 
+            // config_serial.txt เก็บพารามิเตอร์สายสัญญาณที่บันทึกไว้ ให้ใช้แทนค่าเริ่มต้นข้างบน
+            ApplySavedPortSettings();
+
             // config_port.txt เก็บพอร์ตที่บันทึกไว้ล่าสุด ถ้ามีไฟล์นี้ให้ใช้แทนค่าจาก _spManager
             string savedPort = LoadSavedPort();
             if (!string.IsNullOrEmpty(savedPort) && ports.Contains(savedPort))
@@ -162,6 +167,9 @@ namespace SerialPortListener
             cboPort.Enabled = canEdit && btnStop.Enabled == false;
             btnSavePort.Visible = canEdit;
             btnSavePort.Enabled = canEdit;
+
+            // กล่องรูปแบบตาชั่งเป็นการตั้งค่าระดับเครื่อง ให้เห็นเฉพาะผู้ที่มีสิทธิ add_setting
+            gbScale.Visible = canEdit;
         }
 
         // อ่านค่า COM port ที่บันทึกไว้จาก config_port.txt (บรรทัดเดียว เช่น "COM4") ถ้าไม่มีไฟล์หรืออ่านไม่ได้คืนค่า null
@@ -200,12 +208,52 @@ namespace SerialPortListener
                 if (!System.IO.Directory.Exists(AppDataDir))
                     System.IO.Directory.CreateDirectory(AppDataDir);
                 System.IO.File.WriteAllLines(PortConfigPath, new[] { cboPort.SelectedItem.ToString() });
-                MessageBox.Show("บันทึกการตั้งค่าสำเร็จ", "Port", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Baud/Parity/DataBits/StopBits เก็บรวมไว้ที่ config_serial.txt
+                if (!SaveCurrentPortSettings())
+                {
+                    MessageBox.Show("บันทึกพารามิเตอร์สายสัญญาณไม่สำเร็จ", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // ปุ่มเดียวเก็บให้ครบ: รูปแบบตาชั่งบันทึกต่อท้ายพอร์ตในครั้งเดียวกัน
+                string savedHandler = SaveSelectedScaleHandler();
+                if (savedHandler == null)
+                {
+                    MessageBox.Show("บันทึกรูปแบบตาชั่งไม่สำเร็จ", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string done = "บันทึกการตั้งค่าสำเร็จ";
+                if (savedHandler.Length > 0)
+                    done += Environment.NewLine + "รูปแบบตาชั่ง : " + savedHandler;
+                MessageBox.Show(done, "Port", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("บันทึกการตั้งค่าไม่สำเร็จ: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // บันทึกรูปแบบตาชั่งที่เลือกอยู่ แล้วให้หน้าชั่งใช้วิธีใหม่ทันทีโดยไม่ต้องปิดเปิดโปรแกรม
+        // คืนชื่อรูปแบบที่บันทึก, คืน "" เมื่อไม่มีอะไรให้บันทึก, คืน null เมื่อบันทึกไม่สำเร็จ
+        private string SaveSelectedScaleHandler()
+        {
+            int i = cboSerialHandler.SelectedIndex;
+            if (i < 0 || i >= SerialDataHandler.Handlers.Length)
+                return "";
+
+            SerialDataHandler.HandlerInfo h = SerialDataHandler.Handlers[i];
+            if (!SerialDataHandler.SaveSelectedHandler(h.Key))
+                return null;
+
+            MainForm mf = this.FindForm() as MainForm;
+            if (mf != null)
+                mf.ReloadSerialHandler();
+
+            return h.DisplayName;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -320,6 +368,126 @@ namespace SerialPortListener
             catch (Exception)
             {
             }
+
+            UpdateWeightPreview(pending);
         }
+        // ---- รูปแบบการอ่านค่าจากตาชั่ง ----
+        // แต่ละสาขาใช้ตาชั่งคนละรุ่น จึงให้เลือกวิธีอ่านได้จากหน้านี้
+        // รายการทั้งหมดและตัวแยกค่าอยู่ที่ SerialDataHandler
+        private void LoadSerialHandlerSetting()
+        {
+            cboSerialHandler.Items.Clear();
+            foreach (SerialDataHandler.HandlerInfo h in SerialDataHandler.Handlers)
+                cboSerialHandler.Items.Add(h.DisplayName);
+
+            string key = SerialDataHandler.GetSelectedKey();
+            for (int i = 0; i < SerialDataHandler.Handlers.Length; i++)
+            {
+                if (SerialDataHandler.Handlers[i].Key == key)
+                {
+                    cboSerialHandler.SelectedIndex = i;
+                    break;
+                }
+            }
+            if (cboSerialHandler.SelectedIndex < 0 && cboSerialHandler.Items.Count > 0)
+                cboSerialHandler.SelectedIndex = 0;
+        }
+
+        // ---- ช่องแสดงตัวอย่างน้ำหนัก ----
+        // ใช้รูปแบบที่ "กำลังเลือกอยู่ในคอมโบ" ไม่ใช่ที่บันทึกไว้
+        // ผู้ใช้จึงลองเปลี่ยนดูได้ว่ารูปแบบไหนตัดค่าถูกต้อง แล้วค่อยกดบันทึก
+        private SerialDataHandler.HandlerInfo GetPreviewHandler()
+        {
+            int i = cboSerialHandler.SelectedIndex;
+            if (i >= 0 && i < SerialDataHandler.Handlers.Length)
+                return SerialDataHandler.Handlers[i];
+            return SerialDataHandler.GetSelectedHandler();
+        }
+
+        /// <summary>แยกค่าจากข้อมูลที่รับมาแล้วแสดงในช่องตัวอย่าง</summary>
+        private void UpdateWeightPreview(string chunk)
+        {
+            try
+            {
+                SerialDataHandler.HandlerInfo h = GetPreviewHandler();
+                SerialDataHandler.ParseResult r = SerialDataHandler.Parse(h, tbRx.Text, chunk);
+
+                if (r.HasValue)
+                {
+                    tbWeightPreview.Text = r.Text;
+                    tbWeightPreview.ForeColor = r.IsNegative ? Color.Orange : Color.LightGreen;
+                }
+                else if (r.IsError)
+                {
+                    tbWeightPreview.Text = "Error";
+                    tbWeightPreview.ForeColor = Color.OrangeRed;
+                }
+                else
+                {
+                    // ยังตัดค่าไม่ได้ อาจเป็นเพราะเลือกรูปแบบไม่ตรงกับตาชั่ง หรือข้อมูลยังมาไม่ครบ
+                    tbWeightPreview.Text = "- - -";
+                    tbWeightPreview.ForeColor = Color.Gray;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void cboSerialHandler_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // คำนวณใหม่จากข้อมูลที่ค้างอยู่ในหน้าจอ จะได้เห็นผลทันทีโดยไม่ต้องรอข้อมูลก้อนถัดไป
+            UpdateWeightPreview(string.Empty);
+        }
+        // ---- พารามิเตอร์สายสัญญาณ (Baud / Parity / DataBits / StopBits) ----
+        // เก็บรวมไว้ที่ config_serial.txt ไฟล์เดียวกับรูปแบบตาชั่ง
+        // ส่วนชื่อพอร์ตยังอยู่ที่ config_port.txt ตามเดิม
+
+        /// <summary>เอาค่าที่บันทึกไว้มาใส่คอมโบ และดันเข้า _spManager ให้ใช้ได้ทันที</summary>
+        private void ApplySavedPortSettings()
+        {
+            SerialDataHandler.PortSettings ps = SerialDataHandler.GetPortSettings();
+
+            if (cboBaud.Items.Contains(ps.BaudRate))
+                cboBaud.SelectedItem = ps.BaudRate;
+            if (cboParity.Items.Contains(ps.Parity))
+                cboParity.SelectedItem = ps.Parity;
+            if (cboDataBits.Items.Contains(ps.DataBits))
+                cboDataBits.SelectedItem = ps.DataBits;
+            if (cboStopBits.Items.Contains(ps.StopBits))
+                cboStopBits.SelectedItem = ps.StopBits;
+
+            // MainForm อาจเริ่มรับข้อมูลเองโดยไม่ผ่านปุ่ม start จึงต้องตั้งค่าให้ด้วย
+            if (_spManager != null && _spManager.CurrentSerialSettings != null)
+            {
+                SerialSettings settings = _spManager.CurrentSerialSettings;
+                settings.BaudRate = ps.BaudRate;
+                settings.Parity = ps.Parity;
+                settings.DataBits = ps.DataBits;
+                settings.StopBits = ps.StopBits;
+            }
+        }
+
+        /// <summary>เก็บค่าที่เลือกอยู่ในคอมโบลง config_serial.txt</summary>
+        private bool SaveCurrentPortSettings()
+        {
+            SerialDataHandler.PortSettings ps = new SerialDataHandler.PortSettings();
+            if (cboBaud.SelectedItem != null)
+                ps.BaudRate = (int)cboBaud.SelectedItem;
+            if (cboParity.SelectedItem != null)
+                ps.Parity = (Parity)cboParity.SelectedItem;
+            if (cboDataBits.SelectedItem != null)
+                ps.DataBits = (int)cboDataBits.SelectedItem;
+            if (cboStopBits.SelectedItem != null)
+                ps.StopBits = (StopBits)cboStopBits.SelectedItem;
+            return SerialDataHandler.SavePortSettings(ps);
+        }
+
+
+
+
+
+
+
     }
 }
