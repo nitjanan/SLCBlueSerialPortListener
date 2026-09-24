@@ -460,6 +460,7 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Weight.cs" />
+    <Compile Include="BillHeader.cs" />
     <Compile Include="ReportMainTemplate.cs" />
     <Compile Include="SerialDataHandler.cs" />
     <Compile Include="WeightDailyReport.cs" />
