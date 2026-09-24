@@ -460,6 +460,8 @@
     </Compile>
     <Compile Include="Utils.cs" />
     <Compile Include="Weight.cs" />
+    <Compile Include="ReportMainTemplate.cs" />
+    <Compile Include="SerialDataHandler.cs" />
     <Compile Include="WeightDailyReport.cs" />
     <Compile Include="weightScoopDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -536,6 +538,22 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ReportMain.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template2.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template3.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template4.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template6.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template9.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template13.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template18.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template19.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template21.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template22.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template23.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template25.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template26.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template27.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template29.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template30.rdlc" />
     <EmbeddedResource Include="ScoopReport.rdlc" />
     <EmbeddedResource Include="SiteReport.rdlc" />
     <EmbeddedResource Include="StoneTypeReport.rdlc" />
