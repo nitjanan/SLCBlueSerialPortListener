@@ -566,8 +566,9 @@ namespace SerialPortListener
             // tbDocNum
             // 
             this.tbDocNum.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbDocNum.BackColor = System.Drawing.Color.LightCyan;
             this.tbDocNum.Enabled = false;
-            this.tbDocNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDocNum.Font = new System.Drawing.Font("Century Gothic", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDocNum.Location = new System.Drawing.Point(118, 24);
             this.tbDocNum.Name = "tbDocNum";
             this.tbDocNum.Size = new System.Drawing.Size(173, 34);
@@ -613,7 +614,7 @@ namespace SerialPortListener
             // 
             this.tbWeightOut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightOut.Enabled = false;
-            this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightOut.Location = new System.Drawing.Point(324, 61);
             this.tbWeightOut.Name = "tbWeightOut";
             this.tbWeightOut.Size = new System.Drawing.Size(124, 30);
@@ -1030,7 +1031,8 @@ namespace SerialPortListener
             this.tbCarLicense.AccessibleDescription = "";
             this.tbCarLicense.AccessibleName = "ทะเบียนรถ";
             this.tbCarLicense.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbCarLicense.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCarLicense.BackColor = System.Drawing.Color.Khaki;
+            this.tbCarLicense.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarLicense.Location = new System.Drawing.Point(113, 134);
             this.tbCarLicense.Name = "tbCarLicense";
             this.tbCarLicense.Size = new System.Drawing.Size(250, 30);
