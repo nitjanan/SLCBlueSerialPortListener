@@ -53,6 +53,7 @@ namespace SerialPortListener
         private static string _timePrint;
         private static string _customerId;
         private static string _scoopName;
+        private static string _lc;
 
         public static string Id
         {
@@ -448,6 +449,13 @@ namespace SerialPortListener
             { return _scoopName; }
             set
             { _scoopName = value; }
+        }
+        public static string LC
+        {
+            get
+            { return _lc; }
+            set
+            { _lc = value; }
         }
     }
 }
