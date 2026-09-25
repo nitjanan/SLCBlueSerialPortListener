@@ -53,7 +53,7 @@ namespace SerialPortListener
             HttpClient client, string baseUrl, string accessToken,
             string machineName, string fromVersion, string toVersion, bool updateApplied,
             string weightStationCode = null, bool sqlApplied = false,
-            string product = "Pink.SLC.W1.OUT.Server")
+            string product = "Pink")
         {
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
