@@ -887,10 +887,10 @@
             this.tbQ.AccessibleName = "คิว";
             this.tbQ.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbQ.Enabled = false;
-            this.tbQ.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbQ.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbQ.Location = new System.Drawing.Point(324, 131);
             this.tbQ.Name = "tbQ";
-            this.tbQ.Size = new System.Drawing.Size(124, 30);
+            this.tbQ.Size = new System.Drawing.Size(124, 31);
             this.tbQ.TabIndex = 39;
             this.tbQ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbQ.Leave += new System.EventHandler(this.tbQ_Leave);
@@ -900,10 +900,10 @@
             this.tbWeightIn.AccessibleName = "น้ำหนักเข้า";
             this.tbWeightIn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightIn.Enabled = false;
-            this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightIn.Location = new System.Drawing.Point(324, 26);
             this.tbWeightIn.Name = "tbWeightIn";
-            this.tbWeightIn.Size = new System.Drawing.Size(124, 30);
+            this.tbWeightIn.Size = new System.Drawing.Size(124, 31);
             this.tbWeightIn.TabIndex = 32;
             this.tbWeightIn.Text = "0.00";
             this.tbWeightIn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -972,10 +972,10 @@
             // 
             this.tbWeightOut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightOut.Enabled = false;
-            this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightOut.Location = new System.Drawing.Point(324, 61);
             this.tbWeightOut.Name = "tbWeightOut";
-            this.tbWeightOut.Size = new System.Drawing.Size(124, 30);
+            this.tbWeightOut.Size = new System.Drawing.Size(124, 31);
             this.tbWeightOut.TabIndex = 36;
             this.tbWeightOut.Text = "0.00";
             this.tbWeightOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
