@@ -219,7 +219,7 @@ namespace SerialPortListener
             this.tbWeightIn.AccessibleName = "น้ำหนักเข้า";
             this.tbWeightIn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightIn.Enabled = false;
-            this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightIn.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightIn.Location = new System.Drawing.Point(324, 26);
             this.tbWeightIn.Name = "tbWeightIn";
             this.tbWeightIn.Size = new System.Drawing.Size(124, 31);
@@ -486,7 +486,7 @@ namespace SerialPortListener
             // 
             this.tbWeightOut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightOut.Enabled = false;
-            this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightOut.Location = new System.Drawing.Point(324, 61);
             this.tbWeightOut.Name = "tbWeightOut";
             this.tbWeightOut.Size = new System.Drawing.Size(124, 31);
@@ -704,10 +704,10 @@ namespace SerialPortListener
             this.tbWeightTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightTotal.BackColor = System.Drawing.SystemColors.Info;
             this.tbWeightTotal.Enabled = false;
-            this.tbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightTotal.Location = new System.Drawing.Point(324, 96);
             this.tbWeightTotal.Name = "tbWeightTotal";
-            this.tbWeightTotal.Size = new System.Drawing.Size(124, 31);
+            this.tbWeightTotal.Size = new System.Drawing.Size(124, 33);
             this.tbWeightTotal.TabIndex = 38;
             this.tbWeightTotal.Text = "0.00";
             this.tbWeightTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1048,7 +1048,7 @@ namespace SerialPortListener
             this.tbQ.AccessibleName = "คิว";
             this.tbQ.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbQ.Enabled = false;
-            this.tbQ.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbQ.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbQ.Location = new System.Drawing.Point(324, 131);
             this.tbQ.Name = "tbQ";
             this.tbQ.Size = new System.Drawing.Size(124, 31);
