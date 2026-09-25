@@ -1330,7 +1330,10 @@ namespace SerialPortListener
             }
             else if (mode.Equals(1))// weight in
             {
-                disableReadWeightIn();
+                if (checkZeroStr(tbWeightIn.Text))
+                    SetBtReadInEnabled(true);
+                else
+                    disableReadWeightIn();
                 dtWeightInDate.Enabled = false;
                 dtWeightInTime.Enabled = false;
 
@@ -1349,7 +1352,10 @@ namespace SerialPortListener
             }
             else if (mode.Equals(2))// weight out
             {
-                disableReadWeightOut();
+                if (checkZeroStr(tbWeightOut.Text))
+                    SetBtReadOutEnabled(true);
+                else
+                    disableReadWeightOut();
                 dtWeightOutDate.Enabled = false;
                 dtWeightOutTime.Enabled = false;
 
