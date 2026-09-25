@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tcReport = new System.Windows.Forms.TabControl();
-            this.lblMainComp = new System.Windows.Forms.Label();
-            this.cbbMainComp = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbbWeightTotal = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
             this.cbbMill = new System.Windows.Forms.ComboBox();
             this.label46 = new System.Windows.Forms.Label();
             this.btPrintBil = new System.Windows.Forms.Button();
@@ -244,9 +244,6 @@
             this.dtToTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.dtFromTransportByTeam = new System.Windows.Forms.DateTimePicker();
             this.btPrintTransportByTeam = new System.Windows.Forms.Button();
-            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
-            this.label57 = new System.Windows.Forms.Label();
-            this.cbbWeightTotal = new System.Windows.Forms.ComboBox();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.cbbDOCutomerName = new System.Windows.Forms.ComboBox();
             this.tbDOCutomerId = new System.Windows.Forms.TextBox();
@@ -257,6 +254,9 @@
             this.dtToDO = new System.Windows.Forms.DateTimePicker();
             this.dtFromDO = new System.Windows.Forms.DateTimePicker();
             this.btPrintDO = new System.Windows.Forms.Button();
+            this.lblMainComp = new System.Windows.Forms.Label();
+            this.cbbMainComp = new System.Windows.Forms.ComboBox();
+            this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
             this.tcReport.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).BeginInit();
@@ -279,28 +279,8 @@
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            this.SuspendLayout();
             this.tabPage17.SuspendLayout();
-            // 
-            // lblMainComp
-            // 
-            this.lblMainComp.AutoSize = true;
-            this.lblMainComp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMainComp.Location = new System.Drawing.Point(9, 8);
-            this.lblMainComp.Name = "lblMainComp";
-            this.lblMainComp.Size = new System.Drawing.Size(124, 21);
-            this.lblMainComp.TabIndex = 100;
-            this.lblMainComp.Text = "หัวกระดาษรายงาน :";
-            // 
-            // cbbMainComp
-            // 
-            this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbMainComp.FormattingEnabled = true;
-            this.cbbMainComp.Location = new System.Drawing.Point(157, 5);
-            this.cbbMainComp.Name = "cbbMainComp";
-            this.cbbMainComp.Size = new System.Drawing.Size(523, 29);
-            this.cbbMainComp.TabIndex = 101;
-            this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
+            this.SuspendLayout();
             // 
             // tcReport
             // 
@@ -325,7 +305,7 @@
             this.tcReport.Location = new System.Drawing.Point(3, 31);
             this.tcReport.Name = "tcReport";
             this.tcReport.SelectedIndex = 0;
-            this.tcReport.Size = new System.Drawing.Size(763, 518);
+            this.tcReport.Size = new System.Drawing.Size(763, 503);
             this.tcReport.TabIndex = 0;
             this.tcReport.SelectedIndexChanged += new System.EventHandler(this.tcReport_SelectedIndexChanged);
             // 
@@ -374,9 +354,37 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(755, 460);
+            this.tabPage1.Size = new System.Drawing.Size(755, 473);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "รายงานการชั่งสินค้าประจำวัน";
+            // 
+            // cbbWeightTotal
+            // 
+            this.cbbWeightTotal.DropDownHeight = 300;
+            this.cbbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbWeightTotal.FormattingEnabled = true;
+            this.cbbWeightTotal.IntegralHeight = false;
+            this.cbbWeightTotal.Items.AddRange(new object[] {
+            "ทั้งหมด",
+            "< 35",
+            ">= 35",
+            "< 37",
+            ">= 37",
+            "< 50",
+            ">= 50"});
+            this.cbbWeightTotal.Location = new System.Drawing.Point(600, 61);
+            this.cbbWeightTotal.Name = "cbbWeightTotal";
+            this.cbbWeightTotal.Size = new System.Drawing.Size(99, 29);
+            this.cbbWeightTotal.TabIndex = 83;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(550, 65);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(58, 20);
+            this.label57.TabIndex = 82;
+            this.label57.Text = "นน.สุทธิ:";
             // 
             // cbbMill
             // 
@@ -408,7 +416,7 @@
             this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintBil.Location = new System.Drawing.Point(573, 426);
+            this.btPrintBil.Location = new System.Drawing.Point(573, 402);
             this.btPrintBil.Name = "btPrintBil";
             this.btPrintBil.Size = new System.Drawing.Size(80, 30);
             this.btPrintBil.TabIndex = 79;
@@ -423,7 +431,7 @@
             this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(487, 426);
+            this.btPrintVRock.Location = new System.Drawing.Point(487, 402);
             this.btPrintVRock.Name = "btPrintVRock";
             this.btPrintVRock.Size = new System.Drawing.Size(80, 30);
             this.btPrintVRock.TabIndex = 78;
@@ -491,7 +499,7 @@
             this.dtFromOut.CustomFormat = "HH:mm";
             this.dtFromOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFromOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFromOut.Location = new System.Drawing.Point(253, 5);
+            this.dtFromOut.Location = new System.Drawing.Point(253, 11);
             this.dtFromOut.Name = "dtFromOut";
             this.dtFromOut.ShowUpDown = true;
             this.dtFromOut.Size = new System.Drawing.Size(120, 27);
@@ -503,7 +511,7 @@
             this.dtToOut.CustomFormat = "HH:mm";
             this.dtToOut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtToOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtToOut.Location = new System.Drawing.Point(600, 5);
+            this.dtToOut.Location = new System.Drawing.Point(600, 11);
             this.dtToOut.Name = "dtToOut";
             this.dtToOut.ShowUpDown = true;
             this.dtToOut.Size = new System.Drawing.Size(99, 27);
@@ -664,7 +672,7 @@
             // 
             this.btExport.Image = global::SerialPortListener.Properties.Resources.microsoft_excel_32px;
             this.btExport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btExport.Location = new System.Drawing.Point(6, 426);
+            this.btExport.Location = new System.Drawing.Point(6, 402);
             this.btExport.Name = "btExport";
             this.btExport.Size = new System.Drawing.Size(78, 30);
             this.btExport.TabIndex = 52;
@@ -720,7 +728,7 @@
             this.dgvDailyReport.DataSource = this.weightBindingSource;
             this.dgvDailyReport.Location = new System.Drawing.Point(6, 114);
             this.dgvDailyReport.Name = "dgvDailyReport";
-            this.dgvDailyReport.Size = new System.Drawing.Size(743, 311);
+            this.dgvDailyReport.Size = new System.Drawing.Size(743, 282);
             this.dgvDailyReport.TabIndex = 51;
             // 
             // วันที่
@@ -999,7 +1007,7 @@
             this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint.Location = new System.Drawing.Point(659, 426);
+            this.btPrint.Location = new System.Drawing.Point(659, 402);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(90, 30);
             this.btPrint.TabIndex = 48;
@@ -1054,7 +1062,7 @@
             this.tabPage13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(755, 460);
+            this.tabPage13.Size = new System.Drawing.Size(755, 473);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "รายงานตามบริษัท";
             // 
@@ -1176,7 +1184,7 @@
             this.tabPage14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage14.Location = new System.Drawing.Point(4, 26);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(755, 460);
+            this.tabPage14.Size = new System.Drawing.Size(755, 473);
             this.tabPage14.TabIndex = 13;
             this.tabPage14.Text = "รายงานตามบริษัทและการขนส่ง";
             // 
@@ -1367,7 +1375,7 @@
             this.tabPage15.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage15.Location = new System.Drawing.Point(4, 26);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(755, 460);
+            this.tabPage15.Size = new System.Drawing.Size(755, 473);
             this.tabPage15.TabIndex = 14;
             this.tabPage15.Text = "รายงานการขนส่ง";
             // 
@@ -1456,7 +1464,7 @@
             this.tabPage16.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage16.Location = new System.Drawing.Point(4, 26);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(755, 460);
+            this.tabPage16.Size = new System.Drawing.Size(755, 473);
             this.tabPage16.TabIndex = 15;
             this.tabPage16.Text = "รายงานแยกตามสินค้า";
             // 
@@ -1592,7 +1600,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(755, 460);
+            this.tabPage2.Size = new System.Drawing.Size(755, 473);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "รายงานการชั่งลูกค้าประจำวันตามลูกค้า";
             // 
@@ -1705,7 +1713,7 @@
             this.tabPage3.Controls.Add(this.btExportInvoice);
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(755, 460);
+            this.tabPage3.Size = new System.Drawing.Size(755, 473);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "รายงานการชั่งประจำงวดใบแจ้งหนี้";
             // 
@@ -1831,7 +1839,7 @@
             this.tabPage4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(755, 460);
+            this.tabPage4.Size = new System.Drawing.Size(755, 473);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "รายงานทะเบียนรถร่วม";
             // 
@@ -1928,7 +1936,7 @@
             this.tabPage5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(755, 460);
+            this.tabPage5.Size = new System.Drawing.Size(755, 473);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "รายงานการตักหินรถตัก";
             // 
@@ -2019,7 +2027,7 @@
             this.tabPage6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage6.Location = new System.Drawing.Point(4, 26);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(755, 460);
+            this.tabPage6.Size = new System.Drawing.Size(755, 473);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "รายงานชื่อทีมรถร่วม";
             // 
@@ -2060,7 +2068,7 @@
             this.tabPage7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage7.Location = new System.Drawing.Point(4, 26);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(755, 460);
+            this.tabPage7.Size = new System.Drawing.Size(755, 473);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "รายงานล้างสเปรย์";
             // 
@@ -2168,7 +2176,7 @@
             this.tabPage8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage8.Location = new System.Drawing.Point(4, 26);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(755, 460);
+            this.tabPage8.Size = new System.Drawing.Size(755, 473);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "รายงานโรงโม่";
             // 
@@ -2177,7 +2185,7 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(160, 94);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(44, 21);
+            this.label16.Size = new System.Drawing.Size(46, 21);
             this.label16.TabIndex = 17;
             this.label16.Text = "โรงโม่";
             // 
@@ -2250,7 +2258,7 @@
             this.tabPage9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage9.Location = new System.Drawing.Point(4, 26);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(755, 460);
+            this.tabPage9.Size = new System.Drawing.Size(755, 473);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "รายงานสรุปแยกหน้างาน";
             // 
@@ -2313,7 +2321,7 @@
             this.tabPage10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage10.Location = new System.Drawing.Point(4, 26);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(755, 460);
+            this.tabPage10.Size = new System.Drawing.Size(755, 473);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "รายงานสรุปตามประเภทหิน";
             // 
@@ -2376,7 +2384,7 @@
             this.tabPage11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage11.Location = new System.Drawing.Point(4, 26);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(755, 460);
+            this.tabPage11.Size = new System.Drawing.Size(755, 473);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "รายงานขนส่ง";
             // 
@@ -2441,7 +2449,7 @@
             this.tabPage12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage12.Location = new System.Drawing.Point(4, 26);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(755, 460);
+            this.tabPage12.Size = new System.Drawing.Size(755, 473);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "รายงานขนส่งตามทีม";
             // 
@@ -2512,87 +2520,6 @@
             this.btPrintTransportByTeam.UseVisualStyleBackColor = true;
             this.btPrintTransportByTeam.Click += new System.EventHandler(this.btPrintTransportByTeam_Click);
             // 
-            // weightTableAdapter
-            // 
-            this.weightTableAdapter.ClearBeforeFill = true;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(550, 65);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(58, 20);
-            this.label57.TabIndex = 82;
-            this.label57.Text = "นน.สุทธิ:";
-            // 
-            // cbbWeightTotal
-            // 
-            this.cbbWeightTotal.DropDownHeight = 300;
-            this.cbbWeightTotal.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbWeightTotal.FormattingEnabled = true;
-            this.cbbWeightTotal.IntegralHeight = false;
-            this.cbbWeightTotal.Items.AddRange(new object[] {
-            "ทั้งหมด",
-            "< 35",
-            ">= 35",
-            "< 37",
-            ">= 37",
-            "< 50",
-            ">= 50"});
-            this.cbbWeightTotal.Location = new System.Drawing.Point(600, 61);
-            this.cbbWeightTotal.Name = "cbbWeightTotal";
-            this.cbbWeightTotal.Size = new System.Drawing.Size(99, 29);
-            this.cbbWeightTotal.TabIndex = 83;
-            // 
-            // ucReport
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblMainComp);
-            this.Controls.Add(this.cbbMainComp);
-            this.Controls.Add(this.tcReport);
-            this.Name = "ucReport";
-            this.Size = new System.Drawing.Size(769, 527);
-            this.Load += new System.EventHandler(this.ucReport_Load);
-            this.tcReport.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).EndInit();
-            this.tabPage13.ResumeLayout(false);
-            this.tabPage13.PerformLayout();
-            this.tabPage14.ResumeLayout(false);
-            this.tabPage14.PerformLayout();
-            this.tabPage15.ResumeLayout(false);
-            this.tabPage15.PerformLayout();
-            this.tabPage16.ResumeLayout(false);
-            this.tabPage16.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.tabPage8.ResumeLayout(false);
-            this.tabPage8.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
-            this.tabPage12.ResumeLayout(false);
-            this.tabPage12.PerformLayout();
-            // 
             // tabPage17
             // 
             this.tabPage17.BackColor = System.Drawing.Color.LightCyan;
@@ -2608,7 +2535,7 @@
             this.tabPage17.Location = new System.Drawing.Point(4, 26);
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage17.Size = new System.Drawing.Size(755, 460);
+            this.tabPage17.Size = new System.Drawing.Size(755, 473);
             this.tabPage17.TabIndex = 12;
             this.tabPage17.Text = "รายงานตามใบส่งสินค้า";
             // 
@@ -2705,9 +2632,83 @@
             this.btPrintDO.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintDO.UseVisualStyleBackColor = true;
             this.btPrintDO.Click += new System.EventHandler(this.btPrintDO_Click);
+            // 
+            // lblMainComp
+            // 
+            this.lblMainComp.AutoSize = true;
+            this.lblMainComp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMainComp.Location = new System.Drawing.Point(9, 8);
+            this.lblMainComp.Name = "lblMainComp";
+            this.lblMainComp.Size = new System.Drawing.Size(124, 21);
+            this.lblMainComp.TabIndex = 0;
+            this.lblMainComp.Text = "หัวกระดาษรายงาน :";
+            // 
+            // cbbMainComp
+            // 
+            this.cbbMainComp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbMainComp.FormattingEnabled = true;
+            this.cbbMainComp.Location = new System.Drawing.Point(157, 5);
+            this.cbbMainComp.Name = "cbbMainComp";
+            this.cbbMainComp.Size = new System.Drawing.Size(523, 29);
+            this.cbbMainComp.TabIndex = 1;
+            this.cbbMainComp.SelectedIndexChanged += new System.EventHandler(this.cbbMainComp_SelectedIndexChanged);
+            // 
+            // weightTableAdapter
+            // 
+            this.weightTableAdapter.ClearBeforeFill = true;
+            // 
+            // ucReport
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblMainComp);
+            this.Controls.Add(this.cbbMainComp);
+            this.Controls.Add(this.tcReport);
+            this.Name = "ucReport";
+            this.Size = new System.Drawing.Size(769, 540);
+            this.Load += new System.EventHandler(this.ucReport_Load);
+            this.tcReport.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDailyReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.weightBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet)).EndInit();
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage14.PerformLayout();
+            this.tabPage15.ResumeLayout(false);
+            this.tabPage15.PerformLayout();
+            this.tabPage16.ResumeLayout(false);
+            this.tabPage16.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage12.PerformLayout();
             this.tabPage17.ResumeLayout(false);
             this.tabPage17.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

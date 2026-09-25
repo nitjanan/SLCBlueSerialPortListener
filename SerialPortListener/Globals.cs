@@ -135,5 +135,15 @@ namespace SerialPortListener
                 return false;
         }
 
+        // สิทธิ auto_weight: ผู้ใช้รายการซื้อไม่ต้องขึ้นชั่งจริง ให้ตั้งน้ำหนักอัตโนมัติ
+        // ใช้กับวิธีอ่านพอร์ตที่เปิด AutoWeight ไว้ (ดู SerialDataHandler)
+        public static Boolean isPermissionAutoWeight()
+        {
+            if (Globals.Permission == Utils.hashPassword("auto_weight"))
+                return true;
+            else
+                return false;
+        }
+
     }
 }

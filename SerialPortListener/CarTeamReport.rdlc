@@ -379,7 +379,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>บริษัท ศิลาชัยสุราษฎร์ จำกัด nonvat</Value>
+                  <Value>=Parameters!PMainComp.Value</Value>
                   <Style>
                     <FontFamily>Angsana New</FontFamily>
                     <FontSize>16pt</FontSize>
@@ -464,6 +464,12 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="PMainComp">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>5cd85752-67e3-4044-82bc-eaa24c8e9cfd</rd:ReportID>
 </Report>

@@ -1,4 +1,4 @@
-using Microsoft.Reporting.WinForms;
+﻿using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +26,7 @@ namespace SerialPortListener
         private void FPrint_Load(object sender, EventArgs e)
         {
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
-                new Microsoft.Reporting.WinForms.ReportParameter("PCompanyName",Company.CompanyName),
+                new Microsoft.Reporting.WinForms.ReportParameter("PCompanyName",GetReportCompanyName()),
                 new Microsoft.Reporting.WinForms.ReportParameter("PAddress",GetReportAddress()),
                 new Microsoft.Reporting.WinForms.ReportParameter("PTelephone",Company.Telephone),
                 new Microsoft.Reporting.WinForms.ReportParameter("PEmail",Company.Email),
@@ -65,6 +65,10 @@ namespace SerialPortListener
                 new Microsoft.Reporting.WinForms.ReportParameter("TEmail",Company.TEmail),
                 new Microsoft.Reporting.WinForms.ReportParameter("TDocName",Company.TDocName),
                 new Microsoft.Reporting.WinForms.ReportParameter("TLogo",Company.TLogo),
+                new Microsoft.Reporting.WinForms.ReportParameter("PScoopName",Weight.ScoopName), //Template 2 ใช้
+                new Microsoft.Reporting.WinForms.ReportParameter("Tiso",Company.Tiso),
+                new Microsoft.Reporting.WinForms.ReportParameter("Plc",Weight.LC), //Template 7 ใช้
+                new Microsoft.Reporting.WinForms.ReportParameter("PNote",Weight.Note), //Template 9,11 ใช้ //Template 4 ใช้
                 new Microsoft.Reporting.WinForms.ReportParameter("PDatePrintAndCopyNum",Weight.DatePrintAndCopyNum),
             };
             //this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
@@ -77,15 +81,43 @@ namespace SerialPortListener
               กระดาษต่อเนื่อง */
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.Standard9x11;
 
-            ps.Margins = new System.Drawing.Printing.Margins(46, 46, 60, 30);
+            // ขนาดกระดาษและขอบมาจากเทมเพลตที่เลือก (หน่วยของ Margins คือ 1/100 นิ้ว)
+            // แบบ A4 ยังได้ค่าเดิม 46,46,60,30 เหมือนก่อนมีระบบเทมเพลต
+            ReportMainTemplate.TemplateInfo tpl = ReportMainTemplate.GetSelectedTemplate();
+            ps.Margins = new System.Drawing.Printing.Margins(
+                (int)Math.Round(tpl.MarginLeftInches * 100),
+                (int)Math.Round(tpl.MarginRightInches * 100),
+                (int)Math.Round(tpl.MarginTopInches * 100),
+                (int)Math.Round(tpl.MarginBottomInches * 100));
+            ps.PaperSize = new System.Drawing.Printing.PaperSize(
+                "ReportMainTemplate" + tpl.Number,
+                (int)Math.Round(tpl.PageWidthInches * 100),
+                (int)Math.Round(tpl.PageHeightInches * 100));
             this.reportViewer1.SetPageSettings(ps);
 
             this.reportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout);
             this.reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;
             this.reportViewer1.Clear();
-            this.reportViewer1.LocalReport.SetParameters(p);
+
+            // เลือกไฟล์ .rdlc ตามเทมเพลตที่ตั้งไว้ในหน้าตั้งค่า (config_reportmain.txt)
+            // ต้องกำหนดก่อน SetParameters เพราะการเปลี่ยน ReportEmbeddedResource จะล้างพารามิเตอร์เดิมทิ้ง
+            this.reportViewer1.LocalReport.ReportEmbeddedResource =
+                ReportMainTemplate.GetReportMainResourceName();
+
+            // เทมเพลตแต่ละแบบประกาศพารามิเตอร์ไม่เท่ากัน (เช่น PScoopName มีเฉพาะใบสลิป
+            // ส่วน PStoneDesc มีเฉพาะแบบมาตรฐาน) ถ้าส่งตัวที่รายงานไม่รู้จักเข้าไปจะเกิด exception
+            this.reportViewer1.LocalReport.SetParameters(
+                ReportMainTemplate.FilterParameters(this.reportViewer1.LocalReport, p));
+
             this.reportViewer1.LocalReport.DisplayName = "ใบชั่งน้ำหนักสินค้า";
             this.reportViewer1.RefreshReport();
+        }
+
+        // ชื่อบริษัทบนหัวกระดาษ - ใช้ค่าที่เลือกจาก cbbMainComp (หน้ารายงาน) ถ้ามี
+        // มิฉะนั้นถอยไปใช้ค่าจากฐานข้อมูลเหมือนเดิม
+        private string GetReportCompanyName()
+        {
+            return string.IsNullOrEmpty(WeightTempReport.MainComp) ? Company.CompanyName : WeightTempReport.MainComp;
         }
 
         private string GetReportAddress()

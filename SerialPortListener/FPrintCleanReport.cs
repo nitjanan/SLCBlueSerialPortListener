@@ -26,6 +26,7 @@ namespace SerialPortListener
             // TODO: This line of code loads data into the 'cleanDataSet.weight' table. You can move, or remove it, as needed.
             //this.weightTableAdapter.Fill(this.cleanDataSet.weight);
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
+                new Microsoft.Reporting.WinForms.ReportParameter("PMainComp",WeightTempReport.MainComp), //set หัวกระดาษรายงาน
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateFrom",WeightTempReport.DateFrom),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateTo",WeightTempReport.DateTo),
             };
