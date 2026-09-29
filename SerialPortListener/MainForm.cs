@@ -973,7 +973,23 @@ namespace SerialPortListener
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ApplyMainFormMode();
+        }
 
+        private void ApplyMainFormMode()
+        {
+            bool krabi = Globals.IsKrabiSTPVersion;
+
+            groupBox5.Visible = krabi;
+            rbShortLine.Visible = krabi;
+            rbLongLine.Visible = krabi;
+            tbWeightOrigin.Visible = krabi;
+            tbQOrigin.Visible = krabi;
+            btSettingLine.Visible = krabi;
+            lbShortTime.Visible = krabi;
+            lbShortWeightTotal.Visible = krabi;
+            lbLongTime.Visible = krabi;
+            lbLongWeightTotal.Visible = krabi;
         }
 
         private void chkDirectPrint_CheckedChanged(object sender, EventArgs e)
