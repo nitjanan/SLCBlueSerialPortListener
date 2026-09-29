@@ -975,6 +975,12 @@ namespace SerialPortListener
         private void MainForm_Load(object sender, EventArgs e)
         {
             ApplyMainFormMode();
+
+            if (Globals.IsKrabiSTPVersion)
+            {
+                CalTimeAndWeightTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
+                CalTimeAndWeightTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
+            }
         }
 
         private void ApplyMainFormMode()
@@ -991,6 +997,163 @@ namespace SerialPortListener
             lbShortWeightTotal.Visible = krabi;
             lbLongTime.Visible = krabi;
             lbLongWeightTotal.Visible = krabi;
+        }
+
+        // Reads one field from the single-row base_setting_line config (id=1). Returns "" if
+        // missing/not found/on any DB error - callers must treat "" as "not configured yet".
+        private string FindBaseSettingLine(string field)
+        {
+            string str = "";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            // field is always one of a small fixed set of internal column-name constants we control
+            // (never user input), so it's safe to interpolate the column name itself here - only
+            // VALUES ever come from parameters.
+            pgCommand.CommandText = "SELECT " + field + " FROM base_setting_line WHERE id = 1";
+
+            dl.connect();
+            try
+            {
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                try
+                {
+                    if (reader.Read())
+                        str = reader[field]?.ToString() ?? "";
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return str;
+        }
+
+        // Upserts one num/weight column pair into the single-row base_setting_line config.
+        private void SaveTimeAndWeight(string columnNum, string columnWeight, string valueNum, string valueWeight)
+        {
+            dl.connect();
+            try
+            {
+                OdbcCommand checkCmd = (OdbcCommand)dl.sqlConn().CreateCommand();
+                checkCmd.CommandText = "SELECT id FROM base_setting_line WHERE id = 1";
+                OdbcDataReader reader = checkCmd.ExecuteReader();
+                bool exists = reader.Read();
+                reader.Close();
+
+                OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand();
+                if (exists)
+                {
+                    // columnNum/columnWeight are always one of our fixed internal constants, never user input
+                    cmd.CommandText = "UPDATE base_setting_line SET " + columnNum + " = ?, " + columnWeight + " = ? WHERE id = 1";
+                }
+                else
+                {
+                    cmd.CommandText = "INSERT INTO base_setting_line (id, " + columnNum + ", " + columnWeight + ") VALUES (1, ?, ?)";
+                }
+                cmd.Parameters.Add("@valueNum", OdbcType.VarChar).Value = valueNum ?? "";
+                cmd.Parameters.Add("@valueWeight", OdbcType.VarChar).Value = valueWeight ?? "";
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+        }
+
+        // Krabi's real segmented-totals computation: a live SQL aggregate per line type
+        // ("สายสั้น" = short, "สายยาว" = long), filtered by an optional cutoff date/time and
+        // optional site name, both read from base_setting_line. Persists the result back into
+        // base_setting_line's num_*/weight_* columns, matching Krabi's original design.
+        // Cutoff null-safety here follows the same principle as LineTypeTotals.IsWithinCutoff, applied inline to the SQL WHERE clause construction.
+        private void CalTimeAndWeightTotalByLineType(string lineType, Label timeLabel, Label weightTotalLabel)
+        {
+            if (!Globals.IsKrabiSTPVersion)
+                return;
+
+            string beginDate = FindBaseSettingLine("base_setting_line_date_from");
+            string beginTime = FindBaseSettingLine("base_setting_line_time_from");
+            string siteName = FindBaseSettingLine("base_site_name");
+
+            string numTime = "0";
+            string sumWeight = "0.000";
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            string sql = "SELECT COUNT(weight_id) AS C, SUM(น้ำหนักสินค้า) AS Q FROM weight WHERE NOT น้ำหนักรวม = '0.00' AND line_type = ?";
+
+            // LineTypeTotals.IsWithinCutoff's null-safety principle applied here: if the cutoff
+            // isn't configured yet (either value empty), don't filter by it at all - just show
+            // today's totals for this line type rather than building a WHERE clause against
+            // missing/empty values.
+            bool hasCutoff = !string.IsNullOrEmpty(beginDate) && !string.IsNullOrEmpty(beginTime);
+            if (hasCutoff)
+                sql += " AND ((วันที่ = ? AND เวลาชั่งออก >= ?) OR วันที่ > ?)";
+            else
+                sql += " AND วันที่ = ?";
+
+            bool hasSiteFilter = !string.IsNullOrEmpty(siteName) && siteName != "ทั้งหมด";
+            if (hasSiteFilter)
+                sql += " AND หน้างาน = ?";
+
+            pgCommand.CommandText = sql;
+            pgCommand.Parameters.Add("@lineType", OdbcType.VarChar).Value = lineType;
+            if (hasCutoff)
+            {
+                pgCommand.Parameters.Add("@beginDate", OdbcType.VarChar).Value = beginDate;
+                pgCommand.Parameters.Add("@beginTime", OdbcType.VarChar).Value = beginTime;
+                pgCommand.Parameters.Add("@beginDate2", OdbcType.VarChar).Value = beginDate;
+            }
+            else
+            {
+                pgCommand.Parameters.Add("@today", OdbcType.VarChar).Value = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+            if (hasSiteFilter)
+                pgCommand.Parameters.Add("@siteName", OdbcType.VarChar).Value = siteName;
+
+            dl.connect();
+            try
+            {
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                try
+                {
+                    if (reader.Read())
+                    {
+                        numTime = reader["C"]?.ToString() ?? "0";
+                        string qStr = reader["Q"]?.ToString() ?? "";
+                        double q;
+                        sumWeight = (!string.IsNullOrEmpty(qStr) && double.TryParse(qStr, out q))
+                            ? q.ToString("#,##0.000")
+                            : "0.000";
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+
+            timeLabel.Text = numTime;
+            weightTotalLabel.Text = sumWeight;
+
+            if (lineType == "สายสั้น")
+                SaveTimeAndWeight("num_short", "weight_short", numTime, sumWeight);
+            else if (lineType == "สายยาว")
+                SaveTimeAndWeight("num_long", "weight_long", numTime, sumWeight);
         }
 
         private void chkDirectPrint_CheckedChanged(object sender, EventArgs e)
@@ -1846,6 +2009,12 @@ namespace SerialPortListener
                 // 3. SAVE (ถ้าผ่านเงื่อนไขด้านบนทั้งหมดแล้ว)
                 // ==========================================
                 await autoSave();
+
+                if (Globals.IsKrabiSTPVersion)
+                {
+                    CalTimeAndWeightTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
+                    CalTimeAndWeightTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
+                }
 
                 //MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
