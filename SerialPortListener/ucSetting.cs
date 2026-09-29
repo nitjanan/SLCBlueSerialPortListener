@@ -101,6 +101,9 @@ namespace SerialPortListener
             InitAutoBackupTimer();
             LoadReportTemplateSetting();
             LoadBillHeaderSetting();
+
+            chkKrabiStpMode.Checked = KrabiStpMode.IsEnabled;
+            chkKrabiStpMode.Enabled = Globals.isPermissionAddSetting();
         }
 
         private void ucSetting_Load(object sender, EventArgs e)
@@ -1779,6 +1782,17 @@ namespace SerialPortListener
                 string savedBillHeader = SaveBillHeaderSetting();
                 if (savedBillHeader == null)
                     return;
+
+                if (Globals.isPermissionAddSetting())
+                {
+                    bool savedKrabiStpMode = KrabiStpMode.Save(chkKrabiStpMode.Checked);
+                    if (savedKrabiStpMode)
+                    {
+                        MessageBox.Show(
+                            "เปลี่ยนโหมดแล้ว กรุณาปิดโปรแกรมและเปิดใหม่เพื่อให้มีผลกับหน้าจอหลัก",
+                            "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
 
                 string done = "บันทึกการตั้งค่าสำเร็จ";
                 if (savedTemplate.Length > 0)

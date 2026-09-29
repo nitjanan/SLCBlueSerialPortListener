@@ -59,6 +59,7 @@
             this.dtpAutoBackupStart = new System.Windows.Forms.DateTimePicker();
             this.lbAutoBackupTimeTo = new System.Windows.Forms.Label();
             this.dtpAutoBackupEnd = new System.Windows.Forms.DateTimePicker();
+            this.chkKrabiStpMode = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btDelScale = new System.Windows.Forms.Button();
             this.btSaveScale = new System.Windows.Forms.Button();
@@ -291,6 +292,7 @@
             this.tabPage13.Controls.Add(this.gbReportTemplate);
             this.tabPage13.Controls.Add(this.btnSaveBackupConfig);
             this.tabPage13.Controls.Add(this.groupBox5);
+            this.tabPage13.Controls.Add(this.chkKrabiStpMode);
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Size = new System.Drawing.Size(761, 466);
@@ -637,7 +639,19 @@
             this.dtpAutoBackupEnd.ShowUpDown = true;
             this.dtpAutoBackupEnd.Size = new System.Drawing.Size(140, 27);
             this.dtpAutoBackupEnd.TabIndex = 12;
-            // 
+            //
+            // chkKrabiStpMode
+            //
+            this.chkKrabiStpMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkKrabiStpMode.AutoSize = true;
+            this.chkKrabiStpMode.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkKrabiStpMode.Location = new System.Drawing.Point(20, 438);
+            this.chkKrabiStpMode.Name = "chkKrabiStpMode";
+            this.chkKrabiStpMode.Size = new System.Drawing.Size(233, 25);
+            this.chkKrabiStpMode.TabIndex = 16;
+            this.chkKrabiStpMode.Text = "Krabi STP Mode (Port Version)";
+            this.chkKrabiStpMode.UseVisualStyleBackColor = true;
+            //
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Lavender;
@@ -2426,6 +2440,7 @@
         private System.Windows.Forms.DateTimePicker dtpAutoBackupStart;
         private System.Windows.Forms.Label lbAutoBackupTimeTo;
         private System.Windows.Forms.DateTimePicker dtpAutoBackupEnd;
+        private System.Windows.Forms.CheckBox chkKrabiStpMode;
         private System.Windows.Forms.Label lblReportTemplate;
         private System.Windows.Forms.ComboBox cboReportTemplate;
         private System.Windows.Forms.Button btPreviewBill;
