@@ -2346,23 +2346,53 @@ namespace SerialPortListener
             StringBuilder sql = new StringBuilder();
             sql.Append("INSERT INTO weight (วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, bws, ");
             sql.Append(" do_id, do_doc_no,");
-            sql.Append(" oil_content, site_id, stone_type_id, mill_id, car_team_id, stone_desc)");
+            sql.Append(" oil_content, site_id, stone_type_id, mill_id, car_team_id");
+            string colListCommon = sql.ToString();
+            string standardCols = colListCommon + ", stone_desc)";
+            string krabiCols = colListCommon + ", origin_weight, origin_q, line_type, stone_desc)";
 
-            sql.Append("VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn));
-            sql.Append("','" + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text);
-            sql.Append("','" + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text);
-            sql.Append("','" + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1));
-            sql.Append("','" + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) , (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 )");
-            sql.Append(" , " + CheckText(tbDoId.Text) + " ,'" + tbDoDocNo.Text + "'");
-            sql.Append(" , '" + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "','" + tbStoneDesc.Text + "' )");
+            StringBuilder vals = new StringBuilder();
+            vals.Append("VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn));
+            vals.Append("','" + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text);
+            vals.Append("','" + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text);
+            vals.Append("','" + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1));
+            vals.Append("','" + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) , (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 )");
+            vals.Append(" , " + CheckText(tbDoId.Text) + " ,'" + tbDoDocNo.Text + "'");
+            vals.Append(" , '" + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "'");
+            string valsCommon = vals.ToString();
+            string standardVals = valsCommon + ",'" + tbStoneDesc.Text + "' )";
+            string krabiVals = valsCommon + ",?,?,?,'" + tbStoneDesc.Text + "' )";
 
-            pgCommand.CommandText = sql.ToString();
+            string standardSql = standardCols + standardVals;
+            string krabiSql = krabiCols + krabiVals;
 
             try
             {
                 dl.connect();
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                isSuccess = runningDocNumberAfterSave();
+                if (Globals.IsKrabiSTPVersion)
+                {
+                    pgCommand.CommandText = krabiSql;
+                    AddOriginParameters(pgCommand);
+                    try
+                    {
+                        OdbcDataReader reader = pgCommand.ExecuteReader();
+                        isSuccess = runningDocNumberAfterSave();
+                    }
+                    catch (Exception ex) when (IsMissingOriginColumnError(ex))
+                    {
+                        System.Diagnostics.Trace.TraceWarning("saveActionOnly: origin_weight/origin_q/line_type columns not found, falling back to Standard insert: " + ex.Message);
+                        pgCommand.Parameters.Clear();
+                        pgCommand.CommandText = standardSql;
+                        OdbcDataReader reader2 = pgCommand.ExecuteReader();
+                        isSuccess = runningDocNumberAfterSave();
+                    }
+                }
+                else
+                {
+                    pgCommand.CommandText = standardSql;
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    isSuccess = runningDocNumberAfterSave();
+                }
             }
             catch (Exception ex)
             {
@@ -2388,19 +2418,45 @@ namespace SerialPortListener
             sql.Append("' , หน้างาน = '" + cbbSite.Text + "' , ทีม = '" + cbbCarTeam.Text + "' , ล้าง = '" + getCleanRadioValue() + "' , ขนส่ง = '" + cbbTransport.Text + "' , carry_type_name = '" + findcarryTypeByTransport() + "' , หมายเหตุ = '" + tbNote.Text + "' , oil_content = '" + numberFormat(tbOilContent.Text, 1));
             sql.Append("' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate());
             sql.Append("' , do_id = " + CheckText(tbDoId.Text) + " , do_doc_no = '" + tbDoDocNo.Text + "'");
-            sql.Append(" , stone_desc = '" + tbStoneDesc.Text + "'");
-            sql.Append(" WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ");
-
-            pgCommand.CommandText = sql.ToString();
+            string commonSql = sql.ToString();
+            string whereClause = " WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
+            string standardSql = commonSql + " , stone_desc = '" + tbStoneDesc.Text + "'" + whereClause;
+            string krabiSql = commonSql + " , origin_weight = ?, origin_q = ?, line_type = ?, stone_desc = '" + tbStoneDesc.Text + "'" + whereClause;
 
             try
             {
                 dl.connect();
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                while (reader.Read())
+                if (Globals.IsKrabiSTPVersion)
                 {
+                    pgCommand.CommandText = krabiSql;
+                    AddOriginParameters(pgCommand);
+                    try
+                    {
+                        OdbcDataReader reader = pgCommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                        }
+                    }
+                    catch (Exception ex) when (IsMissingOriginColumnError(ex))
+                    {
+                        System.Diagnostics.Trace.TraceWarning("updateActionOnly: origin_weight/origin_q/line_type columns not found, falling back to Standard update: " + ex.Message);
+                        pgCommand.Parameters.Clear();
+                        pgCommand.CommandText = standardSql;
+                        OdbcDataReader reader2 = pgCommand.ExecuteReader();
+                        while (reader2.Read())
+                        {
+                        }
+                    }
+                }
+                else
+                {
+                    pgCommand.CommandText = standardSql;
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    while (reader.Read())
+                    {
 
+                    }
                 }
             }
             catch (Exception ex)
@@ -2450,23 +2506,53 @@ namespace SerialPortListener
             StringBuilder sql = new StringBuilder();
             sql.Append("INSERT INTO weight (วันที่, เลขที่เอกสาร, ทะเบียนรถ, จังหวัด, คนขับ, ลูกค้า, น้ำหนักรถ, น้ำหนักรวม, น้ำหนักสินค้า , เลขที่ใบตัก, โรงโม่, ชนิดหิน, จ่ายเงิน, รหัสผู้ชั่ง, รหัสผู้ตัก, ราคาตัน, จำนวณเงิน, ค่าขนส่ง, วันที่ชั่งเข้า, เวลาชั่งเข้า, วันที่ชั่งออก, เวลาชั่งออก, รหัสลูกค้า, ชื่อผู้ชั่ง, ชื่อผู้ตัก, vat, รหัสผู้อนุมัติจ่าย, ชื่อผู้อนุมัติจ่าย, คิว, ชนิดvat, จำนวนเงินสุทธิ, ประเภทหิน, หน้างาน, ทีม, ล้าง, ขนส่ง, หมายเหตุ, carry_type_name, base_weight_station_name, bws, ");
             sql.Append(" do_id, do_doc_no,");
-            sql.Append(" oil_content, site_id, stone_type_id, mill_id, car_team_id, stone_desc)");
+            sql.Append(" oil_content, site_id, stone_type_id, mill_id, car_team_id");
+            string colListCommon = sql.ToString();
+            string standardCols = colListCommon + ", stone_desc)";
+            string krabiCols = colListCommon + ", origin_weight, origin_q, line_type, stone_desc)";
 
-            sql.Append("VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn));
-            sql.Append("','" + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text);
-            sql.Append("','" + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text);
-            sql.Append("','" + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1));
-            sql.Append("','" + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) , (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 )");
-            sql.Append(" , " + CheckText(tbDoId.Text) + " ,'" + tbDoDocNo.Text + "'");
-            sql.Append(" , '" + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "','" + tbStoneDesc.Text + "' )");
+            StringBuilder vals = new StringBuilder();
+            vals.Append("VALUES ('" + dtDate.Value.ToString("yyyy-MM-dd") + "','" + tbDocNum.Text + "','" + tbCarLicense.Text.TrimEnd() + "','" + tbCarCity.Text + "','" + tbDriverName.Text + "','" + tbCustomerName.Text + "','" + kgToTon(tbWeightIn));
+            vals.Append("','" + kgToTon(tbWeightOut) + "','" + kgToTon(tbWeightTotal) + "','" + tbRefNum.Text + "','" + cbbMill.Text + "','" + cbbStoneType.Text + "','" + getPayRadioValue() + "','" + tbScaleId.Text);
+            vals.Append("','" + tbScoopId.Text + "','" + numberFormat(tbPricePerTon.Text, 1) + "','" + numberFormat(tbAmount.Text, 1) + "','" + tbShipCost.Text + "','" + dtWeightInDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightInTime.Text + "','" + dtWeightOutDate.Value.ToString("yyyy-MM-dd") + "','" + dtWeightOutTime.Text);
+            vals.Append("','" + tbCustomerId.Text + "','" + tbScaleName.Text + "','" + tbScoopName.Text + "','" + numberFormat(tbVat.Text, 1) + "','" + tbApproveId.Text + "','" + tbApproveName.Text + "','" + numberFormat(tbQ.Text, 1) + "','" + getVatRadioValue() + "','" + numberFormat(tbAmountVat.Text, 1));
+            vals.Append("','" + cbbStoneColor.Text + "','" + cbbSite.Text + "','" + cbbCarTeam.Text + "','" + getCleanRadioValue() + "','" + cbbTransport.Text + "','" + tbNote.Text + "','" + findcarryTypeByTransport() + "', (SELECT base_weight_station_name FROM base_weight_station WHERE base_weight_station_id = 1 ) , (SELECT code FROM base_weight_station WHERE base_weight_station_id = 1 )");
+            vals.Append(" , " + CheckText(tbDoId.Text) + " ,'" + tbDoDocNo.Text + "'");
+            vals.Append(" , '" + numberFormat(tbOilContent.Text, 1) + "','" + getComboboxId(cbbSite) + "','" + getComboboxId(cbbStoneType) + "','" + getComboboxId(cbbMill) + "','" + getComboboxId(cbbCarTeam) + "'");
+            string valsCommon = vals.ToString();
+            string standardVals = valsCommon + ",'" + tbStoneDesc.Text + "' )";
+            string krabiVals = valsCommon + ",?,?,?,'" + tbStoneDesc.Text + "' )";
 
-            pgCommand.CommandText = sql.ToString();
+            string standardSql = standardCols + standardVals;
+            string krabiSql = krabiCols + krabiVals;
 
             try
             {
                 dl.connect();
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                isSuccess = runningDocNumberAfterSave();
+                if (Globals.IsKrabiSTPVersion)
+                {
+                    pgCommand.CommandText = krabiSql;
+                    AddOriginParameters(pgCommand);
+                    try
+                    {
+                        OdbcDataReader reader = pgCommand.ExecuteReader();
+                        isSuccess = runningDocNumberAfterSave();
+                    }
+                    catch (Exception ex) when (IsMissingOriginColumnError(ex))
+                    {
+                        System.Diagnostics.Trace.TraceWarning("saveAction: origin_weight/origin_q/line_type columns not found, falling back to Standard insert: " + ex.Message);
+                        pgCommand.Parameters.Clear();
+                        pgCommand.CommandText = standardSql;
+                        OdbcDataReader reader2 = pgCommand.ExecuteReader();
+                        isSuccess = runningDocNumberAfterSave();
+                    }
+                }
+                else
+                {
+                    pgCommand.CommandText = standardSql;
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    isSuccess = runningDocNumberAfterSave();
+                }
             }
             catch (Exception ex)
             {
@@ -2543,19 +2629,45 @@ namespace SerialPortListener
             sql.Append("' , หน้างาน = '" + cbbSite.Text + "' , ทีม = '" + cbbCarTeam.Text + "' , ล้าง = '" + getCleanRadioValue() + "' , ขนส่ง = '" + cbbTransport.Text + "' , carry_type_name = '" + findcarryTypeByTransport() + "' , หมายเหตุ = '" + tbNote.Text + "' , oil_content = '" + numberFormat(tbOilContent.Text, 1));
             sql.Append("' , site_id = '" + getComboboxSiteUpdate() + "' , stone_type_id = '" + getComboboxStoneTypeUpdate() + "' , mill_id = '" + getComboboxMillUpdate() + "' , car_team_id = '" + getComboboxCarTeamUpdate());
             sql.Append("' , do_id = " + CheckText(tbDoId.Text) + " , do_doc_no = '" + tbDoDocNo.Text + "'");
-            sql.Append(" , stone_desc = '" + tbStoneDesc.Text + "'");
-            sql.Append(" WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ");
-
-            pgCommand.CommandText = sql.ToString();
+            string commonSql = sql.ToString();
+            string whereClause = " WHERE วันที่ = '" + dtDate.Value.ToString("yyyy-MM-dd") + "' AND weight_id = " + tbId.Text + " ; ";
+            string standardSql = commonSql + " , stone_desc = '" + tbStoneDesc.Text + "'" + whereClause;
+            string krabiSql = commonSql + " , origin_weight = ?, origin_q = ?, line_type = ?, stone_desc = '" + tbStoneDesc.Text + "'" + whereClause;
 
             try
             {
                 dl.connect();
-                OdbcDataReader reader = pgCommand.ExecuteReader();
-                //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                while (reader.Read())
+                if (Globals.IsKrabiSTPVersion)
                 {
+                    pgCommand.CommandText = krabiSql;
+                    AddOriginParameters(pgCommand);
+                    try
+                    {
+                        OdbcDataReader reader = pgCommand.ExecuteReader();
+                        while (reader.Read())
+                        {
+                        }
+                    }
+                    catch (Exception ex) when (IsMissingOriginColumnError(ex))
+                    {
+                        System.Diagnostics.Trace.TraceWarning("updateAction: origin_weight/origin_q/line_type columns not found, falling back to Standard update: " + ex.Message);
+                        pgCommand.Parameters.Clear();
+                        pgCommand.CommandText = standardSql;
+                        OdbcDataReader reader2 = pgCommand.ExecuteReader();
+                        while (reader2.Read())
+                        {
+                        }
+                    }
+                }
+                else
+                {
+                    pgCommand.CommandText = standardSql;
+                    OdbcDataReader reader = pgCommand.ExecuteReader();
+                    //MessageBox.Show("บันทึกเรียบร้อย", "บันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    while (reader.Read())
+                    {
 
+                    }
                 }
             }
             catch (Exception ex)
@@ -3946,6 +4058,38 @@ namespace SerialPortListener
             double deci = tmp / 1000;
             string str = string.Format("{0:0.000}", deci);
             return str;
+        }
+
+        // Ported from Krabi's getLineTypeRadioValue(): the checked radio's own Text
+        // ("สายสั้น"/"สายยาว"), matching the literal values Task 5's segmented-totals
+        // query filters on.
+        private string GetLineTypeRadioValue()
+        {
+            string value = " ";
+            if (rbShortLine.Checked)
+                value = rbShortLine.Text;
+            else if (rbLongLine.Checked)
+                value = rbLongLine.Text;
+            return value;
+        }
+
+        // Krabi-only: adds the 3 origin_weight/origin_q/line_type parameters to an
+        // OdbcCommand whose CommandText contains the 3 "?" placeholders added by the
+        // Krabi variant of an INSERT/UPDATE built above.
+        private void AddOriginParameters(OdbcCommand pgCommand)
+        {
+            pgCommand.Parameters.Add("@originWeight", OdbcType.VarChar).Value = kgToTon(tbWeightOrigin);
+            pgCommand.Parameters.Add("@originQ", OdbcType.VarChar).Value = numberFormat(tbQOrigin.Text, 1);
+            pgCommand.Parameters.Add("@lineType", OdbcType.VarChar).Value = GetLineTypeRadioValue();
+        }
+
+        // Returns true when the exception looks like it's caused by the origin_weight /
+        // origin_q / line_type columns not existing yet (e.g. the Task 8 migration hasn't
+        // run on this database).
+        private bool IsMissingOriginColumnError(Exception ex)
+        {
+            return ex.Message != null &&
+                   ex.Message.IndexOf("origin_weight", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         private void btLoadCustomer_Click(object sender, EventArgs e)
