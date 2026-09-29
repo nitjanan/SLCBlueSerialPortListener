@@ -2080,7 +2080,9 @@
             this.btSettingLine.Location = new System.Drawing.Point(628, 623);
             this.btSettingLine.Name = "btSettingLine";
             this.btSettingLine.Size = new System.Drawing.Size(30, 30);
+            this.btSettingLine.Text = "ตั้งค่า";
             this.btSettingLine.UseVisualStyleBackColor = true;
+            this.btSettingLine.Click += new System.EventHandler(this.btSettingLine_Click);
             this.btSettingLine.Visible = false;
             //
             // lbShortTime

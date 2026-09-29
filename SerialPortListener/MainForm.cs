@@ -1201,6 +1201,25 @@ namespace SerialPortListener
                 SaveTimeAndWeight("num_long", "weight_long", numTime, sumWeight);
         }
 
+        // Public wrapper so FSettingLine (a separate form) can trigger a totals refresh
+        // after saving new cutoff settings, without needing access to MainForm's private methods.
+        public void RefreshLineTypeTotals()
+        {
+            if (!Globals.IsKrabiSTPVersion)
+                return;
+
+            CalTimeAndWeightTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
+            CalTimeAndWeightTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
+        }
+
+        private void btSettingLine_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new FSettingLine(this))
+            {
+                dlg.ShowDialog(this);
+            }
+        }
+
         private void chkDirectPrint_CheckedChanged(object sender, EventArgs e)
         {
             try

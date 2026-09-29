@@ -262,6 +262,12 @@
     <Compile Include="FCancelPassword.Designer.cs">
       <DependentUpon>FCancelPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="FSettingLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FSettingLine.Designer.cs">
+      <DependentUpon>FSettingLine.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -472,6 +478,9 @@
     <EmbeddedResource Include="DailyReport.rdlc" />
     <EmbeddedResource Include="FCancelPassword.resx">
       <DependentUpon>FCancelPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSettingLine.resx">
+      <DependentUpon>FSettingLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrint.resx">
       <DependentUpon>FPrint.cs</DependentUpon>
