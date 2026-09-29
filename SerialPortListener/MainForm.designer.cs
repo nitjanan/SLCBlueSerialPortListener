@@ -30,6 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rbShortLine = new System.Windows.Forms.RadioButton();
+            this.rbLongLine = new System.Windows.Forms.RadioButton();
+            this.tbWeightOrigin = new System.Windows.Forms.TextBox();
+            this.tbQOrigin = new System.Windows.Forms.TextBox();
+            this.btSettingLine = new System.Windows.Forms.Button();
+            this.lbShortTime = new System.Windows.Forms.Label();
+            this.lbShortWeightTotal = new System.Windows.Forms.Label();
+            this.lbLongTime = new System.Windows.Forms.Label();
+            this.lbLongWeightTotal = new System.Windows.Forms.Label();
             this.tbData = new System.Windows.Forms.TextBox();
             this.gbDoc = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -185,6 +195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1996,13 +2007,127 @@
             this.ucBackup.Name = "ucBackup";
             this.ucBackup.Size = new System.Drawing.Size(1208, 696);
             this.ucBackup.TabIndex = 108;
-            // 
+            //
             // serialSettingsBindingSource
-            // 
+            //
             this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
+            //
+            // groupBox5 (Krabi STP mode only; hidden by default, toggled by ApplyMainFormMode)
+            //
+            this.groupBox5.AccessibleName = "ชนิดสาย";
+            this.groupBox5.Controls.Add(this.rbShortLine);
+            this.groupBox5.Controls.Add(this.rbLongLine);
+            this.groupBox5.Location = new System.Drawing.Point(200, 620);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(152, 38);
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Visible = false;
+            //
+            // rbShortLine
+            //
+            this.rbShortLine.AutoSize = true;
+            this.rbShortLine.BackColor = System.Drawing.Color.MintCream;
+            this.rbShortLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbShortLine.Location = new System.Drawing.Point(6, 10);
+            this.rbShortLine.Name = "rbShortLine";
+            this.rbShortLine.Size = new System.Drawing.Size(71, 25);
+            this.rbShortLine.Text = "สายสั้น";
+            this.rbShortLine.UseVisualStyleBackColor = false;
+            this.rbShortLine.Visible = false;
+            //
+            // rbLongLine
+            //
+            this.rbLongLine.AutoSize = true;
+            this.rbLongLine.BackColor = System.Drawing.Color.MintCream;
+            this.rbLongLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbLongLine.Location = new System.Drawing.Point(77, 10);
+            this.rbLongLine.Name = "rbLongLine";
+            this.rbLongLine.Size = new System.Drawing.Size(74, 25);
+            this.rbLongLine.Text = "สายยาว";
+            this.rbLongLine.UseVisualStyleBackColor = false;
+            this.rbLongLine.Visible = false;
+            //
+            // tbWeightOrigin
+            //
+            this.tbWeightOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightOrigin.Location = new System.Drawing.Point(362, 626);
+            this.tbWeightOrigin.Name = "tbWeightOrigin";
+            this.tbWeightOrigin.Size = new System.Drawing.Size(150, 27);
+            this.tbWeightOrigin.Text = "0.00";
+            this.tbWeightOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbWeightOrigin.Visible = false;
+            //
+            // tbQOrigin
+            //
+            this.tbQOrigin.AccessibleName = "คิว";
+            this.tbQOrigin.Enabled = false;
+            this.tbQOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbQOrigin.Location = new System.Drawing.Point(522, 626);
+            this.tbQOrigin.Name = "tbQOrigin";
+            this.tbQOrigin.Size = new System.Drawing.Size(96, 27);
+            this.tbQOrigin.Text = "0.00";
+            this.tbQOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbQOrigin.Visible = false;
+            //
+            // btSettingLine
+            //
+            this.btSettingLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSettingLine.Location = new System.Drawing.Point(628, 623);
+            this.btSettingLine.Name = "btSettingLine";
+            this.btSettingLine.Size = new System.Drawing.Size(30, 30);
+            this.btSettingLine.UseVisualStyleBackColor = true;
+            this.btSettingLine.Visible = false;
+            //
+            // lbShortTime
+            //
+            this.lbShortTime.AutoSize = true;
+            this.lbShortTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbShortTime.Location = new System.Drawing.Point(200, 662);
+            this.lbShortTime.Name = "lbShortTime";
+            this.lbShortTime.Size = new System.Drawing.Size(21, 23);
+            this.lbShortTime.Text = "0";
+            this.lbShortTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbShortTime.Visible = false;
+            //
+            // lbShortWeightTotal
+            //
+            this.lbShortWeightTotal.AutoSize = true;
+            this.lbShortWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbShortWeightTotal.Location = new System.Drawing.Point(230, 662);
+            this.lbShortWeightTotal.Name = "lbShortWeightTotal";
+            this.lbShortWeightTotal.Size = new System.Drawing.Size(59, 23);
+            this.lbShortWeightTotal.Text = "0.000";
+            this.lbShortWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbShortWeightTotal.Visible = false;
+            //
+            // lbLongTime
+            //
+            this.lbLongTime.AutoSize = true;
+            this.lbLongTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbLongTime.Location = new System.Drawing.Point(300, 662);
+            this.lbLongTime.Name = "lbLongTime";
+            this.lbLongTime.Size = new System.Drawing.Size(21, 23);
+            this.lbLongTime.Text = "0";
+            this.lbLongTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbLongTime.Visible = false;
+            //
+            // lbLongWeightTotal
+            //
+            this.lbLongWeightTotal.AutoSize = true;
+            this.lbLongWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbLongWeightTotal.Location = new System.Drawing.Point(330, 662);
+            this.lbLongWeightTotal.Name = "lbLongWeightTotal";
+            this.lbLongWeightTotal.Size = new System.Drawing.Size(59, 23);
+            this.lbLongWeightTotal.Text = "0.000";
+            this.lbLongWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbLongWeightTotal.Visible = false;
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(1208, 696);
@@ -2040,6 +2165,14 @@
             this.Controls.Add(this.ucReport);
             this.Controls.Add(this.ucHelp);
             this.Controls.Add(this.ucBackup);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.tbWeightOrigin);
+            this.Controls.Add(this.tbQOrigin);
+            this.Controls.Add(this.btSettingLine);
+            this.Controls.Add(this.lbShortTime);
+            this.Controls.Add(this.lbShortWeightTotal);
+            this.Controls.Add(this.lbLongTime);
+            this.Controls.Add(this.lbLongWeightTotal);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2049,6 +2182,8 @@
             this.Text = "                                                                                 " +
     "                                                      ";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.gbDoc.ResumeLayout(false);
             this.gbDoc.PerformLayout();
             this.gbCustomer.ResumeLayout(false);
@@ -2225,6 +2360,16 @@
         private System.Windows.Forms.CheckBox chkDirectPrint;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton rbShortLine;
+        private System.Windows.Forms.RadioButton rbLongLine;
+        private System.Windows.Forms.TextBox tbWeightOrigin;
+        private System.Windows.Forms.TextBox tbQOrigin;
+        private System.Windows.Forms.Button btSettingLine;
+        private System.Windows.Forms.Label lbShortTime;
+        private System.Windows.Forms.Label lbShortWeightTotal;
+        private System.Windows.Forms.Label lbLongTime;
+        private System.Windows.Forms.Label lbLongWeightTotal;
     }
 }
 
