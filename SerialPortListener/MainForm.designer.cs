@@ -381,6 +381,7 @@
             this.tbCarLicense.Tag = "";
             this.tbCarLicense.TextChanged += new System.EventHandler(this.tbCarLicense_TextChanged);
             this.tbCarLicense.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbCarLicense_KeyUp);
+            this.tbCarLicense.Leave += new System.EventHandler(this.tbCarLicense_Leave);
             // 
             // tbCarCity
             // 
@@ -2034,6 +2035,8 @@
             this.rbShortLine.Text = "สายสั้น";
             this.rbShortLine.UseVisualStyleBackColor = false;
             this.rbShortLine.Visible = false;
+            this.rbShortLine.CheckedChanged += new System.EventHandler(this.rbShortLine_CheckedChanged);
+            this.rbShortLine.Click += new System.EventHandler(this.rbShortLine_Click);
             //
             // rbLongLine
             //
@@ -2046,6 +2049,8 @@
             this.rbLongLine.Text = "สายยาว";
             this.rbLongLine.UseVisualStyleBackColor = false;
             this.rbLongLine.Visible = false;
+            this.rbLongLine.CheckedChanged += new System.EventHandler(this.rbLongLine_CheckedChanged);
+            this.rbLongLine.Click += new System.EventHandler(this.rbLongLine_Click);
             //
             // tbWeightOrigin
             //

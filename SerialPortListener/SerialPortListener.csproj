@@ -348,6 +348,7 @@
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="KrabiStpMode.cs" />
+    <Compile Include="LineTypeWorkflow.cs" />
     <Compile Include="MigrationRunner.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>

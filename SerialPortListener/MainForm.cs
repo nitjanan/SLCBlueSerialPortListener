@@ -44,6 +44,7 @@ namespace SerialPortListener
         bool isCheckedCleanNo = false;
         bool isCheckedSelfPick = false;
         bool isCheckedSendTo = false;
+        bool isCheckedLineType = false;
         private string lastLimitExceededError = null;
 
         /*1 search anywhere customer */
@@ -4918,6 +4919,113 @@ namespace SerialPortListener
         {
             findLastCityByCarLicense();
             findLastTransportByCarLicense();
+        }
+
+        private void tbCarLicense_Leave(object sender, EventArgs e)
+        {
+            GetWeightInOnShortLine();
+        }
+
+        // Krabi STP short/long line weight-in workflow.
+        private void GetWeightInOnShortLine()
+        {
+            if (!Globals.IsKrabiSTPVersion)
+                return;
+
+            if ((tbCarLicense != null && tbCarLicense.Text != "" && checkZeroStr(tbWeightOut.Text) && rbShortLine.Checked) && tbWeightIn.Enabled)
+            {
+                decimal weightInKg = LineTypeWorkflow.ResolveWeightIn(
+                    tbCarLicense.Text,
+                    isShortLine: true,
+                    lookupTodayWeightIn: LookupTodayWeightInFromDb);
+
+                tbWeightIn.Text = weightInKg.ToString("0.00");
+            }
+            else if ((rbLongLine.Checked || CheckEmptyRadioButton(groupBox5)) && tbWeightIn.Enabled)
+            {
+                tbWeightIn.Text = "0.00";
+            }
+        }
+
+        // Real DB lookup injected into LineTypeWorkflow.ResolveWeightIn. Values are stored in
+        // tons in the DB; converts to kg for the UI via the existing tonTokg() helper.
+        private decimal? LookupTodayWeightInFromDb(string carLicense, DateTime date)
+        {
+            string todayStr = date.ToString("yyyy-MM-dd");
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT น้ำหนักรถ FROM public.weight WHERE วันที่ = ? AND ทะเบียนรถ = ? ORDER BY weight_id DESC LIMIT 1";
+            pgCommand.Parameters.Add("@date", OdbcType.VarChar).Value = todayStr;
+            pgCommand.Parameters.Add("@license", OdbcType.VarChar).Value = carLicense;
+
+            dl.connect();
+            try
+            {
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                try
+                {
+                    if (reader.Read())
+                    {
+                        string tonStr = reader["น้ำหนักรถ"].ToString();
+                        string kgStr = tonTokg(tonStr);
+                        decimal kg;
+                        return decimal.TryParse(kgStr, out kg) ? (decimal?)kg : null;
+                    }
+                    return null;
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            finally
+            {
+                dl.close();
+            }
+        }
+
+        // Ported from Krabi's checkEmtyRadioButton - true if no radio in the group is checked.
+        private bool CheckEmptyRadioButton(GroupBox gb)
+        {
+            var rd = gb.Controls.OfType<RadioButton>().FirstOrDefault(n => n.Checked);
+            return rd == null;
+        }
+
+        private void rbShortLine_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            isCheckedLineType = radio.Checked;
+        }
+
+        private void rbShortLine_Click(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            if (radio.Checked && !isCheckedLineType)
+                radio.Checked = false;
+            else
+            {
+                radio.Checked = true;
+                isCheckedLineType = false;
+            }
+            GetWeightInOnShortLine();
+        }
+
+        private void rbLongLine_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            isCheckedLineType = radio.Checked;
+        }
+
+        private void rbLongLine_Click(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            if (radio.Checked && !isCheckedLineType)
+                radio.Checked = false;
+            else
+            {
+                radio.Checked = true;
+                isCheckedLineType = false;
+            }
+            GetWeightInOnShortLine();
         }
 
         private void findLastCityByCarLicense()
