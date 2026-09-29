@@ -25,9 +25,16 @@
       <HintPath>..\packages\MSTest.TestFramework.2.2.10\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KrabiStpModeTests.cs" />
+    <Compile Include="..\SerialPortListener\KrabiStpMode.cs">
+      <Link>KrabiStpMode.cs</Link>
+    </Compile>
+    <Compile Include="..\SerialPortListener\Utils.cs">
+      <Link>Utils.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MSTest.TestAdapter.2.2.10\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.10\build\net45\MSTest.TestAdapter.props')" />
