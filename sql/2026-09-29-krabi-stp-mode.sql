@@ -7,7 +7,7 @@ ALTER TABLE weight ADD COLUMN IF NOT EXISTS origin_weight numeric;
 ALTER TABLE weight ADD COLUMN IF NOT EXISTS origin_q numeric;
 
 CREATE TABLE IF NOT EXISTS base_setting_line (
-    id serial PRIMARY KEY,
+    base_setting_line_id serial PRIMARY KEY,
     base_setting_line_date_from date NULL,
     base_setting_line_time_from time NULL
 );

@@ -29,7 +29,7 @@ namespace SerialPortListener
         private void setDataSetting()
         {
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * from base_setting_line WHERE id = 1";
+            pgCommand.CommandText = "SELECT * from base_setting_line WHERE base_setting_line_id = 1";
             try
             {
                 dl.connect();
@@ -115,7 +115,7 @@ namespace SerialPortListener
             string siteName = cbbSite.Text;
 
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT id from base_setting_line WHERE id = 1";
+            pgCommand.CommandText = "SELECT base_setting_line_id from base_setting_line WHERE base_setting_line_id = 1";
             try
             {
                 dl.connect();
@@ -128,21 +128,22 @@ namespace SerialPortListener
                 //update
                 if (hasRows)
                 {
-                    pgCommand.CommandText = "UPDATE base_setting_line SET base_setting_line_date_from = ? , base_setting_line_time_from = ? , base_site_name = ? WHERE id = 1";
+                    pgCommand.CommandText = "UPDATE base_setting_line SET base_setting_line_date_from = ? , base_setting_line_time_from = ? , base_site_name = ? WHERE base_setting_line_id = 1";
                 }
                 //save
                 else
                 {
-                    pgCommand.CommandText = "INSERT into base_setting_line (id, base_setting_line_date_from, base_setting_line_time_from, base_site_name) VALUES (1, ?, ?, ? )";
+                    pgCommand.CommandText = "INSERT into base_setting_line (base_setting_line_id, base_setting_line_date_from, base_setting_line_time_from, base_site_name) VALUES (1, ?, ?, ? )";
                 }
                 pgCommand.Parameters.Add("@dateFrom", OdbcType.VarChar).Value = dateFrom;
                 pgCommand.Parameters.Add("@timeFrom", OdbcType.VarChar).Value = timeFrom;
                 pgCommand.Parameters.Add("@siteName", OdbcType.VarChar).Value = siteName;
                 pgCommand.ExecuteNonQuery();
+                MessageBox.Show("บันทึกเรียบร้อย", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
-
+                MessageBox.Show("บันทึกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             dl.close();
 

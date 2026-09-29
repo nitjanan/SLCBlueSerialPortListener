@@ -462,6 +462,13 @@ namespace SerialPortListener
             dtWeightInTime.Text = DateTime.Now.ToShortTimeString();
             dtWeightOutTime.Text = DateTime.Now.ToShortTimeString();
             tbQ.Text = "0.00";
+            if (Globals.IsKrabiSTPVersion)
+            {
+                rbShortLine.Checked = false;
+                rbLongLine.Checked = false;
+                tbWeightOrigin.Text = "0.00";
+                tbQOrigin.Text = "0.00";
+            }
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
             rbCleanStone.Checked = false;
@@ -813,6 +820,12 @@ namespace SerialPortListener
             setDataPayToRB(data.payType);
             setDataVatToRB(data.vatType);
             setDataCleanToRB(data.clean);
+            if (Globals.IsKrabiSTPVersion)
+            {
+                tbWeightOrigin.Text = tonTokg(string.IsNullOrEmpty(data.weightOrigin) ? "0" : data.weightOrigin);
+                tbQOrigin.Text = numberFormat(string.IsNullOrEmpty(data.qOrigin) ? "0" : data.qOrigin, 2);
+                SetDataLineTypeToRB(data.lineType);
+            }
             //ดึงหน้างาน
             fillSiteCombo();
             cbbSite.Text = data.site;
@@ -984,6 +997,18 @@ namespace SerialPortListener
                 rbCleanNo.Checked = true;
         }
 
+        // Krabi STP mode: sets the short/long line radio buttons from a loaded record's
+        // line_type value. Ported from Krabi's original setDataLineTypeToRB.
+        private void SetDataLineTypeToRB(string dataLine)
+        {
+            if (string.IsNullOrEmpty(dataLine))
+                return;
+            if (dataLine.Equals("สายสั้น"))
+                rbShortLine.Checked = true;
+            else if (dataLine.Equals("สายยาว"))
+                rbLongLine.Checked = true;
+        }
+
         private void setDefaultFromDB(string username, String firstname)
         {
             btMenu2.BackColor = Color.LightSkyBlue;
@@ -1042,6 +1067,10 @@ namespace SerialPortListener
             lbShortWeightTotal.Visible = krabi;
             lbLongTime.Visible = krabi;
             lbLongWeightTotal.Visible = krabi;
+            lbOrigin.Visible = krabi;
+            lbQOrigin.Visible = krabi;
+            lbShortCaption.Visible = krabi;
+            lbLongCaption.Visible = krabi;
         }
 
         // Reads one field from the single-row base_setting_line config (id=1). Returns "" if
@@ -1053,7 +1082,7 @@ namespace SerialPortListener
             // field is always one of a small fixed set of internal column-name constants we control
             // (never user input), so it's safe to interpolate the column name itself here - only
             // VALUES ever come from parameters.
-            pgCommand.CommandText = "SELECT " + field + " FROM base_setting_line WHERE id = 1";
+            pgCommand.CommandText = "SELECT " + field + " FROM base_setting_line WHERE base_setting_line_id = 1";
 
             dl.connect();
             try
@@ -1079,6 +1108,40 @@ namespace SerialPortListener
             return str;
         }
 
+        // Reads base_setting_line_date_from (a `date`-typed column) formatted as yyyy-MM-dd text
+        // via SQL to_char(), so the result is not culture/locale-dependent like
+        // reader[field].ToString() would be. Returns "" if missing/not found/on any DB error.
+        private string FindBaseSettingLineDate()
+        {
+            string field = "base_setting_line_date_from";
+            string str = "";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT to_char(" + field + ", 'YYYY-MM-DD') FROM base_setting_line WHERE base_setting_line_id = 1";
+
+            dl.connect();
+            try
+            {
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                try
+                {
+                    if (reader.Read())
+                        str = reader[0]?.ToString() ?? "";
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return str;
+        }
+
         // Upserts one num/weight column pair into the single-row base_setting_line config.
         private void SaveTimeAndWeight(string columnNum, string columnWeight, string valueNum, string valueWeight)
         {
@@ -1086,7 +1149,7 @@ namespace SerialPortListener
             try
             {
                 OdbcCommand checkCmd = (OdbcCommand)dl.sqlConn().CreateCommand();
-                checkCmd.CommandText = "SELECT id FROM base_setting_line WHERE id = 1";
+                checkCmd.CommandText = "SELECT base_setting_line_id FROM base_setting_line WHERE base_setting_line_id = 1";
                 OdbcDataReader reader = checkCmd.ExecuteReader();
                 bool exists = reader.Read();
                 reader.Close();
@@ -1095,11 +1158,11 @@ namespace SerialPortListener
                 if (exists)
                 {
                     // columnNum/columnWeight are always one of our fixed internal constants, never user input
-                    cmd.CommandText = "UPDATE base_setting_line SET " + columnNum + " = ?, " + columnWeight + " = ? WHERE id = 1";
+                    cmd.CommandText = "UPDATE base_setting_line SET " + columnNum + " = ?, " + columnWeight + " = ? WHERE base_setting_line_id = 1";
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO base_setting_line (id, " + columnNum + ", " + columnWeight + ") VALUES (1, ?, ?)";
+                    cmd.CommandText = "INSERT INTO base_setting_line (base_setting_line_id, " + columnNum + ", " + columnWeight + ") VALUES (1, ?, ?)";
                 }
                 cmd.Parameters.Add("@valueNum", OdbcType.VarChar).Value = valueNum ?? "";
                 cmd.Parameters.Add("@valueWeight", OdbcType.VarChar).Value = valueWeight ?? "";
@@ -1124,7 +1187,7 @@ namespace SerialPortListener
             if (!Globals.IsKrabiSTPVersion)
                 return;
 
-            string beginDate = FindBaseSettingLine("base_setting_line_date_from");
+            string beginDate = FindBaseSettingLineDate();
             string beginTime = FindBaseSettingLine("base_setting_line_time_from");
             string siteName = FindBaseSettingLine("base_site_name");
 
@@ -4392,6 +4455,19 @@ namespace SerialPortListener
         private void tbQ_Leave(object sender, EventArgs e)
         {
             convertFormatToDecimal(tbQ);
+        }
+
+        // Krabi STP mode: normalize origin weight/qty on leave the same way other weight
+        // textboxes do, so AddOriginParameters's kgToTon(tbWeightOrigin) call can never
+        // throw on empty/non-numeric text.
+        private void tbWeightOrigin_Leave(object sender, EventArgs e)
+        {
+            convertFormatToDecimal(tbWeightOrigin);
+        }
+
+        private void tbQOrigin_Leave(object sender, EventArgs e)
+        {
+            convertFormatToDecimal(tbQOrigin);
         }
 
         private void tbWeightOut_TextChanged(object sender, EventArgs e)

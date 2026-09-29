@@ -13,7 +13,11 @@ namespace SerialPortListener
         private const string Key = "IsKrabiSTPVersion";
 
         // Test-only seam: when set, config lives here instead of Utils.AppDataDir.
+        // Only ever assigned via test code/reflection, so the compiler can't see it
+        // being written from production paths - CS0649 here is expected and harmless.
+#pragma warning disable 649
         internal static string ConfigDirOverride;
+#pragma warning restore 649
 
         private static string ConfigDir
         {
@@ -25,39 +29,50 @@ namespace SerialPortListener
             get { return Path.Combine(ConfigDir, FileName); }
         }
 
+        private static bool? _cachedValue;
+
         public static bool IsEnabled
         {
             get
             {
-                try
-                {
-                    if (!File.Exists(ConfigPath))
-                        return false;
+                if (_cachedValue.HasValue)
+                    return _cachedValue.Value;
 
-                    foreach (string line in File.ReadAllLines(ConfigPath))
-                    {
-                        int idx = line.IndexOf('=');
-                        if (idx <= 0)
-                            continue;
-
-                        string key = line.Substring(0, idx).Trim();
-                        if (!string.Equals(key, Key, StringComparison.OrdinalIgnoreCase))
-                            continue;
-
-                        bool value;
-                        if (bool.TryParse(line.Substring(idx + 1).Trim(), out value))
-                            return value;
-
-                        return false; // key present but value unparseable
-                    }
-                }
-                catch (Exception)
-                {
-                    // Missing permissions, locked file, etc. - never block startup.
-                }
-
-                return false;
+                _cachedValue = ComputeIsEnabled();
+                return _cachedValue.Value;
             }
+        }
+
+        private static bool ComputeIsEnabled()
+        {
+            try
+            {
+                if (!File.Exists(ConfigPath))
+                    return false;
+
+                foreach (string line in File.ReadAllLines(ConfigPath))
+                {
+                    int idx = line.IndexOf('=');
+                    if (idx <= 0)
+                        continue;
+
+                    string key = line.Substring(0, idx).Trim();
+                    if (!string.Equals(key, Key, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    bool value;
+                    if (bool.TryParse(line.Substring(idx + 1).Trim(), out value))
+                        return value;
+
+                    return false; // key present but value unparseable
+                }
+            }
+            catch (Exception)
+            {
+                // Missing permissions, locked file, etc. - never block startup.
+            }
+
+            return false;
         }
 
         public static bool Save(bool enabled)
@@ -92,12 +107,20 @@ namespace SerialPortListener
                     lines.Add(Key + "=" + enabled);
 
                 File.WriteAllLines(ConfigPath, lines.ToArray());
+                _cachedValue = enabled;
                 return true;
             }
             catch (Exception)
             {
                 return false;
             }
+        }
+
+        // Test-only seam: clears the cached value so tests can exercise ComputeIsEnabled again
+        // after swapping ConfigDirOverride.
+        internal static void ResetCacheForTests()
+        {
+            _cachedValue = null;
         }
     }
 }

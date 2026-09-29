@@ -65,6 +65,11 @@ namespace SerialPortListener
             public String doId;
             public String doDocNo;
             public String stone_desc;
+            // Krabi STP mode fields - read from base_setting_line/weight columns added by
+            // the Krabi STP migration; empty on Standard installs.
+            public String weightOrigin;
+            public String qOrigin;
+            public String lineType;
         }
         public TableFromDB(MainForm parent)
         {
@@ -223,6 +228,25 @@ namespace SerialPortListener
                     data.stone_desc = "";
                 }
 
+                if (Globals.IsKrabiSTPVersion)
+                {
+                    try
+                    {
+                        var rowView = tableDataFromDB.CurrentRow.DataBoundItem as System.Data.DataRowView;
+                        if (rowView != null && rowView.Row.Table.Columns.Contains("origin_weight"))
+                            data.weightOrigin = rowView.Row["origin_weight"] == DBNull.Value ? "" : rowView.Row["origin_weight"].ToString();
+                        if (rowView != null && rowView.Row.Table.Columns.Contains("origin_q"))
+                            data.qOrigin = rowView.Row["origin_q"] == DBNull.Value ? "" : rowView.Row["origin_q"].ToString();
+                        if (rowView != null && rowView.Row.Table.Columns.Contains("line_type"))
+                            data.lineType = rowView.Row["line_type"] == DBNull.Value ? "" : rowView.Row["line_type"].ToString();
+                    }
+                    catch
+                    {
+                        data.weightOrigin = "";
+                        data.qOrigin = "";
+                        data.lineType = "";
+                    }
+                }
 
                 //set Mode Weight
                 /*

@@ -1,6 +1,6 @@
 using System;
 using System.Data.Odbc;
-using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace SerialPortListener
@@ -14,14 +14,27 @@ namespace SerialPortListener
         {
             try
             {
-                string sqlPath = Path.Combine(
-                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                    "sql", "2026-09-29-krabi-stp-mode.sql");
+                // Skip entirely if already applied - avoids taking a table lock on every single
+                // startup once the migration has already run once.
+                OdbcCommand checkCmd = connection.CreateCommand();
+                checkCmd.CommandText = "SELECT column_name FROM information_schema.columns WHERE table_name = 'weight' AND column_name = 'origin_weight'";
+                object result = checkCmd.ExecuteScalar();
+                if (result != null)
+                    return; // already migrated
 
-                if (!File.Exists(sqlPath))
+                string sql;
+                var assembly = Assembly.GetExecutingAssembly();
+                string resourceName = assembly.GetManifestResourceNames()
+                    .FirstOrDefault(n => n.EndsWith("2026-09-29-krabi-stp-mode.sql", StringComparison.OrdinalIgnoreCase));
+                if (resourceName == null)
                     return;
 
-                string sql = File.ReadAllText(sqlPath);
+                using (var stream = assembly.GetManifestResourceStream(resourceName))
+                using (var reader = new System.IO.StreamReader(stream))
+                {
+                    sql = reader.ReadToEnd();
+                }
+
                 OdbcCommand cmd = connection.CreateCommand();
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();

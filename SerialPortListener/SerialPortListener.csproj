@@ -612,10 +612,9 @@
     <EmbeddedResource Include="ReportMain_Template30.rdlc" />
     <None Include="app.config" />
     <None Include="app.manifest" />
-    <Content Include="..\sql\2026-09-29-krabi-stp-mode.sql">
+    <EmbeddedResource Include="..\sql\2026-09-29-krabi-stp-mode.sql">
       <Link>sql\2026-09-29-krabi-stp-mode.sql</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <None Include="baseApproveDataSet.xsc">
       <DependentUpon>baseApproveDataSet.xsd</DependentUpon>
     </None>

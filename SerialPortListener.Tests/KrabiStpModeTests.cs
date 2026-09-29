@@ -16,12 +16,14 @@ namespace SerialPortListener.Tests
             _tempDir = Path.Combine(Path.GetTempPath(), "KrabiStpModeTests_" + Guid.NewGuid());
             Directory.CreateDirectory(_tempDir);
             KrabiStpMode.ConfigDirOverride = _tempDir;
+            KrabiStpMode.ResetCacheForTests();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
             KrabiStpMode.ConfigDirOverride = null;
+            KrabiStpMode.ResetCacheForTests();
             if (Directory.Exists(_tempDir))
                 Directory.Delete(_tempDir, true);
         }

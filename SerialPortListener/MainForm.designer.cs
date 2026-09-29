@@ -40,6 +40,10 @@
             this.lbShortWeightTotal = new System.Windows.Forms.Label();
             this.lbLongTime = new System.Windows.Forms.Label();
             this.lbLongWeightTotal = new System.Windows.Forms.Label();
+            this.lbOrigin = new System.Windows.Forms.Label();
+            this.lbQOrigin = new System.Windows.Forms.Label();
+            this.lbShortCaption = new System.Windows.Forms.Label();
+            this.lbLongCaption = new System.Windows.Forms.Label();
             this.tbData = new System.Windows.Forms.TextBox();
             this.gbDoc = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -2061,11 +2065,12 @@
             this.tbWeightOrigin.Text = "0.00";
             this.tbWeightOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbWeightOrigin.Visible = false;
+            this.tbWeightOrigin.Leave += new System.EventHandler(this.tbWeightOrigin_Leave);
             //
             // tbQOrigin
             //
             this.tbQOrigin.AccessibleName = "คิว";
-            this.tbQOrigin.Enabled = false;
+            this.tbQOrigin.Enabled = true;
             this.tbQOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbQOrigin.Location = new System.Drawing.Point(522, 626);
             this.tbQOrigin.Name = "tbQOrigin";
@@ -2073,13 +2078,14 @@
             this.tbQOrigin.Text = "0.00";
             this.tbQOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbQOrigin.Visible = false;
+            this.tbQOrigin.Leave += new System.EventHandler(this.tbQOrigin_Leave);
             //
             // btSettingLine
             //
-            this.btSettingLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSettingLine.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSettingLine.Location = new System.Drawing.Point(628, 623);
             this.btSettingLine.Name = "btSettingLine";
-            this.btSettingLine.Size = new System.Drawing.Size(30, 30);
+            this.btSettingLine.Size = new System.Drawing.Size(60, 30);
             this.btSettingLine.Text = "ตั้งค่า";
             this.btSettingLine.UseVisualStyleBackColor = true;
             this.btSettingLine.Click += new System.EventHandler(this.btSettingLine_Click);
@@ -2133,6 +2139,46 @@
             this.lbLongWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lbLongWeightTotal.Visible = false;
             //
+            // lbOrigin
+            //
+            this.lbOrigin.AutoSize = true;
+            this.lbOrigin.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOrigin.Location = new System.Drawing.Point(362, 608);
+            this.lbOrigin.Name = "lbOrigin";
+            this.lbOrigin.Size = new System.Drawing.Size(92, 15);
+            this.lbOrigin.Text = "น้ำหนักสุทธิต้นทาง";
+            this.lbOrigin.Visible = false;
+            //
+            // lbQOrigin
+            //
+            this.lbQOrigin.AutoSize = true;
+            this.lbQOrigin.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbQOrigin.Location = new System.Drawing.Point(522, 608);
+            this.lbQOrigin.Name = "lbQOrigin";
+            this.lbQOrigin.Size = new System.Drawing.Size(19, 15);
+            this.lbQOrigin.Text = "คิว";
+            this.lbQOrigin.Visible = false;
+            //
+            // lbShortCaption
+            //
+            this.lbShortCaption.AutoSize = true;
+            this.lbShortCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortCaption.Location = new System.Drawing.Point(200, 640);
+            this.lbShortCaption.Name = "lbShortCaption";
+            this.lbShortCaption.Size = new System.Drawing.Size(30, 17);
+            this.lbShortCaption.Text = "สั้น";
+            this.lbShortCaption.Visible = false;
+            //
+            // lbLongCaption
+            //
+            this.lbLongCaption.AutoSize = true;
+            this.lbLongCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongCaption.Location = new System.Drawing.Point(300, 640);
+            this.lbLongCaption.Name = "lbLongCaption";
+            this.lbLongCaption.Size = new System.Drawing.Size(30, 17);
+            this.lbLongCaption.Text = "ยาว";
+            this.lbLongCaption.Visible = false;
+            //
             // MainForm
             //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2180,6 +2226,10 @@
             this.Controls.Add(this.lbShortWeightTotal);
             this.Controls.Add(this.lbLongTime);
             this.Controls.Add(this.lbLongWeightTotal);
+            this.Controls.Add(this.lbOrigin);
+            this.Controls.Add(this.lbQOrigin);
+            this.Controls.Add(this.lbShortCaption);
+            this.Controls.Add(this.lbLongCaption);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2377,6 +2427,10 @@
         private System.Windows.Forms.Label lbShortWeightTotal;
         private System.Windows.Forms.Label lbLongTime;
         private System.Windows.Forms.Label lbLongWeightTotal;
+        private System.Windows.Forms.Label lbOrigin;
+        private System.Windows.Forms.Label lbQOrigin;
+        private System.Windows.Forms.Label lbShortCaption;
+        private System.Windows.Forms.Label lbLongCaption;
     }
 }
 
