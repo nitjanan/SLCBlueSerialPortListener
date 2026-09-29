@@ -103,6 +103,10 @@ namespace SerialPortListener
             }
         }
 
+        public static bool IsKrabiSTPVersion
+        {
+            get { return KrabiStpMode.IsEnabled; }
+        }
 
         public static Boolean isPermissionTop() {
             if (Globals.Permission == Utils.hashPassword("admin"))

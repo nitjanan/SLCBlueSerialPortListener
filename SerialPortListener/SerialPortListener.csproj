@@ -347,6 +347,7 @@
       <DependentUpon>FPrintWeightDelivery.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
+    <Compile Include="KrabiStpMode.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
