@@ -435,8 +435,7 @@ namespace SerialPortListener
             // login admin ให้เปลี่ยน
             if (Globals.isPermissionEditWeight())
             {
-                tbScaleId.Text = "003";
-                tbScaleName.Text = "รุ่งฤดี";
+                AssignDefaultScaleUser();
             }
             else
             {
@@ -515,6 +514,52 @@ namespace SerialPortListener
             cbbStoneType.Text = "";
             tbStoneDesc.Text = "";
             cbbSite.Enabled = true;
+        }
+
+        private void AssignDefaultScaleUser()
+        {
+            if (Globals.IsKrabiSTPVersion)
+            {
+                GetAndSetFirstUser();
+            }
+            else
+            {
+                tbScaleId.Text = "003";
+                tbScaleName.Text = "รุ่งฤดี";
+            }
+        }
+
+        // Ported from Krabi's getAndSetFirstUser(): looks up the first row in the users
+        // table (ordered by users_id) and assigns it as the default scale user.
+        private void GetAndSetFirstUser()
+        {
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT username, firstname FROM users ORDER BY users_id ASC LIMIT 1";
+
+            dl.connect();
+            try
+            {
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                try
+                {
+                    if (reader.Read())
+                    {
+                        tbScaleId.Text = reader["username"].ToString();
+                        tbScaleName.Text = reader["firstname"].ToString();
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
         }
 
         public void runningDocNumber()
