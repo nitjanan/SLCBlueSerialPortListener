@@ -2028,7 +2028,7 @@
             this.groupBox5.AccessibleName = "ชนิดสาย";
             this.groupBox5.Controls.Add(this.rbShortLine);
             this.groupBox5.Controls.Add(this.rbLongLine);
-            this.groupBox5.Location = new System.Drawing.Point(200, 620);
+            this.groupBox5.Location = new System.Drawing.Point(200, 642);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(152, 38);
             this.groupBox5.TabStop = false;
@@ -2065,7 +2065,7 @@
             // tbWeightOrigin
             //
             this.tbWeightOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightOrigin.Location = new System.Drawing.Point(362, 626);
+            this.tbWeightOrigin.Location = new System.Drawing.Point(362, 645);
             this.tbWeightOrigin.Name = "tbWeightOrigin";
             this.tbWeightOrigin.Size = new System.Drawing.Size(150, 27);
             this.tbWeightOrigin.Text = "0.00";
@@ -2078,7 +2078,7 @@
             this.tbQOrigin.AccessibleName = "คิว";
             this.tbQOrigin.Enabled = true;
             this.tbQOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbQOrigin.Location = new System.Drawing.Point(522, 626);
+            this.tbQOrigin.Location = new System.Drawing.Point(522, 645);
             this.tbQOrigin.Name = "tbQOrigin";
             this.tbQOrigin.Size = new System.Drawing.Size(96, 27);
             this.tbQOrigin.Text = "0.00";
@@ -2089,7 +2089,7 @@
             // btSettingLine
             //
             this.btSettingLine.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSettingLine.Location = new System.Drawing.Point(628, 623);
+            this.btSettingLine.Location = new System.Drawing.Point(628, 642);
             this.btSettingLine.Name = "btSettingLine";
             this.btSettingLine.Size = new System.Drawing.Size(60, 30);
             this.btSettingLine.Text = "ตั้งค่า";
@@ -2103,7 +2103,7 @@
             this.lbShortTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbShortTime.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbShortTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbShortTime.Location = new System.Drawing.Point(250, 678);
+            this.lbShortTime.Location = new System.Drawing.Point(250, 702);
             this.lbShortTime.Name = "lbShortTime";
             this.lbShortTime.Size = new System.Drawing.Size(85, 18);
             this.lbShortTime.Text = "0";
@@ -2116,7 +2116,7 @@
             this.lbShortWeightTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbShortWeightTotal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbShortWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbShortWeightTotal.Location = new System.Drawing.Point(335, 678);
+            this.lbShortWeightTotal.Location = new System.Drawing.Point(335, 702);
             this.lbShortWeightTotal.Name = "lbShortWeightTotal";
             this.lbShortWeightTotal.Size = new System.Drawing.Size(110, 18);
             this.lbShortWeightTotal.Text = "0.000";
@@ -2129,7 +2129,7 @@
             this.lbLongTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbLongTime.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLongTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbLongTime.Location = new System.Drawing.Point(250, 696);
+            this.lbLongTime.Location = new System.Drawing.Point(250, 720);
             this.lbLongTime.Name = "lbLongTime";
             this.lbLongTime.Size = new System.Drawing.Size(85, 18);
             this.lbLongTime.Text = "0";
@@ -2142,7 +2142,7 @@
             this.lbLongWeightTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbLongWeightTotal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLongWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbLongWeightTotal.Location = new System.Drawing.Point(335, 696);
+            this.lbLongWeightTotal.Location = new System.Drawing.Point(335, 720);
             this.lbLongWeightTotal.Name = "lbLongWeightTotal";
             this.lbLongWeightTotal.Size = new System.Drawing.Size(110, 18);
             this.lbLongWeightTotal.Text = "0.000";
@@ -2153,7 +2153,7 @@
             //
             this.lbOrigin.AutoSize = true;
             this.lbOrigin.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOrigin.Location = new System.Drawing.Point(362, 608);
+            this.lbOrigin.Location = new System.Drawing.Point(362, 624);
             this.lbOrigin.Name = "lbOrigin";
             this.lbOrigin.Size = new System.Drawing.Size(92, 15);
             this.lbOrigin.Text = "น้ำหนักสุทธิต้นทาง";
@@ -2163,7 +2163,7 @@
             //
             this.lbQOrigin.AutoSize = true;
             this.lbQOrigin.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbQOrigin.Location = new System.Drawing.Point(522, 608);
+            this.lbQOrigin.Location = new System.Drawing.Point(522, 624);
             this.lbQOrigin.Name = "lbQOrigin";
             this.lbQOrigin.Size = new System.Drawing.Size(19, 15);
             this.lbQOrigin.Text = "คิว";
@@ -2174,7 +2174,7 @@
             this.lbShortCaption.BackColor = System.Drawing.Color.MistyRose;
             this.lbShortCaption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbShortCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbShortCaption.Location = new System.Drawing.Point(200, 678);
+            this.lbShortCaption.Location = new System.Drawing.Point(200, 702);
             this.lbShortCaption.Name = "lbShortCaption";
             this.lbShortCaption.Size = new System.Drawing.Size(50, 18);
             this.lbShortCaption.Text = "สั้น";
@@ -2186,7 +2186,7 @@
             this.lbLongCaption.BackColor = System.Drawing.Color.MistyRose;
             this.lbLongCaption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbLongCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLongCaption.Location = new System.Drawing.Point(200, 696);
+            this.lbLongCaption.Location = new System.Drawing.Point(200, 720);
             this.lbLongCaption.Name = "lbLongCaption";
             this.lbLongCaption.Size = new System.Drawing.Size(50, 18);
             this.lbLongCaption.Text = "ยาว";
@@ -2198,7 +2198,7 @@
             this.lbTableHeaderCorner.BackColor = System.Drawing.Color.MistyRose;
             this.lbTableHeaderCorner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTableHeaderCorner.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTableHeaderCorner.Location = new System.Drawing.Point(200, 660);
+            this.lbTableHeaderCorner.Location = new System.Drawing.Point(200, 684);
             this.lbTableHeaderCorner.Name = "lbTableHeaderCorner";
             this.lbTableHeaderCorner.Size = new System.Drawing.Size(50, 18);
             this.lbTableHeaderCorner.Text = "";
@@ -2209,7 +2209,7 @@
             this.lbTableHeaderCount.BackColor = System.Drawing.Color.MistyRose;
             this.lbTableHeaderCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTableHeaderCount.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTableHeaderCount.Location = new System.Drawing.Point(250, 660);
+            this.lbTableHeaderCount.Location = new System.Drawing.Point(250, 684);
             this.lbTableHeaderCount.Name = "lbTableHeaderCount";
             this.lbTableHeaderCount.Size = new System.Drawing.Size(85, 18);
             this.lbTableHeaderCount.Text = "จำนวนเที่ยว";
@@ -2221,7 +2221,7 @@
             this.lbTableHeaderWeight.BackColor = System.Drawing.Color.MistyRose;
             this.lbTableHeaderWeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTableHeaderWeight.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTableHeaderWeight.Location = new System.Drawing.Point(335, 660);
+            this.lbTableHeaderWeight.Location = new System.Drawing.Point(335, 684);
             this.lbTableHeaderWeight.Name = "lbTableHeaderWeight";
             this.lbTableHeaderWeight.Size = new System.Drawing.Size(110, 18);
             this.lbTableHeaderWeight.Text = "น้ำหนักสุทธิ (ตัน)";
@@ -2233,7 +2233,7 @@
             this.lbTotalCaption.BackColor = System.Drawing.Color.MistyRose;
             this.lbTotalCaption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTotalCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalCaption.Location = new System.Drawing.Point(200, 714);
+            this.lbTotalCaption.Location = new System.Drawing.Point(200, 738);
             this.lbTotalCaption.Name = "lbTotalCaption";
             this.lbTotalCaption.Size = new System.Drawing.Size(50, 18);
             this.lbTotalCaption.Text = "รวม";
@@ -2246,7 +2246,7 @@
             this.lbTotalTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTotalTime.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotalTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbTotalTime.Location = new System.Drawing.Point(250, 714);
+            this.lbTotalTime.Location = new System.Drawing.Point(250, 738);
             this.lbTotalTime.Name = "lbTotalTime";
             this.lbTotalTime.Size = new System.Drawing.Size(85, 18);
             this.lbTotalTime.Text = "0";
@@ -2259,7 +2259,7 @@
             this.lbTotalWeightTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbTotalWeightTotal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotalWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbTotalWeightTotal.Location = new System.Drawing.Point(335, 714);
+            this.lbTotalWeightTotal.Location = new System.Drawing.Point(335, 738);
             this.lbTotalWeightTotal.Name = "lbTotalWeightTotal";
             this.lbTotalWeightTotal.Size = new System.Drawing.Size(110, 18);
             this.lbTotalWeightTotal.Text = "0.000";

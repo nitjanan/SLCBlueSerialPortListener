@@ -1085,7 +1085,7 @@ namespace SerialPortListener
                 // Krabi mode - this branch never runs when the flag is off, so Standard mode's
                 // window size is completely unaffected. The Save/Print buttons are already
                 // Anchor=Bottom, so they reposition themselves automatically on resize.
-                this.ClientSize = new System.Drawing.Size(this.ClientSize.Width, this.ClientSize.Height + 110);
+                this.ClientSize = new System.Drawing.Size(this.ClientSize.Width, this.ClientSize.Height + 140);
             }
         }
 
