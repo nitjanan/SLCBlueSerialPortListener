@@ -1078,15 +1078,11 @@ namespace SerialPortListener
             lbTotalTime.Visible = krabi;
             lbTotalWeightTotal.Visible = krabi;
 
-            if (krabi)
-            {
-                // The line-type totals table needs space below the existing origin/line-type
-                // controls that Standard mode doesn't have room for. Grow the window only in
-                // Krabi mode - this branch never runs when the flag is off, so Standard mode's
-                // window size is completely unaffected. The Save/Print buttons are already
-                // Anchor=Bottom, so they reposition themselves automatically on resize.
-                this.ClientSize = new System.Drawing.Size(this.ClientSize.Width, this.ClientSize.Height + 140);
-            }
+            // tbQOrigin/tbWeightOrigin now sit in gbWeight/panel4 at tbQ's original spot,
+            // so the regular quantity field is hidden (not removed - its value/logic is
+            // untouched) whenever the Krabi-specific origin fields take its place.
+            label28.Visible = !krabi;
+            tbQ.Visible = !krabi;
         }
 
         // Reads one field from the single-row base_setting_line config (id=1). Returns "" if
