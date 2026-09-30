@@ -2028,7 +2028,7 @@
             this.groupBox5.AccessibleName = "ชนิดสาย";
             this.groupBox5.Controls.Add(this.rbShortLine);
             this.groupBox5.Controls.Add(this.rbLongLine);
-            this.groupBox5.Location = new System.Drawing.Point(200, 642);
+            this.groupBox5.Location = new System.Drawing.Point(200, 624);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(152, 38);
             this.groupBox5.TabStop = false;
@@ -2065,7 +2065,7 @@
             // tbWeightOrigin
             //
             this.tbWeightOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeightOrigin.Location = new System.Drawing.Point(362, 645);
+            this.tbWeightOrigin.Location = new System.Drawing.Point(468, 627);
             this.tbWeightOrigin.Name = "tbWeightOrigin";
             this.tbWeightOrigin.Size = new System.Drawing.Size(150, 27);
             this.tbWeightOrigin.Text = "0.00";
@@ -2078,7 +2078,7 @@
             this.tbQOrigin.AccessibleName = "คิว";
             this.tbQOrigin.Enabled = true;
             this.tbQOrigin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbQOrigin.Location = new System.Drawing.Point(522, 645);
+            this.tbQOrigin.Location = new System.Drawing.Point(362, 627);
             this.tbQOrigin.Name = "tbQOrigin";
             this.tbQOrigin.Size = new System.Drawing.Size(96, 27);
             this.tbQOrigin.Text = "0.00";
@@ -2089,7 +2089,7 @@
             // btSettingLine
             //
             this.btSettingLine.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSettingLine.Location = new System.Drawing.Point(628, 642);
+            this.btSettingLine.Location = new System.Drawing.Point(628, 624);
             this.btSettingLine.Name = "btSettingLine";
             this.btSettingLine.Size = new System.Drawing.Size(60, 30);
             this.btSettingLine.Text = "ตั้งค่า";
@@ -2153,7 +2153,7 @@
             //
             this.lbOrigin.AutoSize = true;
             this.lbOrigin.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbOrigin.Location = new System.Drawing.Point(362, 624);
+            this.lbOrigin.Location = new System.Drawing.Point(468, 660);
             this.lbOrigin.Name = "lbOrigin";
             this.lbOrigin.Size = new System.Drawing.Size(92, 15);
             this.lbOrigin.Text = "น้ำหนักสุทธิต้นทาง";
@@ -2163,7 +2163,7 @@
             //
             this.lbQOrigin.AutoSize = true;
             this.lbQOrigin.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbQOrigin.Location = new System.Drawing.Point(522, 624);
+            this.lbQOrigin.Location = new System.Drawing.Point(362, 660);
             this.lbQOrigin.Name = "lbQOrigin";
             this.lbQOrigin.Size = new System.Drawing.Size(19, 15);
             this.lbQOrigin.Text = "คิว";
