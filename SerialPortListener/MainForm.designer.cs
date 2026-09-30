@@ -246,7 +246,7 @@
             this.rbLongLine.AutoSize = true;
             this.rbLongLine.BackColor = System.Drawing.Color.MintCream;
             this.rbLongLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbLongLine.Location = new System.Drawing.Point(4, 38);
+            this.rbLongLine.Location = new System.Drawing.Point(5, 38);
             this.rbLongLine.Name = "rbLongLine";
             this.rbLongLine.Size = new System.Drawing.Size(74, 25);
             this.rbLongLine.TabIndex = 1;

@@ -64,35 +64,18 @@
             this.btDelScale = new System.Windows.Forms.Button();
             this.btSaveScale = new System.Windows.Forms.Button();
             this.dgvScale = new System.Windows.Forms.DataGridView();
-            this.รหัสพนักงาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อพนักงาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basescaleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseScaleDataSet = new SerialPortListener.baseScaleDataSet();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btDelStoneType = new System.Windows.Forms.Button();
             this.btSaveStoneType = new System.Windows.Forms.Button();
             this.dgvStoneType = new System.Windows.Forms.DataGridView();
-            this.รหัสหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ค่าคำนวณคิว = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basestonetypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseStoneTypeDataSet = new SerialPortListener.baseStoneTypeDataSet();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btDelScoop = new System.Windows.Forms.Button();
             this.btSaveScoop = new System.Windows.Forms.Button();
             this.dgvScoop = new System.Windows.Forms.DataGridView();
-            this.รหัสผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basescoopBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseScoopDataSet = new SerialPortListener.baseScoopDataSet();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btDelApprove = new System.Windows.Forms.Button();
             this.btSaveApprove = new System.Windows.Forms.Button();
             this.dgvApprove = new System.Windows.Forms.DataGridView();
-            this.รหัสผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baseapproveBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseApproveDataSet = new SerialPortListener.baseApproveDataSet();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tbJobId = new System.Windows.Forms.TextBox();
             this.tbCustomerAddress = new System.Windows.Forms.TextBox();
@@ -109,20 +92,12 @@
             this.btDelCustomer = new System.Windows.Forms.Button();
             this.btSaveCustomer = new System.Windows.Forms.Button();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
-            this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ที่อยู่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ส่งที่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basecustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseCustomerDataSet = new SerialPortListener.baseCustomerDataSet();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.btDelCity = new System.Windows.Forms.Button();
             this.btSaveCity = new System.Windows.Forms.Button();
             this.dgvCarCity = new System.Windows.Forms.DataGridView();
-            this.รหัสจังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อจังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basecarcityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseCarCityDataSet = new SerialPortListener.baseCarCityDataSet();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -130,22 +105,11 @@
             this.tbText = new System.Windows.Forms.TextBox();
             this.btSaveUsers = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.users_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.permission = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersDataSet = new SerialPortListener.usersDataSet();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.btDelCarTeam = new System.Windows.Forms.Button();
             this.btSaveCarTeam = new System.Windows.Forms.Button();
             this.dgvTeamCar = new System.Windows.Forms.DataGridView();
-            this.รหัสทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basecarteamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseCarTeamDataSet = new SerialPortListener.baseCarTeamDataSet();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.btClearCar = new System.Windows.Forms.Button();
             this.tbCarTeamId = new System.Windows.Forms.TextBox();
@@ -157,21 +121,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvCar = new System.Windows.Forms.DataGridView();
-            this.รหัสรถร่วม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อรถร่วม = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.รหัสทีมFrk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basecarBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseCarDataSet = new SerialPortListener.baseCarDataSet();
             this.btDelCar = new System.Windows.Forms.Button();
             this.btSaveCar = new System.Windows.Forms.Button();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.btDelMill = new System.Windows.Forms.Button();
             this.btSaveMill = new System.Windows.Forms.Button();
             this.dgvMill = new System.Windows.Forms.DataGridView();
-            this.รหัสโรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ชื่อโรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basemillBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.truckDataSet1 = new SerialPortListener.truckDataSet1();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.btClearSite = new System.Windows.Forms.Button();
             this.tbCustomerSiteId = new System.Windows.Forms.TextBox();
@@ -182,17 +137,62 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dgvSite = new System.Windows.Forms.DataGridView();
-            this.base_site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.base_site_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.base_customer_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.basesiteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.baseSiteDataSet = new SerialPortListener.baseSiteDataSet();
             this.btDelSite = new System.Windows.Forms.Button();
             this.btSaveSite = new System.Windows.Forms.Button();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.btDelJobType = new System.Windows.Forms.Button();
             this.btSaveJobType = new System.Windows.Forms.Button();
             this.dgvJobType = new System.Windows.Forms.DataGridView();
+            this.รหัสพนักงาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อพนักงาน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basescaleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseScaleDataSet = new SerialPortListener.baseScaleDataSet();
+            this.รหัสหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อหิน = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ค่าคำนวณคิว = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basestonetypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseStoneTypeDataSet = new SerialPortListener.baseStoneTypeDataSet();
+            this.รหัสผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อผู้ตัก = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basescoopBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseScoopDataSet = new SerialPortListener.baseScoopDataSet();
+            this.รหัสผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อผู้อนุมัติจ่าย = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baseapproveBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseApproveDataSet = new SerialPortListener.baseApproveDataSet();
+            this.รหัสลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อลูกค้า = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basecustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseCustomerDataSet = new SerialPortListener.baseCustomerDataSet();
+            this.รหัสจังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อจังหวัด = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basecarcityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseCarCityDataSet = new SerialPortListener.baseCarCityDataSet();
+            this.users_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersDataSet = new SerialPortListener.usersDataSet();
+            this.รหัสทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อทีม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basecarteamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseCarTeamDataSet = new SerialPortListener.baseCarTeamDataSet();
+            this.รหัสรถร่วม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อรถร่วม = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.รหัสทีมFrk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basecarBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseCarDataSet = new SerialPortListener.baseCarDataSet();
+            this.รหัสโรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ชื่อโรงโม่ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basemillBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.truckDataSet1 = new SerialPortListener.truckDataSet1();
+            this.base_site_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.base_site_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.base_customer_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.basesiteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.baseSiteDataSet = new SerialPortListener.baseSiteDataSet();
             this.base_job_type_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.base_job_type_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.basejobtypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -215,50 +215,50 @@
             this.groupBox5.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseScaleDataSet)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoneType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basestonetypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseStoneTypeDataSet)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScoop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basescoopBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseScoopDataSet)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvApprove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseapproveBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseApproveDataSet)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecustomerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCustomerDataSet)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecarcityBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCarCityDataSet)).BeginInit();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersDataSet)).BeginInit();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeamCar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecarteamBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCarTeamDataSet)).BeginInit();
             this.tabPage9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecarBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCarDataSet)).BeginInit();
             this.tabPage10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMill)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basemillBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet1)).BeginInit();
             this.tabPage11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSite)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basesiteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseSiteDataSet)).BeginInit();
             this.tabPage12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseScaleDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basestonetypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseStoneTypeDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basescoopBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseScoopDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseapproveBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseApproveDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCustomerDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecarcityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCarCityDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecarteamBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCarTeamDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecarBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCarDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basemillBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basesiteBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseSiteDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.basejobtypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet3)).BeginInit();
             this.SuspendLayout();
@@ -345,9 +345,9 @@
             this.cboReportTemplate.Size = new System.Drawing.Size(390, 29);
             this.cboReportTemplate.TabIndex = 17;
             this.cboReportTemplate.SelectedIndexChanged += new System.EventHandler(this.cboReportTemplate_SelectedIndexChanged);
-            //
+            // 
             // btPreviewBill
-            //
+            // 
             this.btPreviewBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btPreviewBill.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btPreviewBill.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -359,9 +359,9 @@
             this.btPreviewBill.Text = "ดูตัวอย่างใบชั่ง";
             this.btPreviewBill.UseVisualStyleBackColor = false;
             this.btPreviewBill.Click += new System.EventHandler(this.btPreviewBill_Click);
-            //
+            // 
             // lblBillHeader
-            //
+            // 
             this.lblBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBillHeader.Location = new System.Drawing.Point(20, 67);
             this.lblBillHeader.Name = "lblBillHeader";
@@ -369,10 +369,10 @@
             this.lblBillHeader.TabIndex = 19;
             this.lblBillHeader.Text = "แบบหัวกระดาษ";
             this.lblBillHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
+            // 
             // cboBillHeader
-            //
-            this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.cboBillHeader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboBillHeader.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBillHeader.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -382,9 +382,9 @@
             this.cboBillHeader.Size = new System.Drawing.Size(537, 29);
             this.cboBillHeader.TabIndex = 20;
             this.cboBillHeader.SelectedIndexChanged += new System.EventHandler(this.cboBillHeader_SelectedIndexChanged);
-            //
+            // 
             // lblBhCompany
-            //
+            // 
             this.lblBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBhCompany.Location = new System.Drawing.Point(20, 99);
             this.lblBhCompany.Name = "lblBhCompany";
@@ -392,19 +392,19 @@
             this.lblBhCompany.TabIndex = 22;
             this.lblBhCompany.Text = "ชื่อบริษัท";
             this.lblBhCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
+            // 
             // tbBhCompany
-            //
-            this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.tbBhCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBhCompany.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBhCompany.Location = new System.Drawing.Point(180, 96);
             this.tbBhCompany.Name = "tbBhCompany";
             this.tbBhCompany.Size = new System.Drawing.Size(537, 27);
             this.tbBhCompany.TabIndex = 23;
-            //
+            // 
             // lblBhAddress
-            //
+            // 
             this.lblBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBhAddress.Location = new System.Drawing.Point(20, 131);
             this.lblBhAddress.Name = "lblBhAddress";
@@ -412,19 +412,19 @@
             this.lblBhAddress.TabIndex = 24;
             this.lblBhAddress.Text = "ที่อยู่";
             this.lblBhAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
+            // 
             // tbBhAddress
-            //
-            this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.tbBhAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBhAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBhAddress.Location = new System.Drawing.Point(180, 128);
             this.tbBhAddress.Name = "tbBhAddress";
             this.tbBhAddress.Size = new System.Drawing.Size(537, 27);
             this.tbBhAddress.TabIndex = 25;
-            //
+            // 
             // lblBhTelephone
-            //
+            // 
             this.lblBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBhTelephone.Location = new System.Drawing.Point(20, 163);
             this.lblBhTelephone.Name = "lblBhTelephone";
@@ -432,17 +432,17 @@
             this.lblBhTelephone.TabIndex = 26;
             this.lblBhTelephone.Text = "โทรศัพท์";
             this.lblBhTelephone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
+            // 
             // tbBhTelephone
-            //
-            this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.tbBhTelephone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBhTelephone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBhTelephone.Location = new System.Drawing.Point(180, 160);
             this.tbBhTelephone.Name = "tbBhTelephone";
             this.tbBhTelephone.Size = new System.Drawing.Size(537, 27);
             this.tbBhTelephone.TabIndex = 27;
-            //
+            // 
             // btnSaveBackupConfig
             // 
             this.btnSaveBackupConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -451,9 +451,9 @@
             this.btnSaveBackupConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveBackupConfig.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveBackupConfig.ForeColor = System.Drawing.Color.White;
-            this.btnSaveBackupConfig.Location = new System.Drawing.Point(20, 402);
+            this.btnSaveBackupConfig.Location = new System.Drawing.Point(12, 431);
             this.btnSaveBackupConfig.Name = "btnSaveBackupConfig";
-            this.btnSaveBackupConfig.Size = new System.Drawing.Size(729, 32);
+            this.btnSaveBackupConfig.Size = new System.Drawing.Size(737, 32);
             this.btnSaveBackupConfig.TabIndex = 6;
             this.btnSaveBackupConfig.Text = "บันทึกการตั้งค่า";
             this.btnSaveBackupConfig.UseVisualStyleBackColor = false;
@@ -639,19 +639,19 @@
             this.dtpAutoBackupEnd.ShowUpDown = true;
             this.dtpAutoBackupEnd.Size = new System.Drawing.Size(140, 27);
             this.dtpAutoBackupEnd.TabIndex = 12;
-            //
+            // 
             // chkKrabiStpMode
-            //
+            // 
             this.chkKrabiStpMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkKrabiStpMode.AutoSize = true;
             this.chkKrabiStpMode.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkKrabiStpMode.Location = new System.Drawing.Point(20, 438);
+            this.chkKrabiStpMode.Location = new System.Drawing.Point(12, 385);
             this.chkKrabiStpMode.Name = "chkKrabiStpMode";
-            this.chkKrabiStpMode.Size = new System.Drawing.Size(233, 25);
+            this.chkKrabiStpMode.Size = new System.Drawing.Size(253, 25);
             this.chkKrabiStpMode.TabIndex = 16;
             this.chkKrabiStpMode.Text = "Krabi STP Mode (Port Version)";
             this.chkKrabiStpMode.UseVisualStyleBackColor = true;
-            //
+            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Lavender;
@@ -662,7 +662,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(753, 460);
+            this.tabPage1.Size = new System.Drawing.Size(761, 466);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ผู้ชั่ง";
             // 
@@ -719,30 +719,6 @@
             this.dgvScale.TabIndex = 1;
             this.dgvScale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvScale_KeyDown);
             // 
-            // รหัสพนักงาน
-            // 
-            this.รหัสพนักงาน.DataPropertyName = "รหัสพนักงาน";
-            this.รหัสพนักงาน.HeaderText = "รหัสพนักงาน";
-            this.รหัสพนักงาน.Name = "รหัสพนักงาน";
-            this.รหัสพนักงาน.Width = 300;
-            // 
-            // ชื่อพนักงาน
-            // 
-            this.ชื่อพนักงาน.DataPropertyName = "ชื่อพนักงาน";
-            this.ชื่อพนักงาน.HeaderText = "ชื่อพนักงาน";
-            this.ชื่อพนักงาน.Name = "ชื่อพนักงาน";
-            this.ชื่อพนักงาน.Width = 600;
-            // 
-            // basescaleBindingSource
-            // 
-            this.basescaleBindingSource.DataMember = "base_scale";
-            this.basescaleBindingSource.DataSource = this.baseScaleDataSet;
-            // 
-            // baseScaleDataSet
-            // 
-            this.baseScaleDataSet.DataSetName = "baseScaleDataSet";
-            this.baseScaleDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.AliceBlue;
@@ -753,7 +729,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(753, 460);
+            this.tabPage2.Size = new System.Drawing.Size(761, 466);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ชนิดหิน";
             // 
@@ -812,37 +788,6 @@
             this.dgvStoneType.TabIndex = 0;
             this.dgvStoneType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvStoneType_KeyDown);
             // 
-            // รหัสหิน
-            // 
-            this.รหัสหิน.DataPropertyName = "รหัสหิน";
-            this.รหัสหิน.HeaderText = "รหัสหิน";
-            this.รหัสหิน.Name = "รหัสหิน";
-            this.รหัสหิน.Width = 250;
-            // 
-            // ชื่อหิน
-            // 
-            this.ชื่อหิน.DataPropertyName = "ชื่อหิน";
-            this.ชื่อหิน.HeaderText = "ชื่อหิน";
-            this.ชื่อหิน.Name = "ชื่อหิน";
-            this.ชื่อหิน.Width = 500;
-            // 
-            // ค่าคำนวณคิว
-            // 
-            this.ค่าคำนวณคิว.DataPropertyName = "ค่าคำนวณคิว";
-            this.ค่าคำนวณคิว.HeaderText = "ค่าคำนวณคิว";
-            this.ค่าคำนวณคิว.Name = "ค่าคำนวณคิว";
-            this.ค่าคำนวณคิว.Width = 250;
-            // 
-            // basestonetypeBindingSource
-            // 
-            this.basestonetypeBindingSource.DataMember = "base_stone_type";
-            this.basestonetypeBindingSource.DataSource = this.baseStoneTypeDataSet;
-            // 
-            // baseStoneTypeDataSet
-            // 
-            this.baseStoneTypeDataSet.DataSetName = "baseStoneTypeDataSet";
-            this.baseStoneTypeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Azure;
@@ -852,7 +797,7 @@
             this.tabPage3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(753, 460);
+            this.tabPage3.Size = new System.Drawing.Size(761, 466);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "ผู้ตัก";
             // 
@@ -910,30 +855,6 @@
             this.dgvScoop.TabIndex = 1;
             this.dgvScoop.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvScoop_KeyDown);
             // 
-            // รหัสผู้ตัก
-            // 
-            this.รหัสผู้ตัก.DataPropertyName = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.HeaderText = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.Name = "รหัสผู้ตัก";
-            this.รหัสผู้ตัก.Width = 300;
-            // 
-            // ชื่อผู้ตัก
-            // 
-            this.ชื่อผู้ตัก.DataPropertyName = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.HeaderText = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.Name = "ชื่อผู้ตัก";
-            this.ชื่อผู้ตัก.Width = 600;
-            // 
-            // basescoopBindingSource
-            // 
-            this.basescoopBindingSource.DataMember = "base_scoop";
-            this.basescoopBindingSource.DataSource = this.baseScoopDataSet;
-            // 
-            // baseScoopDataSet
-            // 
-            this.baseScoopDataSet.DataSetName = "baseScoopDataSet";
-            this.baseScoopDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.MintCream;
@@ -943,7 +864,7 @@
             this.tabPage4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(753, 460);
+            this.tabPage4.Size = new System.Drawing.Size(761, 466);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ผู้อนุมัติจ่าย";
             // 
@@ -1001,30 +922,6 @@
             this.dgvApprove.TabIndex = 2;
             this.dgvApprove.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvApprove_KeyDown);
             // 
-            // รหัสผู้อนุมัติจ่าย
-            // 
-            this.รหัสผู้อนุมัติจ่าย.DataPropertyName = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.HeaderText = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.Name = "รหัสผู้อนุมัติจ่าย";
-            this.รหัสผู้อนุมัติจ่าย.Width = 300;
-            // 
-            // ชื่อผู้อนุมัติจ่าย
-            // 
-            this.ชื่อผู้อนุมัติจ่าย.DataPropertyName = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.HeaderText = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.Name = "ชื่อผู้อนุมัติจ่าย";
-            this.ชื่อผู้อนุมัติจ่าย.Width = 600;
-            // 
-            // baseapproveBindingSource
-            // 
-            this.baseapproveBindingSource.DataMember = "base_approve";
-            this.baseapproveBindingSource.DataSource = this.baseApproveDataSet;
-            // 
-            // baseApproveDataSet
-            // 
-            this.baseApproveDataSet.DataSetName = "baseApproveDataSet";
-            this.baseApproveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.Ivory;
@@ -1046,7 +943,7 @@
             this.tabPage5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(753, 460);
+            this.tabPage5.Size = new System.Drawing.Size(761, 466);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "ลูกค้า";
             // 
@@ -1219,22 +1116,6 @@
             this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellClick);
             this.dgvCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCustomer_KeyDown);
             // 
-            // รหัสลูกค้า
-            // 
-            this.รหัสลูกค้า.DataPropertyName = "รหัสลูกค้า";
-            this.รหัสลูกค้า.HeaderText = "รหัสลูกค้า";
-            this.รหัสลูกค้า.Name = "รหัสลูกค้า";
-            this.รหัสลูกค้า.ReadOnly = true;
-            this.รหัสลูกค้า.Width = 200;
-            // 
-            // ชื่อลูกค้า
-            // 
-            this.ชื่อลูกค้า.DataPropertyName = "ชื่อลูกค้า";
-            this.ชื่อลูกค้า.HeaderText = "ชื่อลูกค้า";
-            this.ชื่อลูกค้า.Name = "ชื่อลูกค้า";
-            this.ชื่อลูกค้า.ReadOnly = true;
-            this.ชื่อลูกค้า.Width = 400;
-            // 
             // ที่อยู่
             // 
             this.ที่อยู่.DataPropertyName = "ที่อยู่";
@@ -1252,16 +1133,6 @@
             this.ส่งที่.Visible = false;
             this.ส่งที่.Width = 300;
             // 
-            // basecustomerBindingSource
-            // 
-            this.basecustomerBindingSource.DataMember = "base_customer";
-            this.basecustomerBindingSource.DataSource = this.baseCustomerDataSet;
-            // 
-            // baseCustomerDataSet
-            // 
-            this.baseCustomerDataSet.DataSetName = "baseCustomerDataSet";
-            this.baseCustomerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.Snow;
@@ -1271,7 +1142,7 @@
             this.tabPage6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage6.Location = new System.Drawing.Point(4, 26);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(753, 460);
+            this.tabPage6.Size = new System.Drawing.Size(761, 466);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "จังหวัด";
             // 
@@ -1329,30 +1200,6 @@
             this.dgvCarCity.TabIndex = 4;
             this.dgvCarCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCarCity_KeyDown);
             // 
-            // รหัสจังหวัด
-            // 
-            this.รหัสจังหวัด.DataPropertyName = "รหัสจังหวัด";
-            this.รหัสจังหวัด.HeaderText = "รหัสจังหวัด";
-            this.รหัสจังหวัด.Name = "รหัสจังหวัด";
-            this.รหัสจังหวัด.Width = 300;
-            // 
-            // ชื่อจังหวัด
-            // 
-            this.ชื่อจังหวัด.DataPropertyName = "ชื่อจังหวัด";
-            this.ชื่อจังหวัด.HeaderText = "ชื่อจังหวัด";
-            this.ชื่อจังหวัด.Name = "ชื่อจังหวัด";
-            this.ชื่อจังหวัด.Width = 600;
-            // 
-            // basecarcityBindingSource
-            // 
-            this.basecarcityBindingSource.DataMember = "base_car_city";
-            this.basecarcityBindingSource.DataSource = this.baseCarCityDataSet;
-            // 
-            // baseCarCityDataSet
-            // 
-            this.baseCarCityDataSet.DataSetName = "baseCarCityDataSet";
-            this.baseCarCityDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.SeaShell;
@@ -1365,7 +1212,7 @@
             this.tabPage7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage7.Location = new System.Drawing.Point(4, 26);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(753, 460);
+            this.tabPage7.Size = new System.Drawing.Size(761, 466);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "User";
             // 
@@ -1438,57 +1285,12 @@
             this.dgvUsers.TabIndex = 5;
             this.dgvUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvUsers_KeyDown);
             // 
-            // users_id
-            // 
-            this.users_id.DataPropertyName = "users_id";
-            this.users_id.HeaderText = "users_id";
-            this.users_id.Name = "users_id";
-            this.users_id.Width = 150;
-            // 
-            // firstname
-            // 
-            this.firstname.DataPropertyName = "firstname";
-            this.firstname.HeaderText = "firstname";
-            this.firstname.Name = "firstname";
-            this.firstname.Width = 150;
-            // 
-            // lastname
-            // 
-            this.lastname.DataPropertyName = "lastname";
-            this.lastname.HeaderText = "lastname";
-            this.lastname.Name = "lastname";
-            this.lastname.Width = 150;
-            // 
-            // username
-            // 
-            this.username.DataPropertyName = "username";
-            this.username.HeaderText = "username";
-            this.username.Name = "username";
-            this.username.Width = 150;
-            // 
-            // password
-            // 
-            this.password.DataPropertyName = "password";
-            this.password.HeaderText = "password";
-            this.password.Name = "password";
-            this.password.Width = 150;
-            // 
             // permission
             // 
             this.permission.DataPropertyName = "permission";
             this.permission.HeaderText = "permission";
             this.permission.Name = "permission";
             this.permission.Width = 150;
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataMember = "users";
-            this.usersBindingSource.DataSource = this.usersDataSet;
-            // 
-            // usersDataSet
-            // 
-            this.usersDataSet.DataSetName = "usersDataSet";
-            this.usersDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tabPage8
             // 
@@ -1499,7 +1301,7 @@
             this.tabPage8.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage8.Location = new System.Drawing.Point(4, 26);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(753, 460);
+            this.tabPage8.Size = new System.Drawing.Size(761, 466);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "ทีม";
             // 
@@ -1556,30 +1358,6 @@
             this.dgvTeamCar.Size = new System.Drawing.Size(729, 382);
             this.dgvTeamCar.TabIndex = 0;
             // 
-            // รหัสทีม
-            // 
-            this.รหัสทีม.DataPropertyName = "รหัสทีม";
-            this.รหัสทีม.HeaderText = "รหัสทีม";
-            this.รหัสทีม.Name = "รหัสทีม";
-            this.รหัสทีม.Width = 300;
-            // 
-            // ชื่อทีม
-            // 
-            this.ชื่อทีม.DataPropertyName = "ชื่อทีม";
-            this.ชื่อทีม.HeaderText = "ชื่อทีม";
-            this.ชื่อทีม.Name = "ชื่อทีม";
-            this.ชื่อทีม.Width = 600;
-            // 
-            // basecarteamBindingSource
-            // 
-            this.basecarteamBindingSource.DataMember = "base_car_team";
-            this.basecarteamBindingSource.DataSource = this.baseCarTeamDataSet;
-            // 
-            // baseCarTeamDataSet
-            // 
-            this.baseCarTeamDataSet.DataSetName = "baseCarTeamDataSet";
-            this.baseCarTeamDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage9
             // 
             this.tabPage9.BackColor = System.Drawing.Color.Beige;
@@ -1598,7 +1376,7 @@
             this.tabPage9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage9.Location = new System.Drawing.Point(4, 26);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(753, 460);
+            this.tabPage9.Size = new System.Drawing.Size(761, 466);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "รถร่วม";
             // 
@@ -1706,41 +1484,6 @@
             this.dgvCar.TabIndex = 11;
             this.dgvCar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCar_CellClick);
             // 
-            // รหัสรถร่วม
-            // 
-            this.รหัสรถร่วม.DataPropertyName = "รหัสรถร่วม";
-            this.รหัสรถร่วม.HeaderText = "รหัสรถร่วม";
-            this.รหัสรถร่วม.Name = "รหัสรถร่วม";
-            this.รหัสรถร่วม.ReadOnly = true;
-            this.รหัสรถร่วม.Width = 300;
-            // 
-            // ชื่อรถร่วม
-            // 
-            this.ชื่อรถร่วม.DataPropertyName = "ชื่อรถร่วม";
-            this.ชื่อรถร่วม.HeaderText = "ทะเบียนรถร่วม";
-            this.ชื่อรถร่วม.Name = "ชื่อรถร่วม";
-            this.ชื่อรถร่วม.ReadOnly = true;
-            this.ชื่อรถร่วม.Width = 600;
-            // 
-            // รหัสทีมFrk
-            // 
-            this.รหัสทีมFrk.DataPropertyName = "รหัสทีม";
-            this.รหัสทีมFrk.HeaderText = "รหัสทีม";
-            this.รหัสทีมFrk.Name = "รหัสทีมFrk";
-            this.รหัสทีมFrk.ReadOnly = true;
-            this.รหัสทีมFrk.Visible = false;
-            this.รหัสทีมFrk.Width = 200;
-            // 
-            // basecarBindingSource
-            // 
-            this.basecarBindingSource.DataMember = "base_car";
-            this.basecarBindingSource.DataSource = this.baseCarDataSet;
-            // 
-            // baseCarDataSet
-            // 
-            this.baseCarDataSet.DataSetName = "baseCarDataSet";
-            this.baseCarDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // btDelCar
             // 
             this.btDelCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1786,7 +1529,7 @@
             this.tabPage10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage10.Location = new System.Drawing.Point(4, 26);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(753, 460);
+            this.tabPage10.Size = new System.Drawing.Size(761, 466);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "โรงโม่";
             // 
@@ -1843,30 +1586,6 @@
             this.dgvMill.Size = new System.Drawing.Size(729, 389);
             this.dgvMill.TabIndex = 5;
             // 
-            // รหัสโรงโม่
-            // 
-            this.รหัสโรงโม่.DataPropertyName = "รหัสโรงโม่";
-            this.รหัสโรงโม่.HeaderText = "รหัสโรงโม่";
-            this.รหัสโรงโม่.Name = "รหัสโรงโม่";
-            this.รหัสโรงโม่.Width = 300;
-            // 
-            // ชื่อโรงโม่
-            // 
-            this.ชื่อโรงโม่.DataPropertyName = "ชื่อโรงโม่";
-            this.ชื่อโรงโม่.HeaderText = "ชื่อโรงโม่";
-            this.ชื่อโรงโม่.Name = "ชื่อโรงโม่";
-            this.ชื่อโรงโม่.Width = 600;
-            // 
-            // basemillBindingSource
-            // 
-            this.basemillBindingSource.DataMember = "base_mill";
-            this.basemillBindingSource.DataSource = this.truckDataSet1;
-            // 
-            // truckDataSet1
-            // 
-            this.truckDataSet1.DataSetName = "truckDataSet1";
-            this.truckDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPage11
             // 
             this.tabPage11.BackColor = System.Drawing.Color.GhostWhite;
@@ -1884,7 +1603,7 @@
             this.tabPage11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage11.Location = new System.Drawing.Point(4, 26);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(753, 460);
+            this.tabPage11.Size = new System.Drawing.Size(761, 466);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "หน้างานตามลูกค้า";
             // 
@@ -1987,40 +1706,6 @@
             this.dgvSite.TabIndex = 23;
             this.dgvSite.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSite_CellClick);
             // 
-            // base_site_id
-            // 
-            this.base_site_id.DataPropertyName = "base_site_id";
-            this.base_site_id.HeaderText = "รหัสหน้างาน";
-            this.base_site_id.Name = "base_site_id";
-            this.base_site_id.ReadOnly = true;
-            this.base_site_id.Width = 300;
-            // 
-            // base_site_name
-            // 
-            this.base_site_name.DataPropertyName = "base_site_name";
-            this.base_site_name.HeaderText = "ชื่อหน้างาน";
-            this.base_site_name.Name = "base_site_name";
-            this.base_site_name.ReadOnly = true;
-            this.base_site_name.Width = 600;
-            // 
-            // base_customer_id
-            // 
-            this.base_customer_id.DataPropertyName = "base_customer_id";
-            this.base_customer_id.HeaderText = "รหัสลูกค้า";
-            this.base_customer_id.Name = "base_customer_id";
-            this.base_customer_id.ReadOnly = true;
-            this.base_customer_id.Visible = false;
-            // 
-            // basesiteBindingSource
-            // 
-            this.basesiteBindingSource.DataMember = "base_site";
-            this.basesiteBindingSource.DataSource = this.baseSiteDataSet;
-            // 
-            // baseSiteDataSet
-            // 
-            this.baseSiteDataSet.DataSetName = "baseSiteDataSet";
-            this.baseSiteDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // btDelSite
             // 
             this.btDelSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2066,7 +1751,7 @@
             this.tabPage12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage12.Location = new System.Drawing.Point(4, 26);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(753, 460);
+            this.tabPage12.Size = new System.Drawing.Size(761, 466);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "ประเภทงานของลูกค้า";
             // 
@@ -2122,6 +1807,321 @@
             this.dgvJobType.ShowRowErrors = false;
             this.dgvJobType.Size = new System.Drawing.Size(729, 390);
             this.dgvJobType.TabIndex = 8;
+            // 
+            // รหัสพนักงาน
+            // 
+            this.รหัสพนักงาน.DataPropertyName = "รหัสพนักงาน";
+            this.รหัสพนักงาน.HeaderText = "รหัสพนักงาน";
+            this.รหัสพนักงาน.Name = "รหัสพนักงาน";
+            this.รหัสพนักงาน.Width = 300;
+            // 
+            // ชื่อพนักงาน
+            // 
+            this.ชื่อพนักงาน.DataPropertyName = "ชื่อพนักงาน";
+            this.ชื่อพนักงาน.HeaderText = "ชื่อพนักงาน";
+            this.ชื่อพนักงาน.Name = "ชื่อพนักงาน";
+            this.ชื่อพนักงาน.Width = 600;
+            // 
+            // basescaleBindingSource
+            // 
+            this.basescaleBindingSource.DataMember = "base_scale";
+            this.basescaleBindingSource.DataSource = this.baseScaleDataSet;
+            // 
+            // baseScaleDataSet
+            // 
+            this.baseScaleDataSet.DataSetName = "baseScaleDataSet";
+            this.baseScaleDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสหิน
+            // 
+            this.รหัสหิน.DataPropertyName = "รหัสหิน";
+            this.รหัสหิน.HeaderText = "รหัสหิน";
+            this.รหัสหิน.Name = "รหัสหิน";
+            this.รหัสหิน.Width = 250;
+            // 
+            // ชื่อหิน
+            // 
+            this.ชื่อหิน.DataPropertyName = "ชื่อหิน";
+            this.ชื่อหิน.HeaderText = "ชื่อหิน";
+            this.ชื่อหิน.Name = "ชื่อหิน";
+            this.ชื่อหิน.Width = 500;
+            // 
+            // ค่าคำนวณคิว
+            // 
+            this.ค่าคำนวณคิว.DataPropertyName = "ค่าคำนวณคิว";
+            this.ค่าคำนวณคิว.HeaderText = "ค่าคำนวณคิว";
+            this.ค่าคำนวณคิว.Name = "ค่าคำนวณคิว";
+            this.ค่าคำนวณคิว.Width = 250;
+            // 
+            // basestonetypeBindingSource
+            // 
+            this.basestonetypeBindingSource.DataMember = "base_stone_type";
+            this.basestonetypeBindingSource.DataSource = this.baseStoneTypeDataSet;
+            // 
+            // baseStoneTypeDataSet
+            // 
+            this.baseStoneTypeDataSet.DataSetName = "baseStoneTypeDataSet";
+            this.baseStoneTypeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสผู้ตัก
+            // 
+            this.รหัสผู้ตัก.DataPropertyName = "รหัสผู้ตัก";
+            this.รหัสผู้ตัก.HeaderText = "รหัสผู้ตัก";
+            this.รหัสผู้ตัก.Name = "รหัสผู้ตัก";
+            this.รหัสผู้ตัก.Width = 300;
+            // 
+            // ชื่อผู้ตัก
+            // 
+            this.ชื่อผู้ตัก.DataPropertyName = "ชื่อผู้ตัก";
+            this.ชื่อผู้ตัก.HeaderText = "ชื่อผู้ตัก";
+            this.ชื่อผู้ตัก.Name = "ชื่อผู้ตัก";
+            this.ชื่อผู้ตัก.Width = 600;
+            // 
+            // basescoopBindingSource
+            // 
+            this.basescoopBindingSource.DataMember = "base_scoop";
+            this.basescoopBindingSource.DataSource = this.baseScoopDataSet;
+            // 
+            // baseScoopDataSet
+            // 
+            this.baseScoopDataSet.DataSetName = "baseScoopDataSet";
+            this.baseScoopDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสผู้อนุมัติจ่าย
+            // 
+            this.รหัสผู้อนุมัติจ่าย.DataPropertyName = "รหัสผู้อนุมัติจ่าย";
+            this.รหัสผู้อนุมัติจ่าย.HeaderText = "รหัสผู้อนุมัติจ่าย";
+            this.รหัสผู้อนุมัติจ่าย.Name = "รหัสผู้อนุมัติจ่าย";
+            this.รหัสผู้อนุมัติจ่าย.Width = 300;
+            // 
+            // ชื่อผู้อนุมัติจ่าย
+            // 
+            this.ชื่อผู้อนุมัติจ่าย.DataPropertyName = "ชื่อผู้อนุมัติจ่าย";
+            this.ชื่อผู้อนุมัติจ่าย.HeaderText = "ชื่อผู้อนุมัติจ่าย";
+            this.ชื่อผู้อนุมัติจ่าย.Name = "ชื่อผู้อนุมัติจ่าย";
+            this.ชื่อผู้อนุมัติจ่าย.Width = 600;
+            // 
+            // baseapproveBindingSource
+            // 
+            this.baseapproveBindingSource.DataMember = "base_approve";
+            this.baseapproveBindingSource.DataSource = this.baseApproveDataSet;
+            // 
+            // baseApproveDataSet
+            // 
+            this.baseApproveDataSet.DataSetName = "baseApproveDataSet";
+            this.baseApproveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสลูกค้า
+            // 
+            this.รหัสลูกค้า.DataPropertyName = "รหัสลูกค้า";
+            this.รหัสลูกค้า.HeaderText = "รหัสลูกค้า";
+            this.รหัสลูกค้า.Name = "รหัสลูกค้า";
+            this.รหัสลูกค้า.ReadOnly = true;
+            this.รหัสลูกค้า.Width = 200;
+            // 
+            // ชื่อลูกค้า
+            // 
+            this.ชื่อลูกค้า.DataPropertyName = "ชื่อลูกค้า";
+            this.ชื่อลูกค้า.HeaderText = "ชื่อลูกค้า";
+            this.ชื่อลูกค้า.Name = "ชื่อลูกค้า";
+            this.ชื่อลูกค้า.ReadOnly = true;
+            this.ชื่อลูกค้า.Width = 400;
+            // 
+            // basecustomerBindingSource
+            // 
+            this.basecustomerBindingSource.DataMember = "base_customer";
+            this.basecustomerBindingSource.DataSource = this.baseCustomerDataSet;
+            // 
+            // baseCustomerDataSet
+            // 
+            this.baseCustomerDataSet.DataSetName = "baseCustomerDataSet";
+            this.baseCustomerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสจังหวัด
+            // 
+            this.รหัสจังหวัด.DataPropertyName = "รหัสจังหวัด";
+            this.รหัสจังหวัด.HeaderText = "รหัสจังหวัด";
+            this.รหัสจังหวัด.Name = "รหัสจังหวัด";
+            this.รหัสจังหวัด.Width = 300;
+            // 
+            // ชื่อจังหวัด
+            // 
+            this.ชื่อจังหวัด.DataPropertyName = "ชื่อจังหวัด";
+            this.ชื่อจังหวัด.HeaderText = "ชื่อจังหวัด";
+            this.ชื่อจังหวัด.Name = "ชื่อจังหวัด";
+            this.ชื่อจังหวัด.Width = 600;
+            // 
+            // basecarcityBindingSource
+            // 
+            this.basecarcityBindingSource.DataMember = "base_car_city";
+            this.basecarcityBindingSource.DataSource = this.baseCarCityDataSet;
+            // 
+            // baseCarCityDataSet
+            // 
+            this.baseCarCityDataSet.DataSetName = "baseCarCityDataSet";
+            this.baseCarCityDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // users_id
+            // 
+            this.users_id.DataPropertyName = "users_id";
+            this.users_id.HeaderText = "users_id";
+            this.users_id.Name = "users_id";
+            this.users_id.Width = 150;
+            // 
+            // firstname
+            // 
+            this.firstname.DataPropertyName = "firstname";
+            this.firstname.HeaderText = "firstname";
+            this.firstname.Name = "firstname";
+            this.firstname.Width = 150;
+            // 
+            // lastname
+            // 
+            this.lastname.DataPropertyName = "lastname";
+            this.lastname.HeaderText = "lastname";
+            this.lastname.Name = "lastname";
+            this.lastname.Width = 150;
+            // 
+            // username
+            // 
+            this.username.DataPropertyName = "username";
+            this.username.HeaderText = "username";
+            this.username.Name = "username";
+            this.username.Width = 150;
+            // 
+            // password
+            // 
+            this.password.DataPropertyName = "password";
+            this.password.HeaderText = "password";
+            this.password.Name = "password";
+            this.password.Width = 150;
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "users";
+            this.usersBindingSource.DataSource = this.usersDataSet;
+            // 
+            // usersDataSet
+            // 
+            this.usersDataSet.DataSetName = "usersDataSet";
+            this.usersDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสทีม
+            // 
+            this.รหัสทีม.DataPropertyName = "รหัสทีม";
+            this.รหัสทีม.HeaderText = "รหัสทีม";
+            this.รหัสทีม.Name = "รหัสทีม";
+            this.รหัสทีม.Width = 300;
+            // 
+            // ชื่อทีม
+            // 
+            this.ชื่อทีม.DataPropertyName = "ชื่อทีม";
+            this.ชื่อทีม.HeaderText = "ชื่อทีม";
+            this.ชื่อทีม.Name = "ชื่อทีม";
+            this.ชื่อทีม.Width = 600;
+            // 
+            // basecarteamBindingSource
+            // 
+            this.basecarteamBindingSource.DataMember = "base_car_team";
+            this.basecarteamBindingSource.DataSource = this.baseCarTeamDataSet;
+            // 
+            // baseCarTeamDataSet
+            // 
+            this.baseCarTeamDataSet.DataSetName = "baseCarTeamDataSet";
+            this.baseCarTeamDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสรถร่วม
+            // 
+            this.รหัสรถร่วม.DataPropertyName = "รหัสรถร่วม";
+            this.รหัสรถร่วม.HeaderText = "รหัสรถร่วม";
+            this.รหัสรถร่วม.Name = "รหัสรถร่วม";
+            this.รหัสรถร่วม.ReadOnly = true;
+            this.รหัสรถร่วม.Width = 300;
+            // 
+            // ชื่อรถร่วม
+            // 
+            this.ชื่อรถร่วม.DataPropertyName = "ชื่อรถร่วม";
+            this.ชื่อรถร่วม.HeaderText = "ทะเบียนรถร่วม";
+            this.ชื่อรถร่วม.Name = "ชื่อรถร่วม";
+            this.ชื่อรถร่วม.ReadOnly = true;
+            this.ชื่อรถร่วม.Width = 600;
+            // 
+            // รหัสทีมFrk
+            // 
+            this.รหัสทีมFrk.DataPropertyName = "รหัสทีม";
+            this.รหัสทีมFrk.HeaderText = "รหัสทีม";
+            this.รหัสทีมFrk.Name = "รหัสทีมFrk";
+            this.รหัสทีมFrk.ReadOnly = true;
+            this.รหัสทีมFrk.Visible = false;
+            this.รหัสทีมFrk.Width = 200;
+            // 
+            // basecarBindingSource
+            // 
+            this.basecarBindingSource.DataMember = "base_car";
+            this.basecarBindingSource.DataSource = this.baseCarDataSet;
+            // 
+            // baseCarDataSet
+            // 
+            this.baseCarDataSet.DataSetName = "baseCarDataSet";
+            this.baseCarDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // รหัสโรงโม่
+            // 
+            this.รหัสโรงโม่.DataPropertyName = "รหัสโรงโม่";
+            this.รหัสโรงโม่.HeaderText = "รหัสโรงโม่";
+            this.รหัสโรงโม่.Name = "รหัสโรงโม่";
+            this.รหัสโรงโม่.Width = 300;
+            // 
+            // ชื่อโรงโม่
+            // 
+            this.ชื่อโรงโม่.DataPropertyName = "ชื่อโรงโม่";
+            this.ชื่อโรงโม่.HeaderText = "ชื่อโรงโม่";
+            this.ชื่อโรงโม่.Name = "ชื่อโรงโม่";
+            this.ชื่อโรงโม่.Width = 600;
+            // 
+            // basemillBindingSource
+            // 
+            this.basemillBindingSource.DataMember = "base_mill";
+            this.basemillBindingSource.DataSource = this.truckDataSet1;
+            // 
+            // truckDataSet1
+            // 
+            this.truckDataSet1.DataSetName = "truckDataSet1";
+            this.truckDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // base_site_id
+            // 
+            this.base_site_id.DataPropertyName = "base_site_id";
+            this.base_site_id.HeaderText = "รหัสหน้างาน";
+            this.base_site_id.Name = "base_site_id";
+            this.base_site_id.ReadOnly = true;
+            this.base_site_id.Width = 300;
+            // 
+            // base_site_name
+            // 
+            this.base_site_name.DataPropertyName = "base_site_name";
+            this.base_site_name.HeaderText = "ชื่อหน้างาน";
+            this.base_site_name.Name = "base_site_name";
+            this.base_site_name.ReadOnly = true;
+            this.base_site_name.Width = 600;
+            // 
+            // base_customer_id
+            // 
+            this.base_customer_id.DataPropertyName = "base_customer_id";
+            this.base_customer_id.HeaderText = "รหัสลูกค้า";
+            this.base_customer_id.Name = "base_customer_id";
+            this.base_customer_id.ReadOnly = true;
+            this.base_customer_id.Visible = false;
+            // 
+            // basesiteBindingSource
+            // 
+            this.basesiteBindingSource.DataMember = "base_site";
+            this.basesiteBindingSource.DataSource = this.baseSiteDataSet;
+            // 
+            // baseSiteDataSet
+            // 
+            this.baseSiteDataSet.DataSetName = "baseSiteDataSet";
+            this.baseSiteDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // base_job_type_id
             // 
@@ -2205,60 +2205,61 @@
             this.Load += new System.EventHandler(this.ucSetting_Load);
             this.tcSetting.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
             this.gbReportTemplate.ResumeLayout(false);
             this.gbReportTemplate.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseScaleDataSet)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoneType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basestonetypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseStoneTypeDataSet)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScoop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basescoopBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseScoopDataSet)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApprove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseapproveBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseApproveDataSet)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecustomerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCustomerDataSet)).EndInit();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecarcityBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCarCityDataSet)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersDataSet)).EndInit();
             this.tabPage8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeamCar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecarteamBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCarTeamDataSet)).EndInit();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basecarBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseCarDataSet)).EndInit();
             this.tabPage10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMill)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basemillBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet1)).EndInit();
             this.tabPage11.ResumeLayout(false);
             this.tabPage11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSite)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.basesiteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.baseSiteDataSet)).EndInit();
             this.tabPage12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basescaleBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseScaleDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basestonetypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseStoneTypeDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basescoopBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseScoopDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseapproveBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseApproveDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCustomerDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecarcityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCarCityDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecarteamBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCarTeamDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basecarBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseCarDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basemillBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.truckDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.basesiteBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseSiteDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.basejobtypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.truckDataSet3)).EndInit();
             this.ResumeLayout(false);

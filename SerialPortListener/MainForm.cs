@@ -1057,6 +1057,7 @@ namespace SerialPortListener
         {
             bool krabi = Globals.IsKrabiSTPVersion;
 
+            groupBox6.Visible = krabi;
             groupBox5.Visible = krabi;
             rbShortLine.Visible = krabi;
             rbLongLine.Visible = krabi;
@@ -1077,7 +1078,97 @@ namespace SerialPortListener
             lbTotalCaption.Visible = krabi;
             lbTotalTime.Visible = krabi;
             lbTotalWeightTotal.Visible = krabi;
+            label42.Visible = krabi;
 
+            ApplyMoneyGroupLayout(krabi);
+        }
+
+        // Master_Blue_1's gbMoney/panel4 layout had to be reflowed to make room for the
+        // Krabi-specific origin fields and totals table. Since WinForms Designer Location/Size
+        // are static (not naturally conditional), every pre-existing control this reflow
+        // touched gets its coordinates explicitly restored here for Standard mode, and
+        // explicitly re-applied for Krabi mode - so Standard mode stays pixel-identical to
+        // Master_Blue_1 regardless of what the Designer's static defaults currently are.
+        private void ApplyMoneyGroupLayout(bool krabi)
+        {
+            if (krabi)
+            {
+                label28.Location = new System.Drawing.Point(6, 103);
+                label28.Text = "คิว";
+                tbQ.Location = new System.Drawing.Point(96, 97);
+                tbQ.Size = new System.Drawing.Size(92, 31);
+                label17.Location = new System.Drawing.Point(237, 104);
+                gbMoney.Size = new System.Drawing.Size(508, 168);
+                label37.Location = new System.Drawing.Point(10, 29);
+                tbOilContent.Location = new System.Drawing.Point(65, 24);
+                tbOilContent.Size = new System.Drawing.Size(124, 30);
+                label38.Location = new System.Drawing.Point(199, 33);
+                label11.Location = new System.Drawing.Point(240, 29);
+                tbPricePerTon.Location = new System.Drawing.Point(338, 25);
+                tbPricePerTon.Size = new System.Drawing.Size(124, 30);
+                label24.Location = new System.Drawing.Point(467, 33);
+                label14.Location = new System.Drawing.Point(240, 61);
+                tbAmount.Location = new System.Drawing.Point(338, 57);
+                tbAmount.Size = new System.Drawing.Size(124, 30);
+                label25.Location = new System.Drawing.Point(467, 65);
+                label26.Location = new System.Drawing.Point(240, 93);
+                tbVat.Location = new System.Drawing.Point(338, 89);
+                tbVat.Size = new System.Drawing.Size(124, 30);
+                label30.Location = new System.Drawing.Point(467, 97);
+                label13.Location = new System.Drawing.Point(240, 125);
+                tbAmountVat.Location = new System.Drawing.Point(338, 121);
+                tbAmountVat.Size = new System.Drawing.Size(124, 30);
+                label29.Location = new System.Drawing.Point(467, 129);
+                groupBox3.Location = new System.Drawing.Point(6, 102);
+                groupBox3.Size = new System.Drawing.Size(224, 50);
+                rbbNonVat.Location = new System.Drawing.Point(19, 19);
+                rbbVat.Location = new System.Drawing.Point(110, 19);
+                groupBox2.Location = new System.Drawing.Point(6, 53);
+                groupBox2.Size = new System.Drawing.Size(224, 50);
+                rbTrans.Location = new System.Drawing.Point(146, 21);
+                rbCredit.Location = new System.Drawing.Point(72, 21);
+                btSave.Location = new System.Drawing.Point(703, 642);
+                btSave.Size = new System.Drawing.Size(108, 42);
+            }
+            else
+            {
+                label28.Location = new System.Drawing.Point(6, 135);
+                label28.Text = "น้ำหนักคิว";
+                tbQ.Location = new System.Drawing.Point(324, 131);
+                tbQ.Size = new System.Drawing.Size(124, 31);
+                label17.Location = new System.Drawing.Point(6, 102);
+                gbMoney.Size = new System.Drawing.Size(508, 250);
+                label37.Location = new System.Drawing.Point(14, 86);
+                tbOilContent.Location = new System.Drawing.Point(122, 82);
+                tbOilContent.Size = new System.Drawing.Size(160, 30);
+                label38.Location = new System.Drawing.Point(290, 86);
+                label11.Location = new System.Drawing.Point(14, 118);
+                tbPricePerTon.Location = new System.Drawing.Point(122, 114);
+                tbPricePerTon.Size = new System.Drawing.Size(160, 30);
+                label24.Location = new System.Drawing.Point(290, 118);
+                label14.Location = new System.Drawing.Point(14, 150);
+                tbAmount.Location = new System.Drawing.Point(122, 146);
+                tbAmount.Size = new System.Drawing.Size(160, 30);
+                label25.Location = new System.Drawing.Point(290, 150);
+                label26.Location = new System.Drawing.Point(14, 182);
+                tbVat.Location = new System.Drawing.Point(122, 178);
+                tbVat.Size = new System.Drawing.Size(160, 30);
+                label30.Location = new System.Drawing.Point(290, 182);
+                label13.Location = new System.Drawing.Point(14, 214);
+                tbAmountVat.Location = new System.Drawing.Point(122, 210);
+                tbAmountVat.Size = new System.Drawing.Size(160, 30);
+                label29.Location = new System.Drawing.Point(290, 214);
+                groupBox3.Location = new System.Drawing.Point(250, 26);
+                groupBox3.Size = new System.Drawing.Size(220, 50);
+                rbbNonVat.Location = new System.Drawing.Point(6, 21);
+                rbbVat.Location = new System.Drawing.Point(88, 21);
+                groupBox2.Location = new System.Drawing.Point(10, 26);
+                groupBox2.Size = new System.Drawing.Size(232, 50);
+                rbTrans.Location = new System.Drawing.Point(153, 21);
+                rbCredit.Location = new System.Drawing.Point(79, 21);
+                btSave.Location = new System.Drawing.Point(691, 642);
+                btSave.Size = new System.Drawing.Size(120, 42);
+            }
         }
 
         // Reads one field from the single-row base_setting_line config (id=1). Returns "" if
