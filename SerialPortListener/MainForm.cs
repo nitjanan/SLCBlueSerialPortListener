@@ -667,7 +667,9 @@ namespace SerialPortListener
             cbbMill.Items.Clear();
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT * FROM public.base_mill where weight_type = 1 or weight_type = 3 ORDER BY รหัสโรงโม่";
+            pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                ? "SELECT * FROM public.base_mill where weight_type = 4 ORDER BY รหัสโรงโม่"
+                : "SELECT * FROM public.base_mill where weight_type = 1 or weight_type = 3 ORDER BY รหัสโรงโม่";
             try
             {
                 dl.connect();
@@ -2978,7 +2980,9 @@ namespace SerialPortListener
         {
             string id = "";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT base_site_id FROM public.base_site WHERE (weight_type = 1 or weight_type = 3) and base_site_name = ? LIMIT 1 ";
+            pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                ? "SELECT base_site_id FROM public.base_site WHERE weight_type = 4 and base_site_name = ? LIMIT 1 "
+                : "SELECT base_site_id FROM public.base_site WHERE (weight_type = 1 or weight_type = 3) and base_site_name = ? LIMIT 1 ";
             pgCommand.Parameters.AddWithValue("", name);
             try
             {
@@ -3028,7 +3032,9 @@ namespace SerialPortListener
         {
             string id = "";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT รหัสโรงโม่ FROM public.base_mill WHERE (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = ? LIMIT 1";
+            pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                ? "SELECT รหัสโรงโม่ FROM public.base_mill WHERE weight_type = 4 and ชื่อโรงโม่ = ? LIMIT 1"
+                : "SELECT รหัสโรงโม่ FROM public.base_mill WHERE (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = ? LIMIT 1";
             pgCommand.Parameters.AddWithValue("", name);
             try
             {
@@ -5261,13 +5267,25 @@ namespace SerialPortListener
             fillSiteCombo();
         }
 
+        // Krabi mode: cbbSite lists ALL weight_type=4 ("ท่าเรือ"/pier) sites regardless of the
+        // selected customer. Standard mode: cbbSite is scoped to sites linked to the current
+        // customer via base_customer_site - a genuinely different concept, not just a filter
+        // tweak, per KRABI_STP_2026's real fillSiteCombo() vs Master_Blue_1's.
         private void fillSiteCombo()
         {
             //ล้างก่อน
             cbbSite.Items.Clear();
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT base_site.base_site_id, base_site.base_site_name FROM public.base_customer_site INNER JOIN public.base_site ON base_customer_site.site_id = base_site.base_site_id where customer_id = '" + tbCustomerId.Text + "'";
+            if (Globals.IsKrabiSTPVersion)
+            {
+                pgCommand.CommandText = "SELECT base_site_id, base_site_name FROM public.base_site where weight_type = 4 ORDER BY base_site_id DESC";
+            }
+            else
+            {
+                pgCommand.CommandText = "SELECT base_site.base_site_id, base_site.base_site_name FROM public.base_customer_site INNER JOIN public.base_site ON base_customer_site.site_id = base_site.base_site_id where customer_id = ?";
+                pgCommand.Parameters.AddWithValue("", tbCustomerId.Text);
+            }
             try
             {
                 dl.connect();
@@ -5276,7 +5294,6 @@ namespace SerialPortListener
                 {
                     string id = reader["base_site_id"].ToString();
                     string des = reader["base_site_name"].ToString();
-                    //cbbSite.Items.Add(des);
                     cbbSite.Items.Add(new ComboboxValue(id, des));
                 }
             }
@@ -5840,7 +5857,10 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and รหัสโรงโม่ = '" + tbMillId.Text + "' ";
+                pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                    ? "SELECT * FROM public.base_mill where weight_type = 4 and รหัสโรงโม่ = ? "
+                    : "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and รหัสโรงโม่ = ? ";
+                pgCommand.Parameters.AddWithValue("", tbMillId.Text);
                 try
                 {
                     dl.connect();
@@ -5874,7 +5894,10 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = '" + tbMillName.Text + "' ";
+                pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                    ? "SELECT * FROM public.base_mill where weight_type = 4 and ชื่อโรงโม่ = ? "
+                    : "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = ? ";
+                pgCommand.Parameters.AddWithValue("", tbMillName.Text);
                 try
                 {
                     dl.connect();
@@ -5933,7 +5956,10 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = '" + cbbMill.Text + "' ";
+                pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                    ? "SELECT * FROM public.base_mill where weight_type = 4 and ชื่อโรงโม่ = ? "
+                    : "SELECT * FROM public.base_mill where (weight_type = 1 or weight_type = 3) and ชื่อโรงโม่ = ? ";
+                pgCommand.Parameters.AddWithValue("", cbbMill.Text);
                 try
                 {
                     dl.connect();
@@ -5958,7 +5984,10 @@ namespace SerialPortListener
             {
                 //sql
                 OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-                pgCommand.CommandText = "SELECT * FROM public.base_site where (weight_type = 1 or weight_type = 3) and base_site_name = '" + cbbSite.Text + "' ";
+                pgCommand.CommandText = Globals.IsKrabiSTPVersion
+                    ? "SELECT * FROM public.base_site where weight_type = 4 and base_site_name = ? "
+                    : "SELECT * FROM public.base_site where (weight_type = 1 or weight_type = 3) and base_site_name = ? ";
+                pgCommand.Parameters.AddWithValue("", cbbSite.Text);
                 try
                 {
                     dl.connect();
@@ -6737,6 +6766,11 @@ namespace SerialPortListener
         }
 
         private void tbQ_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }
