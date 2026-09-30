@@ -1078,11 +1078,6 @@ namespace SerialPortListener
             lbTotalTime.Visible = krabi;
             lbTotalWeightTotal.Visible = krabi;
 
-            // tbQOrigin/tbWeightOrigin now sit in gbWeight/panel4 at tbQ's original spot,
-            // so the regular quantity field is hidden (not removed - its value/logic is
-            // untouched) whenever the Krabi-specific origin fields take its place.
-            label28.Visible = !krabi;
-            tbQ.Visible = !krabi;
         }
 
         // Reads one field from the single-row base_setting_line config (id=1). Returns "" if
@@ -6610,8 +6605,50 @@ namespace SerialPortListener
             }
         }
 
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
 
+        }
 
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbAmountVat_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label37_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbOilContent_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label38_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbMoney_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbQ_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
