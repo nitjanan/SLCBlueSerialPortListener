@@ -44,6 +44,12 @@
             this.lbQOrigin = new System.Windows.Forms.Label();
             this.lbShortCaption = new System.Windows.Forms.Label();
             this.lbLongCaption = new System.Windows.Forms.Label();
+            this.lbTableHeaderCorner = new System.Windows.Forms.Label();
+            this.lbTableHeaderCount = new System.Windows.Forms.Label();
+            this.lbTableHeaderWeight = new System.Windows.Forms.Label();
+            this.lbTotalCaption = new System.Windows.Forms.Label();
+            this.lbTotalTime = new System.Windows.Forms.Label();
+            this.lbTotalWeightTotal = new System.Windows.Forms.Label();
             this.tbData = new System.Windows.Forms.TextBox();
             this.gbDoc = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -2093,50 +2099,54 @@
             //
             // lbShortTime
             //
-            this.lbShortTime.AutoSize = true;
-            this.lbShortTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortTime.BackColor = System.Drawing.Color.White;
+            this.lbShortTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbShortTime.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbShortTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbShortTime.Location = new System.Drawing.Point(200, 662);
+            this.lbShortTime.Location = new System.Drawing.Point(250, 678);
             this.lbShortTime.Name = "lbShortTime";
-            this.lbShortTime.Size = new System.Drawing.Size(21, 23);
+            this.lbShortTime.Size = new System.Drawing.Size(85, 18);
             this.lbShortTime.Text = "0";
-            this.lbShortTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbShortTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbShortTime.Visible = false;
             //
             // lbShortWeightTotal
             //
-            this.lbShortWeightTotal.AutoSize = true;
-            this.lbShortWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortWeightTotal.BackColor = System.Drawing.Color.White;
+            this.lbShortWeightTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbShortWeightTotal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbShortWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbShortWeightTotal.Location = new System.Drawing.Point(230, 662);
+            this.lbShortWeightTotal.Location = new System.Drawing.Point(335, 678);
             this.lbShortWeightTotal.Name = "lbShortWeightTotal";
-            this.lbShortWeightTotal.Size = new System.Drawing.Size(59, 23);
+            this.lbShortWeightTotal.Size = new System.Drawing.Size(110, 18);
             this.lbShortWeightTotal.Text = "0.000";
-            this.lbShortWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbShortWeightTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbShortWeightTotal.Visible = false;
             //
             // lbLongTime
             //
-            this.lbLongTime.AutoSize = true;
-            this.lbLongTime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongTime.BackColor = System.Drawing.Color.White;
+            this.lbLongTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLongTime.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLongTime.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbLongTime.Location = new System.Drawing.Point(300, 662);
+            this.lbLongTime.Location = new System.Drawing.Point(250, 696);
             this.lbLongTime.Name = "lbLongTime";
-            this.lbLongTime.Size = new System.Drawing.Size(21, 23);
+            this.lbLongTime.Size = new System.Drawing.Size(85, 18);
             this.lbLongTime.Text = "0";
-            this.lbLongTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbLongTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbLongTime.Visible = false;
             //
             // lbLongWeightTotal
             //
-            this.lbLongWeightTotal.AutoSize = true;
-            this.lbLongWeightTotal.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongWeightTotal.BackColor = System.Drawing.Color.White;
+            this.lbLongWeightTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLongWeightTotal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLongWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbLongWeightTotal.Location = new System.Drawing.Point(330, 662);
+            this.lbLongWeightTotal.Location = new System.Drawing.Point(335, 696);
             this.lbLongWeightTotal.Name = "lbLongWeightTotal";
-            this.lbLongWeightTotal.Size = new System.Drawing.Size(59, 23);
+            this.lbLongWeightTotal.Size = new System.Drawing.Size(110, 18);
             this.lbLongWeightTotal.Text = "0.000";
-            this.lbLongWeightTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbLongWeightTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbLongWeightTotal.Visible = false;
             //
             // lbOrigin
@@ -2161,23 +2171,100 @@
             //
             // lbShortCaption
             //
-            this.lbShortCaption.AutoSize = true;
-            this.lbShortCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbShortCaption.Location = new System.Drawing.Point(200, 640);
+            this.lbShortCaption.BackColor = System.Drawing.Color.MistyRose;
+            this.lbShortCaption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbShortCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbShortCaption.Location = new System.Drawing.Point(200, 678);
             this.lbShortCaption.Name = "lbShortCaption";
-            this.lbShortCaption.Size = new System.Drawing.Size(30, 17);
+            this.lbShortCaption.Size = new System.Drawing.Size(50, 18);
             this.lbShortCaption.Text = "สั้น";
+            this.lbShortCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbShortCaption.Visible = false;
             //
             // lbLongCaption
             //
-            this.lbLongCaption.AutoSize = true;
-            this.lbLongCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbLongCaption.Location = new System.Drawing.Point(300, 640);
+            this.lbLongCaption.BackColor = System.Drawing.Color.MistyRose;
+            this.lbLongCaption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbLongCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLongCaption.Location = new System.Drawing.Point(200, 696);
             this.lbLongCaption.Name = "lbLongCaption";
-            this.lbLongCaption.Size = new System.Drawing.Size(30, 17);
+            this.lbLongCaption.Size = new System.Drawing.Size(50, 18);
             this.lbLongCaption.Text = "ยาว";
+            this.lbLongCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbLongCaption.Visible = false;
+            //
+            // lbTableHeaderCorner
+            //
+            this.lbTableHeaderCorner.BackColor = System.Drawing.Color.MistyRose;
+            this.lbTableHeaderCorner.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTableHeaderCorner.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTableHeaderCorner.Location = new System.Drawing.Point(200, 660);
+            this.lbTableHeaderCorner.Name = "lbTableHeaderCorner";
+            this.lbTableHeaderCorner.Size = new System.Drawing.Size(50, 18);
+            this.lbTableHeaderCorner.Text = "";
+            this.lbTableHeaderCorner.Visible = false;
+            //
+            // lbTableHeaderCount
+            //
+            this.lbTableHeaderCount.BackColor = System.Drawing.Color.MistyRose;
+            this.lbTableHeaderCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTableHeaderCount.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTableHeaderCount.Location = new System.Drawing.Point(250, 660);
+            this.lbTableHeaderCount.Name = "lbTableHeaderCount";
+            this.lbTableHeaderCount.Size = new System.Drawing.Size(85, 18);
+            this.lbTableHeaderCount.Text = "จำนวนเที่ยว";
+            this.lbTableHeaderCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTableHeaderCount.Visible = false;
+            //
+            // lbTableHeaderWeight
+            //
+            this.lbTableHeaderWeight.BackColor = System.Drawing.Color.MistyRose;
+            this.lbTableHeaderWeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTableHeaderWeight.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTableHeaderWeight.Location = new System.Drawing.Point(335, 660);
+            this.lbTableHeaderWeight.Name = "lbTableHeaderWeight";
+            this.lbTableHeaderWeight.Size = new System.Drawing.Size(110, 18);
+            this.lbTableHeaderWeight.Text = "น้ำหนักสุทธิ (ตัน)";
+            this.lbTableHeaderWeight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTableHeaderWeight.Visible = false;
+            //
+            // lbTotalCaption
+            //
+            this.lbTotalCaption.BackColor = System.Drawing.Color.MistyRose;
+            this.lbTotalCaption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTotalCaption.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalCaption.Location = new System.Drawing.Point(200, 714);
+            this.lbTotalCaption.Name = "lbTotalCaption";
+            this.lbTotalCaption.Size = new System.Drawing.Size(50, 18);
+            this.lbTotalCaption.Text = "รวม";
+            this.lbTotalCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTotalCaption.Visible = false;
+            //
+            // lbTotalTime
+            //
+            this.lbTotalTime.BackColor = System.Drawing.Color.White;
+            this.lbTotalTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTotalTime.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalTime.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTotalTime.Location = new System.Drawing.Point(250, 714);
+            this.lbTotalTime.Name = "lbTotalTime";
+            this.lbTotalTime.Size = new System.Drawing.Size(85, 18);
+            this.lbTotalTime.Text = "0";
+            this.lbTotalTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbTotalTime.Visible = false;
+            //
+            // lbTotalWeightTotal
+            //
+            this.lbTotalWeightTotal.BackColor = System.Drawing.Color.White;
+            this.lbTotalWeightTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTotalWeightTotal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalWeightTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTotalWeightTotal.Location = new System.Drawing.Point(335, 714);
+            this.lbTotalWeightTotal.Name = "lbTotalWeightTotal";
+            this.lbTotalWeightTotal.Size = new System.Drawing.Size(110, 18);
+            this.lbTotalWeightTotal.Text = "0.000";
+            this.lbTotalWeightTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbTotalWeightTotal.Visible = false;
             //
             // MainForm
             //
@@ -2230,6 +2317,12 @@
             this.Controls.Add(this.lbQOrigin);
             this.Controls.Add(this.lbShortCaption);
             this.Controls.Add(this.lbLongCaption);
+            this.Controls.Add(this.lbTableHeaderCorner);
+            this.Controls.Add(this.lbTableHeaderCount);
+            this.Controls.Add(this.lbTableHeaderWeight);
+            this.Controls.Add(this.lbTotalCaption);
+            this.Controls.Add(this.lbTotalTime);
+            this.Controls.Add(this.lbTotalWeightTotal);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2431,6 +2524,12 @@
         private System.Windows.Forms.Label lbQOrigin;
         private System.Windows.Forms.Label lbShortCaption;
         private System.Windows.Forms.Label lbLongCaption;
+        private System.Windows.Forms.Label lbTableHeaderCorner;
+        private System.Windows.Forms.Label lbTableHeaderCount;
+        private System.Windows.Forms.Label lbTableHeaderWeight;
+        private System.Windows.Forms.Label lbTotalCaption;
+        private System.Windows.Forms.Label lbTotalTime;
+        private System.Windows.Forms.Label lbTotalWeightTotal;
     }
 }
 

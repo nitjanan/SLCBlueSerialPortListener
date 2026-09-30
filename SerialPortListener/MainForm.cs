@@ -1071,6 +1071,22 @@ namespace SerialPortListener
             lbQOrigin.Visible = krabi;
             lbShortCaption.Visible = krabi;
             lbLongCaption.Visible = krabi;
+            lbTableHeaderCorner.Visible = krabi;
+            lbTableHeaderCount.Visible = krabi;
+            lbTableHeaderWeight.Visible = krabi;
+            lbTotalCaption.Visible = krabi;
+            lbTotalTime.Visible = krabi;
+            lbTotalWeightTotal.Visible = krabi;
+
+            if (krabi)
+            {
+                // The line-type totals table needs space below the existing origin/line-type
+                // controls that Standard mode doesn't have room for. Grow the window only in
+                // Krabi mode - this branch never runs when the flag is off, so Standard mode's
+                // window size is completely unaffected. The Save/Print buttons are already
+                // Anchor=Bottom, so they reposition themselves automatically on resize.
+                this.ClientSize = new System.Drawing.Size(this.ClientSize.Width, this.ClientSize.Height + 110);
+            }
         }
 
         // Reads one field from the single-row base_setting_line config (id=1). Returns "" if
@@ -1262,6 +1278,24 @@ namespace SerialPortListener
                 SaveTimeAndWeight("num_short", "weight_short", numTime, sumWeight);
             else if (lineType == "สายยาว")
                 SaveTimeAndWeight("num_long", "weight_long", numTime, sumWeight);
+
+            UpdateLineTypeTotalRow();
+        }
+
+        // Recomputes the "รวม" (total) row of the line-type totals table as short+long,
+        // client-side - no extra DB query needed since both parts are already on-screen.
+        private void UpdateLineTypeTotalRow()
+        {
+            int shortCount, longCount;
+            int.TryParse(lbShortTime.Text, out shortCount);
+            int.TryParse(lbLongTime.Text, out longCount);
+            lbTotalTime.Text = (shortCount + longCount).ToString();
+
+            double shortWeight, longWeight;
+            var style = System.Globalization.NumberStyles.AllowThousands | System.Globalization.NumberStyles.AllowDecimalPoint;
+            double.TryParse(lbShortWeightTotal.Text, style, System.Globalization.CultureInfo.CurrentCulture, out shortWeight);
+            double.TryParse(lbLongWeightTotal.Text, style, System.Globalization.CultureInfo.CurrentCulture, out longWeight);
+            lbTotalWeightTotal.Text = (shortWeight + longWeight).ToString("#,##0.000");
         }
 
         // Public wrapper so FSettingLine (a separate form) can trigger a totals refresh
