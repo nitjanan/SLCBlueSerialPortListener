@@ -1633,6 +1633,108 @@ namespace SerialPortListener
             fp.ShowDialog();
         }
 
+        // Ported from KRABI_STP_2026's btPrintLine_Click - "รายงานตามประเภทสาย" (by line-type
+        // report). Parameterized (the original concatenated user-supplied values into SQL text).
+        private void btPrintLine_Click(object sender, EventArgs e)
+        {
+            dl.connect();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT * FROM weight ");
+            sql.Append("WHERE ((วันที่ = ? AND เวลาชั่งออก >= ?) OR วันที่ > ?) ");
+            sql.Append("AND ((วันที่ = ? AND เวลาชั่งออก <= ?) OR วันที่ < ?) ");
+            if (tbLineCarRegistration.Text != "")
+                sql.Append("AND ทะเบียนรถ = ? ");
+            if (cbbLineSite.SelectedIndex != 0)
+                sql.Append("AND หน้างาน = ? ");
+            sql.Append("ORDER BY วันที่, เวลาชั่งออก");
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = sql.ToString();
+            pgCommand.Parameters.AddWithValue("", dtFromLine.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtFromOutLine.Value.ToString("HH:mm"));
+            pgCommand.Parameters.AddWithValue("", dtFromLine.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtToLine.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtToOutLine.Value.ToString("HH:mm"));
+            pgCommand.Parameters.AddWithValue("", dtToLine.Value.ToString("yyyy-MM-dd"));
+            if (tbLineCarRegistration.Text != "")
+                pgCommand.Parameters.AddWithValue("", tbLineCarRegistration.Text);
+            if (cbbLineSite.SelectedIndex != 0)
+                pgCommand.Parameters.AddWithValue("", cbbLineSite.Text);
+
+            DataTable dt = new DataTable();
+            try
+            {
+                OdbcDataAdapter cmd = new OdbcDataAdapter(pgCommand);
+                cmd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                dl.close();
+                return;
+            }
+            dl.close();
+
+            WeightTempReport.DateFrom = dtFromLine.Text;
+            WeightTempReport.DateTo = dtToLine.Text;
+
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("lineTypeDataSet", dt);
+            FPrintLineTypeReport fp = new FPrintLineTypeReport(rds);
+            fp.ShowDialog();
+        }
+
+        // Ported from KRABI_STP_2026's btPrintSum_Click - "รายงานสรุป" (summary report).
+        // Parameterized (the original concatenated user-supplied values into SQL text).
+        private void btPrintSum_Click(object sender, EventArgs e)
+        {
+            dl.connect();
+
+            StringBuilder sql = new StringBuilder();
+            sql.Append("SELECT * FROM weight ");
+            sql.Append("WHERE ((วันที่ = ? AND เวลาชั่งออก >= ?) OR วันที่ > ?) ");
+            sql.Append("AND ((วันที่ = ? AND เวลาชั่งออก <= ?) OR วันที่ < ?) ");
+            if (tbSumCar.Text != "")
+                sql.Append("AND ทะเบียนรถ = ? ");
+            if (cbbSumSite.SelectedIndex != 0)
+                sql.Append("AND หน้างาน = ? ");
+            sql.Append("ORDER BY วันที่, เวลาชั่งออก");
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = sql.ToString();
+            pgCommand.Parameters.AddWithValue("", dtFromSum.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtFromOutSum.Value.ToString("HH:mm"));
+            pgCommand.Parameters.AddWithValue("", dtFromSum.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtToSum.Value.ToString("yyyy-MM-dd"));
+            pgCommand.Parameters.AddWithValue("", dtToOutSum.Value.ToString("HH:mm"));
+            pgCommand.Parameters.AddWithValue("", dtToSum.Value.ToString("yyyy-MM-dd"));
+            if (tbSumCar.Text != "")
+                pgCommand.Parameters.AddWithValue("", tbSumCar.Text);
+            if (cbbSumSite.SelectedIndex != 0)
+                pgCommand.Parameters.AddWithValue("", cbbSumSite.Text);
+
+            DataTable dt = new DataTable();
+            try
+            {
+                OdbcDataAdapter cmd = new OdbcDataAdapter(pgCommand);
+                cmd.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                dl.close();
+                return;
+            }
+            dl.close();
+
+            WeightTempReport.DateFrom = dtFromSum.Text;
+            WeightTempReport.DateTo = dtToSum.Text;
+
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("sumLineDataSet", dt);
+            FPrintSumLineReport fp = new FPrintSumLineReport(rds);
+            fp.ShowDialog();
+        }
+
         private void cbbDOCutomerName_Leave(object sender, EventArgs e)
         {
             try

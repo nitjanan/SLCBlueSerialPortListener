@@ -254,6 +254,34 @@
             this.dtToDO = new System.Windows.Forms.DateTimePicker();
             this.dtFromDO = new System.Windows.Forms.DateTimePicker();
             this.btPrintDO = new System.Windows.Forms.Button();
+            this.tabPage18 = new System.Windows.Forms.TabPage();
+            this.label61 = new System.Windows.Forms.Label();
+            this.cbbLineSite = new System.Windows.Forms.ComboBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.dtFromOutLine = new System.Windows.Forms.DateTimePicker();
+            this.dtToOutLine = new System.Windows.Forms.DateTimePicker();
+            this.tbLineCarRegistration = new System.Windows.Forms.TextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.dtToLine = new System.Windows.Forms.DateTimePicker();
+            this.dtFromLine = new System.Windows.Forms.DateTimePicker();
+            this.btPrintLine = new System.Windows.Forms.Button();
+            this.tabPage19 = new System.Windows.Forms.TabPage();
+            this.label67 = new System.Windows.Forms.Label();
+            this.cbbSumSite = new System.Windows.Forms.ComboBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.dtFromOutSum = new System.Windows.Forms.DateTimePicker();
+            this.dtToOutSum = new System.Windows.Forms.DateTimePicker();
+            this.tbSumCar = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.dtToSum = new System.Windows.Forms.DateTimePicker();
+            this.dtFromSum = new System.Windows.Forms.DateTimePicker();
+            this.btPrintSum = new System.Windows.Forms.Button();
             this.lblMainComp = new System.Windows.Forms.Label();
             this.cbbMainComp = new System.Windows.Forms.ComboBox();
             this.weightTableAdapter = new SerialPortListener.truckDataSetTableAdapters.weightTableAdapter();
@@ -280,6 +308,8 @@
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tabPage17.SuspendLayout();
+            this.tabPage18.SuspendLayout();
+            this.tabPage19.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcReport
@@ -301,6 +331,8 @@
             this.tcReport.Controls.Add(this.tabPage11);
             this.tcReport.Controls.Add(this.tabPage12);
             this.tcReport.Controls.Add(this.tabPage17);
+            this.tcReport.Controls.Add(this.tabPage18);
+            this.tcReport.Controls.Add(this.tabPage19);
             this.tcReport.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcReport.Location = new System.Drawing.Point(3, 31);
             this.tcReport.Name = "tcReport";
@@ -2633,6 +2665,322 @@
             this.btPrintDO.UseVisualStyleBackColor = true;
             this.btPrintDO.Click += new System.EventHandler(this.btPrintDO_Click);
             // 
+            // tabPage18
+            // 
+            this.tabPage18.BackColor = System.Drawing.Color.LavenderBlush;
+            this.tabPage18.Controls.Add(this.label61);
+            this.tabPage18.Controls.Add(this.cbbLineSite);
+            this.tabPage18.Controls.Add(this.label62);
+            this.tabPage18.Controls.Add(this.label63);
+            this.tabPage18.Controls.Add(this.dtFromOutLine);
+            this.tabPage18.Controls.Add(this.dtToOutLine);
+            this.tabPage18.Controls.Add(this.tbLineCarRegistration);
+            this.tabPage18.Controls.Add(this.label64);
+            this.tabPage18.Controls.Add(this.label65);
+            this.tabPage18.Controls.Add(this.label66);
+            this.tabPage18.Controls.Add(this.dtToLine);
+            this.tabPage18.Controls.Add(this.dtFromLine);
+            this.tabPage18.Controls.Add(this.btPrintLine);
+            this.tabPage18.Location = new System.Drawing.Point(4, 26);
+            this.tabPage18.Name = "tabPage18";
+            this.tabPage18.Size = new System.Drawing.Size(755, 473);
+            this.tabPage18.TabIndex = 17;
+            this.tabPage18.Text = "รายงานตามประเภทสาย";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.Location = new System.Drawing.Point(151, 82);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(50, 21);
+            this.label61.TabIndex = 56;
+            this.label61.Text = "ชื่อเรือ:";
+            // 
+            // cbbLineSite
+            // 
+            this.cbbLineSite.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbLineSite.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbLineSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbLineSite.FormattingEnabled = true;
+            this.cbbLineSite.Location = new System.Drawing.Point(238, 79);
+            this.cbbLineSite.Name = "cbbLineSite";
+            this.cbbLineSite.Size = new System.Drawing.Size(346, 29);
+            this.cbbLineSite.TabIndex = 55;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(404, 211);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(65, 21);
+            this.label62.TabIndex = 54;
+            this.label62.Text = "เวลาออก:";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(404, 171);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(65, 21);
+            this.label63.TabIndex = 53;
+            this.label63.Text = "เวลาออก:";
+            // 
+            // dtFromOutLine
+            // 
+            this.dtFromOutLine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtFromOutLine.CustomFormat = "HH:mm";
+            this.dtFromOutLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFromOutLine.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFromOutLine.Location = new System.Drawing.Point(475, 166);
+            this.dtFromOutLine.Name = "dtFromOutLine";
+            this.dtFromOutLine.ShowUpDown = true;
+            this.dtFromOutLine.Size = new System.Drawing.Size(109, 27);
+            this.dtFromOutLine.TabIndex = 52;
+            // 
+            // dtToOutLine
+            // 
+            this.dtToOutLine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtToOutLine.CustomFormat = "HH:mm";
+            this.dtToOutLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtToOutLine.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtToOutLine.Location = new System.Drawing.Point(475, 206);
+            this.dtToOutLine.Name = "dtToOutLine";
+            this.dtToOutLine.ShowUpDown = true;
+            this.dtToOutLine.Size = new System.Drawing.Size(109, 27);
+            this.dtToOutLine.TabIndex = 51;
+            // 
+            // tbLineCarRegistration
+            // 
+            this.tbLineCarRegistration.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLineCarRegistration.Location = new System.Drawing.Point(238, 124);
+            this.tbLineCarRegistration.Name = "tbLineCarRegistration";
+            this.tbLineCarRegistration.Size = new System.Drawing.Size(346, 27);
+            this.tbLineCarRegistration.TabIndex = 50;
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(151, 127);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(74, 21);
+            this.label64.TabIndex = 49;
+            this.label64.Text = "ทะเบียนรถ:";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.Location = new System.Drawing.Point(151, 211);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(54, 21);
+            this.label65.TabIndex = 47;
+            this.label65.Text = "ถึงวันที่:";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Location = new System.Drawing.Point(151, 171);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(63, 21);
+            this.label66.TabIndex = 46;
+            this.label66.Text = "จากวันที่:";
+            // 
+            // dtToLine
+            // 
+            this.dtToLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtToLine.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtToLine.Location = new System.Drawing.Point(236, 208);
+            this.dtToLine.Name = "dtToLine";
+            this.dtToLine.Size = new System.Drawing.Size(125, 27);
+            this.dtToLine.TabIndex = 45;
+            // 
+            // dtFromLine
+            // 
+            this.dtFromLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFromLine.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFromLine.Location = new System.Drawing.Point(238, 166);
+            this.dtFromLine.Name = "dtFromLine";
+            this.dtFromLine.Size = new System.Drawing.Size(123, 27);
+            this.dtFromLine.TabIndex = 44;
+            // 
+            // btPrintLine
+            // 
+            this.btPrintLine.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintLine.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintLine.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintLine.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintLine.Location = new System.Drawing.Point(359, 270);
+            this.btPrintLine.Name = "btPrintLine";
+            this.btPrintLine.Size = new System.Drawing.Size(75, 36);
+            this.btPrintLine.TabIndex = 48;
+            this.btPrintLine.Text = "พิมพ์";
+            this.btPrintLine.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintLine.UseVisualStyleBackColor = true;
+            this.btPrintLine.Click += new System.EventHandler(this.btPrintLine_Click);
+            // 
+            // tabPage19
+            // 
+            this.tabPage19.BackColor = System.Drawing.Color.AliceBlue;
+            this.tabPage19.Controls.Add(this.label67);
+            this.tabPage19.Controls.Add(this.cbbSumSite);
+            this.tabPage19.Controls.Add(this.label68);
+            this.tabPage19.Controls.Add(this.label69);
+            this.tabPage19.Controls.Add(this.dtFromOutSum);
+            this.tabPage19.Controls.Add(this.dtToOutSum);
+            this.tabPage19.Controls.Add(this.tbSumCar);
+            this.tabPage19.Controls.Add(this.label70);
+            this.tabPage19.Controls.Add(this.label71);
+            this.tabPage19.Controls.Add(this.label72);
+            this.tabPage19.Controls.Add(this.dtToSum);
+            this.tabPage19.Controls.Add(this.dtFromSum);
+            this.tabPage19.Controls.Add(this.btPrintSum);
+            this.tabPage19.Location = new System.Drawing.Point(4, 26);
+            this.tabPage19.Name = "tabPage19";
+            this.tabPage19.Size = new System.Drawing.Size(755, 473);
+            this.tabPage19.TabIndex = 18;
+            this.tabPage19.Text = "รายงานสรุป";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.Location = new System.Drawing.Point(151, 82);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(50, 21);
+            this.label67.TabIndex = 69;
+            this.label67.Text = "ชื่อเรือ:";
+            // 
+            // cbbSumSite
+            // 
+            this.cbbSumSite.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbSumSite.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbSumSite.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSumSite.FormattingEnabled = true;
+            this.cbbSumSite.Location = new System.Drawing.Point(238, 79);
+            this.cbbSumSite.Name = "cbbSumSite";
+            this.cbbSumSite.Size = new System.Drawing.Size(346, 29);
+            this.cbbSumSite.TabIndex = 68;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(404, 211);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(65, 21);
+            this.label68.TabIndex = 67;
+            this.label68.Text = "เวลาออก:";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(404, 171);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(65, 21);
+            this.label69.TabIndex = 66;
+            this.label69.Text = "เวลาออก:";
+            // 
+            // dtFromOutSum
+            // 
+            this.dtFromOutSum.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtFromOutSum.CustomFormat = "HH:mm";
+            this.dtFromOutSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFromOutSum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFromOutSum.Location = new System.Drawing.Point(475, 166);
+            this.dtFromOutSum.Name = "dtFromOutSum";
+            this.dtFromOutSum.ShowUpDown = true;
+            this.dtFromOutSum.Size = new System.Drawing.Size(109, 27);
+            this.dtFromOutSum.TabIndex = 65;
+            // 
+            // dtToOutSum
+            // 
+            this.dtToOutSum.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtToOutSum.CustomFormat = "HH:mm";
+            this.dtToOutSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtToOutSum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtToOutSum.Location = new System.Drawing.Point(475, 206);
+            this.dtToOutSum.Name = "dtToOutSum";
+            this.dtToOutSum.ShowUpDown = true;
+            this.dtToOutSum.Size = new System.Drawing.Size(109, 27);
+            this.dtToOutSum.TabIndex = 64;
+            // 
+            // tbSumCar
+            // 
+            this.tbSumCar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSumCar.Location = new System.Drawing.Point(238, 124);
+            this.tbSumCar.Name = "tbSumCar";
+            this.tbSumCar.Size = new System.Drawing.Size(346, 27);
+            this.tbSumCar.TabIndex = 63;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(151, 127);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(74, 21);
+            this.label70.TabIndex = 62;
+            this.label70.Text = "ทะเบียนรถ:";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.Location = new System.Drawing.Point(151, 211);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(54, 21);
+            this.label71.TabIndex = 60;
+            this.label71.Text = "ถึงวันที่:";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label72.Location = new System.Drawing.Point(151, 171);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(63, 21);
+            this.label72.TabIndex = 59;
+            this.label72.Text = "จากวันที่:";
+            // 
+            // dtToSum
+            // 
+            this.dtToSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtToSum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtToSum.Location = new System.Drawing.Point(236, 208);
+            this.dtToSum.Name = "dtToSum";
+            this.dtToSum.Size = new System.Drawing.Size(125, 27);
+            this.dtToSum.TabIndex = 58;
+            // 
+            // dtFromSum
+            // 
+            this.dtFromSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFromSum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFromSum.Location = new System.Drawing.Point(238, 166);
+            this.dtFromSum.Name = "dtFromSum";
+            this.dtFromSum.Size = new System.Drawing.Size(123, 27);
+            this.dtFromSum.TabIndex = 57;
+            // 
+            // btPrintSum
+            // 
+            this.btPrintSum.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintSum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintSum.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintSum.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintSum.Location = new System.Drawing.Point(359, 270);
+            this.btPrintSum.Name = "btPrintSum";
+            this.btPrintSum.Size = new System.Drawing.Size(75, 36);
+            this.btPrintSum.TabIndex = 61;
+            this.btPrintSum.Text = "พิมพ์";
+            this.btPrintSum.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintSum.UseVisualStyleBackColor = true;
+            this.btPrintSum.Click += new System.EventHandler(this.btPrintSum_Click);
+            // 
             // lblMainComp
             // 
             this.lblMainComp.AutoSize = true;
@@ -2707,6 +3055,10 @@
             this.tabPage12.PerformLayout();
             this.tabPage17.ResumeLayout(false);
             this.tabPage17.PerformLayout();
+            this.tabPage18.ResumeLayout(false);
+            this.tabPage18.PerformLayout();
+            this.tabPage19.ResumeLayout(false);
+            this.tabPage19.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2940,6 +3292,34 @@
         private System.Windows.Forms.DateTimePicker dtToDO;
         private System.Windows.Forms.DateTimePicker dtFromDO;
         private System.Windows.Forms.Button btPrintDO;
+        private System.Windows.Forms.TabPage tabPage18;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.ComboBox cbbLineSite;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.DateTimePicker dtFromOutLine;
+        private System.Windows.Forms.DateTimePicker dtToOutLine;
+        private System.Windows.Forms.TextBox tbLineCarRegistration;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.DateTimePicker dtToLine;
+        private System.Windows.Forms.DateTimePicker dtFromLine;
+        private System.Windows.Forms.Button btPrintLine;
+        private System.Windows.Forms.TabPage tabPage19;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.ComboBox cbbSumSite;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.DateTimePicker dtFromOutSum;
+        private System.Windows.Forms.DateTimePicker dtToOutSum;
+        private System.Windows.Forms.TextBox tbSumCar;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.DateTimePicker dtToSum;
+        private System.Windows.Forms.DateTimePicker dtFromSum;
+        private System.Windows.Forms.Button btPrintSum;
         private System.Windows.Forms.Label lblMainComp;
         private System.Windows.Forms.ComboBox cbbMainComp;
     }

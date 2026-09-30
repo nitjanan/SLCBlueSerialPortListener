@@ -280,6 +280,18 @@
     <Compile Include="FPrintCarTeamReport.Designer.cs">
       <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintLineTypeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintLineTypeReport.Designer.cs">
+      <DependentUpon>FPrintLineTypeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintSumLineReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintSumLineReport.Designer.cs">
+      <DependentUpon>FPrintSumLineReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintCleanReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +485,8 @@
     <Compile Include="ReportMainTemplate.cs" />
     <Compile Include="SerialDataHandler.cs" />
     <EmbeddedResource Include="CarTeamReport.rdlc" />
+    <EmbeddedResource Include="LineTypeReport.rdlc" />
+    <EmbeddedResource Include="SumLineReport.rdlc" />
     <EmbeddedResource Include="CleanReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
     <EmbeddedResource Include="DailyReport.rdlc" />
@@ -487,6 +501,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintCarTeamReport.resx">
       <DependentUpon>FPrintCarTeamReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintLineTypeReport.resx">
+      <DependentUpon>FPrintLineTypeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintSumLineReport.resx">
+      <DependentUpon>FPrintSumLineReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintCleanReport.resx">
       <DependentUpon>FPrintCleanReport.cs</DependentUpon>
