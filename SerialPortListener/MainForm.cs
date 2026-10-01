@@ -492,6 +492,7 @@ namespace SerialPortListener
             fillTransportCombo();
             fillMillCombo();
             calculatenumQ();
+            calculatenumQOrigin();
 
             disableBtAfterRead(0);
             //if user admin enable all 
@@ -1059,19 +1060,31 @@ namespace SerialPortListener
         {
             bool krabi = Globals.IsKrabiSTPVersion;
 
+            tbWeightOrigin.Visible = krabi;
+            tbQOrigin.Visible = krabi;
+            lbOrigin.Visible = krabi;
+            lbQOrigin.Visible = krabi;
+
+            ApplyLineTypeLayout(krabi);
+            ApplyMoneyGroupLayout(krabi);
+            ApplyProductOperatorLayout(krabi);
+        }
+
+        // The "ประเภทสาย" (line-type) group - groupBox6 ("ท่าเรือ"), groupBox5 ("ชนิดสาย")
+        // with rbShortLine/rbLongLine, the settings button, and the segmented totals table -
+        // exists only in Krabi mode; KRABI_STP_2026 is the sole source for this whole section,
+        // so there is no separate "Standard mode position" to restore it to when hidden.
+        private void ApplyLineTypeLayout(bool krabi)
+        {
             groupBox6.Visible = krabi;
             groupBox5.Visible = krabi;
             rbShortLine.Visible = krabi;
             rbLongLine.Visible = krabi;
-            tbWeightOrigin.Visible = krabi;
-            tbQOrigin.Visible = krabi;
             btSettingLine.Visible = krabi;
             lbShortTime.Visible = krabi;
             lbShortWeightTotal.Visible = krabi;
             lbLongTime.Visible = krabi;
             lbLongWeightTotal.Visible = krabi;
-            lbOrigin.Visible = krabi;
-            lbQOrigin.Visible = krabi;
             lbShortCaption.Visible = krabi;
             lbLongCaption.Visible = krabi;
             lbTableHeaderCorner.Visible = krabi;
@@ -1080,9 +1093,73 @@ namespace SerialPortListener
             lbTotalCaption.Visible = krabi;
             lbTotalTime.Visible = krabi;
             lbTotalWeightTotal.Visible = krabi;
-            label42.Visible = krabi;
 
-            ApplyMoneyGroupLayout(krabi);
+            // groupBox5 ("ประเภทสาย") sits between gbDoc and gbCustomer in the right column,
+            // at (712,152)-(1197,197). In Standard mode it's invisible so gbCustomer can stay
+            // at its Master_Blue_1 position - but in Krabi mode gbCustomer (and gbProd below
+            // it) must shift down to clear that space, or gbCustomer's opaque background paints
+            // over groupBox5 and hides it despite Visible=true (a z-order occlusion, not a
+            // visibility bug).
+            if (krabi)
+            {
+                gbCustomer.Location = new System.Drawing.Point(708, 205);
+                gbProd.Location = new System.Drawing.Point(708, 205 + gbCustomer.Size.Height + 10);
+            }
+            else
+            {
+                gbCustomer.Location = new System.Drawing.Point(708, 157);
+                gbProd.Location = new System.Drawing.Point(708, 410);
+            }
+        }
+
+        // gbProd ("สินค้า / ผู้ปฏิบัติงาน"): ประเภทหิน (cbbStoneColor/label32) and the
+        // ล้างหิน/สเปรย์น้ำ/ไม่มี radio group (groupBox4) don't exist in KRABI_STP_2026's
+        // gbProd at all. Hiding them alone would leave a gap where they used to be, so the
+        // remaining rows (ผู้ตัก/ผู้ชั่ง/หมายเหตุ) shift up by one row-height in Krabi mode,
+        // and gbProd itself shrinks to match - each explicitly restored for Standard mode too.
+        private void ApplyProductOperatorLayout(bool krabi)
+        {
+            // ประเภทหิน (label32/cbbStoneColor) and the ล้างหิน/สเปรย์น้ำ/ไม่มี radio
+            // group (groupBox4) are Standard-only. Hiding them in Krabi mode shifts
+            // ผู้ตัก/ผู้ชั่ง/หมายเหตุ up one row and shrinks gbProd to remove the gap.
+            label32.Visible = !krabi;
+            cbbStoneColor.Visible = !krabi;
+            groupBox4.Visible = !krabi;
+
+            if (krabi)
+            {
+                // ชนิดหิน (label6/cbbStoneType/tbStoneDesc) moves down to clear the
+                // group's title area in Krabi mode; the rows below it shift down to match.
+                gbProd.Size = new System.Drawing.Size(492, 174);
+                label6.Location = new System.Drawing.Point(19, 40);
+                cbbStoneType.Location = new System.Drawing.Point(118, 36);
+                tbStoneDesc.Location = new System.Drawing.Point(363, 36);
+                label19.Location = new System.Drawing.Point(14, 76);
+                tbScoopId.Location = new System.Drawing.Point(113, 72);
+                tbScoopName.Location = new System.Drawing.Point(218, 72);
+                label18.Location = new System.Drawing.Point(14, 112);
+                tbScaleId.Location = new System.Drawing.Point(113, 108);
+                tbScaleName.Location = new System.Drawing.Point(218, 108);
+                label36.Location = new System.Drawing.Point(14, 148);
+                tbNote.Location = new System.Drawing.Point(113, 144);
+            }
+            else
+            {
+                gbProd.Size = new System.Drawing.Size(492, 210);
+                label6.Location = new System.Drawing.Point(19, 30);
+                cbbStoneType.Location = new System.Drawing.Point(118, 26);
+                tbStoneDesc.Location = new System.Drawing.Point(363, 26);
+                label32.Location = new System.Drawing.Point(14, 66);
+                cbbStoneColor.Location = new System.Drawing.Point(113, 62);
+                label19.Location = new System.Drawing.Point(14, 102);
+                tbScoopId.Location = new System.Drawing.Point(113, 98);
+                tbScoopName.Location = new System.Drawing.Point(218, 98);
+                label18.Location = new System.Drawing.Point(14, 138);
+                tbScaleId.Location = new System.Drawing.Point(113, 134);
+                tbScaleName.Location = new System.Drawing.Point(218, 134);
+                label36.Location = new System.Drawing.Point(14, 174);
+                tbNote.Location = new System.Drawing.Point(113, 170);
+            }
         }
 
         // Master_Blue_1's gbMoney/panel4 layout had to be reflowed to make room for the
@@ -4063,6 +4140,12 @@ namespace SerialPortListener
                 calculatenumQ();
         }
 
+        private void tbWeightOrigin_TextChanged(object sender, EventArgs e)
+        {
+            if (cbbStoneType.SelectedIndex != -1)
+                calculatenumQOrigin();
+        }
+
         //ไม่ใช้แล้ว 03-09-2024 เนื่องจากมีการคำนวน vat (รวมภาษี) แบบใหม่
         private void calculateAmount()
         {
@@ -4118,6 +4201,31 @@ namespace SerialPortListener
                 else
                 {
                     tbQ.Text = "0.00";
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        // Same formula as calculatenumQ(), but against tbWeightOrigin instead of
+        // tbWeightTotal - คิวต้นทาง (tbQOrigin) for Krabi STP mode.
+        private void calculatenumQOrigin()
+        {
+            try
+            {
+                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text) && !string.IsNullOrEmpty(strCalQ))
+                {
+                    double numCalQ = Convert.ToDouble(strCalQ);
+                    double numWeightTotal = Convert.ToDouble(tbWeightOrigin.Text);
+                    double numQ = numWeightTotal / (numCalQ * 1000);
+                    tbQOrigin.Text = numQ.ToString("#,##0.00");
+                }
+                else
+                {
+                    tbQOrigin.Text = "0.00";
                 }
 
             }
@@ -4370,6 +4478,7 @@ namespace SerialPortListener
             //Weight.StoneColor = getPrintFromDB("base_stone_type", "ประเภทหิน", "ชื่อหิน", cbbStoneType.Text);
             //คำนวณค่าคิว
             calculatenumQ();
+            calculatenumQOrigin();
 
             //หาการล้าง,สเปรย์จากลูกค้าและชนิดหิน
             setDataCleanByCustomerAndStoneType();
