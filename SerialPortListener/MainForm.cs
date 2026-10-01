@@ -356,6 +356,11 @@ namespace SerialPortListener
             /* autoComplete จังหวัด */
             autoCompleteSetting(tbCarCity, "ชื่อจังหวัด", "base_car_city");
 
+            /* autoComplete รายละเอียดหิน (จากที่เคยบันทึกใน weight.stone_desc) */
+            tbStoneDesc.Leave -= tbStoneDesc_Leave;
+            tbStoneDesc.Leave += tbStoneDesc_Leave;
+            loadStoneDescAutoComplete();
+
             /* autoComplete ลูกค้า */
             //autoCompleteSetting(tbCustomerId, "รหัสลูกค้า", "base_customer");
             //autoCompleteSetting(tbCustomerName, "ชื่อลูกค้า", "base_customer");
@@ -3826,6 +3831,54 @@ namespace SerialPortListener
             dl.close();
         }
 
+        /* autoComplete stone_desc จากข้อมูลที่เคยบันทึกใน weight */
+        // สร้าง collection ครั้งเดียวแล้วแก้ไขในที่เดิม — การ assign AutoCompleteCustomSource ซ้ำ ๆ
+        // จะสร้าง window handle ใหม่ทุกครั้งจนเกิด "Error creating window handle"
+        private readonly AutoCompleteStringCollection collStoneDesc = new AutoCompleteStringCollection();
+
+        private void tbStoneDesc_Leave(object sender, EventArgs e)
+        {
+            string s = tbStoneDesc.Text.Trim();
+            if (s != "" && !collStoneDesc.Contains(s))
+            {
+                collStoneDesc.Add(s);
+            }
+        }
+
+        private void loadStoneDescAutoComplete()
+        {
+            AutoCompleteStringCollection coll = new AutoCompleteStringCollection();
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT DISTINCT TRIM(stone_desc) AS stone_desc FROM public.weight "
+                                  + "WHERE stone_desc IS NOT NULL AND TRIM(stone_desc) <> '' ORDER BY 1";
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    coll.Add(reader[0].ToString());
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+
+            collStoneDesc.Clear();
+            string[] items = new string[coll.Count];
+            coll.CopyTo(items, 0);
+            collStoneDesc.AddRange(items);
+
+            if (tbStoneDesc.AutoCompleteCustomSource != collStoneDesc)
+            {
+                tbStoneDesc.AutoCompleteCustomSource = collStoneDesc;
+                tbStoneDesc.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                tbStoneDesc.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            }
+        }
+
         /* autoComplete Setting */
         private void autoCompleteSettingCompany(TextBox tb, string field, string tableName)
         {
@@ -5626,6 +5679,7 @@ namespace SerialPortListener
         {
             if (!Globals.IsKrabiSTPVersion)
                 return;
+
 
             if ((tbCarLicense != null && tbCarLicense.Text != "" && checkZeroStr(tbWeightOut.Text) && rbShortLine.Checked) && tbWeightIn.Enabled)
             {
