@@ -80,12 +80,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbbStoneType = new System.Windows.Forms.ComboBox();
             this.tbStoneDesc = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.cbbStoneColor = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.rbCleanNo = new System.Windows.Forms.RadioButton();
-            this.rbCleanWater = new System.Windows.Forms.RadioButton();
-            this.rbCleanStone = new System.Windows.Forms.RadioButton();
             this.label19 = new System.Windows.Forms.Label();
             this.tbScoopId = new System.Windows.Forms.TextBox();
             this.tbScoopName = new System.Windows.Forms.TextBox();
@@ -94,6 +88,12 @@
             this.tbScaleName = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.tbNote = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.cbbStoneColor = new System.Windows.Forms.ComboBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rbCleanNo = new System.Windows.Forms.RadioButton();
+            this.rbCleanWater = new System.Windows.Forms.RadioButton();
+            this.rbCleanStone = new System.Windows.Forms.RadioButton();
             this.gbWeight = new System.Windows.Forms.GroupBox();
             this.label35 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -259,10 +259,11 @@
             // 
             // tbWeightOrigin
             // 
-            this.tbWeightOrigin.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeightOrigin.AccessibleName = "น้ำหนักสุทธิต้นทาง";
+            this.tbWeightOrigin.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbWeightOrigin.Location = new System.Drawing.Point(324, 132);
             this.tbWeightOrigin.Name = "tbWeightOrigin";
-            this.tbWeightOrigin.Size = new System.Drawing.Size(124, 31);
+            this.tbWeightOrigin.Size = new System.Drawing.Size(124, 33);
             this.tbWeightOrigin.TabIndex = 93;
             this.tbWeightOrigin.Text = "0.00";
             this.tbWeightOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -272,7 +273,7 @@
             // 
             // tbQOrigin
             // 
-            this.tbQOrigin.AccessibleName = "คิว";
+            this.tbQOrigin.AccessibleName = "คิวต้นทาง";
             this.tbQOrigin.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbQOrigin.Location = new System.Drawing.Point(96, 132);
             this.tbQOrigin.Name = "tbQOrigin";
@@ -281,6 +282,7 @@
             this.tbQOrigin.Text = "0.00";
             this.tbQOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tbQOrigin.Visible = false;
+            this.tbQOrigin.TextChanged += new System.EventHandler(this.tbQOrigin_TextChanged);
             this.tbQOrigin.Leave += new System.EventHandler(this.tbQOrigin_Leave);
             // 
             // btSettingLine
@@ -881,87 +883,6 @@
             this.tbStoneDesc.Size = new System.Drawing.Size(112, 30);
             this.tbStoneDesc.TabIndex = 16;
             // 
-            // label32
-            // 
-            this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.MintCream;
-            this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(14, 66);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(73, 21);
-            this.label32.TabIndex = 111;
-            this.label32.Text = "ประเภทหิน";
-            // 
-            // cbbStoneColor
-            // 
-            this.cbbStoneColor.AccessibleName = "ประเภทหิน";
-            this.cbbStoneColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbbStoneColor.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbStoneColor.FormattingEnabled = true;
-            this.cbbStoneColor.Items.AddRange(new object[] {
-            "หินขาว",
-            "หินดำ"});
-            this.cbbStoneColor.Location = new System.Drawing.Point(113, 62);
-            this.cbbStoneColor.Name = "cbbStoneColor";
-            this.cbbStoneColor.Size = new System.Drawing.Size(139, 30);
-            this.cbbStoneColor.TabIndex = 23;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.AccessibleName = "ล้างสเปรย์";
-            this.groupBox4.Controls.Add(this.rbCleanNo);
-            this.groupBox4.Controls.Add(this.rbCleanWater);
-            this.groupBox4.Controls.Add(this.rbCleanStone);
-            this.groupBox4.Location = new System.Drawing.Point(256, 46);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(214, 46);
-            this.groupBox4.TabIndex = 121;
-            this.groupBox4.TabStop = false;
-            // 
-            // rbCleanNo
-            // 
-            this.rbCleanNo.AutoSize = true;
-            this.rbCleanNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCleanNo.Location = new System.Drawing.Point(159, 18);
-            this.rbCleanNo.Name = "rbCleanNo";
-            this.rbCleanNo.Size = new System.Drawing.Size(52, 25);
-            this.rbCleanNo.TabIndex = 2;
-            this.rbCleanNo.TabStop = true;
-            this.rbCleanNo.Text = "ไม่มี";
-            this.rbCleanNo.UseVisualStyleBackColor = true;
-            this.rbCleanNo.CheckedChanged += new System.EventHandler(this.rbCleanNo_CheckedChanged);
-            this.rbCleanNo.Click += new System.EventHandler(this.rbCleanNo_Click);
-            // 
-            // rbCleanWater
-            // 
-            this.rbCleanWater.AutoSize = true;
-            this.rbCleanWater.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCleanWater.Location = new System.Drawing.Point(71, 18);
-            this.rbCleanWater.Name = "rbCleanWater";
-            this.rbCleanWater.Size = new System.Drawing.Size(82, 25);
-            this.rbCleanWater.TabIndex = 1;
-            this.rbCleanWater.TabStop = true;
-            this.rbCleanWater.Text = "สเปรย์น้ำ";
-            this.rbCleanWater.UseVisualStyleBackColor = true;
-            this.rbCleanWater.CheckedChanged += new System.EventHandler(this.rbCleanWater_CheckedChanged);
-            this.rbCleanWater.Click += new System.EventHandler(this.rbCleanWater_Click);
-            // 
-            // rbCleanStone
-            // 
-            this.rbCleanStone.AutoSize = true;
-            this.rbCleanStone.Checked = true;
-            this.rbCleanStone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCleanStone.Location = new System.Drawing.Point(2, 18);
-            this.rbCleanStone.Name = "rbCleanStone";
-            this.rbCleanStone.Size = new System.Drawing.Size(69, 25);
-            this.rbCleanStone.TabIndex = 0;
-            this.rbCleanStone.TabStop = true;
-            this.rbCleanStone.Text = "ล้างหิน";
-            this.rbCleanStone.UseVisualStyleBackColor = true;
-            this.rbCleanStone.CheckedChanged += new System.EventHandler(this.rbCleanStone_CheckedChanged);
-            this.rbCleanStone.Click += new System.EventHandler(this.rbCleanStone_Click);
-            // 
             // label19
             // 
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1053,6 +974,87 @@
             this.tbNote.Size = new System.Drawing.Size(357, 30);
             this.tbNote.TabIndex = 129;
             this.tbNote.Tag = "";
+            // 
+            // label32
+            // 
+            this.label32.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.MintCream;
+            this.label32.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(14, 66);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(73, 21);
+            this.label32.TabIndex = 111;
+            this.label32.Text = "ประเภทหิน";
+            // 
+            // cbbStoneColor
+            // 
+            this.cbbStoneColor.AccessibleName = "ประเภทหิน";
+            this.cbbStoneColor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbbStoneColor.Font = new System.Drawing.Font("Century Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbStoneColor.FormattingEnabled = true;
+            this.cbbStoneColor.Items.AddRange(new object[] {
+            "หินขาว",
+            "หินดำ"});
+            this.cbbStoneColor.Location = new System.Drawing.Point(113, 62);
+            this.cbbStoneColor.Name = "cbbStoneColor";
+            this.cbbStoneColor.Size = new System.Drawing.Size(139, 30);
+            this.cbbStoneColor.TabIndex = 23;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.AccessibleName = "ล้างสเปรย์";
+            this.groupBox4.Controls.Add(this.rbCleanNo);
+            this.groupBox4.Controls.Add(this.rbCleanWater);
+            this.groupBox4.Controls.Add(this.rbCleanStone);
+            this.groupBox4.Location = new System.Drawing.Point(256, 46);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(214, 46);
+            this.groupBox4.TabIndex = 121;
+            this.groupBox4.TabStop = false;
+            // 
+            // rbCleanNo
+            // 
+            this.rbCleanNo.AutoSize = true;
+            this.rbCleanNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCleanNo.Location = new System.Drawing.Point(159, 18);
+            this.rbCleanNo.Name = "rbCleanNo";
+            this.rbCleanNo.Size = new System.Drawing.Size(52, 25);
+            this.rbCleanNo.TabIndex = 2;
+            this.rbCleanNo.TabStop = true;
+            this.rbCleanNo.Text = "ไม่มี";
+            this.rbCleanNo.UseVisualStyleBackColor = true;
+            this.rbCleanNo.CheckedChanged += new System.EventHandler(this.rbCleanNo_CheckedChanged);
+            this.rbCleanNo.Click += new System.EventHandler(this.rbCleanNo_Click);
+            // 
+            // rbCleanWater
+            // 
+            this.rbCleanWater.AutoSize = true;
+            this.rbCleanWater.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCleanWater.Location = new System.Drawing.Point(71, 18);
+            this.rbCleanWater.Name = "rbCleanWater";
+            this.rbCleanWater.Size = new System.Drawing.Size(82, 25);
+            this.rbCleanWater.TabIndex = 1;
+            this.rbCleanWater.TabStop = true;
+            this.rbCleanWater.Text = "สเปรย์น้ำ";
+            this.rbCleanWater.UseVisualStyleBackColor = true;
+            this.rbCleanWater.CheckedChanged += new System.EventHandler(this.rbCleanWater_CheckedChanged);
+            this.rbCleanWater.Click += new System.EventHandler(this.rbCleanWater_Click);
+            // 
+            // rbCleanStone
+            // 
+            this.rbCleanStone.AutoSize = true;
+            this.rbCleanStone.Checked = true;
+            this.rbCleanStone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCleanStone.Location = new System.Drawing.Point(2, 18);
+            this.rbCleanStone.Name = "rbCleanStone";
+            this.rbCleanStone.Size = new System.Drawing.Size(69, 25);
+            this.rbCleanStone.TabIndex = 0;
+            this.rbCleanStone.TabStop = true;
+            this.rbCleanStone.Text = "ล้างหิน";
+            this.rbCleanStone.UseVisualStyleBackColor = true;
+            this.rbCleanStone.CheckedChanged += new System.EventHandler(this.rbCleanStone_CheckedChanged);
+            this.rbCleanStone.Click += new System.EventHandler(this.rbCleanStone_Click);
             // 
             // gbWeight
             // 
@@ -1278,6 +1280,7 @@
             // 
             // tbWeightOut
             // 
+            this.tbWeightOut.AccessibleName = "น้ำหนักออก";
             this.tbWeightOut.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbWeightOut.Enabled = false;
             this.tbWeightOut.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

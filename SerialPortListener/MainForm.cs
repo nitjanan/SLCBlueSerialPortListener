@@ -4195,8 +4195,21 @@ namespace SerialPortListener
 
         private void tbWeightOrigin_TextChanged(object sender, EventArgs e)
         {
+            // ข้ามเมื่อผู้ใช้กำลังคีย์ tbQOrigin อยู่ เพื่อไม่ให้คำนวนวนกลับไปทับค่าที่กำลังพิมพ์
+            if (tbQOrigin.Focused)
+                return;
             if (cbbStoneType.SelectedIndex != -1)
                 calculatenumQOrigin();
+        }
+
+        // คำนวนกลับจากคิวต้นทาง -> น้ำหนักต้นทาง เฉพาะตอนผู้ใช้คีย์ tbQOrigin เอง
+        // (ไม่ทำตอนโหลดข้อมูล/ตอนถูก set จาก calculatenumQOrigin เพื่อไม่ให้น้ำหนักเพี้ยนจากการปัดเศษคิว)
+        private void tbQOrigin_TextChanged(object sender, EventArgs e)
+        {
+            if (!tbQOrigin.Focused)
+                return;
+            if (cbbStoneType.SelectedIndex != -1)
+                calculateWeightOriginFromQ();
         }
 
         //ไม่ใช้แล้ว 03-09-2024 เนื่องจากมีการคำนวน vat (รวมภาษี) แบบใหม่
@@ -4269,7 +4282,7 @@ namespace SerialPortListener
         {
             try
             {
-                if (!checkZeroStr(tbWeightIn.Text) && !checkZeroStr(tbWeightOut.Text) && !string.IsNullOrEmpty(strCalQ))
+                if (!checkZeroStr(tbWeightOrigin.Text) && !string.IsNullOrEmpty(strCalQ))
                 {
                     double numCalQ = Convert.ToDouble(strCalQ);
                     double numWeightTotal = Convert.ToDouble(tbWeightOrigin.Text);
@@ -4281,6 +4294,25 @@ namespace SerialPortListener
                     tbQOrigin.Text = "0.00";
                 }
 
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        // สูตรกลับของ calculatenumQOrigin(): น้ำหนัก (kg) = คิว * strCalQ * 1000
+        private void calculateWeightOriginFromQ()
+        {
+            try
+            {
+                if (!checkZeroStr(tbQOrigin.Text) && string.IsNullOrEmpty(strCalQ))
+                {
+                    double numCalQ = Convert.ToDouble(strCalQ);
+                    double numQ = Convert.ToDouble(tbQOrigin.Text);
+                    double numWeight = numQ * numCalQ * 1000;
+                    tbWeightOrigin.Text = numWeight.ToString("#,##0.00");
+                }
             }
             catch (Exception e)
             {
@@ -4747,6 +4779,8 @@ namespace SerialPortListener
         private void tbWeightOrigin_Leave(object sender, EventArgs e)
         {
             convertFormatToDecimal(tbWeightOrigin);
+            checkNumWeightMany(tbWeightOrigin);
+            checkNumWeightLass(tbWeightOrigin);
         }
 
         private void tbQOrigin_Leave(object sender, EventArgs e)
@@ -5658,6 +5692,16 @@ namespace SerialPortListener
             if (tb.Text.Length > 9)
             {
                 MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักเกิน กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tb.Text = "0.00";
+            }
+
+        }
+
+        private void checkNumWeightLass(TextBox tb)
+        {
+            if (tb.Text.Length < 8)
+            {
+                MessageBox.Show("ช่อง " + tb.AccessibleName + "มีน้ำหนักน้อยกว่าปกติ กรุณากรอกข้อมูลใหม่", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tb.Text = "0.00";
             }
 
