@@ -2363,8 +2363,6 @@ namespace SerialPortListener
                 return false;
             }
 
-            Boolean isPasswordCorrect = true;
-
             string tmpDoId = tbDoId.Text;
             string tmpOldDoId = tbOldDoId.Text;
 
@@ -2375,26 +2373,13 @@ namespace SerialPortListener
             // =========================================================
             if (tbId.Text == "")
             {
-                isPasswordCorrect = checkCancelAction();
+                checkCancelAction();
 
                 // เช็คค่าว่าง
                 if (tbDocNum.Text == "")
                 {
                     MessageBox.Show(
                         "เลขที่การชั่งเป็นค่าว่าง กรุณาใส่เลขที่การชั่ง",
-                        "แจ้งเตือน",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
-                    return false;
-                }
-
-                // PASSWORD
-                if (!isPasswordCorrect)
-                {
-                    MessageBox.Show(
-                        "รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้",
                         "แจ้งเตือน",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
@@ -2522,7 +2507,7 @@ namespace SerialPortListener
             // =========================================================
             else
             {
-                isPasswordCorrect = checkCancelAction();
+                checkCancelAction();
 
                 // TRANSPORT EMPTY
                 if (tbDoId.Text != "" && cbbTransport.Text == "")
@@ -2552,19 +2537,6 @@ namespace SerialPortListener
 
                     MessageBox.Show(
                         error + " ระบบไม่สามารถบันทึกข้อมูลได้",
-                        "แจ้งเตือน",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
-                    return false;
-                }
-
-                // PASSWORD
-                if (!isPasswordCorrect)
-                {
-                    MessageBox.Show(
-                        "รหัสยกเลิกผิด ไม่สามารถบันทึกข้อมูลได้",
                         "แจ้งเตือน",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning
@@ -4846,43 +4818,23 @@ namespace SerialPortListener
             tbWeigtData.Text = tbWeigtData.Text;
         }
 
-        private Boolean checkCancelAction()
+        // ลูกค้ายกเลิก (09-A-001 / 09-V-001) : ล้างน้ำหนัก/ราคา/ใบส่งของ ก่อนบันทึก (ไม่ต้องใส่รหัสผ่านแล้ว)
+        private void checkCancelAction()
         {
             if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
-                using (var form = new FCancelPassword())
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        string password = form.ReturnPassword;
-                        if (password == "pdg]bd=yj'")
-                        {
-                            tbWeightIn.Text = "0.00";
-                            tbWeightOut.Text = "0.00";
-                            tbWeightTotal.Text = "0.00";
-                            tbPricePerTon.Text = "0.00";
-                            tbAmount.Text = "0.00";
-                            tbAmountVat.Text = "0.00";
-                            tbVat.Text = "0.00";
-                            tbQ.Text = "0.00";
-                            tbDoId.Text = "";
-                            tbDoDocNo.Text = "";
-                            tbOldDoId.Text = "";
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+                tbWeightIn.Text = "0.00";
+                tbWeightOut.Text = "0.00";
+                tbWeightTotal.Text = "0.00";
+                tbPricePerTon.Text = "0.00";
+                tbAmount.Text = "0.00";
+                tbAmountVat.Text = "0.00";
+                tbVat.Text = "0.00";
+                tbQ.Text = "0.00";
+                tbDoId.Text = "";
+                tbDoDocNo.Text = "";
+                tbOldDoId.Text = "";
             }
-            return true;
         }
 
         private void checkResetWeight()
