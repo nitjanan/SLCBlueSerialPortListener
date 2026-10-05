@@ -34,7 +34,7 @@ namespace SerialPortListener
 
         public static async Task<AppReleaseInfo> GetLatestReleaseAsync(
             HttpClient client, string baseUrl, string accessToken,
-            string product = "Pink.SLC.W1.OUT.Server")
+            string product = "Pink.Master")
         {
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
@@ -53,7 +53,7 @@ namespace SerialPortListener
             HttpClient client, string baseUrl, string accessToken,
             string machineName, string fromVersion, string toVersion, bool updateApplied,
             string weightStationCode = null, bool sqlApplied = false,
-            string product = "Pink")
+            string product = "Pink.Master")
         {
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);

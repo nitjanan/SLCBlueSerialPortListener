@@ -1689,12 +1689,12 @@ namespace SerialPortListener
             // tbDoDocNo
             // 
             this.tbDoDocNo.BackColor = System.Drawing.SystemColors.Window;
-            this.tbDoDocNo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDoDocNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDoDocNo.ForeColor = System.Drawing.Color.MediumBlue;
             this.tbDoDocNo.Location = new System.Drawing.Point(116, 62);
             this.tbDoDocNo.Name = "tbDoDocNo";
             this.tbDoDocNo.ReadOnly = true;
-            this.tbDoDocNo.Size = new System.Drawing.Size(306, 23);
+            this.tbDoDocNo.Size = new System.Drawing.Size(306, 27);
             this.tbDoDocNo.TabIndex = 144;
             this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 

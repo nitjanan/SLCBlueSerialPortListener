@@ -412,12 +412,6 @@
         "Entry"
         {
         "MsmKey" = "8:_621C9F60490AB81267494B9A051CB5FF"
-        "OwnerKey" = "8:_3D776D1C4487DCD1450F94BEF0D9219A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_621C9F60490AB81267494B9A051CB5FF"
         "OwnerKey" = "8:_733C7C03A92B7D4AF29383F96B149B8D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1079,12 +1073,6 @@
         {
         "MsmKey" = "8:_FDEA2EE4EA3119DD6C9F69498DBF7C28"
         "OwnerKey" = "8:_131CE039984C92689D0E7EBD463D99FA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9B641228023AFF6241696A1129E2F9A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1891,6 +1879,12 @@
         "OwnerKey" = "8:_E674D92A6108670A5A1118D0A568D341"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9B641228023AFF6241696A1129E2F9A7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -1909,6 +1903,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -1925,6 +1927,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -6235,15 +6245,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupS_DOExp"
-        "ProductCode" = "8:{41E36CDD-4312-4154-AEDA-2E27B1D2DF54}"
-        "PackageCode" = "8:{8D502CA9-E9B7-4E85-A39B-67ACF9886778}"
+        "ProductCode" = "8:{7AA1122A-78DA-40E5-85CE-017E8AD05A2D}"
+        "PackageCode" = "8:{9DC80F10-9CB5-486A-8BC7-8AE73F9FC7E7}"
         "UpgradeCode" = "8:{6D164622-AF44-4D0B-B228-AAD919708C2D}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:61.0.5"
+        "ProductVersion" = "8:71.0.0"
         "Manufacturer" = "8:Userpc"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
