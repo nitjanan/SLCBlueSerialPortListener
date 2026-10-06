@@ -2996,6 +2996,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
+            <Top>0.7cm</Top>
             <Height>11.8425cm</Height>
             <Width>18.42069cm</Width>
             <Style>
@@ -3005,7 +3006,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>11.8425cm</Height>
+        <Height>12.5425cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
