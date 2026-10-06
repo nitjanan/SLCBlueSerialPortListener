@@ -13,7 +13,13 @@ namespace SerialPortListener
 
         public OdbcConnection CreateConnection()
         {
-            return new OdbcConnection(connectionString);
+            var conn = new OdbcConnection(connectionString);
+            conn.StateChange += (s, e) =>
+            {
+                if (e.CurrentState == System.Data.ConnectionState.Open)
+                    DbDate.ApplySessionDateStyle(conn);
+            };
+            return conn;
         }
     }
 }
