@@ -156,6 +156,10 @@ namespace SerialPortListener
             new TemplateInfo(14, "Template 14 - KT รุ่นแรกสุด (ใบสลิป)",                  "SerialPortListener.ReportMain_Template27.rdlc", SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo(15, "Template 15 - TYM อัปเดตอัตโนมัติ (ใบสลิป)",            "SerialPortListener.ReportMain_Template29.rdlc", SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo(16, "Template 16 - Uni รุ่นแรกสุด (A4)",                     "SerialPortListener.ReportMain_Template30.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
+            // ยึดจาก Template 2 ทุกอย่าง แต่ขยับทุกช่องขึ้น 1 cm
+            // ช่องทั้งหมดอยู่ใน Rectangle3 ที่ชิดบนสุดของ body แล้ว (Top = 0) จึงขยับด้วยการลดขอบบนลง 1 cm
+            // (0.60in - 0.3937in = 0.2063in และใน .rdlc 1.143cm -> 0.143cm) ตำแหน่งระหว่างช่องเหมือน Template 2 ทุกประการ
+            new TemplateInfo(17, "Template 17 - T1 / T4 / Uni / DO / 39 / SRD (A4) ขยับขึ้น 1 cm", "SerialPortListener.ReportMain_Template31.rdlc", A4W, A4H, 0.46, 0.46, 0.2063, 0.30),
         };
 
         public const int DefaultTemplate = 2;   // แบบที่ใช้มากที่สุด (148 จาก 193 branch หลังรวมกลุ่ม) - เดิมคือเลข 3 ก่อนเรียงใหม่
