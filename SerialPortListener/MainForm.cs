@@ -2661,7 +2661,9 @@ namespace SerialPortListener
                                 if (reader.Read())
                                 {
                                     doc_no = reader["doc_no"] != DBNull.Value ? reader["doc_no"].ToString() : "";
-                                    delivery_date_str = reader["delivery_date"] != DBNull.Value ? reader["delivery_date"].ToString() : "";
+                                    object dbDate = reader["delivery_date"];
+                                    delivery_date_str = dbDate is DateTime dbDateVal ? DbDate.ToIso(dbDateVal)
+                                        : dbDate != DBNull.Value ? dbDate.ToString() : "";
                                     unitName = reader["unit_name"] != DBNull.Value ? reader["unit_name"].ToString() : "";
                                     int.TryParse(reader["car_company"] != DBNull.Value ? reader["car_company"].ToString() : "0", out car_company);
                                     int.TryParse(reader["car_customer"] != DBNull.Value ? reader["car_customer"].ToString() : "0", out car_customer);
@@ -2682,7 +2684,7 @@ namespace SerialPortListener
                     DateTime deliveryDate = DateTime.Now;
                     if (!string.IsNullOrEmpty(delivery_date_str))
                     {
-                        DateTime.TryParse(delivery_date_str, out deliveryDate);
+                        deliveryDate = DbDate.Parse(delivery_date_str, doc_no) ?? deliveryDate;
                     }
 
                     bool real_is_cancel = is_cancel || isCancelDO();
@@ -5415,7 +5417,8 @@ namespace SerialPortListener
                     pgCommand.CommandText = @"
                         SELECT doc_no, delivery_date, status
                         FROM delivery_order 
-                        WHERE delivery_date = '" + dtDate.Text + "' and status = 'cancel'";
+                        WHERE delivery_date = ? and status = 'cancel'";
+                    pgCommand.Parameters.Add("", OdbcType.Date).Value = dtDate.Value.Date;
 
                     using (OdbcDataReader reader = pgCommand.ExecuteReader())
                     {
@@ -5567,8 +5570,11 @@ namespace SerialPortListener
                             await response.Content.ReadAsStringAsync();
 
                         // Parse  { "data": [...] }
+                        // DateParseHandling.None: keep deliveryDate as the raw API string
+                        // (otherwise Json.NET reformats it with its own culture)
                         DeliveryOrderPageResponse pageObj =
-                            JsonConvert.DeserializeObject<DeliveryOrderPageResponse>(json);
+                            JsonConvert.DeserializeObject<DeliveryOrderPageResponse>(json,
+                                new JsonSerializerSettings { DateParseHandling = DateParseHandling.None });
 
                         // ไม่มีข้อมูลแล้ว → หยุด loop
                         if (pageObj?.data == null || pageObj.data.Count == 0)
@@ -5600,7 +5606,10 @@ namespace SerialPortListener
 
                             // --- VALUES (เทียบกับ convert_api_to_db() ใน Python) ---
                             cmd.Parameters.AddWithValue("", item.docNo ?? "");
-                            cmd.Parameters.AddWithValue("", item.deliveryDate ?? "");
+                            // Bind as a real date so PostgreSQL DateStyle can't swap day/month
+                            DateTime? deliveryDate = DbDate.Parse(item.deliveryDate, item.docNo);
+                            cmd.Parameters.Add("", OdbcType.Date).Value =
+                                deliveryDate.HasValue ? (object)deliveryDate.Value : DBNull.Value;
                             cmd.Parameters.AddWithValue("", item.deliveryType ?? "");
                             cmd.Parameters.AddWithValue("", item.carCompany ?? "");
                             cmd.Parameters.AddWithValue("", item.carCustomer ?? "");
@@ -5941,17 +5950,18 @@ namespace SerialPortListener
                             string json =
                                 await apiResponse.Content.ReadAsStringAsync();
 
+                            var noDateParse = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
                             List<WeightDelivery> orders = null;
                             string nextUrl = null;
 
                             if (json.TrimStart().StartsWith("["))
                             {
-                                orders = JsonConvert.DeserializeObject<List<WeightDelivery>>(json);
+                                orders = JsonConvert.DeserializeObject<List<WeightDelivery>>(json, noDateParse);
                                 hasMore = false;
                             }
                             else
                             {
-                                var pageObj = JsonConvert.DeserializeObject<DRFPaginationResponse<WeightDelivery>>(json);
+                                var pageObj = JsonConvert.DeserializeObject<DRFPaginationResponse<WeightDelivery>>(json, noDateParse);
                                 orders = pageObj?.results ?? pageObj?.data;
                                 nextUrl = pageObj?.next;
                                 hasMore = !string.IsNullOrEmpty(nextUrl) && orders != null && orders.Count > 0;
@@ -6002,7 +6012,9 @@ namespace SerialPortListener
 
                                 pgCommand.Parameters.AddWithValue("", item.weight_id);
                                 pgCommand.Parameters.AddWithValue("", item.weight_doc_id);
-                                pgCommand.Parameters.AddWithValue("", Convert.ToDateTime(item.delivery_date));
+                                DateTime? wdDate = DbDate.Parse(item.delivery_date, item.do_doc_no);
+                                pgCommand.Parameters.Add("", OdbcType.Date).Value =
+                                    wdDate.HasValue ? (object)wdDate.Value : DBNull.Value;
                                 pgCommand.Parameters.AddWithValue("", item.bws);
                                 pgCommand.Parameters.AddWithValue("", item.comp_code);
                                 pgCommand.Parameters.AddWithValue("", item.do_doc_no);
