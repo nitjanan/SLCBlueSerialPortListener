@@ -2548,7 +2548,13 @@ namespace SerialPortListener
                 // =========================
                 // HAS DO → CHECK API CONNECT FIRST
                 // =========================
-                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
+                // DO เดิมของรายการนี้ ใช้ค่าที่บันทึกไว้ในฐานข้อมูลเป็นหลัก เพราะ tbOldDoId
+                // จะถูกล้างเมื่อเลือกลูกค้ายกเลิก (checkCancelAction) และไม่ได้ตั้งค่าตอนเปิดรายการเดิม
+                string updateOldDoId = getSavedDoId(tbId.Text);
+                if (!hasDo(updateOldDoId))
+                    updateOldDoId = tmpOldDoId;
+
+                if ((hasDo(tmpDoId) || hasDo(updateOldDoId)))
                 {
                     bool canConnect = await CheckApiConnect();
 
@@ -2570,13 +2576,13 @@ namespace SerialPortListener
                 // =========================
                 bool apiFailedWithLimitExceeded = false;
                 bool weightSuccess = true;
-                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0")
+                if ((hasDo(tmpDoId) || hasDo(updateOldDoId)))
                 {
                     int currentWeightId = Convert.ToInt32(tbId.Text);
                     lastLimitExceededError = null;
 
                     weightSuccess =
-                        await prepareWeightDelivery(tmpDoId, tmpOldDoId, currentWeightId);
+                        await prepareWeightDelivery(tmpDoId, updateOldDoId, currentWeightId);
 
                     if (!weightSuccess && lastLimitExceededError != null)
                     {
@@ -2594,7 +2600,7 @@ namespace SerialPortListener
                 // =========================
                 updateActionOnly();
 
-                if (!string.IsNullOrEmpty(tmpDoId) && tmpDoId != "0" && !weightSuccess)
+                if ((hasDo(tmpDoId) || hasDo(updateOldDoId)) && !weightSuccess)
                 {
                     MessageBox.Show(
                         "แก้ไขข้อมูลสำเร็จ แต่ส่ง Weight Delivery ไม่สำเร็จ",
@@ -3180,10 +3186,15 @@ namespace SerialPortListener
             try
             {
                 // =========================
-                // SKIP IF NO DO SELECTED
+                // NO DO SELECTED
                 // =========================
-                if (string.IsNullOrEmpty(tmpDoId) || tmpDoId == "0")
+                // รายการถูกเอา DO ออก ต้องส่งยกเลิกไปที่ DO เดิม ไม่งั้น DO เดิมยังนับรายการนี้อยู่
+                if (!hasDo(tmpDoId))
+                {
+                    if (hasDo(tmpOldDoId))
+                        return await UCWeightDelivery(tmpOldDoId, true, weightId);
                     return true;
+                }
 
                 if (tmpOldDoId != tmpDoId)
                 {
@@ -3490,11 +3501,42 @@ namespace SerialPortListener
         private Boolean isCancelDO()
         {
             Boolean is_cancel = false;
-            if (tbCustomerId.Text == "09-V-001")
+            // ลูกค้ายกเลิกทั้ง 2 รหัส ต้องตรงกับ checkCancelAction ไม่งั้น 09-A-001 จะถูกส่งเป็นรายการปกติน้ำหนัก 0
+            if (tbCustomerId.Text == "09-A-001" || tbCustomerId.Text == "09-V-001")
             {
                 is_cancel = true;
             }
             return is_cancel;
+        }
+
+        private static bool hasDo(string doId)
+        {
+            return !string.IsNullOrEmpty(doId) && doId != "0";
+        }
+
+        // do_id ที่บันทึกไว้กับรายการชั่งนี้ในฐานข้อมูล (ก่อนแก้ไข)
+        private string getSavedDoId(string weightId)
+        {
+            if (string.IsNullOrEmpty(weightId))
+                return "";
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT do_id FROM weight WHERE weight_id = ?";
+            pgCommand.Parameters.AddWithValue("", weightId);
+            try
+            {
+                dl.connect();
+                object result = pgCommand.ExecuteScalar();
+                return result == null || result == DBNull.Value ? "" : result.ToString().Trim();
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+            finally
+            {
+                dl.close();
+            }
         }
 
         private void updateDeliveryOrder(string do_id)
