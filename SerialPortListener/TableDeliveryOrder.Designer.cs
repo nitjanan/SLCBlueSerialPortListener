@@ -68,13 +68,14 @@ namespace SerialPortListener
             this.site_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty_rem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unit_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.note2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_customer_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_company = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.car_company_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty_tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sale_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bws = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -238,13 +239,14 @@ namespace SerialPortListener
             this.site_name,
             this.product_name,
             this.qty2,
-            this.qty_tot,
+            this.qty_rem,
             this.unit_name,
             this.note2,
             this.car_customer,
             this.car_customer_tot,
             this.car_company,
             this.car_company_tot,
+            this.qty_tot,
             this.sale_name,
             this.status,
             this.bws,
@@ -409,17 +411,18 @@ namespace SerialPortListener
             // qty2
             // 
             this.qty2.DataPropertyName = "qty";
-            this.qty2.HeaderText = "plan จำนวนหิน";
+            this.qty2.HeaderText = "ยอดใบสั่ง(หิน)";
             this.qty2.Name = "qty2";
             this.qty2.ReadOnly = true;
             this.qty2.Width = 95;
             // 
-            // qty_tot
+            // qty_rem
             // 
-            this.qty_tot.DataPropertyName = "qty_tot";
-            this.qty_tot.HeaderText = "จำนวนหินชั่งแล้ว";
-            this.qty_tot.Name = "qty_tot";
-            this.qty_tot.ReadOnly = true;
+            this.qty_rem.DataPropertyName = "qty_rem";
+            this.qty_rem.HeaderText = "ยอดคงเหลือ(หิน)";
+            this.qty_rem.Name = "qty_rem";
+            this.qty_rem.ReadOnly = true;
+            this.qty_rem.Width = 95;
             // 
             // unit_name
             // 
@@ -466,6 +469,13 @@ namespace SerialPortListener
             this.car_company_tot.Name = "car_company_tot";
             this.car_company_tot.ReadOnly = true;
             this.car_company_tot.Width = 85;
+            // 
+            // qty_tot
+            // 
+            this.qty_tot.DataPropertyName = "qty_tot";
+            this.qty_tot.HeaderText = "จำนวนหินชั่งแล้ว";
+            this.qty_tot.Name = "qty_tot";
+            this.qty_tot.ReadOnly = true;
             // 
             // sale_name
             // 
@@ -586,13 +596,14 @@ namespace SerialPortListener
         private System.Windows.Forms.DataGridViewTextBoxColumn site_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qty_tot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qty_rem;
         private System.Windows.Forms.DataGridViewTextBoxColumn unit_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn note2;
         private System.Windows.Forms.DataGridViewTextBoxColumn car_customer;
         private System.Windows.Forms.DataGridViewTextBoxColumn car_customer_tot;
         private System.Windows.Forms.DataGridViewTextBoxColumn car_company;
         private System.Windows.Forms.DataGridViewTextBoxColumn car_company_tot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qty_tot;
         private System.Windows.Forms.DataGridViewTextBoxColumn sale_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewTextBoxColumn bws;

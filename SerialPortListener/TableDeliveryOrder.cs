@@ -156,7 +156,8 @@ namespace SerialPortListener
                 dl.connect();
 
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT * FROM public.delivery_order WHERE ");
+                // qty_rem = plan จำนวนหิน - จำนวนหินชั่งแล้ว
+                sql.Append("SELECT *, COALESCE(qty, 0) - COALESCE(qty_tot, 0) AS qty_rem FROM public.delivery_order WHERE ");
 
                 if (cbbSearchDO.SelectedIndex == 1)
                 {

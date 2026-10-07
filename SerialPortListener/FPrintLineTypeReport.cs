@@ -23,6 +23,7 @@ namespace SerialPortListener
         {
             // TODO: This line of code loads data into the 'truckDataSet.weight' table. You can move, or remove it, as needed.
             Microsoft.Reporting.WinForms.ReportParameter[] p = new Microsoft.Reporting.WinForms.ReportParameter[] {
+                new Microsoft.Reporting.WinForms.ReportParameter("PMainComp",WeightTempReport.MainComp), //set หัวกระดาษรายงาน
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateFrom",WeightTempReport.DateFrom),
                 new Microsoft.Reporting.WinForms.ReportParameter("PDateTo",WeightTempReport.DateTo),
             };

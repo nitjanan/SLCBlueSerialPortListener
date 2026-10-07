@@ -1587,8 +1587,32 @@ namespace SerialPortListener
             setMillNameToTextbox(tbCCMillId, tbCCMillName);
         }
 
-        private void btPrintDO_Click(object sender, EventArgs e)
+        private async void btPrintDO_Click(object sender, EventArgs e)
         {
+            // weight_delivery ใน local มีเฉพาะวันที่เคยดึงไว้ ต้องดึงจาก web app ตามช่วงวันที่ก่อน
+            // ไม่เช่นนั้นตาชั่งแต่ละตัว (Blue/Pink) จะเห็นรายการไม่ตรงกัน
+            btPrintDO.Enabled = false;
+            try
+            {
+                var dates = new List<DateTime>();
+                for (DateTime d = dtFromDO.Value.Date; d <= dtToDO.Value.Date; d = d.AddDays(1))
+                    dates.Add(d);
+                await WeightDeliverySync.PullAsync(dl, dates);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "ไม่สามารถดึงข้อมูลล่าสุดจาก Server ได้ รายงานจะแสดงเฉพาะข้อมูลที่มีในเครื่อง\r\n\r\n" + ex.Message,
+                    "แจ้งเตือน",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+            finally
+            {
+                btPrintDO.Enabled = true;
+            }
+
             //sql
             dl.connect();
             StringBuilder sql = new StringBuilder();
