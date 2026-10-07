@@ -5877,173 +5877,37 @@ namespace SerialPortListener
         }
 
 
+        // ดึง weight_delivery ของทุกตาชั่งในบริษัทเดียวกันจาก web app ลง local ก่อนตรวจจำนวนรถตาม DO
+        // ต้องดึงทั้งวันนี้และวันที่ของ DO เพราะ API กรองตาม delivery_date ของ DO ไม่ใช่วันที่ชั่ง
         private async Task<bool> CUWeightDeliveryFromApi()
         {
-            string baseUrl = getBaseApi(1, 1);
-            string username = getBaseApi(2, 1);
-            string password = getBaseApi(3, 1);
-            string compCode = getBaseApi(4, 1);
+            var dates = new List<DateTime> { DateTime.Today };
 
-            string today = DateTime.Now.ToString("yyyy-MM-dd");
-
-            string jwtUrl =
-                $"{baseUrl}/jwt/create/";
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT delivery_date FROM delivery_order WHERE do_id = ?";
+            pgCommand.Parameters.AddWithValue("", tbDoId.Text);
+            try
+            {
+                dl.connect();
+                object dbDate = pgCommand.ExecuteScalar();
+                if (dbDate is DateTime doDate)
+                    dates.Add(doDate);
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
 
             try
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    client.Timeout = TimeSpan.FromSeconds(30);
-
-                    // =========================
-                    // JWT LOGIN
-                    // =========================
-                    string accessToken = await GetJwtToken(client, baseUrl, username, password);
-
-                    if (accessToken == null)
-                        return false;
-
-                    // =========================
-                    // SET TOKEN
-                    // =========================
-                    client.DefaultRequestHeaders.Authorization =
-                        new AuthenticationHeaderValue(
-                            "Bearer",
-                            accessToken
-                        );
-
-                    int page = 1;
-                    bool hasMore = true;
-
-                    // =========================
-                    // UPDATE DATABASE
-                    // =========================
-                    dl.connect();
-
-                    try
-                    {
-                        while (hasMore)
-                        {
-                            string apiUrl =
-                                $"{baseUrl}/weightdelivery/summary/api/by/comp/?comp_code={compCode}&date={today}&page={page}";
-                            // =========================
-                            // GET API
-                            // =========================
-                            HttpResponseMessage apiResponse =
-                                await client.GetAsync(apiUrl);
-
-                            if (!apiResponse.IsSuccessStatusCode)
-                            {
-                                string apiError =
-                                    await apiResponse.Content.ReadAsStringAsync();
-
-                                MessageBox.Show(
-                                    "API ERROR : " + apiError,
-                                    "Error",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error
-                                );
-
-                                return false;
-                            }
-
-                            string json =
-                                await apiResponse.Content.ReadAsStringAsync();
-
-                            var noDateParse = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
-                            List<WeightDelivery> orders = null;
-                            string nextUrl = null;
-
-                            if (json.TrimStart().StartsWith("["))
-                            {
-                                orders = JsonConvert.DeserializeObject<List<WeightDelivery>>(json, noDateParse);
-                                hasMore = false;
-                            }
-                            else
-                            {
-                                var pageObj = JsonConvert.DeserializeObject<DRFPaginationResponse<WeightDelivery>>(json, noDateParse);
-                                orders = pageObj?.results ?? pageObj?.data;
-                                nextUrl = pageObj?.next;
-                                hasMore = !string.IsNullOrEmpty(nextUrl) && orders != null && orders.Count > 0;
-                            }
-
-                            if (orders == null || orders.Count == 0)
-                            {
-                                break;
-                            }
-
-                            foreach (var item in orders)
-                            {
-                                OdbcCommand pgCommand =
-                                    (OdbcCommand)dl.sqlConn().CreateCommand();
-
-                                pgCommand.CommandText = @"
-                            INSERT INTO weight_delivery
-                            (
-                                weight_id,
-                                weight_doc_id,
-                                delivery_date,
-                                bws,
-                                comp_code,
-                                do_doc_no,
-                                carry_type_name,
-                                weight_ton,
-                                weight_q,
-                                unit_name,
-                                is_cancel
-                            )
-                            VALUES
-                            (
-                                ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-                            )
-                            ON CONFLICT (weight_id)
-                            DO UPDATE SET
-                                weight_doc_id = EXCLUDED.weight_doc_id,
-                                delivery_date = EXCLUDED.delivery_date,
-                                bws = EXCLUDED.bws,
-                                comp_code = EXCLUDED.comp_code,
-                                do_doc_no = EXCLUDED.do_doc_no,
-                                carry_type_name = EXCLUDED.carry_type_name,
-                                weight_ton = EXCLUDED.weight_ton,
-                                weight_q = EXCLUDED.weight_q,
-                                unit_name = EXCLUDED.unit_name,
-                                is_cancel = EXCLUDED.is_cancel
-                        ";
-
-                                pgCommand.Parameters.AddWithValue("", item.weight_id);
-                                pgCommand.Parameters.AddWithValue("", item.weight_doc_id);
-                                DateTime? wdDate = DbDate.Parse(item.delivery_date, item.do_doc_no);
-                                pgCommand.Parameters.Add("", OdbcType.Date).Value =
-                                    wdDate.HasValue ? (object)wdDate.Value : DBNull.Value;
-                                pgCommand.Parameters.AddWithValue("", item.bws);
-                                pgCommand.Parameters.AddWithValue("", item.comp_code);
-                                pgCommand.Parameters.AddWithValue("", item.do_doc_no);
-                                pgCommand.Parameters.AddWithValue("", item.carry_type_name);
-
-                                pgCommand.Parameters.AddWithValue("", item.weight_ton);
-                                pgCommand.Parameters.AddWithValue("", item.weight_q);
-                                pgCommand.Parameters.AddWithValue("", item.unit_name);
-
-                                pgCommand.Parameters.AddWithValue("", item.is_cancel);
-
-                                pgCommand.ExecuteNonQuery();
-                            }
-
-                            page++;
-                        }
-                    }
-                    finally
-                    {
-                        dl.close();
-                    }
-
-                    return true;
-                }
+                await WeightDeliverySync.PullAsync(dl, dates);
+                return true;
             }
             catch (Exception ex)
             {
-                dl.close();
-
                 MessageBox.Show(
                     ex.ToString(),
                     "ERROR",
@@ -6054,7 +5918,6 @@ namespace SerialPortListener
                 return false;
             }
         }
-
 
     }
 
