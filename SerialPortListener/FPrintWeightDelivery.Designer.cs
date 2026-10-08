@@ -49,7 +49,7 @@ namespace SerialPortListener
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FPrintWeightDelivery";
-            this.Text = "รายงานใบสั่งวินค้า";
+            this.Text = "รายงานใบสั่งสินค้า";
             this.Load += new System.EventHandler(this.FPrintWeightDelivery_Load);
             this.ResumeLayout(false);
 

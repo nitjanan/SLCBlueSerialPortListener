@@ -693,6 +693,10 @@ namespace SerialPortListener
                         }
                     }
 
+                    // fixbug: อัพเดท qty, qty_tot ของ delivery_order วันที่ 06/10/2026 - 07/10/2026 จาก webapp
+                    totalUpdated += await FixDeliveryOrderQtyAsync(client, baseUrl, compCode,
+                        new DateTime(2026, 10, 6), new DateTime(2026, 10, 7), progress, errors);
+
                     string summary = $"ดาวน์โหลดและอัพเดทข้อมูลสำเร็จ {totalUpdated} รายการ";
                     if (errors.Length > 0)
                         summary += "\r\n\r\nข้อผิดพลาด:\r\n" + errors.ToString();
@@ -742,6 +746,61 @@ namespace SerialPortListener
                 dl.close();
             }
             return lc;
+        }
+
+        // fixbug: ดึง delivery_order ตามวันที่ส่งจาก webapp แล้วอัพเดท qty, qty_tot ใน local
+        private async Task<int> FixDeliveryOrderQtyAsync(HttpClient client, string baseUrl, string compCode,
+            DateTime fromDate, DateTime toDate, frmDownloadProgress progress, StringBuilder errors)
+        {
+            int updated = 0;
+            for (DateTime date = fromDate.Date; date <= toDate.Date; date = date.AddDays(1))
+            {
+                string dateStr = date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                string url = $"{baseUrl}/deliveryorder/summary/api/by/comp/?comp_code={Uri.EscapeDataString(compCode)}&date={dateStr}";
+
+                List<JObject> items;
+                try
+                {
+                    items = await FetchAllPagesAsync(client, url);
+                }
+                catch (Exception ex)
+                {
+                    progress.Log($"Fix delivery_order {dateStr} : {ex.Message}");
+                    errors.AppendLine($"delivery_order (fix {dateStr}) : {ex.Message}");
+                    continue;
+                }
+
+                foreach (JObject item in items)
+                {
+                    dl.connect();
+                    try
+                    {
+                        OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand();
+                        cmd.CommandText = @"
+                            UPDATE public.delivery_order
+                            SET ""qty"" = ?, ""qty_tot"" = ?
+                            WHERE ""doc_no"" = ?;";
+                        cmd.Parameters.AddWithValue("", S(item, "qty"));
+                        cmd.Parameters.AddWithValue("", S(item, "qty_tot"));
+                        cmd.Parameters.AddWithValue("", S(item, "doc_no"));
+                        if (cmd.ExecuteNonQuery() > 0)
+                        {
+                            updated++;
+                            progress.Log($"Fix delivery_order {item["doc_no"]} qty={item["qty"]} qty_tot={item["qty_tot"]} : successful.");
+                        }
+                    }
+                    catch (Exception exRow)
+                    {
+                        progress.Log($"Error fix delivery_order: {exRow.Message}");
+                        errors.AppendLine($"delivery_order (fix) : {exRow.Message}");
+                    }
+                    finally
+                    {
+                        dl.close();
+                    }
+                }
+            }
+            return updated;
         }
 
         // เทียบกับ fetch_all_pages() ใน AU_weight_to_local.py

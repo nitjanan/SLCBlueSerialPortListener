@@ -69,6 +69,14 @@
           <DataField>stone_desc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="do_qty">
+          <DataField>do_qty</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="do_unit_name">
+          <DataField>do_unit_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>WeightDeliveryDataSet</rd:DataSetName>
@@ -100,7 +108,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!do_no.Value &amp; "  " &amp; Fields!customer_name.Value &amp; "  " &amp; Fields!product_name.Value &amp; " " &amp; Fields!stone_desc.Value &amp; " (" &amp; Fields!site_name.Value &amp; ")"</Value>
+                                  <Value>=Fields!do_no.Value &amp; "  " &amp; Fields!customer_name.Value &amp; "  " &amp; Fields!product_name.Value &amp; " " &amp; Max(Fields!stone_desc.Value) &amp; " (" &amp; Fields!site_name.Value &amp; ")"</Value>
                                   <Style>
                                     <FontFamily>Angsana New</FontFamily>
                                     <FontSize>14pt</FontSize>
@@ -509,27 +517,81 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="DoSubtotal">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>="รวม " &amp; Fields!do_no.Value &amp; "   นน.รวม (ตัน) = " &amp; Format(Sum(Fields!weight_ton.Value, "doGroup"), "#,0.00") &amp; "   นน.รวม (คิว) = " &amp; Format(Sum(Fields!weight_q.Value, "doGroup"), "#,0.00")</Value>
+                        <Rectangle Name="DoSubtotalRect">
+                          <ReportItems>
+                            <Textbox Name="DoOrderInfo">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!do_no.Value &amp; "   ยอดสั่ง " &amp; Format(Fields!do_qty.Value, "#,0.##") &amp; " " &amp; Fields!do_unit_name.Value &amp; "   คงเหลือ " &amp; Format(Fields!do_qty.Value - IIf(Fields!do_unit_name.Value = "คิว", Sum(Fields!weight_q.Value, "doGroup"), Sum(Fields!weight_ton.Value, "doGroup")), "#,0.00") &amp; " " &amp; Fields!do_unit_name.Value</Value>
+                                      <Style>
+                                        <FontFamily>Angsana New</FontFamily>
+                                        <FontSize>14pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                        <Color>Blue</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
                                   <Style>
-                                    <FontFamily>Angsana New</FontFamily>
-                                    <FontSize>14pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
+                                    <TextAlign>Left</TextAlign>
                                   </Style>
-                                </TextRun>
-                              </TextRuns>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>DoOrderInfo</rd:DefaultName>
+                              <Top>0cm</Top>
+                              <Left>0cm</Left>
+                              <Height>0.6cm</Height>
+                              <Width>9.9cm</Width>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
                               </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>DoSubtotal</rd:DefaultName>
+                            </Textbox>
+                            <Textbox Name="DoSubtotal">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="ส่งจริง   นน.รวม (ตัน) = " &amp; Format(Sum(Fields!weight_ton.Value, "doGroup"), "#,0.00") &amp; "   นน.รวม (คิว) = " &amp; Format(Sum(Fields!weight_q.Value, "doGroup"), "#,0.00")</Value>
+                                      <Style>
+                                        <FontFamily>Angsana New</FontFamily>
+                                        <FontSize>14pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>DoSubtotal</rd:DefaultName>
+                              <Top>0cm</Top>
+                              <Left>9.9cm</Left>
+                              <Height>0.6cm</Height>
+                              <Width>10.0231cm</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -537,12 +599,8 @@
                             <BottomBorder>
                               <Style>Solid</Style>
                             </BottomBorder>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
                           </Style>
-                        </Textbox>
+                        </Rectangle>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -606,15 +664,11 @@
                   <Group Name="doGroup">
                     <GroupExpressions>
                       <GroupExpression>=Fields!do_no.Value</GroupExpression>
-                      <GroupExpression>=Fields!stone_desc.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
                       <Value>=Fields!do_no.Value</Value>
-                    </SortExpression>
-                    <SortExpression>
-                      <Value>=Fields!stone_desc.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
