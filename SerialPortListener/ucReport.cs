@@ -1597,7 +1597,7 @@ namespace SerialPortListener
                 var dates = new List<DateTime>();
                 for (DateTime d = dtFromDO.Value.Date; d <= dtToDO.Value.Date; d = d.AddDays(1))
                     dates.Add(d);
-                await WeightDeliverySync.PullAsync(dl, dates);
+                await WeightDeliverySync.PullAsync(dl, dates, includeDeliveryOrders: true);
             }
             catch (Exception ex)
             {
