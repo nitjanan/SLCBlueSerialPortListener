@@ -1918,6 +1918,9 @@ namespace SerialPortListener
 
         private void btMenu1_Click(object sender, EventArgs e)
         {
+            if (blockWhileSaving())
+                return;
+
             btMenu1.BackColor = Color.White;
             btMenu2.BackColor = Color.LightSkyBlue;
             btMenu3.BackColor = Color.LightSkyBlue;
@@ -2275,6 +2278,22 @@ namespace SerialPortListener
 
         private async void btSave_Click(object sender, EventArgs e)
         {
+            if (blockWhileSaving())
+                return;
+
+            isSaving = true;
+            try
+            {
+                await saveCore();
+            }
+            finally
+            {
+                isSaving = false;
+            }
+        }
+
+        private async Task saveCore()
+        {
             try
             {
                 if (!checkHistoricalDateConstraint())
@@ -2335,7 +2354,7 @@ namespace SerialPortListener
                 // ==========================================
                 // 3. SAVE (ถ้าผ่านเงื่อนไขด้านบนทั้งหมดแล้ว)
                 // ==========================================
-                await autoSave();
+                await autoSaveCore();
 
                 if (Globals.IsKrabiSTPVersion)
                 {
@@ -2358,6 +2377,22 @@ namespace SerialPortListener
 
         private async Task<bool> autoSave()
         {
+            if (blockWhileSaving())
+                return false;
+
+            isSaving = true;
+            try
+            {
+                return await autoSaveCore();
+            }
+            finally
+            {
+                isSaving = false;
+            }
+        }
+
+        private async Task<bool> autoSaveCore()
+        {
             if (!checkHistoricalDateConstraint())
             {
                 return false;
@@ -2365,6 +2400,7 @@ namespace SerialPortListener
 
             string tmpDoId = tbDoId.Text;
             string tmpOldDoId = tbOldDoId.Text;
+            string tmpWeightId = tbId.Text;
 
             int checkResult = checkDeliveryOrder();
 
@@ -2550,7 +2586,7 @@ namespace SerialPortListener
                 // =========================
                 // DO เดิมของรายการนี้ ใช้ค่าที่บันทึกไว้ในฐานข้อมูลเป็นหลัก เพราะ tbOldDoId
                 // จะถูกล้างเมื่อเลือกลูกค้ายกเลิก (checkCancelAction) และไม่ได้ตั้งค่าตอนเปิดรายการเดิม
-                string updateOldDoId = getSavedDoId(tbId.Text);
+                string updateOldDoId = getSavedDoId(tmpWeightId);
                 if (!hasDo(updateOldDoId))
                     updateOldDoId = tmpOldDoId;
 
@@ -2578,7 +2614,7 @@ namespace SerialPortListener
                 bool weightSuccess = true;
                 if ((hasDo(tmpDoId) || hasDo(updateOldDoId)))
                 {
-                    int currentWeightId = Convert.ToInt32(tbId.Text);
+                    int currentWeightId = Convert.ToInt32(tmpWeightId);
                     lastLimitExceededError = null;
 
                     weightSuccess =
@@ -3507,6 +3543,25 @@ namespace SerialPortListener
                 is_cancel = true;
             }
             return is_cancel;
+        }
+
+        // autoSave มี await เรียก API ระหว่างนั้นหน้าจอยังกดได้ ถ้าเปิดรายการอื่น (TableFromDB / ใบส่งของ)
+        // หรือกดบันทึกซ้ำ tbId / น้ำหนัก ในฟอร์มจะเปลี่ยนเป็นของอีกรายการ แล้วถูกส่งไป weight_delivery ผิดรายการ
+        // เช่น weight_id ของรายการที่ไม่มี DO ไปติดอยู่ใน DO ของรายการก่อนหน้า
+        private bool isSaving = false;
+
+        private bool blockWhileSaving()
+        {
+            if (!isSaving)
+                return false;
+
+            MessageBox.Show(
+                "กำลังบันทึกข้อมูลรายการชั่ง กรุณารอสักครู่",
+                "แจ้งเตือน",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            return true;
         }
 
         private static bool hasDo(string doId)
@@ -6215,6 +6270,9 @@ namespace SerialPortListener
 
         private async void btLoadDO_Click(object sender, EventArgs e)
         {
+            if (blockWhileSaving())
+                return;
+
             try
             {
                 // =============================================

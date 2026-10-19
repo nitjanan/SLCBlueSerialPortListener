@@ -18,7 +18,9 @@ namespace SerialPortListener
     public static class WeightDeliverySync
     {
         // throw เมื่อเชื่อมต่อ API / login ไม่สำเร็จ ให้ผู้เรียกตัดสินใจเองว่าจะแจ้งเตือนอย่างไร
-        public static async Task PullAsync(Datalayer dl, IEnumerable<DateTime> dates)
+        // includeDeliveryOrders: ดึง delivery_order ของวันที่นั้นด้วย เพราะ local มีเฉพาะ DO ของวันที่กดเปิดใบส่งของ
+        // (btLoadDO ดึงแค่ deliveryDate = วันนี้) รายงานตามใบส่งสินค้า join กับ delivery_order จะหายไปทั้งวัน
+        public static async Task PullAsync(Datalayer dl, IEnumerable<DateTime> dates, bool includeDeliveryOrders = false)
         {
             string baseUrl = "", username = "", password = "", compCode = "";
 
@@ -94,6 +96,9 @@ namespace SerialPortListener
                             foreach (var item in orders)
                                 Upsert(dl, item);
                         }
+
+                        if (includeDeliveryOrders)
+                            await PullDeliveryOrdersAsync(dl, client, baseUrl, compCode, dateStr);
                     }
                 }
                 finally
@@ -101,6 +106,96 @@ namespace SerialPortListener
                     dl.close();
                 }
             }
+        }
+
+        private static async Task PullDeliveryOrdersAsync(Datalayer dl, HttpClient client, string baseUrl, string compCode, string dateStr)
+        {
+            var noDateParse = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
+            string apiUrl = $"{baseUrl}/deliveryorder/summary/api/by/comp/?comp_code={compCode}&date={dateStr}&page=1";
+
+            while (!string.IsNullOrEmpty(apiUrl))
+            {
+                HttpResponseMessage apiResponse = await client.GetAsync(apiUrl);
+                if (!apiResponse.IsSuccessStatusCode)
+                    throw new Exception("API ERROR : " + await apiResponse.Content.ReadAsStringAsync());
+
+                JToken data = JsonConvert.DeserializeObject<JToken>(await apiResponse.Content.ReadAsStringAsync(), noDateParse);
+                apiUrl = null;
+
+                IEnumerable<JToken> items;
+                if (data is JArray arr)
+                {
+                    items = arr;
+                }
+                else
+                {
+                    items = (IEnumerable<JToken>)data?["results"] ?? Enumerable.Empty<JToken>();
+                    JToken next = data?["next"];
+                    if (next != null && next.Type != JTokenType.Null && items.Any())
+                        apiUrl = next.ToString();
+                }
+
+                foreach (JObject item in items.OfType<JObject>())
+                    UpsertDeliveryOrder(dl, item);
+            }
+        }
+
+        private static object Val(JObject d, string key)
+        {
+            JToken token = d[key];
+            if (token == null || token.Type == JTokenType.Null)
+                return DBNull.Value;
+            return token.ToString();
+        }
+
+        // DO ที่มีอยู่แล้ว อัพเดทเฉพาะยอดจาก web app ไม่ทับ site_id / delivery_type ที่ตาชั่งจัดการเอง
+        private static void UpsertDeliveryOrder(Datalayer dl, JObject d)
+        {
+            string docNo = d["doc_no"]?.ToString();
+            if (string.IsNullOrEmpty(docNo))
+                return;
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = @"
+                INSERT INTO delivery_order
+                (
+                    doc_no, delivery_date,
+                    car_company, car_customer,
+                    car_company_rem, car_customer_rem,
+                    car_company_tot, car_customer_tot,
+                    customer_code, customer_name, customer_address,
+                    product_code, product_name, qty, qty_tot, unit_name,
+                    sale_name, note, status, site_id, site_name
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT (doc_no)
+                DO UPDATE SET
+                    car_company = EXCLUDED.car_company,
+                    car_customer = EXCLUDED.car_customer,
+                    car_company_rem = EXCLUDED.car_company_rem,
+                    car_customer_rem = EXCLUDED.car_customer_rem,
+                    car_company_tot = EXCLUDED.car_company_tot,
+                    car_customer_tot = EXCLUDED.car_customer_tot,
+                    qty = EXCLUDED.qty,
+                    qty_tot = EXCLUDED.qty_tot,
+                    status = EXCLUDED.status
+            ";
+
+            pgCommand.Parameters.AddWithValue("", docNo);
+            DateTime? deliveryDate = DbDate.Parse(d["delivery_date"]?.ToString(), docNo);
+            pgCommand.Parameters.Add("", OdbcType.Date).Value =
+                deliveryDate.HasValue ? (object)deliveryDate.Value : DBNull.Value;
+            foreach (string key in new[] {
+                "car_company", "car_customer", "car_company_rem", "car_customer_rem",
+                "car_company_tot", "car_customer_tot",
+                "customer_code", "customer_name", "customer_address",
+                "product_code", "product_name", "qty", "qty_tot", "unit_name",
+                "sale_name", "note", "status", "site_id", "site_name" })
+            {
+                pgCommand.Parameters.AddWithValue("", Val(d, key));
+            }
+
+            pgCommand.ExecuteNonQuery();
         }
 
         private static void Upsert(Datalayer dl, MainForm.WeightDelivery item)

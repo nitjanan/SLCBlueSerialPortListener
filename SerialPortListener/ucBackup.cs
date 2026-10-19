@@ -694,8 +694,10 @@ namespace SerialPortListener
                     }
 
                     // fixbug: อัพเดท qty, qty_tot ของ delivery_order วันที่ 06/10/2026 - 07/10/2026 จาก webapp
+                    /*
                     totalUpdated += await FixDeliveryOrderQtyAsync(client, baseUrl, compCode,
                         new DateTime(2026, 10, 6), new DateTime(2026, 10, 7), progress, errors);
+                    */
 
                     string summary = $"ดาวน์โหลดและอัพเดทข้อมูลสำเร็จ {totalUpdated} รายการ";
                     if (errors.Length > 0)
