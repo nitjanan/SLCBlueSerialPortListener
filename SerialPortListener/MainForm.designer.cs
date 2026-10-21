@@ -40,6 +40,7 @@ namespace SerialPortListener
             this.label3 = new System.Windows.Forms.Label();
             this.dtDate = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label42 = new System.Windows.Forms.Label();
             this.lbCompanyCode = new System.Windows.Forms.Label();
             this.btMenu5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -299,6 +300,7 @@ namespace SerialPortListener
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.LightCoral;
+            this.panel3.Controls.Add(this.label42);
             this.panel3.Controls.Add(this.lbCompanyCode);
             this.panel3.Controls.Add(this.btMenu5);
             this.panel3.Controls.Add(this.label1);
@@ -312,12 +314,23 @@ namespace SerialPortListener
             this.panel3.Size = new System.Drawing.Size(186, 647);
             this.panel3.TabIndex = 18;
             // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label42.Location = new System.Drawing.Point(12, 620);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(74, 15);
+            this.label42.TabIndex = 108;
+            this.label42.Text = "vsesion 1.0.0";
+            // 
             // lbCompanyCode
             // 
             this.lbCompanyCode.AutoSize = true;
             this.lbCompanyCode.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCompanyCode.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbCompanyCode.Location = new System.Drawing.Point(55, 119);
+            this.lbCompanyCode.Location = new System.Drawing.Point(58, 109);
             this.lbCompanyCode.Name = "lbCompanyCode";
             this.lbCompanyCode.Size = new System.Drawing.Size(73, 28);
             this.lbCompanyCode.TabIndex = 107;
@@ -343,13 +356,13 @@ namespace SerialPortListener
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(34, 69);
+            this.label1.Location = new System.Drawing.Point(27, 70);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 39);
+            this.label1.Size = new System.Drawing.Size(136, 25);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Weight";
+            this.label1.Text = "TruckWeight";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btMenu4
@@ -2230,6 +2243,7 @@ namespace SerialPortListener
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox tbOldDoId;
         private System.Windows.Forms.CheckBox chkDirectPrint;
+        private System.Windows.Forms.Label label42;
     }
 }
 
