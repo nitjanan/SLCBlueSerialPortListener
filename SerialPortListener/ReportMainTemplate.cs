@@ -161,6 +161,8 @@ namespace SerialPortListener
             //   - Rectangle3 ใน .rdlc ขยับลง 0.7 cm (Top = 0.7cm, body สูงขึ้นเป็น 12.5425cm)
             // ตำแหน่งระหว่างช่องเหมือน Template 2 ทุกประการ
             new TemplateInfo(17, "Template 17 - T1 / T4 / Uni / DO / 39 / SRD (A4) ขยับขึ้น 0.3 cm", "SerialPortListener.ReportMain_Template31.rdlc", A4W, A4H, 0.46, 0.46, 0.2063, 0.30),
+            // ยึดจาก Template 13 (KRD) ทุกอย่าง ต่างแค่ข้อความคงที่ "KT 3" เปลี่ยนเป็น "KP"
+            new TemplateInfo(18, "Template 18 - KP (ใบสลิป)",                             "SerialPortListener.ReportMain_Template32.rdlc", SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
         };
 
         public const int DefaultTemplate = 2;   // แบบที่ใช้มากที่สุด (148 จาก 193 branch หลังรวมกลุ่ม) - เดิมคือเลข 3 ก่อนเรียงใหม่

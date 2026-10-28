@@ -159,12 +159,6 @@ namespace SerialPortListener
             this.btPrintOut = new System.Windows.Forms.Button();
             this.btPrintIn = new System.Windows.Forms.Button();
             this.btSave = new System.Windows.Forms.Button();
-            this.ucTruck = new SerialPortListener.ucTruck();
-            this.ucSetting = new SerialPortListener.ucSetting();
-            this.ucReport = new SerialPortListener.ucReport();
-            this.ucHelp = new SerialPortListener.ucHelp();
-            this.ucBackup = new SerialPortListener.ucBackup();
-            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gbWeight = new System.Windows.Forms.GroupBox();
             this.gbDoc = new System.Windows.Forms.GroupBox();
             this.gbCustomer = new System.Windows.Forms.GroupBox();
@@ -172,6 +166,12 @@ namespace SerialPortListener
             this.lbTransport = new System.Windows.Forms.Label();
             this.gbProd = new System.Windows.Forms.GroupBox();
             this.gbMoney = new System.Windows.Forms.GroupBox();
+            this.ucTruck = new SerialPortListener.ucTruck();
+            this.ucSetting = new SerialPortListener.ucSetting();
+            this.ucReport = new SerialPortListener.ucReport();
+            this.ucHelp = new SerialPortListener.ucHelp();
+            this.ucBackup = new SerialPortListener.ucBackup();
+            this.serialSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -181,12 +181,12 @@ namespace SerialPortListener
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.gbWeight.SuspendLayout();
             this.gbDoc.SuspendLayout();
             this.gbCustomer.SuspendLayout();
             this.gbProd.SuspendLayout();
             this.gbMoney.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tbData
@@ -321,9 +321,9 @@ namespace SerialPortListener
             this.label42.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label42.Location = new System.Drawing.Point(12, 620);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(74, 15);
+            this.label42.Size = new System.Drawing.Size(73, 15);
             this.label42.TabIndex = 108;
-            this.label42.Text = "vsesion 1.0.0";
+            this.label42.Text = "version 1.0.0";
             // 
             // lbCompanyCode
             // 
@@ -1823,68 +1823,6 @@ namespace SerialPortListener
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
             // 
-            // ucTruck
-            // 
-            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
-            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
-            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTruck.Location = new System.Drawing.Point(0, 0);
-            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
-            this.ucTruck.Name = "ucTruck";
-            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
-            this.ucTruck.TabIndex = 22;
-            // 
-            // ucSetting
-            // 
-            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucSetting.Location = new System.Drawing.Point(0, 0);
-            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
-            this.ucSetting.Name = "ucSetting";
-            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
-            this.ucSetting.TabIndex = 21;
-            // 
-            // ucReport
-            // 
-            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
-            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucReport.Location = new System.Drawing.Point(0, 0);
-            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
-            this.ucReport.Name = "ucReport";
-            this.ucReport.Size = new System.Drawing.Size(1208, 686);
-            this.ucReport.TabIndex = 20;
-            this.ucReport.Visible = false;
-            // 
-            // ucHelp
-            // 
-            this.ucHelp.AutoScroll = true;
-            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
-            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucHelp.Location = new System.Drawing.Point(0, 0);
-            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
-            this.ucHelp.Name = "ucHelp";
-            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
-            this.ucHelp.TabIndex = 19;
-            this.ucHelp.Visible = false;
-            // 
-            // ucBackup
-            // 
-            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
-            this.ucBackup.CheckUpdateButtonEnabled = true;
-            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucBackup.Location = new System.Drawing.Point(0, 0);
-            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
-            this.ucBackup.Name = "ucBackup";
-            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
-            this.ucBackup.TabIndex = 108;
-            // 
-            // serialSettingsBindingSource
-            // 
-            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
-            // 
             // gbWeight
             // 
             this.gbWeight.Controls.Add(this.label35);
@@ -2017,6 +1955,68 @@ namespace SerialPortListener
             this.gbMoney.TabStop = false;
             this.gbMoney.Text = "การเงิน";
             // 
+            // ucTruck
+            // 
+            this.ucTruck.BackColor = System.Drawing.Color.FloralWhite;
+            this.ucTruck.BackgroundImage = global::SerialPortListener.Properties.Resources.logo_silachai__2;
+            this.ucTruck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ucTruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTruck.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucTruck.Location = new System.Drawing.Point(0, 0);
+            this.ucTruck.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
+            this.ucTruck.Name = "ucTruck";
+            this.ucTruck.Size = new System.Drawing.Size(1208, 686);
+            this.ucTruck.TabIndex = 22;
+            // 
+            // ucSetting
+            // 
+            this.ucSetting.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ucSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSetting.Location = new System.Drawing.Point(0, 0);
+            this.ucSetting.Margin = new System.Windows.Forms.Padding(0);
+            this.ucSetting.Name = "ucSetting";
+            this.ucSetting.Size = new System.Drawing.Size(1208, 686);
+            this.ucSetting.TabIndex = 21;
+            // 
+            // ucReport
+            // 
+            this.ucReport.BackColor = System.Drawing.Color.LightCyan;
+            this.ucReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucReport.Location = new System.Drawing.Point(0, 0);
+            this.ucReport.Margin = new System.Windows.Forms.Padding(0);
+            this.ucReport.Name = "ucReport";
+            this.ucReport.Size = new System.Drawing.Size(1208, 686);
+            this.ucReport.TabIndex = 20;
+            this.ucReport.Visible = false;
+            // 
+            // ucHelp
+            // 
+            this.ucHelp.AutoScroll = true;
+            this.ucHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(216)))), ((int)(((byte)(240)))));
+            this.ucHelp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucHelp.Location = new System.Drawing.Point(0, 0);
+            this.ucHelp.Margin = new System.Windows.Forms.Padding(0);
+            this.ucHelp.Name = "ucHelp";
+            this.ucHelp.Size = new System.Drawing.Size(1208, 686);
+            this.ucHelp.TabIndex = 19;
+            this.ucHelp.Visible = false;
+            // 
+            // ucBackup
+            // 
+            this.ucBackup.BackColor = System.Drawing.Color.GhostWhite;
+            this.ucBackup.CheckUpdateButtonEnabled = true;
+            this.ucBackup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBackup.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucBackup.Location = new System.Drawing.Point(0, 0);
+            this.ucBackup.Margin = new System.Windows.Forms.Padding(21);
+            this.ucBackup.Name = "ucBackup";
+            this.ucBackup.Size = new System.Drawing.Size(1208, 686);
+            this.ucBackup.TabIndex = 108;
+            // 
+            // serialSettingsBindingSource
+            // 
+            this.serialSettingsBindingSource.DataSource = typeof(SerialPortListener.Serial.SerialSettings);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2082,7 +2082,6 @@ namespace SerialPortListener
             this.panel5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.gbWeight.ResumeLayout(false);
             this.gbWeight.PerformLayout();
             this.gbDoc.ResumeLayout(false);
@@ -2093,6 +2092,7 @@ namespace SerialPortListener
             this.gbProd.PerformLayout();
             this.gbMoney.ResumeLayout(false);
             this.gbMoney.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serialSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
