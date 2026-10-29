@@ -462,6 +462,7 @@
     <Compile Include="Utils.cs" />
     <Compile Include="Weight.cs" />
     <Compile Include="WeightDeliverySync.cs" />
+    <Compile Include="UserScaleSync.cs" />
     <Compile Include="BillHeader.cs" />
     <Compile Include="ReportMainTemplate.cs" />
     <Compile Include="SerialDataHandler.cs" />

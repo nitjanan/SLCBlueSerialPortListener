@@ -127,8 +127,8 @@ namespace SerialPortListener
                 SourceBranch = "JOB_Blue_11/03/25 (คอมเมนต์ปิดใน JOB_Blue_Auto_update_01/08/2026)", Mode = ParseMode.Delimited,
                 Terminator = "\r", Start = "(", StartOffset = 3 },
 
-            // ของเดิมอ้างว่ามี STX (\x02) แต่โค้ดจริงใน SRD_Blue_11/03/25 ไม่มี Start marker เลย
-            // (LastIndexOf("") คืนตำแหน่งท้ายสตริงเสมอ ทำให้ไม่ได้ตัดหน้าอะไรจริง คงพฤติกรรมเดิมไว้ตามต้นทาง)
+            // แบบไม่ตัดหน้าที่ STX คงไว้เผื่อเครื่องที่ตั้งเป็นแบบนี้อยู่แล้ว
+            // ที่จริงโค้ดใน SRD ใช้ LastIndexOf("\x02") (STX มองไม่เห็นใน editor) ให้ใช้ข้อ 19 แทน
             new HandlerInfo { Key = "STX_SIGNED", DisplayName = "16. CR (รองรับน้ำหนักติดลบ) [SRD]",
                 SourceBranch = "SRD_Blue_11/03/25, SRD_Pink_11/03/25", Mode = ParseMode.Delimited,
                 Terminator = "\r", Pattern = @"-?\d+", TrimLeadingZeros = false },
@@ -139,7 +139,13 @@ namespace SerialPortListener
 
             new HandlerInfo { Key = "TYM_MARKER", DisplayName = "18. อ่านฟิลด์ความกว้างคงที่หลัง *0 (TYM) [TYM]",
                 SourceBranch = "TYM_Blue_Auto_update_01/08/2026", Mode = ParseMode.LineMarker,
-                Buffered = true, Marker = "*0", FieldLength = 12, DecimalPlaces = 6 }
+                Buffered = true, Marker = "*0", FieldLength = 12, DecimalPlaces = 6 },
+
+            // ตามโค้ดจริงใน SRD_Blue_11/03/25 / SRD_Pink_11/03/25: ตัดท้ายที่ CR ตัวสุดท้าย ตัดหน้าที่ STX (\x02) ตัวสุดท้าย
+            // ค่าบวกตัด 0 ด้านหน้า ค่าติดลบคงไว้ตามที่รับมา (TrimStart('0') ไม่แตะ "-00..." ให้ผลเหมือนต้นทาง)
+            new HandlerInfo { Key = "STX_CR_SIGNED", DisplayName = "19. STX + CR (รองรับน้ำหนักติดลบ) [SRD]",
+                SourceBranch = "SRD_Blue_11/03/25, SRD_Pink_11/03/25", Mode = ParseMode.Delimited,
+                Terminator = "\r", Start = "\u0002", Pattern = @"-?\d+", MaxTextLength = 500 }
         };
 
         private static readonly string ConfigPath =

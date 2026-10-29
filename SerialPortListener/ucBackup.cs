@@ -542,22 +542,8 @@ namespace SerialPortListener
 
         private void ProcessBaseUser(JObject d)
         {
-            // users_id เป็น auto (identity/serial) ทางฝั่ง DB ; username ในระบบนี้ map มาจาก scale_id ของ API (ไม่ใช่ username ของ API)
-            OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand();
-            cmd.CommandText = @"
-                INSERT INTO public.users(""firstname"", ""username"", ""password"", ""permission"")
-                VALUES (?, ?, ?, ?)
-                ON CONFLICT (""username"")
-                DO UPDATE SET ""firstname"" = EXCLUDED.""firstname"",
-                ""password"" = COALESCE(EXCLUDED.""password"", public.users.""password""),
-                ""permission"" = COALESCE(EXCLUDED.""permission"", public.users.""permission"");";
-            cmd.Parameters.AddWithValue("", S(d, "scale_name"));
-            cmd.Parameters.AddWithValue("", S(d, "scale_id"));
-            cmd.Parameters.AddWithValue("", S(d, "password"));
-            cmd.Parameters.AddWithValue("", S(d, "permission"));
-            cmd.ExecuteNonQuery();
-
-            UpdateVStamp("users", d);
+            // ใช้ตัวเดียวกับหน้า Login (ดึง users ก่อน login)
+            UserScaleSync.Upsert(dl, d);
         }
 
         private void ProcessBaseCustomerSite(JObject d)
