@@ -625,6 +625,20 @@
                           <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
+                      <TextRun>
+                        <Value> </Value>
+                        <Style>
+                          <FontFamily>Leelawadee UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value>=Parameters!PStoneDesc.Value</Value>
+                        <Style>
+                          <FontFamily>Leelawadee UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                        </Style>
+                      </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
@@ -633,7 +647,7 @@
                 <Top>1.61711in</Top>
                 <Left>0.94244in</Left>
                 <Height>0.25in</Height>
-                <Width>1.5945in</Width>
+                <Width>6.70466cm</Width>
                 <ZIndex>17</ZIndex>
                 <Style>
                   <Border>
@@ -2596,38 +2610,6 @@
                 <Height>0.25in</Height>
                 <Width>0.65281in</Width>
                 <ZIndex>83</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="PStoneType2">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!PStoneDesc.Value</Value>
-                        <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>PStoneType</rd:DefaultName>
-                <Top>1.61711in</Top>
-                <Left>2.53694in</Left>
-                <Height>0.25in</Height>
-                <Width>1.04513in</Width>
-                <ZIndex>84</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>

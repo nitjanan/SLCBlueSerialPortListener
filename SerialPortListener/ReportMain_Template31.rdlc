@@ -670,6 +670,20 @@
                           <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
+                      <TextRun>
+                        <Value> </Value>
+                        <Style>
+                          <FontFamily>Leelawadee UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                        </Style>
+                      </TextRun>
+                      <TextRun>
+                        <Value>=Parameters!PStoneDesc.Value</Value>
+                        <Style>
+                          <FontFamily>Leelawadee UI Semilight</FontFamily>
+                          <FontSize>11pt</FontSize>
+                        </Style>
+                      </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
@@ -2952,38 +2966,6 @@
                 <Height>0.25in</Height>
                 <Width>0.65281in</Width>
                 <ZIndex>90</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="PStoneDesc">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!PStoneDesc.Value</Value>
-                        <Style>
-                          <FontFamily>Leelawadee UI Semilight</FontFamily>
-                          <FontSize>11pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>PStoneDesc</rd:DefaultName>
-                <Top>1.61711in</Top>
-                <Left>3.65207in</Left>
-                <Height>0.25in</Height>
-                <Width>0.3in</Width>
-                <ZIndex>91</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>

@@ -560,6 +560,7 @@
     <EmbeddedResource Include="ReportMain_Template30.rdlc" />
     <EmbeddedResource Include="ReportMain_Template31.rdlc" />
     <EmbeddedResource Include="ReportMain_Template32.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template33.rdlc" />
     <EmbeddedResource Include="ScoopReport.rdlc" />
     <EmbeddedResource Include="SiteReport.rdlc" />
     <EmbeddedResource Include="StoneTypeReport.rdlc" />
