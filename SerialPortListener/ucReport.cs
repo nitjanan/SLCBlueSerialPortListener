@@ -87,6 +87,7 @@ namespace SerialPortListener
             fillTableCombo(cbbCarryTeam, "base_car_team", "ชื่อทีม");
             fillTableCombo(cbbProductStoneType, "base_stone_type", "ชื่อหิน");
             fillTableCombo(cbCCStoneType, "base_stone_type", "ชื่อหิน");
+            fillTableCombo(cbbCorpStone, "base_stone_type", "ชื่อหิน");
             fillTableCombo(cbbMill, "base_mill", "ชื่อโรงโม่");
 
             /* autoComplete ลูกค้า */
@@ -119,6 +120,9 @@ namespace SerialPortListener
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbCCName, listOriginalCCReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbProductName, listOriginalProductReport);
             setautoCompleteCustomer("รหัสลูกค้า", "ชื่อลูกค้า", "base_customer", cbbDOCutomerName, listOriginalDOReport);
+
+            this.cbbCorpName.SelectedIndexChanged += new System.EventHandler(this.cbbCorpName_SelectedIndexChanged);
+            fillCorpSiteCombo();
 
             dtFromOut.Value = Convert.ToDateTime(System.DateTime.Today.ToShortDateString() + " 06:00 AM");
         
@@ -330,6 +334,10 @@ namespace SerialPortListener
             else if (tcReport.SelectedTab == tabPage8)
             {
                 fillMillCombo(cbMill);
+            }
+            else if (tcReport.SelectedTab == tabPage13)
+            {
+                fillCorpSiteCombo();
             }
         }
 
@@ -1287,11 +1295,26 @@ namespace SerialPortListener
             //sql
             dl.connect();
             string sql = "select * from weight where วันที่ BETWEEN '" + dtFromCorp.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCorp.Value.ToString("yyyy-MM-dd") + "' ";
+            OdbcCommand corpCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             if (tbCorpId.Text != "")
-                sql += " AND รหัสลูกค้า = '" + tbCorpId.Text + "' ";
+            {
+                sql += " AND รหัสลูกค้า = ? ";
+                corpCommand.Parameters.AddWithValue("@customer_id", tbCorpId.Text);
+            }
+            if (cbbCorpSite.Text != "" && cbbCorpSite.Text != "ทั้งหมด")
+            {
+                sql += " AND หน้างาน = ? ";
+                corpCommand.Parameters.AddWithValue("@site", cbbCorpSite.Text);
+            }
+            if (cbbCorpStone.Text != "" && cbbCorpStone.Text != "ทั้งหมด")
+            {
+                sql += " AND ชนิดหิน = ? ";
+                corpCommand.Parameters.AddWithValue("@stone", cbbCorpStone.Text);
+            }
             sql += " ORDER BY วันที่ ";
+            corpCommand.CommandText = sql;
 
-            OdbcDataAdapter cmd = new OdbcDataAdapter(sql, dl.sqlConn());
+            OdbcDataAdapter cmd = new OdbcDataAdapter(corpCommand);
             DataTable dt = new DataTable();
             cmd.Fill(dt);
             dl.close();
@@ -1398,11 +1421,13 @@ namespace SerialPortListener
         private void tbCorpId_Leave(object sender, EventArgs e)
         {
             setCustomerIdToTextbox(tbCorpId, tbCorpName);
+            fillCorpSiteCombo();
         }
 
         private void tbCorpName_Leave(object sender, EventArgs e)
         {
             setCustomerNameToTextbox(tbCorpId, tbCorpName);
+            fillCorpSiteCombo();
         }
 
         private void tbCCId_Leave(object sender, EventArgs e)
@@ -1461,6 +1486,59 @@ namespace SerialPortListener
                 tbCorpId.Text = "";
                 cbbCorpName.Text = "";
             }
+            fillCorpSiteCombo();
+        }
+
+        private void fillCorpSiteCombo()
+        {
+            cbbCorpSite.Items.Clear();
+            cbbCorpSite.Items.Add("ทั้งหมด");
+            cbbCorpSite.SelectedIndex = 0;
+
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            string query = "SELECT DISTINCT หน้างาน FROM public.weight WHERE หน้างาน IS NOT NULL AND หน้างาน <> ''";
+            if (!string.IsNullOrEmpty(tbCorpId.Text))
+            {
+                query += " AND รหัสลูกค้า = ?";
+                pgCommand.Parameters.AddWithValue("@customer_id", tbCorpId.Text);
+            }
+            query += " ORDER BY หน้างาน";
+            pgCommand.CommandText = query;
+
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string site = reader["หน้างาน"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(site))
+                    {
+                        cbbCorpSite.Items.Add(site);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            dl.close();
+        }
+
+        private void cbbCorpName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbbCorpName.SelectedItem != null)
+                {
+                    string selected = cbbCorpName.SelectedItem.ToString();
+                    tbCorpId.Text = selected.Substring(0, selected.IndexOf(" : "));
+                }
+            }
+            catch (Exception)
+            {
+                tbCorpId.Text = "";
+            }
+            fillCorpSiteCombo();
         }
 
         private void cbbCorpName_TextUpdate(object sender, EventArgs e)
