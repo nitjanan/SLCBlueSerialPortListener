@@ -144,8 +144,7 @@ namespace SerialPortListener
             new TemplateInfo( 1, "Template 1 - KT (ใบสลิป มีตรา KT)",                     "SerialPortListener.ReportMain_Template2.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo( 2, "Template 2 - T1 / T4 / Uni / DO / 39 / SRD (A4)",       "SerialPortListener.ReportMain_Template3.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
             new TemplateInfo( 3, "Template 3 - CTM สาขา Blue (A4 + ช่องรหัสเอกสาร)",      "SerialPortListener.ReportMain_Template4.rdlc",  A4W, A4H, 0.46, 0.46, 0.60, 0.30),
-            // ขยับทั้งหน้าไปทางขวา 0.5 cm และลงล่าง 0.5 cm: ขอบซ้าย/บน 0.20in + 0.1969in = 0.3969in
-            new TemplateInfo( 4, "Template 4 - NSM (ใบสลิป)",                             "SerialPortListener.ReportMain_Template6.rdlc",  SlipW, SlipH, 0.3969, 0.20, 0.3969, 0.20),
+            new TemplateInfo( 4, "Template 4 - NSM (ใบสลิป)",                             "SerialPortListener.ReportMain_Template6.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo( 5, "Template 5 - SURAT / KRABI (ใบสลิป มีช่องหมายเหตุ)",    "SerialPortListener.ReportMain_Template9.rdlc",  SlipW, SlipH, 0.20, 0.20, 0.20, 0.20),
             new TemplateInfo( 6, "Template 6 - Uni รุ่นเก่า (A4 + ตรา Sandvik)",          "SerialPortListener.ReportMain_Template13.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
             new TemplateInfo( 7, "Template 7 - แบบมีเลข LC (A4)",                         "SerialPortListener.ReportMain_Template18.rdlc", A4W, A4H, 0.46, 0.46, 0.60, 0.30),
