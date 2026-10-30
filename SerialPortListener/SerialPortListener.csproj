@@ -635,6 +635,7 @@
     <EmbeddedResource Include="ReportMain_Template30.rdlc" />
     <EmbeddedResource Include="ReportMain_Template31.rdlc" />
     <EmbeddedResource Include="ReportMain_Template32.rdlc" />
+    <EmbeddedResource Include="ReportMain_Template33.rdlc" />
     <None Include="app.config" />
     <None Include="app.manifest" />
     <EmbeddedResource Include="..\sql\2026-09-29-krabi-stp-mode.sql">
