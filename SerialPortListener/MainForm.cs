@@ -3777,6 +3777,7 @@ namespace SerialPortListener
             Weight.StoneColor = strNotEmty(cbbStoneColor.Text);
             Weight.Site = strNotEmty(cbbSite.Text);
             Weight.ApproveName = strNotEmty(tbApproveName.Text);
+            Weight.ScoopName = strNotEmty(tbScoopName.Text); // Template 1, 13 แสดงช่องผู้ตัก
             Weight.Pay = strNotEmty(getPayRadioValue());
             Weight.VatType = getVatRadioValuePrint();
             Weight.Clean = strNotEmty(getCleanRadioValue());
