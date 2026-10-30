@@ -644,7 +644,7 @@
                         </Style>
                       </TextRun>
                       <TextRun>
-                        <Value> </Value>
+                        <Value xml:space="preserve"> </Value>
                         <Style>
                           <FontFamily>Leelawadee UI Semilight</FontFamily>
                           <FontSize>11pt</FontSize>
@@ -2870,7 +2870,7 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-        <ReportParameter Name="PStoneDesc">
+    <ReportParameter Name="PStoneDesc">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -3212,12 +3212,12 @@
           <RowIndex>9</RowIndex>
           <ParameterName>PScoopName</ParameterName>
         </CellDefinition>
-              <CellDefinition>
+        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>10</RowIndex>
           <ParameterName>PStoneDesc</ParameterName>
         </CellDefinition>
-</CellDefinitions>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
