@@ -1070,6 +1070,10 @@ namespace SerialPortListener
             lbOrigin.Visible = krabi;
             lbQOrigin.Visible = krabi;
 
+            // โหมดท่าเรือ STP ไม่ใช้ปุ่มพิมพ์เข้า/พิมพ์ออก
+            btPrintIn.Visible = !krabi;
+            btPrintOut.Visible = !krabi;
+
             ApplyLineTypeLayout(krabi);
             ApplyMoneyGroupLayout(krabi);
             ApplyProductOperatorLayout(krabi);
@@ -1211,7 +1215,8 @@ namespace SerialPortListener
                 groupBox2.Size = new System.Drawing.Size(224, 50);
                 rbTrans.Location = new System.Drawing.Point(146, 21);
                 rbCredit.Location = new System.Drawing.Point(72, 21);
-                btSave.Location = new System.Drawing.Point(703, 642);
+                // ปุ่มพิมพ์เข้า/พิมพ์ออกถูกซ่อน จึงขยับปุ่มบันทึกไปชิดซ้ายของ btPrintAll (x=1081) เว้นระยะ 10
+                btSave.Location = new System.Drawing.Point(963, 642);
                 btSave.Size = new System.Drawing.Size(108, 42);
             }
             else
@@ -2354,12 +2359,19 @@ namespace SerialPortListener
                 // ==========================================
                 // 3. SAVE (ถ้าผ่านเงื่อนไขด้านบนทั้งหมดแล้ว)
                 // ==========================================
-                await autoSaveCore();
+                bool saved = await autoSaveCore();
 
                 if (Globals.IsKrabiSTPVersion)
                 {
                     CalTimeAndWeightTotalByLineType("สายสั้น", lbShortTime, lbShortWeightTotal);
                     CalTimeAndWeightTotalByLineType("สายยาว", lbLongTime, lbLongWeightTotal);
+
+                    // โหมดท่าเรือ STP: บันทึกสำเร็จแล้ว ปุ่มบันทึกเป็นสีเทา
+                    if (saved)
+                    {
+                        btSave.BackColor = System.Drawing.Color.Gray;
+                        btSave.UseVisualStyleBackColor = false;
+                    }
                 }
 
                 //MessageBox.Show("บันทึกข้อมูลสำเร็จ", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
