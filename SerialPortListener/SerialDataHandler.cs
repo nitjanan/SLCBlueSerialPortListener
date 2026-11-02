@@ -117,10 +117,14 @@ namespace SerialPortListener
                 SourceBranch = "FT_ST_SURAT_STP_2025", Mode = ParseMode.Delimited,
                 Terminator = "\x17", Start = "p" },
 
-            // ของเดิม (ETB_Q_AUTO) เข้าใจผิดว่าใช้ ETB (\x17) แต่โค้ดจริงใน JOB_Blue_Auto_update_01/08/2026 ไม่มี \x17 เลย
-            // เป็นการหา q ตัวสุดท้ายแล้วอ่านทั้งก้อนข้อความ ค่าที่ไม่ลงตัว 10/เกินพิสัยตัดหลักท้ายทิ้งแทนการปัดทิ้งทั้งค่า (ดู ParseJobQ)
-            new HandlerInfo { Key = "JOB_Q_TRUNCATE", DisplayName = "14. JOB ขาออก: q + ตัดหลักท้ายเมื่อค่าผิดปกติ [JOB]",
-                SourceBranch = "JOB_Blue_Auto_update_01/08/2026", Mode = ParseMode.JobQTruncate },
+            // ปรับให้ตรงกับ "แบบ q ... ETB [JOB ขาออก]" (JobOutQMarker) ใน STOCK_SLCSerialPortListener:
+            // ตัดถึง ETB (\x17) ตัวสุดท้าย เอาเลขหลัง q ตัวสุดท้าย ค่าที่ไม่ลงตัว 10/เกินพิสัยตัดหลักท้ายทิ้งแทนการปัดทิ้งทั้งค่า (ดู ParseJobQ)
+            // คีย์เดิมคงไว้ เครื่องที่เลือกข้อนี้อยู่แล้วจะได้ไม่ต้องตั้งค่าใหม่
+            // ตาชั่งนี้ส่งข้อมูลถี่มาก ถ้า BeginInvoke ทุกก้อนคิว UI จะล้นจนโปรแกรมค้าง
+            // จึงรับแบบบัฟเฟอร์ให้ timer ระบาย และเก็บข้อความไว้แค่ 50 ตัวอักษรเหมือน STOCK
+            new HandlerInfo { Key = "JOB_Q_TRUNCATE", DisplayName = "14. JOB ขาออก: q ... ETB + ตัดหลักท้ายเมื่อค่าผิดปกติ [JOB]",
+                SourceBranch = "JOB_Blue_Auto_update_01/08/2026, STOCK_SLCSerialPortListener (JobOutQMarker)", Mode = ParseMode.JobQTruncate,
+                Terminator = "\x17", Buffered = true, MaxTextLength = 50 },
 
             // "JOB ขาเข้า" - แบบ CR+วงเล็บเปิดเดิมของ JOB, ถูกคอมเมนต์ปิดใน JOB_Blue_Auto_update_01/08/2026 แล้วสลับไปใช้ JOB_Q_TRUNCATE แทน แต่ยังคงไว้เป็นตัวเลือก
             new HandlerInfo { Key = "CR_PAREN3_JOB", DisplayName = "15. JOB ขาเข้า: CR + วงเล็บเปิด [JOB (comment ปิด)]",
@@ -486,7 +490,7 @@ namespace SerialPortListener
             return r;
         }
 
-        // JOB_Blue_Auto_update_01/08/2026 (ขาออก): หา q ตัวสุดท้ายในทั้งก้อนข้อความ
+        // JOB ขาออก (เหมือน JobOutQMarker ใน STOCK): ตัดถึง Terminator (ETB) ตัวสุดท้าย แล้วหา q ตัวสุดท้าย
         // ค่าที่ไม่ลงตัว 10 หรือเกินพิสัยถือว่าเพี้ยน แต่ตัดหลักท้ายทิ้งแล้วใช้ต่อแทนการปัดทิ้งทั้งค่า (ต่างจาก ValidatedPQ)
         private static ParseResult ParseJobQ(HandlerInfo h, string text)
         {
@@ -494,10 +498,19 @@ namespace SerialPortListener
             if (string.IsNullOrEmpty(text))
                 return r;
 
-            int qp = text.LastIndexOf('q');
+            string window = text;
+            if (!string.IsNullOrEmpty(h.Terminator))
+            {
+                int end = window.LastIndexOf(h.Terminator, StringComparison.Ordinal);
+                if (end < 0)
+                    return r;
+                window = window.Remove(end);
+            }
+
+            int qp = window.LastIndexOf('q');
             if (qp < 0)
                 return r;
-            string window = text.Substring(qp);
+            window = window.Substring(qp);
 
             MatchCollection mc = Regex.Matches(window, h.Pattern);
             if (mc.Count == 0)
@@ -509,7 +522,7 @@ namespace SerialPortListener
 
             string v = mc[0].Value;
             if (value % 10 != 0 || value > 100000)
-                v = v.Length > 1 ? v.Remove(v.Length - 1) : v;
+                v = v.Length > 1 ? v.Remove(v.Length - 1) : "0";
             else if (value < 10)
                 v = "0";
             else
