@@ -464,6 +464,38 @@ namespace SerialPortListener
 
             */
 
+            DataTable dt = getDailyReportData();
+
+            //set parameter
+            WeightDailyReport.DateFrom = tbdateFrom.Text;
+            WeightDailyReport.DateTo = tbdateTo.Text;
+
+            //open winform
+            List<WeightDailyReport> listWDR = new List<WeightDailyReport>();
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("dailyDataSet", dt);
+            FPrintDailyReport fp = new FPrintDailyReport(listWDR, rds);
+            fp.ShowDialog();
+
+        }
+
+        //รายงานการชั่งสินค้าประจำวัน 2 (รูปแบบ DailyReport ของ NSM)
+        private void btPrint2_Click(object sender, EventArgs e)
+        {
+            DataTable dt = getDailyReportData();
+
+            //set parameter
+            WeightDailyReport.DateFrom = tbdateFrom.Text;
+            WeightDailyReport.DateTo = tbdateTo.Text;
+
+            //open winform
+            List<WeightDailyReport> listWDR = new List<WeightDailyReport>();
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("dailyDataSet", dt);
+            FPrintDailyReport2 fp = new FPrintDailyReport2(listWDR, rds);
+            fp.ShowDialog();
+        }
+
+        private DataTable getDailyReportData()
+        {
             //sql
             dl.connect();
             StringBuilder sql = new StringBuilder();
@@ -502,17 +534,7 @@ namespace SerialPortListener
             DataTable dt = new DataTable();
             cmd.Fill(dt);
             dl.close();
-
-            //set parameter
-            WeightDailyReport.DateFrom = tbdateFrom.Text;
-            WeightDailyReport.DateTo = tbdateTo.Text;
-
-            //open winform
-            List<WeightDailyReport> listWDR = new List<WeightDailyReport>();
-            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("dailyDataSet", dt);
-            FPrintDailyReport fp = new FPrintDailyReport(listWDR, rds);
-            fp.ShowDialog();
-
+            return dt;
         }
 
         private string dateFormatToPrint(string strDate) {

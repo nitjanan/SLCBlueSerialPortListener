@@ -108,6 +108,7 @@
             this.tbdateTo = new System.Windows.Forms.DateTimePicker();
             this.tbdateFrom = new System.Windows.Forms.DateTimePicker();
             this.btPrint = new System.Windows.Forms.Button();
+            this.btPrint2 = new System.Windows.Forms.Button();
             this.btSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -383,6 +384,7 @@
             this.tabPage1.Controls.Add(this.tbdateTo);
             this.tabPage1.Controls.Add(this.tbdateFrom);
             this.tabPage1.Controls.Add(this.btPrint);
+            this.tabPage1.Controls.Add(this.btPrint2);
             this.tabPage1.Controls.Add(this.btSearch);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
@@ -452,7 +454,7 @@
             this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintBil.Location = new System.Drawing.Point(573, 402);
+            this.btPrintBil.Location = new System.Drawing.Point(377, 402);
             this.btPrintBil.Name = "btPrintBil";
             this.btPrintBil.Size = new System.Drawing.Size(80, 30);
             this.btPrintBil.TabIndex = 79;
@@ -467,7 +469,7 @@
             this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(487, 402);
+            this.btPrintVRock.Location = new System.Drawing.Point(291, 402);
             this.btPrintVRock.Name = "btPrintVRock";
             this.btPrintVRock.Size = new System.Drawing.Size(80, 30);
             this.btPrintVRock.TabIndex = 78;
@@ -1043,14 +1045,28 @@
             this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint.Location = new System.Drawing.Point(659, 402);
+            this.btPrint.Location = new System.Drawing.Point(463, 402);
             this.btPrint.Name = "btPrint";
-            this.btPrint.Size = new System.Drawing.Size(90, 30);
+            this.btPrint.Size = new System.Drawing.Size(140, 30);
             this.btPrint.TabIndex = 48;
-            this.btPrint.Text = "พิมพ์รายงาน";
+            this.btPrint.Text = "พิมพ์รายงานแนวนอน";
             this.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrint.UseVisualStyleBackColor = true;
             this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
+            // 
+            // btPrint2
+            // 
+            this.btPrint2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrint2.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrint2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrint2.Location = new System.Drawing.Point(609, 402);
+            this.btPrint2.Name = "btPrint2";
+            this.btPrint2.Size = new System.Drawing.Size(140, 30);
+            this.btPrint2.TabIndex = 84;
+            this.btPrint2.Text = "พิมพ์รายงานแนวตั้ง";
+            this.btPrint2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrint2.UseVisualStyleBackColor = true;
+            this.btPrint2.Click += new System.EventHandler(this.btPrint2_Click);
             // 
             // btSearch
             // 
@@ -3280,6 +3296,7 @@
         private System.Windows.Forms.DateTimePicker tbdateTo;
         private System.Windows.Forms.DateTimePicker tbdateFrom;
         private System.Windows.Forms.Button btPrint;
+        private System.Windows.Forms.Button btPrint2;
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

@@ -311,6 +311,12 @@
     <Compile Include="FPrintDailyReport.Designer.cs">
       <DependentUpon>FPrintDailyReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintDailyReport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintDailyReport2.Designer.cs">
+      <DependentUpon>FPrintDailyReport2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintInvoiceReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +499,7 @@
     <EmbeddedResource Include="CleanReport.rdlc" />
     <EmbeddedResource Include="CustomerReport.rdlc" />
     <EmbeddedResource Include="DailyReport.rdlc" />
+    <EmbeddedResource Include="DailyReport2.rdlc" />
     <EmbeddedResource Include="FCancelPassword.resx">
       <DependentUpon>FCancelPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -519,6 +526,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintDailyReport.resx">
       <DependentUpon>FPrintDailyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintDailyReport2.resx">
+      <DependentUpon>FPrintDailyReport2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintInvoiceReport.resx">
       <DependentUpon>FPrintInvoiceReport.cs</DependentUpon>
