@@ -307,6 +307,12 @@
     <Compile Include="FPrintDailyReport2.Designer.cs">
       <DependentUpon>FPrintDailyReport2.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintDailyReport3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintDailyReport3.Designer.cs">
+      <DependentUpon>FPrintDailyReport3.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintInvoiceReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -484,6 +490,7 @@
     <EmbeddedResource Include="CustomerReport.rdlc" />
     <EmbeddedResource Include="DailyReport.rdlc" />
     <EmbeddedResource Include="DailyReport2.rdlc" />
+    <EmbeddedResource Include="DailyReport3.rdlc" />
     <EmbeddedResource Include="FCancelPassword.resx">
       <DependentUpon>FCancelPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -504,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintDailyReport2.resx">
       <DependentUpon>FPrintDailyReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintDailyReport3.resx">
+      <DependentUpon>FPrintDailyReport3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintInvoiceReport.resx">
       <DependentUpon>FPrintInvoiceReport.cs</DependentUpon>
@@ -603,11 +613,17 @@
     <EmbeddedResource Include="FPrintCCReport.resx">
       <DependentUpon>FPrintCCReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCCReport2.resx">
+      <DependentUpon>FPrintCCReport2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FPrintCarryReport.resx">
       <DependentUpon>FPrintCarryReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintCorpReport.resx">
       <DependentUpon>FPrintCorpReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FPrintCorpReport2.resx">
+      <DependentUpon>FPrintCorpReport2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FPrintProduct.resx">
       <DependentUpon>FPrintProduct.cs</DependentUpon>
@@ -618,7 +634,9 @@
     <EmbeddedResource Include="WeightDeliveryReport.rdlc" />
     <EmbeddedResource Include="CarryReport.rdlc" />
     <EmbeddedResource Include="CustomerCompanyReport.rdlc" />
+    <EmbeddedResource Include="CustomerCompanyReport2.rdlc" />
     <EmbeddedResource Include="CustomerCorporationReport.rdlc" />
+    <EmbeddedResource Include="CustomerCorporationReport2.rdlc" />
     <EmbeddedResource Include="ProductReport.rdlc" />
     <EmbeddedResource Include="ReportMainVRock.rdlc" />
     <None Include="app.config" />
@@ -815,6 +833,12 @@
     <Compile Include="FPrintCCReport.Designer.cs">
       <DependentUpon>FPrintCCReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FPrintCCReport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCCReport2.Designer.cs">
+      <DependentUpon>FPrintCCReport2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPrintCarryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -826,6 +850,12 @@
     </Compile>
     <Compile Include="FPrintCorpReport.Designer.cs">
       <DependentUpon>FPrintCorpReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FPrintCorpReport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FPrintCorpReport2.Designer.cs">
+      <DependentUpon>FPrintCorpReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="FPrintProduct.cs">
       <SubType>Form</SubType>

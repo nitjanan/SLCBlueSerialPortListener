@@ -67,6 +67,8 @@ namespace SerialPortListener
             cbbWeight.SelectedIndex = 0;
             cbbLineType.SelectedIndex = 0;
             cbCCWeight.SelectedIndex = 0;
+            cbbCorpLineType.SelectedIndex = 0;
+            cbCCLineType.SelectedIndex = 0;
             cbbWeightTotal.SelectedIndex = 0;
 
             /* autoComplete ลูกค้า */
@@ -491,6 +493,22 @@ namespace SerialPortListener
             List<WeightDailyReport> listWDR = new List<WeightDailyReport>();
             Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("dailyDataSet", dt);
             FPrintDailyReport2 fp = new FPrintDailyReport2(listWDR, rds);
+            fp.ShowDialog();
+        }
+
+        //รายงานการชั่งสินค้าประจำวัน 3 (รูปแบบ DailyReport ของ JOB)
+        private void btPrint3_Click(object sender, EventArgs e)
+        {
+            DataTable dt = getDailyReportData();
+
+            //set parameter
+            WeightDailyReport.DateFrom = tbdateFrom.Text;
+            WeightDailyReport.DateTo = tbdateTo.Text;
+
+            //open winform
+            List<WeightDailyReport> listWDR = new List<WeightDailyReport>();
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("dailyDataSet", dt);
+            FPrintDailyReport3 fp = new FPrintDailyReport3(listWDR, rds);
             fp.ShowDialog();
         }
 
@@ -1314,6 +1332,35 @@ namespace SerialPortListener
 
         private void btPrintCorp_Click(object sender, EventArgs e)
         {
+            DataTable dt = getCorpReportData();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCorp.Text;
+            WeightTempReport.DateTo = dtToCorp.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("CorpDataSet", dt);
+            FPrintCorpReport fp = new FPrintCorpReport(rds);
+            fp.ShowDialog();
+        }
+
+        //รายงานตามบริษัท 2 (รูปแบบรายงานของ SURAT)
+        private void btPrintCorp2_Click(object sender, EventArgs e)
+        {
+            DataTable dt = getCorpReportData();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCorp.Text;
+            WeightTempReport.DateTo = dtToCorp.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("CorpDataSet", dt);
+            FPrintCorpReport2 fp = new FPrintCorpReport2(rds);
+            fp.ShowDialog();
+        }
+
+        private DataTable getCorpReportData()
+        {
             //sql
             dl.connect();
             string sql = "select * from weight where วันที่ BETWEEN '" + dtFromCorp.Value.ToString("yyyy-MM-dd") + "' AND '" + dtToCorp.Value.ToString("yyyy-MM-dd") + "' ";
@@ -1333,6 +1380,11 @@ namespace SerialPortListener
                 sql += " AND ชนิดหิน = ? ";
                 corpCommand.Parameters.AddWithValue("@stone", cbbCorpStone.Text);
             }
+            if (cbbCorpLineType.SelectedIndex > 0)
+            {
+                sql += " AND line_type = ? ";
+                corpCommand.Parameters.AddWithValue("@line_type", cbbCorpLineType.Text);
+            }
             sql += " ORDER BY วันที่ ";
             corpCommand.CommandText = sql;
 
@@ -1341,17 +1393,39 @@ namespace SerialPortListener
             cmd.Fill(dt);
             dl.close();
 
-            //set parameter
-            WeightTempReport.DateFrom = dtFromCorp.Text;
-            WeightTempReport.DateTo = dtToCorp.Text;
-
-            //open winform
-            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("CorpDataSet", dt);
-            FPrintCorpReport fp = new FPrintCorpReport(rds);
-            fp.ShowDialog();
+            return dt;
         }
 
         private void btPrintCC_Click(object sender, EventArgs e)
+        {
+            DataTable dt = getCCReportData();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCC.Text;
+            WeightTempReport.DateTo = dtToCC.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("customerCompanyDataSet", dt);
+            FPrintCCReport fp = new FPrintCCReport(rds);
+            fp.ShowDialog();
+        }
+
+        //รายงานตามบริษัทและการขนส่ง 2 (รูปแบบรายงานของ SURAT)
+        private void btPrintCC2_Click(object sender, EventArgs e)
+        {
+            DataTable dt = getCCReportData();
+
+            //set parameter
+            WeightTempReport.DateFrom = dtFromCC.Text;
+            WeightTempReport.DateTo = dtToCC.Text;
+
+            //open winform
+            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("customerCompanyDataSet", dt);
+            FPrintCCReport2 fp = new FPrintCCReport2(rds);
+            fp.ShowDialog();
+        }
+
+        private DataTable getCCReportData()
         {
             //sql
             dl.connect();
@@ -1365,6 +1439,8 @@ namespace SerialPortListener
                 sql.Append(" AND โรงโม่ = '" + tbCCMillName.Text + "' ");
             if (cbCCWeight.SelectedIndex != 0)
                 sql.Append(" AND น้ำหนักสินค้า " + checkWeightStr(cbCCWeight.Text) + "");
+            if (cbCCLineType.SelectedIndex > 0)
+                sql.Append(" AND line_type = '" + cbCCLineType.Text + "' ");
             sql.Append(" ORDER BY วันที่ ");
 
             OdbcDataAdapter cmd = new OdbcDataAdapter(sql.ToString(), dl.sqlConn());
@@ -1372,14 +1448,7 @@ namespace SerialPortListener
             cmd.Fill(dt);
             dl.close();
 
-            //set parameter
-            WeightTempReport.DateFrom = dtFromCC.Text;
-            WeightTempReport.DateTo = dtToCC.Text;
-
-            //open winform
-            Microsoft.Reporting.WinForms.ReportDataSource rds = new Microsoft.Reporting.WinForms.ReportDataSource("customerCompanyDataSet", dt);
-            FPrintCCReport fp = new FPrintCCReport(rds);
-            fp.ShowDialog();
+            return dt;
         }
 
         private string checkWeightStr(string strWeight)

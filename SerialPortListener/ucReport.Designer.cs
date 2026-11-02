@@ -109,11 +109,14 @@
             this.tbdateFrom = new System.Windows.Forms.DateTimePicker();
             this.btPrint = new System.Windows.Forms.Button();
             this.btPrint2 = new System.Windows.Forms.Button();
+            this.btPrint3 = new System.Windows.Forms.Button();
             this.btSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.cbbCorpStone = new System.Windows.Forms.ComboBox();
+            this.cbbCorpLineType = new System.Windows.Forms.ComboBox();
+            this.lbCorpLineType = new System.Windows.Forms.Label();
             this.lbCorpStone = new System.Windows.Forms.Label();
             this.cbbCorpSite = new System.Windows.Forms.ComboBox();
             this.lbCorpSite = new System.Windows.Forms.Label();
@@ -126,9 +129,12 @@
             this.dtToCorp = new System.Windows.Forms.DateTimePicker();
             this.dtFromCorp = new System.Windows.Forms.DateTimePicker();
             this.btPrintCorp = new System.Windows.Forms.Button();
+            this.btPrintCorp2 = new System.Windows.Forms.Button();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.label47 = new System.Windows.Forms.Label();
             this.cbCCWeight = new System.Windows.Forms.ComboBox();
+            this.cbCCLineType = new System.Windows.Forms.ComboBox();
+            this.lbCCLineType = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.cbCCStoneType = new System.Windows.Forms.ComboBox();
@@ -143,6 +149,7 @@
             this.dtToCC = new System.Windows.Forms.DateTimePicker();
             this.dtFromCC = new System.Windows.Forms.DateTimePicker();
             this.btPrintCC = new System.Windows.Forms.Button();
+            this.btPrintCC2 = new System.Windows.Forms.Button();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.cbbCarryTeam = new System.Windows.Forms.ComboBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -353,6 +360,7 @@
             this.tabPage1.Controls.Add(this.tbdateFrom);
             this.tabPage1.Controls.Add(this.btPrint);
             this.tabPage1.Controls.Add(this.btPrint2);
+            this.tabPage1.Controls.Add(this.btPrint3);
             this.tabPage1.Controls.Add(this.btSearch);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
@@ -422,7 +430,7 @@
             this.btPrintBil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintBil.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintBil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintBil.Location = new System.Drawing.Point(377, 402);
+            this.btPrintBil.Location = new System.Drawing.Point(221, 402);
             this.btPrintBil.Name = "btPrintBil";
             this.btPrintBil.Size = new System.Drawing.Size(80, 30);
             this.btPrintBil.TabIndex = 79;
@@ -437,7 +445,7 @@
             this.btPrintVRock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrintVRock.Image = global::SerialPortListener.Properties.Resources.receipt_32px;
             this.btPrintVRock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintVRock.Location = new System.Drawing.Point(291, 402);
+            this.btPrintVRock.Location = new System.Drawing.Point(135, 402);
             this.btPrintVRock.Name = "btPrintVRock";
             this.btPrintVRock.Size = new System.Drawing.Size(80, 30);
             this.btPrintVRock.TabIndex = 78;
@@ -1013,7 +1021,7 @@
             this.btPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrint.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint.Location = new System.Drawing.Point(463, 402);
+            this.btPrint.Location = new System.Drawing.Point(307, 402);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(140, 30);
             this.btPrint.TabIndex = 48;
@@ -1027,7 +1035,7 @@
             this.btPrint2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPrint2.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrint2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrint2.Location = new System.Drawing.Point(609, 402);
+            this.btPrint2.Location = new System.Drawing.Point(453, 402);
             this.btPrint2.Name = "btPrint2";
             this.btPrint2.Size = new System.Drawing.Size(140, 30);
             this.btPrint2.TabIndex = 84;
@@ -1035,6 +1043,20 @@
             this.btPrint2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrint2.UseVisualStyleBackColor = true;
             this.btPrint2.Click += new System.EventHandler(this.btPrint2_Click);
+            // 
+            // btPrint3
+            // 
+            this.btPrint3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrint3.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrint3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrint3.Location = new System.Drawing.Point(599, 402);
+            this.btPrint3.Name = "btPrint3";
+            this.btPrint3.Size = new System.Drawing.Size(150, 30);
+            this.btPrint3.TabIndex = 85;
+            this.btPrint3.Text = "พิมพ์รายงานแนวตั้ง 2";
+            this.btPrint3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrint3.UseVisualStyleBackColor = true;
+            this.btPrint3.Click += new System.EventHandler(this.btPrint3_Click);
             // 
             // btSearch
             // 
@@ -1070,6 +1092,8 @@
             // tabPage13
             // 
             this.tabPage13.BackColor = System.Drawing.Color.PapayaWhip;
+            this.tabPage13.Controls.Add(this.cbbCorpLineType);
+            this.tabPage13.Controls.Add(this.lbCorpLineType);
             this.tabPage13.Controls.Add(this.cbbCorpStone);
             this.tabPage13.Controls.Add(this.lbCorpStone);
             this.tabPage13.Controls.Add(this.cbbCorpSite);
@@ -1083,12 +1107,38 @@
             this.tabPage13.Controls.Add(this.dtToCorp);
             this.tabPage13.Controls.Add(this.dtFromCorp);
             this.tabPage13.Controls.Add(this.btPrintCorp);
+            this.tabPage13.Controls.Add(this.btPrintCorp2);
             this.tabPage13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Size = new System.Drawing.Size(755, 473);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "รายงานตามบริษัท";
+            //
+            // cbbCorpLineType
+            //
+            this.cbbCorpLineType.DropDownHeight = 300;
+            this.cbbCorpLineType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbCorpLineType.FormattingEnabled = true;
+            this.cbbCorpLineType.IntegralHeight = false;
+            this.cbbCorpLineType.Items.AddRange(new object[] {
+            "ทั้งหมด",
+            "สายสั้น",
+            "สายยาว"});
+            this.cbbCorpLineType.Location = new System.Drawing.Point(241, 225);
+            this.cbbCorpLineType.Name = "cbbCorpLineType";
+            this.cbbCorpLineType.Size = new System.Drawing.Size(346, 29);
+            this.cbbCorpLineType.TabIndex = 49;
+            //
+            // lbCorpLineType
+            //
+            this.lbCorpLineType.AutoSize = true;
+            this.lbCorpLineType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCorpLineType.Location = new System.Drawing.Point(154, 233);
+            this.lbCorpLineType.Name = "lbCorpLineType";
+            this.lbCorpLineType.Size = new System.Drawing.Size(36, 21);
+            this.lbCorpLineType.TabIndex = 50;
+            this.lbCorpLineType.Text = "สาย:";
             //
             // cbbCorpStone
             //
@@ -1183,7 +1233,7 @@
             // 
             this.label52.AutoSize = true;
             this.label52.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(411, 231);
+            this.label52.Location = new System.Drawing.Point(411, 275);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(32, 21);
             this.label52.TabIndex = 39;
@@ -1193,7 +1243,7 @@
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(154, 231);
+            this.label53.Location = new System.Drawing.Point(154, 275);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(52, 21);
             this.label53.TabIndex = 38;
@@ -1203,7 +1253,7 @@
             // 
             this.dtToCorp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtToCorp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtToCorp.Location = new System.Drawing.Point(462, 226);
+            this.dtToCorp.Location = new System.Drawing.Point(462, 270);
             this.dtToCorp.Name = "dtToCorp";
             this.dtToCorp.Size = new System.Drawing.Size(125, 27);
             this.dtToCorp.TabIndex = 37;
@@ -1212,7 +1262,7 @@
             // 
             this.dtFromCorp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFromCorp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFromCorp.Location = new System.Drawing.Point(241, 226);
+            this.dtFromCorp.Location = new System.Drawing.Point(241, 270);
             this.dtFromCorp.Name = "dtFromCorp";
             this.dtFromCorp.Size = new System.Drawing.Size(123, 27);
             this.dtFromCorp.TabIndex = 36;
@@ -1223,7 +1273,7 @@
             this.btPrintCorp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintCorp.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintCorp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintCorp.Location = new System.Drawing.Point(363, 273);
+            this.btPrintCorp.Location = new System.Drawing.Point(317, 317);
             this.btPrintCorp.Name = "btPrintCorp";
             this.btPrintCorp.Size = new System.Drawing.Size(75, 36);
             this.btPrintCorp.TabIndex = 40;
@@ -1232,9 +1282,26 @@
             this.btPrintCorp.UseVisualStyleBackColor = true;
             this.btPrintCorp.Click += new System.EventHandler(this.btPrintCorp_Click);
             // 
+            // btPrintCorp2
+            // 
+            this.btPrintCorp2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintCorp2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintCorp2.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCorp2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintCorp2.Location = new System.Drawing.Point(398, 317);
+            this.btPrintCorp2.Name = "btPrintCorp2";
+            this.btPrintCorp2.Size = new System.Drawing.Size(85, 36);
+            this.btPrintCorp2.TabIndex = 140;
+            this.btPrintCorp2.Text = "พิมพ์ 2";
+            this.btPrintCorp2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintCorp2.UseVisualStyleBackColor = true;
+            this.btPrintCorp2.Click += new System.EventHandler(this.btPrintCorp2_Click);
+            // 
             // tabPage14
             // 
             this.tabPage14.BackColor = System.Drawing.Color.Beige;
+            this.tabPage14.Controls.Add(this.cbCCLineType);
+            this.tabPage14.Controls.Add(this.lbCCLineType);
             this.tabPage14.Controls.Add(this.label47);
             this.tabPage14.Controls.Add(this.cbCCWeight);
             this.tabPage14.Controls.Add(this.label44);
@@ -1251,6 +1318,7 @@
             this.tabPage14.Controls.Add(this.dtToCC);
             this.tabPage14.Controls.Add(this.dtFromCC);
             this.tabPage14.Controls.Add(this.btPrintCC);
+            this.tabPage14.Controls.Add(this.btPrintCC2);
             this.tabPage14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage14.Location = new System.Drawing.Point(4, 26);
             this.tabPage14.Name = "tabPage14";
@@ -1267,6 +1335,31 @@
             this.label47.Size = new System.Drawing.Size(58, 21);
             this.label47.TabIndex = 52;
             this.label47.Text = "น้ำหนัก:";
+            // 
+            // cbCCLineType
+            // 
+            this.cbCCLineType.DropDownHeight = 300;
+            this.cbCCLineType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCCLineType.FormattingEnabled = true;
+            this.cbCCLineType.IntegralHeight = false;
+            this.cbCCLineType.Items.AddRange(new object[] {
+            "ทั้งหมด",
+            "สายสั้น",
+            "สายยาว"});
+            this.cbCCLineType.Location = new System.Drawing.Point(244, 231);
+            this.cbCCLineType.Name = "cbCCLineType";
+            this.cbCCLineType.Size = new System.Drawing.Size(346, 29);
+            this.cbCCLineType.TabIndex = 53;
+            // 
+            // lbCCLineType
+            // 
+            this.lbCCLineType.AutoSize = true;
+            this.lbCCLineType.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCCLineType.Location = new System.Drawing.Point(157, 234);
+            this.lbCCLineType.Name = "lbCCLineType";
+            this.lbCCLineType.Size = new System.Drawing.Size(36, 21);
+            this.lbCCLineType.TabIndex = 54;
+            this.lbCCLineType.Text = "สาย:";
             // 
             // cbCCWeight
             // 
@@ -1383,7 +1476,7 @@
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(414, 238);
+            this.label49.Location = new System.Drawing.Point(414, 283);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(32, 21);
             this.label49.TabIndex = 31;
@@ -1393,7 +1486,7 @@
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(157, 238);
+            this.label50.Location = new System.Drawing.Point(157, 283);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(52, 21);
             this.label50.TabIndex = 30;
@@ -1403,7 +1496,7 @@
             // 
             this.dtToCC.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtToCC.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtToCC.Location = new System.Drawing.Point(465, 233);
+            this.dtToCC.Location = new System.Drawing.Point(465, 278);
             this.dtToCC.Name = "dtToCC";
             this.dtToCC.Size = new System.Drawing.Size(125, 27);
             this.dtToCC.TabIndex = 29;
@@ -1412,7 +1505,7 @@
             // 
             this.dtFromCC.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFromCC.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFromCC.Location = new System.Drawing.Point(244, 233);
+            this.dtFromCC.Location = new System.Drawing.Point(244, 278);
             this.dtFromCC.Name = "dtFromCC";
             this.dtFromCC.Size = new System.Drawing.Size(123, 27);
             this.dtFromCC.TabIndex = 28;
@@ -1423,7 +1516,7 @@
             this.btPrintCC.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPrintCC.Image = global::SerialPortListener.Properties.Resources.print_32px;
             this.btPrintCC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btPrintCC.Location = new System.Drawing.Point(366, 308);
+            this.btPrintCC.Location = new System.Drawing.Point(320, 353);
             this.btPrintCC.Name = "btPrintCC";
             this.btPrintCC.Size = new System.Drawing.Size(75, 36);
             this.btPrintCC.TabIndex = 32;
@@ -1431,6 +1524,21 @@
             this.btPrintCC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btPrintCC.UseVisualStyleBackColor = true;
             this.btPrintCC.Click += new System.EventHandler(this.btPrintCC_Click);
+            // 
+            // btPrintCC2
+            // 
+            this.btPrintCC2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPrintCC2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPrintCC2.Image = global::SerialPortListener.Properties.Resources.print_32px;
+            this.btPrintCC2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btPrintCC2.Location = new System.Drawing.Point(401, 353);
+            this.btPrintCC2.Name = "btPrintCC2";
+            this.btPrintCC2.Size = new System.Drawing.Size(85, 36);
+            this.btPrintCC2.TabIndex = 132;
+            this.btPrintCC2.Text = "พิมพ์ 2";
+            this.btPrintCC2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btPrintCC2.UseVisualStyleBackColor = true;
+            this.btPrintCC2.Click += new System.EventHandler(this.btPrintCC2_Click);
             // 
             // tabPage15
             // 
@@ -2945,6 +3053,7 @@
         private System.Windows.Forms.DateTimePicker tbdateFrom;
         private System.Windows.Forms.Button btPrint;
         private System.Windows.Forms.Button btPrint2;
+        private System.Windows.Forms.Button btPrint3;
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -2955,6 +3064,8 @@
         private System.Windows.Forms.Label lbCorpSite;
         private System.Windows.Forms.ComboBox cbbCorpStone;
         private System.Windows.Forms.Label lbCorpStone;
+        private System.Windows.Forms.ComboBox cbbCorpLineType;
+        private System.Windows.Forms.Label lbCorpLineType;
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.TabPage tabPage15;
         private System.Windows.Forms.TabPage tabPage16;
@@ -2966,6 +3077,7 @@
         private System.Windows.Forms.DateTimePicker dtToCorp;
         private System.Windows.Forms.DateTimePicker dtFromCorp;
         private System.Windows.Forms.Button btPrintCorp;
+        private System.Windows.Forms.Button btPrintCorp2;
         private System.Windows.Forms.TextBox tbCCId;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.TextBox tbCCName;
@@ -2974,6 +3086,7 @@
         private System.Windows.Forms.DateTimePicker dtToCC;
         private System.Windows.Forms.DateTimePicker dtFromCC;
         private System.Windows.Forms.Button btPrintCC;
+        private System.Windows.Forms.Button btPrintCC2;
         private System.Windows.Forms.ComboBox cbbCarryTeam;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label39;
@@ -3003,6 +3116,8 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.ComboBox cbCCWeight;
+        private System.Windows.Forms.ComboBox cbCCLineType;
+        private System.Windows.Forms.Label lbCCLineType;
         private System.Windows.Forms.ComboBox cbbWeightTotal;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.TabPage tabPage17;
