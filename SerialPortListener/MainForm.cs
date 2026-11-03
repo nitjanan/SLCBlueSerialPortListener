@@ -1400,6 +1400,9 @@ namespace SerialPortListener
 
                 tbCarLicense.Enabled = true;
                 tbCarCity.Enabled = true;
+
+                dtWeightInTime.Enabled = true;
+                dtWeightOutTime.Enabled = true;
             }
         }
 
