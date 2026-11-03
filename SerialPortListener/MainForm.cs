@@ -473,6 +473,10 @@ namespace SerialPortListener
                 rbLongLine.Checked = false;
                 tbWeightOrigin.Text = "0.00";
                 tbQOrigin.Text = "0.00";
+
+                // คืนสีปุ่มบันทึกที่ถูกเปลี่ยนเป็นสีเทาหลังบันทึกสำเร็จ กลับเป็นสีเดิมตาม designer
+                btSave.BackColor = System.Drawing.SystemColors.Control;
+                btSave.UseVisualStyleBackColor = true;
             }
             rbbNonVat.Checked = false;
             rbbVat.Checked = true;
@@ -1303,7 +1307,8 @@ namespace SerialPortListener
             string field = "base_setting_line_date_from";
             string str = "";
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
-            pgCommand.CommandText = "SELECT to_char(" + field + ", 'YYYY-MM-DD') FROM base_setting_line WHERE base_setting_line_id = 1";
+            // ::date ก่อน to_char เพราะบางฐานข้อมูลคอลัมน์นี้เป็น text (to_char(text, text) ไม่มีใน PostgreSQL)
+            pgCommand.CommandText = "SELECT to_char(" + field + "::date, 'YYYY-MM-DD') FROM base_setting_line WHERE base_setting_line_id = 1";
 
             dl.connect();
             try
@@ -5524,7 +5529,11 @@ namespace SerialPortListener
         {
             checkResetWeight();
             customerNameTextChanged();
-            fillSiteCombo();
+
+            // Krabi mode: รายการหน้างานไม่ขึ้นกับลูกค้า ถ้าโหลดไว้แล้วไม่ต้องโหลดใหม่
+            // เพราะ Items.Clear() จะล้างหน้างานที่เลือกไว้
+            if (!Globals.IsKrabiSTPVersion || cbbSite.Items.Count == 0)
+                fillSiteCombo();
         }
 
         // Krabi mode: cbbSite lists ALL weight_type=4 ("ท่าเรือ"/pier) sites regardless of the
@@ -5596,7 +5605,9 @@ namespace SerialPortListener
 
         private void cbbCustomerName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbbSite.Text = "";
+            // Krabi mode: หน้างานไม่ขึ้นกับลูกค้า เปลี่ยนลูกค้าแล้วไม่ต้องล้างหน้างาน
+            if (!Globals.IsKrabiSTPVersion)
+                cbbSite.Text = "";
         }
 
         private string findcarryTypeByTransport()
@@ -6246,6 +6257,16 @@ namespace SerialPortListener
                 {
                 }
                 dl.close();
+            }
+        }
+
+        // Krabi mode: รายการหน้างานไม่ขึ้นกับลูกค้า จึงโหลดได้ทันทีเมื่อคลิกช่อง cbbSite
+        // ไม่ต้องรอเลือก cbbCustomerName ก่อน (Standard mode ยังต้องเลือกลูกค้าก่อนเหมือนเดิม)
+        private void cbbSite_Enter(object sender, EventArgs e)
+        {
+            if (Globals.IsKrabiSTPVersion && cbbSite.Items.Count == 0)
+            {
+                fillSiteCombo();
             }
         }
 

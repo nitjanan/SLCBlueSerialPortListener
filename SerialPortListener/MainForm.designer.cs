@@ -819,6 +819,7 @@
             this.cbbSite.Name = "cbbSite";
             this.cbbSite.Size = new System.Drawing.Size(357, 30);
             this.cbbSite.TabIndex = 130;
+            this.cbbSite.Enter += new System.EventHandler(this.cbbSite_Enter);
             this.cbbSite.Leave += new System.EventHandler(this.cbbSite_Leave);
             // 
             // gbProd

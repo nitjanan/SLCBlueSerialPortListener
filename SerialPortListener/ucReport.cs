@@ -80,6 +80,8 @@ namespace SerialPortListener
 
             /* autoComplete ทะเบียนรถ */
             autoCompleteSettingDistinct(tbJointCarRegistration, "ทะเบียนรถ", "weight");
+            autoCompleteSettingDistinct(tbLineCarRegistration, "ทะเบียนรถ", "weight");
+            autoCompleteSettingDistinct(tbSumCar, "ทะเบียนรถ", "weight");
 
             /* autoComplete ชื่อผู้ตัก */
             autoCompleteSettingDistinct(tbScoopName, "ชื่อผู้ตัก", "weight");
@@ -91,6 +93,9 @@ namespace SerialPortListener
             fillTableCombo(cbCCStoneType, "base_stone_type", "ชื่อหิน");
             fillTableCombo(cbbCorpStone, "base_stone_type", "ชื่อหิน");
             fillTableCombo(cbbMill, "base_mill", "ชื่อโรงโม่");
+            //ปลายทาง (ชื่อเรือ) ต้องดึง weight_type = 4
+            fillTableComboByWeightType(cbbLineSite, "base_site", "base_site_name");
+            fillTableComboByWeightType(cbbSumSite, "base_site", "base_site_name");
 
             /* autoComplete ลูกค้า */
             autoCompleteSetting(tbbCustomerId, "รหัสลูกค้า", "base_customer");
@@ -178,6 +183,35 @@ namespace SerialPortListener
             //เพิ่ม combobox
             OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
             pgCommand.CommandText = "SELECT * FROM public." + tableName;
+            try
+            {
+                dl.connect();
+                OdbcDataReader reader = pgCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    string des = reader[field].ToString();
+                    cbb.Items.Add(des);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            dl.close();
+        }
+
+        private void fillTableComboByWeightType(ComboBox cbb, string tableName, string field)
+        {
+            //ล้างก่อน
+            cbb.Items.Clear();
+
+            //
+            cbb.Items.Add("ทั้งหมด");
+            cbb.SelectedIndex = 0;
+
+            //เพิ่ม combobox
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = "SELECT * FROM public." + tableName + " where weight_type = 4";
             try
             {
                 dl.connect();
