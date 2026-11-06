@@ -6580,7 +6580,22 @@ namespace SerialPortListener
                             )
                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                             ON CONFLICT (doc_no) DO UPDATE SET
-                                status = EXCLUDED.status;";
+                                status = EXCLUDED.status,
+                                -- DO อาจถูกสร้างก่อนจาก summary API (รายงานตามใบส่งสินค้า) ซึ่งข้อมูลไม่ครบ
+                                -- ให้เติม/แก้รายละเอียดจาก API ต้นทาง แต่ไม่ทับด้วยค่าว่าง และไม่แตะยอด *_rem / *_tot
+                                customer_code    = COALESCE(NULLIF(EXCLUDED.customer_code, ''), delivery_order.customer_code),
+                                customer_name    = COALESCE(NULLIF(EXCLUDED.customer_name, ''), delivery_order.customer_name),
+                                customer_address = COALESCE(NULLIF(EXCLUDED.customer_address, ''), delivery_order.customer_address),
+                                product_code     = COALESCE(NULLIF(EXCLUDED.product_code, ''), delivery_order.product_code),
+                                product_name     = COALESCE(NULLIF(EXCLUDED.product_name, ''), delivery_order.product_name),
+                                unit_name        = COALESCE(NULLIF(EXCLUDED.unit_name, ''), delivery_order.unit_name),
+                                sale_name        = COALESCE(NULLIF(EXCLUDED.sale_name, ''), delivery_order.sale_name),
+                                note             = COALESCE(NULLIF(EXCLUDED.note, ''), delivery_order.note),
+                                qty              = CASE WHEN EXCLUDED.qty > 0 THEN EXCLUDED.qty ELSE delivery_order.qty END,
+                                -- site_id / site_name / delivery_type ตาชั่งจัดการเอง: เติมเฉพาะตอนที่ local ยังว่าง
+                                delivery_type    = COALESCE(NULLIF(delivery_order.delivery_type, ''), EXCLUDED.delivery_type),
+                                site_id          = COALESCE(NULLIF(delivery_order.site_id, ''), EXCLUDED.site_id),
+                                site_name        = COALESCE(NULLIF(delivery_order.site_name, ''), EXCLUDED.site_name);";
 
                             // --- VALUES (เทียบกับ convert_api_to_db() ใน Python) ---
                             cmd.Parameters.AddWithValue("", item.docNo ?? "");
