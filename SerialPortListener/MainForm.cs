@@ -508,6 +508,44 @@ namespace SerialPortListener
             cbbSite.Enabled = true;
         }
 
+        // ยกเลิกการอ้างใบส่งของ: ล้าง DO ออกจากฟอร์มและปลดล็อกช่องที่ DO ล็อกไว้
+        // ถ้าเป็นรายการที่บันทึกแล้ว ตอนกดบันทึก autoSaveCore จะส่งยกเลิกไปที่ DO เดิม (getSavedDoId) ให้เอง
+        private void btCancelDO_Click(object sender, EventArgs e)
+        {
+            if (tbDoId.Text == "" && tbDoDocNo.Text == "")
+            {
+                MessageBox.Show("รายการนี้ยังไม่ได้อ้างใบส่งของ", "แจ้งเตือน",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                "ต้องการยกเลิกการอ้างใบส่งของ " + tbDoDocNo.Text + " หรือไม่ ?",
+                "ยืนยันการทำรายการ",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
+
+            tbDoId.Text = "";
+            tbDoDocNo.Text = "";
+            cbbStoneType.Enabled = true;
+            cbbSite.Enabled = true;
+
+            // ตอนอ้าง DO รายการลูกค้าถูกจำกัดเหลือแค่ลูกค้าของ DO + ยกเลิก → คืนรายการลูกค้าทั้งหมด
+            string customerText = cbbCustomerName.Text;
+            cbbCustomerName.Items.Clear();
+            listCusDO.Clear();
+            cbbCustomerName.Items.AddRange(listOriginalCustomerName.ToArray());
+            cbbCustomerName.Text = customerText;
+
+            if (tbId.Text != "")
+            {
+                MessageBox.Show("กรุณากดบันทึก เพื่อยกเลิกรายการนี้ออกจากใบส่งของเดิม", "แจ้งเตือน",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         public void runningDocNumber()
         {
             Boolean IsnewYear = false;

@@ -154,6 +154,8 @@ namespace SerialPortListener
             this.label39 = new System.Windows.Forms.Label();
             this.tbOldDoId = new System.Windows.Forms.TextBox();
             this.btLoadDO = new System.Windows.Forms.Button();
+            this.btCancelDO = new System.Windows.Forms.Button();
+            this.toolTipDO = new System.Windows.Forms.ToolTip(this.components);
             this.btRefresh = new System.Windows.Forms.Button();
             this.btPrintAll = new System.Windows.Forms.Button();
             this.btPrintOut = new System.Windows.Forms.Button();
@@ -1707,7 +1709,7 @@ namespace SerialPortListener
             this.tbDoDocNo.Location = new System.Drawing.Point(116, 62);
             this.tbDoDocNo.Name = "tbDoDocNo";
             this.tbDoDocNo.ReadOnly = true;
-            this.tbDoDocNo.Size = new System.Drawing.Size(306, 27);
+            this.tbDoDocNo.Size = new System.Drawing.Size(258, 27);
             this.tbDoDocNo.TabIndex = 144;
             this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1744,6 +1746,21 @@ namespace SerialPortListener
             this.btLoadDO.TabIndex = 142;
             this.btLoadDO.UseVisualStyleBackColor = true;
             this.btLoadDO.Click += new System.EventHandler(this.btLoadDO_Click);
+            this.toolTipDO.SetToolTip(this.btLoadDO, "อ้างใบส่งของ");
+            //
+            // btCancelDO
+            //
+            this.btCancelDO.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btCancelDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCancelDO.ForeColor = System.Drawing.Color.Red;
+            this.btCancelDO.Location = new System.Drawing.Point(380, 62);
+            this.btCancelDO.Name = "btCancelDO";
+            this.btCancelDO.Size = new System.Drawing.Size(42, 30);
+            this.btCancelDO.TabIndex = 147;
+            this.btCancelDO.Text = "X";
+            this.btCancelDO.UseVisualStyleBackColor = true;
+            this.btCancelDO.Click += new System.EventHandler(this.btCancelDO_Click);
+            this.toolTipDO.SetToolTip(this.btCancelDO, "ยกเลิกการอ้างใบส่งของ");
             // 
             // btRefresh
             // 
@@ -1847,6 +1864,7 @@ namespace SerialPortListener
             this.gbDoc.Controls.Add(this.label39);
             this.gbDoc.Controls.Add(this.tbDoDocNo);
             this.gbDoc.Controls.Add(this.btLoadDO);
+            this.gbDoc.Controls.Add(this.btCancelDO);
             this.gbDoc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDoc.Location = new System.Drawing.Point(708, 48);
             this.gbDoc.Name = "gbDoc";
@@ -2238,6 +2256,8 @@ namespace SerialPortListener
         private System.Windows.Forms.TextBox tbMillName;
 
         private System.Windows.Forms.Button btLoadDO;
+        private System.Windows.Forms.Button btCancelDO;
+        private System.Windows.Forms.ToolTip toolTipDO;
         private System.Windows.Forms.TextBox tbDoId;
         private System.Windows.Forms.TextBox tbDoDocNo;
         private System.Windows.Forms.Label label39;
