@@ -42,10 +42,17 @@ namespace SerialPortListener
             string url = $"{baseUrl}/api/updates/latest/?product={product}";
              
             HttpResponseMessage response = await client.GetAsync(url);
-            if (!response.IsSuccessStatusCode)
-                return null;
-
             string json = await response.Content.ReadAsStringAsync();
+
+            // 404 = ยังไม่มี release ของ product นี้ ; สถานะอื่นเป็น error จริง ต้องไม่บอกผู้ใช้ว่า "ใช้เวอร์ชันล่าสุดแล้ว"
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                return null;
+            if (!response.IsSuccessStatusCode)
+            {
+                string snippet = json != null && json.Length > 200 ? json.Substring(0, 200) + "..." : json;
+                throw new HttpRequestException($"เช็คเวอร์ชันไม่สำเร็จ (HTTP {(int)response.StatusCode}) {snippet}");
+            }
+
             return JsonConvert.DeserializeObject<AppReleaseInfo>(json);
         }
 
