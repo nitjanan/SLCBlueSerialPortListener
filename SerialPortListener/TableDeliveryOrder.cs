@@ -126,13 +126,12 @@ namespace SerialPortListener
                 data_do.carCompany = dgvDO.CurrentRow.Cells["car_company"].Value.ToString();
 
                 data_do.carCustomer = dgvDO.CurrentRow.Cells["car_customer"].Value.ToString();
-                data_do.customerId = dgvDO.CurrentRow.Cells["customer_code"].Value.ToString();
-                data_do.customerName = dgvDO.CurrentRow.Cells["customer_name"].Value.ToString();
+                // ส่งเฉพาะรหัสลูกค้า / รหัสหิน — ชื่อจะ get จาก database ในเครื่องที่ MainForm.setDataFromTableDo
+                data_do.customerId = (dgvDO.CurrentRow.Cells["customer_code"].Value ?? "").ToString().Trim();
                 data_do.siteId = dgvDO.CurrentRow.Cells["site_id"].Value.ToString();
                 data_do.siteName = dgvDO.CurrentRow.Cells["site_name"].Value.ToString();
-                data_do.stoneTypeId = dgvDO.CurrentRow.Cells["product_code"].Value.ToString();
+                data_do.stoneTypeId = (dgvDO.CurrentRow.Cells["product_code"].Value ?? "").ToString().Trim();
 
-                data_do.stoneTypeName = dgvDO.CurrentRow.Cells["product_name"].Value.ToString();
                 data_do.qty = dgvDO.CurrentRow.Cells["qty2"].Value.ToString();
 
                 data_do.unitName = dgvDO.CurrentRow.Cells["unit_name"].Value.ToString();

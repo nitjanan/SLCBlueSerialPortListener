@@ -854,21 +854,42 @@ namespace SerialPortListener
         {
             tbDoId.Text = data_do.do_id;
             tbDoDocNo.Text = data_do.docNo;
-            tbCustomerId.Text = data_do.customerId;
-            tbCustomerName.Text = data_do.customerName;
 
-            if (data_do.customerId != "" && data_do.customerName != "")
+            // ใช้รหัสจากใบ DO แล้ว get ชื่อลูกค้า / ชื่อหิน จาก database ในเครื่อง
+            string customerId = data_do.customerId ?? "";
+            string customerName = getCustomerNameFromDbById(customerId);
+            string stoneTypeId = data_do.stoneTypeId ?? "";
+            string stoneTypeName = getStoneTypeNameFromDbById(stoneTypeId);
+
+            if (customerId != "" && customerName == "")
+                MessageBox.Show("ไม่พบรหัสลูกค้า " + customerId + " ในฐานข้อมูลเครื่องนี้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (stoneTypeId != "" && stoneTypeName == "")
+                MessageBox.Show("ไม่พบรหัสหิน " + stoneTypeId + " ในฐานข้อมูลเครื่องนี้", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            tbCustomerId.Text = customerId;
+            tbCustomerName.Text = customerName;
+
+            if (customerId != "" && customerName != "")
             {
                 cbbCustomerName.Items.Clear();
                 listCusDO.Clear();
 
-                listCusDO.Add(data_do.customerId + " : " + data_do.customerName);
+                listCusDO.Add(customerId + " : " + customerName);
                 listCusDO.Add("09-V-001" + " : " + "ยกเลิก");
-                cbbCustomerName.Text = data_do.customerId + " : " + data_do.customerName;
+                cbbCustomerName.Text = customerId + " : " + customerName;
                 cbbCustomerName.Items.AddRange(listCusDO.ToArray());
             }
 
-            cbbStoneType.Text = data_do.stoneTypeName;
+            cbbStoneType.Text = stoneTypeName;
+            for (int i = 0; i < cbbStoneType.Items.Count; i++)
+            {
+                var item = cbbStoneType.Items[i] as ComboboxValue;
+                if (item != null && item.Id == stoneTypeId)
+                {
+                    cbbStoneType.SelectedIndex = i;
+                    break;
+                }
+            }
             rbCredit.Checked = true;
 
             //ดึงหน้างาน
@@ -2529,6 +2550,43 @@ namespace SerialPortListener
                 dl.close();
             }
             return id;
+        }
+
+        private string getCustomerNameFromDbById(string id)
+        {
+            return getScalarFromDbById("SELECT ชื่อลูกค้า FROM public.base_customer WHERE รหัสลูกค้า = ? LIMIT 1", id);
+        }
+
+        private string getStoneTypeNameFromDbById(string id)
+        {
+            return getScalarFromDbById("SELECT ชื่อหิน FROM public.base_stone_type WHERE รหัสหิน = ? LIMIT 1", id);
+        }
+
+        private string getScalarFromDbById(string sql, string id)
+        {
+            string result = "";
+            if (string.IsNullOrEmpty(id))
+                return result;
+            OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand();
+            pgCommand.CommandText = sql;
+            pgCommand.Parameters.AddWithValue("", id);
+            try
+            {
+                dl.connect();
+                object val = pgCommand.ExecuteScalar();
+                if (val != null && val != DBNull.Value)
+                {
+                    result = val.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                dl.close();
+            }
+            return result;
         }
 
         private string getStoneTypeIdFromDbByName(string name)
