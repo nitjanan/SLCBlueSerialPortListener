@@ -41,6 +41,22 @@ namespace SerialPortListener
             public string comp_code { get; set; }   // เหมือง = BaseCompany.code
             public string aff { get; set; }         // บริษัทที่ออกใบสั่งขาย = BaseCompany.aff_so.name -> ส่งเป็น k2m company
             public List<string> mines { get; set; } // เหมืองทั้งหมดที่ aff_so เดียวกัน (ใช้ใน ResolveMine ตอน mine_code ว่าง)
+
+            // true = ถาม web app ไม่สำเร็จ (เช่น server ยังไม่มี endpoint นี้) ใช้ค่าแบบเวอร์ชันเดิมแทน
+            [JsonIgnore]
+            public bool IsFallback { get; private set; }
+
+            // พฤติกรรมเดิมก่อนมี /company/aff/ : ส่ง k2m company = comp_code ของ base_api id = 2 และไม่กรองตามเหมือง
+            public static AffInfo Fallback(string mineCode)
+            {
+                return new AffInfo
+                {
+                    comp_code = mineCode,
+                    aff = mineCode,
+                    mines = new List<string> { mineCode },
+                    IsFallback = true
+                };
+            }
         }
 
         private static bool compCodeColumnReady;

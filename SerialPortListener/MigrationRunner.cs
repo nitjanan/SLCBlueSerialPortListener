@@ -14,6 +14,11 @@ namespace SerialPortListener
         // ถูกเรียกตอนเปิดโปรแกรม และจาก WeightMirrorSync เมื่อพบว่าตารางหายระหว่างใช้งาน
         public static void RunWeightMirrorMigration(OdbcConnection connection)
         {
+            if (!WeightMirrorSync.Enabled)
+            {
+                RemoveWeightMirrorTriggers(connection);
+                return;
+            }
             try
             {
                 if (IsWeightMirrorInstalled(connection))
@@ -30,6 +35,31 @@ namespace SerialPortListener
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceWarning("Weight mirror migration failed (non-fatal): " + ex.Message);
+            }
+        }
+
+        // ตอนปิดระบบสำเนา : ลบ trigger ออก ไม่ให้รายการชั่งเข้าคิว sync_outbox ค้างพองไปเรื่อย ๆ โดยไม่มีใครส่ง
+        // ตาราง sync_outbox เก็บไว้ (ไม่กระทบการชั่ง) ; ลบเฉพาะเมื่อยังมี trigger อยู่ เพราะ DROP TRIGGER ต้อง lock ตาราง weight
+        private static void RemoveWeightMirrorTriggers(OdbcConnection connection)
+        {
+            try
+            {
+                using (OdbcCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText =
+                        "SELECT count(*) FROM pg_trigger WHERE tgrelid = 'public.weight'::regclass" +
+                        " AND tgname IN ('slc_weight_mirror_ins_del', 'slc_weight_mirror_upd')";
+                    if (Convert.ToInt32(cmd.ExecuteScalar()) == 0)
+                        return;
+                    cmd.CommandText =
+                        "DROP TRIGGER IF EXISTS slc_weight_mirror_ins_del ON public.weight;" +
+                        " DROP TRIGGER IF EXISTS slc_weight_mirror_upd ON public.weight;";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceWarning("Remove weight mirror triggers failed (non-fatal): " + ex.Message);
             }
         }
 

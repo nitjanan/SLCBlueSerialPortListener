@@ -33,6 +33,7 @@ namespace SerialPortListener
 
             ApplyRestorePermission();
             VisibleChanged += (s, e) => ApplyRestorePermission();
+            groupBox5.Visible = WeightMirrorSync.Enabled;   // ระบบสำเนาปิดอยู่ ซ่อนปุ่มกู้ข้อมูล
         }
 
         // ปุ่มกู้ข้อมูลกดได้เฉพาะ user ที่มีสิทธิ์ add_setting (isPermissionAddSetting)
@@ -61,6 +62,8 @@ namespace SerialPortListener
         private async void btRestoreMirror_Click(object sender, EventArgs e)
         {
             IWin32Window owner = FindForm();
+            if (!WeightMirrorSync.Enabled)
+                return;
             if (!Globals.isPermissionAddSetting())
             {
                 MessageBox.Show(owner, "คุณไม่มีสิทธิ์กู้ข้อมูล", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -240,14 +240,44 @@ namespace SerialPortListener
                 string apiUsername = getBaseApi(2, 1);
                 string apiPassword = getBaseApi(3, 1);
 
-                using (HttpClient client = new HttpClient())
+                if (string.IsNullOrWhiteSpace(baseUrl))
                 {
-                    string accessToken = await GetJwtToken(client, baseUrl, apiUsername, apiPassword);
-                    if (accessToken == null)
+                    if (!silent)
+                    {
+                        MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้\r\n\r\nสาเหตุ: ไม่พบ url ใน base_api id = 1 (หรืออ่านจาก database ไม่ได้)",
+                            "เช็คอัพเดท", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    return;
+                }
+
+                using (HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) })
+                {
+                    string accessToken = null;
+                    string loginError = null;
+                    try
+                    {
+                        // ไม่ใช้ GetJwtToken() เพราะกลืน error หมด ทำให้ไม่รู้ว่าเชื่อมต่อไม่ได้เพราะอะไร
+                        string loginJson = JsonConvert.SerializeObject(new { username = apiUsername, password = apiPassword });
+                        HttpResponseMessage jwtResponse = await client.PostAsync(
+                            $"{baseUrl.TrimEnd('/')}/jwt/create/",
+                            new StringContent(loginJson, Encoding.UTF8, "application/json"));
+                        string jwtBody = await jwtResponse.Content.ReadAsStringAsync();
+                        if (jwtResponse.IsSuccessStatusCode)
+                            accessToken = Newtonsoft.Json.Linq.JObject.Parse(jwtBody)["access"]?.ToString();
+                        else
+                            loginError = $"login ไม่ผ่าน (HTTP {(int)jwtResponse.StatusCode}) {Truncate(jwtBody, 200)}";
+                    }
+                    catch (Exception loginEx)
+                    {
+                        loginError = DescribeHttpError(loginEx);
+                    }
+
+                    if (string.IsNullOrEmpty(accessToken))
                     {
                         if (!silent)
                         {
-                            MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้", "เช็คอัพเดท",
+                            MessageBox.Show("ไม่สามารถเชื่อมต่อ Server เพื่อเช็คอัพเดทได้\r\n\r\nServer: " + baseUrl +
+                                "\r\nสาเหตุ: " + (loginError ?? "ไม่ได้รับ access token"), "เช็คอัพเดท",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         return;
@@ -300,7 +330,7 @@ namespace SerialPortListener
             {
                 if (!silent)
                 {
-                    MessageBox.Show("เกิดข้อผิดพลาดระหว่างเช็ค/ติดตั้งอัพเดท: " + ex.Message, "เช็คอัพเดท",
+                    MessageBox.Show("เกิดข้อผิดพลาดระหว่างเช็ค/ติดตั้งอัพเดท: " + DescribeHttpError(ex), "เช็คอัพเดท",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -308,6 +338,26 @@ namespace SerialPortListener
             {
                 ucBackup.CheckUpdateButtonEnabled = true;
             }
+        }
+
+        // HttpClient บอกแค่ "An error occurred while sending the request." ให้เอาสาเหตุชั้นในสุดมาแสดง
+        private static string DescribeHttpError(Exception ex)
+        {
+            if (ex is TaskCanceledException)
+                return "เซิร์ฟเวอร์ไม่ตอบกลับภายในเวลาที่กำหนด (timeout)";
+            Exception inner = ex;
+            while (inner.InnerException != null)
+                inner = inner.InnerException;
+            if (ex is HttpRequestException && inner != ex)
+                return "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ (" + inner.Message + ")";
+            return ex.Message;
+        }
+
+        private static string Truncate(string s, int max)
+        {
+            if (string.IsNullOrEmpty(s) || s.Length <= max)
+                return s;
+            return s.Substring(0, max) + "...";
         }
 
         public void getSettingDefault()
@@ -5744,9 +5794,10 @@ namespace SerialPortListener
                 }
                 catch (Exception affEx)
                 {
-                    MessageBox.Show("ดึงสังกัดของเหมืองไม่สำเร็จ : " + affEx.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    // web app ยังไม่มี /company/aff/ (ยังไม่ deploy) หรือต่อไม่ได้ : กลับไปทำแบบเวอร์ชันเดิม
+                    // ส่ง company = comp_code ของ base_api id = 2 และไม่กรอง DO ตามเหมือง
+                    System.Diagnostics.Debug.WriteLine("FetchAffAsync failed, fallback to base_api id=2 comp_code : " + affEx.Message);
+                    affInfo = DeliveryOrderMine.AffInfo.Fallback(ownMine);
                 }
                 // k2m company = Django BaseCompany.aff_so.name (บริษัทที่ออกใบสั่งขาย) ไม่ใช่รหัสเหมือง
                 string compCode = affInfo.aff;
@@ -5819,9 +5870,13 @@ namespace SerialPortListener
                         foreach (DeliveryOrderApiItem item in pageObj.data)
                         {
                             // k2m ส่ง DO ทั้งสังกัด เก็บเฉพาะของเหมืองตัวเอง
-                            string itemMine = DeliveryOrderMine.ResolveMine(item.mine_code, affInfo.mines);
-                            if (!string.Equals(itemMine, ownMine, StringComparison.OrdinalIgnoreCase))
-                                continue;
+                            // fallback (ไม่รู้สังกัด) : เก็บทุกแถวเหมือนเวอร์ชันเดิม
+                            if (!affInfo.IsFallback)
+                            {
+                                string itemMine = DeliveryOrderMine.ResolveMine(item.mine_code, affInfo.mines);
+                                if (!string.Equals(itemMine, ownMine, StringComparison.OrdinalIgnoreCase))
+                                    continue;
+                            }
 
                             OdbcCommand cmd =
                                 (OdbcCommand)dl.sqlConn().CreateCommand();

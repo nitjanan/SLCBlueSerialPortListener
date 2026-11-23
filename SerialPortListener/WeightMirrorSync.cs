@@ -29,6 +29,10 @@ namespace SerialPortListener
     // เก็บ JWT ไว้ใช้ซ้ำ (login ใหม่เฉพาะตอนได้ 401), สุ่มเวลาเริ่ม 0–60 วินาทีไม่ให้ทุกสถานีส่งพร้อมกัน
     public static class WeightMirrorSync
     {
+        // ปิดระบบสำเนา weight_mirror ไว้ก่อน : ไม่ส่งข้อมูล, ไม่สร้าง sync_outbox/trigger, ลบ trigger ที่มีอยู่ออก, ซ่อนปุ่มกู้ข้อมูล
+        // เปิดกลับ = เปลี่ยนเป็น true แล้ว build ใหม่ (ตอนเปิดโปรแกรม MigrationRunner จะสร้าง trigger กลับให้เอง)
+        public static readonly bool Enabled = false;
+
         private const string MirrorEndpoint = "/weightmirror/api/bulk/";
         private static readonly TimeSpan Interval = TimeSpan.FromMinutes(3);
         private const int MaxStartJitterMs = 60000;
@@ -53,6 +57,8 @@ namespace SerialPortListener
 
         public static void Start()
         {
+            if (!Enabled)
+                return;
             lock (TimerLock)
             {
                 if (_timer != null)
