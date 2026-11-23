@@ -30,6 +30,7 @@ namespace SerialPortListener
             {
                 dl.connect();
                 MigrationRunner.RunKrabiStpMigration(dl.sqlConn());
+                MigrationRunner.RunWeightMirrorMigration(dl.sqlConn());
             }
             finally
             {

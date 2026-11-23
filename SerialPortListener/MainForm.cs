@@ -134,6 +134,9 @@ namespace SerialPortListener
         public class DeliveryOrderApiItem
         {
             public string docNo { get; set; }
+            // k2m mine_code = เหมือง = Django DeliveryOrder.comp_code = local delivery_order.comp_code
+            // (k2m ส่งมาทั้งบริษัทที่ออกใบสั่งขาย ใช้แยกว่า DO เป็นของเหมืองไหน) ตารางเต็มดู DeliveryOrderMine.cs
+            public string mine_code { get; set; }
             public string deliveryDate { get; set; }
             public string deliveryType { get; set; }
             public string carCompany { get; set; }
@@ -1566,11 +1569,14 @@ namespace SerialPortListener
             _spManager.NewSerialDataRecieved += new EventHandler<SerialDataEventArgs>(_spManager_NewSerialDataRecieved);
             this.FormClosing += new FormClosingEventHandler(MainForm_FormClosing);
 
+            // ส่งข้อมูลชั่งขึ้นตาราง mirror บน web app ตลอดวัน ไว้กู้เมื่อ local DB เสีย
+            WeightMirrorSync.Start();
         }
 
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            WeightMirrorSync.Stop();
             if (_serialRxTimer != null)
                 _serialRxTimer.Dispose();
             if (_serialNoDataTimer != null)
@@ -1925,8 +1931,8 @@ namespace SerialPortListener
             {
                 tbWeightIn.Enabled = true;
                 tbWeightOut.Enabled = true;
-                tbWeightTotal.Enabled = true;
-                tbQ.Enabled = true;
+                tbWeightTotal.Enabled = false;
+                tbQ.Enabled = false;
             }
             else if (mode.Equals(4))//disable all
             {
@@ -6537,7 +6543,30 @@ namespace SerialPortListener
                 string today = DateTime.Now.ToString("yyyy-MM-dd");
                 string DOWNLOAD_BASE_URL = getBaseApi(1, 2);
                 string DOWNLOAD_TOKEN = getBaseApi(5, 2);
-                string compCode = getBaseApi(4, 2);
+                // base_api id = 2 comp_code = เหมืองของตาชั่งนี้ ส่วน k2m ต้องส่ง company = สังกัด (ถามจาก web app)
+                string ownMine = DeliveryOrderMine.GetOwnMineCode(dl);
+                if (string.IsNullOrEmpty(ownMine))
+                {
+                    MessageBox.Show("ไม่พบ comp_code (เหมือง) ใน base_api id = 2", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                DeliveryOrderMine.AffInfo affInfo;
+                try
+                {
+                    affInfo = await DeliveryOrderMine.FetchAffAsync(dl, ownMine);
+                }
+                catch (Exception affEx)
+                {
+                    MessageBox.Show("ดึงสังกัดของเหมืองไม่สำเร็จ : " + affEx.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                // k2m company = Django BaseCompany.aff_so.name (บริษัทที่ออกใบสั่งขาย) ไม่ใช่รหัสเหมือง
+                string compCode = affInfo.aff;
+
+                DeliveryOrderMine.EnsureCompCodeColumn(dl);
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -6604,6 +6633,11 @@ namespace SerialPortListener
 
                         foreach (DeliveryOrderApiItem item in pageObj.data)
                         {
+                            // k2m ส่ง DO ทั้งสังกัด เก็บเฉพาะของเหมืองตัวเอง
+                            string itemMine = DeliveryOrderMine.ResolveMine(item.mine_code, affInfo.mines);
+                            if (!string.Equals(itemMine, ownMine, StringComparison.OrdinalIgnoreCase))
+                                continue;
+
                             OdbcCommand cmd =
                                 (OdbcCommand)dl.sqlConn().CreateCommand();
 
@@ -6614,11 +6648,13 @@ namespace SerialPortListener
                                 car_company_rem, car_customer_rem,
                                 customer_code, customer_name, customer_address,
                                 product_code, product_name, qty, unit_name,
-                                sale_name, note, status, site_id, site_name
+                                sale_name, note, status, site_id, site_name,
+                                comp_code
                             )
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                             ON CONFLICT (doc_no) DO UPDATE SET
                                 status = EXCLUDED.status,
+                                comp_code = EXCLUDED.comp_code,
                                 -- DO อาจถูกสร้างก่อนจาก summary API (รายงานตามใบส่งสินค้า) ซึ่งข้อมูลไม่ครบ
                                 -- ให้เติม/แก้รายละเอียดจาก API ต้นทาง แต่ไม่ทับด้วยค่าว่าง และไม่แตะยอด *_rem / *_tot
                                 customer_code    = COALESCE(NULLIF(EXCLUDED.customer_code, ''), delivery_order.customer_code),
@@ -6706,6 +6742,7 @@ namespace SerialPortListener
                             cmd.Parameters.AddWithValue("", item.status ?? "");
                             cmd.Parameters.AddWithValue("", resolvedSiteId);
                             cmd.Parameters.AddWithValue("", item.siteName ?? "");
+                            cmd.Parameters.AddWithValue("", ownMine); // comp_code = k2m mine_code (ผ่านการกรองแล้วว่าเป็นเหมืองตัวเอง)
 
                             // param สำหรับ WHERE NOT EXISTS
 

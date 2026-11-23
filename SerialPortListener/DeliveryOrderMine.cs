@@ -1,0 +1,165 @@
+using System;
+using System.Collections.Generic;
+using System.Data.Odbc;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace SerialPortListener
+{
+    // ==================================================================================================
+    // ใบ DO แยกตามเหมือง (ตาม do_database.xlsx) : column ที่เกี่ยวข้องกันระหว่าง k2m / Django / Windows
+    // --------------------------------------------------------------------------------------------------
+    //  ความหมาย              | k2m API (quo01)           | Django (web app)                       | Windows (local DB นี้)
+    //  ---------------------|---------------------------|----------------------------------------|------------------------------
+    //  บริษัทที่ออกใบสั่งขาย    | company (query + field)   | BaseCompany.aff_so -> BaseAffiliatedCompany.name | ไม่เก็บ: FetchAffAsync() -> AffInfo.aff
+    //  เหมือง                | mine_code                 | DeliveryOrder.comp_code (= BaseCompany.code) | delivery_order.comp_code
+    //                       |                           |                                        | base_api id=2 comp_code = เหมืองของตาชั่งนี้
+    //                       |                           |                                        | base_api id=1 comp_code = เหมืองเดียวกัน (sync กับ Django)
+    //  เลขที่ DO              | docNo                     | DeliveryOrder.doc_no                   | delivery_order.doc_no
+    //  วันที่ส่ง              | deliveryDate              | DeliveryOrder.delivery_date            | delivery_order.delivery_date
+    //  หน้างาน               | deliveryCode (หลัง "___")  | DeliveryOrder.site_id                  | delivery_order.site_id
+    //                       | deliveryLocation          | DeliveryOrder.site_name                | delivery_order.site_name
+    //  จำนวนรถ               | carCompany / carCustomer  | DeliveryOrder.car_company / car_customer | delivery_order.car_company / car_customer
+    //  ลูกค้า                 | customerCode/Name/Address | DeliveryOrder.customer_code/_name/_address | delivery_order.customer_code/_name/_address
+    //  สินค้า                 | productCode / productName | DeliveryOrder.product_code / product_name | delivery_order.product_code / product_name
+    //  ปริมาณ                | qty / unitName            | DeliveryOrder.qty / unit_name          | delivery_order.qty / unit_name
+    //  อื่น ๆ                 | saleName / note / status  | DeliveryOrder.sale_name / note / status | delivery_order.sale_name / note / status
+    //  ประเภทการส่ง           | deliveryType              | (ไม่เก็บ)                               | delivery_order.delivery_type
+    // --------------------------------------------------------------------------------------------------
+    // k2m ส่ง DO ของทุกเหมืองที่ใช้บริษัทที่ออกใบสั่งขายเดียวกันมาพร้อมกัน ตาชั่งต้องเก็บ/แสดงเฉพาะเหมืองของตัวเอง
+    // ฝั่ง Django ดูตารางเดียวกันเหนือ insertDeliveryFromApiK2M() ใน weightapp/views.py
+    // ==================================================================================================
+    public static class DeliveryOrderMine
+    {
+        // response ของ Django GET /company/aff/api/by/comp/?comp_code=<เหมือง>
+        public class AffInfo
+        {
+            public string comp_code { get; set; }   // เหมือง = BaseCompany.code
+            public string aff { get; set; }         // บริษัทที่ออกใบสั่งขาย = BaseCompany.aff_so.name -> ส่งเป็น k2m company
+            public List<string> mines { get; set; } // เหมืองทั้งหมดที่ aff_so เดียวกัน (ใช้ใน ResolveMine ตอน mine_code ว่าง)
+        }
+
+        private static bool compCodeColumnReady;
+
+        // local DB เดิมไม่มีคอลัมน์ comp_code ใน delivery_order: เพิ่มให้เองครั้งแรกที่ใช้
+        public static void EnsureCompCodeColumn(Datalayer dl)
+        {
+            if (compCodeColumnReady)
+                return;
+
+            dl.connect();
+            try
+            {
+                // PostgreSQL 9.5 ยังไม่มี ADD COLUMN IF NOT EXISTS (มีตั้งแต่ 9.6) จึงเช็คจาก information_schema เอง
+                using (OdbcCommand check = (OdbcCommand)dl.sqlConn().CreateCommand())
+                {
+                    check.CommandText = @"SELECT COUNT(*) FROM information_schema.columns
+                        WHERE table_schema = 'public' AND table_name = 'delivery_order' AND column_name = 'comp_code'";
+                    if (Convert.ToInt32(check.ExecuteScalar()) == 0)
+                    {
+                        using (OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                        {
+                            cmd.CommandText = "ALTER TABLE public.delivery_order ADD COLUMN comp_code varchar(20)";
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                compCodeColumnReady = true;
+            }
+            finally
+            {
+                dl.close();
+            }
+        }
+
+        // เหมืองของตาชั่งนี้ = base_api id = 2 comp_code
+        public static string GetOwnMineCode(Datalayer dl)
+        {
+            dl.connect();
+            try
+            {
+                using (OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                {
+                    cmd.CommandText = "SELECT comp_code FROM base_api WHERE id = 2";
+                    object val = cmd.ExecuteScalar();
+                    return val == null || val == DBNull.Value ? "" : val.ToString().Trim();
+                }
+            }
+            finally
+            {
+                dl.close();
+            }
+        }
+
+        // ถาม web app ว่าเหมืองนี้อยู่สังกัดไหน (login ด้วย base_api id = 1)
+        // throw เมื่อเชื่อมต่อ / login / หาสังกัดไม่สำเร็จ
+        public static async Task<AffInfo> FetchAffAsync(Datalayer dl, string mineCode)
+        {
+            string baseUrl = "", username = "", password = "";
+
+            dl.connect();
+            try
+            {
+                using (OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                {
+                    cmd.CommandText = "SELECT url, username, password FROM base_api WHERE id = 1";
+                    using (OdbcDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            baseUrl = reader["url"].ToString();
+                            username = reader["username"].ToString();
+                            password = reader["password"].ToString();
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                dl.close();
+            }
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromSeconds(30);
+
+                string loginJson = JsonConvert.SerializeObject(new { username = username, password = password });
+                HttpResponseMessage jwtResponse = await client.PostAsync(
+                    $"{baseUrl}/jwt/create/", new StringContent(loginJson, Encoding.UTF8, "application/json"));
+                if (!jwtResponse.IsSuccessStatusCode)
+                    throw new Exception("JWT ERROR : " + await jwtResponse.Content.ReadAsStringAsync());
+
+                string accessToken = JObject.Parse(await jwtResponse.Content.ReadAsStringAsync())["access"]?.ToString();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                HttpResponseMessage response = await client.GetAsync(
+                    $"{baseUrl}/company/aff/api/by/comp/?comp_code={Uri.EscapeDataString(mineCode)}");
+                string body = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception($"ไม่พบสังกัดของเหมือง {mineCode} : {body}");
+
+                AffInfo info = JsonConvert.DeserializeObject<AffInfo>(body);
+                if (info == null || string.IsNullOrWhiteSpace(info.aff))
+                    throw new Exception($"ไม่พบสังกัดของเหมือง {mineCode}");
+                if (info.mines == null)
+                    info.mines = new List<string>();
+                return info;
+            }
+        }
+
+        // เหมืองของแถว DO จาก k2m: ใช้ mine_code ถ้ามี ถ้าว่างและสังกัดมีเหมืองเดียวใช้เหมืองนั้น ไม่งั้นคืน null
+        // (ให้ผลเหมือน resolve_k2m_mine_code() ฝั่ง web app)
+        public static string ResolveMine(string mineCode, List<string> affMines)
+        {
+            if (!string.IsNullOrWhiteSpace(mineCode))
+                return mineCode.Trim();
+            if (affMines != null && affMines.Count == 1)
+                return affMines[0];
+            return null;
+        }
+    }
+}

@@ -242,6 +242,7 @@
     <Compile Include="Datalayer.cs" />
     <Compile Include="DatalayerNew.cs" />
     <Compile Include="DbDate.cs" />
+    <Compile Include="DeliveryOrderMine.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -489,6 +490,11 @@
     <Compile Include="Weight.cs" />
     <Compile Include="WeightDeliverySync.cs" />
     <Compile Include="UserScaleSync.cs" />
+    <Compile Include="WeightMirrorSync.cs" />
+    <Compile Include="WeightMirrorRestore.cs" />
+    <Compile Include="RestoreMirrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WeightDailyReport.cs" />
     <Compile Include="weightScoopDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -668,6 +674,9 @@
     <None Include="app.manifest" />
     <EmbeddedResource Include="..\sql\2026-09-29-krabi-stp-mode.sql">
       <Link>sql\2026-09-29-krabi-stp-mode.sql</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\sql\2026-11-23-weight-mirror-outbox.sql">
+      <Link>sql\2026-11-23-weight-mirror-outbox.sql</Link>
     </EmbeddedResource>
     <None Include="baseApproveDataSet.xsc">
       <DependentUpon>baseApproveDataSet.xsd</DependentUpon>

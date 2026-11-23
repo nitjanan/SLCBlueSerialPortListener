@@ -19,6 +19,10 @@ namespace SerialPortListener
             //String cs = "User Id=sa;Host=192.168.10.132;Database=truck;Password=123456;Initial Schema=public;charset=UTF8";
             string cs = "DSN=PostgreSQLM";
             //string cs = "DSN=PostgreSQLS";
+            // ใช้ตอนทดสอบเท่านั้น : ทับค่าของ DSN เช่น SLC_ODBC_EXTRA=Database=truck_restore_test ไม่ตั้ง = ใช้ DSN ตามเดิม
+            string extra = Environment.GetEnvironmentVariable("SLC_ODBC_EXTRA");
+            if (!string.IsNullOrWhiteSpace(extra))
+                cs += ";" + extra;
             conn = new OdbcConnection(cs);
             cmd = new OdbcCommand();
         }

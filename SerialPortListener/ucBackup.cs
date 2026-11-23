@@ -31,6 +31,14 @@ namespace SerialPortListener
                 dl.close();
             btULWeight.Enabled = isConnected;
 
+            ApplyRestorePermission();
+            VisibleChanged += (s, e) => ApplyRestorePermission();
+        }
+
+        // ปุ่มกู้ข้อมูลกดได้เฉพาะ user ที่มีสิทธิ์ add_setting (isPermissionAddSetting)
+        private void ApplyRestorePermission()
+        {
+            btRestoreMirror.Enabled = Globals.isPermissionAddSetting();
         }
 
         // ปุ่ม "ตรวจสอบอัพเดท" ถูกย้ายมาไว้ที่ ucBackup แต่ logic การเช็ค/ติดตั้งอัพเดทยังอยู่ที่ MainForm
@@ -46,6 +54,89 @@ namespace SerialPortListener
         private void btnCheckUpdate_Click(object sender, EventArgs e)
         {
             CheckUpdateRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        // กู้รายการชั่งจาก web app : weight ที่อัพโหลดแล้วก่อน แล้วเติมจากสำเนา weight_mirror ดู WeightMirrorRestore.cs
+        // ทุก MessageBox ผูกกับหน้าต่างหลัก ไม่งั้นหลัง await ข้อความอาจเด้งไปอยู่หลังหน้าต่างโปรแกรม ดูเหมือนกดแล้วไม่เกิดอะไร
+        private async void btRestoreMirror_Click(object sender, EventArgs e)
+        {
+            IWin32Window owner = FindForm();
+            if (!Globals.isPermissionAddSetting())
+            {
+                MessageBox.Show(owner, "คุณไม่มีสิทธิ์กู้ข้อมูล", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ApplyRestorePermission();
+                return;
+            }
+            string buttonText = btRestoreMirror.Text;
+            btRestoreMirror.Enabled = false;
+            btRestoreMirror.Text = "กำลังดึงข้อมูล...";
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                // ไม่มีสำเนาก็ยังเปิดหน้าต่างได้ เพราะยังดึงรายการชั่งที่อัพโหลดแล้วได้
+                WeightMirrorRestore.RestoreSource source = await WeightMirrorRestore.GetSourceAsync();
+
+                WeightMirrorRestore.StationInfo station;   // null = ไม่ใช้สำเนา
+                DateTime dateFrom;
+                Cursor = Cursors.Default;
+                using (var dialog = new RestoreMirrorForm(source))
+                {
+                    if (dialog.ShowDialog(owner) != DialogResult.OK)
+                        return;
+                    station = dialog.SelectedStation;
+                    dateFrom = dialog.DateFrom;
+                }
+
+                if (station != null && !station.IsThisStation &&
+                    MessageBox.Show(owner, "ตาชั่งที่เลือก (" + station.StationCode + ") ไม่ใช่รหัสตาชั่งของเครื่องนี้\r\nยืนยันจะกู้ข้อมูลของตาชั่งนี้ลงเครื่องนี้หรือไม่",
+                        "กู้ข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                    return;
+
+                btRestoreMirror.Text = "กำลังกู้ข้อมูล...";
+                Cursor = Cursors.WaitCursor;
+                // ย้อนหลังหลายปีใช้เวลานาน แสดงความคืบหน้าบนปุ่ม (Progress ส่งกลับมาที่ UI thread เอง)
+                var progress = new Progress<string>(text => btRestoreMirror.Text = text);
+                WeightMirrorRestore.RestoreResult r = await WeightMirrorRestore.RestoreAsync(station, dateFrom, progress);
+
+                string summary = "1. รายการชั่งที่อัพโหลดแล้ว\r\n" +
+                                 $"    ดึงได้ {r.Server.Fetched:N0}  |  กู้ลงเครื่อง {r.Server.Inserted:N0}  |  มีอยู่แล้ว {r.Server.AlreadyExists:N0} รายการ\r\n" +
+                                 "2. สำเนา" + (station == null ? " (ไม่ใช้)" : "") + "\r\n" +
+                                 $"    ดึงได้ {r.Mirror.Fetched:N0}  |  กู้ลงเครื่อง {r.Mirror.Inserted:N0}  |  มีอยู่แล้ว {r.Mirror.AlreadyExists:N0}" +
+                                 $"  |  ถูกลบไปแล้ว (ไม่กู้) {r.MirrorDeleted:N0} รายการ\r\n" +
+                                 $"\r\nกู้ลงเครื่องรวม {r.Server.Inserted + r.Mirror.Inserted:N0} รายการ";
+                if (r.SequenceSetTo.HasValue)
+                    summary += $"\r\nตั้ง weight_weight_id_seq ใหม่ รายการชั่งถัดไปจะได้ weight_id {r.SequenceSetTo.Value}";
+                if (r.DocNumberSetTo != null)
+                    summary += $"\r\nตั้งเลขที่เอกสารล่าสุด (seq_doc_num ปี {r.DocNumberYear}) เป็น {r.DocNumberSetTo}";
+                if (r.Failed > 0)
+                    summary += $"\r\n\r\nกู้ไม่ได้ {r.Failed:N0} รายการ :\r\n" + string.Join("\r\n", r.Errors);
+
+                MessageBox.Show(owner, summary, "กู้ข้อมูล", MessageBoxButtons.OK,
+                    r.Failed > 0 ? MessageBoxIcon.Warning : MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(owner, "กู้ข้อมูลไม่สำเร็จ : " + DescribeError(ex), "กู้ข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                btRestoreMirror.Text = buttonText;
+                ApplyRestorePermission();
+            }
+        }
+
+        // HttpClient บอกแค่ "An error occurred while sending the request." ให้เอาสาเหตุชั้นในสุดมาแสดง
+        private static string DescribeError(Exception ex)
+        {
+            if (ex is System.Threading.Tasks.TaskCanceledException)
+                return "เซิร์ฟเวอร์ไม่ตอบกลับภายในเวลาที่กำหนด";
+            Exception inner = ex;
+            while (inner.InnerException != null)
+                inner = inner.InnerException;
+            if (ex is System.Net.Http.HttpRequestException)
+                return "เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ (" + inner.Message + ")";
+            return ex.Message;
         }
 
         // ตารางที่ต้องดาวน์โหลด : (num, table_name, url_segment, pk_field ในแต่ละ JSON record สำหรับใช้ log)

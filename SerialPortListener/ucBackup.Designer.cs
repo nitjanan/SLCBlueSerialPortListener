@@ -45,11 +45,15 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lbCheckUpdateDesc = new System.Windows.Forms.Label();
             this.btnCheckUpdate = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbRestoreMirrorDesc = new System.Windows.Forms.Label();
+            this.btRestoreMirror = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpMain
@@ -62,13 +66,15 @@
             this.tlpMain.Controls.Add(this.groupBox2, 0, 3);
             this.tlpMain.Controls.Add(this.groupBox3, 0, 4);
             this.tlpMain.Controls.Add(this.groupBox4, 0, 5);
+            this.tlpMain.Controls.Add(this.groupBox5, 0, 6);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
             this.tlpMain.Name = "tlpMain";
             this.tlpMain.Padding = new System.Windows.Forms.Padding(24, 18, 24, 18);
-            this.tlpMain.RowCount = 7;
+            this.tlpMain.RowCount = 8;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
@@ -286,6 +292,46 @@
             this.btnCheckUpdate.UseVisualStyleBackColor = false;
             this.btnCheckUpdate.Click += new System.EventHandler(this.btnCheckUpdate_Click);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lbRestoreMirrorDesc);
+            this.groupBox5.Controls.Add(this.btRestoreMirror);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(27, 509);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(911, 92);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "กู้รายการชั่งจากเซิร์ฟเวอร์";
+            // 
+            // lbRestoreMirrorDesc
+            // 
+            this.lbRestoreMirrorDesc.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRestoreMirrorDesc.ForeColor = System.Drawing.Color.DimGray;
+            this.lbRestoreMirrorDesc.Location = new System.Drawing.Point(18, 38);
+            this.lbRestoreMirrorDesc.Name = "lbRestoreMirrorDesc";
+            this.lbRestoreMirrorDesc.Size = new System.Drawing.Size(660, 34);
+            this.lbRestoreMirrorDesc.TabIndex = 0;
+            this.lbRestoreMirrorDesc.Text = "ใช้เมื่อฐานข้อมูลในเครื่องเสีย ดึงรายการชั่งที่อัพโหลดแล้ว แล้วเติมรายการที่ยังไม่ได้อัพโหลดจากสำเนา (กู้ก่อนเริ่มชั่ง)";
+            this.lbRestoreMirrorDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btRestoreMirror
+            // 
+            this.btRestoreMirror.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btRestoreMirror.BackColor = System.Drawing.Color.White;
+            this.btRestoreMirror.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRestoreMirror.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRestoreMirror.ForeColor = System.Drawing.Color.Firebrick;
+            this.btRestoreMirror.Location = new System.Drawing.Point(711, 38);
+            this.btRestoreMirror.Name = "btRestoreMirror";
+            this.btRestoreMirror.Size = new System.Drawing.Size(180, 34);
+            this.btRestoreMirror.TabIndex = 1;
+            this.btRestoreMirror.Text = "กู้ข้อมูล";
+            this.btRestoreMirror.UseVisualStyleBackColor = false;
+            this.btRestoreMirror.Click += new System.EventHandler(this.btRestoreMirror_Click);
+            // 
             // ucBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -300,6 +346,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -323,5 +370,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label lbCheckUpdateDesc;
         private System.Windows.Forms.Button btnCheckUpdate;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lbRestoreMirrorDesc;
+        private System.Windows.Forms.Button btRestoreMirror;
     }
 }
