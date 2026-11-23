@@ -153,6 +153,11 @@ namespace SerialPortListener
 
             try
             {
+                // แสดงเฉพาะ DO ของเหมืองตัวเอง: delivery_order.comp_code (= k2m mine_code = Django DeliveryOrder.comp_code)
+                // เทียบกับ base_api id = 2 comp_code (ตารางเต็มดู DeliveryOrderMine.cs)
+                DeliveryOrderMine.EnsureCompCodeColumn(dl);
+                string ownMine = DeliveryOrderMine.GetOwnMineCode(dl);
+
                 dl.connect();
 
                 StringBuilder sql = new StringBuilder();
@@ -180,11 +185,13 @@ namespace SerialPortListener
                 // กรณี index = 0 (ทั้งหมด) จะไม่เพิ่มเงื่อนไข status
 
                 sql.Append("delivery_date = ? ");
+                sql.Append("AND comp_code = ? ");
                 sql.Append("ORDER BY doc_no");
 
                 using (OdbcCommand cmd = new OdbcCommand(sql.ToString(), dl.sqlConn()))
                 {
                     cmd.Parameters.Add("delivery_date", OdbcType.Date).Value = dateMainForm;
+                    cmd.Parameters.AddWithValue("comp_code", ownMine);
 
                     using (OdbcDataAdapter adt = new OdbcDataAdapter(cmd))
                     {

@@ -110,6 +110,7 @@ namespace SerialPortListener
 
         private static async Task PullDeliveryOrdersAsync(Datalayer dl, HttpClient client, string baseUrl, string compCode, string dateStr)
         {
+            DeliveryOrderMine.EnsureCompCodeColumn(dl);
             var noDateParse = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
             string apiUrl = $"{baseUrl}/deliveryorder/summary/api/by/comp/?comp_code={compCode}&date={dateStr}&page=1";
 
@@ -149,6 +150,8 @@ namespace SerialPortListener
         }
 
         // DO ที่มีอยู่แล้ว อัพเดทเฉพาะยอดจาก web app ไม่ทับ site_id / delivery_type ที่ตาชั่งจัดการเอง
+        // ชื่อ key ใน JSON = ชื่อ column ของ Django DeliveryOrder ตรงกับ local delivery_order
+        // comp_code = เหมือง (= k2m mine_code) ใช้กรองหน้า TableDeliveryOrder (ตารางเต็มดู DeliveryOrderMine.cs)
         private static void UpsertDeliveryOrder(Datalayer dl, JObject d)
         {
             string docNo = d["doc_no"]?.ToString();
@@ -165,11 +168,12 @@ namespace SerialPortListener
                     car_company_tot, car_customer_tot,
                     customer_code, customer_name, customer_address,
                     product_code, product_name, qty, qty_tot, unit_name,
-                    sale_name, note, status, site_id, site_name
+                    sale_name, note, status, site_id, site_name, comp_code
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (doc_no)
                 DO UPDATE SET
+                    comp_code = COALESCE(NULLIF(EXCLUDED.comp_code, ''), delivery_order.comp_code),
                     car_company = EXCLUDED.car_company,
                     car_customer = EXCLUDED.car_customer,
                     car_company_rem = EXCLUDED.car_company_rem,
@@ -190,7 +194,7 @@ namespace SerialPortListener
                 "car_company_tot", "car_customer_tot",
                 "customer_code", "customer_name", "customer_address",
                 "product_code", "product_name", "qty", "qty_tot", "unit_name",
-                "sale_name", "note", "status", "site_id", "site_name" })
+                "sale_name", "note", "status", "site_id", "site_name", "comp_code" })
             {
                 pgCommand.Parameters.AddWithValue("", Val(d, key));
             }
