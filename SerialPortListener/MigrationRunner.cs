@@ -39,7 +39,8 @@ namespace SerialPortListener
         }
 
         // ตอนปิดระบบสำเนา : ลบ trigger ออก ไม่ให้รายการชั่งเข้าคิว sync_outbox ค้างพองไปเรื่อย ๆ โดยไม่มีใครส่ง
-        // ตาราง sync_outbox เก็บไว้ (ไม่กระทบการชั่ง) ; ลบเฉพาะเมื่อยังมี trigger อยู่ เพราะ DROP TRIGGER ต้อง lock ตาราง weight
+        // และล้างแถวที่ค้างในคิวทิ้ง (ไม่มีตัวส่งแล้ว) ; ตัวตาราง sync_outbox เก็บไว้ ไม่กระทบการชั่ง
+        // ทำเฉพาะเมื่อยังมี trigger / แถวค้างอยู่ เพราะ DROP TRIGGER ต้อง lock ตาราง weight
         private static void RemoveWeightMirrorTriggers(OdbcConnection connection)
         {
             try
@@ -49,12 +50,20 @@ namespace SerialPortListener
                     cmd.CommandText =
                         "SELECT count(*) FROM pg_trigger WHERE tgrelid = 'public.weight'::regclass" +
                         " AND tgname IN ('slc_weight_mirror_ins_del', 'slc_weight_mirror_upd')";
-                    if (Convert.ToInt32(cmd.ExecuteScalar()) == 0)
-                        return;
-                    cmd.CommandText =
-                        "DROP TRIGGER IF EXISTS slc_weight_mirror_ins_del ON public.weight;" +
-                        " DROP TRIGGER IF EXISTS slc_weight_mirror_upd ON public.weight;";
-                    cmd.ExecuteNonQuery();
+                    if (Convert.ToInt32(cmd.ExecuteScalar()) > 0)
+                    {
+                        cmd.CommandText =
+                            "DROP TRIGGER IF EXISTS slc_weight_mirror_ins_del ON public.weight;" +
+                            " DROP TRIGGER IF EXISTS slc_weight_mirror_upd ON public.weight;";
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    cmd.CommandText = "SELECT CASE WHEN to_regclass('public.sync_outbox') IS NULL THEN 0 ELSE 1 END";
+                    if (Convert.ToInt32(cmd.ExecuteScalar()) == 1)
+                    {
+                        cmd.CommandText = "DELETE FROM public.sync_outbox";
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
             catch (Exception ex)
