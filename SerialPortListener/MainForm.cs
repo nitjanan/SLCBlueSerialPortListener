@@ -288,7 +288,7 @@ namespace SerialPortListener
                         return;
                     }
 
-                    AppReleaseInfo release = await AppUpdateService.GetLatestReleaseAsync(client, baseUrl, accessToken);
+                    AppReleaseInfo release = await AppUpdateService.GetLatestReleaseAsync(client, baseUrl, accessToken, weightStationCode: findBWS());
                     Version currentVersion = AppUpdateService.CurrentVersion;
 
                     if (release == null || !AppUpdateService.IsNewerVersion(release.version, currentVersion))

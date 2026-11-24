@@ -34,12 +34,16 @@ namespace SerialPortListener
 
         public static async Task<AppReleaseInfo> GetLatestReleaseAsync(
             HttpClient client, string baseUrl, string accessToken,
-            string product = "Blue.Master")
+            string product = "Blue.Master",
+            string weightStationCode = null)
         {
             client.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", accessToken);
 
-            string url = $"{baseUrl}/api/updates/latest/?product={product}";
+            string url = $"{baseUrl}/api/updates/latest/?product={Uri.EscapeDataString(product)}";
+            // ส่งรหัสตาชั่ง (base_weight_station.code) ไปด้วย ให้ server คืนเฉพาะเวอร์ชันที่ปล่อยให้ตาชั่งนี้ หรือปล่อยให้ทุกตาชั่ง
+            if (!string.IsNullOrWhiteSpace(weightStationCode))
+                url += $"&station={Uri.EscapeDataString(weightStationCode.Trim())}";
              
             HttpResponseMessage response = await client.GetAsync(url);
             string json = await response.Content.ReadAsStringAsync();
