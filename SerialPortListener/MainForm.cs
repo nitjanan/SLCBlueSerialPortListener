@@ -172,6 +172,8 @@ namespace SerialPortListener
             public string saleName { get; set; }
             public string note { get; set; }
             public string status { get; set; }
+            // "cash" = เงินสด, "credit-day" = เงินเชื่อ
+            public string creditType { get; set; }
         }
 
         public class WeightDelivery
@@ -940,7 +942,12 @@ namespace SerialPortListener
                     break;
                 }
             }
-            rbCredit.Checked = true;
+            // ติ๊ก "จ่าย" ตาม creditType ของใบส่ง: "cash" = เงินสด, "credit-day" = เงินเชื่อ (ค่าอื่น/ว่าง = เงินเชื่อ เหมือนเดิม)
+            string creditType = (data_do.creditType ?? "").Trim();
+            if (creditType.Equals("cash", StringComparison.OrdinalIgnoreCase))
+                rbCash.Checked = true;
+            else
+                rbCredit.Checked = true;
 
             //ดึงหน้างาน
             fillSiteCombo();
@@ -2851,10 +2858,14 @@ namespace SerialPortListener
                     int car_customer = 0;
                     string status = "";
                     double qty = 0;
+                    string credit_type = "";
+
+                    // ต้องมีคอลัมน์ credit_type ก่อน SELECT ไม่งั้น query error แล้วค่าอื่นหายหมด
+                    DeliveryOrderMine.EnsureCompCodeColumn(dl);
 
                     using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
                     {
-                        pgCommand.CommandText = "SELECT doc_no, delivery_date, unit_name, car_company, car_customer, status, qty FROM delivery_order where do_id = ?";
+                        pgCommand.CommandText = "SELECT doc_no, delivery_date, unit_name, car_company, car_customer, status, qty, credit_type FROM delivery_order where do_id = ?";
                         pgCommand.Parameters.AddWithValue("?", do_id);
                         try
                         {
@@ -2872,6 +2883,7 @@ namespace SerialPortListener
                                     int.TryParse(reader["car_customer"] != DBNull.Value ? reader["car_customer"].ToString() : "0", out car_customer);
                                     status = reader["status"] != DBNull.Value ? reader["status"].ToString() : "";
                                     double.TryParse(reader["qty"] != DBNull.Value ? reader["qty"].ToString() : "0", out qty);
+                                    credit_type = reader["credit_type"] != DBNull.Value ? reader["credit_type"].ToString().Trim() : "";
                                 }
                             }
                         }
@@ -2930,7 +2942,10 @@ namespace SerialPortListener
                         is_cancel = real_is_cancel,
 
                         status = status,
-                        qty = qty
+                        qty = qty,
+
+                        // k2m creditType ("cash" = เงินสด, "credit-day" = เงินเชื่อ) ให้ web app ติ๊ก "จ่าย" ได้ระหว่างวัน
+                        credit_type = credit_type
                     };
 
                     string apiJson =
@@ -5594,15 +5609,14 @@ namespace SerialPortListener
                 // =============================================
                 bool downloadSuccess = await DownloadAndInsertDeliveryOrders();
 
+                // ต่อ API ใบส่งของ (base_api id = 2) ไม่ได้ -> ใช้ใบส่งของที่บันทึกไว้ใน delivery_order ในเครื่องแทน
+                string offlineReason = null;
                 if (!downloadSuccess)
                 {
-                    MessageBox.Show(
-                        "ไม่สามารถดาวน์โหลดข้อมูลจาก BASE_URL ได้",
-                        "Download Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                    return;
+                    if (lastDoConfigError)
+                        return; // ตั้งค่า base_api ไม่ครบ แจ้งไปแล้วใน DownloadAndInsertDeliveryOrders
+
+                    offlineReason = lastDoDownloadError;
                 }
 
                 // =============================================
@@ -5610,6 +5624,8 @@ namespace SerialPortListener
                 // =============================================
                 var apiResult = await UpdateDeliveryOrderFromApi();
 
+                // web app (base_api id = 1) ต้องใช้งานได้เสมอ เพราะเป็นตัวคำนวณจำนวนเที่ยว / ยอดที่ชั่งได้จริง
+                // ต่อไม่ได้ = ห้ามเปิดตารางใบส่งของ (แม้จะมีข้อมูลในเครื่องก็ตาม)
                 if (!apiResult.IsSuccess)
                 {
                     if (apiResult.IsValidationError)
@@ -5623,9 +5639,14 @@ namespace SerialPortListener
                     }
                     else
                     {
+                        string why = (apiResult.ErrorMessage ?? "").Trim();
+                        if (why.Length > 200) why = why.Substring(0, 200) + "...";
                         MessageBox.Show(
-                            "ไม่สามารถเชื่อมต่อ API ได้ กรุณาเชื่อมต่อ Internet!!!",
-                            "API Error",
+                            "ไม่สามารถเชื่อมต่อ web app (base_api id = 1) ได้\n" +
+                            (why.Length > 0 ? "สาเหตุ : " + why + "\n" : "") +
+                            "\nเปิดตารางใบส่งของไม่ได้ เพราะ web app ใช้คำนวณจำนวนเที่ยว / ยอดที่ชั่งได้จริง\n" +
+                            "กรุณาตรวจสอบ Internet แล้วกดดึงใบส่งของใหม่อีกครั้ง",
+                            "เชื่อมต่อ web app ไม่ได้",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error
                         );
@@ -5633,10 +5654,26 @@ namespace SerialPortListener
                     return;
                 }
 
+                // ต่อ API ใบส่งของ (k2m) ไม่ได้ แต่ web app ใช้ได้ -> เปิดตารางด้วยข้อมูลในเครื่อง พร้อมแจ้งเตือน
+                if (offlineReason != null)
+                {
+                    MessageBox.Show(
+                        "ไม่สามารถเชื่อมต่อ API ใบส่งของ (base_api id = 2) ได้\n" +
+                        "สาเหตุ : " + offlineReason + "\n\n" +
+                        "จะแสดงใบส่งของที่บันทึกไว้ในเครื่องแทน ข้อมูลอาจไม่เป็นปัจจุบัน\n" +
+                        "(ใบส่งของใหม่ที่ยังไม่เคยดึงลงเครื่องจะไม่แสดง)",
+                        "ใช้ข้อมูลใบส่งของในเครื่อง",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+
                 // =============================================
                 // PHASE 3 : OPEN WEBAPP FORM
                 // =============================================
                 TableDeliveryOrder td = new TableDeliveryOrder(this);
+                td.OfflineReason = offlineReason;
+                td.SummaryUpdated = true; // มาถึงตรงนี้ได้ = web app อัปเดตยอดแล้วเสมอ
                 td.ShowDialog();
             }
             catch (Exception ex)
@@ -5769,8 +5806,14 @@ namespace SerialPortListener
         // PHASE 1 : DOWNLOAD ALL PAGES from BASE_URL + INSERT
         // เทียบกับ fetch_all_pages() + main() ใน Python
         // ----------------------------------------------------------
+        // ผลของ DownloadAndInsertDeliveryOrders() ครั้งล่าสุด ให้ btLoadDO_Click แจ้งรวมครั้งเดียวแล้วใช้ข้อมูลในเครื่องแทน
+        private string lastDoDownloadError = "";
+        private bool lastDoConfigError;
+
         private async Task<bool> DownloadAndInsertDeliveryOrders()
         {
+            lastDoDownloadError = "";
+            lastDoConfigError = false;
             try
             {
                 btLoadDO.Enabled = false;
@@ -5784,6 +5827,7 @@ namespace SerialPortListener
                 {
                     MessageBox.Show("ไม่พบ comp_code (เหมือง) ใน base_api id = 2", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lastDoConfigError = true;
                     return false;
                 }
 
@@ -5837,13 +5881,12 @@ namespace SerialPortListener
                         {
                             string error =
                                 await response.Content.ReadAsStringAsync();
+                            if (error.Length > 200)
+                                error = error.Substring(0, 200) + "...";
 
-                            MessageBox.Show(
-                                $"DOWNLOAD ERROR (page {page}) : {error}",
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error
-                            );
+                            // ไม่ MessageBox ที่นี่ ผู้เรียกแจ้งรวมแล้วเปิดตารางจากข้อมูลในเครื่อง
+                            lastDoDownloadError =
+                                $"API ตอบกลับ HTTP {(int)response.StatusCode} {response.ReasonPhrase} (page {page}) {error}".Trim();
                             return false;
                         }
 
@@ -5889,12 +5932,13 @@ namespace SerialPortListener
                                 customer_code, customer_name, customer_address,
                                 product_code, product_name, qty, unit_name,
                                 sale_name, note, status, site_id, site_name,
-                                comp_code
+                                comp_code, credit_type
                             )
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                             ON CONFLICT (doc_no) DO UPDATE SET
                                 status = EXCLUDED.status,
                                 comp_code = EXCLUDED.comp_code,
+                                credit_type      = COALESCE(NULLIF(EXCLUDED.credit_type, ''), delivery_order.credit_type),
                                 -- DO อาจถูกสร้างก่อนจาก summary API (รายงานตามใบส่งสินค้า) ซึ่งข้อมูลไม่ครบ
                                 -- ให้เติม/แก้รายละเอียดจาก API ต้นทาง แต่ไม่ทับด้วยค่าว่าง และไม่แตะยอด *_rem / *_tot
                                 customer_code    = COALESCE(NULLIF(EXCLUDED.customer_code, ''), delivery_order.customer_code),
@@ -5983,6 +6027,7 @@ namespace SerialPortListener
                             cmd.Parameters.AddWithValue("", resolvedSiteId);
                             cmd.Parameters.AddWithValue("", item.siteName ?? "");
                             cmd.Parameters.AddWithValue("", ownMine); // comp_code = k2m mine_code (ผ่านการกรองแล้วว่าเป็นเหมืองตัวเอง)
+                            cmd.Parameters.AddWithValue("", (item.creditType ?? "").Trim()); // credit_type
 
                             // param สำหรับ WHERE NOT EXISTS
 
@@ -6000,16 +6045,24 @@ namespace SerialPortListener
                     return true;
                 }
             }
+            catch (TaskCanceledException)
+            {
+                dl.close();
+                lastDoDownloadError = "หมดเวลาเชื่อมต่อ (เกิน 30 วินาที)";
+                return false;
+            }
+            catch (HttpRequestException ex)
+            {
+                dl.close();
+                // เช่น ไม่มี internet / หาชื่อ server ไม่เจอ / server ปิด
+                lastDoDownloadError = "เชื่อมต่อ server ไม่ได้ : " + ex.GetBaseException().Message;
+                return false;
+            }
             catch (Exception ex)
             {
                 dl.close();
-
-                MessageBox.Show(
-                    "DOWNLOAD INSERT ERROR : " + ex.ToString(),
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                System.Diagnostics.Debug.WriteLine("DOWNLOAD INSERT ERROR : " + ex);
+                lastDoDownloadError = "DOWNLOAD INSERT ERROR : " + ex.GetBaseException().Message;
                 return false;
             }
             finally
@@ -6174,7 +6227,7 @@ namespace SerialPortListener
                 return new UpdateDeliveryOrderResult 
                 { 
                     IsSuccess = false, 
-                    ErrorMessage = ex.Message 
+                    ErrorMessage = (ex is TaskCanceledException) ? "หมดเวลาเชื่อมต่อ (server ไม่ตอบกลับ)" : ex.GetBaseException().Message 
                 };
 
             }

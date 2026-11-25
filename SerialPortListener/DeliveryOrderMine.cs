@@ -29,6 +29,7 @@ namespace SerialPortListener
     //  ปริมาณ                | qty / unitName            | DeliveryOrder.qty / unit_name          | delivery_order.qty / unit_name
     //  อื่น ๆ                 | saleName / note / status  | DeliveryOrder.sale_name / note / status | delivery_order.sale_name / note / status
     //  ประเภทการส่ง           | deliveryType              | (ไม่เก็บ)                               | delivery_order.delivery_type
+    //  การจ่าย                | creditType ("cash" = เงินสด, "credit-day" = เงินเชื่อ) | DeliveryOrder.credit_type | delivery_order.credit_type
     // --------------------------------------------------------------------------------------------------
     // k2m ส่ง DO ของทุกเหมืองที่ใช้บริษัทที่ออกใบสั่งขายเดียวกันมาพร้อมกัน ตาชั่งต้องเก็บ/แสดงเฉพาะเหมืองของตัวเอง
     // ฝั่ง Django ดูตารางเดียวกันเหนือ insertDeliveryFromApiK2M() ใน weightapp/views.py
@@ -61,7 +62,25 @@ namespace SerialPortListener
 
         private static bool compCodeColumnReady;
 
-        // local DB เดิมไม่มีคอลัมน์ comp_code ใน delivery_order: เพิ่มให้เองครั้งแรกที่ใช้
+        private static void EnsureColumn(Datalayer dl, string column, string type)
+        {
+            using (OdbcCommand check = (OdbcCommand)dl.sqlConn().CreateCommand())
+            {
+                check.CommandText = @"SELECT COUNT(*) FROM information_schema.columns
+                    WHERE table_schema = 'public' AND table_name = 'delivery_order' AND column_name = ?";
+                check.Parameters.AddWithValue("", column);
+                if (Convert.ToInt32(check.ExecuteScalar()) == 0)
+                {
+                    using (OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand())
+                    {
+                        cmd.CommandText = "ALTER TABLE public.delivery_order ADD COLUMN " + column + " " + type;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        // local DB เดิมไม่มีคอลัมน์ comp_code / credit_type ใน delivery_order: เพิ่มให้เองครั้งแรกที่ใช้
         public static void EnsureCompCodeColumn(Datalayer dl)
         {
             if (compCodeColumnReady)
@@ -71,19 +90,9 @@ namespace SerialPortListener
             try
             {
                 // PostgreSQL 9.5 ยังไม่มี ADD COLUMN IF NOT EXISTS (มีตั้งแต่ 9.6) จึงเช็คจาก information_schema เอง
-                using (OdbcCommand check = (OdbcCommand)dl.sqlConn().CreateCommand())
-                {
-                    check.CommandText = @"SELECT COUNT(*) FROM information_schema.columns
-                        WHERE table_schema = 'public' AND table_name = 'delivery_order' AND column_name = 'comp_code'";
-                    if (Convert.ToInt32(check.ExecuteScalar()) == 0)
-                    {
-                        using (OdbcCommand cmd = (OdbcCommand)dl.sqlConn().CreateCommand())
-                        {
-                            cmd.CommandText = "ALTER TABLE public.delivery_order ADD COLUMN comp_code varchar(20)";
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
+                EnsureColumn(dl, "comp_code", "varchar(20)");
+                // credit_type = k2m creditType ("cash" = เงินสด, "credit-day" = เงินเชื่อ) ใช้ติ๊ก "จ่าย" ที่ MainForm
+                EnsureColumn(dl, "credit_type", "varchar(20)");
                 compCodeColumnReady = true;
             }
             finally

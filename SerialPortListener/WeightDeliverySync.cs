@@ -168,12 +168,13 @@ namespace SerialPortListener
                     car_company_tot, car_customer_tot,
                     customer_code, customer_name, customer_address,
                     product_code, product_name, qty, qty_tot, unit_name,
-                    sale_name, note, status, site_id, site_name, comp_code
+                    sale_name, note, status, site_id, site_name, comp_code, credit_type
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (doc_no)
                 DO UPDATE SET
                     comp_code = COALESCE(NULLIF(EXCLUDED.comp_code, ''), delivery_order.comp_code),
+                    credit_type = COALESCE(NULLIF(EXCLUDED.credit_type, ''), delivery_order.credit_type),
                     car_company = EXCLUDED.car_company,
                     car_customer = EXCLUDED.car_customer,
                     car_company_rem = EXCLUDED.car_company_rem,
@@ -194,7 +195,7 @@ namespace SerialPortListener
                 "car_company_tot", "car_customer_tot",
                 "customer_code", "customer_name", "customer_address",
                 "product_code", "product_name", "qty", "qty_tot", "unit_name",
-                "sale_name", "note", "status", "site_id", "site_name", "comp_code" })
+                "sale_name", "note", "status", "site_id", "site_name", "comp_code", "credit_type" })
             {
                 pgCommand.Parameters.AddWithValue("", Val(d, key));
             }
