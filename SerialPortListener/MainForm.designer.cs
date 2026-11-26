@@ -59,6 +59,8 @@
             this.label39 = new System.Windows.Forms.Label();
             this.tbDoDocNo = new System.Windows.Forms.TextBox();
             this.btLoadDO = new System.Windows.Forms.Button();
+            this.btCancelDO = new System.Windows.Forms.Button();
+            this.toolTipDO = new System.Windows.Forms.ToolTip(this.components);
             this.gbCustomer = new System.Windows.Forms.GroupBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -501,6 +503,7 @@
             this.gbDoc.Controls.Add(this.label39);
             this.gbDoc.Controls.Add(this.tbDoDocNo);
             this.gbDoc.Controls.Add(this.btLoadDO);
+            this.gbDoc.Controls.Add(this.btCancelDO);
             this.gbDoc.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbDoc.Location = new System.Drawing.Point(708, 48);
             this.gbDoc.Name = "gbDoc";
@@ -581,7 +584,7 @@
             this.tbDoDocNo.Location = new System.Drawing.Point(116, 62);
             this.tbDoDocNo.Name = "tbDoDocNo";
             this.tbDoDocNo.ReadOnly = true;
-            this.tbDoDocNo.Size = new System.Drawing.Size(306, 30);
+            this.tbDoDocNo.Size = new System.Drawing.Size(258, 30);
             this.tbDoDocNo.TabIndex = 144;
             this.tbDoDocNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -596,6 +599,21 @@
             this.btLoadDO.TabIndex = 142;
             this.btLoadDO.UseVisualStyleBackColor = true;
             this.btLoadDO.Click += new System.EventHandler(this.btLoadDO_Click);
+            this.toolTipDO.SetToolTip(this.btLoadDO, "อ้างใบส่งของ");
+            //
+            // btCancelDO
+            //
+            this.btCancelDO.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btCancelDO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCancelDO.ForeColor = System.Drawing.Color.Red;
+            this.btCancelDO.Location = new System.Drawing.Point(380, 62);
+            this.btCancelDO.Name = "btCancelDO";
+            this.btCancelDO.Size = new System.Drawing.Size(42, 30);
+            this.btCancelDO.TabIndex = 146;
+            this.btCancelDO.Text = "X";
+            this.btCancelDO.UseVisualStyleBackColor = true;
+            this.btCancelDO.Click += new System.EventHandler(this.btCancelDO_Click);
+            this.toolTipDO.SetToolTip(this.btCancelDO, "ยกเลิกการอ้างใบส่งของ");
             // 
             // gbCustomer
             // 
@@ -2565,6 +2583,8 @@
         private System.Windows.Forms.TextBox tbMillId;
         private System.Windows.Forms.TextBox tbMillName;
         private System.Windows.Forms.Button btLoadDO;
+        private System.Windows.Forms.Button btCancelDO;
+        private System.Windows.Forms.ToolTip toolTipDO;
         private System.Windows.Forms.TextBox tbDoId;
         private System.Windows.Forms.TextBox tbDoDocNo;
         private System.Windows.Forms.Label label39;
