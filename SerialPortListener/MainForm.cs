@@ -3484,13 +3484,14 @@ namespace SerialPortListener
                     string status = "";
                     double qty = 0;
                     string credit_type = "";
+                    bool mine_unknown = false;
 
                     // ต้องมีคอลัมน์ credit_type ก่อน SELECT ไม่งั้น query error แล้วค่าอื่นหายหมด
                     DeliveryOrderMine.EnsureCompCodeColumn(dl);
 
                     using (OdbcCommand pgCommand = (OdbcCommand)dl.sqlConn().CreateCommand())
                     {
-                        pgCommand.CommandText = "SELECT doc_no, delivery_date, unit_name, car_company, car_customer, status, qty, credit_type FROM delivery_order where do_id = ?";
+                        pgCommand.CommandText = "SELECT doc_no, delivery_date, unit_name, car_company, car_customer, status, qty, credit_type, mine_unknown FROM delivery_order where do_id = ?";
                         pgCommand.Parameters.AddWithValue("?", do_id);
                         try
                         {
@@ -3509,6 +3510,7 @@ namespace SerialPortListener
                                     status = reader["status"] != DBNull.Value ? reader["status"].ToString() : "";
                                     double.TryParse(reader["qty"] != DBNull.Value ? reader["qty"].ToString() : "0", out qty);
                                     credit_type = reader["credit_type"] != DBNull.Value ? reader["credit_type"].ToString().Trim() : "";
+                                    mine_unknown = reader["mine_unknown"] != DBNull.Value && Convert.ToInt32(reader["mine_unknown"]) == 1;
                                 }
                             }
                         }
@@ -3570,7 +3572,10 @@ namespace SerialPortListener
                         qty = qty,
 
                         // k2m creditType ("cash" = เงินสด, "credit-day" = เงินเชื่อ) ให้ web app ติ๊ก "จ่าย" ได้ระหว่างวัน
-                        credit_type = credit_type
+                        credit_type = credit_type,
+
+                        // k2m ไม่ระบุเหมือง: web app นับเที่ยว/ยอดรวมทุกเหมืองใน aff_so เดียวกัน กันชั่งเกิน plan
+                        mine_unknown = mine_unknown
                     };
 
                     string apiJson =
@@ -6776,14 +6781,30 @@ namespace SerialPortListener
 
                         foreach (DeliveryOrderApiItem item in pageObj.data)
                         {
-                            // k2m ส่ง DO ทั้งสังกัด เก็บเฉพาะของเหมืองตัวเอง
+                            // k2m ส่ง DO ทั้งสังกัด เก็บเฉพาะของเหมืองตัวเอง + ใบที่ไม่ระบุเหมือง (ติดธง mine_unknown)
                             // fallback (ไม่รู้สังกัด) : เก็บทุกแถวเหมือนเวอร์ชันเดิม
-                            if (!affInfo.IsFallback)
+                            DeliveryOrderMine.MineMatch match = DeliveryOrderMine.Classify(item.mine_code, affInfo, ownMine);
+                            if (match == DeliveryOrderMine.MineMatch.OtherMine)
                             {
-                                string itemMine = DeliveryOrderMine.ResolveMine(item.mine_code, affInfo.mines);
-                                if (!string.Equals(itemMine, ownMine, StringComparison.OrdinalIgnoreCase))
-                                    continue;
+                                // เคยเก็บไว้ในเครื่อง (ตอนไม่ระบุเหมือง หรือตอนโหลดแบบ fallback ที่ไม่กรองเหมือง)
+                                // แต่ตอนนี้ k2m บอกว่าเป็นของเหมืองอื่น: ลบออกถ้ายังไม่เคยชั่ง (ไม่นับใบชั่งที่ยกเลิก) ถ้าชั่งไปแล้วเก็บไว้
+                                // ไม่ดู *_tot เพราะใบไม่ระบุเหมืองมียอดรวมของทุกเหมืองใน aff_so (มาจาก web app)
+                                using (OdbcCommand del = (OdbcCommand)dl.sqlConn().CreateCommand())
+                                {
+                                    del.CommandText = @"
+                                    DELETE FROM delivery_order d
+                                    WHERE d.doc_no = ?
+                                      AND NOT EXISTS (SELECT 1 FROM weight w
+                                                      WHERE w.do_doc_no = d.doc_no AND COALESCE(w.is_cancel, false) = false)";
+                                    del.Parameters.AddWithValue("", item.docNo ?? "");
+                                    del.ExecuteNonQuery();
+                                }
+                                continue;
                             }
+                            // fallback ไม่รู้ว่าสังกัดมีกี่เหมือง: mine_code ว่างให้ติดธงไว้ก่อน (ไม่งั้นธงจะถูกล้างทุกครั้งที่ต่อ web app ไม่ได้)
+                            bool noMineCode = string.IsNullOrWhiteSpace(item.mine_code);
+                            int mineUnknown = match == DeliveryOrderMine.MineMatch.Unknown
+                                || (affInfo.IsFallback && noMineCode) ? 1 : 0;
 
                             OdbcCommand cmd =
                                 (OdbcCommand)dl.sqlConn().CreateCommand();
@@ -6796,12 +6817,13 @@ namespace SerialPortListener
                                 customer_code, customer_name, customer_address,
                                 product_code, product_name, qty, unit_name,
                                 sale_name, note, status, site_id, site_name,
-                                comp_code, credit_type
+                                comp_code, credit_type, mine_unknown
                             )
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                             ON CONFLICT (doc_no) DO UPDATE SET
                                 status = EXCLUDED.status,
                                 comp_code = EXCLUDED.comp_code,
+                                mine_unknown = EXCLUDED.mine_unknown,
                                 credit_type      = COALESCE(NULLIF(EXCLUDED.credit_type, ''), delivery_order.credit_type),
                                 -- DO อาจถูกสร้างก่อนจาก summary API (รายงานตามใบส่งสินค้า) ซึ่งข้อมูลไม่ครบ
                                 -- ให้เติม/แก้รายละเอียดจาก API ต้นทาง แต่ไม่ทับด้วยค่าว่าง และไม่แตะยอด *_rem / *_tot
@@ -6890,8 +6912,9 @@ namespace SerialPortListener
                             cmd.Parameters.AddWithValue("", item.status ?? "");
                             cmd.Parameters.AddWithValue("", resolvedSiteId);
                             cmd.Parameters.AddWithValue("", item.siteName ?? "");
-                            cmd.Parameters.AddWithValue("", ownMine); // comp_code = k2m mine_code (ผ่านการกรองแล้วว่าเป็นเหมืองตัวเอง)
+                            cmd.Parameters.AddWithValue("", ownMine); // comp_code = k2m mine_code (ผ่านการกรองแล้วว่าเป็นเหมืองตัวเอง หรือไม่ระบุเหมือง)
                             cmd.Parameters.AddWithValue("", (item.creditType ?? "").Trim()); // credit_type
+                            cmd.Parameters.AddWithValue("", mineUnknown); // mine_unknown
 
                             // param สำหรับ WHERE NOT EXISTS
 

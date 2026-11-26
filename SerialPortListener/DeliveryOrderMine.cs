@@ -93,6 +93,9 @@ namespace SerialPortListener
                 EnsureColumn(dl, "comp_code", "varchar(20)");
                 // credit_type = k2m creditType ("cash" = เงินสด, "credit-day" = เงินเชื่อ) ใช้ติ๊ก "จ่าย" ที่ MainForm
                 EnsureColumn(dl, "credit_type", "varchar(20)");
+                // mine_unknown = 1 : k2m ไม่ส่ง mine_code มา และสังกัดมีหลายเหมือง จึงเดาเหมืองไม่ได้
+                // ยังเก็บไว้ให้เหมืองนี้เห็น แต่หน้า TableDeliveryOrder ไฮไลต์สีเหลือง + ถามยืนยันก่อนเลือก
+                EnsureColumn(dl, "mine_unknown", "smallint NOT NULL DEFAULT 0");
                 compCodeColumnReady = true;
             }
             finally
@@ -174,6 +177,48 @@ namespace SerialPortListener
                     info.mines = new List<string>();
                 return info;
             }
+        }
+
+        // ผลการคัด DO จาก k2m ว่าเป็นของเหมืองนี้ไหม
+        public enum MineMatch
+        {
+            Own,        // เป็นของเหมืองนี้
+            Unknown,    // k2m ไม่ระบุเหมือง และสังกัดมีหลายเหมือง : เก็บไว้ แต่ติดธง mine_unknown
+            OtherMine   // เป็นของเหมืองอื่น : ไม่เก็บ
+        }
+
+        public static MineMatch Classify(string mineCode, AffInfo aff, string ownMine)
+        {
+            // fallback (ไม่รู้สังกัด) : เก็บทุกแถวเหมือนเวอร์ชันเดิม
+            if (aff == null || aff.IsFallback)
+                return MineMatch.Own;
+            string itemMine = ResolveMine(mineCode, aff.mines);
+            if (itemMine == null)
+            {
+                // ไม่ระบุเหมือง: เก็บเฉพาะที่เหมืองหลักของสังกัด (aff SLC -> ตาชั่ง SLC เท่านั้น ไม่ลง UNI / SRD)
+                // สังกัดที่ไม่มีเหมืองหลัก เก็บทุกเหมืองเหมือนเดิม
+                string home = UnknownMineHome(aff);
+                if (home == null || string.Equals(home, ownMine, StringComparison.OrdinalIgnoreCase))
+                    return MineMatch.Unknown;
+                return MineMatch.OtherMine;
+            }
+            return string.Equals(itemMine, ownMine, StringComparison.OrdinalIgnoreCase)
+                ? MineMatch.Own : MineMatch.OtherMine;
+        }
+
+        // เหมืองที่เก็บใบ DO ที่ k2m ไม่ระบุเหมือง = เหมืองที่ code ตรงกับชื่อสังกัด ไม่มีคืน null
+        // (ให้ผลเหมือน unknown_mine_home() ฝั่ง web app)
+        public static string UnknownMineHome(AffInfo aff)
+        {
+            if (aff == null || aff.mines == null || string.IsNullOrWhiteSpace(aff.aff))
+                return null;
+            foreach (string code in aff.mines)
+            {
+                if (!string.IsNullOrWhiteSpace(code)
+                    && string.Equals(code.Trim(), aff.aff.Trim(), StringComparison.OrdinalIgnoreCase))
+                    return code.Trim();
+            }
+            return null;
         }
 
         // เหมืองของแถว DO จาก k2m: ใช้ mine_code ถ้ามี ถ้าว่างและสังกัดมีเหมืองเดียวใช้เหมืองนั้น ไม่งั้นคืน null

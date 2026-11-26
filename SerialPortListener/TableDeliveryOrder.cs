@@ -39,8 +39,12 @@ namespace SerialPortListener
         // สร้างใน code ไม่แก้ Designer เพื่อให้ Blue / Pink ใช้ไฟล์เดียวกันได้
         private static readonly Color MissText = Color.FromArgb(192, 57, 43);
         private static readonly Color MissRowBack = Color.FromArgb(253, 236, 234);
+        // ใบส่งของที่ k2m ไม่ระบุเหมือง (delivery_order.mine_unknown = 1): เลือกได้ แต่ไฮไลต์เหลือง + ถามยืนยัน
+        private static readonly Color MineRowBack = Color.FromArgb(255, 244, 179);
         private DoWarnPanel pnlDoWarn;
         private OfflineBanner pnlOffline;
+        private MineUnknownBanner pnlMineUnknown;
+        private Font mineBoldFont; // คอลัมน์เหมือง "ไม่ระบุ" (สร้างครั้งเดียว ไม่สร้างใหม่ทุกครั้งที่วาดเซลล์)
         private int gridTop, gridHeight;
 
         // ไม่ว่าง = ต่อ API ใบส่งของ (base_api id = 2) ไม่ได้ ตารางนี้แสดงจาก delivery_order ในเครื่อง (ตั้งก่อน ShowDialog)
@@ -54,10 +58,22 @@ namespace SerialPortListener
             dl = new Datalayer();
             mainForm = parent;
             buildDoWarnPanel();
+            Disposed += (s, e) => { if (mineBoldFont != null) mineBoldFont.Dispose(); };
         }
 
         private void buildDoWarnPanel()
         {
+            // คอลัมน์เหมือง (= delivery_order.comp_code = k2m mine_code) ต่อจากเลขที่ใบส่งของ
+            // แถวที่ k2m ไม่ระบุเหมืองแสดง "ไม่ระบุ" (ดู dgvDO_CellFormatting) สร้างใน code เพื่อให้ Blue / Pink ใช้ไฟล์เดียวกันได้
+            dgvDO.Columns.Insert(dgvDO.Columns["doc_no"].Index + 1, new DataGridViewTextBoxColumn
+            {
+                Name = "mine_code",
+                DataPropertyName = "comp_code",
+                HeaderText = "เหมือง",
+                Width = 70,
+                ReadOnly = true
+            });
+
             gridTop = dgvDO.Top;
             gridHeight = dgvDO.Height;
 
@@ -81,6 +97,17 @@ namespace SerialPortListener
             };
             Controls.Add(pnlOffline);
             pnlOffline.BringToFront();
+
+            pnlMineUnknown = new MineUnknownBanner
+            {
+                Location = new Point(dgvDO.Left, gridTop),
+                Width = dgvDO.Width,
+                Height = MineUnknownBanner.PreferredHeight,
+                BackColor = BackColor,
+                Visible = false
+            };
+            Controls.Add(pnlMineUnknown);
+            pnlMineUnknown.BringToFront();
         }
 
         // จัดตำแหน่ง: แถบออฟไลน์ -> กล่องรหัสที่ไม่พบ -> ตาราง (ใช้พื้นที่เดิมของตารางใน Designer)
@@ -97,6 +124,14 @@ namespace SerialPortListener
                 pnlOffline.Top = y;
                 pnlOffline.Invalidate();
                 y += pnlOffline.Height + 6;
+            }
+
+            pnlMineUnknown.Visible = pnlMineUnknown.Docs.Count > 0;
+            if (pnlMineUnknown.Visible)
+            {
+                pnlMineUnknown.Top = y;
+                pnlMineUnknown.Invalidate();
+                y += pnlMineUnknown.Height + 6;
             }
 
             if (pnlDoWarn.Groups.Count > 0)
@@ -125,6 +160,16 @@ namespace SerialPortListener
             return Convert.ToInt32(row[column]) == 1;
         }
 
+        // k2m ไม่ระบุเหมืองของใบส่งของนี้ (ไม่มีคอลัมน์ / ค่าว่าง = ระบุแล้ว)
+        private static bool isMineUnknown(DataRowView row)
+        {
+            if (row == null || !row.Row.Table.Columns.Contains("mine_unknown") || row["mine_unknown"] == DBNull.Value)
+                return false;
+            return Convert.ToInt32(row["mine_unknown"]) == 1;
+        }
+
+        private const string MineUnknownTip = "k2m ไม่ได้ระบุเหมืองของใบส่งของนี้ ตรวจสอบก่อนใช้";
+
         // ข้อความว่าใบส่งของนี้เลือกไม่ได้เพราะอะไร (ว่าง = เลือกได้)
         private static string doMissingText(DataRowView row)
         {
@@ -142,10 +187,13 @@ namespace SerialPortListener
             var groups = new List<DoMissGroup>();
             var byKey = new Dictionary<string, DoMissGroup>();
             var badDocs = new HashSet<string>();
+            var mineDocs = new List<string>();
 
             foreach (DataRowView row in dt.DefaultView)
             {
                 string doc = (row["doc_no"] ?? "").ToString();
+                if (isMineUnknown(row))
+                    mineDocs.Add(doc);
                 if (!rowFlag(row, "has_customer"))
                     addMissing("ลูกค้า", row["customer_code"], row["customer_name"], doc, groups, byKey, badDocs);
                 if (!rowFlag(row, "has_stone"))
@@ -154,6 +202,7 @@ namespace SerialPortListener
 
             pnlDoWarn.Groups = groups;
             pnlDoWarn.DocCount = badDocs.Count;
+            pnlMineUnknown.Docs = mineDocs;
             layoutDoPanels();
         }
 
@@ -389,6 +438,113 @@ namespace SerialPortListener
             }
         }
 
+        // แถบแจ้งใบส่งของที่ k2m ไม่ระบุเหมือง สไตล์เดียวกับ DoWarnPanel แต่โทนเหลือง (ตรงกับสีแถวในตาราง)
+        //  (!)  มี 2 ใบส่งของที่ k2m ไม่ระบุเหมือง   แถวสีเหลืองในตาราง · เลือกได้ แต่ตรวจสอบให้แน่ใจว่าเป็นของเหมืองนี้
+        //       [DO2611-000478] [DO2611-000487]
+        private class MineUnknownBanner : Panel
+        {
+            private static readonly Color Back = Color.FromArgb(255, 251, 224);
+            private static readonly Color Border = Color.FromArgb(235, 214, 120);
+            private static readonly Color Accent = Color.FromArgb(222, 178, 20);
+            private static readonly Color Text = Color.FromArgb(102, 80, 0);
+            private static readonly Color Muted = Color.FromArgb(138, 115, 40);
+
+            public List<string> Docs = new List<string>();
+
+            private readonly Font fTitle, fSub, fChip, fIcon;
+            private const TextFormatFlags Tf = TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine;
+            private const TextFormatFlags Center = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
+
+            public const int PreferredHeight = 62;
+
+            public MineUnknownBanner()
+            {
+                DoubleBuffered = true;
+                ResizeRedraw = true;
+                string ui = DoWarnPanel.fontExists("Leelawadee UI") ? "Leelawadee UI" : "Tahoma";
+                string mono = DoWarnPanel.fontExists("Consolas") ? "Consolas" : "Courier New";
+                fTitle = new Font(ui, 11F, FontStyle.Bold);
+                fSub = new Font(ui, 9F);
+                fChip = new Font(mono, 8.25F);
+                fIcon = new Font(ui, 10F, FontStyle.Bold);
+            }
+
+            private static Size measure(Graphics g, string s, Font f)
+            {
+                return TextRenderer.MeasureText(g, s, f, new Size(int.MaxValue, int.MaxValue), Tf);
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+                Graphics g = e.Graphics;
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                int w = ClientSize.Width, h = ClientSize.Height;
+
+                using (GraphicsPath p = DoWarnPanel.rounded(new Rectangle(0, 0, w - 1, h - 1), 6))
+                using (SolidBrush b = new SolidBrush(Back))
+                using (Pen pen = new Pen(Border))
+                {
+                    g.FillPath(b, p);
+                    g.DrawPath(pen, p);
+                }
+                using (GraphicsPath p = DoWarnPanel.rounded(new Rectangle(0, 0, 5, h - 1), 2))
+                using (SolidBrush b = new SolidBrush(Accent))
+                    g.FillPath(b, p);
+
+                int x = 18, y = 8, tx = 50;
+
+                Rectangle icon = new Rectangle(x, y, 22, 22);
+                using (SolidBrush b = new SolidBrush(Accent))
+                    g.FillEllipse(b, icon);
+                TextRenderer.DrawText(g, "!", fIcon, icon, Color.White, Center);
+
+                string title = "มี " + Docs.Count + " ใบส่งของที่ k2m ไม่ระบุเหมือง";
+                Size ts = measure(g, title, fTitle);
+                TextRenderer.DrawText(g, title, fTitle, new Point(tx, y + (22 - ts.Height) / 2), Text, Tf);
+                string sub = "แถวสีเหลืองในตาราง  ·  เลือกได้ แต่ตรวจสอบให้แน่ใจว่าเป็นของเหมืองนี้";
+                Size ss = measure(g, sub, fSub);
+                int subX = tx + ts.Width + 12;
+                TextRenderer.DrawText(g, sub, fSub,
+                    new Rectangle(subX, y + (22 - ss.Height) / 2 + 1, Math.Max(0, w - 14 - subX), ss.Height), Muted, Tf | TextFormatFlags.EndEllipsis);
+                y += 28;
+
+                // ป้ายเลขที่ใบส่งของ บรรทัดเดียว ถ้าไม่พอแสดง "+N"
+                int cx = tx;
+                for (int i = 0; i < Docs.Count; i++)
+                {
+                    Size ds = measure(g, Docs[i], fChip);
+                    Rectangle chip = new Rectangle(cx, y, ds.Width + 12, ds.Height + 6);
+                    string more = "+" + (Docs.Count - i);
+                    int moreW = measure(g, more, fChip).Width + 12;
+                    bool last = i == Docs.Count - 1;
+                    if (chip.Right + (last ? 0 : moreW + 5) > w - 14)
+                    {
+                        Rectangle mr = new Rectangle(cx, y, moreW, chip.Height);
+                        TextRenderer.DrawText(g, more, fChip, mr, Muted, Center);
+                        break;
+                    }
+                    using (GraphicsPath p = DoWarnPanel.rounded(chip, 3))
+                    using (Pen pen = new Pen(Border))
+                    {
+                        g.FillPath(Brushes.White, p);
+                        g.DrawPath(pen, p);
+                    }
+                    TextRenderer.DrawText(g, Docs[i], fChip, chip, Text, Center);
+                    cx = chip.Right + 5;
+                }
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                if (disposing)
+                {
+                    fTitle.Dispose(); fSub.Dispose(); fChip.Dispose(); fIcon.Dispose();
+                }
+                base.Dispose(disposing);
+            }
+        }
+
         // แถบแจ้งว่ากำลังใช้ใบส่งของในเครื่อง (ต่อ API ใบส่งของไม่ได้) สไตล์เดียวกับ DoWarnPanel แต่โทนแดง
         //  (!)  ใช้ข้อมูลใบส่งของในเครื่อง  [ออฟไลน์]
         //       ข้อมูลอาจไม่เป็นปัจจุบัน · ใบส่งของใหม่ที่ยังไม่เคยดึงลงเครื่องจะไม่แสดง
@@ -600,6 +756,22 @@ namespace SerialPortListener
                 if (row != null)
                 {
                     string missing = doMissingText(row);
+                    bool mineUnknown = isMineUnknown(row);
+                    // ไม่ระบุเหมือง: พื้นเหลือง (ถ้าเลือกไม่ได้ด้วย สีแดงด้านล่างทับ)
+                    if (mineUnknown)
+                    {
+                        e.CellStyle.BackColor = MineRowBack;
+                        gridRow.Cells[e.ColumnIndex].ToolTipText = MineUnknownTip;
+                        if (dgvDO.Columns[e.ColumnIndex].Name == "mine_code")
+                        {
+                            e.Value = "ไม่ระบุ";
+                            e.FormattingApplied = true;
+                            e.CellStyle.ForeColor = Color.FromArgb(150, 110, 0);
+                            if (mineBoldFont == null)
+                                mineBoldFont = new Font(dgvDO.Font, FontStyle.Bold);
+                            e.CellStyle.Font = mineBoldFont;
+                        }
+                    }
                     if (missing != "")
                     {
                         e.CellStyle.BackColor = MissRowBack;
@@ -611,13 +783,15 @@ namespace SerialPortListener
                             e.CellStyle.ForeColor = MissText;
                             e.CellStyle.SelectionForeColor = Color.FromArgb(255, 205, 200);
                         }
-                        gridRow.Cells[e.ColumnIndex].ToolTipText = missing + " ยังเลือกใบส่งของนี้ไม่ได้";
+                        gridRow.Cells[e.ColumnIndex].ToolTipText = missing + " ยังเลือกใบส่งของนี้ไม่ได้"
+                            + (mineUnknown ? "\n" + MineUnknownTip : "");
                     }
                 }
             }
 
-            // ตรวจเฉพาะ column 4 และ 5
-            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            // ตรวจเฉพาะคอลัมน์เที่ยวคงเหลือ (อ้างด้วยชื่อ ไม่ใช้ index เพราะมีคอลัมน์ที่เพิ่มใน code)
+            string colName = e.ColumnIndex >= 0 ? dgvDO.Columns[e.ColumnIndex].Name : "";
+            if (colName == "car_customer_rem" || colName == "car_company_rem")
             {
                 if (e.Value != null)
                 {
@@ -647,6 +821,17 @@ namespace SerialPortListener
                     MessageBox.Show(missing + "\nไม่สามารถอ้างอิงใบส่งของ " + selected["doc_no"] + " ได้\n\nกรุณาเพิ่มข้อมูลลูกค้า / ชนิดหิน ให้ตรงกับรหัสก่อน แล้วกด \"ค้นหา\" ใหม่",
                         "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+
+                // k2m ไม่ระบุเหมือง: ให้เลือกได้ แต่ต้องยืนยันว่าเป็นของเหมืองนี้
+                if (isMineUnknown(selected))
+                {
+                    string own = DeliveryOrderMine.GetOwnMineCode(dl);
+                    DialogResult ok = MessageBox.Show(
+                        "ใบส่งของ " + selected["doc_no"] + " k2m ไม่ได้ระบุเหมือง\n\nยืนยันว่าเป็นของเหมือง " + own + " ใช่หรือไม่ ?",
+                        "ยืนยันเหมือง", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (ok != DialogResult.Yes)
+                        return;
                 }
             }
 
