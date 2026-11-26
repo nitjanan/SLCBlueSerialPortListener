@@ -149,6 +149,18 @@ namespace SerialPortListener
             return token.ToString();
         }
 
+        // Django DeliveryOrder.mine_unknown (k2m ไม่ระบุเหมือง) : true/false -> 1/0, ไม่มี key/null -> DBNull
+        internal static object MineUnknownVal(JObject d)
+        {
+            JToken t = d["mine_unknown"];
+            if (t == null || t.Type == JTokenType.Null)
+                return DBNull.Value;
+            if (t.Type == JTokenType.Boolean)
+                return (bool)t ? 1 : 0;
+            string s = t.ToString().Trim();
+            return s == "1" || s.Equals("true", StringComparison.OrdinalIgnoreCase) ? 1 : 0;
+        }
+
         // DO ที่มีอยู่แล้ว อัพเดทเฉพาะยอดจาก web app ไม่ทับ site_id / delivery_type ที่ตาชั่งจัดการเอง
         // ชื่อ key ใน JSON = ชื่อ column ของ Django DeliveryOrder ตรงกับ local delivery_order
         // comp_code = เหมือง (= k2m mine_code) ใช้กรองหน้า TableDeliveryOrder (ตารางเต็มดู DeliveryOrderMine.cs)
@@ -168,12 +180,14 @@ namespace SerialPortListener
                     car_company_tot, car_customer_tot,
                     customer_code, customer_name, customer_address,
                     product_code, product_name, qty, qty_tot, unit_name,
-                    sale_name, note, status, site_id, site_name, comp_code, credit_type
+                    sale_name, note, status, site_id, site_name, comp_code, credit_type, mine_unknown
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, COALESCE(CAST(? AS smallint), 0))
                 ON CONFLICT (doc_no)
                 DO UPDATE SET
                     comp_code = COALESCE(NULLIF(EXCLUDED.comp_code, ''), delivery_order.comp_code),
+                    -- web app เวอร์ชันเก่าไม่ส่ง mine_unknown มา (NULL) ให้คงค่าเดิมที่ได้จาก k2m
+                    mine_unknown = COALESCE(CAST(? AS smallint), delivery_order.mine_unknown),
                     credit_type = COALESCE(NULLIF(EXCLUDED.credit_type, ''), delivery_order.credit_type),
                     car_company = EXCLUDED.car_company,
                     car_customer = EXCLUDED.car_customer,
@@ -199,6 +213,11 @@ namespace SerialPortListener
             {
                 pgCommand.Parameters.AddWithValue("", Val(d, key));
             }
+
+            // mine_unknown (Django BooleanField true/false) -> 1/0 ; ไม่มี key = NULL (ใช้ 2 ครั้ง: VALUES และ DO UPDATE)
+            object mineUnknown = MineUnknownVal(d);
+            pgCommand.Parameters.AddWithValue("", mineUnknown);
+            pgCommand.Parameters.AddWithValue("", mineUnknown);
 
             pgCommand.ExecuteNonQuery();
         }
